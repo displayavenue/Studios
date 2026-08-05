@@ -6,6 +6,11 @@ export type ServiceReview = {
   image?: string;
 };
 
+export type ServiceTip = {
+  title: string;
+  text: string;
+};
+
 export type Service = {
   slug: string;
   title: string;
@@ -19,6 +24,8 @@ export type Service = {
   youtubeUrl?: string;
   /** Per-service client reviews shown on the service detail page */
   reviews?: ServiceReview[];
+  /** Interesting facts & tips for this service — CMS editable */
+  tips?: ServiceTip[];
 };
 
 export const services: Service[] = [

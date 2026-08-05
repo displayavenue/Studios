@@ -569,6 +569,25 @@ function renderServices(d) {
             </details>
           `).join("")}
         </div>
+        <div class="field full" style="margin-top:1.25rem">
+          <div class="card-head">
+            <h3 style="font-size:1rem;margin:0">Tips &amp; facts (${(s.tips || []).length})</h3>
+            <button type="button" class="btn btn-gold btn-sm" data-action="add-service-tip" data-index="${i}">Add tip</button>
+          </div>
+          <p class="help-banner" style="margin:.65rem 0 0">Interesting facts and tips shown on this service page. Add, edit or remove anytime.</p>
+          ${(s.tips || []).map((t, ti) => `
+            <details class="item-card" style="margin-top:.65rem" ${ti < 3 ? "open" : ""}>
+              <summary>
+                <span>${escapeHtml(t.title || "Tip")}</span>
+                <button type="button" class="btn btn-danger btn-sm" data-action="del-service-tip" data-index="${i}" data-tip-index="${ti}">Delete</button>
+              </summary>
+              <div class="grid-2" style="margin-top:1rem">
+                ${field("Title", `services.${i}.tips.${ti}.title`, t.title)}
+                ${field("Tip / fact text", `services.${i}.tips.${ti}.text`, t.text, "textarea")}
+              </div>
+            </details>
+          `).join("")}
+        </div>
       </div>
     </details>
   `).join("")}`;
@@ -770,7 +789,7 @@ function handleAction(action, btn) {
 
   switch (action) {
     case "add-service":
-      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", youtubeUrl: "", category: "Wedding", related: [], reviews: [] });
+      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", youtubeUrl: "", category: "Wedding", related: [], reviews: [], tips: [] });
       break;
     case "del-service": del("services"); break;
     case "add-service-review": {
@@ -793,6 +812,27 @@ function handleAction(action, btn) {
       const ri = Number(btn.dataset.reviewIndex);
       if (!confirm("Delete this review?")) return;
       d.services[si].reviews.splice(ri, 1);
+      setDirty(true);
+      renderEditor();
+      break;
+    }
+    case "add-service-tip": {
+      const si = Number(btn.dataset.index);
+      d.services = d.services || [];
+      d.services[si].tips = d.services[si].tips || [];
+      d.services[si].tips.unshift({
+        title: "New tip",
+        text: "Write an interesting fact or practical tip for this service.",
+      });
+      setDirty(true);
+      renderEditor();
+      break;
+    }
+    case "del-service-tip": {
+      const si = Number(btn.dataset.index);
+      const ti = Number(btn.dataset.tipIndex);
+      if (!confirm("Delete this tip?")) return;
+      d.services[si].tips.splice(ti, 1);
       setDirty(true);
       renderEditor();
       break;

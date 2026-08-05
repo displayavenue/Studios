@@ -3,6 +3,7 @@ import { SEO, ServiceSchema, BreadcrumbSchema, FAQPageSchema } from "../componen
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { ServiceReviews } from "../components/ServiceReviews";
+import { ServiceTips } from "../components/ServiceTips";
 import { useReveal } from "../hooks/useReveal";
 import { useCms, useService } from "../cms/CmsProvider";
 import { getYoutubeEmbedUrl } from "../utils/youtube";
@@ -236,6 +237,8 @@ export function ServiceDetail() {
           </div>
         </div>
       </section>
+
+      <ServiceTips serviceTitle={service.title} tips={service.tips || []} />
 
       <ServiceReviews
         serviceTitle={service.title}
