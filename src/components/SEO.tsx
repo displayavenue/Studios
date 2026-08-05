@@ -55,6 +55,11 @@ export function SEO({
 
     setMeta('meta[name="description"]', "content", description);
     setMeta(
+      'meta[name="google-site-verification"]',
+      "content",
+      "80ZVa9R1VjKZnfedwtUgfAYvfs1WsncTMsAwiSeSTBM",
+    );
+    setMeta(
       'meta[name="robots"]',
       "content",
       noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
