@@ -60,6 +60,9 @@ export function Footer() {
             <li>
               <Link to="/book-now">Book Now</Link>
             </li>
+            <li>
+              <Link to="/pages">All Pages</Link>
+            </li>
           </ul>
         </div>
 

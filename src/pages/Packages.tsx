@@ -38,8 +38,15 @@ export function Packages() {
           <div className="container">
             <div className="section-head reveal">
               <p className="eyebrow">{group.title}</p>
-              <h2>{group.title}</h2>
+              <h2>
+                <Link to={`/packages/${group.slug}`} className="inline-title-link">
+                  {group.title}
+                </Link>
+              </h2>
               <p>{group.subtitle}</p>
+              <Link to={`/packages/${group.slug}`} className="text-link">
+                Open full package page →
+              </Link>
             </div>
             <div className="packages-grid">
               {group.tiers.map((tier) => (
@@ -60,11 +67,11 @@ export function Packages() {
                     ))}
                   </ul>
                   <div className="package-actions">
-                    <Link to="/book-now" className="btn btn--gold">
-                      Book Now
+                    <Link to={`/packages/${group.slug}`} className="btn btn--gold">
+                      View Package
                     </Link>
-                    <Link to="/contact" className="btn btn--ghost">
-                      Customize Package
+                    <Link to="/book-now" className="btn btn--ghost">
+                      Book Now
                     </Link>
                   </div>
                 </article>

@@ -36,16 +36,18 @@ export function Industries() {
       <section className="section">
         <div className="container industries-grid">
           {industries.map((ind) => (
-            <article key={ind.slug} id={ind.slug} className="industry-card card reveal">
+            <Link
+              key={ind.slug}
+              to={`/industries/${ind.slug}`}
+              className="industry-card card reveal"
+            >
               <img src={ind.image} alt={ind.title} loading="lazy" />
               <div>
                 <h2>{ind.title}</h2>
                 <p>{ind.text}</p>
-                <Link to="/book-now" className="text-link">
-                  Book a consultation →
-                </Link>
+                <span className="text-link">Open industry page →</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

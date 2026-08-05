@@ -153,11 +153,16 @@ export function ServiceDetail() {
                     <li key={f}>{f}</li>
                   ))}
                 </ul>
-                <Link to="/book-now" className="btn btn--gold">
-                  Book Now
+                <Link to={`/packages/${pricing.slug}`} className="btn btn--gold">
+                  View Package
                 </Link>
               </article>
             ))}
+          </div>
+          <div className="section-cta reveal" style={{ marginTop: "1.5rem" }}>
+            <Link to={`/packages/${pricing.slug}`} className="text-link">
+              Open {pricing.title} page →
+            </Link>
           </div>
         </div>
       </section>

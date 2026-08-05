@@ -204,8 +204,11 @@ export function Home() {
             ))}
           </div>
           <div className="section-cta reveal">
+            <Link to={`/packages/${weddingPackages.slug}`} className="btn btn--gold">
+              Wedding Package Page
+            </Link>
             <Link to="/packages" className="btn btn--outline">
-              Compare Packages
+              All Packages
             </Link>
           </div>
         </div>

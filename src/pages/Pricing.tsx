@@ -35,7 +35,7 @@ const factors = [
 
 export function Pricing() {
   const ref = useReveal<HTMLDivElement>();
-  const { faqs } = useCms();
+  const { faqs, packageGroups } = useCms();
 
   return (
     <div ref={ref}>
@@ -69,23 +69,29 @@ export function Pricing() {
           </div>
           <div className="pricing-cards">
             {[
-              ["Wedding Photography & Film", "From ₹75,000", "Single-day Essential coverage"],
-              ["Corporate Photo + Film", "From ₹35,000", "Half-day on-location package"],
-              ["Product Photography", "From ₹999 / SKU", "Marketplace packshot sets"],
-              ["Monthly Content Retainer", "From ₹45,000 / mo", "Ongoing social content systems"],
-              ["Drone Add-on", "From ₹15,000", "Licensed aerial stills or film"],
-              ["Luxury Album Design", "From ₹25,000", "Editorial design + print coordination"],
-            ].map(([title, price, note]) => (
-              <article key={title} className="card pricing-card reveal">
+              ["Wedding Photography & Film", "From ₹75,000", "Single-day Essential coverage", "/packages/wedding"],
+              ["Corporate Photo + Film", "From ₹35,000", "Half-day on-location package", "/packages/corporate"],
+              ["Product Photography", "From ₹999 / SKU", "Marketplace packshot sets", "/packages/product"],
+              ["Monthly Content Retainer", "From ₹45,000 / mo", "Ongoing social content systems", "/packages/monthly-content"],
+              ["Drone Add-on", "From ₹15,000", "Licensed aerial stills or film", "/packages"],
+              ["Luxury Album Design", "From ₹25,000", "Editorial design + print coordination", "/packages"],
+            ].map(([title, price, note, href]) => (
+              <Link key={title} to={href} className="card pricing-card reveal">
                 <h3>{title}</h3>
                 <p className="package-card__price">{price}</p>
                 <p>{note}</p>
-              </article>
+                <span className="text-link">Open page →</span>
+              </Link>
             ))}
           </div>
           <div className="section-cta reveal">
+            {packageGroups.map((g) => (
+              <Link key={g.slug} to={`/packages/${g.slug}`} className="btn btn--ghost">
+                {g.title}
+              </Link>
+            ))}
             <Link to="/packages" className="btn btn--gold">
-              Compare Full Packages
+              All Packages
             </Link>
           </div>
         </div>
