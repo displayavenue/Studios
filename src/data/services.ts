@@ -1,3 +1,11 @@
+export type ServiceReview = {
+  name: string;
+  role: string;
+  quote: string;
+  rating?: number;
+  image?: string;
+};
+
 export type Service = {
   slug: string;
   title: string;
@@ -9,6 +17,8 @@ export type Service = {
   related: string[];
   /** Optional YouTube watch / share / embed URL — shown on the service page when set */
   youtubeUrl?: string;
+  /** Per-service client reviews shown on the service detail page */
+  reviews?: ServiceReview[];
 };
 
 export const services: Service[] = [

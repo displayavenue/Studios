@@ -507,7 +507,7 @@ function renderServices(d) {
       <button type="button" class="btn btn-gold btn-sm" data-action="add-service">Add service</button>
     </div>
     <div class="help-banner">
-      Tip: paste a YouTube link on any service to show a video section on its page. Use search below to jump quickly.
+      Tip: paste a YouTube link on any service to show a video section on its page. Each service also has its own reviews list (editable below) shown on that service page. Use search to jump quickly.
     </div>
     <div class="field full">
       <label>Search services</label>
@@ -546,6 +546,28 @@ function renderServices(d) {
         <div class="field full">
           <label>Related service slugs (one per line)</label>
           <textarea data-path="services.${i}.related" data-array="true">${escapeHtml((s.related || []).join("\n"))}</textarea>
+        </div>
+        <div class="field full" style="margin-top:1rem">
+          <div class="card-head">
+            <h3 style="font-size:1rem;margin:0">Service reviews (${(s.reviews || []).length})</h3>
+            <button type="button" class="btn btn-gold btn-sm" data-action="add-service-review" data-index="${i}">Add review</button>
+          </div>
+          <p class="help-banner" style="margin:.65rem 0 0">These appear only on this service page. Edit name, role, quote, rating (1–5) and photo URL.</p>
+          ${(s.reviews || []).map((r, ri) => `
+            <details class="item-card" style="margin-top:.65rem" ${ri < 2 ? "open" : ""}>
+              <summary>
+                <span>${escapeHtml(r.name || "Review")} <small style="color:#888;font-weight:400">${escapeHtml(r.role || "")}</small></span>
+                <button type="button" class="btn btn-danger btn-sm" data-action="del-service-review" data-index="${i}" data-review-index="${ri}">Delete</button>
+              </summary>
+              <div class="grid-2" style="margin-top:1rem">
+                ${field("Name", `services.${i}.reviews.${ri}.name`, r.name)}
+                ${field("Role / city", `services.${i}.reviews.${ri}.role`, r.role)}
+                ${field("Rating (1-5)", `services.${i}.reviews.${ri}.rating`, r.rating ?? 5, "number")}
+                ${field("Photo URL", `services.${i}.reviews.${ri}.image`, r.image || "")}
+                ${field("Quote", `services.${i}.reviews.${ri}.quote`, r.quote, "textarea")}
+              </div>
+            </details>
+          `).join("")}
         </div>
       </div>
     </details>
@@ -748,9 +770,33 @@ function handleAction(action, btn) {
 
   switch (action) {
     case "add-service":
-      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", youtubeUrl: "", category: "Wedding", related: [] });
+      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", youtubeUrl: "", category: "Wedding", related: [], reviews: [] });
       break;
     case "del-service": del("services"); break;
+    case "add-service-review": {
+      const si = Number(btn.dataset.index);
+      d.services = d.services || [];
+      d.services[si].reviews = d.services[si].reviews || [];
+      d.services[si].reviews.unshift({
+        name: "New Client",
+        role: "Client · Mumbai",
+        quote: "Share what they loved about this service.",
+        rating: 5,
+        image: "",
+      });
+      setDirty(true);
+      renderEditor();
+      break;
+    }
+    case "del-service-review": {
+      const si = Number(btn.dataset.index);
+      const ri = Number(btn.dataset.reviewIndex);
+      if (!confirm("Delete this review?")) return;
+      d.services[si].reviews.splice(ri, 1);
+      setDirty(true);
+      renderEditor();
+      break;
+    }
     case "add-portfolio":
       add("portfolio", { slug: "new-project", title: "New Project", category: "Wedding", location: "Mumbai", description: "", image: "", gallery: [] });
       break;
