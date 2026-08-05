@@ -39,7 +39,10 @@ function toast(msg, type = "ok") {
 
 function setDirty(v) {
   state.dirty = v;
-  $("#save-btn").disabled = !v;
+  const btn = $("#save-btn");
+  btn.disabled = !v;
+  btn.textContent = v ? "Save changes *" : "Save changes";
+  document.body.classList.toggle("is-dirty", !!v);
 }
 
 function showLogin(show) {
@@ -156,6 +159,17 @@ function renderEditor() {
   wrap.querySelectorAll("[data-action]").forEach((btn) => {
     btn.addEventListener("click", () => handleAction(btn.dataset.action, btn));
   });
+
+  const search = wrap.querySelector("#service-search");
+  if (search) {
+    search.addEventListener("input", () => {
+      const q = search.value.trim().toLowerCase();
+      wrap.querySelectorAll(".item-card[data-search]").forEach((card) => {
+        const hay = card.getAttribute("data-search") || "";
+        card.hidden = q !== "" && !hay.includes(q);
+      });
+    });
+  }
 }
 
 function renderHome(d) {
@@ -343,15 +357,26 @@ function renderServices(d) {
       <h3>Services (${services.length})</h3>
       <button type="button" class="btn btn-gold btn-sm" data-action="add-service">Add service</button>
     </div>
+    <div class="help-banner">
+      Tip: paste a YouTube link on any service to show a video section on its page. Use search below to jump quickly.
+    </div>
+    <div class="field full">
+      <label>Search services</label>
+      <input type="search" id="service-search" placeholder="Search by title, slug or category…" autocomplete="off" />
+    </div>
     <div class="field full">
       <label>Homepage featured service slugs (one per line)</label>
       <textarea data-path="homeServices" data-array="true">${escapeHtml(home)}</textarea>
     </div>
   </div>
   ${services.map((s, i) => `
-    <details class="item-card" ${i < 3 ? "open" : ""}>
+    <details class="item-card" data-search="${escapeAttr(`${s.title || ""} ${s.slug || ""} ${s.category || ""}`.toLowerCase())}" ${i < 2 ? "open" : ""}>
       <summary>
-        <span>${escapeHtml(s.title || s.slug || "Service")} <small style="color:#888;font-weight:400">/${escapeHtml(s.slug || "")}</small></span>
+        <span>
+          <span class="pill">${escapeHtml(s.category || "Service")}</span>
+          ${escapeHtml(s.title || s.slug || "Service")}
+          <small style="color:#888;font-weight:400">/${escapeHtml(s.slug || "")}</small>
+        </span>
         <span style="display:flex;gap:.5rem;align-items:center">
           ${s.image ? `<img class="preview" src="${escapeAttr(s.image)}" alt="" />` : ""}
           <button type="button" class="btn btn-danger btn-sm" data-action="del-service" data-index="${i}">Delete</button>
@@ -686,6 +711,13 @@ $("#logout-btn").onclick = async () => {
 
 $("#save-btn").onclick = save;
 $("#reload-btn").onclick = () => state.current && loadCollection(state.current);
+
+window.addEventListener("keydown", (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
+    e.preventDefault();
+    if (state.dirty && state.authed) save();
+  }
+});
 
 window.addEventListener("beforeunload", (e) => {
   if (state.dirty) { e.preventDefault(); e.returnValue = ""; }

@@ -184,6 +184,12 @@ p {
   background: #222;
 }
 
+.btn--sm {
+  min-height: 40px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.82rem;
+}
+
 .btn--outline {
   background: transparent;
   border-color: var(--black);

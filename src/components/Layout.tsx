@@ -17,7 +17,7 @@ export function Layout() {
       <LocalBusinessSchema />
       <WebSiteSchema />
       <Header />
-      <main>
+      <main id="main-content">
         <Outlet />
       </main>
       <Footer />
