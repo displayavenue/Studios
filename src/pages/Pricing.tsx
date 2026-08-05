@@ -3,7 +3,7 @@ import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
-import { faqs } from "../data/content";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 const factors = [
@@ -35,6 +35,7 @@ const factors = [
 
 export function Pricing() {
   const ref = useReveal<HTMLDivElement>();
+  const { faqs } = useCms();
 
   return (
     <div ref={ref}>

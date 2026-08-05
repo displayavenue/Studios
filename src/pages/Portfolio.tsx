@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
-import { portfolio, portfolioCategories } from "../data/portfolio";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function Portfolio() {
   const ref = useReveal<HTMLDivElement>();
+  const { portfolio, portfolioCategories } = useCms();
   const [category, setCategory] = useState("All");
 
   const items = useMemo(
@@ -15,7 +16,7 @@ export function Portfolio() {
       category === "All"
         ? portfolio
         : portfolio.filter((p) => p.category === category),
-    [category],
+    [category, portfolio],
   );
 
   return (

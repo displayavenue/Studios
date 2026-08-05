@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import "./CTABanner.css";
 
 export function CTABanner({
@@ -9,6 +9,8 @@ export function CTABanner({
   title?: string;
   text?: string;
 }) {
+  const { company } = useCms();
+
   return (
     <section className="cta-banner section">
       <div className="container cta-banner__inner reveal">

@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
-import { industries } from "../data/content";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function Industries() {
   const ref = useReveal<HTMLDivElement>();
+  const { industries } = useCms();
 
   return (
     <div ref={ref}>

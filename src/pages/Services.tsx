@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
-import { services } from "../data/services";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 const categories = ["Wedding", "Corporate", "Product", "Events", "Aerial", "Post"] as const;
 
 export function Services() {
   const ref = useReveal<HTMLDivElement>();
+  const { services } = useCms();
 
   return (
     <div ref={ref}>

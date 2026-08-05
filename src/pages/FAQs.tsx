@@ -3,13 +3,13 @@ import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
-import { faqs } from "../data/content";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
-
-const categories = [...new Set(faqs.map((f) => f.category))];
 
 export function FAQs() {
   const ref = useReveal<HTMLDivElement>();
+  const { faqs } = useCms();
+  const categories = [...new Set(faqs.map((f) => f.category))];
 
   return (
     <div ref={ref}>

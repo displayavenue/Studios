@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 
 type SEOProps = {
   title: string;
@@ -16,6 +16,8 @@ export function SEO({
   type = "website",
   image = "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
 }: SEOProps) {
+  const { company } = useCms();
+
   useEffect(() => {
     document.title = title;
 
@@ -53,12 +55,14 @@ export function SEO({
       document.head.appendChild(canonical);
     }
     canonical.href = `${company.website}${path}`;
-  }, [title, description, path, type, image]);
+  }, [title, description, path, type, image, company.website]);
 
   return null;
 }
 
 export function OrganizationSchema() {
+  const { company } = useCms();
+
   useEffect(() => {
     const id = "schema-organization";
     let script = document.getElementById(id) as HTMLScriptElement | null;
@@ -95,7 +99,7 @@ export function OrganizationSchema() {
         "https://linkedin.com",
       ],
     });
-  }, []);
+  }, [company]);
 
   return null;
 }

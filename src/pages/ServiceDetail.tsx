@@ -3,15 +3,13 @@ import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
-import { getService, services } from "../data/services";
-import { faqs, testimonials } from "../data/content";
-import { packageGroups } from "../data/packages";
-import { portfolio } from "../data/portfolio";
+import { useCms, useService } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function ServiceDetail() {
   const { slug } = useParams();
-  const service = getService(slug || "");
+  const service = useService(slug || "");
+  const { services, faqs, testimonials, packageGroups, portfolio } = useCms();
   const ref = useReveal<HTMLDivElement>();
 
   if (!service) {
@@ -28,7 +26,7 @@ export function ServiceDetail() {
   }
 
   const related = service.related
-    .map((s) => getService(s))
+    .map((s) => services.find((svc) => svc.slug === s))
     .filter(Boolean);
   const relatedWork = portfolio
     .filter((p) => {

@@ -3,21 +3,23 @@ import { SEO, OrganizationSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
-import { brandLogos, trustBadges } from "../data/company";
-import { getService, homeServices } from "../data/services";
-import { packageGroups } from "../data/packages";
-import { portfolio } from "../data/portfolio";
-import {
-  blogs,
-  faqs,
-  processSteps,
-  testimonials,
-  whyChoose,
-} from "../data/content";
+import { useCms } from "../cms/CmsProvider";
 import "./Home.css";
 
 export function Home() {
   const ref = useReveal<HTMLDivElement>();
+  const {
+    company: { trustBadges, brandLogos },
+    homeServices,
+    services,
+    packageGroups,
+    portfolio,
+    blogs,
+    faqs,
+    processSteps,
+    testimonials,
+    whyChoose,
+  } = useCms();
   const weddingPackages = packageGroups[0];
 
   return (
@@ -92,7 +94,7 @@ export function Home() {
           </div>
           <div className="services-grid">
             {homeServices.map((slug, i) => {
-              const service = getService(slug);
+              const service = services.find((s) => s.slug === slug);
               if (!service) return null;
               return (
                 <Link

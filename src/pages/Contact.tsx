@@ -3,11 +3,12 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function Contact() {
   const ref = useReveal<HTMLDivElement>();
+  const { company } = useCms();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = (e: FormEvent) => {

@@ -2,11 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
-import { portfolio } from "../data/portfolio";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function PortfolioDetail() {
   const { slug } = useParams();
+  const { portfolio } = useCms();
   const item = portfolio.find((p) => p.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 

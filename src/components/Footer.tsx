@@ -1,12 +1,12 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { company, navLinks } from "../data/company";
-import { homeServices, getService } from "../data/services";
-import { locations } from "../data/content";
+import { useCms } from "../cms/CmsProvider";
 import "./Footer.css";
 
 export function Footer() {
+  const { company, homeServices, services, locations } = useCms();
+  const navLinks = company.navLinks;
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
@@ -67,7 +67,7 @@ export function Footer() {
           <h4>Services</h4>
           <ul>
             {homeServices.map((slug) => {
-              const s = getService(slug);
+              const s = services.find((svc) => svc.slug === slug);
               if (!s) return null;
               return (
                 <li key={slug}>

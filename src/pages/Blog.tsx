@@ -2,11 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
-import { blogs } from "../data/content";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function Blog() {
   const ref = useReveal<HTMLDivElement>();
+  const { blogs } = useCms();
 
   return (
     <div ref={ref}>
@@ -58,6 +59,7 @@ export function Blog() {
 
 export function BlogPost() {
   const { slug } = useParams();
+  const { blogs } = useCms();
   const post = blogs.find((b) => b.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 

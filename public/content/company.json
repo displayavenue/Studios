@@ -1,0 +1,85 @@
+{
+  "name": "DisplayAvenue Studios",
+  "tagline": "India's Premium Visual Production Studio",
+  "website": "https://displayavenuestudios.com",
+  "phone": "+91 7400303493",
+  "phoneHref": "tel:+917400303493",
+  "whatsapp": "+91 7400303493",
+  "whatsappHref": "https://wa.me/917400303493",
+  "email": "hello@displayavenuestudios.com",
+  "emailHref": "mailto:hello@displayavenuestudios.com",
+  "coverage": "Pan India",
+  "primaryFocus": "Mumbai",
+  "address": {
+    "lines": [
+      "Office No. 44, D Wing,",
+      "Shree Sharanam CHS,",
+      "Unique Garden, Kanakia,",
+      "Mira Road East, Mumbai,",
+      "Maharashtra 401107, India"
+    ],
+    "mapEmbed": "https://www.google.com/maps?q=Mira+Road+East+Mumbai+Maharashtra+401107&output=embed"
+  },
+  "navLinks": [
+    {
+      "label": "Home",
+      "path": "/"
+    },
+    {
+      "label": "About",
+      "path": "/about"
+    },
+    {
+      "label": "Services",
+      "path": "/services"
+    },
+    {
+      "label": "Packages",
+      "path": "/packages"
+    },
+    {
+      "label": "Portfolio",
+      "path": "/portfolio"
+    },
+    {
+      "label": "Locations",
+      "path": "/locations"
+    },
+    {
+      "label": "Blog",
+      "path": "/blog"
+    },
+    {
+      "label": "Contact",
+      "path": "/contact"
+    },
+    {
+      "label": "Pricing",
+      "path": "/pricing"
+    },
+    {
+      "label": "Industries",
+      "path": "/industries"
+    },
+    {
+      "label": "FAQs",
+      "path": "/faqs"
+    }
+  ],
+  "trustBadges": [
+    "Pan India Coverage",
+    "Professional Team",
+    "Luxury Experience",
+    "Fast Delivery"
+  ],
+  "brandLogos": [
+    "Taj Hotels",
+    "Reliance",
+    "Nykaa",
+    "MakeMyTrip",
+    "FabIndia",
+    "Tata",
+    "Marriott",
+    "Boat"
+  ]
+}

@@ -3,12 +3,12 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
-import { company } from "../data/company";
-import { packageGroups } from "../data/packages";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function BookNow() {
   const ref = useReveal<HTMLDivElement>();
+  const { company, packageGroups } = useCms();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = (e: FormEvent) => {

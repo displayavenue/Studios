@@ -2,11 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
-import { locations } from "../data/content";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function Locations() {
   const ref = useReveal<HTMLDivElement>();
+  const { locations } = useCms();
 
   return (
     <div ref={ref}>
@@ -56,6 +57,7 @@ export function Locations() {
 
 export function LocationDetail() {
   const { slug } = useParams();
+  const { locations } = useCms();
   const loc = locations.find((l) => l.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 

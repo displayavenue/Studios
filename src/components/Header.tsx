@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink } from "react-router-dom";
-import { company, navLinks } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import "./Header.css";
 
 const primaryPaths = new Set([
@@ -16,6 +16,8 @@ const primaryPaths = new Set([
 ]);
 
 export function Header() {
+  const { company } = useCms();
+  const navLinks = company.navLinks;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);

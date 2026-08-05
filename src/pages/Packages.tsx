@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
-import { packageGroups } from "../data/packages";
+import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
 export function Packages() {
   const ref = useReveal<HTMLDivElement>();
+  const { packageGroups } = useCms();
 
   return (
     <div ref={ref}>

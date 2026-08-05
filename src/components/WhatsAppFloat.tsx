@@ -1,7 +1,9 @@
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import "./WhatsAppFloat.css";
 
 export function WhatsAppFloat() {
+  const { company } = useCms();
+
   return (
     <a
       className="wa-float"
