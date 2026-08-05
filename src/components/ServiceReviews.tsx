@@ -28,7 +28,7 @@ export function ServiceReviews({
   return (
     <section className="section section--light service-reviews" aria-label={`${serviceTitle} reviews`}>
       <div className="container">
-        <div className="section-head section-head--center reveal">
+        <div className="section-head section-head--center">
           <p className="eyebrow">Client reviews</p>
           <h2>What clients say about {serviceTitle}</h2>
           <p>
@@ -42,7 +42,7 @@ export function ServiceReviews({
 
         <div className="service-reviews__grid">
           {visible.map((r, i) => (
-            <article key={`${r.name}-${i}`} className="service-review-card card reveal">
+            <article key={`${r.name}-${i}`} className="service-review-card card">
               <div
                 className="service-review-card__stars"
                 aria-label={`${r.rating || 5} star review`}
@@ -68,7 +68,7 @@ export function ServiceReviews({
         </div>
 
         {list.length > initialVisible && (
-          <div className="section-cta reveal" style={{ justifyContent: "center" }}>
+          <div className="section-cta" style={{ justifyContent: "center" }}>
             <button
               type="button"
               className="btn btn--outline"
