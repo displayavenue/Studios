@@ -8,6 +8,9 @@ DirectoryIndex index.html index.php
   # Prefer React homepage over WordPress index.php when both exist
   RewriteRule ^$ index.html [L]
 
+  # Always-fresh SEO sitemap from CMS JSON
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
   # Pass existing files/directories through
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d

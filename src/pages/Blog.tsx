@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { SEO } from "../components/SEO";
+import { SEO, BreadcrumbSchema, ArticleSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
@@ -7,14 +7,20 @@ import "./Page.css";
 
 export function Blog() {
   const ref = useReveal<HTMLDivElement>();
-  const { blogs } = useCms();
+  const { blogs, company } = useCms();
 
   return (
     <div ref={ref}>
       <SEO
-        title="Blog | Photography & Film Guides | DisplayAvenue Studios"
-        description="Expert guides on wedding photography, product shoots, brand films, drones and booking tips from DisplayAvenue Studios."
+        title={`Blog | Photography & Film Guides | ${company.name}`}
+        description={`Expert guides on wedding photography, product shoots, brand films, drones and booking tips from ${company.name}.`}
         path="/blog"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ]}
       />
 
       <section className="page-hero">
@@ -27,8 +33,8 @@ export function Blog() {
           <p className="eyebrow">Blog</p>
           <h1>Guides built for planning, SEO and better bookings</h1>
           <p>
-            Our blog architecture supports 1000+ articles — starting with
-            high-intent guides for couples, brands and local search.
+            High-intent guides for couples, brands and local search — updated
+            from the CMS whenever you publish.
           </p>
         </div>
       </section>
@@ -59,7 +65,7 @@ export function Blog() {
 
 export function BlogPost() {
   const { slug } = useParams();
-  const { blogs } = useCms();
+  const { blogs, company } = useCms();
   const post = blogs.find((b) => b.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 
@@ -79,9 +85,26 @@ export function BlogPost() {
   return (
     <div ref={ref}>
       <SEO
-        title={`${post.title} | DisplayAvenue Studios Blog`}
+        title={`${post.title} | ${company.name} Blog`}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
+        image={post.image}
+        type="article"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+      />
+      <ArticleSchema
+        title={post.title}
+        description={post.excerpt}
+        image={post.image}
+        path={`/blog/${post.slug}`}
+        datePublished={post.date}
+        category={post.category}
       />
 
       <article>

@@ -64,6 +64,8 @@ function writeJson(string $path, $data): void {
   rename($tmp, $path);
 }
 
+require_once __DIR__ . '/seo-sync.php';
+
 $body = [];
 $raw = file_get_contents('php://input');
 if ($raw) {
@@ -115,14 +117,24 @@ switch ($action) {
     if (!array_key_exists('data', $body)) respond(400, ['ok' => false, 'error' => 'Missing data']);
     $path = contentPath($config, $collection);
     writeJson($path, $body['data']);
-    // bump settings updatedAt when anything saves
-    $settingsPath = rtrim($config['content_dir'], '/\\') . '/settings.json';
-    if (is_file($settingsPath)) {
-      $settings = readJson($settingsPath);
-      $settings['updatedAt'] = gmdate('c');
-      writeJson($settingsPath, $settings);
-    }
-    respond(200, ['ok' => true, 'saved' => $collection]);
+
+    $contentDir = rtrim($config['content_dir'], '/\\');
+    $publicDir = dirname($contentDir);
+    $seo = da_sync_seo_artifacts($contentDir, $publicDir);
+
+    respond(200, [
+      'ok' => true,
+      'saved' => $collection,
+      'seo' => $seo,
+    ]);
+
+  case 'sync-seo':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $contentDir = rtrim($config['content_dir'], '/\\');
+    $publicDir = dirname($contentDir);
+    $seo = da_sync_seo_artifacts($contentDir, $publicDir);
+    if (!$seo['ok']) respond(500, ['ok' => false, 'error' => $seo['error'] ?? 'SEO sync failed']);
+    respond(200, ['ok' => true, 'seo' => $seo]);
 
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);

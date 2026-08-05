@@ -548,6 +548,20 @@ function renderSettings(d) {
       Change the CMS login password in <code>/admin/config.php</code> on the server.<br/>
       Make sure the <code>/content</code> folder is writable (chmod 755/775).
     </p>
+  </div>
+  <div class="card">
+    <h3>Automatic SEO sync</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
+      Every time you click <strong>Save changes</strong> in any section, the CMS automatically rebuilds
+      <code>sitemap.xml</code> and <code>llms.txt</code> from your latest content (services, packages,
+      portfolio, locations, industries, blogs). The live website also reads content JSON on each visit,
+      so titles, schema and copy stay in sync without a rebuild.
+    </p>
+    <p style="font-size:.9rem;margin:0 0 1rem">
+      Last SEO sync: <strong>${escapeHtml(d.seoSyncedAt || d.updatedAt || "—")}</strong><br/>
+      Sitemap URLs: <strong>${escapeHtml(String(d.sitemapUrlCount ?? "—"))}</strong>
+    </p>
+    <button type="button" class="btn btn-gold btn-sm" data-action="sync-seo">Rebuild SEO now</button>
   </div>`;
 }
 
@@ -593,15 +607,31 @@ function handleAction(action, btn) {
     case "del-why": del("whyChoose"); break;
     case "add-process": add("processSteps", { step: "0", title: "Step", text: "" }); break;
     case "del-process": del("processSteps"); break;
+    case "sync-seo":
+      (async () => {
+        try {
+          const res = await api("sync-seo", {});
+          toast(`SEO rebuilt — ${res?.seo?.urls ?? "?"} URLs in sitemap`);
+          if (state.current === "settings") loadCollection("settings");
+        } catch (e) {
+          toast(e.message || "SEO sync failed", "err");
+        }
+      })();
+      break;
   }
 }
 
 async function save() {
   if (!state.current || !state.data) return;
   try {
-    await api("save", { collection: state.current, data: state.data });
+    const res = await api("save", { collection: state.current, data: state.data });
     setDirty(false);
-    toast("Saved — website will show updates on refresh");
+    const urls = res?.seo?.urls;
+    toast(
+      urls
+        ? `Saved — SEO sitemap updated (${urls} URLs). Refresh the website to see changes.`
+        : "Saved — website + SEO artifacts updated. Refresh the website to see changes.",
+    );
   } catch (e) {
     toast(e.message || "Save failed", "err");
   }

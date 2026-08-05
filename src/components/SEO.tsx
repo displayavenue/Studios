@@ -292,3 +292,46 @@ export function BreadcrumbSchema({
 
   return null;
 }
+
+export function ArticleSchema({
+  title,
+  description,
+  image,
+  path,
+  datePublished,
+  category,
+}: {
+  title: string;
+  description: string;
+  image: string;
+  path: string;
+  datePublished?: string;
+  category?: string;
+}) {
+  const { company } = useCms();
+
+  useEffect(() => {
+    upsertJsonLd("schema-article", {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      image,
+      mainEntityOfPage: `${company.website}${path}`,
+      datePublished: datePublished || undefined,
+      author: { "@type": "Organization", name: company.name },
+      publisher: {
+        "@type": "Organization",
+        name: company.name,
+        logo: {
+          "@type": "ImageObject",
+          url: `${company.website}/favicon.svg`,
+        },
+      },
+      articleSection: category,
+    });
+    return () => upsertJsonLd("schema-article", null);
+  }, [title, description, image, path, datePublished, category, company]);
+
+  return null;
+}

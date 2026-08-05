@@ -22,7 +22,16 @@ Edit it in: `/admin/config.php` → `admin_password`
 - FAQs, blog posts, testimonials, team, industries, locations
 - Process steps & “Why choose us”
 
-Changes save to `/content/*.json` and appear on the website after refresh.
+## Automatic SEO
+
+Every **Save changes** in the CMS rebuilds:
+
+- `/sitemap.xml` (also served live via `sitemap.php`)
+- `/llms.txt` for AI assistants
+
+The React site loads `/content/*.json` on every visit, so homepage copy, services, prices, FAQs and schema update automatically after save + browser refresh.
+
+In **Settings**, use **Rebuild SEO now** to force a sync without editing content.
 
 ## Hostinger setup
 

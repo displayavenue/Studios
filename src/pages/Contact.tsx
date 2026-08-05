@@ -19,8 +19,8 @@ export function Contact() {
   return (
     <div ref={ref}>
       <SEO
-        title="Contact DisplayAvenue Studios | Mumbai Head Office"
-        description="Contact DisplayAvenue Studios in Mira Road East, Mumbai. Call +91 7400303493 or email hello@displayavenuestudios.com."
+        title={`Contact ${company.name} | ${company.primaryFocus} Head Office`}
+        description={`Contact ${company.name} in ${company.address.addressLocality || "Mumbai"}. Call ${company.phone} or email ${company.email}.`}
         path="/contact"
       />
 
