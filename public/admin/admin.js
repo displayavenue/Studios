@@ -49,8 +49,9 @@ function showLogin(show) {
   const login = $("#login-view");
   const cms = $("#cms-view");
   if (!login || !cms) return;
-  login.hidden = !!show;
-  cms.hidden = !show;
+  // show=true → login visible; show=false → CMS visible
+  login.hidden = !show;
+  cms.hidden = !!show;
   login.classList.toggle("is-hidden", !show);
   cms.classList.toggle("is-hidden", !!show);
   document.body.classList.toggle("is-authed", !show);
