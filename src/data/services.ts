@@ -195,7 +195,7 @@ export const services: Service[] = [
       "Delivery for web, LinkedIn and events",
     ],
     image:
-      "https://images.unsplash.com/photo-1573164713714-d95e4367658e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80",
     category: "Corporate",
     related: ["brand-story-videos", "commercial-ad-films", "interview-videos"],
   },
