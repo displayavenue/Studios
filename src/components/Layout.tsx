@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { WhatsAppFloat } from "./WhatsAppFloat";
+import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
 
 export function Layout() {
   const { pathname } = useLocation();
@@ -13,6 +14,8 @@ export function Layout() {
 
   return (
     <>
+      <LocalBusinessSchema />
+      <WebSiteSchema />
       <Header />
       <main>
         <Outlet />

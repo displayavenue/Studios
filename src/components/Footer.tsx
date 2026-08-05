@@ -34,15 +34,20 @@ export function Footer() {
             storytelling across India.
           </p>
           <div className="footer-social">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer">
-              Instagram
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer">
-              YouTube
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
+            {(company.socials || []).map((url) => {
+              const label = url.includes("instagram")
+                ? "Instagram"
+                : url.includes("youtube")
+                  ? "YouTube"
+                  : url.includes("linkedin")
+                    ? "LinkedIn"
+                    : "Social";
+              return (
+                <a key={url} href={url} target="_blank" rel="noreferrer">
+                  {label}
+                </a>
+              );
+            })}
             <a href={company.whatsappHref} target="_blank" rel="noreferrer">
               WhatsApp
             </a>

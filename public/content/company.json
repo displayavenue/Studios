@@ -18,7 +18,16 @@
       "Mira Road East, Mumbai,",
       "Maharashtra 401107, India"
     ],
-    "mapEmbed": "https://www.google.com/maps?q=Mira+Road+East+Mumbai+Maharashtra+401107&output=embed"
+    "mapEmbed": "https://www.google.com/maps?q=Mira+Road+East+Mumbai+Maharashtra+401107&output=embed",
+    "streetAddress": "Office No. 44, D Wing, Shree Sharanam CHS, Unique Garden, Kanakia",
+    "addressLocality": "Mumbai",
+    "addressRegion": "Maharashtra",
+    "postalCode": "401107",
+    "addressCountry": "IN",
+    "geo": {
+      "latitude": 19.2952,
+      "longitude": 72.8679
+    }
   },
   "navLinks": [
     {
@@ -81,5 +90,10 @@
     "Tata",
     "Marriott",
     "Boat"
+  ],
+  "socials": [
+    "https://www.instagram.com/displayavenuestudios/",
+    "https://www.youtube.com/@displayavenuestudios",
+    "https://www.linkedin.com/company/displayavenue-studios"
   ]
 }

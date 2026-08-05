@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SEO, OrganizationSchema } from "../components/SEO";
+import { SEO, FAQPageSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
@@ -31,7 +31,12 @@ export function Home() {
         description={home.seo.description}
         path="/"
       />
-      <OrganizationSchema />
+      <FAQPageSchema
+        faqs={faqs.slice(0, 5).map((f) => ({
+          question: f.question,
+          answer: f.answer,
+        }))}
+      />
 
       <section className="home-hero">
         <div className="container home-hero__grid">

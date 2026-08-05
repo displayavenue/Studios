@@ -10,6 +10,11 @@ export const company = {
   emailHref: "mailto:hello@displayavenuestudios.com",
   coverage: "Pan India",
   primaryFocus: "Mumbai",
+  socials: [
+    "https://www.instagram.com/displayavenuestudios/",
+    "https://www.youtube.com/@displayavenuestudios",
+    "https://www.linkedin.com/company/displayavenue-studios",
+  ],
   address: {
     lines: [
       "Office No. 44, D Wing,",
@@ -18,6 +23,16 @@ export const company = {
       "Mira Road East, Mumbai,",
       "Maharashtra 401107, India",
     ],
+    streetAddress:
+      "Office No. 44, D Wing, Shree Sharanam CHS, Unique Garden, Kanakia",
+    addressLocality: "Mumbai",
+    addressRegion: "Maharashtra",
+    postalCode: "401107",
+    addressCountry: "IN",
+    geo: {
+      latitude: 19.2952,
+      longitude: 72.8679,
+    },
     mapEmbed:
       "https://www.google.com/maps?q=Mira+Road+East+Mumbai+Maharashtra+401107&output=embed",
   },

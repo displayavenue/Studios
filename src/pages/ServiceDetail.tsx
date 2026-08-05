@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { SEO } from "../components/SEO";
+import { SEO, ServiceSchema, BreadcrumbSchema, FAQPageSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
@@ -48,12 +48,35 @@ export function ServiceDetail() {
           ? packageGroups[2]
           : packageGroups[3];
 
+  const serviceFaqs = faqs.slice(0, 4);
+
   return (
     <div ref={ref}>
       <SEO
-        title={`${service.title} | DisplayAvenue Studios`}
-        description={service.description}
+        title={`${service.title} in India | DisplayAvenue Studios`}
+        description={`${service.description} Book ${service.title.toLowerCase()} with DisplayAvenue Studios — Mumbai HQ, pan-India coverage. Call +91 7400303493.`}
         path={`/services/${service.slug}`}
+        image={service.image}
+      />
+      <ServiceSchema
+        name={service.title}
+        description={service.description}
+        image={service.image}
+        path={`/services/${service.slug}`}
+        category={service.category}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: service.title, path: `/services/${service.slug}` },
+        ]}
+      />
+      <FAQPageSchema
+        faqs={serviceFaqs.map((f) => ({
+          question: f.question,
+          answer: f.answer,
+        }))}
       />
 
       <section className="page-hero service-hero">
@@ -79,7 +102,7 @@ export function ServiceDetail() {
             </div>
           </div>
           <div className="service-hero__img">
-            <img src={service.image} alt={service.title} />
+            <img src={service.image} alt={`${service.title} by DisplayAvenue Studios in India`} />
           </div>
         </div>
       </section>

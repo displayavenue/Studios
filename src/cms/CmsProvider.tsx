@@ -37,6 +37,7 @@ export type CmsState = {
     navLinks: typeof fallbackNav;
     trustBadges: typeof fallbackBadges;
     brandLogos: typeof fallbackBrands;
+    socials: string[];
   };
   home: HomeContent;
   services: typeof fallbackServices;
@@ -79,6 +80,7 @@ const defaults: CmsState = {
     navLinks: fallbackNav,
     trustBadges: fallbackBadges,
     brandLogos: fallbackBrands,
+    socials: fallbackCompany.socials || [],
   },
   home: fallbackHome,
   services: fallbackServices,
@@ -143,9 +145,15 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             (company?.trustBadges as typeof fallbackBadges) || fallbackBadges,
           brandLogos:
             (company?.brandLogos as typeof fallbackBrands) || fallbackBrands,
+          socials:
+            (company?.socials as string[]) || fallbackCompany.socials || [],
           address: {
             ...fallbackCompany.address,
             ...((company?.address as object) || {}),
+            geo: {
+              ...fallbackCompany.address.geo,
+              ...((company?.address as { geo?: object })?.geo || {}),
+            },
           },
         },
         home: mergeHome(home),

@@ -327,6 +327,10 @@ function renderCompany(d) {
       <label>Brand logos / names (one per line)</label>
       <textarea data-path="brandLogos" data-array="true">${escapeHtml((d.brandLogos || []).join("\n"))}</textarea>
     </div>
+    <div class="field full">
+      <label>Social profile URLs (one per line — Instagram, YouTube, LinkedIn)</label>
+      <textarea data-path="socials" data-array="true">${escapeHtml((d.socials || []).join("\n"))}</textarea>
+    </div>
   </div>`;
 }
 
