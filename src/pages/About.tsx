@@ -55,8 +55,8 @@ export function About() {
           </div>
           <div className="about-story__media reveal">
             <img
-              src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80"
-              alt="DisplayAvenue Studios cinematographer on set"
+              src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1200&q=80"
+              alt="DisplayAvenue Studios team capturing an Indian wedding ceremony"
               loading="lazy"
             />
           </div>

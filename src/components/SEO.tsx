@@ -14,7 +14,7 @@ export function SEO({
   description,
   path = "/",
   type = "website",
-  image = "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+  image = "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
 }: SEOProps) {
   useEffect(() => {
     document.title = title;
@@ -78,7 +78,7 @@ export function OrganizationSchema() {
       telephone: company.phone,
       email: company.email,
       image:
-        "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Office No. 44, D Wing, Shree Sharanam CHS, Unique Garden, Kanakia",

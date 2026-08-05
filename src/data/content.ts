@@ -146,7 +146,7 @@ export const testimonials = [
     quote:
       "DisplayAvenue felt like a luxury film crew, not just photographers. Every ritual was covered with calm precision and the highlight film still gives us chills.",
     image:
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Neha Kapoor",
@@ -154,7 +154,7 @@ export const testimonials = [
     quote:
       "Our product launch assets were delivered on time, on brand and conversion-ready for Amazon and Instagram. The team understands both aesthetics and business.",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=400&q=80",
   },
   {
     name: "Vikram Shah",
@@ -162,7 +162,7 @@ export const testimonials = [
     quote:
       "From drone approaches to suite interiors, the hospitality imagery elevated our OTA listings immediately. Guests now mention the photos when they book.",
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=400&q=80",
   },
 ];
 
@@ -175,7 +175,7 @@ export const blogs = [
     category: "Weddings",
     date: "15 Mar 2026",
     image:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1000&q=80",
     readTime: "7 min read",
   },
   {
@@ -186,7 +186,7 @@ export const blogs = [
     category: "Product",
     date: "02 Mar 2026",
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=80",
     readTime: "6 min read",
   },
   {
@@ -197,7 +197,7 @@ export const blogs = [
     category: "Films",
     date: "18 Feb 2026",
     image:
-      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80",
     readTime: "8 min read",
   },
   {
@@ -208,7 +208,7 @@ export const blogs = [
     category: "Corporate",
     date: "05 Feb 2026",
     image:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1000&q=80",
     readTime: "5 min read",
   },
   {
@@ -219,7 +219,7 @@ export const blogs = [
     category: "Aerial",
     date: "22 Jan 2026",
     image:
-      "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1000&q=80",
     readTime: "6 min read",
   },
   {
@@ -230,7 +230,7 @@ export const blogs = [
     category: "Real Estate",
     date: "10 Jan 2026",
     image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1000&q=80",
     readTime: "5 min read",
   },
 ];
@@ -241,42 +241,42 @@ export const industries = [
     title: "Manufacturing",
     text: "Plant tours, process films and capability photography for industrial brands winning B2B buyers.",
     image:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1581094794329-c8112c4e5190?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "healthcare",
     title: "Healthcare",
     text: "Hospital, clinic and medical brand imagery created with sensitivity, permissions and patient-care protocols.",
     image:
-      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "hotels",
     title: "Hotels",
     text: "OTA-ready hospitality photography, lifestyle films and drone approaches for resorts and city hotels.",
     image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "restaurants",
     title: "Restaurants",
     text: "Food, ambience and launch coverage for restaurants, cafés and cloud kitchens across India.",
     image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "education",
     title: "Education",
     text: "School and college event coverage, campus films and admission campaign visuals.",
     image:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1509062522246-3755977927db?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "construction",
     title: "Construction",
     text: "Progress documentation, site aerials and project marketing visuals for developers and contractors.",
     image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "automobile",
@@ -290,28 +290,28 @@ export const industries = [
     title: "Fashion",
     text: "Lookbooks, campaign stills and reel content for apparel, jewellery and lifestyle labels.",
     image:
-      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "government",
     title: "Government",
     text: "Event documentation, conference films and institutional photography with formal delivery standards.",
     image:
-      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "ngos",
     title: "NGOs",
     text: "Impact storytelling, field documentation and fundraising films for non-profits and social enterprises.",
     image:
-      "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "real-estate",
     title: "Real Estate",
     text: "Listing photography, walkthroughs and aerials that help properties attract serious inquiries faster.",
     image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1000&q=80",
   },
 ];
 
@@ -387,24 +387,24 @@ export const team = [
     name: "Arjun Desai",
     role: "Creative Director",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=600&q=80",
   },
   {
     name: "Meera Iyer",
     role: "Lead Photographer",
     image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=600&q=80",
   },
   {
     name: "Kabir Khan",
     role: "Cinematographer",
     image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=600&q=80",
   },
   {
     name: "Sara Pinto",
     role: "Post Production Lead",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80",
   },
 ];

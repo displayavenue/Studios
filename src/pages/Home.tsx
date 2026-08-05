@@ -58,8 +58,8 @@ export function Home() {
           </div>
           <div className="home-hero__media">
             <img
-              src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80"
-              alt="Luxury Indian wedding celebration photographed by DisplayAvenue Studios"
+              src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80"
+              alt="Indian bride and groom at a luxury wedding photographed by DisplayAvenue Studios"
               width={800}
               height={1000}
               fetchPriority="high"

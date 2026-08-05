@@ -23,7 +23,7 @@ export const services: Service[] = [
       "Heirloom-ready album design options",
     ],
     image:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
     category: "Wedding",
     related: ["wedding-videography", "pre-wedding-shoot", "destination-weddings"],
   },
@@ -57,7 +57,7 @@ export const services: Service[] = [
       "Reel-ready vertical cuts included",
     ],
     image:
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=80",
     category: "Wedding",
     related: ["engagement-photography", "destination-weddings", "wedding-photography"],
   },
@@ -91,7 +91,7 @@ export const services: Service[] = [
       "Same-day social selects available",
     ],
     image:
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80",
     category: "Wedding",
     related: ["mehendi-photography", "sangeet-photography", "wedding-photography"],
   },
@@ -108,7 +108,7 @@ export const services: Service[] = [
       "Coordinated couple portraits",
     ],
     image:
-      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1708963738411-74ab1cd5eafb?auto=format&fit=crop&w=1200&q=80",
     category: "Wedding",
     related: ["haldi-photography", "sangeet-photography", "wedding-photography"],
   },
@@ -125,7 +125,7 @@ export const services: Service[] = [
       "Fast turnaround for overnight sharing",
     ],
     image:
-      "https://images.unsplash.com/photo-1511285560929-80b456fea7bc?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1200&q=80",
     category: "Wedding",
     related: ["reception-photography", "event-photography", "wedding-videography"],
   },
@@ -142,7 +142,7 @@ export const services: Service[] = [
       "Luxury album-ready image set",
     ],
     image:
-      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
     category: "Wedding",
     related: ["wedding-photography", "wedding-videography", "album-design"],
   },
@@ -159,7 +159,7 @@ export const services: Service[] = [
       "Coordinated stills and motion delivery",
     ],
     image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80",
     category: "Wedding",
     related: ["wedding-photography", "wedding-videography", "drone-photography"],
   },
@@ -261,7 +261,7 @@ export const services: Service[] = [
       "Marketplace-ready file exports",
     ],
     image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["amazon-product-photography", "product-videography", "fashion-photography"],
   },
@@ -278,7 +278,7 @@ export const services: Service[] = [
       "Music and text overlay packages",
     ],
     image:
-      "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["product-photography", "social-media-reels", "commercial-ad-films"],
   },
@@ -295,7 +295,7 @@ export const services: Service[] = [
       "Batch pricing for SKU catalogues",
     ],
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["flipkart-product-photography", "product-photography", "photo-editing"],
   },
@@ -312,7 +312,7 @@ export const services: Service[] = [
       "Bulk catalogue workflows",
     ],
     image:
-      "https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["amazon-product-photography", "product-photography", "product-videography"],
   },
@@ -329,7 +329,7 @@ export const services: Service[] = [
       "Fast batch shooting for large menus",
     ],
     image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["restaurant-photography", "hotel-photography", "product-photography"],
   },
@@ -346,7 +346,7 @@ export const services: Service[] = [
       "Assets for Google, Zomato and Instagram",
     ],
     image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1514222709107-a180c68d72b4?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["food-photography", "hotel-photography", "social-media-reels"],
   },
@@ -363,7 +363,7 @@ export const services: Service[] = [
       "OTA-optimised crops and exports",
     ],
     image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["architecture-photography", "interior-photography", "drone-photography"],
   },
@@ -380,7 +380,7 @@ export const services: Service[] = [
       "Campaign and e-commerce variants",
     ],
     image:
-      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["model-portfolio", "product-photography", "commercial-ad-films"],
   },
@@ -397,7 +397,7 @@ export const services: Service[] = [
       "Print and digital portfolio delivery",
     ],
     image:
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1200&q=80",
     category: "Product",
     related: ["fashion-photography", "photo-editing", "social-media-reels"],
   },
@@ -414,7 +414,7 @@ export const services: Service[] = [
       "Drone context when permitted",
     ],
     image:
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80",
     category: "Corporate",
     related: ["interior-photography", "real-estate-photography", "drone-photography"],
   },
@@ -465,7 +465,7 @@ export const services: Service[] = [
       "Weather contingency planning",
     ],
     image:
-      "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1200&q=80",
     category: "Aerial",
     related: ["drone-videography", "real-estate-photography", "destination-weddings"],
   },
@@ -482,7 +482,7 @@ export const services: Service[] = [
       "Colour-matched delivery with main edit",
     ],
     image:
-      "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80",
     category: "Aerial",
     related: ["drone-photography", "wedding-videography", "commercial-ad-films"],
   },
@@ -499,7 +499,7 @@ export const services: Service[] = [
       "Multi-photographer large-scale coverage",
     ],
     image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
     category: "Events",
     related: ["event-videography", "award-shows", "conferences"],
   },
@@ -516,7 +516,7 @@ export const services: Service[] = [
       "Fast post-event turnaround",
     ],
     image:
-      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
     category: "Events",
     related: ["event-photography", "live-streaming", "conferences"],
   },
@@ -669,7 +669,7 @@ export const services: Service[] = [
       "Caption and hashtag support options",
     ],
     image:
-      "https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80",
     category: "Post",
     related: ["social-media-reels", "product-photography", "monthly-content"],
   },
@@ -737,7 +737,7 @@ export const services: Service[] = [
       "Revision rounds included",
     ],
     image:
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
     category: "Post",
     related: ["wedding-videography", "color-grading", "video-editing"],
   },
@@ -788,7 +788,7 @@ export const services: Service[] = [
       "Print-managed delivery",
     ],
     image:
-      "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80",
     category: "Post",
     related: ["wedding-photography", "photo-editing", "reception-photography"],
   },
@@ -822,7 +822,7 @@ export const services: Service[] = [
       "Website hero and social cutdowns",
     ],
     image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1200&q=80",
     category: "Corporate",
     related: ["corporate-videography", "interview-videos", "commercial-ad-films"],
   },
