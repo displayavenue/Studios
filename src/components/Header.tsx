@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
@@ -23,15 +23,33 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<OpenMenu>(null);
   const [mobileSection, setMobileSection] = useState<string | null>("services");
-  const navRef = useRef<HTMLElement>(null);
-  const servicesId = useId();
-  const packagesId = useId();
-  const exploreId = useId();
+  const headerRef = useRef<HTMLElement>(null);
+  const closeTimer = useRef<number | null>(null);
 
-  const featuredServices = homeServices
-    .map((slug) => services.find((s) => s.slug === slug))
-    .filter(Boolean)
-    .slice(0, 8);
+  const featuredServices = (
+    homeServices.length
+      ? homeServices
+          .map((slug) => services.find((s) => s.slug === slug))
+          .filter(Boolean)
+      : services.slice(0, 6)
+  ).slice(0, 6);
+
+  const clearCloseTimer = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const openMenu = (key: OpenMenu) => {
+    clearCloseTimer();
+    setMenu(key);
+  };
+
+  const scheduleClose = () => {
+    clearCloseTimer();
+    closeTimer.current = window.setTimeout(() => setMenu(null), 160);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
@@ -62,7 +80,7 @@ export function Header() {
       }
     };
     const onClick = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
         setMenu(null);
       }
     };
@@ -71,16 +89,13 @@ export function Header() {
     return () => {
       document.removeEventListener("keydown", onKey);
       document.removeEventListener("click", onClick);
+      clearCloseTimer();
     };
   }, []);
 
-  const close = () => {
+  const closeAll = () => {
     setOpen(false);
     setMenu(null);
-  };
-
-  const toggleMenu = (key: OpenMenu) => {
-    setMenu((current) => (current === key ? null : key));
   };
 
   return (
@@ -88,11 +103,23 @@ export function Header() {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
+      {typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className={`mega-backdrop ${menu ? "is-open" : ""}`}
+            aria-hidden
+            onClick={() => setMenu(null)}
+          />,
+          document.body,
+        )}
       <header
-        className={`site-header ${scrolled || open || menu ? "is-solid" : "is-transparent"} ${open ? "is-menu-open" : ""}`}
+        ref={headerRef}
+        className={`site-header ${scrolled || open || menu ? "is-solid" : "is-transparent"} ${open ? "is-menu-open" : ""} ${menu ? "has-menu" : ""}`}
+        onMouseLeave={scheduleClose}
+        onMouseEnter={clearCloseTimer}
       >
         <div className="container site-header__inner">
-          <Link to="/" className="logo" onClick={close} aria-label="DisplayAvenue Studios home">
+          <Link to="/" className="logo" onClick={closeAll} aria-label="DisplayAvenue Studios home">
             <span className="logo__mark">DA</span>
             <span className="logo__text">
               DisplayAvenue
@@ -100,164 +127,52 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="site-nav site-nav--desktop" aria-label="Primary" ref={navRef}>
-            <NavLink to="/about" className="nav-link" onClick={() => setMenu(null)}>
+          <nav className="site-nav site-nav--desktop" aria-label="Primary">
+            <NavLink to="/about" className="nav-link" onMouseEnter={() => openMenu(null)}>
               About
             </NavLink>
 
-            <div
-              className={`nav-dropdown ${menu === "services" ? "is-open" : ""}`}
-              onMouseEnter={() => setMenu("services")}
-              onMouseLeave={() => setMenu(null)}
+            <button
+              type="button"
+              className={`nav-link nav-link--btn ${menu === "services" || pathname.startsWith("/services") ? "active" : ""}`}
+              aria-expanded={menu === "services"}
+              onMouseEnter={() => openMenu("services")}
+              onFocus={() => openMenu("services")}
+              onClick={() => openMenu(menu === "services" ? null : "services")}
             >
-              <button
-                type="button"
-                className={`nav-link nav-link--btn ${pathname.startsWith("/services") ? "active" : ""}`}
-                aria-expanded={menu === "services"}
-                aria-controls={servicesId}
-                onClick={() => toggleMenu("services")}
-              >
-                Services
-                <span className="nav-caret" aria-hidden />
-              </button>
-              <div id={servicesId} className="nav-panel nav-panel--mega" role="region" aria-label="Services menu">
-                <div className="nav-panel__intro">
-                  <p className="eyebrow">Services</p>
-                  <strong>Photography, film &amp; post</strong>
-                  <p>Browse by category or jump into popular briefs.</p>
-                  <Link to="/services" className="btn btn--dark btn--sm" onClick={close}>
-                    All services
-                  </Link>
-                </div>
-                <div className="nav-panel__cols">
-                  {serviceCategories.map((category) => {
-                    const items = services
-                      .filter((s) => s.category === category)
-                      .slice(0, 4);
-                    if (!items.length) return null;
-                    return (
-                      <div key={category} className="nav-col">
-                        <p className="nav-col__title">{category}</p>
-                        {items.map((s) => (
-                          <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
-                            {s.title}
-                          </Link>
-                        ))}
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="nav-panel__featured">
-                  <p className="nav-col__title">Popular now</p>
-                  <div className="nav-featured-grid">
-                    {featuredServices.slice(0, 4).map(
-                      (s) =>
-                        s && (
-                          <Link
-                            key={s.slug}
-                            to={`/services/${s.slug}`}
-                            className="nav-featured-card"
-                            onClick={close}
-                          >
-                            <img src={s.image} alt="" loading="lazy" />
-                            <span>{s.title}</span>
-                          </Link>
-                        ),
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+              Services
+              <span className="nav-caret" aria-hidden />
+            </button>
 
-            <div
-              className={`nav-dropdown ${menu === "packages" ? "is-open" : ""}`}
-              onMouseEnter={() => setMenu("packages")}
-              onMouseLeave={() => setMenu(null)}
+            <button
+              type="button"
+              className={`nav-link nav-link--btn ${menu === "packages" || pathname.startsWith("/packages") || pathname === "/pricing" ? "active" : ""}`}
+              aria-expanded={menu === "packages"}
+              onMouseEnter={() => openMenu("packages")}
+              onFocus={() => openMenu("packages")}
+              onClick={() => openMenu(menu === "packages" ? null : "packages")}
             >
-              <button
-                type="button"
-                className={`nav-link nav-link--btn ${pathname.startsWith("/packages") || pathname === "/pricing" ? "active" : ""}`}
-                aria-expanded={menu === "packages"}
-                aria-controls={packagesId}
-                onClick={() => toggleMenu("packages")}
-              >
-                Packages
-                <span className="nav-caret" aria-hidden />
-              </button>
-              <div id={packagesId} className="nav-panel nav-panel--sm" role="region" aria-label="Packages menu">
-                <Link to="/packages" onClick={close}>
-                  All packages
-                </Link>
-                {packageGroups.map((g) => (
-                  <Link key={g.slug} to={`/packages/${g.slug}`} onClick={close}>
-                    {g.title}
-                  </Link>
-                ))}
-                <Link to="/pricing" className="nav-panel__accent" onClick={close}>
-                  Pricing guide →
-                </Link>
-              </div>
-            </div>
+              Packages
+              <span className="nav-caret" aria-hidden />
+            </button>
 
-            <NavLink to="/portfolio" className="nav-link" onClick={() => setMenu(null)}>
+            <NavLink to="/portfolio" className="nav-link" onMouseEnter={() => openMenu(null)}>
               Portfolio
             </NavLink>
 
-            <div
-              className={`nav-dropdown ${menu === "explore" ? "is-open" : ""}`}
-              onMouseEnter={() => setMenu("explore")}
-              onMouseLeave={() => setMenu(null)}
+            <button
+              type="button"
+              className={`nav-link nav-link--btn ${menu === "explore" || ["/locations", "/industries", "/blog", "/faqs", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
+              aria-expanded={menu === "explore"}
+              onMouseEnter={() => openMenu("explore")}
+              onFocus={() => openMenu("explore")}
+              onClick={() => openMenu(menu === "explore" ? null : "explore")}
             >
-              <button
-                type="button"
-                className={`nav-link nav-link--btn ${["/locations", "/industries", "/blog", "/faqs", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
-                aria-expanded={menu === "explore"}
-                aria-controls={exploreId}
-                onClick={() => toggleMenu("explore")}
-              >
-                Explore
-                <span className="nav-caret" aria-hidden />
-              </button>
-              <div id={exploreId} className="nav-panel nav-panel--wide" role="region" aria-label="Explore menu">
-                <div className="nav-col">
-                  <p className="nav-col__title">Discover</p>
-                  <Link to="/locations" onClick={close}>Locations</Link>
-                  <Link to="/industries" onClick={close}>Industries</Link>
-                  <Link to="/blog" onClick={close}>Blog</Link>
-                  <Link to="/faqs" onClick={close}>FAQs</Link>
-                  <Link to="/pages" onClick={close}>All pages</Link>
-                </div>
-                <div className="nav-col">
-                  <p className="nav-col__title">Top cities</p>
-                  {locations.slice(0, 6).map((loc) => (
-                    <Link key={loc.slug} to={`/locations/${loc.slug}`} onClick={close}>
-                      {loc.city}
-                    </Link>
-                  ))}
-                </div>
-                <div className="nav-panel__cta-card">
-                  <p className="eyebrow">Ready to book?</p>
-                  <strong>Plan your shoot in minutes</strong>
-                  <p>Tell us your date, city and style — we reply fast on WhatsApp.</p>
-                  <div className="nav-panel__cta-actions">
-                    <Link to="/book-now" className="btn btn--gold btn--sm" onClick={close}>
-                      Book Now
-                    </Link>
-                    <a
-                      href={company.whatsappHref}
-                      className="btn btn--ghost btn--sm"
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={close}
-                    >
-                      WhatsApp
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+              Explore
+              <span className="nav-caret" aria-hidden />
+            </button>
 
-            <NavLink to="/contact" className="nav-link" onClick={() => setMenu(null)}>
+            <NavLink to="/contact" className="nav-link" onMouseEnter={() => openMenu(null)}>
               Contact
             </NavLink>
           </nav>
@@ -291,6 +206,148 @@ export function Header() {
             </button>
           </div>
         </div>
+
+        {/* Full-width mega panels anchored under the header bar */}
+        <div
+          className={`mega-shell ${menu ? "is-open" : ""}`}
+          onMouseEnter={clearCloseTimer}
+        >
+          <div className="container">
+            {menu === "services" && (
+              <div className="mega-panel mega-panel--services" role="region" aria-label="Services menu">
+                <div className="mega-panel__head">
+                  <div>
+                    <p className="eyebrow">Services</p>
+                    <h3>Photography, film &amp; post production</h3>
+                  </div>
+                  <Link to="/services" className="btn btn--dark btn--sm" onClick={closeAll}>
+                    View all services
+                  </Link>
+                </div>
+
+                <div className="mega-cats">
+                  {serviceCategories.map((category) => {
+                    const items = services
+                      .filter((s) => s.category === category)
+                      .slice(0, 5);
+                    if (!items.length) return null;
+                    return (
+                      <div key={category} className="mega-cat">
+                        <p className="mega-cat__title">{category}</p>
+                        <ul>
+                          {items.map((s) => (
+                            <li key={s.slug}>
+                              <Link to={`/services/${s.slug}`} onClick={closeAll}>
+                                {s.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mega-popular">
+                  <p className="mega-cat__title">Popular</p>
+                  <div className="mega-popular__row">
+                    {featuredServices.map(
+                      (s) =>
+                        s && (
+                          <Link
+                            key={s.slug}
+                            to={`/services/${s.slug}`}
+                            className="mega-popular__card"
+                            onClick={closeAll}
+                          >
+                            <img src={s.image} alt="" loading="lazy" />
+                            <span>{s.title}</span>
+                          </Link>
+                        ),
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {menu === "packages" && (
+              <div className="mega-panel mega-panel--packages" role="region" aria-label="Packages menu">
+                <div className="mega-packages">
+                  <Link to="/packages" className="mega-pack-card mega-pack-card--all" onClick={closeAll}>
+                    <span className="eyebrow">Overview</span>
+                    <strong>All packages</strong>
+                    <p>Compare Essential, Signature and Luxury tiers</p>
+                  </Link>
+                  {packageGroups.map((g) => (
+                    <Link
+                      key={g.slug}
+                      to={`/packages/${g.slug}`}
+                      className="mega-pack-card"
+                      onClick={closeAll}
+                    >
+                      <span className="eyebrow">Package</span>
+                      <strong>{g.title}</strong>
+                      <p>{g.subtitle}</p>
+                    </Link>
+                  ))}
+                  <Link to="/pricing" className="mega-pack-card mega-pack-card--accent" onClick={closeAll}>
+                    <span className="eyebrow">Guide</span>
+                    <strong>Pricing</strong>
+                    <p>See what shapes your quote →</p>
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            {menu === "explore" && (
+              <div className="mega-panel mega-panel--explore" role="region" aria-label="Explore menu">
+                <div className="mega-explore-grid">
+                  <div className="mega-cat">
+                    <p className="mega-cat__title">Discover</p>
+                    <ul>
+                      <li><Link to="/locations" onClick={closeAll}>Locations</Link></li>
+                      <li><Link to="/industries" onClick={closeAll}>Industries</Link></li>
+                      <li><Link to="/blog" onClick={closeAll}>Blog</Link></li>
+                      <li><Link to="/faqs" onClick={closeAll}>FAQs</Link></li>
+                      <li><Link to="/pages" onClick={closeAll}>All pages</Link></li>
+                    </ul>
+                  </div>
+                  <div className="mega-cat">
+                    <p className="mega-cat__title">Top cities</p>
+                    <ul>
+                      {locations.slice(0, 8).map((loc) => (
+                        <li key={loc.slug}>
+                          <Link to={`/locations/${loc.slug}`} onClick={closeAll}>
+                            {loc.city}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mega-book">
+                    <p className="eyebrow">Book consultation</p>
+                    <strong>Ready when you are</strong>
+                    <p>Share your date and city — we reply quickly on WhatsApp.</p>
+                    <div className="mega-book__actions">
+                      <Link to="/book-now" className="btn btn--gold btn--sm" onClick={closeAll}>
+                        Book Now
+                      </Link>
+                      <a
+                        href={company.whatsappHref}
+                        className="btn btn--outline-light btn--sm"
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={closeAll}
+                      >
+                        WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </header>
 
       {typeof document !== "undefined" &&
@@ -311,13 +368,11 @@ export function Header() {
                 </button>
                 {mobileSection === "services" && (
                   <div className="mobile-acc__body">
-                    <Link to="/services" onClick={close}>
-                      All services
-                    </Link>
+                    <Link to="/services" onClick={closeAll}>All services</Link>
                     {featuredServices.map(
                       (s) =>
                         s && (
-                          <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
+                          <Link key={s.slug} to={`/services/${s.slug}`} onClick={closeAll}>
                             {s.title}
                           </Link>
                         ),
@@ -338,61 +393,33 @@ export function Header() {
                 </button>
                 {mobileSection === "packages" && (
                   <div className="mobile-acc__body">
-                    <Link to="/packages" onClick={close}>
-                      All packages
-                    </Link>
+                    <Link to="/packages" onClick={closeAll}>All packages</Link>
                     {packageGroups.map((g) => (
-                      <Link key={g.slug} to={`/packages/${g.slug}`} onClick={close}>
+                      <Link key={g.slug} to={`/packages/${g.slug}`} onClick={closeAll}>
                         {g.title}
                       </Link>
                     ))}
-                    <Link to="/pricing" onClick={close}>
-                      Pricing
-                    </Link>
+                    <Link to="/pricing" onClick={closeAll}>Pricing</Link>
                   </div>
                 )}
               </div>
 
               <nav className="mobile-drawer__links" aria-label="Mobile">
-                <NavLink to="/about" onClick={close}>
-                  About
-                </NavLink>
-                <NavLink to="/portfolio" onClick={close}>
-                  Portfolio
-                </NavLink>
-                <NavLink to="/locations" onClick={close}>
-                  Locations
-                </NavLink>
-                <NavLink to="/industries" onClick={close}>
-                  Industries
-                </NavLink>
-                <NavLink to="/blog" onClick={close}>
-                  Blog
-                </NavLink>
-                <NavLink to="/faqs" onClick={close}>
-                  FAQs
-                </NavLink>
-                <NavLink to="/contact" onClick={close}>
-                  Contact
-                </NavLink>
+                <NavLink to="/about" onClick={closeAll}>About</NavLink>
+                <NavLink to="/portfolio" onClick={closeAll}>Portfolio</NavLink>
+                <NavLink to="/locations" onClick={closeAll}>Locations</NavLink>
+                <NavLink to="/industries" onClick={closeAll}>Industries</NavLink>
+                <NavLink to="/blog" onClick={closeAll}>Blog</NavLink>
+                <NavLink to="/faqs" onClick={closeAll}>FAQs</NavLink>
+                <NavLink to="/contact" onClick={closeAll}>Contact</NavLink>
               </nav>
 
               <div className="mobile-drawer__actions">
-                <Link to="/book-now" className="btn btn--gold" onClick={close}>
-                  Book Now
-                </Link>
-                <a
-                  href={company.whatsappHref}
-                  className="btn btn--dark"
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={close}
-                >
+                <Link to="/book-now" className="btn btn--gold" onClick={closeAll}>Book Now</Link>
+                <a href={company.whatsappHref} className="btn btn--dark" target="_blank" rel="noreferrer" onClick={closeAll}>
                   WhatsApp us
                 </a>
-                <a href={company.phoneHref} className="mobile-drawer__phone">
-                  {company.phone}
-                </a>
+                <a href={company.phoneHref} className="mobile-drawer__phone">{company.phone}</a>
               </div>
             </div>
           </div>,
