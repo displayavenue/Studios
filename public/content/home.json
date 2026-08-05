@@ -1,0 +1,81 @@
+{
+  "seo": {
+    "title": "DisplayAvenue Studios | India's Premium Visual Production Studio",
+    "description": "Luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India. Book DisplayAvenue Studios."
+  },
+  "hero": {
+    "brand": "DisplayAvenue Studios",
+    "eyebrow": "Premium Photography • Videography • Film Production",
+    "headline": "India's Premium Visual Production Studio",
+    "description": "Luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India.",
+    "primaryCtaLabel": "Book Your Shoot",
+    "primaryCtaPath": "/book-now",
+    "secondaryCtaLabel": "View Portfolio",
+    "secondaryCtaPath": "/portfolio",
+    "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80",
+    "imageAlt": "Indian bride and groom at a luxury wedding photographed by DisplayAvenue Studios"
+  },
+  "brands": {
+    "label": "Trusted by Brands"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Visual production for every celebration and brand",
+    "text": "From luxury weddings to commercial campaigns, our Mumbai-based studio delivers pan-India photography, videography and post production.",
+    "ctaLabel": "View All Services",
+    "ctaPath": "/services"
+  },
+  "portfolio": {
+    "eyebrow": "Featured Portfolio",
+    "title": "Work that feels expensive on purpose",
+    "text": "A selection of weddings, brand films, hospitality and commercial projects produced by DisplayAvenue Studios.",
+    "ctaLabel": "Explore Portfolio",
+    "ctaPath": "/portfolio"
+  },
+  "packages": {
+    "eyebrow": "Packages",
+    "title": "Essential · Signature · Luxury",
+    "text": "Transparent wedding packages designed for intimate ceremonies and destination celebrations. Compare and customise with our team.",
+    "featuredBadge": "Most Popular",
+    "ctaLabel": "Wedding Package Page",
+    "ctaPath": "/packages/wedding",
+    "secondaryCtaLabel": "All Packages",
+    "secondaryCtaPath": "/packages"
+  },
+  "whyChoose": {
+    "eyebrow": "Why Choose Us",
+    "title": "Why Choose DisplayAvenue Studios",
+    "text": "Built for premium clients who expect cinema-grade craft, reliable coordination and a luxury experience from inquiry to delivery."
+  },
+  "process": {
+    "eyebrow": "How We Work",
+    "title": "A clear path from inquiry to delivery",
+    "text": ""
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "Loved by couples, brands and hotels",
+    "text": "Google-ready reviews from weddings, product launches and hospitality projects across India."
+  },
+  "faqs": {
+    "eyebrow": "FAQs",
+    "title": "Questions couples and brands ask first",
+    "text": "Clear answers on booking, pricing, travel and delivery. Browse the full FAQ library for more.",
+    "ctaLabel": "View All FAQs",
+    "ctaPath": "/faqs"
+  },
+  "blogs": {
+    "eyebrow": "Latest Blogs",
+    "title": "Guides for planning, booking and better visuals",
+    "text": "",
+    "ctaLabel": "Read the Blog",
+    "ctaPath": "/blog"
+  },
+  "ctaBanner": {
+    "eyebrow": "Book Consultation",
+    "title": "Ready to Capture Your Story?",
+    "text": "Book a consultation with DisplayAvenue Studios — India's Premium Visual Production Studio for weddings, brands and events.",
+    "primaryLabel": "Book Consultation",
+    "primaryPath": "/book-now"
+  }
+}

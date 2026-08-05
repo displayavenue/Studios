@@ -15,6 +15,7 @@ return [
 
   // Allowed content files (without .json)
   'collections' => [
+    'home' => 'Homepage',
     'company' => 'Company & Contact',
     'services' => 'Services',
     'packages' => 'Packages & Pricing',

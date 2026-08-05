@@ -30,6 +30,7 @@ import {
   locations as fallbackLocations,
   team as fallbackTeam,
 } from "../data/content";
+import { homeContent as fallbackHome, type HomeContent } from "../data/home";
 
 export type CmsState = {
   company: typeof fallbackCompany & {
@@ -37,6 +38,7 @@ export type CmsState = {
     trustBadges: typeof fallbackBadges;
     brandLogos: typeof fallbackBrands;
   };
+  home: HomeContent;
   services: typeof fallbackServices;
   homeServices: typeof fallbackHomeServices;
   packageGroups: typeof fallbackPackages;
@@ -53,6 +55,24 @@ export type CmsState = {
   ready: boolean;
 };
 
+function mergeHome(partial: Partial<HomeContent> | null | undefined): HomeContent {
+  const p = partial || {};
+  return {
+    seo: { ...fallbackHome.seo, ...(p.seo || {}) },
+    hero: { ...fallbackHome.hero, ...(p.hero || {}) },
+    brands: { ...fallbackHome.brands, ...(p.brands || {}) },
+    services: { ...fallbackHome.services, ...(p.services || {}) },
+    portfolio: { ...fallbackHome.portfolio, ...(p.portfolio || {}) },
+    packages: { ...fallbackHome.packages, ...(p.packages || {}) },
+    whyChoose: { ...fallbackHome.whyChoose, ...(p.whyChoose || {}) },
+    process: { ...fallbackHome.process, ...(p.process || {}) },
+    testimonials: { ...fallbackHome.testimonials, ...(p.testimonials || {}) },
+    faqs: { ...fallbackHome.faqs, ...(p.faqs || {}) },
+    blogs: { ...fallbackHome.blogs, ...(p.blogs || {}) },
+    ctaBanner: { ...fallbackHome.ctaBanner, ...(p.ctaBanner || {}) },
+  };
+}
+
 const defaults: CmsState = {
   company: {
     ...fallbackCompany,
@@ -60,6 +80,7 @@ const defaults: CmsState = {
     trustBadges: fallbackBadges,
     brandLogos: fallbackBrands,
   },
+  home: fallbackHome,
   services: fallbackServices,
   homeServices: fallbackHomeServices,
   packageGroups: fallbackPackages,
@@ -94,20 +115,22 @@ export function CmsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [company, services, packages, portfolio, content] = await Promise.all([
-        fetchJson<Record<string, unknown>>("/content/company.json"),
-        fetchJson<{ services?: CmsState["services"]; homeServices?: string[] }>(
-          "/content/services.json",
-        ),
-        fetchJson<{ packageGroups?: CmsState["packageGroups"] }>(
-          "/content/packages.json",
-        ),
-        fetchJson<{
-          portfolio?: CmsState["portfolio"];
-          portfolioCategories?: string[];
-        }>("/content/portfolio.json"),
-        fetchJson<Record<string, unknown>>("/content/content.json"),
-      ]);
+      const [company, home, services, packages, portfolio, content] =
+        await Promise.all([
+          fetchJson<Record<string, unknown>>("/content/company.json"),
+          fetchJson<Partial<HomeContent>>("/content/home.json"),
+          fetchJson<{ services?: CmsState["services"]; homeServices?: string[] }>(
+            "/content/services.json",
+          ),
+          fetchJson<{ packageGroups?: CmsState["packageGroups"] }>(
+            "/content/packages.json",
+          ),
+          fetchJson<{
+            portfolio?: CmsState["portfolio"];
+            portfolioCategories?: string[];
+          }>("/content/portfolio.json"),
+          fetchJson<Record<string, unknown>>("/content/content.json"),
+        ]);
 
       if (cancelled) return;
 
@@ -125,6 +148,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             ...((company?.address as object) || {}),
           },
         },
+        home: mergeHome(home),
         services: services?.services || fallbackServices,
         homeServices: services?.homeServices || fallbackHomeServices,
         packageGroups: packages?.packageGroups || fallbackPackages,

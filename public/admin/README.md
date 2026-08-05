@@ -14,6 +14,7 @@ Edit it in: `/admin/config.php` → `admin_password`
 
 ## What you can edit
 
+- **Homepage** — hero headline, image, CTAs, and every section title/copy
 - Company name, phone, WhatsApp, email, address, badges, logos
 - All services (text + image URLs)
 - Packages & prices

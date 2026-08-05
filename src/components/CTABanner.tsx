@@ -3,25 +3,28 @@ import { useCms } from "../cms/CmsProvider";
 import "./CTABanner.css";
 
 export function CTABanner({
-  title = "Ready to Capture Your Story?",
-  text = "Book a consultation with DisplayAvenue Studios — India's Premium Visual Production Studio for weddings, brands and events.",
+  title,
+  text,
 }: {
   title?: string;
   text?: string;
 }) {
-  const { company } = useCms();
+  const { company, home } = useCms();
+  const banner = home.ctaBanner;
+  const resolvedTitle = title ?? banner.title;
+  const resolvedText = text ?? banner.text;
 
   return (
     <section className="cta-banner section">
       <div className="container cta-banner__inner reveal">
         <div>
-          <p className="eyebrow">Book Consultation</p>
-          <h2>{title}</h2>
-          <p>{text}</p>
+          <p className="eyebrow">{banner.eyebrow}</p>
+          <h2>{resolvedTitle}</h2>
+          <p>{resolvedText}</p>
         </div>
         <div className="cta-banner__actions">
-          <Link to="/book-now" className="btn btn--gold">
-            Book Consultation
+          <Link to={banner.primaryPath || "/book-now"} className="btn btn--gold">
+            {banner.primaryLabel || "Book Consultation"}
           </Link>
           <a
             href={company.whatsappHref}

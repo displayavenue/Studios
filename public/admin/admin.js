@@ -142,7 +142,8 @@ function renderEditor() {
     return;
   }
 
-  if (key === "company") wrap.innerHTML = renderCompany(data);
+  if (key === "home") wrap.innerHTML = renderHome(data);
+  else if (key === "company") wrap.innerHTML = renderCompany(data);
   else if (key === "services") wrap.innerHTML = renderServices(data);
   else if (key === "packages") wrap.innerHTML = renderPackages(data);
   else if (key === "portfolio") wrap.innerHTML = renderPortfolio(data);
@@ -155,6 +156,139 @@ function renderEditor() {
   wrap.querySelectorAll("[data-action]").forEach((btn) => {
     btn.addEventListener("click", () => handleAction(btn.dataset.action, btn));
   });
+}
+
+function renderHome(d) {
+  const hero = d.hero || {};
+  const seo = d.seo || {};
+  const brands = d.brands || {};
+  const services = d.services || {};
+  const portfolio = d.portfolio || {};
+  const packages = d.packages || {};
+  const whyChoose = d.whyChoose || {};
+  const process = d.process || {};
+  const testimonials = d.testimonials || {};
+  const faqs = d.faqs || {};
+  const blogs = d.blogs || {};
+  const cta = d.ctaBanner || {};
+  return `
+  <div class="card">
+    <h3>SEO (homepage)</h3>
+    <div class="grid-2">
+      ${field("Page title", "seo.title", seo.title)}
+      ${field("Meta description", "seo.description", seo.description, "textarea")}
+    </div>
+  </div>
+  <div class="card">
+    <h3>Hero section</h3>
+    <div class="grid-2">
+      ${field("Brand name", "hero.brand", hero.brand)}
+      ${field("Eyebrow / label", "hero.eyebrow", hero.eyebrow)}
+      ${field("Headline", "hero.headline", hero.headline, "textarea")}
+      ${field("Supporting text", "hero.description", hero.description, "textarea")}
+      ${field("Primary button label", "hero.primaryCtaLabel", hero.primaryCtaLabel)}
+      ${field("Primary button path", "hero.primaryCtaPath", hero.primaryCtaPath)}
+      ${field("Secondary button label", "hero.secondaryCtaLabel", hero.secondaryCtaLabel)}
+      ${field("Secondary button path", "hero.secondaryCtaPath", hero.secondaryCtaPath)}
+      ${field("Hero image URL", "hero.image", hero.image)}
+      ${field("Hero image alt text", "hero.imageAlt", hero.imageAlt, "textarea")}
+    </div>
+    ${hero.image ? `<p style="margin-top:1rem"><img class="preview" style="max-width:280px;border-radius:8px" src="${escapeAttr(hero.image)}" alt="" /></p>` : ""}
+  </div>
+  <div class="card">
+    <h3>Brands strip</h3>
+    ${field("Label", "brands.label", brands.label)}
+    <p class="hint" style="margin-top:.75rem;color:#888;font-size:.85rem">Brand names themselves are edited under <strong>Company &amp; Contact</strong>.</p>
+  </div>
+  <div class="card">
+    <h3>Services section</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "services.eyebrow", services.eyebrow)}
+      ${field("Title", "services.title", services.title)}
+      ${field("Supporting text", "services.text", services.text, "textarea")}
+      ${field("CTA label", "services.ctaLabel", services.ctaLabel)}
+      ${field("CTA path", "services.ctaPath", services.ctaPath)}
+    </div>
+    <p class="hint" style="margin-top:.75rem;color:#888;font-size:.85rem">Which services appear on the homepage is set under <strong>Services</strong> → featured slugs.</p>
+  </div>
+  <div class="card">
+    <h3>Portfolio section</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "portfolio.eyebrow", portfolio.eyebrow)}
+      ${field("Title", "portfolio.title", portfolio.title)}
+      ${field("Supporting text", "portfolio.text", portfolio.text, "textarea")}
+      ${field("CTA label", "portfolio.ctaLabel", portfolio.ctaLabel)}
+      ${field("CTA path", "portfolio.ctaPath", portfolio.ctaPath)}
+    </div>
+  </div>
+  <div class="card">
+    <h3>Packages section</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "packages.eyebrow", packages.eyebrow)}
+      ${field("Title", "packages.title", packages.title)}
+      ${field("Supporting text", "packages.text", packages.text, "textarea")}
+      ${field("Featured badge text", "packages.featuredBadge", packages.featuredBadge)}
+      ${field("Primary CTA label", "packages.ctaLabel", packages.ctaLabel)}
+      ${field("Primary CTA path", "packages.ctaPath", packages.ctaPath)}
+      ${field("Secondary CTA label", "packages.secondaryCtaLabel", packages.secondaryCtaLabel)}
+      ${field("Secondary CTA path", "packages.secondaryCtaPath", packages.secondaryCtaPath)}
+    </div>
+  </div>
+  <div class="card">
+    <h3>Why choose us</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "whyChoose.eyebrow", whyChoose.eyebrow)}
+      ${field("Title", "whyChoose.title", whyChoose.title)}
+      ${field("Supporting text", "whyChoose.text", whyChoose.text, "textarea")}
+    </div>
+    <p class="hint" style="margin-top:.75rem;color:#888;font-size:.85rem">Card items are edited under <strong>FAQs, Blog, Team, Industries</strong>.</p>
+  </div>
+  <div class="card">
+    <h3>Process section</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "process.eyebrow", process.eyebrow)}
+      ${field("Title", "process.title", process.title)}
+      ${field("Supporting text", "process.text", process.text, "textarea")}
+    </div>
+  </div>
+  <div class="card">
+    <h3>Testimonials section</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "testimonials.eyebrow", testimonials.eyebrow)}
+      ${field("Title", "testimonials.title", testimonials.title)}
+      ${field("Supporting text", "testimonials.text", testimonials.text, "textarea")}
+    </div>
+  </div>
+  <div class="card">
+    <h3>FAQs section</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "faqs.eyebrow", faqs.eyebrow)}
+      ${field("Title", "faqs.title", faqs.title)}
+      ${field("Supporting text", "faqs.text", faqs.text, "textarea")}
+      ${field("CTA label", "faqs.ctaLabel", faqs.ctaLabel)}
+      ${field("CTA path", "faqs.ctaPath", faqs.ctaPath)}
+    </div>
+  </div>
+  <div class="card">
+    <h3>Blog section</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "blogs.eyebrow", blogs.eyebrow)}
+      ${field("Title", "blogs.title", blogs.title)}
+      ${field("Supporting text", "blogs.text", blogs.text, "textarea")}
+      ${field("CTA label", "blogs.ctaLabel", blogs.ctaLabel)}
+      ${field("CTA path", "blogs.ctaPath", blogs.ctaPath)}
+    </div>
+  </div>
+  <div class="card">
+    <h3>Bottom CTA banner</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "ctaBanner.eyebrow", cta.eyebrow)}
+      ${field("Title", "ctaBanner.title", cta.title)}
+      ${field("Supporting text", "ctaBanner.text", cta.text, "textarea")}
+      ${field("Button label", "ctaBanner.primaryLabel", cta.primaryLabel)}
+      ${field("Button path", "ctaBanner.primaryPath", cta.primaryPath)}
+    </div>
+  </div>`;
 }
 
 function renderCompany(d) {
