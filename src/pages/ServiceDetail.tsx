@@ -5,12 +5,13 @@ import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
 import { useCms, useService } from "../cms/CmsProvider";
 import { getYoutubeEmbedUrl } from "../utils/youtube";
+import "../components/TestimonialsSection.css";
 import "./Page.css";
 
 export function ServiceDetail() {
   const { slug } = useParams();
   const service = useService(slug || "");
-  const { services, faqs, testimonials, packageGroups, portfolio } = useCms();
+  const { company, services, faqs, testimonials, packageGroups, portfolio } = useCms();
   const ref = useReveal<HTMLDivElement>();
 
   if (!service) {
@@ -229,13 +230,27 @@ export function ServiceDetail() {
             <div className="stack-gap">
               {testimonials.slice(0, 2).map((t) => (
                 <article key={t.name} className="testimonial-card card">
+                  <div className="testimonial-card__stars" aria-label="5 star review">
+                    ★★★★★
+                  </div>
                   <p className="testimonial-card__quote">“{t.quote}”</p>
-                  <strong>{t.name}</strong>
-                  <span style={{ display: "block", color: "#666", fontSize: "0.85rem" }}>
-                    {t.role}
-                  </span>
+                  <div className="testimonial-card__person">
+                    <img src={t.image} alt="" loading="lazy" width={56} height={56} />
+                    <div>
+                      <strong>{t.name}</strong>
+                      <span>{t.role}</span>
+                    </div>
+                  </div>
                 </article>
               ))}
+            </div>
+            <div className="section-cta" style={{ marginTop: "1.25rem" }}>
+              <a href={company.phoneHref} className="btn btn--gold btn--sm">
+                Call to book
+              </a>
+              <Link to="/book-now" className="btn btn--outline btn--sm">
+                Book consultation
+              </Link>
             </div>
           </div>
         </div>

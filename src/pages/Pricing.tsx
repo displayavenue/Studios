@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
@@ -148,6 +149,8 @@ export function Pricing() {
           />
         </div>
       </section>
+
+      <TestimonialsSection compact limit={3} title="Worth every rupee — according to clients" />
 
       <CTABanner />
     </div>

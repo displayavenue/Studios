@@ -34,6 +34,22 @@
   flex-shrink: 0;
 }
 
+.cta-banner__phone {
+  margin-top: 1rem !important;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.cta-banner__phone a {
+  color: var(--gold);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cta-banner__phone a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 800px) {
   .cta-banner__inner {
     flex-direction: column;

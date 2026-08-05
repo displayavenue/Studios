@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
@@ -75,6 +76,8 @@ export function Portfolio() {
           </div>
         </div>
       </section>
+
+      <TestimonialsSection compact limit={3} title="The stories behind the frames" />
 
       <CTABanner title="Want work like this for your date or brand?" />
     </div>

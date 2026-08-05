@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
@@ -118,6 +119,8 @@ export function Packages() {
           </div>
         </section>
       ))}
+
+      <TestimonialsSection compact limit={3} title="Packages clients rave about" />
 
       <CTABanner title="Need a custom package?" text="Tell us your date, city and deliverables — we’ll build a tailored proposal within one business day." />
     </div>

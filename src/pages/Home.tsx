@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { SEO, FAQPageSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Home.css";
@@ -18,7 +19,6 @@ export function Home() {
     blogs,
     faqs,
     processSteps,
-    testimonials,
     whyChoose,
   } = useCms();
   const weddingPackages = packageGroups[0];
@@ -253,32 +253,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="section-head section-head--center reveal">
-            <p className="eyebrow">{home.testimonials.eyebrow}</p>
-            <h2>{home.testimonials.title}</h2>
-            <p>{home.testimonials.text}</p>
-          </div>
-          <div className="testimonials-grid">
-            {testimonials.map((t) => (
-              <article key={t.name} className="testimonial-card card reveal">
-                <div className="testimonial-card__stars" aria-label="5 star review">
-                  ★★★★★
-                </div>
-                <p className="testimonial-card__quote">“{t.quote}”</p>
-                <div className="testimonial-card__person">
-                  <img src={t.image} alt={t.name} loading="lazy" width={56} height={56} />
-                  <div>
-                    <strong>{t.name}</strong>
-                    <span>{t.role}</span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       <section className="section section--light">
         <div className="container faq-home">

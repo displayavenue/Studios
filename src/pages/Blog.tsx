@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { SEO, BreadcrumbSchema, ArticleSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
@@ -57,6 +58,8 @@ export function Blog() {
           ))}
         </div>
       </section>
+
+      <TestimonialsSection compact limit={3} />
 
       <CTABanner />
     </div>
@@ -166,6 +169,8 @@ export function BlogPost() {
           </div>
         </section>
       </article>
+
+      <TestimonialsSection compact limit={3} />
 
       <CTABanner />
     </div>

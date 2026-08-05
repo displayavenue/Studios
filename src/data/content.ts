@@ -164,6 +164,30 @@ export const testimonials = [
     image:
       "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=400&q=80",
   },
+  {
+    name: "Priya Sharma",
+    role: "Wedding · Mumbai",
+    quote:
+      "From the first call to the final album, everything felt premium and organised. Relatives still ask who shot our wedding — we happily share DisplayAvenue.",
+    image:
+      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    name: "Arjun Desai",
+    role: "Founder · D2C Fashion Brand",
+    quote:
+      "They turned a one-day studio shoot into a full content bank for three months of ads. Clear direction, fast edits, and images that actually sell.",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    name: "Meera Iyer",
+    role: "Corporate Event · Bangalore",
+    quote:
+      "Conference coverage was seamless — keynotes, networking and brand moments all delivered overnight. Our leadership team was impressed.",
+    image:
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=400&q=80",
+  },
 ];
 
 export const blogs = [
