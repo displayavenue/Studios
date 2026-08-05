@@ -4,6 +4,7 @@ import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
 import { useCms, useService } from "../cms/CmsProvider";
+import { getYoutubeEmbedUrl } from "../utils/youtube";
 import "./Page.css";
 
 export function ServiceDetail() {
@@ -106,6 +107,31 @@ export function ServiceDetail() {
           </div>
         </div>
       </section>
+
+      {getYoutubeEmbedUrl(service.youtubeUrl) && (
+        <section className="section section--light">
+          <div className="container">
+            <div className="section-head reveal">
+              <p className="eyebrow">Watch</p>
+              <h2>{service.title} film</h2>
+              <p>
+                A sample of our work for this service — open full screen for the
+                best viewing experience.
+              </p>
+            </div>
+            <div className="service-video reveal">
+              <iframe
+                src={getYoutubeEmbedUrl(service.youtubeUrl)!}
+                title={`${service.title} video — DisplayAvenue Studios`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section">
         <div className="container">

@@ -33,6 +33,11 @@ The React site loads `/content/*.json` on every visit, so homepage copy, service
 
 In **Settings**, use **Rebuild SEO now** to force a sync without editing content.
 
+## Service videos
+
+In **Services**, each service has an optional **YouTube video URL**.  
+Paste a full YouTube link (watch / youtu.be / shorts). If set, the service page shows an embedded video section. Leave blank to hide it.
+
 ## Hostinger setup
 
 1. Upload the latest site zip into `public_html` (include `admin/` and `content/`)

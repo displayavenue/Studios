@@ -364,6 +364,7 @@ function renderServices(d) {
         ${field("Short description", `services.${i}.short`, s.short)}
         ${field("Full description", `services.${i}.description`, s.description, "textarea")}
         ${field("Image URL", `services.${i}.image`, s.image)}
+        ${field("YouTube video URL (optional)", `services.${i}.youtubeUrl`, s.youtubeUrl || "")}
         <div class="field full">
           <label>Benefits (one per line)</label>
           <textarea data-path="services.${i}.benefits" data-array="true">${escapeHtml((s.benefits || []).join("\n"))}</textarea>
@@ -573,7 +574,7 @@ function handleAction(action, btn) {
 
   switch (action) {
     case "add-service":
-      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", category: "Wedding", related: [] });
+      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", youtubeUrl: "", category: "Wedding", related: [] });
       break;
     case "del-service": del("services"); break;
     case "add-portfolio":

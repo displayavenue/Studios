@@ -7,6 +7,8 @@ export type Service = {
   image: string;
   category: "Wedding" | "Corporate" | "Product" | "Events" | "Aerial" | "Post";
   related: string[];
+  /** Optional YouTube watch / share / embed URL — shown on the service page when set */
+  youtubeUrl?: string;
 };
 
 export const services: Service[] = [

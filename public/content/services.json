@@ -17,7 +17,8 @@
         "wedding-videography",
         "pre-wedding-shoot",
         "destination-weddings"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "wedding-videography",
@@ -36,7 +37,8 @@
         "wedding-photography",
         "drone-videography",
         "wedding-film-editing"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "pre-wedding-shoot",
@@ -55,7 +57,8 @@
         "engagement-photography",
         "destination-weddings",
         "wedding-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "engagement-photography",
@@ -74,7 +77,8 @@
         "haldi-photography",
         "mehendi-photography",
         "wedding-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "haldi-photography",
@@ -93,7 +97,8 @@
         "mehendi-photography",
         "sangeet-photography",
         "wedding-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "mehendi-photography",
@@ -112,7 +117,8 @@
         "haldi-photography",
         "sangeet-photography",
         "wedding-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "sangeet-photography",
@@ -131,7 +137,8 @@
         "reception-photography",
         "event-photography",
         "wedding-videography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "reception-photography",
@@ -150,7 +157,8 @@
         "wedding-photography",
         "wedding-videography",
         "album-design"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "destination-weddings",
@@ -169,7 +177,8 @@
         "wedding-photography",
         "wedding-videography",
         "drone-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "corporate-photography",
@@ -188,7 +197,8 @@
         "corporate-videography",
         "event-photography",
         "interview-videos"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "corporate-videography",
@@ -207,7 +217,8 @@
         "brand-story-videos",
         "commercial-ad-films",
         "interview-videos"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "industrial-photography",
@@ -226,7 +237,8 @@
         "factory-photography",
         "manufacturing-videos",
         "corporate-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "factory-photography",
@@ -245,7 +257,8 @@
         "industrial-photography",
         "manufacturing-videos",
         "drone-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "manufacturing-videos",
@@ -264,7 +277,8 @@
         "industrial-photography",
         "corporate-videography",
         "brand-story-videos"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "product-photography",
@@ -283,7 +297,8 @@
         "amazon-product-photography",
         "product-videography",
         "fashion-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "product-videography",
@@ -302,7 +317,8 @@
         "product-photography",
         "social-media-reels",
         "commercial-ad-films"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "amazon-product-photography",
@@ -321,7 +337,8 @@
         "flipkart-product-photography",
         "product-photography",
         "photo-editing"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "flipkart-product-photography",
@@ -340,7 +357,8 @@
         "amazon-product-photography",
         "product-photography",
         "product-videography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "food-photography",
@@ -359,7 +377,8 @@
         "restaurant-photography",
         "hotel-photography",
         "product-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "restaurant-photography",
@@ -378,7 +397,8 @@
         "food-photography",
         "hotel-photography",
         "social-media-reels"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "hotel-photography",
@@ -397,7 +417,8 @@
         "architecture-photography",
         "interior-photography",
         "drone-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "fashion-photography",
@@ -416,7 +437,8 @@
         "model-portfolio",
         "product-photography",
         "commercial-ad-films"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "model-portfolio",
@@ -435,7 +457,8 @@
         "fashion-photography",
         "photo-editing",
         "social-media-reels"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "architecture-photography",
@@ -454,7 +477,8 @@
         "interior-photography",
         "real-estate-photography",
         "drone-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "interior-photography",
@@ -473,7 +497,8 @@
         "architecture-photography",
         "real-estate-photography",
         "hotel-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "real-estate-photography",
@@ -492,7 +517,8 @@
         "drone-photography",
         "interior-photography",
         "architecture-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "drone-photography",
@@ -511,7 +537,8 @@
         "drone-videography",
         "real-estate-photography",
         "destination-weddings"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "drone-videography",
@@ -530,7 +557,8 @@
         "drone-photography",
         "wedding-videography",
         "commercial-ad-films"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "event-photography",
@@ -549,7 +577,8 @@
         "event-videography",
         "award-shows",
         "conferences"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "event-videography",
@@ -568,7 +597,8 @@
         "event-photography",
         "live-streaming",
         "conferences"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "school-photography",
@@ -587,7 +617,8 @@
         "college-events",
         "event-photography",
         "photo-editing"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "college-events",
@@ -606,7 +637,8 @@
         "school-photography",
         "event-videography",
         "live-streaming"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "award-shows",
@@ -625,7 +657,8 @@
         "event-photography",
         "event-videography",
         "live-streaming"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "conferences",
@@ -644,7 +677,8 @@
         "corporate-videography",
         "live-streaming",
         "event-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "live-streaming",
@@ -663,7 +697,8 @@
         "event-videography",
         "wedding-videography",
         "conferences"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "podcast-production",
@@ -682,7 +717,8 @@
         "interview-videos",
         "youtube-videos",
         "video-editing"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "interview-videos",
@@ -701,7 +737,8 @@
         "corporate-videography",
         "brand-story-videos",
         "podcast-production"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "social-media-reels",
@@ -720,7 +757,8 @@
         "instagram-content-creation",
         "youtube-videos",
         "video-editing"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "instagram-content-creation",
@@ -739,7 +777,8 @@
         "social-media-reels",
         "product-photography",
         "monthly-content"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "youtube-videos",
@@ -758,7 +797,8 @@
         "video-editing",
         "podcast-production",
         "interview-videos"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "video-editing",
@@ -777,7 +817,8 @@
         "color-grading",
         "motion-graphics",
         "wedding-film-editing"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "photo-editing",
@@ -796,7 +837,8 @@
         "album-design",
         "product-photography",
         "wedding-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "wedding-film-editing",
@@ -815,7 +857,8 @@
         "wedding-videography",
         "color-grading",
         "video-editing"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "color-grading",
@@ -834,7 +877,8 @@
         "video-editing",
         "wedding-film-editing",
         "commercial-ad-films"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "motion-graphics",
@@ -853,7 +897,8 @@
         "commercial-ad-films",
         "video-editing",
         "brand-story-videos"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "album-design",
@@ -872,7 +917,8 @@
         "wedding-photography",
         "photo-editing",
         "reception-photography"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "commercial-ad-films",
@@ -891,7 +937,8 @@
         "brand-story-videos",
         "product-videography",
         "motion-graphics"
-      ]
+      ],
+      "youtubeUrl": ""
     },
     {
       "slug": "brand-story-videos",
@@ -910,7 +957,8 @@
         "corporate-videography",
         "interview-videos",
         "commercial-ad-films"
-      ]
+      ],
+      "youtubeUrl": ""
     }
   ],
   "homeServices": [
