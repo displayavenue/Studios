@@ -17,3 +17,8 @@
 .wa-float:hover {
   transform: translateY(-3px) scale(1.04);
 }
+
+body.menu-open .wa-float {
+  opacity: 0;
+  pointer-events: none;
+}
