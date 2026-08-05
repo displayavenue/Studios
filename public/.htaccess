@@ -1,7 +1,12 @@
 # DisplayAvenue Studios — SPA routing for Hostinger/Apache
+DirectoryIndex index.html index.php
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Prefer React homepage over WordPress index.php when both exist
+  RewriteRule ^$ index.html [L]
 
   # Pass existing files/directories through
   RewriteCond %{REQUEST_FILENAME} -f [OR]
