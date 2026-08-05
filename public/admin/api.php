@@ -17,6 +17,8 @@ session_name('da_admin');
 session_start([
   'cookie_httponly' => true,
   'cookie_samesite' => 'Lax',
+  'cookie_secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'),
+  'cookie_path' => '/',
 ]);
 
 function respond(int $code, array $payload): void {

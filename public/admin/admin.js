@@ -46,8 +46,14 @@ function setDirty(v) {
 }
 
 function showLogin(show) {
-  $("#login-view").hidden = !show;
-  $("#cms-view").hidden = show;
+  const login = $("#login-view");
+  const cms = $("#cms-view");
+  if (!login || !cms) return;
+  login.hidden = !!show;
+  cms.hidden = !show;
+  login.classList.toggle("is-hidden", !show);
+  cms.classList.toggle("is-hidden", !!show);
+  document.body.classList.toggle("is-authed", !show);
 }
 
 function field(label, path, value, type = "text") {
@@ -848,19 +854,42 @@ $("#login-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const password = $("#password").value;
   const err = $("#login-error");
+  const btn = e.target.querySelector('button[type="submit"]');
   err.hidden = true;
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Signing in…";
+  }
   try {
-    await api("login", { password });
+    const loginRes = await api("login", { password });
+    if (!loginRes || loginRes.ok === false) {
+      throw new Error(loginRes?.error || "Login failed");
+    }
     state.authed = true;
     showLogin(false);
-    const status = await fetch(`${API}?action=status`, { credentials: "include" }).then((r) => r.json());
-    state.collections = status.collections || {};
+    try {
+      const status = await fetch(`${API}?action=status`, { credentials: "include" }).then((r) => r.json());
+      state.collections = status.collections || state.collections || {};
+    } catch (_) {
+      /* keep collections from prior status if cookie race */
+    }
+    if (!Object.keys(state.collections || {}).length) {
+      const status = await fetch(`${API}?action=status`, { credentials: "include" }).then((r) => r.json());
+      state.collections = status.collections || {};
+    }
     renderNav();
     const first = Object.keys(state.collections)[0];
-    if (first) loadCollection(first);
+    if (first) await loadCollection(first);
   } catch (ex) {
+    state.authed = false;
+    showLogin(true);
     err.hidden = false;
     err.textContent = ex.message || "Login failed";
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Sign in";
+    }
   }
 });
 
