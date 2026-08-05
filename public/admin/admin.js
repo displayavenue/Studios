@@ -146,6 +146,7 @@ function renderEditor() {
   }
 
   if (key === "home") wrap.innerHTML = renderHome(data);
+  else if (key === "menu") wrap.innerHTML = renderMenu(data);
   else if (key === "company") wrap.innerHTML = renderCompany(data);
   else if (key === "services") wrap.innerHTML = renderServices(data);
   else if (key === "packages") wrap.innerHTML = renderPackages(data);
@@ -302,6 +303,147 @@ function renderHome(d) {
       ${field("Button label", "ctaBanner.primaryLabel", cta.primaryLabel)}
       ${field("Button path", "ctaBanner.primaryPath", cta.primaryPath)}
     </div>
+  </div>`;
+}
+
+function renderMenu(d) {
+  const items = d.items || [];
+  const services = d.servicesMega || {};
+  const packages = d.packagesMega || {};
+  const explore = d.exploreMega || {};
+  const discover = explore.discoverLinks || [];
+  const mobile = d.mobileLinks || [];
+  const cta = d.cta || {};
+
+  return `
+  <div class="card">
+    <h3>Header & mega menu</h3>
+    <div class="help-banner">
+      Edit top navigation labels, mega-menu copy, service categories, Explore links and the Book Now button.
+      Service / package / city lists still come from those collections — this controls labels, order and which mega panels open.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>Desktop nav items (${items.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-menu-item">Add nav item</button>
+    </div>
+    <p class="help-banner" style="margin-top:0">Type <code>link</code> needs a path. Type <code>mega</code> needs mega = services, packages or explore.</p>
+    ${items.map((item, i) => `
+      <details class="item-card" ${i < 3 ? "open" : ""}>
+        <summary>
+          <span>
+            <span class="pill">${escapeHtml(item.type || "link")}</span>
+            ${escapeHtml(item.label || item.id || "Item")}
+          </span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-menu-item" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("ID (unique)", `items.${i}.id`, item.id)}
+          ${field("Label", `items.${i}.label`, item.label)}
+          ${field("Type (link or mega)", `items.${i}.type`, item.type || "link")}
+          ${field("Path (for link)", `items.${i}.path`, item.path || "")}
+          ${field("Mega key (services / packages / explore)", `items.${i}.mega`, item.mega || "")}
+        </div>
+      </details>
+    `).join("")}
+  </div>
+
+  <div class="card">
+    <h3>Header CTA button</h3>
+    <div class="grid-2">
+      ${field("Button label", "cta.label", cta.label)}
+      ${field("Button path", "cta.path", cta.path)}
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Services mega menu</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "servicesMega.eyebrow", services.eyebrow)}
+      ${field("Title", "servicesMega.title", services.title)}
+      ${field("View all label", "servicesMega.viewAllLabel", services.viewAllLabel)}
+      ${field("View all path", "servicesMega.viewAllPath", services.viewAllPath)}
+      ${field("Links per category", "servicesMega.linksPerCategory", services.linksPerCategory ?? 5, "number")}
+      ${field("Popular section label", "servicesMega.popularLabel", services.popularLabel)}
+      ${field("Popular count", "servicesMega.popularCount", services.popularCount ?? 6, "number")}
+    </div>
+    <div class="field full">
+      <label>Category columns (one per line — must match service categories)</label>
+      <textarea data-path="servicesMega.categories" data-array="true">${escapeHtml((services.categories || []).join("\n"))}</textarea>
+    </div>
+    <div class="field full">
+      <label>Popular service slugs (one per line — leave blank to use Services → homepage featured slugs)</label>
+      <textarea data-path="servicesMega.popularSlugs" data-array="true">${escapeHtml((services.popularSlugs || []).join("\n"))}</textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Packages mega menu</h3>
+    <div class="grid-2">
+      ${field("All packages eyebrow", "packagesMega.allEyebrow", packages.allEyebrow)}
+      ${field("All packages label", "packagesMega.allLabel", packages.allLabel)}
+      ${field("All packages text", "packagesMega.allText", packages.allText, "textarea")}
+      ${field("All packages path", "packagesMega.allPath", packages.allPath)}
+      ${field("Package card eyebrow", "packagesMega.itemEyebrow", packages.itemEyebrow)}
+      ${field("Pricing eyebrow", "packagesMega.pricingEyebrow", packages.pricingEyebrow)}
+      ${field("Pricing label", "packagesMega.pricingLabel", packages.pricingLabel)}
+      ${field("Pricing text", "packagesMega.pricingText", packages.pricingText, "textarea")}
+      ${field("Pricing path", "packagesMega.pricingPath", packages.pricingPath)}
+      <div class="field">
+        <label for="packages_showPricing">Show pricing card</label>
+        <input type="checkbox" data-path="packagesMega.showPricing" id="packages_showPricing" ${packages.showPricing !== false ? "checked" : ""} />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Explore mega menu</h3>
+    <div class="grid-2">
+      ${field("Discover title", "exploreMega.discoverTitle", explore.discoverTitle)}
+      ${field("Cities title", "exploreMega.citiesTitle", explore.citiesTitle)}
+      ${field("Cities count", "exploreMega.citiesCount", explore.citiesCount ?? 8, "number")}
+      ${field("CTA eyebrow", "exploreMega.ctaEyebrow", explore.ctaEyebrow)}
+      ${field("CTA title", "exploreMega.ctaTitle", explore.ctaTitle)}
+      ${field("CTA text", "exploreMega.ctaText", explore.ctaText, "textarea")}
+      ${field("Primary button label", "exploreMega.ctaPrimaryLabel", explore.ctaPrimaryLabel)}
+      ${field("Primary button path", "exploreMega.ctaPrimaryPath", explore.ctaPrimaryPath)}
+      ${field("Secondary button label", "exploreMega.ctaSecondaryLabel", explore.ctaSecondaryLabel)}
+      <div class="field">
+        <label for="explore_showWhatsApp">Show WhatsApp button</label>
+        <input type="checkbox" data-path="exploreMega.showWhatsApp" id="explore_showWhatsApp" ${explore.showWhatsApp !== false ? "checked" : ""} />
+      </div>
+    </div>
+    <div class="card-head" style="margin-top:1rem">
+      <h3 style="font-size:1rem;margin:0">Discover links (${discover.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-discover-link">Add link</button>
+    </div>
+    ${discover.map((link, i) => `
+      <div class="grid-2 item-card" style="padding:1rem;margin-top:.65rem">
+        ${field("Label", `exploreMega.discoverLinks.${i}.label`, link.label)}
+        ${field("Path", `exploreMega.discoverLinks.${i}.path`, link.path)}
+        <div class="field full">
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-discover-link" data-index="${i}">Delete link</button>
+        </div>
+      </div>
+    `).join("")}
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>Mobile drawer links (${mobile.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-mobile-link">Add mobile link</button>
+    </div>
+    ${mobile.map((link, i) => `
+      <div class="grid-2 item-card" style="padding:1rem;margin-top:.65rem">
+        ${field("Label", `mobileLinks.${i}.label`, link.label)}
+        ${field("Path", `mobileLinks.${i}.path`, link.path)}
+        <div class="field full">
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-mobile-link" data-index="${i}">Delete</button>
+        </div>
+      </div>
+    `).join("")}
   </div>`;
 }
 
@@ -633,6 +775,28 @@ function handleAction(action, btn) {
     case "del-why": del("whyChoose"); break;
     case "add-process": add("processSteps", { step: "0", title: "Step", text: "" }); break;
     case "del-process": del("processSteps"); break;
+    case "add-menu-item":
+      d.items = d.items || [];
+      d.items.push({ id: `item-${Date.now()}`, label: "New link", type: "link", path: "/" });
+      setDirty(true); renderEditor(); break;
+    case "del-menu-item":
+      if (!confirm("Delete this nav item?")) return;
+      d.items.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-discover-link":
+      d.exploreMega = d.exploreMega || {};
+      d.exploreMega.discoverLinks = d.exploreMega.discoverLinks || [];
+      d.exploreMega.discoverLinks.push({ label: "New page", path: "/" });
+      setDirty(true); renderEditor(); break;
+    case "del-discover-link":
+      if (!confirm("Delete this Discover link?")) return;
+      d.exploreMega.discoverLinks.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-mobile-link":
+      d.mobileLinks = d.mobileLinks || [];
+      d.mobileLinks.push({ label: "New link", path: "/" });
+      setDirty(true); renderEditor(); break;
+    case "del-mobile-link":
+      if (!confirm("Delete this mobile link?")) return;
+      d.mobileLinks.splice(i, 1); setDirty(true); renderEditor(); break;
     case "sync-seo":
       (async () => {
         try {

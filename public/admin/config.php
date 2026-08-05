@@ -16,6 +16,7 @@ return [
   // Allowed content files (without .json)
   'collections' => [
     'home' => 'Homepage',
+    'menu' => 'Header & Mega Menu',
     'company' => 'Company & Contact',
     'services' => 'Services',
     'packages' => 'Packages & Pricing',

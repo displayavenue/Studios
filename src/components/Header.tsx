@@ -2,37 +2,51 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
+import type { MenuNavItem } from "../data/menu";
 import "./Header.css";
-
-const serviceCategories = [
-  "Wedding",
-  "Corporate",
-  "Product",
-  "Events",
-  "Aerial",
-  "Post",
-] as const;
 
 type OpenMenu = "services" | "packages" | "explore" | null;
 
+function isMegaActive(item: MenuNavItem, pathname: string) {
+  if (item.mega === "services") return pathname.startsWith("/services");
+  if (item.mega === "packages") {
+    return pathname.startsWith("/packages") || pathname === "/pricing";
+  }
+  if (item.mega === "explore") {
+    return ["/locations", "/industries", "/blog", "/faqs", "/pages"].some((p) =>
+      pathname.startsWith(p),
+    );
+  }
+  return false;
+}
+
 export function Header() {
-  const { company, services, packageGroups, locations, homeServices } =
+  const { company, services, packageGroups, locations, homeServices, menu } =
     useCms();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState<OpenMenu>(null);
+  const [activeMega, setActiveMega] = useState<OpenMenu>(null);
   const [mobileSection, setMobileSection] = useState<string | null>("services");
   const headerRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<number | null>(null);
 
+  const servicesMega = menu.servicesMega;
+  const packagesMega = menu.packagesMega;
+  const exploreMega = menu.exploreMega;
+
+  const popularSlugs =
+    servicesMega.popularSlugs?.length > 0
+      ? servicesMega.popularSlugs
+      : homeServices;
+
   const featuredServices = (
-    homeServices.length
-      ? homeServices
+    popularSlugs.length
+      ? popularSlugs
           .map((slug) => services.find((s) => s.slug === slug))
           .filter(Boolean)
-      : services.slice(0, 6)
-  ).slice(0, 6);
+      : services.slice(0, servicesMega.popularCount || 6)
+  ).slice(0, servicesMega.popularCount || 6);
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -41,14 +55,14 @@ export function Header() {
     }
   };
 
-  const openMenu = (key: OpenMenu) => {
+  const openMega = (key: OpenMenu) => {
     clearCloseTimer();
-    setMenu(key);
+    setActiveMega(key);
   };
 
   const scheduleClose = () => {
     clearCloseTimer();
-    closeTimer.current = window.setTimeout(() => setMenu(null), 160);
+    closeTimer.current = window.setTimeout(() => setActiveMega(null), 160);
   };
 
   useEffect(() => {
@@ -60,7 +74,7 @@ export function Header() {
 
   useEffect(() => {
     setOpen(false);
-    setMenu(null);
+    setActiveMega(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -75,13 +89,13 @@ export function Header() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setMenu(null);
+        setActiveMega(null);
         setOpen(false);
       }
     };
     const onClick = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
-        setMenu(null);
+        setActiveMega(null);
       }
     };
     document.addEventListener("keydown", onKey);
@@ -95,7 +109,40 @@ export function Header() {
 
   const closeAll = () => {
     setOpen(false);
-    setMenu(null);
+    setActiveMega(null);
+  };
+
+  const renderDesktopItem = (item: MenuNavItem) => {
+    if (item.type === "mega" && item.mega) {
+      const key = item.mega;
+      const active = activeMega === key || isMegaActive(item, pathname);
+      return (
+        <button
+          key={item.id}
+          type="button"
+          className={`nav-link nav-link--btn ${active ? "active" : ""}`}
+          aria-expanded={activeMega === key}
+          onMouseEnter={() => openMega(key)}
+          onFocus={() => openMega(key)}
+          onClick={() => openMega(activeMega === key ? null : key)}
+        >
+          {item.label}
+          <span className="nav-caret" aria-hidden />
+        </button>
+      );
+    }
+
+    const path = item.path || "/";
+    return (
+      <NavLink
+        key={item.id}
+        to={path}
+        className="nav-link"
+        onMouseEnter={() => openMega(null)}
+      >
+        {item.label}
+      </NavLink>
+    );
   };
 
   return (
@@ -106,15 +153,15 @@ export function Header() {
       {typeof document !== "undefined" &&
         createPortal(
           <div
-            className={`mega-backdrop ${menu ? "is-open" : ""}`}
+            className={`mega-backdrop ${activeMega ? "is-open" : ""}`}
             aria-hidden
-            onClick={() => setMenu(null)}
+            onClick={() => setActiveMega(null)}
           />,
           document.body,
         )}
       <header
         ref={headerRef}
-        className={`site-header ${scrolled || open || menu ? "is-solid" : "is-transparent"} ${open ? "is-menu-open" : ""} ${menu ? "has-menu" : ""}`}
+        className={`site-header ${scrolled || open || activeMega ? "is-solid" : "is-transparent"} ${open ? "is-menu-open" : ""} ${activeMega ? "has-menu" : ""}`}
         onMouseLeave={scheduleClose}
         onMouseEnter={clearCloseTimer}
       >
@@ -128,53 +175,7 @@ export function Header() {
           </Link>
 
           <nav className="site-nav site-nav--desktop" aria-label="Primary">
-            <NavLink to="/about" className="nav-link" onMouseEnter={() => openMenu(null)}>
-              About
-            </NavLink>
-
-            <button
-              type="button"
-              className={`nav-link nav-link--btn ${menu === "services" || pathname.startsWith("/services") ? "active" : ""}`}
-              aria-expanded={menu === "services"}
-              onMouseEnter={() => openMenu("services")}
-              onFocus={() => openMenu("services")}
-              onClick={() => openMenu(menu === "services" ? null : "services")}
-            >
-              Services
-              <span className="nav-caret" aria-hidden />
-            </button>
-
-            <button
-              type="button"
-              className={`nav-link nav-link--btn ${menu === "packages" || pathname.startsWith("/packages") || pathname === "/pricing" ? "active" : ""}`}
-              aria-expanded={menu === "packages"}
-              onMouseEnter={() => openMenu("packages")}
-              onFocus={() => openMenu("packages")}
-              onClick={() => openMenu(menu === "packages" ? null : "packages")}
-            >
-              Packages
-              <span className="nav-caret" aria-hidden />
-            </button>
-
-            <NavLink to="/portfolio" className="nav-link" onMouseEnter={() => openMenu(null)}>
-              Portfolio
-            </NavLink>
-
-            <button
-              type="button"
-              className={`nav-link nav-link--btn ${menu === "explore" || ["/locations", "/industries", "/blog", "/faqs", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
-              aria-expanded={menu === "explore"}
-              onMouseEnter={() => openMenu("explore")}
-              onFocus={() => openMenu("explore")}
-              onClick={() => openMenu(menu === "explore" ? null : "explore")}
-            >
-              Explore
-              <span className="nav-caret" aria-hidden />
-            </button>
-
-            <NavLink to="/contact" className="nav-link" onMouseEnter={() => openMenu(null)}>
-              Contact
-            </NavLink>
+            {menu.items.map(renderDesktopItem)}
           </nav>
 
           <div className="site-header__actions">
@@ -190,8 +191,8 @@ export function Header() {
             >
               WhatsApp
             </a>
-            <Link to="/book-now" className="btn btn--gold header-cta">
-              Book Now
+            <Link to={menu.cta.path || "/book-now"} className="btn btn--gold header-cta">
+              {menu.cta.label || "Book Now"}
             </Link>
             <button
               type="button"
@@ -207,29 +208,32 @@ export function Header() {
           </div>
         </div>
 
-        {/* Full-width mega panels anchored under the header bar */}
         <div
-          className={`mega-shell ${menu ? "is-open" : ""}`}
+          className={`mega-shell ${activeMega ? "is-open" : ""}`}
           onMouseEnter={clearCloseTimer}
         >
           <div className="container">
-            {menu === "services" && (
+            {activeMega === "services" && (
               <div className="mega-panel mega-panel--services" role="region" aria-label="Services menu">
                 <div className="mega-panel__head">
                   <div>
-                    <p className="eyebrow">Services</p>
-                    <h3>Photography, film &amp; post production</h3>
+                    <p className="eyebrow">{servicesMega.eyebrow}</p>
+                    <h3>{servicesMega.title}</h3>
                   </div>
-                  <Link to="/services" className="btn btn--dark btn--sm" onClick={closeAll}>
-                    View all services
+                  <Link
+                    to={servicesMega.viewAllPath || "/services"}
+                    className="btn btn--dark btn--sm"
+                    onClick={closeAll}
+                  >
+                    {servicesMega.viewAllLabel || "View all services"}
                   </Link>
                 </div>
 
                 <div className="mega-cats">
-                  {serviceCategories.map((category) => {
+                  {(servicesMega.categories || []).map((category) => {
                     const items = services
                       .filter((s) => s.category === category)
-                      .slice(0, 5);
+                      .slice(0, Number(servicesMega.linksPerCategory) || 5);
                     if (!items.length) return null;
                     return (
                       <div key={category} className="mega-cat">
@@ -249,7 +253,7 @@ export function Header() {
                 </div>
 
                 <div className="mega-popular">
-                  <p className="mega-cat__title">Popular</p>
+                  <p className="mega-cat__title">{servicesMega.popularLabel || "Popular"}</p>
                   <div className="mega-popular__row">
                     {featuredServices.map(
                       (s) =>
@@ -270,13 +274,17 @@ export function Header() {
               </div>
             )}
 
-            {menu === "packages" && (
+            {activeMega === "packages" && (
               <div className="mega-panel mega-panel--packages" role="region" aria-label="Packages menu">
                 <div className="mega-packages">
-                  <Link to="/packages" className="mega-pack-card mega-pack-card--all" onClick={closeAll}>
-                    <span className="eyebrow">Overview</span>
-                    <strong>All packages</strong>
-                    <p>Compare Essential, Signature and Luxury tiers</p>
+                  <Link
+                    to={packagesMega.allPath || "/packages"}
+                    className="mega-pack-card mega-pack-card--all"
+                    onClick={closeAll}
+                  >
+                    <span className="eyebrow">{packagesMega.allEyebrow}</span>
+                    <strong>{packagesMega.allLabel}</strong>
+                    <p>{packagesMega.allText}</p>
                   </Link>
                   {packageGroups.map((g) => (
                     <Link
@@ -285,37 +293,45 @@ export function Header() {
                       className="mega-pack-card"
                       onClick={closeAll}
                     >
-                      <span className="eyebrow">Package</span>
+                      <span className="eyebrow">{packagesMega.itemEyebrow || "Package"}</span>
                       <strong>{g.title}</strong>
                       <p>{g.subtitle}</p>
                     </Link>
                   ))}
-                  <Link to="/pricing" className="mega-pack-card mega-pack-card--accent" onClick={closeAll}>
-                    <span className="eyebrow">Guide</span>
-                    <strong>Pricing</strong>
-                    <p>See what shapes your quote →</p>
-                  </Link>
+                  {packagesMega.showPricing !== false && (
+                    <Link
+                      to={packagesMega.pricingPath || "/pricing"}
+                      className="mega-pack-card mega-pack-card--accent"
+                      onClick={closeAll}
+                    >
+                      <span className="eyebrow">{packagesMega.pricingEyebrow}</span>
+                      <strong>{packagesMega.pricingLabel}</strong>
+                      <p>{packagesMega.pricingText}</p>
+                    </Link>
+                  )}
                 </div>
               </div>
             )}
 
-            {menu === "explore" && (
+            {activeMega === "explore" && (
               <div className="mega-panel mega-panel--explore" role="region" aria-label="Explore menu">
                 <div className="mega-explore-grid">
                   <div className="mega-cat">
-                    <p className="mega-cat__title">Discover</p>
+                    <p className="mega-cat__title">{exploreMega.discoverTitle}</p>
                     <ul>
-                      <li><Link to="/locations" onClick={closeAll}>Locations</Link></li>
-                      <li><Link to="/industries" onClick={closeAll}>Industries</Link></li>
-                      <li><Link to="/blog" onClick={closeAll}>Blog</Link></li>
-                      <li><Link to="/faqs" onClick={closeAll}>FAQs</Link></li>
-                      <li><Link to="/pages" onClick={closeAll}>All pages</Link></li>
+                      {(exploreMega.discoverLinks || []).map((link) => (
+                        <li key={`${link.path}-${link.label}`}>
+                          <Link to={link.path} onClick={closeAll}>
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                   <div className="mega-cat">
-                    <p className="mega-cat__title">Top cities</p>
+                    <p className="mega-cat__title">{exploreMega.citiesTitle}</p>
                     <ul>
-                      {locations.slice(0, 8).map((loc) => (
+                      {locations.slice(0, Number(exploreMega.citiesCount) || 8).map((loc) => (
                         <li key={loc.slug}>
                           <Link to={`/locations/${loc.slug}`} onClick={closeAll}>
                             {loc.city}
@@ -325,22 +341,28 @@ export function Header() {
                     </ul>
                   </div>
                   <div className="mega-book">
-                    <p className="eyebrow">Book consultation</p>
-                    <strong>Ready when you are</strong>
-                    <p>Share your date and city — we reply quickly on WhatsApp.</p>
+                    <p className="eyebrow">{exploreMega.ctaEyebrow}</p>
+                    <strong>{exploreMega.ctaTitle}</strong>
+                    <p>{exploreMega.ctaText}</p>
                     <div className="mega-book__actions">
-                      <Link to="/book-now" className="btn btn--gold btn--sm" onClick={closeAll}>
-                        Book Now
-                      </Link>
-                      <a
-                        href={company.whatsappHref}
-                        className="btn btn--outline-light btn--sm"
-                        target="_blank"
-                        rel="noreferrer"
+                      <Link
+                        to={exploreMega.ctaPrimaryPath || "/book-now"}
+                        className="btn btn--gold btn--sm"
                         onClick={closeAll}
                       >
-                        WhatsApp
-                      </a>
+                        {exploreMega.ctaPrimaryLabel || "Book Now"}
+                      </Link>
+                      {exploreMega.showWhatsApp !== false && (
+                        <a
+                          href={company.whatsappHref}
+                          className="btn btn--outline-light btn--sm"
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={closeAll}
+                        >
+                          {exploreMega.ctaSecondaryLabel || "WhatsApp"}
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -364,11 +386,13 @@ export function Header() {
                     setMobileSection((s) => (s === "services" ? null : "services"))
                   }
                 >
-                  Services
+                  {menu.items.find((i) => i.mega === "services")?.label || "Services"}
                 </button>
                 {mobileSection === "services" && (
                   <div className="mobile-acc__body">
-                    <Link to="/services" onClick={closeAll}>All services</Link>
+                    <Link to={servicesMega.viewAllPath || "/services"} onClick={closeAll}>
+                      {servicesMega.viewAllLabel || "All services"}
+                    </Link>
                     {featuredServices.map(
                       (s) =>
                         s && (
@@ -389,37 +413,51 @@ export function Header() {
                     setMobileSection((s) => (s === "packages" ? null : "packages"))
                   }
                 >
-                  Packages
+                  {menu.items.find((i) => i.mega === "packages")?.label || "Packages"}
                 </button>
                 {mobileSection === "packages" && (
                   <div className="mobile-acc__body">
-                    <Link to="/packages" onClick={closeAll}>All packages</Link>
+                    <Link to={packagesMega.allPath || "/packages"} onClick={closeAll}>
+                      {packagesMega.allLabel || "All packages"}
+                    </Link>
                     {packageGroups.map((g) => (
                       <Link key={g.slug} to={`/packages/${g.slug}`} onClick={closeAll}>
                         {g.title}
                       </Link>
                     ))}
-                    <Link to="/pricing" onClick={closeAll}>Pricing</Link>
+                    {packagesMega.showPricing !== false && (
+                      <Link to={packagesMega.pricingPath || "/pricing"} onClick={closeAll}>
+                        {packagesMega.pricingLabel || "Pricing"}
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
 
               <nav className="mobile-drawer__links" aria-label="Mobile">
-                <NavLink to="/about" onClick={closeAll}>About</NavLink>
-                <NavLink to="/portfolio" onClick={closeAll}>Portfolio</NavLink>
-                <NavLink to="/locations" onClick={closeAll}>Locations</NavLink>
-                <NavLink to="/industries" onClick={closeAll}>Industries</NavLink>
-                <NavLink to="/blog" onClick={closeAll}>Blog</NavLink>
-                <NavLink to="/faqs" onClick={closeAll}>FAQs</NavLink>
-                <NavLink to="/contact" onClick={closeAll}>Contact</NavLink>
+                {(menu.mobileLinks || []).map((link) => (
+                  <NavLink key={`${link.path}-${link.label}`} to={link.path} onClick={closeAll}>
+                    {link.label}
+                  </NavLink>
+                ))}
               </nav>
 
               <div className="mobile-drawer__actions">
-                <Link to="/book-now" className="btn btn--gold" onClick={closeAll}>Book Now</Link>
-                <a href={company.whatsappHref} className="btn btn--dark" target="_blank" rel="noreferrer" onClick={closeAll}>
+                <Link to={menu.cta.path || "/book-now"} className="btn btn--gold" onClick={closeAll}>
+                  {menu.cta.label || "Book Now"}
+                </Link>
+                <a
+                  href={company.whatsappHref}
+                  className="btn btn--dark"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={closeAll}
+                >
                   WhatsApp us
                 </a>
-                <a href={company.phoneHref} className="mobile-drawer__phone">{company.phone}</a>
+                <a href={company.phoneHref} className="mobile-drawer__phone">
+                  {company.phone}
+                </a>
               </div>
             </div>
           </div>,
