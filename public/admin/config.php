@@ -21,6 +21,7 @@ return [
     'packages' => 'Packages & Pricing',
     'portfolio' => 'Portfolio',
     'content' => 'FAQs, Blog, Team, Industries',
-    'settings' => 'Settings & Tracking',
+    'tracking' => 'Tracking & Pixels',
+    'settings' => 'Settings',
   ],
 ];

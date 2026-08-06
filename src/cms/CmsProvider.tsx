@@ -35,6 +35,7 @@ import {
   defaultTracking,
   mergeTracking,
   type SiteSettings,
+  type TrackingSettings,
 } from "../data/settings";
 
 export type CmsState = {
@@ -58,7 +59,8 @@ export type CmsState = {
   industries: typeof fallbackIndustries;
   locations: typeof fallbackLocations;
   team: typeof fallbackTeam;
-  settings: SiteSettings & { tracking: typeof defaultTracking };
+  settings: SiteSettings;
+  tracking: typeof defaultTracking;
   ready: boolean;
 };
 
@@ -104,8 +106,8 @@ const defaults: CmsState = {
   team: fallbackTeam,
   settings: {
     siteName: "DisplayAvenue Studios",
-    tracking: defaultTracking,
   },
+  tracking: defaultTracking,
   ready: false,
 };
 
@@ -127,7 +129,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [company, home, services, packages, portfolio, content, settingsJson] =
+      const [company, home, services, packages, portfolio, content, settingsJson, trackingJson] =
         await Promise.all([
           fetchJson<Record<string, unknown>>("/content/company.json"),
           fetchJson<Partial<HomeContent>>("/content/home.json"),
@@ -143,6 +145,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
           }>("/content/portfolio.json"),
           fetchJson<Record<string, unknown>>("/content/content.json"),
           fetchJson<SiteSettings>("/content/settings.json"),
+          fetchJson<TrackingSettings>("/content/tracking.json"),
         ]);
 
       if (cancelled) return;
@@ -187,10 +190,8 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         locations:
           (content?.locations as CmsState["locations"]) || fallbackLocations,
         team: (content?.team as CmsState["team"]) || fallbackTeam,
-        settings: {
-          ...(settingsJson || {}),
-          tracking: mergeTracking(settingsJson?.tracking),
-        },
+        settings: settingsJson || {},
+        tracking: mergeTracking(trackingJson || settingsJson?.tracking),
         ready: true,
       });
     })();

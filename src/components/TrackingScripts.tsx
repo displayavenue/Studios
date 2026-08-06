@@ -87,12 +87,10 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,do
 }
 
 export function TrackingScripts() {
-  const { settings, ready } = useCms();
+  const { tracking, ready } = useCms();
 
   useEffect(() => {
     if (!ready) return;
-
-    const tracking = settings.tracking;
     if (tracking.enabled === false) return;
 
     const gtmId = tracking.googleTagManagerId?.trim();
@@ -114,7 +112,7 @@ export function TrackingScripts() {
 
     injectHtmlFragment(tracking.headScripts || "", document.head, "cms-head-custom");
     injectHtmlFragment(tracking.bodyStartHtml || "", document.body, "cms-body-custom");
-  }, [ready, settings.tracking]);
+  }, [ready, tracking]);
 
   return null;
 }

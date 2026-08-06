@@ -151,6 +151,7 @@ function renderEditor() {
   else if (key === "packages") wrap.innerHTML = renderPackages(data);
   else if (key === "portfolio") wrap.innerHTML = renderPortfolio(data);
   else if (key === "content") wrap.innerHTML = renderContent(data);
+  else if (key === "tracking") wrap.innerHTML = renderTracking(data);
   else if (key === "settings") wrap.innerHTML = renderSettings(data);
   else wrap.innerHTML = `<div class="card"><p>Unknown collection.</p></div>`;
 
@@ -563,8 +564,35 @@ function renderContent(d) {
   ].join("");
 }
 
+function renderTracking(d) {
+  return `
+  <div class="card">
+    <h3>Tracking &amp; ad pixels</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
+      Google Tag Manager, Google Analytics, Google Ads, Meta (Facebook) Pixel, and custom scripts from any ad or AI platform.
+      <strong>Save changes</strong> to update the live website — no rebuild needed.
+    </p>
+    <div class="grid-2">
+      ${field("Enable all tracking", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Google Tag Manager ID", "googleTagManagerId", d.googleTagManagerId || "", "text")}
+      ${field("Google Analytics ID (G-…)", "googleAnalyticsId", d.googleAnalyticsId || "", "text")}
+      ${field("Google Ads tag ID (AW-…)", "googleAdsId", d.googleAdsId || "", "text")}
+      ${field("Meta Pixel ID", "metaPixelId", d.metaPixelId || "", "text")}
+      ${field("Google Search Console verification", "googleSiteVerification", d.googleSiteVerification || "", "text")}
+    </div>
+    <div class="field full" style="margin-top:1rem">
+      <label for="tracking_head_scripts">Additional &lt;head&gt; scripts</label>
+      <textarea data-path="headScripts" id="tracking_head_scripts" rows="8" placeholder="Paste full &lt;script&gt; tags from Google Ads, LinkedIn, Microsoft, TikTok, AI ad platforms, etc.">${escapeHtml(d.headScripts || "")}</textarea>
+      <p class="hint" style="color:#888;font-size:.85rem;margin-top:.5rem">Paste complete <code>&lt;script&gt;…&lt;/script&gt;</code> blocks exactly as your platform provides.</p>
+    </div>
+    <div class="field full" style="margin-top:1rem">
+      <label for="tracking_body_html">Additional body snippets (noscript / pixels)</label>
+      <textarea data-path="bodyStartHtml" id="tracking_body_html" rows="6" placeholder="Paste &lt;noscript&gt; or pixel fallback HTML">${escapeHtml(d.bodyStartHtml || "")}</textarea>
+    </div>
+  </div>`;
+}
+
 function renderSettings(d) {
-  const t = d.tracking || {};
   return `
   <div class="card">
     <h3>Site settings</h3>
@@ -572,32 +600,9 @@ function renderSettings(d) {
     ${field("Admin note", "adminNote", d.adminNote, "textarea")}
     <p style="color:var(--muted);font-size:.9rem;margin-top:1rem">
       Change the CMS login password in <code>/admin/config.php</code> on the server.<br/>
-      Make sure the <code>/content</code> folder is writable (chmod 755/775).
+      Make sure the <code>/content</code> folder is writable (chmod 755/775).<br/>
+      Marketing tags are under <strong>Tracking &amp; Pixels</strong> in the sidebar.
     </p>
-  </div>
-  <div class="card">
-    <h3>Marketing &amp; tracking codes</h3>
-    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
-      Add or update Google Tag Manager, Google Analytics, Google Ads, Meta Pixel, and any other ad or AI platform snippets.
-      Changes go live after you save — no website rebuild required.
-    </p>
-    <div class="grid-2">
-      ${field("Enable tracking", "tracking.enabled", t.enabled !== false, "checkbox")}
-      ${field("Google Tag Manager ID", "tracking.googleTagManagerId", t.googleTagManagerId || "", "text")}
-      ${field("Google Analytics ID (G-…)", "tracking.googleAnalyticsId", t.googleAnalyticsId || "", "text")}
-      ${field("Google Ads tag ID (AW-…)", "tracking.googleAdsId", t.googleAdsId || "", "text")}
-      ${field("Meta Pixel ID", "tracking.metaPixelId", t.metaPixelId || "", "text")}
-      ${field("Google Search Console verification", "tracking.googleSiteVerification", t.googleSiteVerification || "", "text")}
-    </div>
-    <div class="field full" style="margin-top:1rem">
-      <label for="tracking_head_scripts">Additional &lt;head&gt; scripts</label>
-      <textarea data-path="tracking.headScripts" id="tracking_head_scripts" rows="6" placeholder="Paste full &lt;script&gt; tags from Google Ads, LinkedIn, Microsoft, AI ad platforms, etc.">${escapeHtml(t.headScripts || "")}</textarea>
-      <p class="hint" style="color:#888;font-size:.85rem;margin-top:.5rem">Paste complete script tags exactly as your ad platform provides them.</p>
-    </div>
-    <div class="field full" style="margin-top:1rem">
-      <label for="tracking_body_html">Additional body snippets (noscript / pixels)</label>
-      <textarea data-path="tracking.bodyStartHtml" id="tracking_body_html" rows="5" placeholder="Paste &lt;noscript&gt; or pixel fallback HTML">${escapeHtml(t.bodyStartHtml || "")}</textarea>
-    </div>
   </div>
   <div class="card">
     <h3>Automatic SEO sync</h3>
