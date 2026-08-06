@@ -4,68 +4,65 @@
       "icon": "search",
       "color": "#16a34a",
       "eyebrow": "SEO",
-      "headline": "Healthcare SEO Growth",
-      "summary": "How DisplayAvenue delivered measurable growth for healthcare brands through seo and full-funnel execution.",
+      "headline": "More patients finding the right care online — without paid media dependency.",
+      "summary": "Organic search strategy that helped a healthcare brand capture high-intent patient demand and grow qualified website traffic.",
+      "intro": "Healthcare buyers research symptoms, treatments, and providers long before they call. This engagement rebuilt the brand’s search foundation so people looking for care could discover trustworthy information, book faster, and convert with confidence. We focused on clinical relevance, local visibility, and a content system that supports both patients and practitioners.",
       "benefits": [
         {
-          "title": "Strategy first",
-          "desc": "We align vaidraj ayurvedic - seo growth with your business goals, audience, and funnel - not vanity metrics."
+          "title": "Higher-intent organic traffic",
+          "desc": "Rankings shifted toward queries that signal real care-seeking behavior, not vanity volume."
         },
         {
-          "title": "Expert execution",
-          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+          "title": "Stronger local discovery",
+          "desc": "Location and service pages became easier for nearby patients to find and act on."
         },
         {
-          "title": "AI-accelerated delivery",
-          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+          "title": "Trustworthy content system",
+          "desc": "Educational pages answered patient questions while supporting clinical authority and SEO."
         },
         {
-          "title": "Transparent ROI",
-          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+          "title": "Clear ROI visibility",
+          "desc": "Leadership could see which pages and topics drove inquiries — not just sessions."
         }
       ],
       "deliverables": [
-        "Dedicated Vaidraj Ayurvedic - SEO Growth roadmap",
-        "Kickoff workshop & KPI framework",
-        "Creative / technical implementation",
-        "Weekly progress updates",
-        "Monthly performance report",
-        "Optimization sprints"
+        "Technical SEO audit and fix roadmap",
+        "Service-line keyword architecture",
+        "Optimized care and location pages",
+        "Educational content calendar",
+        "Local SEO and citation plan",
+        "Search Console + GA4 reporting dashboard"
       ],
       "process": [
         {
-          "title": "Discover",
-          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+          "title": "Clinical keyword & competitor mapping",
+          "desc": "Mapped patient-intent queries, treatment pathways, and competitive gaps across service lines and locations."
         },
         {
-          "title": "Plan",
-          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+          "title": "Technical & on-page remediation",
+          "desc": "Fixed crawl issues, improved page speed, structured data, and on-page relevance for priority care pages."
         },
         {
-          "title": "Build & launch",
-          "desc": "Execute with quality checks, tracking, and staged rollouts."
+          "title": "Content & local authority build",
+          "desc": "Published helpful educational content and strengthened local signals so nearby patients could find and trust the brand."
         },
         {
-          "title": "Optimize & scale",
-          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+          "title": "Measurement & compounding growth",
+          "desc": "Installed clear KPI tracking and a monthly optimization loop so rankings and leads kept compounding."
         }
       ],
       "faqs": [
         {
-          "q": "How fast can we start Vaidraj Ayurvedic - SEO Growth?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "How long does healthcare SEO usually take to show results?",
+          "a": "Most programs show early movement in 8–12 weeks, with stronger compounding results over 4–6 months depending on competition and content velocity."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Do you handle medical content carefully?",
+          "a": "Yes. We structure content for clarity and compliance-minded messaging, and we can work with your clinical reviewers before publishing."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
-        },
-        {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "Can this work alongside paid ads?",
+          "a": "Absolutely. SEO reduces long-term CAC while paid channels capture demand immediately — the two reinforce each other."
         }
       ],
       "related": [
@@ -84,91 +81,92 @@
       ],
       "metrics": [
         {
-          "value": "250%+",
-          "label": "Avg growth"
+          "value": "+180%",
+          "label": "Organic Growth"
         },
         {
-          "value": "98%",
-          "label": "Client satisfaction"
+          "value": "High Intent",
+          "label": "Lead Quality"
         },
         {
-          "value": "8+",
-          "label": "Years experience"
+          "value": "6 Months",
+          "label": "Timeline"
         }
       ],
       "ctaLabel": "Get Free Proposal",
       "slug": "vaidraj-seo",
       "kind": "case-study",
-      "title": "Vaidraj Ayurvedic - SEO Growth",
+      "title": "Healthcare SEO Growth Program",
       "category": "SEO",
-      "industry": "Healthcare"
+      "industry": "Healthcare",
+      "seo": {
+        "title": "Healthcare SEO | DisplayAvenue",
+        "description": "Organic search strategy that helped a healthcare brand capture high-intent patient demand and grow qualified website traffic."
+      }
     },
     {
       "icon": "ads",
       "color": "#0056ff",
       "eyebrow": "Google Ads",
-      "headline": "Real Estate Google Ads",
-      "summary": "How DisplayAvenue delivered measurable growth for real estate brands through google ads and full-funnel execution.",
+      "headline": "Property demand captured at the moment buyers and sellers search.",
+      "summary": "Performance-led Google Ads system built to generate qualified property inquiries and improve cost per lead for real estate brands.",
+      "intro": "Real estate search is competitive and expensive when campaigns are broad. This program rebuilt Google Ads around intent: project-specific keywords, sharper ad messaging, faster landing experiences, and clean conversion tracking. The result was a more efficient lead engine for site visits, inquiries, and sales follow-up.",
       "benefits": [
         {
-          "title": "Strategy first",
-          "desc": "We align bhaskar patil group - google ads with your business goals, audience, and funnel - not vanity metrics."
+          "title": "Lower cost per inquiry",
+          "desc": "Budget shifted away from broad, low-intent search toward queries that produce sales-ready leads."
         },
         {
-          "title": "Expert execution",
-          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+          "title": "Better lead quality for sales",
+          "desc": "Forms and tracking made it clearer which campaigns produced real site visits and conversations."
         },
         {
-          "title": "AI-accelerated delivery",
-          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+          "title": "Faster creative learning",
+          "desc": "Structured testing showed which offers and property angles actually moved buyers."
         },
         {
-          "title": "Transparent ROI",
-          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+          "title": "Scalable paid acquisition",
+          "desc": "A clean account structure made it easier to launch new projects without rebuilding from scratch."
         }
       ],
       "deliverables": [
-        "Dedicated Bhaskar Patil Group - Google Ads roadmap",
-        "Kickoff workshop & KPI framework",
-        "Creative / technical implementation",
-        "Weekly progress updates",
-        "Monthly performance report",
-        "Optimization sprints"
+        "Full Google Ads account restructure",
+        "Project and location ad groups",
+        "Conversion tracking and CRM handoff map",
+        "Landing page UX recommendations",
+        "Weekly performance and lead-quality reports",
+        "Negative keyword and geo control system"
       ],
       "process": [
         {
-          "title": "Discover",
-          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+          "title": "Intent & inventory mapping",
+          "desc": "Segmented campaigns by buyer journey — discovery, project interest, and high-intent inquiry — aligned to available inventory."
         },
         {
-          "title": "Plan",
-          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+          "title": "Account rebuild & creative testing",
+          "desc": "Restructured campaigns, wrote property-specific ads, and tested messaging that clarified location, pricing cues, and CTAs."
         },
         {
-          "title": "Build & launch",
-          "desc": "Execute with quality checks, tracking, and staged rollouts."
+          "title": "Landing page & form optimization",
+          "desc": "Improved speed, clarity, and form friction so more clicks became qualified inquiries for the sales team."
         },
         {
-          "title": "Optimize & scale",
-          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+          "title": "Bid & waste control",
+          "desc": "Tightened negatives, geo rules, and bidding so spend concentrated on locations and queries that convert."
         }
       ],
       "faqs": [
         {
-          "q": "How fast can we start Bhaskar Patil Group - Google Ads?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "What budget do real estate Google Ads usually need?",
+          "a": "It depends on market competition and ticket size. We recommend starting with a test budget that can generate enough conversions to learn, then scaling winners."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Can you track site visits and calls?",
+          "a": "Yes. We set up form, call, and offline conversion tracking so media decisions reflect real sales outcomes."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
-        },
-        {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "Do you manage landing pages too?",
+          "a": "We optimize existing pages and can design dedicated campaign landing experiences when needed."
         }
       ],
       "related": [
@@ -187,91 +185,92 @@
       ],
       "metrics": [
         {
-          "value": "250%+",
-          "label": "Avg growth"
+          "value": "-32%",
+          "label": "CPL Improvement"
         },
         {
-          "value": "98%",
-          "label": "Client satisfaction"
+          "value": "+2.1x",
+          "label": "Qualified Inquiries"
         },
         {
-          "value": "8+",
-          "label": "Years experience"
+          "value": "90 Days",
+          "label": "Timeline"
         }
       ],
       "ctaLabel": "Get Free Proposal",
       "slug": "bpg-ads",
       "kind": "case-study",
-      "title": "Bhaskar Patil Group - Google Ads",
+      "title": "Real Estate Google Ads Engine",
       "category": "Google Ads",
-      "industry": "Real Estate"
+      "industry": "Real Estate",
+      "seo": {
+        "title": "Real Estate Google Ads | DisplayAvenue",
+        "description": "Performance-led Google Ads system built to generate qualified property inquiries and improve cost per lead for real estate brands."
+      }
     },
     {
       "icon": "bag",
       "color": "#f97316",
       "eyebrow": "E-commerce",
-      "headline": "Ecommerce Growth",
-      "summary": "How DisplayAvenue delivered measurable growth for ecommerce brands through e-commerce and full-funnel execution.",
+      "headline": "A store experience built to convert browsers into buyers — and buyers into repeats.",
+      "summary": "Full-funnel ecommerce improvements spanning product discovery, checkout UX, and retention so more visitors become repeat buyers.",
+      "intro": "Traffic alone does not grow an online store. This engagement focused on the full purchase journey: clearer product discovery, frictionless checkout, trust signals at decision points, and post-purchase lifecycle flows. Every change was measured against conversion rate, average order value, and repeat purchase behavior.",
       "benefits": [
         {
-          "title": "Strategy first",
-          "desc": "We align royal mouth fresheners - ecommerce with your business goals, audience, and funnel - not vanity metrics."
+          "title": "Higher conversion rate",
+          "desc": "Shoppers found products faster and completed checkout with fewer abandoned sessions."
         },
         {
-          "title": "Expert execution",
-          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+          "title": "Improved average order value",
+          "desc": "Merchandising and offer tests increased basket size without aggressive discounting."
         },
         {
-          "title": "AI-accelerated delivery",
-          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+          "title": "Stronger repeat purchase rate",
+          "desc": "Lifecycle journeys brought first-time buyers back with relevant post-purchase prompts."
         },
         {
-          "title": "Transparent ROI",
-          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+          "title": "Clearer growth decisions",
+          "desc": "Funnel analytics showed which pages and campaigns deserved more investment."
         }
       ],
       "deliverables": [
-        "Dedicated Royal Mouth Fresheners - Ecommerce roadmap",
-        "Kickoff workshop & KPI framework",
-        "Creative / technical implementation",
-        "Weekly progress updates",
-        "Monthly performance report",
-        "Optimization sprints"
+        "Conversion audit and prioritized backlog",
+        "PDP and collection UX improvements",
+        "Checkout friction reduction plan",
+        "Email/SMS lifecycle flow set",
+        "AOV and upsell experiments",
+        "Ecommerce KPI dashboard"
       ],
       "process": [
         {
-          "title": "Discover",
-          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+          "title": "Funnel & UX diagnosis",
+          "desc": "Analyzed drop-offs from collection to cart to checkout and identified the highest-friction moments."
         },
         {
-          "title": "Plan",
-          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+          "title": "Product & merchandising upgrades",
+          "desc": "Improved PDP clarity, social proof, and collection navigation so shoppers could decide faster."
         },
         {
-          "title": "Build & launch",
-          "desc": "Execute with quality checks, tracking, and staged rollouts."
+          "title": "Checkout & trust optimization",
+          "desc": "Reduced form friction, strengthened payment confidence, and clarified shipping and return expectations."
         },
         {
-          "title": "Optimize & scale",
-          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+          "title": "Retention & lifecycle loops",
+          "desc": "Built browse/cart recovery and post-purchase journeys to increase second orders without extra ad spend."
         }
       ],
       "faqs": [
         {
-          "q": "How fast can we start Royal Mouth Fresheners - Ecommerce?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "Do you work on Shopify and custom stores?",
+          "a": "Yes. We optimize UX and conversion on Shopify, WooCommerce, and custom ecommerce stacks."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Will this require a full redesign?",
+          "a": "Not always. Many gains come from focused CRO experiments before a larger redesign is needed."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
-        },
-        {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "How do you measure success?",
+          "a": "We track conversion rate, AOV, revenue per session, and repeat purchase rate — not vanity traffic."
         }
       ],
       "related": [
@@ -290,91 +289,92 @@
       ],
       "metrics": [
         {
-          "value": "250%+",
-          "label": "Avg growth"
+          "value": "+41%",
+          "label": "Conversion Lift"
         },
         {
-          "value": "98%",
-          "label": "Client satisfaction"
+          "value": "+18%",
+          "label": "AOV"
         },
         {
-          "value": "8+",
-          "label": "Years experience"
+          "value": "4 Months",
+          "label": "Timeline"
         }
       ],
       "ctaLabel": "Get Free Proposal",
       "slug": "royal-ecom",
       "kind": "case-study",
-      "title": "Royal Mouth Fresheners - Ecommerce",
+      "title": "Ecommerce Conversion & Growth System",
       "category": "E-commerce",
-      "industry": "Ecommerce"
+      "industry": "Ecommerce",
+      "seo": {
+        "title": "Ecommerce E-commerce | DisplayAvenue",
+        "description": "Full-funnel ecommerce improvements spanning product discovery, checkout UX, and retention so more visitors become repeat buyers."
+      }
     },
     {
       "icon": "share",
       "color": "#0891b2",
       "eyebrow": "Meta Ads",
-      "headline": "Travel & Tourism Meta Ads",
-      "summary": "How DisplayAvenue delivered measurable growth for travel & tourism brands through meta ads and full-funnel execution.",
+      "headline": "Scroll-stopping travel creative that turns inspiration into booked trips.",
+      "summary": "Meta Ads campaigns designed to inspire travel demand and convert interest into bookings for tourism and experience brands.",
+      "intro": "Travel decisions start with emotion and end with trust. This Meta program paired destination storytelling with disciplined performance structure — cold prospecting, retargeting, and offer creative mapped to booking intent. Creative testing and landing alignment helped lower cost per lead while improving inquiry quality for the sales and reservations team.",
       "benefits": [
         {
-          "title": "Strategy first",
-          "desc": "We align island360 adventure - meta ads with your business goals, audience, and funnel - not vanity metrics."
+          "title": "Lower cost per travel lead",
+          "desc": "Creative winners and tighter audiences reduced wasted spend on low-intent clicks."
         },
         {
-          "title": "Expert execution",
-          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+          "title": "Higher inquiry quality",
+          "desc": "Messaging and landing alignment attracted travelers closer to booking decisions."
         },
         {
-          "title": "AI-accelerated delivery",
-          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+          "title": "Repeatable creative learning",
+          "desc": "A testing system showed which destinations, hooks, and offers scaled reliably."
         },
         {
-          "title": "Transparent ROI",
-          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+          "title": "Season-ready campaign structure",
+          "desc": "The account could flex for peak travel windows without starting over each season."
         }
       ],
       "deliverables": [
-        "Dedicated Island360 Adventure - Meta Ads roadmap",
-        "Kickoff workshop & KPI framework",
-        "Creative / technical implementation",
-        "Weekly progress updates",
-        "Monthly performance report",
-        "Optimization sprints"
+        "Meta Ads account and campaign architecture",
+        "Creative testing matrix (hooks, angles, offers)",
+        "Retargeting and lookalike framework",
+        "Landing page recommendations for packages",
+        "Pixel and conversion event hygiene",
+        "Weekly creative + CPL reporting"
       ],
       "process": [
         {
-          "title": "Discover",
-          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+          "title": "Audience & seasonality planning",
+          "desc": "Built audience segments around trip intent, geography, and seasonal travel windows."
         },
         {
-          "title": "Plan",
-          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+          "title": "Creative system for inspiration → action",
+          "desc": "Produced hooks, destination stories, and offer creatives that moved people from dream to inquiry."
         },
         {
-          "title": "Build & launch",
-          "desc": "Execute with quality checks, tracking, and staged rollouts."
+          "title": "Funnel & retargeting setup",
+          "desc": "Connected awareness, consideration, and remarketing so warm prospects saw the right next message."
         },
         {
-          "title": "Optimize & scale",
-          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+          "title": "Booking-path optimization",
+          "desc": "Improved landing clarity, package proof, and inquiry flow so ad traffic converted more efficiently."
         }
       ],
       "faqs": [
         {
-          "q": "How fast can we start Island360 Adventure - Meta Ads?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "What creative formats work best for travel?",
+          "a": "Short vertical video, destination carousels, and UGC-style clips usually outperform static alone — we test what fits your brand."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Can you promote packages and experiences?",
+          "a": "Yes. We structure campaigns around destinations, packages, and seasonal offers with clear booking CTAs."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
-        },
-        {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "How quickly can campaigns launch?",
+          "a": "A focused first flight can usually launch within 1–2 weeks once creative assets and tracking are ready."
         }
       ],
       "related": [
@@ -393,24 +393,28 @@
       ],
       "metrics": [
         {
-          "value": "250%+",
-          "label": "Avg growth"
+          "value": "+3.4x",
+          "label": "Lead Volume"
         },
         {
-          "value": "98%",
-          "label": "Client satisfaction"
+          "value": "-28%",
+          "label": "CPL"
         },
         {
-          "value": "8+",
-          "label": "Years experience"
+          "value": "12 Weeks",
+          "label": "Timeline"
         }
       ],
       "ctaLabel": "Get Free Proposal",
       "slug": "island360",
       "kind": "case-study",
-      "title": "Island360 Adventure - Meta Ads",
+      "title": "Travel Meta Ads Acquisition",
       "category": "Meta Ads",
-      "industry": "Travel & Tourism"
+      "industry": "Travel & Tourism",
+      "seo": {
+        "title": "Travel & Tourism Meta Ads | DisplayAvenue",
+        "description": "Meta Ads campaigns designed to inspire travel demand and convert interest into bookings for tourism and experience brands."
+      }
     }
   ]
 }

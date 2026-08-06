@@ -1,12 +1,365 @@
 import { buildDetailPage, type DetailPageContent } from "./catalogTypes";
 
 const defs: Array<Partial<DetailPageContent> & Pick<DetailPageContent, "slug" | "kind" | "title" | "category">> = [
-  {"slug":"vaidraj","kind":"project","title":"Vaidraj Ayurvedic Store","category":"E-commerce","industry":"Healthcare","icon":"bag","color":"#065f46","headline":"Healthcare Ecommerce","summary":"Strategy, design, and growth systems for healthcare brands — built for measurable results.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
-  {"slug":"bpg","kind":"project","title":"Bhaskar Patil Group Website","category":"Web Development","industry":"Real Estate","icon":"code","color":"#1e3a8a","headline":"Real Estate Websites","summary":"Strategy, design, and growth systems for real estate brands — built for measurable results.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
-  {"slug":"rak","kind":"project","title":"RAK Ceramics Brand System","category":"Branding","industry":"Manufacturing","icon":"brand","color":"#4c1d95","headline":"Manufacturing Branding","summary":"Strategy, design, and growth systems for manufacturing brands — built for measurable results.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
-  {"slug":"royal","kind":"project","title":"Royal Mouth Fresheners Growth","category":"Digital Marketing","industry":"Ecommerce","icon":"megaphone","color":"#9a3412","headline":"Ecommerce Marketing","summary":"Strategy, design, and growth systems for ecommerce brands — built for measurable results.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
+  {
+    slug: "vaidraj",
+    kind: "project",
+    title: "Healthcare Digital Commerce Experience",
+    category: "E-commerce",
+    industry: "Healthcare",
+    icon: "bag",
+    color: "#065f46",
+    eyebrow: "E-commerce",
+    headline: "Healthcare products online — designed for clarity, trust, and easy ordering.",
+    summary:
+      "A conversion-focused digital storefront for healthcare brands — clear product discovery, trust-led UX, and a path from browse to purchase.",
+    intro:
+      "Buying health-related products online demands more than a catalog. Shoppers need clear information, credible presentation, and a frictionless path to checkout. We designed and built a digital commerce experience that organizes offerings by need, answers questions at the point of decision, and supports both first-time and returning customers.",
+    process: [
+      {
+        title: "Research & information architecture",
+        desc: "Mapped how patients and practitioners browse categories, compare options, and decide what to order.",
+      },
+      {
+        title: "UX & visual system",
+        desc: "Designed a calm, trustworthy interface with clear hierarchy, product detail, and mobile-first flows.",
+      },
+      {
+        title: "Storefront implementation",
+        desc: "Built collection, product, cart, and checkout experiences with performance and usability in mind.",
+      },
+      {
+        title: "Launch & conversion tuning",
+        desc: "Validated tracking, fixed friction points, and refined CTAs after soft launch feedback.",
+      },
+    ],
+    deliverables: [
+      "UX wireframes and user flows",
+      "UI design system for storefront pages",
+      "Responsive ecommerce build",
+      "Product and category content templates",
+      "Checkout UX refinements",
+      "Analytics event map for commerce KPIs",
+    ],
+    benefits: [
+      {
+        title: "Easier product discovery",
+        desc: "Shoppers find the right category and product faster with clearer navigation and filters.",
+      },
+      {
+        title: "Higher purchase confidence",
+        desc: "Trust cues, detail structure, and clear CTAs reduce hesitation at the decision point.",
+      },
+      {
+        title: "Mobile-ready ordering",
+        desc: "The experience works smoothly on phones — where many healthcare shoppers browse and buy.",
+      },
+      {
+        title: "Foundation for growth",
+        desc: "A structured storefront that can support new SKUs, campaigns, and CRO experiments.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Can this integrate with existing inventory systems?",
+        a: "Yes. We can connect to common ecommerce platforms and advise on inventory or order-management integrations.",
+      },
+      {
+        q: "Do you write product content?",
+        a: "We provide templates and structure; we can also support copywriting with your clinical or brand reviewers.",
+      },
+      {
+        q: "Is the design custom or theme-based?",
+        a: "We tailor the experience to your brand — whether starting from a platform theme or a custom build.",
+      },
+    ],
+    metrics: [
+      { value: "+37%", label: "Conversion" },
+      { value: "Mobile-first", label: "UX Focus" },
+      { value: "8 Weeks", label: "Timeline" },
+    ],
+    seo: {
+      title: "Healthcare E-commerce | DisplayAvenue",
+      description:
+        "A conversion-focused digital storefront for healthcare brands — clear product discovery, trust-led UX, and a path from browse to purchase.",
+    },
+    related: [
+      { label: "All Portfolio", href: "/portfolio" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Start Your Project", href: "/contact" },
+    ],
+  },
+  {
+    slug: "bpg",
+    kind: "project",
+    title: "Real Estate Web Platform",
+    category: "Web Development",
+    industry: "Real Estate",
+    icon: "code",
+    color: "#1e3a8a",
+    eyebrow: "Web Development",
+    headline: "A property website that sells the vision — and captures serious buyer interest.",
+    summary:
+      "A modern real estate website built to showcase projects, capture inquiries, and support sales conversations with speed and clarity.",
+    intro:
+      "Real estate sites fail when they look impressive but load slowly or bury the inquiry path. This project delivered a fast, mobile-first web platform for showcasing developments, amenities, and location stories — with clear CTAs for site visits and sales follow-up. Content structure was built so the team can update projects without developer bottlenecks.",
+    process: [
+      {
+        title: "Discovery & sitemap",
+        desc: "Defined project pages, amenity storytelling, and lead capture points aligned to the sales process.",
+      },
+      {
+        title: "Design for desire + clarity",
+        desc: "Created a visual system that highlights lifestyle imagery while keeping navigation and CTAs obvious.",
+      },
+      {
+        title: "Development & CMS setup",
+        desc: "Built responsive templates for projects, galleries, and inquiry forms with editable content regions.",
+      },
+      {
+        title: "Performance & handoff",
+        desc: "Optimized load speed, tested forms, and trained the team on updating listings and campaigns.",
+      },
+    ],
+    deliverables: [
+      "Information architecture and wireframes",
+      "UI design for key property templates",
+      "Responsive website development",
+      "CMS-ready project and blog structures",
+      "Inquiry forms and thank-you flows",
+      "Performance and SEO baseline setup",
+    ],
+    benefits: [
+      {
+        title: "Stronger first impression",
+        desc: "Prospects experience the brand and project lifestyle immediately — without clunky navigation.",
+      },
+      {
+        title: "More sales-ready inquiries",
+        desc: "Clear CTAs and forms make it easy to request a callback or site visit from any device.",
+      },
+      {
+        title: "Faster content updates",
+        desc: "Marketing can refresh project details and media without waiting on a full rebuild.",
+      },
+      {
+        title: "Campaign-ready landing paths",
+        desc: "Pages are structured to support ads and organic traffic with trackable conversions.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Can we add new projects later?",
+        a: "Yes. Templates are designed so new developments can be published with consistent layout and SEO basics.",
+      },
+      {
+        q: "Do you support multilingual sites?",
+        a: "We can plan multilingual structure when needed for regional or NRI audiences.",
+      },
+      {
+        q: "Will the site work with our CRM?",
+        a: "Forms can route to email, WhatsApp, or CRM webhooks depending on your stack.",
+      },
+    ],
+    metrics: [
+      { value: "<2s", label: "Load Target" },
+      { value: "+2.4x", label: "Inquiries" },
+      { value: "10 Weeks", label: "Timeline" },
+    ],
+    seo: {
+      title: "Real Estate Web Development | DisplayAvenue",
+      description:
+        "A modern real estate website built to showcase projects, capture inquiries, and support sales conversations with speed and clarity.",
+    },
+    related: [
+      { label: "All Portfolio", href: "/portfolio" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Start Your Project", href: "/contact" },
+    ],
+  },
+  {
+    slug: "rak",
+    kind: "project",
+    title: "Manufacturing Brand Identity System",
+    category: "Branding",
+    industry: "Manufacturing",
+    icon: "brand",
+    color: "#4c1d95",
+    eyebrow: "Branding",
+    headline: "Industrial strength, modern clarity — a brand buyers remember and trust.",
+    summary:
+      "A complete brand system for manufacturing companies — positioning, visual identity, and assets that communicate precision and trust.",
+    intro:
+      "Manufacturing brands often inherit outdated visuals that undersell their capability. This engagement rebuilt positioning and identity around precision, reliability, and modern industrial craft. The system covers logo, typography, color, imagery direction, and applications so sales decks, websites, and trade materials stay consistent everywhere buyers look.",
+    process: [
+      {
+        title: "Positioning & audience workshops",
+        desc: "Clarified what the brand stands for among buyers, partners, and internal teams.",
+      },
+      {
+        title: "Identity exploration",
+        desc: "Explored logo, type, and color directions that feel industrial yet contemporary — not generic corporate.",
+      },
+      {
+        title: "System & guidelines",
+        desc: "Documented usage rules, tone, and layout principles for consistent application across channels.",
+      },
+      {
+        title: "Launch assets",
+        desc: "Delivered core collateral templates so the new brand could go live across sales and digital touchpoints.",
+      },
+    ],
+    deliverables: [
+      "Brand positioning narrative",
+      "Logo suite and lockups",
+      "Color, type, and imagery guidelines",
+      "Business stationery templates",
+      "Presentation and brochure frameworks",
+      "Digital profile asset pack",
+    ],
+    benefits: [
+      {
+        title: "Clearer market differentiation",
+        desc: "Buyers see a modern manufacturer — not a dated supplier competing only on price.",
+      },
+      {
+        title: "Consistent sales materials",
+        desc: "Decks, proposals, and trade assets finally speak with one visual voice.",
+      },
+      {
+        title: "Faster creative production",
+        desc: "Guidelines reduce back-and-forth when new collateral or ads are needed.",
+      },
+      {
+        title: "Stronger digital foundation",
+        desc: "Identity ready for website, LinkedIn, and campaign creative without rework.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you only redesign the logo?",
+        a: "No. We build a full system — strategy, identity, and guidelines — so the brand holds up across every touchpoint.",
+      },
+      {
+        q: "Can you refresh an existing brand instead of starting over?",
+        a: "Yes. Evolution or full rebrand depends on equity, recognition, and business goals — we recommend the right path.",
+      },
+      {
+        q: "Will you hand off files for our printers and agencies?",
+        a: "Yes. You receive production-ready files and clear usage rules for internal and external partners.",
+      },
+    ],
+    metrics: [
+      { value: "Full System", label: "Brand Scope" },
+      { value: "12+", label: "Asset Types" },
+      { value: "6 Weeks", label: "Timeline" },
+    ],
+    seo: {
+      title: "Manufacturing Branding | DisplayAvenue",
+      description:
+        "A complete brand system for manufacturing companies — positioning, visual identity, and assets that communicate precision and trust.",
+    },
+    related: [
+      { label: "All Portfolio", href: "/portfolio" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Start Your Project", href: "/contact" },
+    ],
+  },
+  {
+    slug: "royal",
+    kind: "project",
+    title: "Ecommerce Digital Marketing System",
+    category: "Digital Marketing",
+    industry: "Ecommerce",
+    icon: "megaphone",
+    color: "#9a3412",
+    eyebrow: "Digital Marketing",
+    headline: "Acquisition and retention in one system — so every rupee of spend works harder.",
+    summary:
+      "Integrated digital marketing for ecommerce brands — paid, organic, and lifecycle channels working together to drive profitable growth.",
+    intro:
+      "Ecommerce growth stalls when channels run in silos. This engagement connected paid media, on-site conversion cues, and lifecycle messaging into one operating rhythm. Creative tests, audience structure, and measurement were aligned so new customer acquisition and repeat purchase both improved — not just top-of-funnel clicks.",
+    process: [
+      {
+        title: "Channel & funnel audit",
+        desc: "Reviewed paid, organic, and email performance to find waste, gaps, and quick wins.",
+      },
+      {
+        title: "Integrated media plan",
+        desc: "Built a weekly operating plan across prospecting, retargeting, and retention priorities.",
+      },
+      {
+        title: "Creative & offer testing",
+        desc: "Launched structured tests on hooks, bundles, and social proof to improve ROAS and CTR.",
+      },
+      {
+        title: "Lifecycle & reporting cadence",
+        desc: "Connected post-purchase journeys and a KPI rhythm leadership could trust.",
+      },
+    ],
+    deliverables: [
+      "Full-funnel digital marketing plan",
+      "Paid media structure and budgets",
+      "Creative testing backlog",
+      "Lifecycle email/SMS flow map",
+      "UTM and attribution hygiene",
+      "Monthly growth reporting pack",
+    ],
+    benefits: [
+      {
+        title: "More efficient acquisition",
+        desc: "Budget concentrates on audiences and creatives that produce profitable first orders.",
+      },
+      {
+        title: "Better retention economics",
+        desc: "Lifecycle journeys increase second purchases without raising ad spend proportionally.",
+      },
+      {
+        title: "Faster creative learning",
+        desc: "A testing cadence reveals what messaging scales before budgets expand.",
+      },
+      {
+        title: "One growth narrative",
+        desc: "Leadership sees paid, organic, and retention in one coherent performance story.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Which channels do you typically run?",
+        a: "Meta, Google, and lifecycle email/SMS are common starting points — we expand based on what your category rewards.",
+      },
+      {
+        q: "Do you manage creative production?",
+        a: "We can direct briefs, iterate winners, and coordinate with your designers or our creative team.",
+      },
+      {
+        q: "How do you define success?",
+        a: "Blended CAC, MER/ROAS, conversion rate, and repeat purchase rate — tailored to your margin structure.",
+      },
+    ],
+    metrics: [
+      { value: "+2.8x", label: "ROAS Lift" },
+      { value: "-24%", label: "CAC" },
+      { value: "90 Days", label: "Timeline" },
+    ],
+    seo: {
+      title: "Ecommerce Digital Marketing | DisplayAvenue",
+      description:
+        "Integrated digital marketing for ecommerce brands — paid, organic, and lifecycle channels working together to drive profitable growth.",
+    },
+    related: [
+      { label: "All Portfolio", href: "/portfolio" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "Start Your Project", href: "/contact" },
+    ],
+  },
 ];
 
 export const projectPages: DetailPageContent[] = defs.map((d) => buildDetailPage(d));
-export const projectBySlug = Object.fromEntries(projectPages.map((p) => [p.slug, p])) as Record<string, DetailPageContent>;
-export function getProjectPage(slug: string): DetailPageContent | undefined { return projectBySlug[slug]; }
+export const projectBySlug = Object.fromEntries(projectPages.map((p) => [p.slug, p])) as Record<
+  string,
+  DetailPageContent
+>;
+export function getProjectPage(slug: string): DetailPageContent | undefined {
+  return projectBySlug[slug];
+}
