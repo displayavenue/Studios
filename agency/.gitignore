@@ -12,9 +12,10 @@ dist
 dist-ssr
 *.local
 
-# Private lead inbox + mail tally (created on server)
+# Private lead inbox + mail tally + shop orders (created on server)
 public/admin/data/leads.json
 public/admin/data/mail-log.json
+public/admin/data/shop-orders.json
 public/admin/data/*.tmp
 
 # Editor directories and files

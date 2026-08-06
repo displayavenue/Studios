@@ -104,6 +104,13 @@ const STATIC_PAGES: SearchHit[] = [
     href: "/catalogue",
   },
   {
+    id: "page-shop",
+    title: "Shop",
+    category: "Page",
+    summary: "Buy DisplayAvenue products online with Razorpay",
+    href: "/shop",
+  },
+  {
     id: "page-contact",
     title: "Contact / Free Proposal",
     category: "Page",

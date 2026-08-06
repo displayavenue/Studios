@@ -203,7 +203,7 @@ if ($raw) {
 }
 
 $action = (string)($_GET['action'] ?? ($body['action'] ?? ($_POST['action'] ?? '')));
-$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'clear-cache', 'upload-catalogue', 'remove-catalogue', 'lead-update', 'lead-delete'], true)
+$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'clear-cache', 'upload-catalogue', 'remove-catalogue', 'lead-update', 'lead-delete', 'shop-order-update', 'shop-order-delete'], true)
   || strtoupper((string)($_SERVER['REQUEST_METHOD'] ?? '')) === 'POST';
 
 if ($mutating) {
@@ -283,7 +283,35 @@ switch ($action) {
       writeJson($path, $defaults);
       respond(200, ['ok' => true, 'collection' => $collection, 'data' => $defaults]);
     }
-    respond(200, ['ok' => true, 'collection' => $collection, 'data' => readJson($path)]);
+    if ($collection === 'shop' && !is_file($path)) {
+      $defaults = [
+        'enabled' => true,
+        'title' => 'Shop',
+        'eyebrow' => 'Buy Services',
+        'headline' => 'DisplayAvenue service shop',
+        'summary' => 'Purchase ready-to-start digital growth services online.',
+        'currency' => 'INR',
+        'currencySymbol' => '₹',
+        'successMessage' => 'Payment received. Our team will email you within one business day with next steps.',
+        'products' => [],
+        'updatedAt' => gmdate('c'),
+      ];
+      writeJson($path, $defaults);
+      respond(200, ['ok' => true, 'collection' => $collection, 'data' => $defaults]);
+    }
+    $payload = ['ok' => true, 'collection' => $collection, 'data' => readJson($path)];
+    if ($collection === 'shop' && isAuthed($config)) {
+      $ordersPath = (string)($config['shop_orders_file'] ?? (__DIR__ . '/data/shop-orders.json'));
+      $orders = ['items' => []];
+      if (is_file($ordersPath)) {
+        $rawOrders = json_decode((string)file_get_contents($ordersPath), true);
+        if (is_array($rawOrders)) $orders = $rawOrders;
+      }
+      $payload['orders'] = $orders;
+      $payload['razorpayConfigured'] = trim((string)($config['razorpay_key_id'] ?? '')) !== ''
+        && trim((string)($config['razorpay_key_secret'] ?? '')) !== '';
+    }
+    respond(200, $payload);
 
   case 'save':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
@@ -555,6 +583,60 @@ switch ($action) {
     }
     writeLeadsStore($config, $store);
     respond(200, ['ok' => true, 'data' => $store]);
+
+  case 'shop-order-update':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $id = (string)($body['id'] ?? '');
+    $status = (string)($body['status'] ?? '');
+    if ($id === '' || !in_array($status, ['created', 'paid', 'fulfilled', 'refunded', 'cancelled'], true)) {
+      respond(400, ['ok' => false, 'error' => 'Invalid shop order update']);
+    }
+    $ordersPath = (string)($config['shop_orders_file'] ?? (__DIR__ . '/data/shop-orders.json'));
+    $store = ['items' => []];
+    if (is_file($ordersPath)) {
+      $rawOrders = json_decode((string)file_get_contents($ordersPath), true);
+      if (is_array($rawOrders) && isset($rawOrders['items']) && is_array($rawOrders['items'])) {
+        $store = $rawOrders;
+      }
+    }
+    $found = false;
+    foreach ($store['items'] as &$item) {
+      if (($item['id'] ?? '') === $id) {
+        $item['status'] = $status;
+        $item['updatedAt'] = gmdate('c');
+        $found = true;
+        break;
+      }
+    }
+    unset($item);
+    if (!$found) respond(404, ['ok' => false, 'error' => 'Order not found']);
+    $store['updatedAt'] = gmdate('c');
+    writeJson($ordersPath, $store);
+    respond(200, ['ok' => true, 'orders' => $store]);
+
+  case 'shop-order-delete':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $id = (string)($body['id'] ?? '');
+    if ($id === '') respond(400, ['ok' => false, 'error' => 'Missing order id']);
+    $ordersPath = (string)($config['shop_orders_file'] ?? (__DIR__ . '/data/shop-orders.json'));
+    $store = ['items' => []];
+    if (is_file($ordersPath)) {
+      $rawOrders = json_decode((string)file_get_contents($ordersPath), true);
+      if (is_array($rawOrders) && isset($rawOrders['items']) && is_array($rawOrders['items'])) {
+        $store = $rawOrders;
+      }
+    }
+    $before = count($store['items']);
+    $store['items'] = array_values(array_filter(
+      $store['items'],
+      static fn($item) => ($item['id'] ?? '') !== $id
+    ));
+    if (count($store['items']) === $before) {
+      respond(404, ['ok' => false, 'error' => 'Order not found']);
+    }
+    $store['updatedAt'] = gmdate('c');
+    writeJson($ordersPath, $store);
+    respond(200, ['ok' => true, 'orders' => $store]);
 
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);

@@ -9,6 +9,8 @@ const state = {
   newLeads: 0,
   notifyEmail: "info@displayavenue.com",
   mailStats: { sent: 0, failed: 0, attempted: 0, byType: {}, recent: [] },
+  shopOrders: { items: [] },
+  razorpayConfigured: false,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -162,6 +164,10 @@ async function openCollection(key) {
     if (!r.ok || json.ok === false) throw new Error(json.error || "Load failed");
     state.current = key;
     state.data = json.data;
+    if (key === "shop") {
+      state.shopOrders = json.orders || { items: [] };
+      state.razorpayConfigured = Boolean(json.razorpayConfigured);
+    }
     setDirty(false);
     $("#panel-title").textContent = state.collections[key] || key;
     $("#panel-sub").textContent = `Editing ${key}.json - Save to publish.`;
@@ -227,6 +233,7 @@ function renderEditor() {
     tracking: renderTracking,
     chatbot: renderChatbot,
     catalogue: renderCatalogue,
+    shop: renderShop,
     settings: renderSettings,
   };
   wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
@@ -245,6 +252,15 @@ function renderEditor() {
         void uploadCataloguePdf(input);
       };
     }
+  }
+  if (key === "shop") {
+    wrap.querySelectorAll("[data-shop-order-action]").forEach((btn) => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        void handleShopOrderAction(btn.dataset.shopOrderAction, btn.dataset.id);
+      };
+    });
   }
 }
 
@@ -1356,6 +1372,150 @@ async function removeCataloguePdf() {
   }
 }
 
+function blankShopProduct() {
+  const slug = `product-${Date.now().toString(36)}`;
+  return {
+    id: slug,
+    slug,
+    title: "New product",
+    summary: "Short product summary for the shop grid.",
+    description: "Full product description shown on the product page.",
+    price: 999,
+    compareAtPrice: 0,
+    category: "General",
+    image: "",
+    features: ["Feature one", "Feature two"],
+    enabled: true,
+    featured: false,
+  };
+}
+
+function renderShop(d) {
+  const products = Array.isArray(d.products) ? d.products : [];
+  const orders = Array.isArray(state.shopOrders?.items) ? state.shopOrders.items : [];
+  const productRows = products
+    .map((p, i) => {
+      const features = Array.isArray(p.features) ? p.features : [];
+      return `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(p.title || `Product ${i + 1}`)}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-shop-product" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Title", `products.${i}.title`, p.title || "")}
+          ${field("Slug / URL id", `products.${i}.slug`, p.slug || p.id || "")}
+          ${field("Price (INR)", `products.${i}.price`, p.price ?? 0, "number")}
+          ${field("Compare-at price (optional)", `products.${i}.compareAtPrice`, p.compareAtPrice ?? 0, "number")}
+          ${field("Category", `products.${i}.category`, p.category || "")}
+          ${field("Image URL", `products.${i}.image`, p.image || "")}
+          ${field("Short summary", `products.${i}.summary`, p.summary || "", "textarea")}
+          ${field("Full description", `products.${i}.description`, p.description || "", "textarea")}
+          <div class="field full"><label>Features (one per line)</label>
+            <textarea data-path="products.${i}.features" data-array="true">${escapeHtml(features.join("\n"))}</textarea>
+          </div>
+          <div class="field"><label>Enabled (show in shop)</label>
+            <input type="checkbox" data-path="products.${i}.enabled" ${p.enabled !== false ? "checked" : ""} />
+          </div>
+          <div class="field"><label>Featured</label>
+            <input type="checkbox" data-path="products.${i}.featured" ${p.featured ? "checked" : ""} />
+          </div>
+        </div>
+        <p class="muted" style="margin:.5rem 0 0;font-size:.85rem">
+          Public page: <a href="/shop/${escapeAttr(p.slug || p.id || "")}" target="_blank" rel="noreferrer">/shop/${escapeHtml(p.slug || p.id || "")}</a>
+        </p>
+      </div>`;
+    })
+    .join("");
+
+  const orderRows = orders
+    .slice(0, 40)
+    .map((o) => {
+      const when = o.createdAt ? new Date(o.createdAt).toLocaleString() : "—";
+      const cust = o.customer || {};
+      const status = o.status || "created";
+      return `
+      <article class="lead-card ${status === "paid" ? "is-new" : ""}">
+        <div class="lead-card-head">
+          <div>
+            <strong>${escapeHtml(o.productTitle || o.productId || "Product")}</strong>
+            <span class="lead-meta">${escapeHtml(status)} · ₹${escapeHtml(String(o.amountInr ?? ""))} · ${escapeHtml(when)}</span>
+          </div>
+          <span class="lead-status status-${escapeHtml(status === "paid" ? "replied" : status === "created" ? "new" : "archived")}">${escapeHtml(status)}</span>
+        </div>
+        <div class="lead-body">
+          <p>${escapeHtml(cust.name || "—")} · <a href="mailto:${escapeAttr(cust.email || "")}">${escapeHtml(cust.email || "—")}</a>
+            ${cust.phone ? ` · ${escapeHtml(cust.phone)}` : ""}</p>
+          <p class="lead-meta">Qty ${escapeHtml(String(o.quantity || 1))} · Order ${escapeHtml(o.id || "")}
+            ${o.razorpayPaymentId ? ` · Pay ${escapeHtml(o.razorpayPaymentId)}` : ""}</p>
+        </div>
+        <div class="lead-actions">
+          ${status !== "fulfilled" ? `<button type="button" class="btn btn-ghost btn-sm" data-shop-order-action="fulfill" data-id="${escapeAttr(o.id || "")}">Mark fulfilled</button>` : ""}
+          ${status !== "paid" && status !== "fulfilled" ? `<button type="button" class="btn btn-ghost btn-sm" data-shop-order-action="paid" data-id="${escapeAttr(o.id || "")}">Mark paid</button>` : ""}
+          <button type="button" class="btn btn-danger btn-sm" data-shop-order-action="delete" data-id="${escapeAttr(o.id || "")}">Delete</button>
+        </div>
+      </article>`;
+    })
+    .join("");
+
+  return `
+  ${card(
+    "Shop settings",
+    `
+    <p class="hint field full">
+      Sell products on <a href="/shop" target="_blank" rel="noreferrer"><code>/shop</code></a>.
+      Add products below, then <strong>Save changes</strong>. Checkout uses Razorpay
+      (keys in <code>admin/config.php</code>: <code>razorpay_key_id</code> / <code>razorpay_key_secret</code>).
+      Status: <strong>${state.razorpayConfigured ? "Razorpay keys configured" : "Razorpay keys missing — add them before taking payments"}</strong>.
+    </p>
+    <div class="field"><label>Shop enabled</label>
+      <input type="checkbox" data-path="enabled" ${d.enabled !== false ? "checked" : ""} />
+    </div>
+    ${field("Page title", "title", d.title || "Shop")}
+    ${field("Eyebrow", "eyebrow", d.eyebrow || "Online Store")}
+    ${field("Headline", "headline", d.headline || "")}
+    ${field("Summary", "summary", d.summary || "", "textarea")}
+    ${field("Currency code", "currency", d.currency || "INR")}
+    ${field("Currency symbol", "currencySymbol", d.currencySymbol || "₹")}
+    ${field("Success message after payment", "successMessage", d.successMessage || "", "textarea")}
+  `,
+  )}
+  <div class="card">
+    <div class="list-item-head">
+      <h3>Products (${products.length})</h3>
+      <button type="button" class="btn btn-gold" data-action="add-shop-product">Add product</button>
+    </div>
+    ${productRows || "<p class='empty'>No products yet. Click Add product.</p>"}
+  </div>
+  <div class="card">
+    <div class="list-item-head">
+      <h3>Orders (${orders.length})</h3>
+    </div>
+    <p class="muted" style="margin:0 0 .75rem">Paid orders appear here after Razorpay checkout. Notifications also email <strong>${escapeHtml(state.notifyEmail)}</strong>.</p>
+    ${orderRows || "<p class='empty'>No orders yet.</p>"}
+  </div>`;
+}
+
+async function handleShopOrderAction(action, id) {
+  try {
+    if (action === "delete") {
+      if (!confirm("Delete this order permanently?")) return;
+      const json = await api("shop-order-delete", { id });
+      state.shopOrders = json.orders || { items: [] };
+    } else {
+      const statusMap = { fulfill: "fulfilled", paid: "paid" };
+      const status = statusMap[action];
+      if (!status) return;
+      const json = await api("shop-order-update", { id, status });
+      state.shopOrders = json.orders || { items: [] };
+    }
+    renderEditor();
+    toast("Order updated");
+  } catch (e) {
+    toast(e.message || "Order update failed", "err");
+  }
+}
+
 function renderSettings(d) {
   const cleared = d.cacheClearedAt
     ? new Date(d.cacheClearedAt).toLocaleString()
@@ -1424,6 +1584,20 @@ function handleAction(action, index) {
   }
   if (action === "remove-catalogue") {
     void removeCataloguePdf();
+    return;
+  }
+  if (action === "add-shop-product") {
+    d.products = d.products || [];
+    d.products.unshift(blankShopProduct());
+    setDirty(true);
+    renderEditor();
+    return;
+  }
+  if (action === "del-shop-product") {
+    if (!confirm("Delete this product?")) return;
+    d.products.splice(i, 1);
+    setDirty(true);
+    renderEditor();
     return;
   }
 
@@ -1596,6 +1770,24 @@ async function save() {
   if (state.data.navItems) {
     state.data.navItems.forEach((n) => {
       if (n.mega === "false" || n.mega === "") n.mega = false;
+    });
+  }
+  if (state.current === "shop" && Array.isArray(state.data.products)) {
+    state.data.products.forEach((p) => {
+      const slug = String(p.slug || p.id || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      p.slug = slug || `product-${Date.now().toString(36)}`;
+      p.id = p.id || p.slug;
+      p.price = Number(p.price) || 0;
+      p.compareAtPrice = Number(p.compareAtPrice) || 0;
+      if (!Array.isArray(p.features)) {
+        p.features = String(p.features || "")
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean);
+      }
     });
   }
   try {

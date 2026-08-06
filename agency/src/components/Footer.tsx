@@ -42,6 +42,7 @@ export function Footer() {
       title: "Company",
       links: [
         { label: "Why DisplayAvenue", href: "/why-displayavenue" },
+        { label: "Shop", href: "/shop" },
         { label: "Catalogue", href: "/catalogue" },
         { label: "Contact", href: "/contact" },
         { label: "Get Free Proposal", href: "/contact" },

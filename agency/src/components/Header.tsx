@@ -107,6 +107,13 @@ export function Header() {
             </button>
             <Link
               className="btn btn-ghost btn-sm client-login"
+              to="/shop"
+            >
+              <Icon name="layers" size={14} color="#fff" />
+              Shop
+            </Link>
+            <Link
+              className="btn btn-ghost btn-sm client-login"
               to="/catalogue"
             >
               <Icon name="doc" size={14} color="#fff" />
@@ -250,6 +257,13 @@ export function Header() {
               onClick={() => setOpen(false)}
             >
               Get Free Proposal
+            </Link>
+            <Link
+              className="btn btn-outline"
+              to="/shop"
+              onClick={() => setOpen(false)}
+            >
+              Shop
             </Link>
             <Link
               className="btn btn-outline"

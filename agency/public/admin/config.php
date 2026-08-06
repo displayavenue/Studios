@@ -46,6 +46,7 @@ return [
     'tracking' => 'Tracking & Pixels',
     'chatbot' => 'Website Chatbot',
     'catalogue' => 'Catalogue (PDF)',
+    'shop' => 'Shop (Products & Orders)',
     'settings' => 'Settings',
   ],
   // Optional: set an OpenAI key for smarter chatbot replies.
@@ -54,4 +55,9 @@ return [
   'openai_model' => 'gpt-4o-mini',
   'uploads_dir' => dirname(__DIR__) . '/uploads',
   'catalogue_max_bytes' => 30 * 1024 * 1024, // 30 MB
+  // Razorpay — paste keys from https://dashboard.razorpay.com/app/keys
+  // Leave blank until ready; shop checkout will show a setup message.
+  'razorpay_key_id' => '',
+  'razorpay_key_secret' => '',
+  'shop_orders_file' => __DIR__ . '/data/shop-orders.json',
 ];

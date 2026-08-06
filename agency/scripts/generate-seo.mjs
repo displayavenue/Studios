@@ -53,6 +53,7 @@ const cases = readJson("cases.json");
 const projects = readJson("projects.json");
 const resources = readJson("resources.json");
 const catalogue = readJson("catalogue.json");
+const shop = readJson("shop.json");
 
 const today = new Date().toISOString().slice(0, 10);
 const settingsLast = lastmod(settings.updatedAt || settings.seoSyncedAt, today);
@@ -60,6 +61,7 @@ const catalogueLast = lastmod(
   catalogue.updatedAt || catalogue.uploadedAt,
   settingsLast,
 );
+const shopLast = lastmod(shop.updatedAt, settingsLast);
 
 const staticPages = [
   ["/", "1.0", "daily"],
@@ -73,6 +75,7 @@ const staticPages = [
   ["/portfolio", "0.8", "weekly"],
   ["/resources", "0.8", "weekly"],
   ["/catalogue", "0.75", "monthly", catalogueLast],
+  ["/shop", "0.85", "weekly", shopLast],
   ["/why-displayavenue", "0.7", "monthly"],
   ["/contact", "0.8", "monthly"],
   ["/privacy", "0.3", "yearly"],
@@ -82,6 +85,7 @@ const staticPages = [
 const urls = staticPages
   .filter(([path]) => {
     if (path === "/catalogue" && catalogue.enabled === false) return false;
+    if (path === "/shop" && shop.enabled === false) return false;
     return true;
   })
   .map(([path, priority, changefreq, pageLast]) => ({
@@ -113,6 +117,20 @@ for (const [list, prefix, priority, changefreq] of maps) {
         lastmod: lastmod(item.updatedAt || item.date || settingsLast, settingsLast),
       });
     }
+  }
+}
+
+if (shop.enabled !== false) {
+  for (const product of Array.isArray(shop.products) ? shop.products : []) {
+    if (!product || product.enabled === false) continue;
+    const slug = product.slug || product.id;
+    if (!slug) continue;
+    urls.push({
+      path: `/shop/${slug}`,
+      priority: "0.7",
+      changefreq: "weekly",
+      lastmod: shopLast,
+    });
   }
 }
 
