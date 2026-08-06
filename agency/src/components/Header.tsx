@@ -105,13 +105,13 @@ export function Header() {
             >
               <Icon name="search" size={18} color="#fff" />
             </button>
-            <a
+            <Link
               className="btn btn-ghost btn-sm client-login"
-              href={company.clientLogin}
+              to="/catalogue"
             >
-              <Icon name="user" size={14} color="#fff" />
-              Client Login
-            </a>
+              <Icon name="doc" size={14} color="#fff" />
+              Catalogue
+            </Link>
             <Link to="/contact" className="btn btn-primary btn-sm proposal-btn">
               Get Free Proposal
               <Icon name="arrow" size={14} color="#fff" />
@@ -251,9 +251,13 @@ export function Header() {
             >
               Get Free Proposal
             </Link>
-            <a className="btn btn-outline" href={company.clientLogin}>
-              Client Login
-            </a>
+            <Link
+              className="btn btn-outline"
+              to="/catalogue"
+              onClick={() => setOpen(false)}
+            >
+              Catalogue
+            </Link>
           </div>
         </div>
       </div>

@@ -45,7 +45,6 @@ export function Footer() {
         { label: "Catalogue", href: "/catalogue" },
         { label: "Contact", href: "/contact" },
         { label: "Get Free Proposal", href: "/contact" },
-        { label: "Client Login", href: company.clientLogin },
       ],
     },
   ];
