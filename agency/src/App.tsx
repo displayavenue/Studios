@@ -15,8 +15,9 @@ import { Contact } from "./pages/Contact";
 import { DetailStub } from "./pages/DetailStub";
 
 export default function App() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename === "/" ? undefined : basename}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />

@@ -26,19 +26,22 @@ npm run preview
 
 ## Deploy to Hostinger (displayavenue.com)
 
-Use a **separate** Hostinger website / FTP account from Studios (`displayavenuestudios.com`).
+### Live demo (recommended while WordPress still runs)
+
+Deploys to **https://displayavenue.com/demo/** without replacing WordPress:
 
 ```bash
 cd agency
-export HOSTINGER_FTP_HOST=...
-export HOSTINGER_FTP_USERNAME=...
-export HOSTINGER_FTP_PASSWORD=...
-# optional if not public_html:
-# export HOSTINGER_FTP_REMOTE_PATH=public_html
-bash scripts/deploy-hostinger.sh
+export SSH_PASS='...'
+bash scripts/deploy-ssh-demo.sh
 ```
 
-`public/.htaccess` is included for React Router SPA fallbacks on Apache.
+### Full site cutover (later)
+
+When ready to replace WordPress at the domain root, rebuild with `DEPLOY_BASE=/` and upload to `domains/displayavenue.com/public_html` (backup WordPress first).
+
+Use a **separate** path from Studios (`displayavenuestudios.com`).
+
 
 ## Pages
 
