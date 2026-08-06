@@ -128,9 +128,31 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
   font-size: 0.85rem;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.footer-legal a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.footer-legal a:hover {
+  color: var(--gold);
+}
+
+.site-footer .form-error {
+  color: #f5a5a0;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 1100px) {

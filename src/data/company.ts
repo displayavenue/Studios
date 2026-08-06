@@ -15,6 +15,9 @@ export const company = {
     "https://www.youtube.com/@displayavenuestudios",
     "https://www.linkedin.com/company/displayavenue-studios",
   ],
+  brandDisclaimer:
+    "Brand names shown are representative of industries we serve. Logos can be updated in the CMS when you have written client permission.",
+  googleReviewsUrl: "",
   address: {
     lines: [
       "Office No. 44, D Wing,",

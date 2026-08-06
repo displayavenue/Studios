@@ -343,6 +343,14 @@ function renderCompany(d) {
       <textarea data-path="brandLogos" data-array="true">${escapeHtml((d.brandLogos || []).join("\n"))}</textarea>
     </div>
     <div class="field full">
+      <label>Brand strip disclaimer (shown under logos on homepage)</label>
+      <textarea data-path="brandDisclaimer">${escapeHtml(d.brandDisclaimer || "")}</textarea>
+    </div>
+    <div class="field full">
+      <label>Google reviews URL (leave blank to hide reviews section)</label>
+      <input type="url" data-path="googleReviewsUrl" value="${escapeHtml(d.googleReviewsUrl || "")}" placeholder="https://g.page/…/review" />
+    </div>
+    <div class="field full">
       <label>Social profile URLs (one per line — Instagram, YouTube, LinkedIn)</label>
       <textarea data-path="socials" data-array="true">${escapeHtml((d.socials || []).join("\n"))}</textarea>
     </div>

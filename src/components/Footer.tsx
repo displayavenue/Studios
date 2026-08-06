@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
+import { submitInquiry } from "../utils/submitInquiry";
 import "./Footer.css";
 
 export function Footer() {
@@ -9,12 +10,23 @@ export function Footer() {
   const navLinks = company.navLinks;
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    setDone(true);
-    setEmail("");
+    setError("");
+    setLoading(true);
+    try {
+      await submitInquiry("newsletter", { email: email.trim() });
+      setDone(true);
+      setEmail("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not subscribe.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -116,15 +128,18 @@ export function Footer() {
               <input
                 id="newsletter-email"
                 type="email"
+                name="email"
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                disabled={loading}
               />
-              <button type="submit" className="btn btn--gold">
-                Join
+              <button type="submit" className="btn btn--gold" disabled={loading}>
+                {loading ? "…" : "Join"}
               </button>
             </div>
+            {error && <p className="form-error" role="alert">{error}</p>}
             {done && (
               <p className="newsletter__ok">
                 Thank you — you&apos;re on the list.
@@ -149,6 +164,11 @@ export function Footer() {
           © {new Date().getFullYear()} DisplayAvenue Studios. All rights
           reserved.
         </p>
+        <nav className="footer-legal" aria-label="Legal">
+          <Link to="/privacy">Privacy</Link>
+          <Link to="/terms">Terms</Link>
+          <Link to="/booking-policy">Booking Policy</Link>
+        </nav>
         <p>Headquartered in Mumbai · Serving Pan India</p>
       </div>
     </footer>

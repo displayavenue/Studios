@@ -23,7 +23,7 @@ cp -a public/admin/. /tmp/da-deploy/admin/
 cp -a public/content/. /tmp/da-deploy/content/
 cp -f public/llms.txt /tmp/da-deploy/llms.txt 2>/dev/null || true
 cp -f public/robots.txt /tmp/da-deploy/robots.txt 2>/dev/null || true
-cp -f public/sitemap.xml /tmp/da-deploy/sitemap.xml 2>/dev/null || true
+cp -f public/send-inquiry.php /tmp/da-deploy/send-inquiry.php 2>/dev/null || true
 
 echo "Uploading to $HOST:$DOC …"
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \

@@ -29,6 +29,9 @@ export function AllPages() {
     { label: "FAQs", path: "/faqs" },
     { label: "Book Now", path: "/book-now" },
     { label: "Contact", path: "/contact" },
+    { label: "Privacy Policy", path: "/privacy" },
+    { label: "Terms of Service", path: "/terms" },
+    { label: "Booking Policy", path: "/booking-policy" },
   ];
 
   return (

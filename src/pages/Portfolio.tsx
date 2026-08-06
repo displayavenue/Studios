@@ -40,6 +40,10 @@ export function Portfolio() {
             Every project page highlights craft, location and outcomes — built
             for inspiration and SEO discovery.
           </p>
+          <p className="portfolio-note">
+            Sample imagery is shown below until your CMS portfolio is updated with
+            final client work. Replace projects in the admin under Portfolio.
+          </p>
         </div>
       </section>
 

@@ -9,7 +9,7 @@ import "./Home.css";
 export function Home() {
   const ref = useReveal<HTMLDivElement>();
   const {
-    company: { trustBadges, brandLogos },
+    company: { trustBadges, brandLogos, brandDisclaimer },
     home,
     homeServices,
     services,
@@ -79,6 +79,9 @@ export function Home() {
               <span key={brand}>{brand}</span>
             ))}
           </div>
+          {brandDisclaimer && (
+            <p className="brands-strip__disclaimer reveal">{brandDisclaimer}</p>
+          )}
         </div>
       </section>
 
