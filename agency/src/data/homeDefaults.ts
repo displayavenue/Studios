@@ -11,7 +11,7 @@ export const homeDefaults = {
     hero: true,
     heroDashboard: true,
     aiAssist: true,
-    heroStats: true,
+    heroStats: false,
     trust: true,
     statsBand: true,
     services: true,
