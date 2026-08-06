@@ -4,8 +4,9 @@
     radial-gradient(circle at 88% 80%, rgba(201, 162, 39, 0.1), transparent 38%),
     #0b0b0b;
   color: #fff;
-  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
   border-top: 1px solid rgba(201, 162, 39, 0.18);
+  flex-shrink: 0;
 }
 
 .site-conversion__inner {
@@ -172,8 +173,13 @@
 }
 
 @media (max-width: 900px) {
+  .site-conversion {
+    padding: 2.25rem 0 2.5rem;
+  }
+
   .site-conversion__inner {
     grid-template-columns: 1fr;
+    gap: 1.35rem;
   }
 
   .site-conversion__card {
@@ -182,5 +188,15 @@
 
   .site-conversion h2 {
     max-width: none;
+    font-size: 1.65rem;
+  }
+
+  /* Keep conversion compact on phones — one quote only */
+  .site-conversion__quotes blockquote:nth-child(n + 2) {
+    display: none;
+  }
+
+  .site-conversion__rating {
+    margin: 0.85rem 0 1rem;
   }
 }

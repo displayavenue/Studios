@@ -28,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -38,6 +39,17 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-content {
+  flex: 1 0 auto;
 }
 
 img {
@@ -278,13 +290,30 @@ p {
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(18px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  /* Avoid transform extending document height past the footer on mobile */
+  content-visibility: auto;
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+@media (max-width: 720px) {
+  .reveal {
+    /* Opacity-only on small screens — translateY was leaving white space below the footer */
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .page-hero {

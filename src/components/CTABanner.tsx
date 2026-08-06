@@ -16,7 +16,7 @@ export function CTABanner({
 
   return (
     <section className="cta-banner section">
-      <div className="container cta-banner__inner reveal">
+      <div className="container cta-banner__inner">
         <div>
           <p className="eyebrow">{banner.eyebrow}</p>
           <h2>{resolvedTitle}</h2>

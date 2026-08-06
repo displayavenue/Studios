@@ -16,7 +16,7 @@ export function SiteConversion() {
   return (
     <section className="site-conversion" aria-label="Reviews and booking">
       <div className="container site-conversion__inner">
-        <div className="site-conversion__proof reveal">
+        <div className="site-conversion__proof">
           <p className="eyebrow">Client love</p>
           <h2>Ready when you are — call, WhatsApp or book</h2>
           <p>
@@ -48,7 +48,7 @@ export function SiteConversion() {
           )}
         </div>
 
-        <div className="site-conversion__buy reveal">
+        <div className="site-conversion__buy">
           <div className="site-conversion__card">
             <p className="eyebrow">Book your shoot</p>
             <strong className="site-conversion__phone">{company.phone}</strong>
@@ -72,12 +72,15 @@ export function SiteConversion() {
             </div>
 
             <ul className="site-conversion__trust">
-              {(trustBadges.length ? trustBadges : [
-                "Pan India Coverage",
-                "Luxury Experience",
-                "Professional Team",
-                "Fast Delivery",
-              ]).map((badge) => (
+              {(trustBadges.length
+                ? trustBadges
+                : [
+                    "Pan India Coverage",
+                    "Luxury Experience",
+                    "Professional Team",
+                    "Fast Delivery",
+                  ]
+              ).map((badge) => (
                 <li key={badge}>{badge}</li>
               ))}
             </ul>
@@ -85,7 +88,9 @@ export function SiteConversion() {
             <p className="site-conversion__meta">
               <a href={company.emailHref}>{company.email}</a>
               <span>·</span>
-              <span>{company.address.addressLocality}, {company.address.addressRegion}</span>
+              <span>
+                {company.address.addressLocality}, {company.address.addressRegion}
+              </span>
             </p>
           </div>
         </div>
