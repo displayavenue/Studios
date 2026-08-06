@@ -95,6 +95,11 @@
       "mega": false
     },
     {
+      "label": "Shop",
+      "href": "/shop",
+      "mega": false
+    },
+    {
       "label": "Why DisplayAvenue",
       "href": "/why-displayavenue",
       "mega": false
