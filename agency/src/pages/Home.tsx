@@ -325,52 +325,36 @@ export function Home() {
       {show("aiBanner") && (
       <section className="home-section alt">
         <div className="container">
-          <div
-            className="card"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.2fr 0.8fr",
-              gap: "1.5rem",
-              padding: "1.5rem",
-              background: "linear-gradient(120deg,#050a1f,#0a1435)",
-              color: "#fff",
-              border: 0,
-            }}
-          >
-            <div>
-              <h2 className="section-title" style={{ color: "#fff" }}>
-                {aiBanner.title}
-              </h2>
-              <p className="section-sub" style={{ color: "rgba(255,255,255,0.75)" }}>
-                {aiBanner.sub}
-              </p>
-              <ul className="feature-list" style={{ marginTop: "1.25rem" }}>
-                {aiBanner.bullets.map((item) => (
-                  <li key={item}>
-                    <Icon name="check" color="#7dd3fc" />
-                    <strong style={{ color: "#fff" }}>{item}</strong>
+          <div className="ai-platform-banner">
+            <div className="ai-platform-copy">
+              <h2 className="section-title ai-platform-title">{aiBanner.title}</h2>
+              <p className="section-sub ai-platform-sub">{aiBanner.sub}</p>
+              <ul className="feature-list ai-platform-bullets">
+                {aiBanner.bullets.map((item, i) => (
+                  <li key={item} style={{ ["--i" as string]: i }}>
+                    <span className="ai-check">
+                      <Icon name="check" color="#7dd3fc" size={16} />
+                    </span>
+                    <strong>{item}</strong>
                   </li>
                 ))}
               </ul>
               <InternalLink
                 to={aiBanner.ctaHref}
-                className="btn btn-primary"
-                style={{ marginTop: "0.5rem" }}
+                className="btn btn-primary ai-platform-cta"
               >
                 {aiBanner.ctaLabel}
               </InternalLink>
             </div>
-            <div
-              style={{
-                borderRadius: "16px",
-                background:
-                  "radial-gradient(circle at 50% 40%, rgba(124,58,237,0.45), transparent 55%), linear-gradient(160deg,#1e1b4b,#0f172a)",
-                minHeight: "220px",
-                display: "grid",
-                placeItems: "center",
-              }}
-            >
-              <Icon name="brain" size={72} color="#c4b5fd" strokeWidth={1.2} />
+            <div className="ai-platform-visual" aria-hidden="true">
+              <div className="ai-glow" />
+              <div className="ai-orbit ai-orbit-a" />
+              <div className="ai-orbit ai-orbit-b" />
+              <div className="ai-code-mark">
+                <span className="ai-brace">{"{"}</span>
+                <span className="ai-caret" />
+                <span className="ai-brace">{"}"}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -946,12 +930,157 @@ export function Home() {
           min-height: 280px;
           border: 0;
         }
+
+        /* AI Platform banner */
+        .ai-platform-banner {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 1.5rem;
+          padding: 1.5rem;
+          border-radius: var(--radius-lg);
+          background: linear-gradient(120deg, #050a1f, #0a1435);
+          color: #fff;
+          overflow: hidden;
+          position: relative;
+        }
+        .ai-platform-title { color: #fff; }
+        .ai-platform-sub { color: rgba(255,255,255,0.75); }
+        .ai-platform-bullets {
+          margin-top: 1.25rem;
+        }
+        .ai-platform-bullets li {
+          color: #fff;
+          opacity: 0;
+          transform: translateX(-12px);
+          animation: ai-bullet-in 0.55s ease forwards;
+          animation-delay: calc(0.15s + var(--i, 0) * 0.12s);
+        }
+        .ai-platform-bullets strong { color: #fff; }
+        .ai-check {
+          width: 28px;
+          height: 28px;
+          border-radius: 999px;
+          display: grid;
+          place-items: center;
+          background: rgba(125, 211, 252, 0.14);
+          flex-shrink: 0;
+          animation: ai-check-pop 0.45s ease both;
+          animation-delay: calc(0.28s + var(--i, 0) * 0.12s);
+        }
+        .ai-platform-cta {
+          margin-top: 0.85rem;
+          box-shadow: 0 0 0 0 rgba(0, 86, 255, 0.45);
+          animation: ai-cta-glow 2.4s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+        .ai-platform-visual {
+          position: relative;
+          border-radius: 16px;
+          min-height: 240px;
+          display: grid;
+          place-items: center;
+          background: linear-gradient(160deg, #1e1b4b, #0f172a);
+          overflow: hidden;
+          isolation: isolate;
+        }
+        .ai-glow {
+          position: absolute;
+          inset: -20%;
+          background: radial-gradient(circle at 50% 45%, rgba(124, 58, 237, 0.55), transparent 58%);
+          animation: ai-glow-breathe 3.6s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .ai-orbit {
+          position: absolute;
+          border: 1px solid rgba(196, 181, 253, 0.28);
+          border-radius: 999px;
+          pointer-events: none;
+        }
+        .ai-orbit-a {
+          width: 150px;
+          height: 150px;
+          animation: ai-spin 14s linear infinite;
+        }
+        .ai-orbit-b {
+          width: 210px;
+          height: 210px;
+          border-style: dashed;
+          border-color: rgba(125, 211, 252, 0.22);
+          animation: ai-spin 22s linear infinite reverse;
+        }
+        .ai-code-mark {
+          position: relative;
+          z-index: 1;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+          font-size: clamp(2.4rem, 5vw, 3.4rem);
+          font-weight: 700;
+          color: #e9e0ff;
+          letter-spacing: 0.04em;
+          animation: ai-float 3.2s ease-in-out infinite;
+          text-shadow: 0 0 28px rgba(167, 139, 250, 0.55);
+        }
+        .ai-brace { opacity: 0.95; }
+        .ai-caret {
+          width: 3px;
+          height: 1.05em;
+          border-radius: 2px;
+          background: #c4b5fd;
+          box-shadow: 0 0 12px rgba(196, 181, 253, 0.9);
+          animation: ai-blink 1.05s steps(1, end) infinite;
+        }
+
+        @keyframes ai-glow-breathe {
+          0%, 100% { transform: scale(0.92); opacity: 0.7; }
+          50% { transform: scale(1.08); opacity: 1; }
+        }
+        @keyframes ai-spin {
+          to { transform: rotate(360deg); }
+        }
+        @keyframes ai-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes ai-blink {
+          0%, 45% { opacity: 1; }
+          50%, 100% { opacity: 0; }
+        }
+        @keyframes ai-bullet-in {
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes ai-check-pop {
+          0% { transform: scale(0.6); opacity: 0; }
+          70% { transform: scale(1.08); opacity: 1; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes ai-cta-glow {
+          0%, 100% { box-shadow: 0 4px 14px rgba(0, 86, 255, 0.28); }
+          50% { box-shadow: 0 6px 28px rgba(0, 86, 255, 0.55); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ai-glow,
+          .ai-orbit,
+          .ai-code-mark,
+          .ai-caret,
+          .ai-platform-bullets li,
+          .ai-check,
+          .ai-platform-cta {
+            animation: none !important;
+          }
+          .ai-platform-bullets li { opacity: 1; transform: none; }
+        }
+
         @media (max-width: 1100px) {
           .industry-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         }
         @media (max-width: 900px) {
           .home-split { grid-template-columns: 1fr !important; }
           .home-section .card { grid-template-columns: 1fr !important; }
+          .ai-platform-banner { grid-template-columns: 1fr; }
+          .ai-platform-visual { min-height: 200px; }
           .home-location { grid-template-columns: 1fr; }
           .industry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
           .tools-grid { grid-template-columns: 1fr 1fr !important; }
