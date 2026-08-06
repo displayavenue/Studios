@@ -11,6 +11,8 @@ import {
 } from "./SEO";
 import { toolCategories } from "../data/tools";
 import { getExternalToolUrl } from "../data/toolLinks";
+import { aiSuites } from "../data/ai";
+import { getAiToolUrl } from "../data/aiToolLinks";
 import "./DetailPage.css";
 
 function pathFor(page: DetailPageContent): string {
@@ -165,6 +167,49 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
                   );
                 })}
               </ul>
+            </div>
+          </section>
+        );
+      })()}
+
+      {page.kind === "ai" && (() => {
+        const suite = aiSuites.find(
+          (s) =>
+            s.href.endsWith(`/${page.slug}`) ||
+            s.title === page.title ||
+            page.title.toLowerCase().includes(s.title.toLowerCase()),
+        );
+        if (!suite?.tools.length) return null;
+        return (
+          <section className="section detail-alt">
+            <div className="container">
+              <h2 className="section-title">Open free AI tools (new tab)</h2>
+              <p className="section-sub" style={{ marginBottom: "1rem" }}>
+                Click any tool below to launch a free online AI utility in a new
+                tab. Suite overview stays on this page.
+              </p>
+              <ul className="mega-links detail-tool-links">
+                {suite.tools.map((tool) => {
+                  const url = getAiToolUrl(tool);
+                  return (
+                    <li key={tool}>
+                      {url ? (
+                        <a href={url} target="_blank" rel="noopener noreferrer">
+                          {tool}
+                          <Icon name="external" size={14} />
+                        </a>
+                      ) : (
+                        <span>{tool}</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+              <div style={{ marginTop: "1.25rem" }}>
+                <Link to="/contact" className="btn btn-primary">
+                  Book Free AI Consultation →
+                </Link>
+              </div>
             </div>
           </section>
         );

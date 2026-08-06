@@ -31,6 +31,17 @@
   font-weight: 800;
   color: var(--navy);
   margin-bottom: 0.65rem;
+  text-decoration: none;
+}
+a.mega-col-title:hover {
+  color: var(--blue);
+}
+.ai-menu-brand {
+  text-decoration: none;
+  display: block;
+}
+.mega-links a[target="_blank"] svg {
+  opacity: 0.7;
 }
 
 .mega-links {
