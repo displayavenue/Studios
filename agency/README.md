@@ -1,6 +1,6 @@
 # DisplayAvenue Agency (displayavenue.com)
 
-Demo rebuild of the **DisplayAvenue** digital growth agency site — separate from DisplayAvenue Studios.
+Demo rebuild of the **DisplayAvenue** digital growth agency site - separate from DisplayAvenue Studios.
 
 ## Stack
 
@@ -38,7 +38,7 @@ bash scripts/deploy-ssh-demo.sh
 
 - Website: https://displayavenue.com/demo/
 - CMS: https://displayavenue.com/demo/admin/  
-  Password in `public/admin/config.php` (`DisplayAgency@2026` — change it)
+  Password in `public/admin/config.php` (`DisplayAgency@2026` - change it)
 
 Remote `/demo/content/` edits are preserved across deploys.
 

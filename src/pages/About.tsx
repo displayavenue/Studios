@@ -13,7 +13,7 @@ export function About() {
     <div ref={ref}>
       <SEO
         title="About DisplayAvenue Studios | India's Premium Visual Production Studio"
-        description="Meet DisplayAvenue Studios — a Mumbai-based luxury visual production company delivering photography, videography and post production across India."
+        description="Meet DisplayAvenue Studios - a Mumbai-based luxury visual production company delivering photography, videography and post production across India."
         path="/about"
       />
 
@@ -28,7 +28,7 @@ export function About() {
           <h1>A luxury visual studio built for India&apos;s most important moments</h1>
           <p>
             DisplayAvenue Studios is a premium photography, videography and film
-            production company headquartered in Mira Road East, Mumbai — serving
+            production company headquartered in Mira Road East, Mumbai - serving
             couples, brands and institutions across India.
           </p>
         </div>
@@ -49,7 +49,7 @@ export function About() {
             <p>
               Today, our teams photograph weddings in Udaipur, film factories in
               Pune, stage product campaigns in Mumbai and deliver hospitality
-              imagery for resorts across the coastline — all under one studio
+              imagery for resorts across the coastline - all under one studio
               standard.
             </p>
           </div>
@@ -78,8 +78,8 @@ export function About() {
             <p className="eyebrow">Vision</p>
             <h3>Become India&apos;s largest visual production platform</h3>
             <p>
-              Our vision is a scalable studio network — local expertise,
-              national coverage and digital booking — that sets the benchmark
+              Our vision is a scalable studio network - local expertise,
+              national coverage and digital booking - that sets the benchmark
               for luxury visual production in India.
             </p>
           </article>
@@ -171,7 +171,7 @@ export function About() {
             <h2>Calm crews. Obsessive finish.</h2>
             <p>
               On every set you will find clear roles, backup media workflows and
-              a producer mindset — so families enjoy the day and marketing teams
+              a producer mindset - so families enjoy the day and marketing teams
               hit their launch dates.
             </p>
           </div>

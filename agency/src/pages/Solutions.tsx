@@ -18,7 +18,7 @@ export function Solutions() {
           </h1>
           <p className="section-sub">
             Browse solutions by goals, size, platform, technology, channel,
-            industry, journey, and service type — each with a dedicated page.
+            industry, journey, and service type - each with a dedicated page.
           </p>
           <div style={{ marginTop: "1rem" }}>
             <Link to="/contact" className="btn btn-primary">

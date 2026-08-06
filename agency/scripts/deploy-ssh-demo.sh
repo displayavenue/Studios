@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Deploy agency demo + CMS to Hostinger at displayavenue.com/demo/
-# Does NOT replace the WordPress root — demo only.
+# Does NOT replace the WordPress root - demo only.
 # Usage: SSH_PASS='...' ./scripts/deploy-ssh-demo.sh
 
 set -euo pipefail

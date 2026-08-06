@@ -73,13 +73,13 @@ const fallbackHome: HomeCms = {
     eyebrow: "AI-POWERED DIGITAL GROWTH PARTNER",
     titleBefore: "Transform Your Business with",
     titleAccent: "AI-Powered Digital Growth.",
-    lead: "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, and AI automation — under one roof.",
+    lead: "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, and AI automation - under one roof.",
     primaryCta: "Book Free Consultation →",
     secondaryCta: "Get Free Proposal",
   },
   trustLabel: "Trusted by 500+ businesses",
   servicesTitle: "End-to-End Digital Solutions Under One Roof.",
-  servicesSub: "Marketing, product, creative, and AI — built to compound growth.",
+  servicesSub: "Marketing, product, creative, and AI - built to compound growth.",
 };
 
 const defaults: AgencyCms = {

@@ -18,7 +18,7 @@ export function Industries() {
             <aside className="page-left">
               <h1 className="section-title">Industries We Serve</h1>
               <p>
-                Tailored digital services for every vertical — from lead
+                Tailored digital services for every vertical - from lead
                 generation to full digital transformation.
               </p>
               <div className="cta-box">

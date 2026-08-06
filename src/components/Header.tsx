@@ -238,7 +238,7 @@ export function Header() {
                 <div className="nav-panel__cta-card">
                   <p className="eyebrow">Ready to book?</p>
                   <strong>Plan your shoot in minutes</strong>
-                  <p>Tell us your date, city and style — we reply fast on WhatsApp.</p>
+                  <p>Tell us your date, city and style - we reply fast on WhatsApp.</p>
                   <div className="nav-panel__cta-actions">
                     <Link to="/book-now" className="btn btn--gold btn--sm" onClick={close}>
                       Book Now

@@ -33,7 +33,7 @@ export const packageGroups: PackageGroup[] = [
           "8 hours coverage",
           "300+ edited photographs",
           "Online gallery for 12 months",
-          "Highlight teaser (30–45 sec)",
+          "Highlight teaser (30-45 sec)",
         ],
       },
       {
@@ -47,7 +47,7 @@ export const packageGroups: PackageGroup[] = [
           "2 photographers + 1 cinematographer",
           "Full-day ceremony coverage",
           "800+ edited photographs",
-          "Cinematic highlight film (3–5 min)",
+          "Cinematic highlight film (3-5 min)",
           "Drone sequence (venue permitting)",
           "Same-day social selects",
         ],
@@ -137,7 +137,7 @@ export const packageGroups: PackageGroup[] = [
         description: "Clean white-background packshots for listings.",
         features: [
           "White background main image",
-          "3–5 angles per SKU",
+          "3-5 angles per SKU",
           "Basic retouching",
           "Marketplace-ready crop",
           "48-hour delivery option",

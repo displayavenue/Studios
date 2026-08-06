@@ -28,7 +28,7 @@ export function Industries() {
           <h1>Sector expertise with a luxury studio standard</h1>
           <p>
             We adapt creative direction, permissions and delivery formats to
-            the realities of each industry — without compromising craft.
+            the realities of each industry - without compromising craft.
           </p>
         </div>
       </section>

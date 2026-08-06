@@ -196,7 +196,7 @@ export const homeServices = [
   },
   {
     title: "E-commerce",
-    desc: "Stores that sell — Shopify, WooCommerce, custom.",
+    desc: "Stores that sell - Shopify, WooCommerce, custom.",
     icon: "bag",
     color: "#f97316",
     href: "/services/ecommerce",

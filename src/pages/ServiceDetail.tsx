@@ -55,7 +55,7 @@ export function ServiceDetail() {
     <div ref={ref}>
       <SEO
         title={`${service.title} in India | DisplayAvenue Studios`}
-        description={`${service.description} Book ${service.title.toLowerCase()} with DisplayAvenue Studios — Mumbai HQ, pan-India coverage. Call +91 7400303493.`}
+        description={`${service.description} Book ${service.title.toLowerCase()} with DisplayAvenue Studios - Mumbai HQ, pan-India coverage. Call +91 7400303493.`}
         path={`/services/${service.slug}`}
         image={service.image}
       />
@@ -115,14 +115,14 @@ export function ServiceDetail() {
               <p className="eyebrow">Watch</p>
               <h2>{service.title} film</h2>
               <p>
-                A sample of our work for this service — open full screen for the
+                A sample of our work for this service - open full screen for the
                 best viewing experience.
               </p>
             </div>
             <div className="service-video reveal">
               <iframe
                 src={getYoutubeEmbedUrl(service.youtubeUrl)!}
-                title={`${service.title} video — DisplayAvenue Studios`}
+                title={`${service.title} video - DisplayAvenue Studios`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"

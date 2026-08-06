@@ -82,7 +82,7 @@ export const img = {
   templeRitual: u("photo-1561361513-2d000a50f0dc"),
   spicesMarket: u("photo-1596040033229-a9821ebd058d", 1200),
 
-  // People (South Asian–leaning portraits where possible)
+  // People (South Asian-leaning portraits where possible)
   portraitMan1: u("photo-1507003211169-0a1dd7228f2d", 600),
   portraitWoman1: u("photo-1494790108377-be9c29b29330", 600),
   portraitMan2: u("photo-1472099645785-5658abf4ff4e", 600),

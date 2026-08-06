@@ -72,11 +72,11 @@ export function buildDetailPage(
     color: "#0056ff",
     eyebrow: category,
     headline: `${title} that drives measurable growth`,
-    summary: `DisplayAvenue delivers end-to-end ${title.toLowerCase()} for brands that want clarity, speed, and ROI — powered by strategy, creative, and AI.`,
+    summary: `DisplayAvenue delivers end-to-end ${title.toLowerCase()} for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.`,
     benefits: [
       {
         title: "Strategy first",
-        desc: `We align ${title.toLowerCase()} with your business goals, audience, and funnel — not vanity metrics.`,
+        desc: `We align ${title.toLowerCase()} with your business goals, audience, and funnel - not vanity metrics.`,
       },
       {
         title: "Expert execution",
@@ -114,13 +114,13 @@ export function buildDetailPage(
       },
       {
         title: "Optimize & scale",
-        desc: "Iterate from data — improve conversion, efficiency, and growth.",
+        desc: "Iterate from data - improve conversion, efficiency, and growth.",
       },
     ],
     faqs: [
       {
         q: `How fast can we start ${title}?`,
-        a: "Most engagements kick off within 5–7 business days after scope confirmation.",
+        a: "Most engagements kick off within 5-7 business days after scope confirmation.",
       },
       {
         q: "Do you work with startups and enterprises?",

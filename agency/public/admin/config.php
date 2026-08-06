@@ -1,6 +1,6 @@
 <?php
 /**
- * DisplayAvenue Agency — CMS config
+ * DisplayAvenue Agency - CMS config
  * Change admin_password after first login.
  */
 return [

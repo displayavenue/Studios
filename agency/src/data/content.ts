@@ -267,7 +267,7 @@ export const testimonials = [
   },
   {
     quote:
-      "From website to paid media, they operate like an extension of our team — fast, accountable, and ROI-focused.",
+      "From website to paid media, they operate like an extension of our team - fast, accountable, and ROI-focused.",
     name: "Karan Mehta",
     title: "Director, Bhaskar Patil Group",
     rating: 5,

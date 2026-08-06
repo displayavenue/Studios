@@ -126,7 +126,7 @@ async function loadCollection(key) {
     state.data = r.data;
     setDirty(false);
     $("#panel-title").textContent = state.collections[key] || key;
-    $("#panel-sub").textContent = `Editing /content/${key}.json — save to update the live website.`;
+    $("#panel-sub").textContent = `Editing /content/${key}.json - save to update the live website.`;
     $("#nav").querySelectorAll("button").forEach((b) =>
       b.classList.toggle("active", b.dataset.col === key),
     );
@@ -343,7 +343,7 @@ function renderCompany(d) {
       <textarea data-path="brandLogos" data-array="true">${escapeHtml((d.brandLogos || []).join("\n"))}</textarea>
     </div>
     <div class="field full">
-      <label>Social profile URLs (one per line — Instagram, YouTube, LinkedIn)</label>
+      <label>Social profile URLs (one per line - Instagram, YouTube, LinkedIn)</label>
       <textarea data-path="socials" data-array="true">${escapeHtml((d.socials || []).join("\n"))}</textarea>
     </div>
   </div>`;
@@ -426,7 +426,7 @@ function renderPackages(d) {
       </div>
       ${(g.tiers || []).map((t, ti) => `
         <details class="item-card" open>
-          <summary><span>${escapeHtml(t.name)} — ${escapeHtml(t.priceLabel || "")}</span></summary>
+          <summary><span>${escapeHtml(t.name)} - ${escapeHtml(t.priceLabel || "")}</span></summary>
           <div class="grid-2" style="margin-top:1rem">
             ${field("ID", `packageGroups.${gi}.tiers.${ti}.id`, t.id)}
             ${field("Name", `packageGroups.${gi}.tiers.${ti}.name`, t.name)}
@@ -570,7 +570,7 @@ function renderTracking(d) {
     <h3>Tracking &amp; ad pixels</h3>
     <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
       Google Tag Manager, Google Analytics, Google Ads, Meta (Facebook) Pixel, and custom scripts from any ad or AI platform.
-      <strong>Save changes</strong> to update the live website — no rebuild needed.
+      <strong>Save changes</strong> to update the live website - no rebuild needed.
     </p>
     <div class="grid-2">
       ${field("Enable all tracking", "enabled", d.enabled !== false, "checkbox")}
@@ -613,8 +613,8 @@ function renderSettings(d) {
       so titles, schema and copy stay in sync without a rebuild.
     </p>
     <p style="font-size:.9rem;margin:0 0 1rem">
-      Last SEO sync: <strong>${escapeHtml(d.seoSyncedAt || d.updatedAt || "—")}</strong><br/>
-      Sitemap URLs: <strong>${escapeHtml(String(d.sitemapUrlCount ?? "—"))}</strong>
+      Last SEO sync: <strong>${escapeHtml(d.seoSyncedAt || d.updatedAt || "-")}</strong><br/>
+      Sitemap URLs: <strong>${escapeHtml(String(d.sitemapUrlCount ?? "-"))}</strong>
     </p>
     <button type="button" class="btn btn-gold btn-sm" data-action="sync-seo">Rebuild SEO now</button>
   </div>`;
@@ -666,7 +666,7 @@ function handleAction(action, btn) {
       (async () => {
         try {
           const res = await api("sync-seo", {});
-          toast(`SEO rebuilt — ${res?.seo?.urls ?? "?"} URLs in sitemap`);
+          toast(`SEO rebuilt - ${res?.seo?.urls ?? "?"} URLs in sitemap`);
           if (state.current === "settings") loadCollection("settings");
         } catch (e) {
           toast(e.message || "SEO sync failed", "err");
@@ -684,8 +684,8 @@ async function save() {
     const urls = res?.seo?.urls;
     toast(
       urls
-        ? `Saved — SEO sitemap updated (${urls} URLs). Refresh the website to see changes.`
-        : "Saved — website + SEO artifacts updated. Refresh the website to see changes.",
+        ? `Saved - SEO sitemap updated (${urls} URLs). Refresh the website to see changes.`
+        : "Saved - website + SEO artifacts updated. Refresh the website to see changes.",
     );
   } catch (e) {
     toast(e.message || "Save failed", "err");

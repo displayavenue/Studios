@@ -8,7 +8,7 @@ https://displayavenue.com/demo/admin/
 
 ## Login
 
-Default password is in [`config.php`](config.php): `DisplayAgency@2026` — **change it**.
+Default password is in [`config.php`](config.php): `DisplayAgency@2026` - **change it**.
 
 ## What you can edit
 

@@ -149,7 +149,7 @@ async function openCollection(key) {
     state.data = json.data;
     setDirty(false);
     $("#panel-title").textContent = state.collections[key] || key;
-    $("#panel-sub").textContent = `Editing ${key}.json — Save to publish.`;
+    $("#panel-sub").textContent = `Editing ${key}.json - Save to publish.`;
     renderNav();
     renderEditor();
   } catch (e) {
@@ -434,7 +434,7 @@ function renderCatalog(d, kindLabel) {
       <div class="list-item-head">
         <div>
           <h3>${escapeHtml(kindLabel)} pages (${d.items.length})</h3>
-          <p class="hint">Each item is a full website page. Slug becomes the URL. Edit intro, FAQs, reviews, locations, and keywords — Save updates the live JSON instantly.</p>
+          <p class="hint">Each item is a full website page. Slug becomes the URL. Edit intro, FAQs, reviews, locations, and keywords - Save updates the live JSON instantly.</p>
         </div>
         <button type="button" class="btn btn-gold" data-action="add-item" data-index="${escapeAttr(kindLabel)}">Add ${escapeHtml(kindLabel)}</button>
       </div>
@@ -489,7 +489,7 @@ function renderTracking(d) {
     <h3>Tracking &amp; ad pixels</h3>
     <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
       Google Tag Manager, Google Analytics, Google Ads, Meta (Facebook) Pixel, and custom scripts from any ad or AI platform.
-      Leave IDs blank until you have them — then <strong>Save changes</strong> and refresh the website (no rebuild needed).
+      Leave IDs blank until you have them - then <strong>Save changes</strong> and refresh the website (no rebuild needed).
     </p>
     <div class="grid">
       ${field("Enable all tracking", "enabled", d.enabled !== false, "checkbox")}
@@ -581,7 +581,7 @@ async function save() {
   try {
     await api("save", { collection: state.current, data: state.data });
     setDirty(false);
-    toast("Saved — refresh the website to see changes");
+    toast("Saved - refresh the website to see changes");
   } catch (e) {
     toast(e.message, "err");
   }

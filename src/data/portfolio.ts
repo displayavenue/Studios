@@ -68,7 +68,7 @@ export const portfolio: PortfolioItem[] = [
     category: "Hotels",
     location: "Goa",
     description:
-      "Hospitality photography and drone coverage for a coastal resort — rooms, dining and experiential lifestyle.",
+      "Hospitality photography and drone coverage for a coastal resort - rooms, dining and experiential lifestyle.",
     image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1400&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1000&q=80",

@@ -27,7 +27,7 @@ export function Packages() {
           <p className="eyebrow">Packages</p>
           <h1>Premium packages with transparent starting prices</h1>
           <p>
-            Choose Essential, Signature or Luxury — then customise with add-ons
+            Choose Essential, Signature or Luxury - then customise with add-ons
             like drone, albums, live streaming and rush delivery.
           </p>
         </div>
@@ -119,7 +119,7 @@ export function Packages() {
         </section>
       ))}
 
-      <CTABanner title="Need a custom package?" text="Tell us your date, city and deliverables — we’ll build a tailored proposal within one business day." />
+      <CTABanner title="Need a custom package?" text="Tell us your date, city and deliverables - we’ll build a tailored proposal within one business day." />
     </div>
   );
 }

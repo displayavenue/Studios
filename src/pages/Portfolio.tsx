@@ -37,7 +37,7 @@ export function Portfolio() {
           <p className="eyebrow">Portfolio</p>
           <h1>Selected work across weddings, brands and spaces</h1>
           <p>
-            Every project page highlights craft, location and outcomes — built
+            Every project page highlights craft, location and outcomes - built
             for inspiration and SEO discovery.
           </p>
         </div>

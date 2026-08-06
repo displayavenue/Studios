@@ -45,7 +45,7 @@ export function FreeTools() {
                 Powerful Free Tools to Grow Your Business
               </h1>
               <p>
-                Professional-grade SEO, marketing, content, and developer tools —
+                Professional-grade SEO, marketing, content, and developer tools -
                 each link opens a free online tool in a new tab.
               </p>
               <ul className="feature-list">
@@ -103,7 +103,7 @@ export function FreeTools() {
             <aside>
               <div className="cta-box">
                 <h4>All Tools. 100% Free.</h4>
-                <p>No credit card. No account. Instant results — opens in a new tab.</p>
+                <p>No credit card. No account. Instant results - opens in a new tab.</p>
               </div>
               <h3
                 style={{

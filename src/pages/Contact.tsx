@@ -34,7 +34,7 @@ export function Contact() {
           <p className="eyebrow">Contact</p>
           <h1>Let&apos;s talk about your next production</h1>
           <p>
-            Reach our Mumbai head office by phone, WhatsApp or email — or send
+            Reach our Mumbai head office by phone, WhatsApp or email - or send
             a message and we&apos;ll respond within one business day.
           </p>
         </div>

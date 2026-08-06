@@ -15,7 +15,7 @@ export function FAQs() {
     <div ref={ref}>
       <SEO
         title="FAQs | Booking, Pricing & Delivery | DisplayAvenue Studios"
-        description="Frequently asked questions about booking DisplayAvenue Studios — wedding photography pricing, corporate shoots, travel, timelines, albums and delivery across India."
+        description="Frequently asked questions about booking DisplayAvenue Studios - wedding photography pricing, corporate shoots, travel, timelines, albums and delivery across India."
         path="/faqs"
       />
       <BreadcrumbSchema
@@ -58,7 +58,7 @@ export function FAQs() {
         </div>
       </section>
 
-      <CTABanner title="Still have a question?" text="WhatsApp us or book a consultation — we typically respond within a few hours during business days." />
+      <CTABanner title="Still have a question?" text="WhatsApp us or book a consultation - we typically respond within a few hours during business days." />
     </div>
   );
 }

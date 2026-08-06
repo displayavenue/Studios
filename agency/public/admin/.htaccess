@@ -1,4 +1,4 @@
-# Do not long-cache CMS assets — editors must see updates immediately
+# Do not long-cache CMS assets - editors must see updates immediately
 <IfModule mod_headers.c>
   Header set Cache-Control "no-cache, no-store, must-revalidate"
   Header set Pragma "no-cache"

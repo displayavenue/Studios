@@ -29,7 +29,7 @@ export function Footer() {
             </span>
           </Link>
           <p>
-            India&apos;s Premium Visual Production Studio — luxury wedding
+            India&apos;s Premium Visual Production Studio - luxury wedding
             photography, cinematic films, commercial productions and visual
             storytelling across India.
           </p>
@@ -127,7 +127,7 @@ export function Footer() {
             </div>
             {done && (
               <p className="newsletter__ok">
-                Thank you — you&apos;re on the list.
+                Thank you - you&apos;re on the list.
               </p>
             )}
           </form>

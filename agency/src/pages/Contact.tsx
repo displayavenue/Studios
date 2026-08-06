@@ -62,7 +62,7 @@ export function Contact() {
               style={{ padding: "1.25rem", display: "grid", gap: "0.75rem" }}
               onSubmit={(e) => {
                 e.preventDefault();
-                alert("Demo form — connect this to your CRM or email when going live.");
+                alert("Demo form - connect this to your CRM or email when going live.");
               }}
             >
               <label>

@@ -35,7 +35,7 @@ export function AllPages() {
     <div ref={ref}>
       <SEO
         title="All Pages | DisplayAvenue Studios"
-        description="Complete directory of DisplayAvenue Studios pages — services, packages, portfolio, industries, locations and blog."
+        description="Complete directory of DisplayAvenue Studios pages - services, packages, portfolio, industries, locations and blog."
         path="/pages"
       />
 

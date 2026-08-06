@@ -250,7 +250,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
               {page.title} locations we serve
             </h2>
             <p className="section-sub">
-              Mumbai-based team with delivery across India — online workshops
+              Mumbai-based team with delivery across India - online workshops
               and on-site kickoffs for larger rollouts.
             </p>
             <div className="detail-locations">
@@ -275,7 +275,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
               Popular searches related to {page.title}
             </h2>
             <p className="section-sub">
-              Long-tail keywords buyers actually type — used in our content,
+              Long-tail keywords buyers actually type - used in our content,
               ads, and landing pages for this service.
             </p>
             <ul className="detail-keywords">
