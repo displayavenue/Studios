@@ -23,6 +23,8 @@ export type DetailPageContent = {
   kind: "service" | "industry" | "package" | "solution" | "ai" | "tool" | "case-study" | "project" | "resource";
   title: string;
   category: string;
+  /** Industry vertical for public cards (preferred over client name). */
+  industry?: string;
   icon: string;
   color: string;
   eyebrow: string;

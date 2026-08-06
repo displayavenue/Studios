@@ -4,8 +4,8 @@
       "icon": "bag",
       "color": "#065f46",
       "eyebrow": "E-commerce",
-      "headline": "Vaidraj Ayurvedic Store",
-      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Vaidraj Ayurvedic Store.",
+      "headline": "Healthcare Ecommerce",
+      "summary": "Strategy, design, and growth systems for healthcare brands — built for measurable results.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -100,14 +100,15 @@
       "slug": "vaidraj",
       "kind": "project",
       "title": "Vaidraj Ayurvedic Store",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "industry": "Healthcare"
     },
     {
       "icon": "code",
       "color": "#1e3a8a",
       "eyebrow": "Web Development",
-      "headline": "Bhaskar Patil Group Website",
-      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Bhaskar Patil Group Website.",
+      "headline": "Real Estate Websites",
+      "summary": "Strategy, design, and growth systems for real estate brands — built for measurable results.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -202,14 +203,15 @@
       "slug": "bpg",
       "kind": "project",
       "title": "Bhaskar Patil Group Website",
-      "category": "Web Development"
+      "category": "Web Development",
+      "industry": "Real Estate"
     },
     {
       "icon": "brand",
       "color": "#4c1d95",
       "eyebrow": "Branding",
-      "headline": "RAK Ceramics Brand System",
-      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for RAK Ceramics Brand System.",
+      "headline": "Manufacturing Branding",
+      "summary": "Strategy, design, and growth systems for manufacturing brands — built for measurable results.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -304,14 +306,15 @@
       "slug": "rak",
       "kind": "project",
       "title": "RAK Ceramics Brand System",
-      "category": "Branding"
+      "category": "Branding",
+      "industry": "Manufacturing"
     },
     {
       "icon": "megaphone",
       "color": "#9a3412",
       "eyebrow": "Digital Marketing",
-      "headline": "Royal Mouth Fresheners Growth",
-      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Royal Mouth Fresheners Growth.",
+      "headline": "Ecommerce Marketing",
+      "summary": "Strategy, design, and growth systems for ecommerce brands — built for measurable results.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -406,7 +409,8 @@
       "slug": "royal",
       "kind": "project",
       "title": "Royal Mouth Fresheners Growth",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "industry": "Ecommerce"
     }
   ]
 }

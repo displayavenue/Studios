@@ -4,8 +4,8 @@
       "icon": "search",
       "color": "#16a34a",
       "eyebrow": "SEO",
-      "headline": "Vaidraj Ayurvedic - SEO Growth",
-      "summary": "How DisplayAvenue delivered measurable growth for Vaidraj Ayurvedic through seo and full-funnel execution.",
+      "headline": "Healthcare SEO Growth",
+      "summary": "How DisplayAvenue delivered measurable growth for healthcare brands through seo and full-funnel execution.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -100,14 +100,15 @@
       "slug": "vaidraj-seo",
       "kind": "case-study",
       "title": "Vaidraj Ayurvedic - SEO Growth",
-      "category": "SEO"
+      "category": "SEO",
+      "industry": "Healthcare"
     },
     {
       "icon": "ads",
       "color": "#0056ff",
       "eyebrow": "Google Ads",
-      "headline": "Bhaskar Patil Group - Google Ads",
-      "summary": "How DisplayAvenue delivered measurable growth for Bhaskar Patil Group through google ads and full-funnel execution.",
+      "headline": "Real Estate Google Ads",
+      "summary": "How DisplayAvenue delivered measurable growth for real estate brands through google ads and full-funnel execution.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -202,14 +203,15 @@
       "slug": "bpg-ads",
       "kind": "case-study",
       "title": "Bhaskar Patil Group - Google Ads",
-      "category": "Google Ads"
+      "category": "Google Ads",
+      "industry": "Real Estate"
     },
     {
       "icon": "bag",
       "color": "#f97316",
       "eyebrow": "E-commerce",
-      "headline": "Royal Mouth Fresheners - Ecommerce",
-      "summary": "How DisplayAvenue delivered measurable growth for Royal Mouth Fresheners through e-commerce and full-funnel execution.",
+      "headline": "Ecommerce Growth",
+      "summary": "How DisplayAvenue delivered measurable growth for ecommerce brands through e-commerce and full-funnel execution.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -304,14 +306,15 @@
       "slug": "royal-ecom",
       "kind": "case-study",
       "title": "Royal Mouth Fresheners - Ecommerce",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "industry": "Ecommerce"
     },
     {
       "icon": "share",
       "color": "#0891b2",
       "eyebrow": "Meta Ads",
-      "headline": "Island360 Adventure - Meta Ads",
-      "summary": "How DisplayAvenue delivered measurable growth for Island360 Adventure through meta ads and full-funnel execution.",
+      "headline": "Travel & Tourism Meta Ads",
+      "summary": "How DisplayAvenue delivered measurable growth for travel & tourism brands through meta ads and full-funnel execution.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -406,7 +409,8 @@
       "slug": "island360",
       "kind": "case-study",
       "title": "Island360 Adventure - Meta Ads",
-      "category": "Meta Ads"
+      "category": "Meta Ads",
+      "industry": "Travel & Tourism"
     }
   ]
 }

@@ -616,7 +616,7 @@ export function Home() {
                 </div>
                 <div className="featured-body">
                   <p>{item!.eyebrow || item!.category}</p>
-                  <h3>{item!.title}</h3>
+                  <h3>{item!.industry || item!.category}</h3>
                   <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
                     {item!.summary}
                   </p>
@@ -660,7 +660,7 @@ export function Home() {
                 </div>
                 <div className="featured-body">
                   <p>{item!.category}</p>
-                  <h3>{item!.title}</h3>
+                  <h3>{item!.industry || item!.category}</h3>
                   <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
                     {item!.summary}
                   </p>
