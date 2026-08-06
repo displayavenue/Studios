@@ -5,32 +5,52 @@ import { useCms } from "../cms/CmsProvider";
 import "./Header.css";
 
 const serviceCategories = [
-  "Wedding",
-  "Corporate",
-  "Product",
-  "Events",
-  "Aerial",
-  "Post",
+  { key: "Wedding", label: "Weddings", anchor: "wedding" },
+  { key: "Corporate", label: "Corporate & brands", anchor: "corporate" },
+  { key: "Product", label: "Product & e‑commerce", anchor: "product" },
+  { key: "Events", label: "Events", anchor: "events" },
+  { key: "Aerial", label: "Drone & aerial", anchor: "aerial" },
+  { key: "Post", label: "Content & post", anchor: "post" },
 ] as const;
+
+const FALLBACK_SERVICE_IMAGE =
+  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80";
 
 type OpenMenu = "services" | "packages" | "more" | null;
 
+function NavServiceThumb({ src }: { src: string }) {
+  const [img, setImg] = useState(src);
+  return (
+    <img
+      src={img}
+      alt=""
+      loading="lazy"
+      onError={() => setImg(FALLBACK_SERVICE_IMAGE)}
+    />
+  );
+}
+
 export function Header() {
-  const { company, services, packageGroups, homeServices } = useCms();
+  const { company, services, packageGroups } = useCms();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<OpenMenu>(null);
-  const [mobileSection, setMobileSection] = useState<string | null>("services");
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const servicesId = useId();
   const packagesId = useId();
   const moreId = useId();
 
-  const featuredServices = homeServices
+  const popularServices = [
+    "wedding-photography",
+    "wedding-videography",
+    "corporate-photography",
+    "product-photography",
+    "drone-photography",
+  ]
     .map((slug) => services.find((s) => s.slug === slug))
-    .filter(Boolean)
-    .slice(0, 8);
+    .filter(Boolean);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
@@ -100,10 +120,6 @@ export function Header() {
           </Link>
 
           <nav className="site-nav site-nav--desktop" aria-label="Primary" ref={navRef}>
-            <NavLink to="/about" className="nav-link" onClick={() => setMenu(null)}>
-              About
-            </NavLink>
-
             <div
               className={`nav-dropdown ${menu === "services" ? "is-open" : ""}`}
               onMouseEnter={() => setMenu("services")}
@@ -120,23 +136,31 @@ export function Header() {
                 <span className="nav-caret" aria-hidden />
               </button>
               <div id={servicesId} className="nav-panel nav-panel--mega" role="region" aria-label="Services menu">
-                <div className="nav-panel__intro">
-                  <p className="eyebrow">Services</p>
-                  <strong>Photography, film &amp; post</strong>
-                  <p>Browse by category or jump into popular briefs.</p>
-                  <Link to="/services" className="btn btn--dark btn--sm" onClick={close}>
-                    All services
-                  </Link>
+                <div className="nav-mega__head">
+                  <div className="nav-panel__intro">
+                    <p className="eyebrow">What we shoot</p>
+                    <strong>Photography, film &amp; post</strong>
+                    <p>Weddings, brands, products and events — pan India.</p>
+                  </div>
+                  <div className="nav-mega__actions">
+                    <Link to="/services" className="btn btn--dark btn--sm" onClick={close}>
+                      All services
+                    </Link>
+                    <Link to="/book-now" className="btn btn--outline btn--sm" onClick={close}>
+                      Get a quote
+                    </Link>
+                  </div>
                 </div>
+
                 <div className="nav-panel__cols">
-                  {serviceCategories.map((category) => {
-                    const items = services
-                      .filter((s) => s.category === category)
-                      .slice(0, 4);
+                  {serviceCategories.map(({ key, label, anchor }) => {
+                    const items = services.filter((s) => s.category === key).slice(0, 2);
                     if (!items.length) return null;
                     return (
-                      <div key={category} className="nav-col">
-                        <p className="nav-col__title">{category}</p>
+                      <div key={key} className="nav-col">
+                        <Link to={`/services#${anchor}`} className="nav-col__title" onClick={close}>
+                          {label}
+                        </Link>
                         {items.map((s) => (
                           <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
                             {s.title}
@@ -146,10 +170,11 @@ export function Header() {
                     );
                   })}
                 </div>
-                <div className="nav-panel__featured">
-                  <p className="nav-col__title">Popular now</p>
+
+                <div className="nav-mega__popular">
+                  <p className="nav-col__title">Popular</p>
                   <div className="nav-featured-grid">
-                    {featuredServices.slice(0, 4).map(
+                    {popularServices.map(
                       (s) =>
                         s && (
                           <Link
@@ -158,7 +183,7 @@ export function Header() {
                             className="nav-featured-card"
                             onClick={close}
                           >
-                            <img src={s.image} alt="" loading="lazy" />
+                            <NavServiceThumb src={s.image} />
                             <span>{s.title}</span>
                           </Link>
                         ),
@@ -167,6 +192,10 @@ export function Header() {
                 </div>
               </div>
             </div>
+
+            <NavLink to="/portfolio" className="nav-link" onClick={() => setMenu(null)}>
+              Portfolio
+            </NavLink>
 
             <div
               className={`nav-dropdown ${menu === "packages" ? "is-open" : ""}`}
@@ -198,16 +227,8 @@ export function Header() {
               </div>
             </div>
 
-            <NavLink to="/portfolio" className="nav-link" onClick={() => setMenu(null)}>
-              Portfolio
-            </NavLink>
-
-            <NavLink to="/industries" className="nav-link" onClick={() => setMenu(null)}>
-              Industries
-            </NavLink>
-
-            <NavLink to="/locations" className="nav-link" onClick={() => setMenu(null)}>
-              Locations
+            <NavLink to="/about" className="nav-link" onClick={() => setMenu(null)}>
+              About
             </NavLink>
 
             <div
@@ -217,7 +238,7 @@ export function Header() {
             >
               <button
                 type="button"
-                className={`nav-link nav-link--btn ${["/blog", "/faqs", "/pricing", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
+                className={`nav-link nav-link--btn ${["/industries", "/locations", "/blog", "/faqs", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
                 aria-expanded={menu === "more"}
                 aria-controls={moreId}
                 onClick={() => toggleMenu("more")}
@@ -226,8 +247,11 @@ export function Header() {
                 <span className="nav-caret" aria-hidden />
               </button>
               <div id={moreId} className="nav-panel nav-panel--sm" role="region" aria-label="More pages">
-                <Link to="/pricing" onClick={close}>
-                  Pricing guide
+                <Link to="/industries" onClick={close}>
+                  Industries
+                </Link>
+                <Link to="/locations" onClick={close}>
+                  Locations
                 </Link>
                 <Link to="/blog" onClick={close}>
                   Blog
@@ -280,6 +304,24 @@ export function Header() {
             <div className="mobile-drawer__inner">
               <p className="mobile-drawer__label">Menu</p>
 
+              <nav className="mobile-drawer__links mobile-drawer__links--primary" aria-label="Mobile primary">
+                <NavLink to="/services" onClick={close}>
+                  Services
+                </NavLink>
+                <NavLink to="/portfolio" onClick={close}>
+                  Portfolio
+                </NavLink>
+                <NavLink to="/packages" onClick={close}>
+                  Packages
+                </NavLink>
+                <NavLink to="/book-now" onClick={close}>
+                  Book Now
+                </NavLink>
+                <NavLink to="/contact" onClick={close}>
+                  Contact
+                </NavLink>
+              </nav>
+
               <div className="mobile-acc">
                 <button
                   type="button"
@@ -288,58 +330,32 @@ export function Header() {
                     setMobileSection((s) => (s === "services" ? null : "services"))
                   }
                 >
-                  Services
+                  Browse services
                 </button>
                 {mobileSection === "services" && (
                   <div className="mobile-acc__body">
-                    <Link to="/services" onClick={close}>
-                      All services
-                    </Link>
-                    {featuredServices.map(
-                      (s) =>
-                        s && (
-                          <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
-                            {s.title}
-                          </Link>
-                        ),
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <div className="mobile-acc">
-                <button
-                  type="button"
-                  className={`mobile-acc__btn ${mobileSection === "packages" ? "is-open" : ""}`}
-                  onClick={() =>
-                    setMobileSection((s) => (s === "packages" ? null : "packages"))
-                  }
-                >
-                  Packages
-                </button>
-                {mobileSection === "packages" && (
-                  <div className="mobile-acc__body">
-                    <Link to="/packages" onClick={close}>
-                      All packages
-                    </Link>
-                    {packageGroups.map((g) => (
-                      <Link key={g.slug} to={`/packages/${g.slug}`} onClick={close}>
-                        {g.title}
-                      </Link>
+                    {serviceCategories.map(({ key, label, anchor }) => (
+                      <div key={key} className="mobile-acc__group">
+                        <Link to={`/services#${anchor}`} onClick={close} className="mobile-acc__group-title">
+                          {label}
+                        </Link>
+                        {services
+                          .filter((s) => s.category === key)
+                          .slice(0, 3)
+                          .map((s) => (
+                            <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
+                              {s.title}
+                            </Link>
+                          ))}
+                      </div>
                     ))}
-                    <Link to="/pricing" onClick={close}>
-                      Pricing
-                    </Link>
                   </div>
                 )}
               </div>
 
-              <nav className="mobile-drawer__links" aria-label="Mobile">
+              <nav className="mobile-drawer__links" aria-label="Mobile secondary">
                 <NavLink to="/about" onClick={close}>
                   About
-                </NavLink>
-                <NavLink to="/portfolio" onClick={close}>
-                  Portfolio
                 </NavLink>
                 <NavLink to="/industries" onClick={close}>
                   Industries
@@ -356,15 +372,9 @@ export function Header() {
                 <NavLink to="/faqs" onClick={close}>
                   FAQs
                 </NavLink>
-                <NavLink to="/contact" onClick={close}>
-                  Contact
-                </NavLink>
               </nav>
 
               <div className="mobile-drawer__actions">
-                <Link to="/book-now" className="btn btn--gold" onClick={close}>
-                  Book Now
-                </Link>
                 <a
                   href={company.whatsappHref}
                   className="btn btn--dark"
