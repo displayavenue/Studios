@@ -7,7 +7,7 @@ export const company = {
   phoneHref: "tel:+919222122333",
   whatsapp: "+91 9222 122333",
   whatsappHref: "https://wa.me/919222122333",
-  $email: "info@displayavenue.com",
+  email: "info@displayavenue.com",
   emailHref: "mailto:info@displayavenue.com",
   clientLogin: "https://displayavenue.com/client-login",
   address: {
