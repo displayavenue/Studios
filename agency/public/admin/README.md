@@ -20,10 +20,11 @@ Default password is in [`config.php`](config.php): `DisplayAgency@2026` — **ch
 | Industries / Packages / Solutions / AI / Tools | Full catalog pages |
 | Case Studies / Portfolio / Resources | Detail pages |
 | Testimonials & Extras | Home social proof + footer CTA |
-| Tracking & Pixels | GTM / GA / Meta / custom scripts |
+| Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
 | Settings | Site name & notes |
 
-Click **Save changes** (or Ctrl/Cmd+S). Then refresh the website.
+Open **Tracking & Pixels**, paste your IDs when ready, click **Save changes**, refresh the website.
+
 
 ## Permissions
 

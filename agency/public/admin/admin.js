@@ -438,21 +438,36 @@ function renderContent(d) {
 }
 
 function renderTracking(d) {
-  return card(
-    "Tracking & pixels",
-    `
-    ${field("Enabled", "enabled", d.enabled, "checkbox")}
-    ${field("GTM ID", "gtmId", d.gtmId)}
-    ${field("GA ID", "gaId", d.gaId)}
-    ${field("Meta Pixel ID", "metaPixelId", d.metaPixelId)}
-    ${field("Head scripts", "headScripts", d.headScripts, "textarea")}
-    ${field("Body start HTML", "bodyStartHtml", d.bodyStartHtml, "textarea")}
-  `,
-  );
+  return `
+  <div class="card">
+    <h3>Tracking &amp; ad pixels</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
+      Google Tag Manager, Google Analytics, Google Ads, Meta (Facebook) Pixel, and custom scripts from any ad or AI platform.
+      Leave IDs blank until you have them — then <strong>Save changes</strong> and refresh the website (no rebuild needed).
+    </p>
+    <div class="grid">
+      ${field("Enable all tracking", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Google Tag Manager ID (GTM-…)", "googleTagManagerId", d.googleTagManagerId || d.gtmId || "")}
+      ${field("Google Analytics ID (G-…)", "googleAnalyticsId", d.googleAnalyticsId || d.gaId || "")}
+      ${field("Google Ads tag ID (AW-…)", "googleAdsId", d.googleAdsId || "")}
+      ${field("Meta Pixel ID", "metaPixelId", d.metaPixelId || "")}
+      ${field("Google Search Console verification", "googleSiteVerification", d.googleSiteVerification || "")}
+    </div>
+    <div class="field full" style="margin-top:1rem">
+      <label for="tracking_head_scripts">Additional &lt;head&gt; scripts</label>
+      <textarea data-path="headScripts" id="tracking_head_scripts" rows="8" placeholder="Paste full &lt;script&gt; tags from Google Ads, LinkedIn, Microsoft, TikTok, AI ad platforms, etc.">${escapeHtml(d.headScripts || "")}</textarea>
+      <p class="hint" style="color:#888;font-size:.85rem;margin-top:.5rem">Paste complete <code>&lt;script&gt;…&lt;/script&gt;</code> blocks exactly as your platform provides.</p>
+    </div>
+    <div class="field full" style="margin-top:1rem">
+      <label for="tracking_body_html">Additional body snippets (noscript / pixels)</label>
+      <textarea data-path="bodyStartHtml" id="tracking_body_html" rows="6" placeholder="Paste &lt;noscript&gt; or pixel fallback HTML">${escapeHtml(d.bodyStartHtml || "")}</textarea>
+    </div>
+  </div>`;
 }
 
 function renderSettings(d) {
-  return card(
+  return `
+  ${card(
     "Settings",
     `
     ${field("Site name", "siteName", d.siteName)}
@@ -460,7 +475,14 @@ function renderSettings(d) {
     ${field("Demo base path", "demoBasePath", d.demoBasePath)}
     ${field("Notes", "notes", d.notes, "textarea")}
   `,
-  );
+  )}
+  <div class="card">
+    <h3>Marketing tags</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0">
+      Add GTM, GA, Google Ads, Meta Pixel, and custom scripts under
+      <strong>Tracking &amp; Pixels</strong> in the left sidebar. You can fill them in anytime later.
+    </p>
+  </div>`;
 }
 
 function handleAction(action, index) {

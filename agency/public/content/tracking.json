@@ -1,8 +1,10 @@
 {
-  "enabled": false,
-  "gtmId": "",
-  "gaId": "",
+  "enabled": true,
+  "googleTagManagerId": "",
+  "googleAnalyticsId": "",
+  "googleAdsId": "",
   "metaPixelId": "",
+  "googleSiteVerification": "",
   "headScripts": "",
   "bodyStartHtml": ""
 }

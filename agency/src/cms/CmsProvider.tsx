@@ -19,6 +19,11 @@ import { resourcePages as fallbackResources } from "../data/resourceCatalog";
 import { testimonials as fallbackTestimonials } from "../data/content";
 import { clientLogos as fallbackLogos } from "../data/work";
 import type { DetailPageContent } from "../data/catalogTypes";
+import {
+  defaultTracking,
+  mergeTracking,
+  type TrackingSettings,
+} from "../data/settings";
 
 type CompanyCms = typeof fallbackCompany & {
   announcement?: string;
@@ -58,6 +63,7 @@ export type AgencyCms = {
   projects: DetailPageContent[];
   resources: DetailPageContent[];
   content: ContentCms;
+  tracking: typeof defaultTracking;
   ready: boolean;
 };
 
@@ -95,6 +101,7 @@ const defaults: AgencyCms = {
       sub: "Book a free consultation or request a custom proposal today.",
     },
   },
+  tracking: defaultTracking,
   ready: false,
 };
 
@@ -135,6 +142,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         projects,
         resources,
         content,
+        trackingJson,
       ] = await Promise.all([
         fetchJson<Partial<CompanyCms>>("company"),
         fetchJson<Partial<HomeCms>>("home"),
@@ -148,6 +156,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         fetchJson<{ items: DetailPageContent[] }>("projects"),
         fetchJson<{ items: DetailPageContent[] }>("resources"),
         fetchJson<Partial<ContentCms>>("content"),
+        fetchJson<TrackingSettings>("tracking"),
       ]);
 
       if (cancelled) return;
@@ -198,6 +207,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             ...(content?.footerCta || {}),
           },
         },
+        tracking: mergeTracking(trackingJson),
         ready: true,
       });
     })();
