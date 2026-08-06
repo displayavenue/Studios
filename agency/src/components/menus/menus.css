@@ -111,6 +111,15 @@ a.mega-col-title:hover {
 .mega-side-dark h4 {
   font-size: 0.95rem;
   margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.mega-side-dark .mega-check-list li {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.mega-side-dark .mega-check-list li svg {
+  flex-shrink: 0;
 }
 
 .mega-stat-list {
