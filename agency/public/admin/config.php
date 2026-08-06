@@ -22,7 +22,7 @@ if (PHP_SAPI !== 'cli') {
 
 return [
   // bcrypt hash — never store plaintext passwords here
-  'admin_password_hash' => '$2y$10$eoOA816R3D2Bacfmzl3a..JD/qH2yqPtmETucI0XQ1NlJbw/vRKK6',
+  'admin_password_hash' => '$2y$10$Pc9nj9lSnMKKW8E7eaVxMev4hA4s6Po5IhhIKitECrwxJyh18cFhK',
   'session_ttl' => 60 * 60 * 4, // 4 hours
   'session_name' => 'da_agency_admin',
   'login_max_attempts' => 8,
