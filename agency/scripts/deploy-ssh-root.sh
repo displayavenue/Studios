@@ -55,31 +55,46 @@ if [ -f /tmp/da-demo-content.tgz ]; then
   "
 fi
 
-echo "Removing WordPress from public_html (backup already saved)…"
+echo "Removing WordPress leftovers from public_html (backup already saved)…"
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
   "test -f \$HOME/backups/displayavenue-wordpress-backup-20260806-073054.tar.gz || \
    ls \$HOME/backups/displayavenue-wordpress-backup-*.tar.gz | head -1 | grep -q .; \
    echo BACKUP_PRESENT; \
-   cd $DOC; \
-   # Delete WordPress and leftover root files; keep nothing of WP
-   rm -rf wp-admin wp-content wp-includes; \
+   cd \$HOME/$DOC; \
+   # Delete WordPress leftovers if any remain
+   rm -rf wp-admin wp-content wp-includes domains demo; \
    rm -f wp-*.php xmlrpc.php license.txt readme.html index.php default.php \
-         siteguarding_tools.php error_log llms.txt bk.zip .htaccess .htaccess.bk; \
-   # Remove old /demo after we copied content (will redeploy root)
-   rm -rf demo; \
-   mkdir -p $DOC; \
-   ls -la $DOC | head -20; \
-   echo WP_DELETED"
+         siteguarding_tools.php error_log bk.zip .htaccess.bk 2>/dev/null || true; \
+   # Clear previous SPA assets except content (preserve CMS edits)
+   if [ -d content ]; then cp -a content /tmp/da-root-content-backup-\$\$; fi; \
+   find . -mindepth 1 -maxdepth 1 ! -name content -exec rm -rf {} +; \
+   mkdir -p .; \
+   ls -la . | head -20; \
+   echo ROOT_CLEARED"
 
 echo "Uploading agency site to $HOST:$DOC …"
 sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" -r /tmp/da-agency-root/. "$HOST:$DOC/"
 
+# Restore remote CMS content if present, then force-refresh key homepage files from this build
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
-  "chmod 755 $DOC $DOC/content $DOC/admin; \
-   chmod 644 $DOC/content/*.json $DOC/index.html $DOC/.htaccess $DOC/robots.txt $DOC/sitemap.xml $DOC/llms.txt 2>/dev/null || true; \
-   chmod 664 $DOC/content/*.json; \
-   php -r \"require '$DOC/admin/seo-sync.php'; \\\$r=da_sync_seo_artifacts('$DOC/content', '$DOC'); echo 'SEO_BASE='.\\\$r['base'].' URLS='.\\\$r['urlCount'].PHP_EOL;\" 2>/dev/null || echo 'SEO sync skipped'; \
-   ls -la $DOC | head -25; \
+  "if ls -d /tmp/da-root-content-backup-* >/dev/null 2>&1; then \
+     rm -rf \$HOME/$DOC/content; \
+     mv /tmp/da-root-content-backup-* \$HOME/$DOC/content; \
+   fi"
+
+sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
+  /tmp/da-agency-root/content/home.json \
+  /tmp/da-agency-root/content/company.json \
+  /tmp/da-agency-root/content/settings.json \
+  /tmp/da-agency-root/content/services.json \
+  "$HOST:$DOC/content/"
+
+sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
+  "chmod 755 \$HOME/$DOC \$HOME/$DOC/content \$HOME/$DOC/admin; \
+   chmod 644 \$HOME/$DOC/content/*.json \$HOME/$DOC/index.html \$HOME/$DOC/.htaccess \$HOME/$DOC/robots.txt \$HOME/$DOC/sitemap.xml \$HOME/$DOC/llms.txt 2>/dev/null || true; \
+   chmod 664 \$HOME/$DOC/content/*.json; \
+   php -r \"require '\$HOME/$DOC/admin/seo-sync.php'; \\\$r=da_sync_seo_artifacts('\$HOME/$DOC/content', '\$HOME/$DOC'); echo 'SEO_BASE='.\\\$r['base'].' URLS='.\\\$r['urlCount'].PHP_EOL;\" 2>/dev/null || echo 'SEO sync skipped'; \
+   ls -la \$HOME/$DOC | head -25; \
    echo ROOT_CUTOVER_OK"
 
 echo "Live site: https://displayavenue.com/"
