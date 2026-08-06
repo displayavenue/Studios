@@ -44,6 +44,11 @@ return [
     'resources' => 'Resources',
     'content' => 'Testimonials & Extras',
     'tracking' => 'Tracking & Pixels',
+    'chatbot' => 'Website Chatbot',
     'settings' => 'Settings',
   ],
+  // Optional: set an OpenAI key for smarter chatbot replies.
+  // Leave empty to use built-in answers from website + CMS chatbot content.
+  'openai_api_key' => '',
+  'openai_model' => 'gpt-4o-mini',
 ];

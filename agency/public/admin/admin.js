@@ -222,6 +222,7 @@ function renderEditor() {
     resources: () => renderCatalog(d, "Resource"),
     content: renderContent,
     tracking: renderTracking,
+    chatbot: renderChatbot,
     settings: renderSettings,
   };
   wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
@@ -1121,6 +1122,71 @@ function renderTracking(d) {
   </div>`;
 }
 
+function renderChatbot(d) {
+  const faqs = Array.isArray(d.faqs) ? d.faqs : [];
+  const facts = Array.isArray(d.facts) ? d.facts : [];
+  const prompts = Array.isArray(d.suggestedPrompts) ? d.suggestedPrompts : [];
+  const faqRows = faqs
+    .map(
+      (f, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>FAQ ${i + 1}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-chat-faq" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Question", `faqs.${i}.q`, f.q || "", "textarea")}
+          ${field("Answer", `faqs.${i}.a`, f.a || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+  ${card(
+    "Chatbot settings",
+    `
+    <p class="hint field full">
+      The website chat bubble answers from your live site content (company, services, packages, industries, case studies)
+      plus the facts and FAQs you add here. Save to publish instantly.
+    </p>
+    <div class="field"><label>Enabled</label>
+      <input type="checkbox" data-path="enabled" ${d.enabled !== false ? "checked" : ""} />
+    </div>
+    ${field("Bot name", "botName", d.botName || "DA Assist")}
+    ${field("Welcome message", "welcomeMessage", d.welcomeMessage || "", "textarea")}
+    ${field("Input placeholder", "placeholder", d.placeholder || "")}
+    ${field("Fallback message (when unknown)", "fallbackMessage", d.fallbackMessage || "", "textarea")}
+    ${field("Handoff button label", "handoffLabel", d.handoffLabel || "Talk to a human")}
+    ${field("Handoff link", "handoffHref", d.handoffHref || "/contact")}
+  `,
+  )}
+  <div class="card">
+    <div class="list-item-head">
+      <h3>Suggested prompts</h3>
+    </div>
+    <div class="field full"><label>One prompt per line</label>
+      <textarea data-path="suggestedPrompts" data-array="true">${escapeHtml(prompts.join("\n"))}</textarea>
+    </div>
+  </div>
+  <div class="card">
+    <div class="list-item-head">
+      <h3>Business details / facts the bot should know</h3>
+    </div>
+    <p class="hint">One fact per line. Add pricing notes, offers, process details, policies — anything not already on service pages.</p>
+    <div class="field full"><label>Facts</label>
+      <textarea data-path="facts" data-array="true" rows="10">${escapeHtml(facts.join("\n"))}</textarea>
+    </div>
+  </div>
+  <div class="card">
+    <div class="list-item-head">
+      <h3>Custom FAQs</h3>
+      <button type="button" class="btn btn-gold" data-action="add-chat-faq">Add FAQ</button>
+    </div>
+    ${faqRows || "<p class='empty'>No custom FAQs yet.</p>"}
+  </div>`;
+}
+
 function renderSettings(d) {
   const cleared = d.cacheClearedAt
     ? new Date(d.cacheClearedAt).toLocaleString()
@@ -1300,6 +1366,11 @@ function handleAction(action, index) {
   } else if (action === "sync-seo") {
     regenerateSitemap();
     return;
+  } else if (action === "add-chat-faq") {
+    d.faqs = d.faqs || [];
+    d.faqs.push({ q: "New question?", a: "Write the answer the bot should give." });
+  } else if (action === "del-chat-faq") {
+    (d.faqs || []).splice(i, 1);
   } else return;
 
   if (d.navItems) {

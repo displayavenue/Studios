@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { WhatsAppFloat } from "./Placeholder";
+import { ChatWidget } from "./ChatWidget";
 import { TrackingScripts } from "./TrackingScripts";
 import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
 import { ScrollToTop } from "./ScrollToTop";
@@ -20,6 +21,7 @@ export function Layout() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <ChatWidget />
     </>
   );
 }

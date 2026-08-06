@@ -29,8 +29,18 @@ Replace `admin_password_hash` with the output. Never commit or publish plaintext
 | Case Studies / Portfolio / Resources | Detail pages |
 | Testimonials & Extras | Home social proof + footer CTA |
 | Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
+| Website Chatbot | Enable/disable, welcome text, facts, FAQs, suggested prompts |
 | Settings | Site name & notes, **Auto sitemap / SEO**, Clear site cache |
 | Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
+
+## Website chatbot
+
+The blue **Chat** button on the site answers using:
+
+1. Live website content (company, services, packages, industries, case studies, portfolio)
+2. Extra facts + FAQs you enter under **Website Chatbot** in the CMS
+
+Optional smarter AI replies: set `openai_api_key` in `admin/config.php` (server-side only). Leave empty to use the built-in content answers.
 
 ## Auto sitemap (SEO)
 
