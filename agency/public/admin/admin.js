@@ -8,6 +8,7 @@ const state = {
   dirty: false,
   newLeads: 0,
   notifyEmail: "info@displayavenue.com",
+  mailStats: { sent: 0, failed: 0, attempted: 0, byType: {}, recent: [] },
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -178,6 +179,8 @@ async function openLeads() {
     state.current = "leads";
     state.data = json.data || { items: [] };
     state.newLeads = (state.data.items || []).filter((i) => (i.status || "new") === "new").length;
+    if (json.mailStats) state.mailStats = json.mailStats;
+    if (json.notifyEmail) state.notifyEmail = json.notifyEmail;
     setDirty(false);
     $("#panel-title").textContent = "Form Leads (Inbox)";
     $("#panel-sub").textContent = `Submissions from the website. New leads are also emailed to ${state.notifyEmail}.`;
@@ -248,17 +251,48 @@ function renderEditor() {
 function renderLeads(d) {
   const items = d.items || [];
   const newCount = items.filter((i) => (i.status || "new") === "new").length;
+  const emailedCount = items.filter((i) => i.emailed === true).length;
+  const stats = state.mailStats || { sent: 0, failed: 0, attempted: 0, recent: [] };
+  const recent = Array.isArray(stats.recent) ? stats.recent.slice(0, 8) : [];
+  const recentRows = recent
+    .map((m) => {
+      const when = m.at ? new Date(m.at).toLocaleString() : "—";
+      return `<tr>
+        <td>${escapeHtml(when)}</td>
+        <td>${m.ok ? "Sent" : "Failed"}</td>
+        <td>${escapeHtml(m.type || "—")}</td>
+        <td>${escapeHtml(m.to || "—")}</td>
+        <td>${escapeHtml(m.subject || "—")}</td>
+      </tr>`;
+    })
+    .join("");
+
   if (!items.length) {
     return `
       <section class="card">
         <h3>No leads yet</h3>
         <p class="muted">When someone fills the contact or newsletter form on the website, it will appear here and also email <strong>${escapeHtml(state.notifyEmail)}</strong>.</p>
+      </section>
+      <section class="card">
+        <h3>Website emails (backend tally)</h3>
+        <p style="margin:0 0 .75rem;line-height:1.6">
+          Attempted: <strong>${escapeHtml(String(stats.attempted || 0))}</strong> ·
+          Sent: <strong>${escapeHtml(String(stats.sent || 0))}</strong> ·
+          Failed: <strong>${escapeHtml(String(stats.failed || 0))}</strong>
+        </p>
+        <p class="muted">Every notification email the website sends is counted here automatically.</p>
       </section>`;
   }
   const rows = items
     .map((item) => {
       const status = item.status || "new";
       const when = item.createdAt ? new Date(item.createdAt).toLocaleString() : "—";
+      const mailBadge =
+        item.emailed === true
+          ? `<span class="lead-status status-replied">email sent</span>`
+          : item.emailed === false
+            ? `<span class="lead-status status-archived">email failed</span>`
+            : "";
       return `
       <article class="lead-card ${status === "new" ? "is-new" : ""}">
         <div class="lead-card-head">
@@ -266,7 +300,10 @@ function renderLeads(d) {
             <strong>${escapeHtml(item.name || "—")}</strong>
             <span class="lead-meta">${escapeHtml(item.source || "contact")} · ${escapeHtml(when)}</span>
           </div>
-          <span class="lead-status status-${escapeHtml(status)}">${escapeHtml(status)}</span>
+          <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:flex-end">
+            <span class="lead-status status-${escapeHtml(status)}">${escapeHtml(status)}</span>
+            ${mailBadge}
+          </div>
         </div>
         <div class="lead-body">
           <p><a href="mailto:${escapeHtml(item.email || "")}">${escapeHtml(item.email || "—")}</a>
@@ -287,8 +324,25 @@ function renderLeads(d) {
 
   return `
     <section class="card">
-      <h3>Inbox · ${items.length} total${newCount ? ` · ${newCount} new` : ""}</h3>
+      <h3>Inbox · ${items.length} total${newCount ? ` · ${newCount} new` : ""} · ${emailedCount} emailed</h3>
       <p class="muted">Notifications go to <strong>${escapeHtml(state.notifyEmail)}</strong>. Lead data is private (not on the public website).</p>
+    </section>
+    <section class="card">
+      <h3>Website emails (backend tally)</h3>
+      <p style="margin:0 0 .75rem;line-height:1.6">
+        Attempted: <strong>${escapeHtml(String(stats.attempted || 0))}</strong> ·
+        Sent: <strong>${escapeHtml(String(stats.sent || 0))}</strong> ·
+        Failed: <strong>${escapeHtml(String(stats.failed || 0))}</strong>
+      </p>
+      <p class="muted" style="margin:0 0 .75rem">Every mail the website sends (lead alerts, etc.) is logged and counted automatically.</p>
+      ${
+        recentRows
+          ? `<div style="overflow:auto"><table class="data-table" style="width:100%;border-collapse:collapse;font-size:.86rem">
+              <thead><tr><th align="left">When</th><th align="left">Status</th><th align="left">Type</th><th align="left">To</th><th align="left">Subject</th></tr></thead>
+              <tbody>${recentRows}</tbody>
+            </table></div>`
+          : `<p class="muted">No outbound emails logged yet.</p>`
+      }
     </section>
     <div class="leads-list">${rows}</div>`;
 }
@@ -1557,6 +1611,7 @@ function applyStatus(status) {
   state.collections = status.collections || {};
   state.newLeads = status.newLeads || 0;
   if (status.notifyEmail) state.notifyEmail = status.notifyEmail;
+  if (status.mailStats) state.mailStats = { ...state.mailStats, ...status.mailStats };
 }
 
 async function init() {

@@ -214,10 +214,14 @@ switch ($action) {
   case 'status':
     $authed = isAuthed($config);
     $newLeads = 0;
+    $mailStats = null;
     if ($authed) {
       foreach (readLeadsStore($config)['items'] as $item) {
         if (($item['status'] ?? 'new') === 'new') $newLeads++;
       }
+      require_once __DIR__ . '/mail-log.php';
+      $mailStats = da_mail_stats($config);
+      unset($mailStats['recent']); // keep status payload light
     }
     respond(200, [
       'ok' => true,
@@ -225,6 +229,7 @@ switch ($action) {
       'collections' => $authed ? $config['collections'] : new stdClass(),
       'newLeads' => $newLeads,
       'notifyEmail' => $authed ? (string)($config['notify_email'] ?? 'info@displayavenue.com') : null,
+      'mailStats' => $mailStats,
     ]);
 
   case 'login':
@@ -505,7 +510,13 @@ switch ($action) {
 
   case 'leads':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
-    respond(200, ['ok' => true, 'data' => readLeadsStore($config)]);
+    require_once __DIR__ . '/mail-log.php';
+    respond(200, [
+      'ok' => true,
+      'data' => readLeadsStore($config),
+      'mailStats' => da_mail_stats($config),
+      'notifyEmail' => (string)($config['notify_email'] ?? 'info@displayavenue.com'),
+    ]);
 
   case 'lead-update':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);

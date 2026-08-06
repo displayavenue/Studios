@@ -27,13 +27,13 @@ export function LegalPage({ type }: { type: "privacy" | "terms" }) {
               <>
                 <p>We may collect contact details you submit via forms, usage analytics, and communications metadata to respond to inquiries and improve services.</p>
                 <p>We do not sell personal data. Data may be processed with trusted providers (hosting, analytics, CRM) under appropriate safeguards.</p>
-                <p>Contact hello@displayavenue.com for privacy requests.</p>
+                <p>Contact info@displayavenue.com for privacy requests.</p>
               </>
             ) : (
               <>
                 <p>By using this website you agree to use content for lawful purposes and not to misuse forms, tools, or intellectual property.</p>
                 <p>Service engagements are governed by separate proposals, SOWs, and invoices agreed with DisplayAvenue.</p>
-                <p>Contact hello@displayavenue.com for questions about these terms.</p>
+                <p>Contact info@displayavenue.com for questions about these terms.</p>
               </>
             )}
           </div>

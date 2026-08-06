@@ -109,6 +109,7 @@ $message = mb_substr($message, 0, 5000);
 $page = mb_substr($page, 0, 300);
 
 $config = require __DIR__ . '/admin/config.php';
+require_once __DIR__ . '/admin/mail-log.php';
 $notifyTo = (string)($config['notify_email'] ?? 'info@displayavenue.com');
 $dataDir = dirname((string)($config['leads_file'] ?? (__DIR__ . '/admin/data/leads.json')));
 if (!is_dir($dataDir)) {
@@ -136,6 +137,8 @@ $lead = [
   'page' => $page !== '' ? $page : ((string)($_SERVER['HTTP_REFERER'] ?? '')),
   'ip' => lead_client_ip(),
   'userAgent' => mb_substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 250),
+  'emailed' => false,
+  'mailId' => null,
 ];
 
 array_unshift($store['items'], $lead);
@@ -151,7 +154,6 @@ if (@file_put_contents($tmp, $json . "\n") === false || !@rename($tmp, $leadsFil
   lead_respond(500, ['ok' => false, 'error' => 'Could not save your request. Please email info@displayavenue.com']);
 }
 
-$notifyTo = (string)($config['notify_email'] ?? 'info@displayavenue.com');
 $subjectSource = [
   'contact' => 'New contact / proposal request',
   'newsletter' => 'New newsletter subscription',
@@ -180,11 +182,53 @@ $headers = [
   'X-Mailer: DisplayAvenue-LeadForm',
 ];
 
-$mailed = @mail($notifyTo, '=?UTF-8?B?' . base64_encode($subject) . '?=', $bodyText, implode("\r\n", $headers));
+$mailResult = da_send_tracked_mail($config, [
+  'to' => $notifyTo,
+  'subject' => $subject,
+  'body' => $bodyText,
+  'headers' => $headers,
+  'type' => 'lead-notify',
+  'meta' => [
+    'leadId' => $lead['id'],
+    'source' => $source,
+    'visitorEmail' => $email,
+  ],
+]);
+
+// Persist emailed status on the lead
+$store = ['items' => []];
+if (is_file($leadsFile)) {
+  $existing = json_decode((string)file_get_contents($leadsFile), true);
+  if (is_array($existing) && isset($existing['items']) && is_array($existing['items'])) {
+    $store = $existing;
+  }
+}
+foreach ($store['items'] as &$item) {
+  if (($item['id'] ?? '') === $lead['id']) {
+    $item['emailed'] = (bool)$mailResult['ok'];
+    $item['mailId'] = $mailResult['id'] ?? null;
+    $item['emailedAt'] = $mailResult['at'] ?? gmdate('c');
+    break;
+  }
+}
+unset($item);
+$store['updatedAt'] = gmdate('c');
+@file_put_contents(
+  $leadsFile,
+  json_encode($store, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n"
+);
+
+$stats = da_mail_stats($config);
 
 lead_respond(200, [
   'ok' => true,
   'saved' => true,
-  'emailed' => (bool)$mailed,
+  'emailed' => (bool)$mailResult['ok'],
+  'mailId' => $mailResult['id'] ?? null,
   'id' => $lead['id'],
+  'mailStats' => [
+    'sent' => $stats['sent'],
+    'failed' => $stats['failed'],
+    'attempted' => $stats['attempted'],
+  ],
 ]);
