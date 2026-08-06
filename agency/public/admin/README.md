@@ -29,8 +29,24 @@ Replace `admin_password_hash` with the output. Never commit or publish plaintext
 | Case Studies / Portfolio / Resources | Detail pages |
 | Testimonials & Extras | Home social proof + footer CTA |
 | Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
-| Settings | Site name & notes, **Clear site cache** |
+| Settings | Site name & notes, **Auto sitemap / SEO**, Clear site cache |
 | Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
+
+## Auto sitemap (SEO)
+
+The live sitemap is always available at:
+
+https://displayavenue.com/sitemap.xml
+
+It is generated automatically from CMS content:
+
+1. On every **Save** in the CMS
+2. When you click top-bar **Sitemap** or Settings → **Regenerate sitemap now**
+3. Live via `sitemap.php` (so new pages appear even before a static rebuild)
+
+Also updates `robots.txt` and `llms.txt`, and best-effort pings Bing/Google.
+
+Submit `https://displayavenue.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 
 ## Clear cache
 

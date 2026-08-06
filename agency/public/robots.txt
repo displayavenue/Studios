@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /admin
 
 # AI / assistant crawlers
 User-agent: GPTBot
@@ -22,3 +23,4 @@ User-agent: PerplexityBot
 Allow: /
 
 Sitemap: https://displayavenue.com/sitemap.xml
+Host: displayavenue.com

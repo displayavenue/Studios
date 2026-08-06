@@ -57,8 +57,9 @@ Options -Indexes
   # Old /demo URLs → root
   RewriteRule ^demo/?(.*)$ /$1 [R=301,L]
 
-  # Live sitemap
+  # Live auto sitemap (always generated from CMS JSON)
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
+  RewriteRule ^sitemap\.xsl$ - [L]
 
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f

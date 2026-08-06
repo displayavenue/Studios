@@ -1122,6 +1122,9 @@ function renderSettings(d) {
   const cleared = d.cacheClearedAt
     ? new Date(d.cacheClearedAt).toLocaleString()
     : "Never";
+  const seoAt = d.seoSyncedAt ? new Date(d.seoSyncedAt).toLocaleString() : "Never";
+  const sitemapUrl = d.sitemapUrl || "https://displayavenue.com/sitemap.xml";
+  const urlCount = d.sitemapUrlCount ?? "—";
   return `
   ${card(
     "Settings",
@@ -1132,6 +1135,25 @@ function renderSettings(d) {
     ${field("Notes", "notes", d.notes, "textarea")}
   `,
   )}
+  <div class="card">
+    <h3>Auto sitemap (SEO)</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 .75rem">
+      The live sitemap at <a href="${escapeAttr(sitemapUrl)}" target="_blank" rel="noreferrer"><code>/sitemap.xml</code></a>
+      rebuilds automatically from CMS content whenever you <strong>Save</strong> any section.
+      Submit this URL in Google Search Console and Bing Webmaster Tools.
+    </p>
+    <p style="font-size:.85rem;margin:0 0 1rem;line-height:1.6">
+      Auto sitemap: <strong>${d.autoSitemap === false ? "Off" : "On"}</strong><br />
+      Indexed URLs: <strong>${escapeHtml(String(urlCount))}</strong><br />
+      Last regenerated: <strong>${escapeHtml(seoAt)}</strong><br />
+      Public URL: <a href="${escapeAttr(sitemapUrl)}" target="_blank" rel="noreferrer">${escapeHtml(sitemapUrl)}</a>
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+      <button type="button" class="btn btn-gold" data-action="sync-seo">Regenerate sitemap now</button>
+      <a class="btn btn-ghost" href="${escapeAttr(sitemapUrl)}" target="_blank" rel="noreferrer">Open sitemap ↗</a>
+      <a class="btn btn-ghost" href="/robots.txt" target="_blank" rel="noreferrer">Open robots.txt ↗</a>
+    </div>
+  </div>
   <div class="card">
     <h3>Site cache</h3>
     <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 .75rem">
@@ -1272,6 +1294,9 @@ function handleAction(action, index) {
   } else if (action === "clear-cache") {
     clearSiteCache();
     return;
+  } else if (action === "sync-seo") {
+    regenerateSitemap();
+    return;
   } else return;
 
   if (d.navItems) {
@@ -1282,6 +1307,19 @@ function handleAction(action, index) {
 
   setDirty(true);
   renderEditor();
+}
+
+async function regenerateSitemap() {
+  try {
+    const res = await api("sync-seo", {});
+    const count = res.seo?.urlCount ?? res.urlCount ?? "?";
+    toast(`Sitemap regenerated — ${count} URLs`);
+    if (state.current === "settings") {
+      await openCollection("settings");
+    }
+  } catch (e) {
+    toast(e.message || "Could not regenerate sitemap", "err");
+  }
 }
 
 async function clearSiteCache() {
@@ -1311,7 +1349,7 @@ async function save() {
   try {
     await api("save", { collection: state.current, data: state.data });
     setDirty(false);
-    toast("Saved - refresh the website to see changes");
+    toast("Saved - sitemap auto-updated. Refresh the website to see changes");
   } catch (e) {
     toast(e.message, "err");
   }
@@ -1355,6 +1393,7 @@ async function init() {
   $("#save-btn").onclick = save;
   $("#reload-btn").onclick = () => state.current && openCollection(state.current);
   $("#clear-cache-btn").onclick = () => clearSiteCache();
+  $("#sync-seo-btn").onclick = () => regenerateSitemap();
 
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {

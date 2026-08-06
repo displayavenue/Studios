@@ -274,8 +274,14 @@ switch ($action) {
   case 'sync-seo':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
     require_once __DIR__ . '/seo-sync.php';
-    $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
-    respond(200, ['ok' => true, 'seo' => $seo]);
+    $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']), true);
+    respond(200, [
+      'ok' => true,
+      'seo' => $seo,
+      'urlCount' => $seo['urlCount'] ?? 0,
+      'sitemapUrl' => $seo['sitemapUrl'] ?? '',
+      'message' => 'Auto sitemap regenerated from CMS content.',
+    ]);
 
   case 'clear-cache':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);

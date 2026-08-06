@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build-time SEO artifacts (sitemap.xml + llms.txt) from CMS JSON.
+ * Build-time SEO artifacts (sitemap.xml + llms.txt + robots.txt) from CMS JSON.
  * Mirrors agency/public/admin/seo-sync.php for local/CI builds without PHP.
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -30,6 +30,17 @@ function siteBase(company, settings) {
   return mount ? `${website}/${mount}` : website;
 }
 
+function lastmod(value, fallback) {
+  const fb = fallback || new Date().toISOString().slice(0, 10);
+  if (!value) return fb;
+  const raw = String(value).trim();
+  const m = raw.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (m) return m[1];
+  if (/^\d{4}$/.test(raw)) return `${raw}-01-01`;
+  const d = new Date(raw);
+  return Number.isNaN(d.getTime()) ? fb : d.toISOString().slice(0, 10);
+}
+
 const company = readJson("company.json");
 const settings = readJson("settings.json");
 const services = readJson("services.json");
@@ -42,8 +53,11 @@ const cases = readJson("cases.json");
 const projects = readJson("projects.json");
 const resources = readJson("resources.json");
 
+const today = new Date().toISOString().slice(0, 10);
+const settingsLast = lastmod(settings.updatedAt || settings.seoSyncedAt, today);
+
 const staticPages = [
-  ["/", "1.0", "weekly"],
+  ["/", "1.0", "daily"],
   ["/services", "0.9", "weekly"],
   ["/industries", "0.9", "weekly"],
   ["/solutions", "0.9", "weekly"],
@@ -63,24 +77,30 @@ const urls = staticPages.map(([path, priority, changefreq]) => ({
   path,
   priority,
   changefreq,
+  lastmod: settingsLast,
 }));
 
 const maps = [
-  [items(services), "/services/", "0.7"],
-  [items(industries), "/industries/", "0.7"],
-  [items(packages), "/packages/", "0.7"],
-  [items(solutions), "/solutions/", "0.65"],
-  [items(ai), "/ai-platform/", "0.7"],
-  [items(tools), "/free-tools/", "0.65"],
-  [items(cases), "/case-studies/", "0.65"],
-  [items(projects), "/portfolio/", "0.65"],
-  [items(resources), "/resources/", "0.6"],
+  [items(services), "/services/", "0.7", "weekly"],
+  [items(industries), "/industries/", "0.7", "monthly"],
+  [items(packages), "/packages/", "0.7", "monthly"],
+  [items(solutions), "/solutions/", "0.65", "monthly"],
+  [items(ai), "/ai-platform/", "0.7", "monthly"],
+  [items(tools), "/free-tools/", "0.65", "monthly"],
+  [items(cases), "/case-studies/", "0.65", "monthly"],
+  [items(projects), "/portfolio/", "0.65", "monthly"],
+  [items(resources), "/resources/", "0.6", "weekly"],
 ];
 
-for (const [list, prefix, priority] of maps) {
+for (const [list, prefix, priority, changefreq] of maps) {
   for (const item of list) {
     if (item?.slug) {
-      urls.push({ path: `${prefix}${item.slug}`, priority, changefreq: "monthly" });
+      urls.push({
+        path: `${prefix}${item.slug}`,
+        priority,
+        changefreq,
+        lastmod: lastmod(item.updatedAt || item.date || settingsLast, settingsLast),
+      });
     }
   }
 }
@@ -94,15 +114,15 @@ for (const u of urls) {
 }
 
 const base = siteBase(company, settings);
-const lastmod = new Date().toISOString().slice(0, 10);
 
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+xml += `<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n`;
 xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 for (const u of unique) {
   const loc = `${base.replace(/\/$/, "")}${u.path === "/" ? "/" : u.path}`;
   xml += `  <url>\n`;
   xml += `    <loc>${loc.replace(/&/g, "&amp;")}</loc>\n`;
-  xml += `    <lastmod>${lastmod}</lastmod>\n`;
+  xml += `    <lastmod>${u.lastmod || today}</lastmod>\n`;
   xml += `    <changefreq>${u.changefreq}</changefreq>\n`;
   xml += `    <priority>${u.priority}</priority>\n`;
   xml += `  </url>\n`;
@@ -111,6 +131,39 @@ xml += `</urlset>\n`;
 
 const name = company.name || "DisplayAvenue";
 const tagline = company.tagline || "Digital Growth. AI Powered.";
+const sitemapUrl = `${base.replace(/\/$/, "")}/sitemap.xml`;
+const host = base.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+const robots = [
+  "User-agent: *",
+  "Allow: /",
+  "Disallow: /admin/",
+  "Disallow: /admin",
+  "",
+  "# AI / assistant crawlers",
+  "User-agent: GPTBot",
+  "Allow: /",
+  "",
+  "User-agent: ChatGPT-User",
+  "Allow: /",
+  "",
+  "User-agent: Google-Extended",
+  "Allow: /",
+  "",
+  "User-agent: anthropic-ai",
+  "Allow: /",
+  "",
+  "User-agent: ClaudeBot",
+  "Allow: /",
+  "",
+  "User-agent: PerplexityBot",
+  "Allow: /",
+  "",
+  `Sitemap: ${sitemapUrl}`,
+  `Host: ${host}`,
+  "",
+].join("\n");
+
 const llms = [
   `# ${name}`,
   `> ${tagline}`,
@@ -132,18 +185,22 @@ const llms = [
   `- Phone: ${company.phone || ""}`,
   `- Email: ${company.email || ""}`,
   `- Website: ${base}/`,
+  `- Sitemap: ${sitemapUrl}`,
   "",
 ].join("\n");
 
 writeFileSync(join(publicDir, "sitemap.xml"), xml);
 writeFileSync(join(publicDir, "llms.txt"), llms);
+writeFileSync(join(publicDir, "robots.txt"), robots);
 
 settings.seoSyncedAt = new Date().toISOString();
 settings.sitemapUrlCount = unique.length;
+settings.sitemapUrl = sitemapUrl;
+settings.autoSitemap = true;
 settings.updatedAt = settings.seoSyncedAt;
 writeFileSync(
   join(contentDir, "settings.json"),
   `${JSON.stringify(settings, null, 2)}\n`,
 );
 
-console.log(`SEO: wrote sitemap.xml + llms.txt (${unique.length} URLs) → ${base}`);
+console.log(`SEO: wrote sitemap.xml + robots.txt + llms.txt (${unique.length} URLs) → ${base}`);
