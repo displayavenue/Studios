@@ -13,8 +13,8 @@ function da_read_json_file(string $path): array {
 
 function da_site_base(array $company, array $settings = []): string {
   $website = rtrim((string)($company['website'] ?? 'https://displayavenue.com'), '/');
-  $mount = trim((string)($settings['demoBasePath'] ?? '/demo'), '/');
-  // Demo deploy lives under /demo until WordPress cutover
+  // Empty demoBasePath = site lives at domain root after WordPress cutover
+  $mount = trim((string)($settings['demoBasePath'] ?? ''), '/');
   if ($mount !== '') {
     return $website . '/' . $mount;
   }

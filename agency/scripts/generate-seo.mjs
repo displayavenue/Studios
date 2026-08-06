@@ -26,7 +26,7 @@ function siteBase(company, settings) {
     /\/$/,
     "",
   );
-  const mount = String(settings.demoBasePath ?? "/demo").replace(/^\/|\/$/g, "");
+  const mount = String(settings.demoBasePath ?? "").replace(/^\/|\/$/g, "");
   return mount ? `${website}/${mount}` : website;
 }
 
