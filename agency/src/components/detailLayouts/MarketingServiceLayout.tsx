@@ -33,10 +33,10 @@ export function MarketingServiceLayout({ page }: { page: DetailPageContent }) {
       </section>
 
       <section className="section">
-        <div className="container mkt-split">
-          <div>
-            <h2 className="section-title">Outcomes we optimize for</h2>
-            <div className="detail-benefits">
+        <div className="container">
+          <h2 className="section-title">Outcomes we optimize for</h2>
+          <div className="mkt-split">
+            <div className="mkt-outcomes">
               {page.benefits.map((b) => (
                 <div key={b.title} className="detail-benefit card">
                   <h3>{b.title}</h3>
@@ -44,18 +44,18 @@ export function MarketingServiceLayout({ page }: { page: DetailPageContent }) {
                 </div>
               ))}
             </div>
+            <aside className="mkt-deliverables card">
+              <h3>What you receive</h3>
+              <ul>
+                {page.deliverables.map((d) => (
+                  <li key={d}>
+                    <Icon name="check" size={14} color="#16a34a" />
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </aside>
           </div>
-          <aside className="mkt-deliverables card">
-            <h3>What you receive</h3>
-            <ul>
-              {page.deliverables.map((d) => (
-                <li key={d}>
-                  <Icon name="check" size={14} color="#16a34a" />
-                  {d}
-                </li>
-              ))}
-            </ul>
-          </aside>
         </div>
       </section>
 

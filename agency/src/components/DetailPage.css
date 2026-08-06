@@ -1,5 +1,23 @@
 .detail-page {
   background: var(--bg-soft);
+  overflow-x: clip;
+}
+
+.detail-page .container,
+.detail-page [class*="-grid"],
+.detail-page [class*="-split"],
+.detail-page .detail-benefits,
+.detail-page .mkt-outcomes,
+.detail-page .mkt-metrics,
+.detail-page .mkt-process {
+  min-width: 0;
+}
+
+.detail-page h1,
+.detail-page h2,
+.detail-page h3,
+.detail-page p {
+  overflow-wrap: break-word;
 }
 
 .detail-hero {
@@ -103,6 +121,8 @@
 
 .detail-benefit {
   padding: 1.1rem;
+  min-width: 0;
+  height: 100%;
 }
 
 .detail-benefit h3 {
@@ -424,11 +444,19 @@
     radial-gradient(ellipse 60% 50% at 100% 0%, rgba(249,115,22,0.14), transparent),
     linear-gradient(180deg, #fff, #f7f8fb);
 }
-.soft-hero-grid, .mkt-hero-grid, .sol-hero-grid, .pkg-hero-grid, .svc-hero-grid, .ind-split, .mkt-split, .proj-grid {
+.soft-hero-grid, .mkt-hero-grid, .sol-hero-grid, .pkg-hero-grid, .svc-hero-grid, .ind-split, .proj-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: 1.5rem;
   align-items: start;
+}
+
+.mkt-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.75fr);
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 1.25rem;
 }
 .soft-trust-row {
   display: flex;
@@ -467,6 +495,8 @@
   border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 1rem;
+  min-width: 0;
+  height: 100%;
 }
 .soft-module-card h3, .soft-platform-card h3 { margin: 0.65rem 0 0.35rem; font-size: 1rem; color: var(--navy); }
 .soft-module-card p, .soft-platform-card p { color: var(--text-muted); font-size: 0.88rem; }
@@ -505,17 +535,58 @@
 }
 .mkt-metrics {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
+  align-self: stretch;
 }
 .mkt-metrics div {
   background: #fff;
   border: 1px solid var(--border-soft);
   border-radius: 14px;
-  padding: 1rem;
+  padding: 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 5.5rem;
 }
-.mkt-metrics strong { display: block; font-size: 1.35rem; color: var(--navy); }
-.mkt-metrics span { color: var(--text-muted); font-size: 0.8rem; }
+.mkt-metrics strong { display: block; font-size: clamp(1.15rem, 2vw, 1.35rem); color: var(--navy); line-height: 1.2; }
+.mkt-metrics span { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem; line-height: 1.35; }
+.mkt-outcomes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+.mkt-outcomes .detail-benefit {
+  height: 100%;
+}
+.mkt-deliverables {
+  position: sticky;
+  top: 5.5rem;
+}
+.mkt-deliverables h3 {
+  margin: 0 0 0.85rem;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+.mkt-deliverables ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+.mkt-deliverables li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+.mkt-deliverables li svg {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
 .mkt-process {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -527,6 +598,16 @@
   border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 1rem;
+  min-width: 0;
+}
+.mkt-process h3 {
+  font-size: 0.98rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.mkt-process p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 .mkt-quote {
   margin: 0;
@@ -534,7 +615,7 @@
   border-left: 4px solid #0056ff;
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
 }
 
 /* Industry */
@@ -549,10 +630,23 @@
   border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 1.1rem;
+  min-width: 0;
 }
+.ind-pain-card h3 { margin: 0.55rem 0 0.35rem; color: var(--navy); font-size: 1rem; }
+.ind-pain-card p { color: var(--text-muted); font-size: 0.88rem; }
 .ind-steps { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.85rem; }
 .ind-steps li { display: grid; gap: 0.25rem; }
 .ind-steps span { color: var(--text-muted); }
+.ind-split aside.card {
+  padding: 1.25rem;
+  position: sticky;
+  top: 5.5rem;
+}
+.ind-split .feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.85rem 0 0;
+}
 
 /* Solution */
 .sol-hero {
@@ -652,15 +746,140 @@
 }
 .tool-upsell { padding: 1.35rem; }
 
-@media (max-width: 1000px) {
-  .soft-hero-grid, .mkt-hero-grid, .sol-hero-grid, .pkg-hero-grid, .svc-hero-grid, .ind-split, .mkt-split, .proj-grid,
-  .soft-module-grid, .soft-platform-grid, .mkt-process, .sol-flow, .ind-pain-grid, .ai-tool-grid {
-    grid-template-columns: 1fr 1fr;
+/* Tablet landscape / small desktop */
+@media (max-width: 1100px) {
+  .soft-module-grid,
+  .soft-platform-grid,
+  .mkt-process,
+  .sol-flow,
+  .detail-benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mkt-split {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr);
+  }
+
+  .mkt-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* Tablet portrait */
+@media (max-width: 900px) {
+  .soft-hero-grid,
+  .mkt-hero-grid,
+  .sol-hero-grid,
+  .pkg-hero-grid,
+  .svc-hero-grid,
+  .ind-split,
+  .mkt-split,
+  .proj-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mkt-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: none;
+  }
+
+  .mkt-deliverables {
+    position: static;
+  }
+
+  .ind-split aside.card {
+    position: static;
+  }
+
+  .detail-lead-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .soft-hero,
+  .mkt-hero,
+  .ind-hero,
+  .sol-hero,
+  .pkg-hero,
+  .ai-detail-hero,
+  .tool-hero,
+  .case-hero,
+  .proj-hero,
+  .svc-hero,
+  .res-header,
+  .detail-hero {
+    padding: 2rem 0 1.75rem;
+  }
+}
+
+/* Large phones / small tablets */
 @media (max-width: 700px) {
-  .soft-hero-grid, .mkt-hero-grid, .sol-hero-grid, .pkg-hero-grid, .svc-hero-grid, .ind-split, .mkt-split, .proj-grid,
-  .soft-module-grid, .soft-platform-grid, .mkt-process, .sol-flow, .ind-pain-grid, .mkt-metrics, .ai-tool-grid {
+  .soft-module-grid,
+  .soft-platform-grid,
+  .mkt-process,
+  .sol-flow,
+  .ind-pain-grid,
+  .mkt-outcomes,
+  .ai-tool-grid,
+  .detail-benefits,
+  .detail-hero-grid,
+  .detail-two,
+  .detail-related-grid,
+  .detail-reviews,
+  .detail-locations {
+    grid-template-columns: 1fr;
+  }
+
+  .mkt-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-metrics {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .detail-hero-actions,
+  .detail-lead-actions {
+    width: 100%;
+  }
+
+  .detail-hero-actions .btn,
+  .detail-lead-actions .btn {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .case-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .case-metrics div {
+    min-width: 0;
+  }
+
+  .mkt-quote {
+    padding: 1rem 1.1rem;
+  }
+
+  .soft-process li {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .case-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .pkg-benefits,
+  .pkg-timeline,
+  .case-actions,
+  .svc-process,
+  .detail-related {
     grid-template-columns: 1fr;
   }
 }

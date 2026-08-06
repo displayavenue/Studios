@@ -52,6 +52,7 @@ body {
   background: var(--bg-soft);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 body.menu-open {
@@ -117,6 +118,7 @@ p {
   font-size: 0.9rem;
   transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .btn:hover {
@@ -236,5 +238,9 @@ p {
 @media (max-width: 900px) {
   .section {
     padding: 2.5rem 0;
+  }
+
+  .btn {
+    white-space: normal;
   }
 }
