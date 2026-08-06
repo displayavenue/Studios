@@ -55,6 +55,7 @@ export type HomeLinkRow = {
 
 export type HomeCms = {
   seo?: { title?: string; description?: string };
+  sections?: Record<string, boolean>;
   hero: {
     eyebrow: string;
     titleBefore: string;
@@ -79,7 +80,10 @@ export type HomeCms = {
     body: string;
     actions: { label: string; href: string }[];
   };
+  heroStats?: { value: string; label: string }[];
+  statsBand?: { value: string; label: string }[];
   trustLabel: string;
+  clientLogos?: string[];
   partners?: string[];
   servicesTitle: string;
   servicesSub: string;
@@ -97,10 +101,15 @@ export type HomeCms = {
   industriesTitle?: string;
   industriesCtaLabel?: string;
   industriesCtaHref?: string;
+  industriesMoreLabel?: string;
   industrySlugs?: string[];
   challengesTitle?: string;
+  challengesViewAllLabel?: string;
+  challengesViewAllHref?: string;
   challengeLinks?: HomeLinkRow[];
   businessSizeTitle?: string;
+  businessSizeViewAllLabel?: string;
+  businessSizeViewAllHref?: string;
   businessSizeLinks?: HomeLinkRow[];
   packagesTitle?: string;
   packagesSub?: string;
@@ -122,12 +131,15 @@ export type HomeCms = {
   toolsCtaHref?: string;
   toolCategorySlugs?: string[];
   casesTitle?: string;
+  casesViewAllLabel?: string;
+  casesViewAllHref?: string;
   caseSlugs?: string[];
   portfolioTitle?: string;
   portfolioCtaLabel?: string;
   portfolioCtaHref?: string;
   portfolioSlugs?: string[];
   testimonialsTitle?: string;
+  testimonials?: { quote: string; name: string; title: string; rating: number }[];
   ratings?: { label: string; score: string }[];
   insightsTitle?: string;
   insightsCtaLabel?: string;
@@ -387,6 +399,16 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             fallbackHome.insightLinks || [],
           ),
           location: { ...fallbackHome.location, ...(home?.location || {}) },
+          sections: {
+            ...(fallbackHome.sections || {}),
+            ...(home?.sections || {}),
+          },
+          clientLogos: Array.isArray(home?.clientLogos) ? home.clientLogos : [],
+          testimonials: Array.isArray(home?.testimonials)
+            ? home.testimonials
+            : [],
+          heroStats: Array.isArray(home?.heroStats) ? home.heroStats : [],
+          statsBand: Array.isArray(home?.statsBand) ? home.statsBand : [],
         },
         services: itemsOf(services, fallbackServices),
         industries: itemsOf(industries, fallbackIndustries),

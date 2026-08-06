@@ -34,8 +34,13 @@ function InternalLink({
 
 export function Home() {
   const { company, home, content, industries, cases, tools, projects } = useCms();
-  const clientLogos = content.clientLogos;
-  const testimonials = content.testimonials;
+  const show = (key: string) => home.sections?.[key] !== false;
+  const clientLogos = home.clientLogos?.length
+    ? home.clientLogos
+    : content.clientLogos;
+  const testimonials = home.testimonials?.length
+    ? home.testimonials
+    : content.testimonials;
   const partners = pickList(home.partners, homeDefaults.partners);
   const serviceCards = pickList(home.services, homeDefaults.services);
   const allServices = home.allServicesCard || homeDefaults.allServicesCard;
@@ -50,6 +55,23 @@ export function Home() {
   const ratings = pickList(home.ratings, homeDefaults.ratings);
   const maps = company.googleMaps;
   const location = home.location || homeDefaults.location;
+
+  const defaultHeroStats = [
+    { value: company.stats.projects, label: "Projects" },
+    { value: company.stats.clients, label: "Happy Clients" },
+    { value: company.stats.industries, label: "Industries" },
+    { value: company.stats.leads, label: "Leads" },
+    { value: company.stats.satisfaction, label: "Satisfaction" },
+  ];
+  const heroStats = home.heroStats?.length ? home.heroStats : defaultHeroStats;
+  const defaultStatsBand = [
+    { value: company.stats.projects, label: "Projects Delivered" },
+    { value: company.stats.leads, label: "Leads Generated" },
+    { value: company.stats.avgRoi, label: "Avg. ROI Increase" },
+    { value: company.stats.industries, label: "Industries Served" },
+    { value: company.stats.satisfaction, label: "Client Satisfaction" },
+  ];
+  const statsBand = home.statsBand?.length ? home.statsBand : defaultStatsBand;
 
   const industryCards = pickList(home.industrySlugs, homeDefaults.industrySlugs)
     .map((slug) => industries.find((i) => i.slug === slug))
@@ -117,6 +139,7 @@ export function Home() {
   return (
     <>
       <SEO title={seoTitle} description={seoDesc} path="/" />
+      {show("hero") && (
       <section className="hero">
         <div className="container hero-grid">
           <div>
@@ -150,31 +173,21 @@ export function Home() {
                 {home.hero.portfolioLabel || "View Portfolio"}
               </InternalLink>
             </div>
+            {show("heroStats") && (
             <div className="hero-stats">
-              <div>
-                <strong>{company.stats.projects}</strong>
-                <span>Projects</span>
-              </div>
-              <div>
-                <strong>{company.stats.clients}</strong>
-                <span>Happy Clients</span>
-              </div>
-              <div>
-                <strong>{company.stats.industries}</strong>
-                <span>Industries</span>
-              </div>
-              <div>
-                <strong>{company.stats.leads}</strong>
-                <span>Leads</span>
-              </div>
-              <div>
-                <strong>{company.stats.satisfaction}</strong>
-                <span>Satisfaction</span>
-              </div>
+              {heroStats.map((stat) => (
+                <div key={`${stat.label}-${stat.value}`}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
             </div>
+            )}
           </div>
 
+          {show("heroDashboard") || show("aiAssist") ? (
           <div className="hero-visual">
+            {show("heroDashboard") && (
             <div className="dash-card">
               <h3>{dash.title}</h3>
               <p className="dash-meta">{dash.meta}</p>
@@ -188,6 +201,8 @@ export function Home() {
                 ))}
               </div>
             </div>
+            )}
+            {show("aiAssist") && (
             <div className="ai-assist">
               <h4>{assist.title}</h4>
               <p>{assist.body}</p>
@@ -199,10 +214,14 @@ export function Home() {
                 ))}
               </div>
             </div>
+            )}
           </div>
+          ) : null}
         </div>
       </section>
+      )}
 
+      {show("trust") && (
       <section className="home-section" style={{ paddingTop: "1.5rem" }}>
         <div className="container">
           <p
@@ -235,34 +254,24 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {show("statsBand") && (
       <section className="home-section alt">
         <div className="container">
           <div className="stats-band">
-            <div>
-              <strong>{company.stats.projects}</strong>
-              <span>Projects Delivered</span>
-            </div>
-            <div>
-              <strong>{company.stats.leads}</strong>
-              <span>Leads Generated</span>
-            </div>
-            <div>
-              <strong>{company.stats.avgRoi}</strong>
-              <span>Avg. ROI Increase</span>
-            </div>
-            <div>
-              <strong>{company.stats.industries}</strong>
-              <span>Industries Served</span>
-            </div>
-            <div>
-              <strong>{company.stats.satisfaction}</strong>
-              <span>Client Satisfaction</span>
-            </div>
+            {statsBand.map((stat) => (
+              <div key={`${stat.label}-${stat.value}`}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+      )}
 
+      {show("services") && (
       <section className="home-section">
         <div className="container">
           <div className="section-head">
@@ -311,7 +320,9 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {show("aiBanner") && (
       <section className="home-section alt">
         <div className="container">
           <div
@@ -364,7 +375,9 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {show("industries") && (
       <section className="home-section">
         <div className="container">
           <h2 className="section-title">
@@ -390,7 +403,7 @@ export function Home() {
               <span className="industry-icon">
                 <Icon name="grid" color="#0056ff" />
               </span>
-              <strong>More Industries</strong>
+              <strong>{home.industriesMoreLabel || "More Industries"}</strong>
             </InternalLink>
           </div>
           <div className="center-footer">
@@ -403,7 +416,9 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {show("solutions") && (
       <section className="home-section alt">
         <div className="container">
           <div className="home-split solutions-split">
@@ -429,8 +444,12 @@ export function Home() {
                   </InternalLink>
                 ))}
               </div>
-              <InternalLink to="/solutions" className="link-arrow" style={{ marginTop: "0.85rem" }}>
-                View All Goal Solutions →
+              <InternalLink
+                to={home.challengesViewAllHref || "/solutions"}
+                className="link-arrow"
+                style={{ marginTop: "0.85rem" }}
+              >
+                {home.challengesViewAllLabel || "View All Goal Solutions →"}
               </InternalLink>
             </div>
             <div>
@@ -455,14 +474,20 @@ export function Home() {
                   </InternalLink>
                 ))}
               </div>
-              <InternalLink to="/solutions" className="link-arrow" style={{ marginTop: "0.85rem" }}>
-                View All Size Solutions →
+              <InternalLink
+                to={home.businessSizeViewAllHref || "/solutions"}
+                className="link-arrow"
+                style={{ marginTop: "0.85rem" }}
+              >
+                {home.businessSizeViewAllLabel || "View All Size Solutions →"}
               </InternalLink>
             </div>
           </div>
         </div>
       </section>
+      )}
 
+      {show("packages") && (
       <section className="home-section">
         <div className="container">
           <div className="section-head">
@@ -519,10 +544,13 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {(show("aiBanner") || show("tools")) && (
       <section className="home-section alt">
         <div className="container">
           <div className="home-split">
+            {show("aiBanner") && (
             <div className="card ecosystem-card">
               <h2 className="section-title">{aiBanner.title}</h2>
               <p className="section-sub">{aiBanner.sub}</p>
@@ -534,10 +562,12 @@ export function Home() {
                   </li>
                 ))}
               </ul>
-              <InternalLink to="/ai-platform" className="btn btn-primary">
-                Explore AI Platform →
+              <InternalLink to={aiBanner.ctaHref || "/ai-platform"} className="btn btn-primary">
+                {aiBanner.ctaLabel || "Explore AI Platform →"}
               </InternalLink>
             </div>
+            )}
+            {show("tools") && (
             <div>
               <div className="section-head">
                 <h2 className="section-title">
@@ -565,18 +595,24 @@ export function Home() {
                 ))}
               </div>
             </div>
+            )}
           </div>
         </div>
       </section>
+      )}
 
+      {show("cases") && (
       <section className="home-section">
         <div className="container">
           <div className="section-head">
             <h2 className="section-title">
               {home.casesTitle || "Real Results. Proven Impact."}
             </h2>
-            <InternalLink to="/case-studies" className="link-arrow">
-              View All Case Studies →
+            <InternalLink
+              to={home.casesViewAllHref || "/case-studies"}
+              className="link-arrow"
+            >
+              {home.casesViewAllLabel || "View All Case Studies →"}
             </InternalLink>
           </div>
           <div className="mini-grid-4" style={{ marginTop: "1.25rem" }}>
@@ -607,7 +643,9 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {show("portfolio") && (
       <section className="home-section alt">
         <div className="container">
           <div className="section-head">
@@ -649,7 +687,9 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {show("testimonials") && (
       <section className="home-section">
         <div className="container">
           <h2 className="section-title">
@@ -675,7 +715,9 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
+      {show("insights") && (
       <section className="home-section alt">
         <div className="container">
           <div className="section-head">
@@ -710,8 +752,9 @@ export function Home() {
           </div>
         </div>
       </section>
+      )}
 
-      {location?.enabled !== false && maps?.shareUrl && (
+      {show("location") && location?.enabled !== false && maps?.shareUrl && (
         <section className="home-section">
           <div className="container">
             <div className="home-location">

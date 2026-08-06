@@ -7,6 +7,25 @@ export const homeDefaults = {
     description:
       "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, ecommerce, branding, and AI automation - under one roof.",
   },
+  sections: {
+    hero: true,
+    heroDashboard: true,
+    aiAssist: true,
+    heroStats: true,
+    trust: true,
+    statsBand: true,
+    services: true,
+    aiBanner: true,
+    industries: true,
+    solutions: true,
+    packages: true,
+    tools: true,
+    cases: true,
+    portfolio: true,
+    testimonials: true,
+    insights: true,
+    location: true,
+  },
   hero: {
     eyebrow: "AI-POWERED DIGITAL GROWTH PARTNER",
     titleBefore: "Transform Your Business with",
@@ -245,6 +264,17 @@ export const homeDefaults = {
     ctaLabel: "Open Google Business Profile",
     directionsLabel: "Get Directions",
   },
+  clientLogos: [],
+  testimonials: [],
+  heroStats: [],
+  statsBand: [],
+  industriesMoreLabel: "More Industries",
+  challengesViewAllLabel: "View All Goal Solutions →",
+  challengesViewAllHref: "/solutions",
+  businessSizeViewAllLabel: "View All Size Solutions →",
+  businessSizeViewAllHref: "/solutions",
+  casesViewAllLabel: "View All Case Studies →",
+  casesViewAllHref: "/case-studies",
 };
 
 export function pickList<T>(value: T[] | undefined | null, fallback: readonly T[] | T[]): T[] {

@@ -184,7 +184,11 @@ function renderEditor() {
   wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
   bindFields(wrap);
   wrap.querySelectorAll("[data-action]").forEach((btn) => {
-    btn.onclick = () => handleAction(btn.dataset.action, btn.dataset.index);
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      handleAction(btn.dataset.action, btn.dataset.index);
+    };
   });
 }
 
@@ -272,152 +276,494 @@ function renderCompany(d) {
   `;
 }
 
-function renderHome(d) {
+function homeSection(id, title, enabled, body) {
+  const on = enabled !== false;
   return `
-    ${card(
-      "SEO",
+    <section class="card home-section-card" id="home-sec-${id}">
+      <div class="home-section-head">
+        <h3>${title}</h3>
+        <label class="toggle-inline">
+          <input type="checkbox" data-path="sections.${id}" ${on ? "checked" : ""} />
+          Show on homepage
+        </label>
+      </div>
+      <div class="grid">${body}</div>
+    </section>`;
+}
+
+function listToolbar(addAction, addLabel) {
+  return `<div class="field full home-toolbar">
+    <button type="button" class="btn btn-gold btn-sm" data-action="${addAction}">${addLabel}</button>
+  </div>`;
+}
+
+function renderHome(d) {
+  const sec = d.sections || {};
+  const metrics = d.heroDashboard?.metrics || [];
+  const assistActions = d.aiAssist?.actions || [];
+  const services = d.services || [];
+  const goals = d.challengeLinks || [];
+  const sizes = d.businessSizeLinks || [];
+  const packages = d.packages || [];
+  const insights = d.insightLinks || [];
+  const ratings = d.ratings || [];
+  const testimonials = d.testimonials || [];
+  const heroStats = d.heroStats || [];
+  const statsBand = d.statsBand || [];
+
+  const metricRows = metrics
+    .map(
+      (m, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Value", `heroDashboard.metrics.${i}.value`, m.value || "")}
+          ${field("Label", `heroDashboard.metrics.${i}.label`, m.label || "")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-metric" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const assistRows = assistActions
+    .map(
+      (a, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Button label", `aiAssist.actions.${i}.label`, a.label || "")}
+          ${field("Link", `aiAssist.actions.${i}.href`, a.href || "/contact")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-assist" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const serviceRows = services
+    .map(
+      (s, i) => `
+      <details class="item-card home-item" open>
+        <summary>
+          <span>Service ${i + 1}: ${escapeHtml(s.title || "Untitled")}</span>
+          <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-service" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid" style="margin-top:.85rem">
+          ${field("Title", `services.${i}.title`, s.title || "")}
+          ${field("Link (href)", `services.${i}.href`, s.href || "/services")}
+          ${field("Icon name", `services.${i}.icon`, s.icon || "grid")}
+          ${field("Color", `services.${i}.color`, s.color || "#0056ff", "color")}
+          ${field("Description", `services.${i}.desc`, s.desc || "", "textarea")}
+        </div>
+      </details>`,
+    )
+    .join("");
+
+  const goalRows = goals
+    .map(
+      (g, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Label", `challengeLinks.${i}.label`, g.label || "")}
+          ${field("Link", `challengeLinks.${i}.href`, g.href || "/solutions")}
+          ${field("Icon", `challengeLinks.${i}.icon`, g.icon || "target")}
+          ${field("Description", `challengeLinks.${i}.desc`, g.desc || "", "textarea")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-goal" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const sizeRows = sizes
+    .map(
+      (g, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Label", `businessSizeLinks.${i}.label`, g.label || "")}
+          ${field("Link", `businessSizeLinks.${i}.href`, g.href || "/solutions")}
+          ${field("Icon", `businessSizeLinks.${i}.icon`, g.icon || "building")}
+          ${field("Description", `businessSizeLinks.${i}.desc`, g.desc || "", "textarea")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-size" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const packageRows = packages
+    .map(
+      (p, i) => `
+      <details class="item-card home-item" open>
+        <summary>
+          <span>Package ${i + 1}: ${escapeHtml(p.name || "Untitled")}${p.highlighted ? " ★" : ""}</span>
+          <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-package" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid" style="margin-top:.85rem">
+          ${field("Name", `packages.${i}.name`, p.name || "")}
+          ${field("Price", `packages.${i}.price`, p.price || "")}
+          ${field("Period", `packages.${i}.period`, p.period || "/mo")}
+          ${field("Badge", `packages.${i}.badge`, p.badge || "")}
+          ${field("CTA label", `packages.${i}.ctaLabel`, p.ctaLabel || "View Details")}
+          ${field("CTA link", `packages.${i}.href`, p.href || "/packages")}
+          ${field("Highlight as best value", `packages.${i}.highlighted`, !!p.highlighted, "checkbox")}
+          <div class="field full"><label>Features (one per line)</label>
+            <textarea data-path="packages.${i}.features" data-array="true">${escapeHtml((p.features || []).join("\n"))}</textarea>
+          </div>
+        </div>
+      </details>`,
+    )
+    .join("");
+
+  const insightRows = insights
+    .map(
+      (post, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Title", `insightLinks.${i}.title`, post.title || "")}
+          ${field("Date label", `insightLinks.${i}.date`, post.date || "")}
+          ${field("Link", `insightLinks.${i}.href`, post.href || "/resources")}
+          ${field("Card gradient CSS", `insightLinks.${i}.gradient`, post.gradient || "linear-gradient(135deg,#0ea5e9,#0369a1)")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-insight" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const ratingRows = ratings
+    .map(
+      (r, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Platform", `ratings.${i}.label`, r.label || "")}
+          ${field("Score", `ratings.${i}.score`, r.score || "")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-rating" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const testimonialRows = testimonials
+    .map(
+      (t, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Name", `testimonials.${i}.name`, t.name || "")}
+          ${field("Title / company", `testimonials.${i}.title`, t.title || "")}
+          ${field("Rating (1-5)", `testimonials.${i}.rating`, t.rating ?? 5, "number")}
+          ${field("Quote", `testimonials.${i}.quote`, t.quote || "", "textarea")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-testimonial" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const heroStatRows = heroStats
+    .map(
+      (s, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Value", `heroStats.${i}.value`, s.value || "")}
+          ${field("Label", `heroStats.${i}.label`, s.label || "")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-herostat" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  const statsBandRows = statsBand
+    .map(
+      (s, i) => `
+      <div class="list-item home-item">
+        <div class="grid">
+          ${field("Value", `statsBand.${i}.value`, s.value || "")}
+          ${field("Label", `statsBand.${i}.label`, s.label || "")}
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" data-action="del-home-statsband" data-index="${i}">Remove</button>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    <div class="home-intro card">
+      <h3>Homepage builder</h3>
+      <p>Edit every homepage section below. Toggle <strong>Show on homepage</strong> to hide a block. Click <strong>Save changes</strong> to publish instantly.</p>
+      <div class="home-jump">
+        <a href="#home-sec-seo">SEO</a>
+        <a href="#home-sec-hero">Hero</a>
+        <a href="#home-sec-trust">Trust</a>
+        <a href="#home-sec-services">Services</a>
+        <a href="#home-sec-ai">AI</a>
+        <a href="#home-sec-industries">Industries</a>
+        <a href="#home-sec-solutions">Solutions</a>
+        <a href="#home-sec-packages">Packages</a>
+        <a href="#home-sec-tools">Tools</a>
+        <a href="#home-sec-cases">Cases</a>
+        <a href="#home-sec-portfolio">Portfolio</a>
+        <a href="#home-sec-testimonials">Testimonials</a>
+        <a href="#home-sec-insights">Insights</a>
+        <a href="#home-sec-location">Location</a>
+      </div>
+    </div>
+
+    <div class="card home-section-card" id="home-sec-seo">
+      <div class="home-section-head"><h3>1. SEO</h3></div>
+      <div class="grid">
+        ${field("SEO title", "seo.title", d.seo?.title || "")}
+        ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+      </div>
+    </div>
+
+    ${homeSection(
+      "hero",
+      "2. Hero",
+      sec.hero,
       `
-      ${field("SEO title", "seo.title", d.seo?.title || "")}
-      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
-    `,
-    )}
-    ${card(
-      "Hero",
-      `
-      ${field("Eyebrow", "hero.eyebrow", d.hero?.eyebrow)}
-      ${field("Title (before accent)", "hero.titleBefore", d.hero?.titleBefore)}
-      ${field("Title accent", "hero.titleAccent", d.hero?.titleAccent)}
-      ${field("Lead", "hero.lead", d.hero?.lead, "textarea")}
-      ${field("Primary CTA label", "hero.primaryCta", d.hero?.primaryCta)}
+      ${field("Eyebrow", "hero.eyebrow", d.hero?.eyebrow || "")}
+      ${field("Title (before accent)", "hero.titleBefore", d.hero?.titleBefore || "")}
+      ${field("Title accent", "hero.titleAccent", d.hero?.titleAccent || "")}
+      ${field("Lead paragraph", "hero.lead", d.hero?.lead || "", "textarea")}
+      ${field("Primary CTA label", "hero.primaryCta", d.hero?.primaryCta || "")}
       ${field("Primary CTA link", "hero.primaryCtaHref", d.hero?.primaryCtaHref || "/contact")}
-      ${field("Secondary CTA label", "hero.secondaryCta", d.hero?.secondaryCta)}
+      ${field("Secondary CTA label", "hero.secondaryCta", d.hero?.secondaryCta || "")}
       ${field("Secondary CTA link", "hero.secondaryCtaHref", d.hero?.secondaryCtaHref || "/contact")}
       ${field("Showreel label", "hero.showreelLabel", d.hero?.showreelLabel || "")}
       ${field("Showreel link", "hero.showreelHref", d.hero?.showreelHref || "/portfolio")}
-      ${field("Portfolio label", "hero.portfolioLabel", d.hero?.portfolioLabel || "")}
+      ${field("Portfolio link label", "hero.portfolioLabel", d.hero?.portfolioLabel || "")}
       ${field("Portfolio link", "hero.portfolioHref", d.hero?.portfolioHref || "/portfolio")}
     `,
     )}
-    ${card(
-      "Hero dashboard + AI assist",
+
+    ${homeSection(
+      "heroDashboard",
+      "3. Hero dashboard card",
+      sec.heroDashboard,
       `
-      <div class="field full"><label>Hero dashboard JSON</label>
-        <textarea data-path="heroDashboard" data-json="true">${escapeHtml(JSON.stringify(d.heroDashboard || {}, null, 2))}</textarea>
-      </div>
-      <div class="field full"><label>AI assist JSON (actions with href)</label>
-        <textarea data-path="aiAssist" data-json="true">${escapeHtml(JSON.stringify(d.aiAssist || {}, null, 2))}</textarea>
-      </div>
+      ${field("Dashboard title", "heroDashboard.title", d.heroDashboard?.title || "")}
+      ${field("Dashboard meta", "heroDashboard.meta", d.heroDashboard?.meta || "")}
+      <div class="field full"><h4 class="subhead">Metrics</h4></div>
+      ${metricRows || '<p class="hint">No metrics yet.</p>'}
+      ${listToolbar("add-home-metric", "+ Add metric")}
     `,
     )}
-    ${card(
-      "Trust & partners",
+
+    ${homeSection(
+      "aiAssist",
+      "4. Hero AI assistant card",
+      sec.aiAssist,
       `
-      ${field("Trust label", "trustLabel", d.trustLabel)}
-      <div class="field full"><label>Partners (one per line)</label>
+      ${field("Title", "aiAssist.title", d.aiAssist?.title || "")}
+      ${field("Body", "aiAssist.body", d.aiAssist?.body || "", "textarea")}
+      <div class="field full"><h4 class="subhead">Action chips</h4></div>
+      ${assistRows || '<p class="hint">No actions yet.</p>'}
+      ${listToolbar("add-home-assist", "+ Add action")}
+    `,
+    )}
+
+    ${homeSection(
+      "heroStats",
+      "5. Hero stats row",
+      sec.heroStats,
+      `
+      <p class="hint field full">Optional. If empty, the site uses company stats (projects, clients, industries, leads, satisfaction).</p>
+      ${heroStatRows || '<p class="hint">Using company stats (leave empty to keep that).</p>'}
+      ${listToolbar("add-home-herostat", "+ Add hero stat")}
+    `,
+    )}
+
+    ${homeSection(
+      "trust",
+      "6. Trust strip + client logos + partners",
+      sec.trust,
+      `
+      ${field("Trust label", "trustLabel", d.trustLabel || "")}
+      <div class="field full"><label>Client logos (one per line)</label>
+        <textarea data-path="clientLogos" data-array="true">${escapeHtml((d.clientLogos || []).join("\n"))}</textarea>
+        <p class="hint">Overrides Testimonials &amp; Extras logos when set.</p>
+      </div>
+      <div class="field full"><label>Partner badges (one per line)</label>
         <textarea data-path="partners" data-array="true">${escapeHtml((d.partners || []).join("\n"))}</textarea>
       </div>
     `,
     )}
-    ${card(
-      "Services section",
+
+    ${homeSection(
+      "statsBand",
+      "7. Stats band",
+      sec.statsBand,
       `
-      ${field("Services title", "servicesTitle", d.servicesTitle)}
-      ${field("Services subtitle", "servicesSub", d.servicesSub)}
+      <p class="hint field full">Optional custom stats band. If empty, company stats are used.</p>
+      ${statsBandRows || '<p class="hint">Using company stats.</p>'}
+      ${listToolbar("add-home-statsband", "+ Add stats band item")}
+    `,
+    )}
+
+    ${homeSection(
+      "services",
+      "8. Services",
+      sec.services,
+      `
+      ${field("Section title", "servicesTitle", d.servicesTitle || "")}
+      ${field("Section subtitle", "servicesSub", d.servicesSub || "", "textarea")}
       ${field("View all label", "servicesViewAllLabel", d.servicesViewAllLabel || "View All Services →")}
       ${field("View all link", "servicesViewAllHref", d.servicesViewAllHref || "/services")}
-      <div class="field full"><label>Service cards JSON (title, desc, icon, color, href)</label>
-        <textarea data-path="services" data-json="true">${escapeHtml(JSON.stringify(d.services || [], null, 2))}</textarea>
-      </div>
-      <div class="field full"><label>All-services card JSON</label>
-        <textarea data-path="allServicesCard" data-json="true">${escapeHtml(JSON.stringify(d.allServicesCard || {}, null, 2))}</textarea>
+      ${field("All-services card title", "allServicesCard.title", d.allServicesCard?.title || "")}
+      ${field("All-services card link", "allServicesCard.href", d.allServicesCard?.href || "/services")}
+      ${field("All-services card description", "allServicesCard.desc", d.allServicesCard?.desc || "", "textarea")}
+      <div class="field full"><h4 class="subhead">Service cards</h4></div>
+      ${serviceRows || '<p class="hint">No service cards.</p>'}
+      ${listToolbar("add-home-service", "+ Add service card")}
+    `,
+    )}
+
+    ${homeSection(
+      "aiBanner",
+      "9. AI platform banner",
+      sec.aiBanner,
+      `
+      ${field("Title", "aiBanner.title", d.aiBanner?.title || "")}
+      ${field("Subtitle", "aiBanner.sub", d.aiBanner?.sub || "", "textarea")}
+      ${field("CTA label", "aiBanner.ctaLabel", d.aiBanner?.ctaLabel || "")}
+      ${field("CTA link", "aiBanner.ctaHref", d.aiBanner?.ctaHref || "/ai-platform")}
+      <div class="field full"><label>Bullets (one per line)</label>
+        <textarea data-path="aiBanner.bullets" data-array="true">${escapeHtml((d.aiBanner?.bullets || []).join("\n"))}</textarea>
       </div>
     `,
     )}
-    ${card(
-      "AI banner",
+
+    ${homeSection(
+      "industries",
+      "10. Industries",
+      sec.industries,
       `
-      <div class="field full"><label>AI banner JSON</label>
-        <textarea data-path="aiBanner" data-json="true">${escapeHtml(JSON.stringify(d.aiBanner || {}, null, 2))}</textarea>
-      </div>
-    `,
-    )}
-    ${card(
-      "Industries",
-      `
-      ${field("Industries title", "industriesTitle", d.industriesTitle || "")}
-      ${field("CTA label", "industriesCtaLabel", d.industriesCtaLabel || "")}
+      ${field("Section title", "industriesTitle", d.industriesTitle || "")}
+      ${field("CTA label", "industriesCtaLabel", d.industriesCtaLabel || "View All Industries →")}
       ${field("CTA link", "industriesCtaHref", d.industriesCtaHref || "/industries")}
-      <div class="field full"><label>Industry slugs (one per line - must exist in Industries CMS)</label>
+      ${field("More industries label", "industriesMoreLabel", d.industriesMoreLabel || "More Industries")}
+      <div class="field full"><label>Industry slugs (one per line)</label>
         <textarea data-path="industrySlugs" data-array="true">${escapeHtml((d.industrySlugs || []).join("\n"))}</textarea>
+        <p class="hint">Must match slugs in the Industries collection.</p>
       </div>
     `,
     )}
-    ${card(
-      "Solutions by goal & business size",
+
+    ${homeSection(
+      "solutions",
+      "11. Solutions by goal & business size",
+      sec.solutions,
       `
       ${field("Goals title", "challengesTitle", d.challengesTitle || "Solutions by Goal")}
-      <div class="field full"><label>Goal links JSON (label, desc, href, icon)</label>
-        <textarea data-path="challengeLinks" data-json="true">${escapeHtml(JSON.stringify(d.challengeLinks || [], null, 2))}</textarea>
-      </div>
+      ${field("Goals view-all label", "challengesViewAllLabel", d.challengesViewAllLabel || "View All Goal Solutions →")}
+      ${field("Goals view-all link", "challengesViewAllHref", d.challengesViewAllHref || "/solutions")}
+      <div class="field full"><h4 class="subhead">Goal links</h4></div>
+      ${goalRows || '<p class="hint">No goal links.</p>'}
+      ${listToolbar("add-home-goal", "+ Add goal link")}
       ${field("Business size title", "businessSizeTitle", d.businessSizeTitle || "Solutions by Business Size")}
-      <div class="field full"><label>Business size links JSON (label, desc, href, icon)</label>
-        <textarea data-path="businessSizeLinks" data-json="true">${escapeHtml(JSON.stringify(d.businessSizeLinks || [], null, 2))}</textarea>
-      </div>
+      ${field("Size view-all label", "businessSizeViewAllLabel", d.businessSizeViewAllLabel || "View All Size Solutions →")}
+      ${field("Size view-all link", "businessSizeViewAllHref", d.businessSizeViewAllHref || "/solutions")}
+      <div class="field full"><h4 class="subhead">Business size links</h4></div>
+      ${sizeRows || '<p class="hint">No size links.</p>'}
+      ${listToolbar("add-home-size", "+ Add size link")}
     `,
     )}
-    ${card(
-      "Featured packages",
+
+    ${homeSection(
+      "packages",
+      "12. Featured packages",
+      sec.packages,
       `
-      ${field("Packages title", "packagesTitle", d.packagesTitle || "")}
-      ${field("Packages subtitle", "packagesSub", d.packagesSub || "")}
+      ${field("Section title", "packagesTitle", d.packagesTitle || "")}
+      ${field("Section subtitle", "packagesSub", d.packagesSub || "")}
       ${field("Compare label", "packagesCompareLabel", d.packagesCompareLabel || "Compare All Packages →")}
       ${field("Compare link", "packagesCompareHref", d.packagesCompareHref || "/packages")}
-      <div class="field full"><label>Featured packages JSON (include href to /packages/...)</label>
-        <textarea data-path="packages" data-json="true">${escapeHtml(JSON.stringify(d.packages || [], null, 2))}</textarea>
-      </div>
-      <div class="field full"><label>Package pills (one per line)</label>
+      <div class="field full"><label>Trust pills (one per line)</label>
         <textarea data-path="packagePills" data-array="true">${escapeHtml((d.packagePills || []).join("\n"))}</textarea>
+      </div>
+      <div class="field full"><h4 class="subhead">Package cards</h4></div>
+      ${packageRows || '<p class="hint">No packages.</p>'}
+      ${listToolbar("add-home-package", "+ Add package")}
+    `,
+    )}
+
+    ${homeSection(
+      "tools",
+      "13. Free tools",
+      sec.tools,
+      `
+      ${field("Section title", "toolsTitle", d.toolsTitle || "")}
+      ${field("CTA label", "toolsCtaLabel", d.toolsCtaLabel || "Explore All Tools →")}
+      ${field("CTA link", "toolsCtaHref", d.toolsCtaHref || "/free-tools")}
+      <div class="field full"><label>Tool category slugs (one per line)</label>
+        <textarea data-path="toolCategorySlugs" data-array="true">${escapeHtml((d.toolCategorySlugs || []).join("\n"))}</textarea>
+        <p class="hint">Must match Free Tools collection slugs.</p>
       </div>
     `,
     )}
-    ${card(
-      "Tools, cases, portfolio, testimonials, insights",
+
+    ${homeSection(
+      "cases",
+      "14. Case studies",
+      sec.cases,
       `
-      ${field("Tools title", "toolsTitle", d.toolsTitle || "")}
-      ${field("Tools CTA label", "toolsCtaLabel", d.toolsCtaLabel || "")}
-      ${field("Tools CTA link", "toolsCtaHref", d.toolsCtaHref || "/free-tools")}
-      <div class="field full"><label>Tool category slugs (one per line)</label>
-        <textarea data-path="toolCategorySlugs" data-array="true">${escapeHtml((d.toolCategorySlugs || []).join("\n"))}</textarea>
-      </div>
-      ${field("Cases title", "casesTitle", d.casesTitle || "")}
+      ${field("Section title", "casesTitle", d.casesTitle || "")}
+      ${field("View all label", "casesViewAllLabel", d.casesViewAllLabel || "View All Case Studies →")}
+      ${field("View all link", "casesViewAllHref", d.casesViewAllHref || "/case-studies")}
       <div class="field full"><label>Case study slugs (one per line)</label>
         <textarea data-path="caseSlugs" data-array="true">${escapeHtml((d.caseSlugs || []).join("\n"))}</textarea>
       </div>
-      ${field("Portfolio title", "portfolioTitle", d.portfolioTitle || "")}
-      ${field("Portfolio CTA label", "portfolioCtaLabel", d.portfolioCtaLabel || "")}
-      ${field("Portfolio CTA link", "portfolioCtaHref", d.portfolioCtaHref || "/portfolio")}
+    `,
+    )}
+
+    ${homeSection(
+      "portfolio",
+      "15. Portfolio",
+      sec.portfolio,
+      `
+      ${field("Section title", "portfolioTitle", d.portfolioTitle || "")}
+      ${field("CTA label", "portfolioCtaLabel", d.portfolioCtaLabel || "View Full Portfolio →")}
+      ${field("CTA link", "portfolioCtaHref", d.portfolioCtaHref || "/portfolio")}
       <div class="field full"><label>Portfolio project slugs (one per line)</label>
         <textarea data-path="portfolioSlugs" data-array="true">${escapeHtml((d.portfolioSlugs || []).join("\n"))}</textarea>
       </div>
-      ${field("Testimonials title", "testimonialsTitle", d.testimonialsTitle || "")}
-      <div class="field full"><label>Ratings JSON (label, score)</label>
-        <textarea data-path="ratings" data-json="true">${escapeHtml(JSON.stringify(d.ratings || [], null, 2))}</textarea>
-      </div>
-      ${field("Insights title", "insightsTitle", d.insightsTitle || "")}
-      ${field("Insights CTA label", "insightsCtaLabel", d.insightsCtaLabel || "")}
-      ${field("Insights CTA link", "insightsCtaHref", d.insightsCtaHref || "/resources")}
-      <div class="field full"><label>Insight cards JSON (title, date, href, gradient)</label>
-        <textarea data-path="insightLinks" data-json="true">${escapeHtml(JSON.stringify(d.insightLinks || [], null, 2))}</textarea>
-      </div>
     `,
     )}
-    ${card(
-      "Google location / GMB section",
+
+    ${homeSection(
+      "testimonials",
+      "16. Testimonials & ratings",
+      sec.testimonials,
       `
-      <div class="field full"><label>Location section JSON (enabled, title, sub, ctaLabel, directionsLabel)</label>
-        <textarea data-path="location" data-json="true">${escapeHtml(JSON.stringify(d.location || {}, null, 2))}</textarea>
-      </div>
-      <p class="hint">Map URLs themselves are edited under Header/Company → Google Maps / GMB.</p>
+      ${field("Section title", "testimonialsTitle", d.testimonialsTitle || "")}
+      <div class="field full"><h4 class="subhead">Rating badges</h4></div>
+      ${ratingRows || '<p class="hint">No ratings.</p>'}
+      ${listToolbar("add-home-rating", "+ Add rating")}
+      <div class="field full"><h4 class="subhead">Testimonial cards</h4></div>
+      <p class="hint field full">If empty, testimonials from Testimonials &amp; Extras are used.</p>
+      ${testimonialRows || '<p class="hint">Using global testimonials.</p>'}
+      ${listToolbar("add-home-testimonial", "+ Add testimonial")}
+    `,
+    )}
+
+    ${homeSection(
+      "insights",
+      "17. Latest insights",
+      sec.insights,
+      `
+      ${field("Section title", "insightsTitle", d.insightsTitle || "")}
+      ${field("CTA label", "insightsCtaLabel", d.insightsCtaLabel || "View All Resources →")}
+      ${field("CTA link", "insightsCtaHref", d.insightsCtaHref || "/resources")}
+      <div class="field full"><h4 class="subhead">Insight cards</h4></div>
+      ${insightRows || '<p class="hint">No insight cards.</p>'}
+      ${listToolbar("add-home-insight", "+ Add insight card")}
+    `,
+    )}
+
+    ${homeSection(
+      "location",
+      "18. Google Business / location",
+      sec.location !== false && d.location?.enabled !== false,
+      `
+      ${field("Show location section", "location.enabled", d.location?.enabled !== false, "checkbox")}
+      ${field("Title", "location.title", d.location?.title || "")}
+      ${field("Subtitle", "location.sub", d.location?.sub || "", "textarea")}
+      ${field("Primary CTA label", "location.ctaLabel", d.location?.ctaLabel || "")}
+      ${field("Directions CTA label", "location.directionsLabel", d.location?.directionsLabel || "")}
+      <p class="hint field full">Map / GMB URLs are edited in <strong>Header, Footer &amp; Company</strong>.</p>
     `,
     )}
   `;
@@ -677,33 +1023,121 @@ function renderSettings(d) {
 
 function handleAction(action, index) {
   const d = state.data;
+  const i = Number(index);
+
+  const ensure = (key, fallback = []) => {
+    if (!Array.isArray(d[key])) d[key] = fallback;
+    return d[key];
+  };
+
   if (action === "add-nav") {
     d.navItems = d.navItems || [];
     d.navItems.push({ label: "New Link", href: "/", mega: false });
   } else if (action === "del-nav") {
-    d.navItems.splice(Number(index), 1);
+    d.navItems.splice(i, 1);
   } else if (action === "add-item") {
     d.items = d.items || [];
     d.items.unshift(blankCatalogItem(index || "Item"));
   } else if (action === "del-item") {
     if (!confirm("Delete this page item?")) return;
-    d.items.splice(Number(index), 1);
+    d.items.splice(i, 1);
   } else if (action === "add-benefit") {
-    const item = d.items[Number(index)];
+    const item = d.items[i];
     item.benefits = item.benefits || [];
     item.benefits.push({ title: "New benefit", desc: "" });
   } else if (action === "add-faq") {
-    const item = d.items[Number(index)];
+    const item = d.items[i];
     item.faqs = item.faqs || [];
     item.faqs.push({ q: "New question?", a: "" });
   } else if (action === "add-testimonial") {
     d.testimonials = d.testimonials || [];
     d.testimonials.push({ quote: "", name: "", title: "", rating: 5 });
   } else if (action === "del-testimonial") {
-    d.testimonials.splice(Number(index), 1);
+    d.testimonials.splice(i, 1);
+  } else if (action === "add-home-metric") {
+    d.heroDashboard = d.heroDashboard || { title: "", meta: "", metrics: [] };
+    d.heroDashboard.metrics = d.heroDashboard.metrics || [];
+    d.heroDashboard.metrics.push({ value: "0", label: "New metric" });
+  } else if (action === "del-home-metric") {
+    d.heroDashboard?.metrics?.splice(i, 1);
+  } else if (action === "add-home-assist") {
+    d.aiAssist = d.aiAssist || { title: "", body: "", actions: [] };
+    d.aiAssist.actions = d.aiAssist.actions || [];
+    d.aiAssist.actions.push({ label: "New action", href: "/contact" });
+  } else if (action === "del-home-assist") {
+    d.aiAssist?.actions?.splice(i, 1);
+  } else if (action === "add-home-service") {
+    ensure("services").push({
+      title: "New Service",
+      desc: "Describe this service.",
+      icon: "grid",
+      color: "#0056ff",
+      href: "/services",
+    });
+  } else if (action === "del-home-service") {
+    ensure("services").splice(i, 1);
+  } else if (action === "add-home-goal") {
+    ensure("challengeLinks").push({
+      label: "New goal",
+      desc: "Describe the outcome.",
+      href: "/solutions",
+      icon: "target",
+    });
+  } else if (action === "del-home-goal") {
+    ensure("challengeLinks").splice(i, 1);
+  } else if (action === "add-home-size") {
+    ensure("businessSizeLinks").push({
+      label: "New segment",
+      desc: "Describe this business size.",
+      href: "/solutions",
+      icon: "building",
+    });
+  } else if (action === "del-home-size") {
+    ensure("businessSizeLinks").splice(i, 1);
+  } else if (action === "add-home-package") {
+    ensure("packages").push({
+      name: "New Package",
+      price: "₹0",
+      period: "/mo",
+      features: ["Feature 1", "Feature 2"],
+      highlighted: false,
+      href: "/packages",
+      ctaLabel: "View Details",
+    });
+  } else if (action === "del-home-package") {
+    ensure("packages").splice(i, 1);
+  } else if (action === "add-home-insight") {
+    ensure("insightLinks").push({
+      title: "New insight",
+      date: "Aug 2026",
+      href: "/resources",
+      gradient: "linear-gradient(135deg,#0ea5e9,#0369a1)",
+    });
+  } else if (action === "del-home-insight") {
+    ensure("insightLinks").splice(i, 1);
+  } else if (action === "add-home-rating") {
+    ensure("ratings").push({ label: "Platform", score: "5.0/5" });
+  } else if (action === "del-home-rating") {
+    ensure("ratings").splice(i, 1);
+  } else if (action === "add-home-testimonial") {
+    ensure("testimonials").push({
+      quote: "Write the client quote here.",
+      name: "Client Name",
+      title: "Role, Company",
+      rating: 5,
+    });
+  } else if (action === "del-home-testimonial") {
+    ensure("testimonials").splice(i, 1);
+  } else if (action === "add-home-herostat") {
+    ensure("heroStats").push({ value: "0+", label: "Label" });
+  } else if (action === "del-home-herostat") {
+    ensure("heroStats").splice(i, 1);
+  } else if (action === "add-home-statsband") {
+    ensure("statsBand").push({ value: "0+", label: "Label" });
+  } else if (action === "del-home-statsband") {
+    ensure("statsBand").splice(i, 1);
   } else return;
 
-  // Normalize mega fields on nav when typed as "false"
   if (d.navItems) {
     d.navItems.forEach((n) => {
       if (n.mega === "false" || n.mega === "") n.mega = false;
