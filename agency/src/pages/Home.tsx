@@ -777,7 +777,7 @@ export function Home() {
                   }}
                 >
                   <a
-                    href={maps.shareUrl}
+                    href={maps.profileUrl || maps.shareUrl}
                     className="btn btn-primary"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -785,7 +785,12 @@ export function Home() {
                     {location?.ctaLabel || "Open Google Business Profile"}
                   </a>
                   <a
-                    href={maps.profileUrl || maps.shareUrl}
+                    href={
+                      maps.directionsUrl ||
+                      (maps.lat != null && maps.lng != null
+                        ? `https://www.google.com/maps/dir/?api=1&destination=${maps.lat},${maps.lng}&travelmode=driving`
+                        : maps.shareUrl)
+                    }
                     className="btn btn-outline"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -799,7 +804,9 @@ export function Home() {
                   title={`${maps.name || company.name} on Google Maps`}
                   src={
                     maps.embedUrl ||
-                    "https://maps.google.com/maps?q=Display+Avenue+Mumbai&hl=en&z=15&output=embed"
+                    (maps.lat != null && maps.lng != null
+                      ? `https://maps.google.com/maps?q=${maps.lat},${maps.lng}+(${encodeURIComponent(maps.name || company.name)})&hl=en&z=17&output=embed`
+                      : "https://maps.google.com/maps?q=Display+Avenue,+Arch+Garden,+Kashimira,+Mira+Road+East&hl=en&z=17&output=embed")
                   }
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

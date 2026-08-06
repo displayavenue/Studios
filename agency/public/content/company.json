@@ -13,16 +13,21 @@
   "address": {
     "city": "Mumbai",
     "lines": [
-      "Mumbai, Maharashtra, India"
+      "Office No. 44, Shree Sharanam CHS, D Wing, Kanakia Layout",
+      "Unique Gardens, Gaurav City, Mira Road East, Mumbai, Maharashtra 401107"
     ],
     "hours": "Mon-Sat · 10:00 AM - 7:00 PM IST"
   },
   "googleMaps": {
     "name": "Display Avenue",
-    "shareUrl": "https://share.google/OC1gFqDqJCDFjdL50",
-    "profileUrl": "https://www.google.com/search?kgmid=/g/11l59jbzkb&q=Display+Avenue",
-    "embedUrl": "https://maps.google.com/maps?q=Display+Avenue+Mumbai&hl=en&z=15&output=embed",
-    "kgmid": "/g/11l59jbzkb"
+    "shareUrl": "https://www.google.com/maps?cid=264459913032229792",
+    "profileUrl": "https://www.google.com/maps?cid=264459913032229792",
+    "directionsUrl": "https://www.google.com/maps/dir/?api=1&destination=19.2932431,72.8773878&travelmode=driving",
+    "embedUrl": "https://maps.google.com/maps?cid=264459913032229792&hl=en&z=17&output=embed",
+    "ftid": "0x3be7b1dee1eeae35:0x3ab8ce3c59de3a0",
+    "kgmid": "/g/11l59jbzkb",
+    "lat": 19.2932431,
+    "lng": 72.8773878
   },
   "socials": {
     "facebook": "https://www.facebook.com/displayavenue",

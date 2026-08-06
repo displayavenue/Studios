@@ -33,8 +33,11 @@ type CompanyCms = typeof fallbackCompany & {
     name?: string;
     shareUrl?: string;
     profileUrl?: string;
+    directionsUrl?: string;
     embedUrl?: string;
     kgmid?: string;
+    lat?: number;
+    lng?: number;
   };
 };
 

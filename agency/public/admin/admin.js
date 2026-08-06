@@ -369,7 +369,10 @@ function renderCompany(d) {
       ${field("Business name on Google", "googleMaps.name", d.googleMaps?.name || "")}
       ${field("Share / GMB link", "googleMaps.shareUrl", d.googleMaps?.shareUrl || "")}
       ${field("Google profile / search URL", "googleMaps.profileUrl", d.googleMaps?.profileUrl || "")}
+      ${field("Get Directions URL (opens Google Maps app)", "googleMaps.directionsUrl", d.googleMaps?.directionsUrl || "", "textarea")}
       ${field("Maps embed URL", "googleMaps.embedUrl", d.googleMaps?.embedUrl || "", "textarea")}
+      ${field("Latitude", "googleMaps.lat", d.googleMaps?.lat ?? "")}
+      ${field("Longitude", "googleMaps.lng", d.googleMaps?.lng ?? "")}
       ${field("Knowledge Graph ID (kgmid)", "googleMaps.kgmid", d.googleMaps?.kgmid || "")}
     `,
     )}
