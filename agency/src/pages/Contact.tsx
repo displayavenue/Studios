@@ -1,12 +1,14 @@
 import type { CSSProperties } from "react";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
+import { SEO } from "../components/SEO";
 import "../styles/pages.css";
 
 export function Contact() {
   const { company } = useCms();
   return (
     <div className="page-shell">
+      <SEO title="Get Free Proposal | DisplayAvenue" description="Book a free consultation or request a custom proposal from DisplayAvenue." path="/contact" />
       <div className="container">
         <div className="page-frame" style={{ padding: "2rem" }}>
           <div

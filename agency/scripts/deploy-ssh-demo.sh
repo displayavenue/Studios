@@ -45,9 +45,10 @@ sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
      mv /tmp/da-content-backup-* $DOC/content; \
    fi; \
    chmod 755 $DOC $DOC/content $DOC/admin; \
-   chmod 644 $DOC/content/*.json $DOC/index.html $DOC/.htaccess 2>/dev/null || true; \
+   chmod 644 $DOC/content/*.json $DOC/index.html $DOC/.htaccess $DOC/robots.txt $DOC/sitemap.xml $DOC/llms.txt 2>/dev/null || true; \
    chmod 664 $DOC/content/*.json; \
-   ls -la $DOC | head -20; \
+   php -r \"require '$DOC/admin/seo-sync.php'; \\\$r=da_sync_seo_artifacts('$DOC/content', '$DOC'); echo 'SEO_URLS='.\\\$r['urlCount'].PHP_EOL;\" 2>/dev/null || echo 'SEO sync skipped (no php CLI)'; \
+   ls -la $DOC | head -25; \
    echo DEMO_CMS_DEPLOY_OK"
 
 echo "Live demo: https://displayavenue.com/demo/"

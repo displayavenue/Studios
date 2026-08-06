@@ -1,3 +1,4 @@
+import { SEO } from "../components/SEO";
 import { Link } from "react-router-dom";
 import "../styles/pages.css";
 
@@ -5,6 +6,11 @@ export function LegalPage({ type }: { type: "privacy" | "terms" }) {
   const isPrivacy = type === "privacy";
   return (
     <div className="page-shell">
+      <SEO
+        title={isPrivacy ? "Privacy Policy | DisplayAvenue" : "Terms & Conditions | DisplayAvenue"}
+        description={isPrivacy ? "Privacy policy for DisplayAvenue digital agency services and website." : "Terms and conditions for using DisplayAvenue websites and services."}
+        path={isPrivacy ? "/privacy" : "/terms"}
+      />
       <div className="container">
         <div className="page-frame" style={{ padding: "2rem", maxWidth: 840, margin: "0 auto" }}>
           <p className="badge">Legal</p>

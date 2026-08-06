@@ -114,7 +114,15 @@ switch ($action) {
     if (!array_key_exists('data', $body)) respond(400, ['ok' => false, 'error' => 'Missing data']);
     $path = contentPath($config, $collection);
     writeJson($path, $body['data']);
-    respond(200, ['ok' => true, 'collection' => $collection, 'saved' => true]);
+    require_once __DIR__ . '/seo-sync.php';
+    $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
+    respond(200, ['ok' => true, 'collection' => $collection, 'saved' => true, 'seo' => $seo]);
+
+  case 'sync-seo':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    require_once __DIR__ . '/seo-sync.php';
+    $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
+    respond(200, ['ok' => true, 'seo' => $seo]);
 
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);

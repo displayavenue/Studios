@@ -1,8 +1,11 @@
-# SPA fallback for React Router on Hostinger (Apache)
-# Demo lives at https://displayavenue.com/demo/
+# SPA + SEO for DisplayAvenue agency demo (https://displayavenue.com/demo/)
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /demo/
+
+  # Live sitemap
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

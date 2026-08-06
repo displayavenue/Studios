@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
+import { SEO } from "../components/SEO";
 import { solutionCategories } from "../data/solutions";
 import "../styles/pages.css";
 
@@ -8,6 +9,7 @@ export function Solutions() {
   const { solutions } = useCms();
   return (
     <div className="page-shell">
+      <SEO title="Digital Solutions | DisplayAvenue" description="Solutions by goals, business size, platform, technology, channel, and industry." path="/solutions" />
       <div className="container">
         <div className="page-frame" style={{ padding: "1.75rem" }}>
           <p className="badge">Smart Solutions for Every Goal</p>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
+import { SEO } from "../components/SEO";
 import "../styles/pages.css";
 
 export function Services() {
@@ -8,6 +9,7 @@ export function Services() {
   const categories = Array.from(new Set(services.map((p) => p.category)));
   return (
     <div className="page-shell">
+      <SEO title="Services | DisplayAvenue" description="Explore 70+ digital marketing, web, AI, branding, and creative services from DisplayAvenue." path="/services" />
       <div className="container">
         <div className="page-frame" style={{ padding: "1.75rem" }}>
           <p className="badge">What We Do</p>

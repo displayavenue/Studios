@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
+import { SEO } from "../components/SEO";
 import {
   packageCategories,
   packageBenefits,
@@ -11,6 +12,7 @@ import "../styles/pages.css";
 export function Packages() {
   return (
     <div className="page-shell">
+      <SEO title="Packages & Pricing | DisplayAvenue" description="Transparent digital marketing, SEO, ads, website, ecommerce, and branding packages." path="/packages" />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

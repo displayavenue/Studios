@@ -31,6 +31,7 @@ type CompanyCms = typeof fallbackCompany & {
 };
 
 type HomeCms = {
+  seo?: { title?: string; description?: string };
   hero: {
     eyebrow: string;
     titleBefore: string;

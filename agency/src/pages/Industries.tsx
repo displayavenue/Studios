@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
+import { SEO } from "../components/SEO";
 import {
   industries,
   industryStats,
@@ -10,6 +11,7 @@ import "../styles/pages.css";
 export function Industries() {
   return (
     <div className="page-shell">
+      <SEO title="Industries We Serve | DisplayAvenue" description="Industry-specific digital growth strategies for healthcare, real estate, ecommerce, SaaS, and more." path="/industries" />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
+import { SEO } from "../components/SEO";
 import { homeServices } from "../data/services";
 import { industries } from "../data/industries";
 import { featuredHomePackages } from "../data/packages";
@@ -25,8 +26,15 @@ export function Home() {
   const { company, home, content } = useCms();
   const clientLogos = content.clientLogos;
   const testimonials = content.testimonials;
+  const seoTitle =
+    home.seo?.title ||
+    `${company.name} | Digital Growth. AI Powered.`;
+  const seoDesc =
+    home.seo?.description ||
+    home.hero.lead;
   return (
     <>
+      <SEO title={seoTitle} description={seoDesc} path="/" />
       <section className="hero">
         <div className="container hero-grid">
           <div>

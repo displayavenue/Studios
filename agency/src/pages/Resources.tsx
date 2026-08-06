@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
+import { SEO } from "../components/SEO";
 import {
   resourceTypes,
   resourceCategories,
@@ -12,6 +13,7 @@ import "../styles/pages.css";
 export function Resources() {
   return (
     <div className="page-shell">
+      <SEO title="Resources & Insights | DisplayAvenue" description="Guides, blogs, templates, and playbooks for digital growth." path="/resources" />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
+import { SEO } from "../components/SEO";
 import {
   toolCategories,
   popularTools,
@@ -11,6 +12,7 @@ import "../styles/pages.css";
 export function FreeTools() {
   return (
     <div className="page-shell">
+      <SEO title="Free Marketing Tools | DisplayAvenue" description="50+ free SEO, marketing, content, and AI tools. No signup required." path="/free-tools" />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

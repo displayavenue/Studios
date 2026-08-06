@@ -1,11 +1,69 @@
 import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
 import type { DetailPageContent } from "../data/catalogTypes";
+import {
+  SEO,
+  FAQPageSchema,
+  ServiceSchema,
+  BreadcrumbSchema,
+  ArticleSchema,
+} from "./SEO";
 import "./DetailPage.css";
 
+function pathFor(page: DetailPageContent): string {
+  const map: Record<string, string> = {
+    service: "/services/",
+    industry: "/industries/",
+    package: "/packages/",
+    solution: "/solutions/",
+    ai: "/ai-platform/",
+    tool: "/free-tools/",
+    "case-study": "/case-studies/",
+    project: "/portfolio/",
+    resource: "/resources/",
+  };
+  return `${map[page.kind] || "/services/"}${page.slug}`;
+}
+
 export function DetailPage({ page }: { page: DetailPageContent }) {
+  const path = pathFor(page);
+  const title = `${page.title} | DisplayAvenue`;
+  const description = page.summary;
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: page.category, path: path.split("/").slice(0, 2).join("/") || "/" },
+    { name: page.title, path },
+  ];
+  const faqs = (page.faqs || []).map((f) => ({
+    question: f.q,
+    answer: f.a,
+  }));
+
   return (
     <div className="detail-page">
+      <SEO title={title} description={description} path={path} />
+      <BreadcrumbSchema items={crumbs} />
+      {(page.kind === "service" ||
+        page.kind === "solution" ||
+        page.kind === "ai" ||
+        page.kind === "package") && (
+        <ServiceSchema
+          name={page.title}
+          description={page.summary}
+          path={path}
+          category={page.category}
+        />
+      )}
+      {(page.kind === "resource" || page.kind === "case-study") && (
+        <ArticleSchema
+          title={page.title}
+          description={page.summary}
+          path={path}
+          category={page.category}
+        />
+      )}
+      {faqs.length > 0 && <FAQPageSchema faqs={faqs} />}
+
       <section className="detail-hero" style={{ ["--accent" as string]: page.color }}>
         <div className="container detail-hero-grid">
           <div>
