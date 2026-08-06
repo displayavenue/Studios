@@ -610,7 +610,7 @@ export function Home() {
                   className="featured-media"
                   style={{ background: caseGradients[i % caseGradients.length] }}
                 >
-                  <span className="featured-tag" style={{ color: "#fff" }}>
+                  <span className="featured-tag">
                     {item!.category}
                   </span>
                 </div>
@@ -654,7 +654,7 @@ export function Home() {
                   className="featured-media"
                   style={{ background: caseGradients[(i + 1) % caseGradients.length] }}
                 >
-                  <span className="featured-tag" style={{ color: "#fff" }}>
+                  <span className="featured-tag">
                     {item!.category}
                   </span>
                 </div>
