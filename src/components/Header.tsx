@@ -36,8 +36,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<OpenMenu>(null);
-  const [mobileSection, setMobileSection] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
+  const scrollLockY = useRef(0);
   const servicesId = useId();
   const packagesId = useId();
   const moreId = useId();
@@ -65,11 +65,26 @@ export function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    document.body.classList.toggle("menu-open", open);
+    if (!open) return;
+
+    scrollLockY.current = window.scrollY;
+    document.body.classList.add("menu-open");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollLockY.current}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = "";
       document.body.classList.remove("menu-open");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      window.scrollTo(0, scrollLockY.current);
     };
   }, [open]);
 
@@ -298,13 +313,34 @@ export function Header() {
         </div>
       </header>
 
-      {typeof document !== "undefined" &&
+      {open &&
+        typeof document !== "undefined" &&
         createPortal(
-          <div className={`mobile-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}>
-            <div className="mobile-drawer__inner">
+          <div className="mobile-drawer is-open" role="dialog" aria-modal="true" aria-label="Site menu">
+            <div className="mobile-drawer__bar">
               <p className="mobile-drawer__label">Menu</p>
+              <button type="button" className="mobile-drawer__close" onClick={close} aria-label="Close menu">
+                Close
+              </button>
+            </div>
 
-              <nav className="mobile-drawer__links mobile-drawer__links--primary" aria-label="Mobile primary">
+            <div className="mobile-drawer__inner">
+              <div className="mobile-drawer__ctas">
+                <Link to="/book-now" className="btn btn--gold" onClick={close}>
+                  Book Now
+                </Link>
+                <a
+                  href={company.whatsappHref}
+                  className="btn btn--outline"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={close}
+                >
+                  WhatsApp
+                </a>
+              </div>
+
+              <nav className="mobile-nav" aria-label="Mobile primary">
                 <NavLink to="/services" onClick={close}>
                   Services
                 </NavLink>
@@ -314,49 +350,29 @@ export function Header() {
                 <NavLink to="/packages" onClick={close}>
                   Packages
                 </NavLink>
-                <NavLink to="/book-now" onClick={close}>
-                  Book Now
+                <NavLink to="/about" onClick={close}>
+                  About
                 </NavLink>
                 <NavLink to="/contact" onClick={close}>
                   Contact
                 </NavLink>
               </nav>
 
-              <div className="mobile-acc">
-                <button
-                  type="button"
-                  className={`mobile-acc__btn ${mobileSection === "services" ? "is-open" : ""}`}
-                  onClick={() =>
-                    setMobileSection((s) => (s === "services" ? null : "services"))
-                  }
-                >
-                  Browse services
-                </button>
-                {mobileSection === "services" && (
-                  <div className="mobile-acc__body">
-                    {serviceCategories.map(({ key, label, anchor }) => (
-                      <div key={key} className="mobile-acc__group">
-                        <Link to={`/services#${anchor}`} onClick={close} className="mobile-acc__group-title">
-                          {label}
-                        </Link>
-                        {services
-                          .filter((s) => s.category === key)
-                          .slice(0, 3)
-                          .map((s) => (
-                            <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
-                              {s.title}
-                            </Link>
-                          ))}
-                      </div>
-                    ))}
-                  </div>
-                )}
+              <div className="mobile-nav__section">
+                <p className="mobile-nav__heading">Browse by category</p>
+                <div className="mobile-chip-grid">
+                  {serviceCategories.map(({ label, anchor }) => (
+                    <Link key={anchor} to={`/services#${anchor}`} onClick={close}>
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+                <Link to="/services" className="mobile-nav__all" onClick={close}>
+                  View all services →
+                </Link>
               </div>
 
-              <nav className="mobile-drawer__links" aria-label="Mobile secondary">
-                <NavLink to="/about" onClick={close}>
-                  About
-                </NavLink>
+              <nav className="mobile-nav mobile-nav--secondary" aria-label="Mobile secondary">
                 <NavLink to="/industries" onClick={close}>
                   Industries
                 </NavLink>
@@ -374,20 +390,9 @@ export function Header() {
                 </NavLink>
               </nav>
 
-              <div className="mobile-drawer__actions">
-                <a
-                  href={company.whatsappHref}
-                  className="btn btn--dark"
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={close}
-                >
-                  WhatsApp us
-                </a>
-                <a href={company.phoneHref} className="mobile-drawer__phone">
-                  {company.phone}
-                </a>
-              </div>
+              <a href={company.phoneHref} className="mobile-drawer__phone">
+                Call {company.phone}
+              </a>
             </div>
           </div>,
           document.body,

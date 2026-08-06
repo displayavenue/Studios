@@ -17,7 +17,7 @@ export function IndustryShowcase() {
           </p>
         </div>
         <div className="industry-showcase">
-          {industries.map((ind) => (
+          {industries.slice(0, 6).map((ind) => (
             <Link
               key={ind.slug}
               to={`/industries/${ind.slug}`}
