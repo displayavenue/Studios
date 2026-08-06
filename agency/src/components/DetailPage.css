@@ -439,6 +439,21 @@
   border-bottom: 1px solid var(--border-soft);
   background: linear-gradient(180deg, #fff, var(--bg-soft));
 }
+.case-hero-media {
+  width: min(100%, 920px);
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 0 1.25rem;
+  box-shadow: var(--shadow-md, 0 12px 28px rgba(11, 31, 59, 0.12));
+  background: #e8eef8;
+}
+.case-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .soft-hero {
   background:
     radial-gradient(ellipse 60% 50% at 100% 0%, rgba(249,115,22,0.14), transparent),
@@ -481,6 +496,20 @@
   border-radius: var(--radius-lg);
   padding: 1.25rem;
   box-shadow: var(--shadow-sm);
+}
+.svc-side-media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  background: #f3f5f8;
+}
+.svc-side-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .soft-proof-card ul, .pkg-card ul, .svc-side ul { list-style: none; padding: 0; margin: 0.85rem 0 1rem; display: grid; gap: 0.45rem; }
 .soft-proof-card li, .pkg-card li, .svc-side li { display: flex; gap: 0.45rem; align-items: flex-start; font-size: 0.9rem; }

@@ -185,8 +185,13 @@ export function Home() {
             )}
           </div>
 
-          {show("heroDashboard") || show("aiAssist") ? (
+          {home.hero.image || show("heroDashboard") || show("aiAssist") ? (
           <div className="hero-visual">
+            {home.hero.image ? (
+              <div className="hero-photo">
+                <img src={home.hero.image} alt="" loading="eager" />
+              </div>
+            ) : null}
             {show("heroDashboard") && (
             <div className="dash-card">
               <h3>{dash.title}</h3>

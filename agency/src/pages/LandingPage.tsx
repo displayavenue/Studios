@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import { submitLead } from "../lib/submitLead";
+import { VectorArt, vectorVariantFor } from "../components/VectorArt";
 import "./LandingPage.css";
 
 type Benefit = { title?: string; desc?: string };
@@ -389,7 +390,11 @@ export default function LandingPage() {
           {landing.heroImage ? (
             <img src={landing.heroImage} alt="" />
           ) : (
-            <div className="lp-hero-fallback" aria-hidden />
+            <VectorArt
+              className="lp-hero-vector"
+              variant={vectorVariantFor(landing.channel || landing.name || "")}
+              title={landing.headline || "Campaign visual"}
+            />
           )}
         </div>
       </section>

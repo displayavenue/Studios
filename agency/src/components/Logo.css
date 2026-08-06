@@ -27,6 +27,14 @@
   margin-top: 0.12rem;
 }
 
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+
 .logo-light .logo-text strong {
   color: #fff;
 }

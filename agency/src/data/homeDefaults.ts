@@ -31,6 +31,7 @@ export const homeDefaults = {
     titleBefore: "Transform Your Business with",
     titleAccent: "AI-Powered Digital Growth.",
     lead: "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, and AI automation - under one roof.",
+    image: "",
     primaryCta: "Book Free Consultation →",
     primaryCtaHref: "/contact",
     secondaryCta: "Get Free Proposal",

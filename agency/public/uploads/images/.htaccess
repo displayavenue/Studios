@@ -1,0 +1,25 @@
+# Uploaded CMS images — allow public read, block script execution
+<IfModule mod_authz_core.c>
+  Require all granted
+</IfModule>
+
+<FilesMatch "(?i)\.(php|phtml|php[0-9]|phar|cgi|pl|asp|aspx|jsp|sh)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Cache-Control "public, max-age=604800, immutable"
+</IfModule>
+
+<FilesMatch "\.(?i:jpg|jpeg|png|webp|gif|svg)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=604800, immutable"
+  </IfModule>
+</FilesMatch>

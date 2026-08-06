@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { VectorArt, vectorVariantFor } from "../components/VectorArt";
 import "../styles/pages.css";
 import "./Shop.css";
 import {
@@ -211,9 +212,11 @@ export function ShopProductPage() {
               {product.image ? (
                 <img src={product.image} alt={product.title} />
               ) : (
-                <div className="shop-card-placeholder shop-product-placeholder" aria-hidden>
-                  {product.title.slice(0, 1)}
-                </div>
+                <VectorArt
+                  className="shop-card-vector"
+                  variant={vectorVariantFor(product.category || product.title)}
+                  title={product.title}
+                />
               )}
             </div>
 

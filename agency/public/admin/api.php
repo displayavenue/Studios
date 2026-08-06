@@ -203,7 +203,7 @@ if ($raw) {
 }
 
 $action = (string)($_GET['action'] ?? ($body['action'] ?? ($_POST['action'] ?? '')));
-$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'clear-cache', 'upload-catalogue', 'remove-catalogue', 'lead-update', 'lead-delete', 'shop-order-update', 'shop-order-delete'], true)
+$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'clear-cache', 'upload-catalogue', 'remove-catalogue', 'upload-image', 'lead-update', 'lead-delete', 'shop-order-update', 'shop-order-delete'], true)
   || strtoupper((string)($_SERVER['REQUEST_METHOD'] ?? '')) === 'POST';
 
 if ($mutating) {
@@ -454,6 +454,98 @@ switch ($action) {
     $data['updatedAt'] = gmdate('c');
     writeJson($cataloguePath, $data);
     respond(200, ['ok' => true, 'removed' => true, 'data' => $data]);
+
+  case 'upload-image':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    if (empty($_FILES['file']) || !is_array($_FILES['file'])) {
+      respond(400, ['ok' => false, 'error' => 'Choose an image to upload']);
+    }
+    $file = $_FILES['file'];
+    if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+      respond(400, ['ok' => false, 'error' => 'Upload failed (error ' . (int)($file['error'] ?? 0) . ')']);
+    }
+    $maxBytes = (int)($config['image_max_bytes'] ?? (12 * 1024 * 1024));
+    $size = (int)($file['size'] ?? 0);
+    if ($size <= 0 || $size > $maxBytes) {
+      respond(400, ['ok' => false, 'error' => 'Image must be under ' . (int)round($maxBytes / 1048576) . ' MB']);
+    }
+    $original = (string)($file['name'] ?? 'image');
+    $ext = strtolower(pathinfo($original, PATHINFO_EXTENSION));
+    $allowedExt = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'];
+    if (!in_array($ext, $allowedExt, true)) {
+      respond(400, ['ok' => false, 'error' => 'Use JPG, PNG, WebP, GIF, or SVG']);
+    }
+    $tmp = (string)($file['tmp_name'] ?? '');
+    if ($tmp === '' || !is_uploaded_file($tmp)) {
+      respond(400, ['ok' => false, 'error' => 'Invalid upload']);
+    }
+    $finfoMime = '';
+    if (function_exists('finfo_open')) {
+      $finfo = finfo_open(FILEINFO_MIME_TYPE);
+      if ($finfo) {
+        $finfoMime = (string)finfo_file($finfo, $tmp);
+        finfo_close($finfo);
+      }
+    }
+    $allowedMimes = [
+      'image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml',
+      'text/plain', 'text/xml', 'application/xml', 'application/octet-stream',
+    ];
+    if ($finfoMime !== '' && !in_array($finfoMime, $allowedMimes, true)) {
+      respond(400, ['ok' => false, 'error' => 'File type not allowed']);
+    }
+    if ($ext === 'svg') {
+      $svg = (string)file_get_contents($tmp);
+      if ($svg === '' || !preg_match('/<svg[\s>]/i', $svg)) {
+        respond(400, ['ok' => false, 'error' => 'Invalid SVG file']);
+      }
+      if (preg_match('/<(script|foreignObject)\b|on\w+\s*=|javascript:/i', $svg)) {
+        respond(400, ['ok' => false, 'error' => 'SVG contains disallowed content']);
+      }
+    } else {
+      $imgInfo = @getimagesize($tmp);
+      if ($imgInfo === false) {
+        respond(400, ['ok' => false, 'error' => 'File is not a valid image']);
+      }
+    }
+
+    $uploadsRoot = rtrim((string)($config['uploads_dir'] ?? (dirname(__DIR__) . '/uploads')), '/\\');
+    $destDir = $uploadsRoot . '/images';
+    if (!is_dir($destDir) && !mkdir($destDir, 0755, true)) {
+      respond(500, ['ok' => false, 'error' => 'Could not create images folder']);
+    }
+    $safeBase = preg_replace('/[^a-zA-Z0-9._-]+/', '-', pathinfo($original, PATHINFO_FILENAME)) ?: 'image';
+    $safeBase = trim(substr($safeBase, 0, 40), '-') ?: 'image';
+    $storedExt = $ext === 'jpeg' ? 'jpg' : $ext;
+    $storedName = $safeBase . '-' . gmdate('YmdHis') . '-' . bin2hex(random_bytes(3)) . '.' . $storedExt;
+    $destPath = $destDir . '/' . $storedName;
+    if (!move_uploaded_file($tmp, $destPath)) {
+      respond(500, ['ok' => false, 'error' => 'Could not save the image']);
+    }
+    @chmod($destPath, 0644);
+
+    $width = null;
+    $height = null;
+    if ($storedExt !== 'svg') {
+      $dims = @getimagesize($destPath);
+      if (is_array($dims)) {
+        $width = (int)($dims[0] ?? 0) ?: null;
+        $height = (int)($dims[1] ?? 0) ?: null;
+      }
+    }
+
+    $publicUrl = '/uploads/images/' . rawurlencode($storedName);
+    respond(200, [
+      'ok' => true,
+      'uploaded' => true,
+      'url' => $publicUrl,
+      'fileName' => $original,
+      'storedName' => $storedName,
+      'bytes' => (int)filesize($destPath),
+      'width' => $width,
+      'height' => $height,
+      'message' => 'Image uploaded',
+    ]);
 
   case 'sync-seo':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);

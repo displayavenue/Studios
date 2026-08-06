@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { VectorArt, vectorVariantFor } from "../components/VectorArt";
 import "../styles/pages.css";
 import "./Shop.css";
 
@@ -153,9 +154,11 @@ export function Shop() {
                         {p.image ? (
                           <img src={p.image} alt={p.title} loading="lazy" />
                         ) : (
-                          <div className="shop-card-placeholder" aria-hidden>
-                            {p.title.slice(0, 1)}
-                          </div>
+                          <VectorArt
+                            className="shop-card-vector"
+                            variant={vectorVariantFor(p.category || p.title)}
+                            title={p.title}
+                          />
                         )}
                         {p.featured ? <span className="shop-pill">Featured</span> : null}
                       </Link>

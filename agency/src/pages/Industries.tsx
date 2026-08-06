@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { useCms } from "../cms/CmsProvider";
 import {
-  industries,
+  industries as fallbackIndustries,
   industryStats,
   popularIndustrySolutions,
 } from "../data/industries";
 import "../styles/pages.css";
 
 export function Industries() {
+  const { industries: cmsIndustries } = useCms();
+  const industries =
+    cmsIndustries?.length > 0
+      ? cmsIndustries.map((item) => ({
+          slug: item.slug,
+          title: item.title,
+          desc: item.summary,
+          icon: item.icon,
+          image: item.image,
+          color: item.color,
+        }))
+      : fallbackIndustries.map((item) => ({ ...item, image: undefined, color: "#0056ff" }));
+
   return (
     <div className="page-shell">
       <SEO title="Industries We Serve | DisplayAvenue" description="Industry-specific digital growth strategies for healthcare, real estate, ecommerce, SaaS, and more." path="/industries" />
@@ -63,7 +77,13 @@ export function Industries() {
                     to={`/industries/${item.slug}`}
                     className="category-card"
                   >
-                    <Icon name={item.icon} color="#0056ff" />
+                    {item.image ? (
+                      <span className="category-card-media">
+                        <img src={item.image} alt="" loading="lazy" />
+                      </span>
+                    ) : (
+                      <Icon name={item.icon} color={item.color || "#0056ff"} />
+                    )}
                     <h3>{item.title}</h3>
                     <p>{item.desc}</p>
                     <span className="arrow">

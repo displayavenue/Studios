@@ -56,6 +56,7 @@ return [
   'openai_model' => 'gpt-4o-mini',
   'uploads_dir' => dirname(__DIR__) . '/uploads',
   'catalogue_max_bytes' => 30 * 1024 * 1024, // 30 MB
+  'image_max_bytes' => 12 * 1024 * 1024, // 12 MB raw upload (browser compresses first)
   // Razorpay — paste keys from https://dashboard.razorpay.com/app/keys
   // Leave blank until ready; shop checkout will show a setup message.
   'razorpay_key_id' => '',

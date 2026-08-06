@@ -27,6 +27,10 @@ export type DetailPageContent = {
   industry?: string;
   icon: string;
   color: string;
+  /** Optional CMS-uploaded card / listing image (auto-compressed). */
+  image?: string;
+  /** Optional CMS-uploaded detail cover image. */
+  coverImage?: string;
   eyebrow: string;
   headline: string;
   summary: string;

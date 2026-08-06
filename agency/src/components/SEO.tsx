@@ -60,6 +60,15 @@ export function SEO({
 }: SEOProps) {
   const { company, tracking } = useCms();
   const siteVerification = tracking.googleSiteVerification?.trim();
+  const companyOg = (company as { ogImage?: string }).ogImage?.trim();
+  const resolvedImage =
+    image && image !== DEFAULT_OG
+      ? image
+      : companyOg
+        ? companyOg.startsWith("http")
+          ? companyOg
+          : absoluteUrl(company.website, companyOg)
+        : DEFAULT_OG;
 
   useEffect(() => {
     document.title = title;
@@ -88,12 +97,12 @@ export function SEO({
     setMeta('meta[property="og:description"]', "content", description);
     setMeta('meta[property="og:type"]', "content", type);
     setMeta('meta[property="og:url"]', "content", url);
-    setMeta('meta[property="og:image"]', "content", image);
+    setMeta('meta[property="og:image"]', "content", resolvedImage);
     setMeta('meta[property="og:locale"]', "content", "en_IN");
     setMeta('meta[name="twitter:card"]', "content", "summary_large_image");
     setMeta('meta[name="twitter:title"]', "content", title);
     setMeta('meta[name="twitter:description"]', "content", description);
-    setMeta('meta[name="twitter:image"]', "content", image);
+    setMeta('meta[name="twitter:image"]', "content", resolvedImage);
 
     let canonical = document.querySelector(
       'link[rel="canonical"]',
@@ -110,6 +119,7 @@ export function SEO({
     path,
     type,
     image,
+    resolvedImage,
     noindex,
     company.website,
     company.name,

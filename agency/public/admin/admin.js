@@ -100,6 +100,234 @@ function field(label, path, value, type = "text") {
   return `<div class="field ${isArea ? "full" : ""}"><label for="${id}">${label}</label>${control}</div>`;
 }
 
+/** Image size presets shown next to each upload control. */
+const IMAGE_PRESETS = {
+  hero: {
+    label: "Hero / banner",
+    recommend: "1600 × 900 px",
+    ratio: "16:9",
+    maxEdge: 1600,
+    quality: 0.82,
+    hint: "Wide banner for landing pages and homepage hero. SVG vector also OK.",
+  },
+  cover: {
+    label: "Cover image",
+    recommend: "1400 × 800 px",
+    ratio: "16:9",
+    maxEdge: 1400,
+    quality: 0.82,
+    hint: "Detail-page cover. Prefer landscape photos or SVG illustrations.",
+  },
+  card: {
+    label: "Card / thumbnail",
+    recommend: "1200 × 675 px",
+    ratio: "16:9",
+    maxEdge: 1200,
+    quality: 0.8,
+    hint: "Listing cards, case studies, portfolio tiles.",
+  },
+  product: {
+    label: "Product image",
+    recommend: "1200 × 1200 px",
+    ratio: "1:1",
+    maxEdge: 1200,
+    quality: 0.82,
+    hint: "Square product shot for the shop. Transparent PNG or SVG OK.",
+  },
+  logo: {
+    label: "Logo / mark",
+    recommend: "512 × 512 px",
+    ratio: "1:1",
+    maxEdge: 512,
+    quality: 0.9,
+    hint: "Prefer SVG vector logo. PNG with transparent background also works.",
+  },
+  og: {
+    label: "Social share (OG)",
+    recommend: "1200 × 630 px",
+    ratio: "1.91:1",
+    maxEdge: 1200,
+    quality: 0.82,
+    hint: "Facebook / LinkedIn / WhatsApp link preview image.",
+  },
+};
+
+function imageField(label, path, value, presetKey = "card") {
+  const preset = IMAGE_PRESETS[presetKey] || IMAGE_PRESETS.card;
+  const id = "img_" + path.replace(/[^a-z0-9]/gi, "_");
+  const url = String(value || "").trim();
+  const preview = url
+    ? `<img src="${escapeAttr(url)}" alt="" loading="lazy" />`
+    : `<div class="image-preview-empty" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="48" height="48" fill="none">
+          <rect x="8" y="14" width="48" height="36" rx="6" stroke="#c9a227" stroke-width="2"/>
+          <circle cx="24" cy="28" r="5" stroke="#c9a227" stroke-width="2"/>
+          <path d="M12 44l14-12 10 8 8-6 8 10" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>No image yet</span>
+      </div>`;
+  return `
+  <div class="field full image-field">
+    <label>${escapeHtml(label)}</label>
+    <div class="image-specs">
+      <strong>${escapeHtml(preset.recommend)}</strong>
+      <span>· ${escapeHtml(preset.ratio)}</span>
+      <span>· JPG / PNG / WebP / GIF / <em>SVG vector</em></span>
+      <span class="image-specs-note">${escapeHtml(preset.hint)} Auto-compressed before upload so pages stay fast.</span>
+    </div>
+    <div class="image-picker">
+      <div class="image-preview">${preview}</div>
+      <div class="image-actions">
+        <button type="button" class="btn btn-gold btn-sm" data-image-pick="${escapeAttr(id)}">
+          ${url ? "Replace image" : "Upload image"}
+        </button>
+        ${
+          url
+            ? `<button type="button" class="btn btn-ghost btn-sm" data-image-clear="${escapeAttr(path)}">Remove</button>`
+            : ""
+        }
+        ${url ? `<code class="image-url-chip" title="${escapeAttr(url)}">${escapeHtml(url)}</code>` : ""}
+      </div>
+    </div>
+    <input
+      type="file"
+      id="${escapeAttr(id)}"
+      class="image-file-input"
+      accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,.svg"
+      data-image-upload
+      data-image-path="${escapeAttr(path)}"
+      data-image-preset="${escapeAttr(presetKey)}"
+      hidden
+    />
+  </div>`;
+}
+
+function loadImageElement(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(img);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error("Could not read image"));
+    };
+    img.src = url;
+  });
+}
+
+function canvasToBlob(canvas, type, quality) {
+  return new Promise((resolve) => {
+    canvas.toBlob((blob) => resolve(blob), type, quality);
+  });
+}
+
+/** Browser-side resize + compress before upload (keeps SVG vectors as-is). */
+async function compressImageFile(file, presetKey = "card") {
+  const preset = IMAGE_PRESETS[presetKey] || IMAGE_PRESETS.card;
+  const isSvg =
+    file.type === "image/svg+xml" || /\.svg$/i.test(file.name || "");
+  if (isSvg) {
+    return { blob: file, fileName: file.name, compressed: false, note: "SVG vector kept as-is" };
+  }
+  if (file.type === "image/gif" || /\.gif$/i.test(file.name || "")) {
+    return { blob: file, fileName: file.name, compressed: false, note: "GIF kept as-is" };
+  }
+
+  const img = await loadImageElement(file);
+  const maxEdge = preset.maxEdge || 1200;
+  const scale = Math.min(1, maxEdge / Math.max(img.width, img.height));
+  const w = Math.max(1, Math.round(img.width * scale));
+  const h = Math.max(1, Math.round(img.height * scale));
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0, w, h);
+
+  const quality = preset.quality || 0.82;
+  let blob = await canvasToBlob(canvas, "image/webp", quality);
+  let outName = (file.name || "image").replace(/\.[^.]+$/, "") + ".webp";
+  if (!blob || blob.size === 0) {
+    blob = await canvasToBlob(canvas, "image/jpeg", quality);
+    outName = (file.name || "image").replace(/\.[^.]+$/, "") + ".jpg";
+  }
+  // If compression somehow got larger, keep the smaller of original vs compressed
+  if (blob && blob.size >= file.size && scale === 1) {
+    return { blob: file, fileName: file.name, compressed: false, note: "Original already small" };
+  }
+  const saved = file.size > 0 && blob ? Math.round((1 - blob.size / file.size) * 100) : 0;
+  return {
+    blob,
+    fileName: outName,
+    compressed: true,
+    note: saved > 0 ? `Compressed ~${saved}% · ${w}×${h}px` : `Resized to ${w}×${h}px`,
+  };
+}
+
+async function uploadCmsImage(input) {
+  const file = input?.files?.[0];
+  const path = input?.getAttribute("data-image-path");
+  const preset = input?.getAttribute("data-image-preset") || "card";
+  if (!file || !path) return;
+  try {
+    toast("Compressing image…");
+    const prepared = await compressImageFile(file, preset);
+    const fd = new FormData();
+    fd.append("file", prepared.blob, prepared.fileName || file.name);
+    fd.append("preset", preset);
+    toast(prepared.note ? `Uploading… (${prepared.note})` : "Uploading image…");
+    const res = await fetch(`${API}?action=upload-image`, {
+      method: "POST",
+      credentials: "include",
+      body: fd,
+    });
+    const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+    if (!res.ok || json.ok === false) throw new Error(json.error || "Upload failed");
+    setByPath(state.data, path, json.url);
+    setDirty(true);
+    renderEditor();
+    const dims =
+      json.width && json.height ? ` · ${json.width}×${json.height}px` : "";
+    const kb = json.bytes ? ` · ${Math.max(1, Math.round(json.bytes / 1024))} KB` : "";
+    toast(`Image saved${dims}${kb}`);
+  } catch (e) {
+    toast(e.message || "Image upload failed", "err");
+  } finally {
+    if (input) input.value = "";
+  }
+}
+
+function bindImageFields(root = $("#editor-wrap")) {
+  root.querySelectorAll("[data-image-pick]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const id = btn.getAttribute("data-image-pick");
+      const input = id ? document.getElementById(id) : null;
+      input?.click();
+    });
+  });
+  root.querySelectorAll("[data-image-upload]").forEach((input) => {
+    input.addEventListener("change", () => {
+      void uploadCmsImage(input);
+    });
+  });
+  root.querySelectorAll("[data-image-clear]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const path = btn.getAttribute("data-image-clear");
+      if (!path) return;
+      setByPath(state.data, path, "");
+      setDirty(true);
+      renderEditor();
+    });
+  });
+}
+
 function bindFields(root = $("#editor-wrap")) {
   root.querySelectorAll("[data-path]").forEach((el) => {
     const handler = () => {
@@ -239,6 +467,7 @@ function renderEditor() {
   };
   wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
   bindFields(wrap);
+  bindImageFields(wrap);
   wrap.querySelectorAll("[data-action]").forEach((btn) => {
     btn.onclick = (e) => {
       e.preventDefault();
@@ -423,6 +652,7 @@ function renderCompany(d) {
       ${field("Name", "name", d.name)}
       ${field("Short name", "shortName", d.shortName)}
       ${field("Tagline", "tagline", d.tagline)}
+      ${imageField("Brand logo (header)", "logoImage", d.logoImage || "", "logo")}
       ${field("Website", "website", d.website)}
       ${field("Phone", "phone", d.phone)}
       ${field("Phone href", "phoneHref", d.phoneHref)}
@@ -432,6 +662,7 @@ function renderCompany(d) {
       ${field("Email href", "emailHref", d.emailHref)}
       ${field("Client login URL", "clientLogin", d.clientLogin)}
       ${field("Announcement bar", "announcement", d.announcement, "textarea")}
+      ${imageField("Social share image (Open Graph)", "ogImage", d.ogImage || "", "og")}
     `,
     )}
     ${card(
@@ -719,6 +950,7 @@ function renderHome(d) {
       ${field("Title (before accent)", "hero.titleBefore", d.hero?.titleBefore || "")}
       ${field("Title accent", "hero.titleAccent", d.hero?.titleAccent || "")}
       ${field("Lead paragraph", "hero.lead", d.hero?.lead || "", "textarea")}
+      ${imageField("Hero visual image / vector", "hero.image", d.hero?.image || "", "hero")}
       ${field("Primary CTA label", "hero.primaryCta", d.hero?.primaryCta || "")}
       ${field("Primary CTA link", "hero.primaryCtaHref", d.hero?.primaryCtaHref || "/contact")}
       ${field("Secondary CTA label", "hero.secondaryCta", d.hero?.secondaryCta || "")}
@@ -983,6 +1215,8 @@ function blankCatalogItem(kind) {
     category: kind,
     icon: "grid",
     color: "#0056ff",
+    image: "",
+    coverImage: "",
     eyebrow: kind,
     headline: `New ${kind} headline`,
     summary: "Edit this summary in the CMS.",
@@ -1072,6 +1306,8 @@ function renderCatalog(d, kindLabel) {
           ${field("Category", `items.${i}.category`, item.category)}
           ${field("Icon key", `items.${i}.icon`, item.icon)}
           ${field("Color", `items.${i}.color`, item.color, "color")}
+          ${imageField("Card / listing image", `items.${i}.image`, item.image || "", "card")}
+          ${imageField("Detail page cover", `items.${i}.coverImage`, item.coverImage || "", "cover")}
           ${field("Eyebrow", `items.${i}.eyebrow`, item.eyebrow)}
           ${field("Headline", `items.${i}.headline`, item.headline, "textarea")}
           ${field("Summary", `items.${i}.summary`, item.summary, "textarea")}
@@ -1409,7 +1645,7 @@ function renderShop(d) {
           ${field("Price (INR)", `products.${i}.price`, p.price ?? 0, "number")}
           ${field("Compare-at price (optional)", `products.${i}.compareAtPrice`, p.compareAtPrice ?? 0, "number")}
           ${field("Category", `products.${i}.category`, p.category || "")}
-          ${field("Image URL", `products.${i}.image`, p.image || "")}
+          ${imageField("Product image", `products.${i}.image`, p.image || "", "product")}
           ${field("Short summary", `products.${i}.summary`, p.summary || "", "textarea")}
           ${field("Full description", `products.${i}.description`, p.description || "", "textarea")}
           <div class="field full"><label>Features (one per line)</label>
@@ -1651,7 +1887,7 @@ function renderLandings(d) {
           ${field("Eyebrow", `items.${i}.eyebrow`, lp.eyebrow || "")}
           ${field("Headline", `items.${i}.headline`, lp.headline || "")}
           ${field("Subheadline", `items.${i}.subheadline`, lp.subheadline || "", "textarea")}
-          ${field("Hero image URL", `items.${i}.heroImage`, lp.heroImage || "")}
+          ${imageField("Hero image / vector", `items.${i}.heroImage`, lp.heroImage || "", "hero")}
           ${field("Primary CTA label", `items.${i}.primaryCta`, lp.primaryCta || "")}
           <div class="field"><label>Show phone CTA</label>
             <input type="checkbox" data-path="items.${i}.showPhone" ${lp.showPhone !== false ? "checked" : ""} />

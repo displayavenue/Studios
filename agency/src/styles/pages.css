@@ -192,6 +192,23 @@
   position: relative;
 }
 
+.category-card-media {
+  display: block;
+  width: 100%;
+  height: 88px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f3f5f8;
+  margin-bottom: 0.25rem;
+}
+
+.category-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .category-card:hover {
   border-color: var(--blue);
   transform: translateY(-2px);
@@ -541,6 +558,21 @@
 .hero-visual {
   position: relative;
   min-height: 360px;
+}
+
+.hero-photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  box-shadow: var(--shadow-md);
+}
+
+.hero-photo img {
+  width: 100%;
+  display: block;
+  min-height: 200px;
+  max-height: 280px;
+  object-fit: cover;
 }
 
 .dash-card {

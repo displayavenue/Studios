@@ -23,9 +23,15 @@ export function ServiceDetailLayout({ page }: { page: DetailPageContent }) {
             </div>
           </div>
           <div className="svc-side card">
-            <span className="icon-box" style={{ background: `${page.color}18` }}>
-              <Icon name={page.icon} color={page.color} size={28} />
-            </span>
+            {page.coverImage || page.image ? (
+              <div className="svc-side-media">
+                <img src={page.coverImage || page.image} alt="" loading="lazy" />
+              </div>
+            ) : (
+              <span className="icon-box" style={{ background: `${page.color}18` }}>
+                <Icon name={page.icon} color={page.color} size={28} />
+              </span>
+            )}
             <h2>{page.title}</h2>
             <ul>
               {page.deliverables.slice(0, 6).map((d) => (

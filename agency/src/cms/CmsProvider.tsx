@@ -28,6 +28,8 @@ import {
 
 type CompanyCms = typeof fallbackCompany & {
   announcement?: string;
+  logoImage?: string;
+  ogImage?: string;
   navItems: typeof fallbackNav;
   googleMaps?: {
     name?: string;
@@ -64,6 +66,7 @@ export type HomeCms = {
     titleBefore: string;
     titleAccent: string;
     lead: string;
+    image?: string;
     primaryCta: string;
     primaryCtaHref?: string;
     secondaryCta: string;

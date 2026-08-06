@@ -114,7 +114,13 @@ sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
      if [ -d \"\$PRESERVE/admin/data\" ]; then mkdir -p \$HOME/$DOC/admin; rm -rf \$HOME/$DOC/admin/data; mv \"\$PRESERVE/admin/data\" \$HOME/$DOC/admin/data; fi; \
      rm -rf \"\$PRESERVE\"; \
    fi; \
-   mkdir -p \$HOME/$DOC/uploads/catalogue \$HOME/$DOC/admin/data"
+   mkdir -p \$HOME/$DOC/uploads/catalogue \$HOME/$DOC/uploads/images \$HOME/$DOC/admin/data"
+
+# Ensure images upload scaffold (htaccess) exists even when live uploads/ was restored
+sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" "mkdir -p \$HOME/$DOC/uploads/images"
+sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
+  /tmp/da-agency-root/uploads/images/.htaccess \
+  "$HOST:$DOC/uploads/images/.htaccess" || true
 
 sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
   /tmp/da-agency-root/content/home.json \

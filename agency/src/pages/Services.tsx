@@ -44,12 +44,18 @@ export function Services() {
                       to={`/services/${item.slug}`}
                       className="category-card"
                     >
-                      <span
-                        className="icon-box"
-                        style={{ background: `${item.color}18` }}
-                      >
-                        <Icon name={item.icon} color={item.color} />
-                      </span>
+                      {item.image ? (
+                        <span className="category-card-media">
+                          <img src={item.image} alt="" loading="lazy" />
+                        </span>
+                      ) : (
+                        <span
+                          className="icon-box"
+                          style={{ background: `${item.color}18` }}
+                        >
+                          <Icon name={item.icon} color={item.color} />
+                        </span>
+                      )}
                       <h3>{item.title}</h3>
                       <p>{item.summary.slice(0, 90)}…</p>
                       <span className="arrow">
