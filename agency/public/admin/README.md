@@ -29,7 +29,21 @@ Replace `admin_password_hash` with the output. Never commit or publish plaintext
 | Case Studies / Portfolio / Resources | Detail pages |
 | Testimonials & Extras | Home social proof + footer CTA |
 | Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
-| Settings | Site name & notes |
+| Settings | Site name & notes, **Clear site cache** |
+| Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
+
+## Clear cache
+
+Use the top-bar **Clear cache** button (or Settings → Clear site cache now) after a deploy if desktop visitors still see an unstyled/old layout.
+
+This will:
+
+1. Bump `cacheVersion` in `content/settings.json`
+2. Rewrite `/index.html` asset URLs with a fresh `?v=` query
+3. Refresh SEO artifacts
+4. Best-effort flush PHP opcache
+
+Visitors may still need one hard refresh (`Ctrl/Cmd + Shift + R`) if their browser kept a stale HTML tab open.
 
 ## Form leads
 

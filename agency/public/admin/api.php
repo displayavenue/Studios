@@ -203,7 +203,7 @@ if ($raw) {
 }
 
 $action = (string)($_GET['action'] ?? ($body['action'] ?? ''));
-$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'lead-update', 'lead-delete'], true)
+$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'clear-cache', 'lead-update', 'lead-delete'], true)
   || strtoupper((string)($_SERVER['REQUEST_METHOD'] ?? '')) === 'POST';
 
 if ($mutating) {
@@ -276,6 +276,83 @@ switch ($action) {
     require_once __DIR__ . '/seo-sync.php';
     $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
     respond(200, ['ok' => true, 'seo' => $seo]);
+
+  case 'clear-cache':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $publicDir = dirname($config['content_dir']);
+    $version = gmdate('YmdHis');
+    $clearedAt = gmdate('c');
+
+    // Bump cache version in settings.json (also used by the frontend for JSON busting)
+    $settingsPath = $config['content_dir'] . '/settings.json';
+    $settings = readJson($settingsPath);
+    if (!is_array($settings)) $settings = [];
+    $settings['cacheVersion'] = $version;
+    $settings['cacheClearedAt'] = $clearedAt;
+    $settings['updatedAt'] = $clearedAt;
+    writeJson($settingsPath, $settings);
+
+    // Public cache-bust marker
+    @file_put_contents(
+      $publicDir . '/cache-bust.json',
+      json_encode([
+        'ok' => true,
+        'cacheVersion' => $version,
+        'clearedAt' => $clearedAt,
+      ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
+    );
+
+    // Rewrite index.html asset URLs with ?v= so desktop caches fetch fresh CSS/JS
+    $indexPath = $publicDir . '/index.html';
+    $indexTouched = false;
+    if (is_file($indexPath) && is_readable($indexPath)) {
+      $html = (string)file_get_contents($indexPath);
+      $html = preg_replace_callback(
+        '/(href|src)=(["\'])(\/assets\/[^"\'?\s]+)(?:\?[^"\']*)?\2/i',
+        static function (array $m) use ($version): string {
+          return $m[1] . '=' . $m[2] . $m[3] . '?v=' . $version . $m[2];
+        },
+        $html
+      ) ?? $html;
+      // Refresh or insert cache meta
+      if (preg_match('/<meta\s+name=["\']da-cache["\']/i', $html)) {
+        $html = preg_replace(
+          '/<meta\s+name=["\']da-cache["\']\s+content=["\'][^"\']*["\']\s*\/?>/i',
+          '<meta name="da-cache" content="' . $version . '" />',
+          $html
+        ) ?? $html;
+      } else {
+        $html = preg_replace(
+          '/<head([^>]*)>/i',
+          '<head$1>' . "\n" . '    <meta name="da-cache" content="' . $version . '" />',
+          $html,
+          1
+        ) ?? $html;
+      }
+      if (@file_put_contents($indexPath, $html) !== false) {
+        $indexTouched = true;
+        @touch($indexPath);
+      }
+    }
+
+    // Best-effort PHP/opcache flush
+    if (function_exists('opcache_reset')) {
+      @opcache_reset();
+    }
+    clearstatcache(true);
+
+    require_once __DIR__ . '/seo-sync.php';
+    $seo = da_sync_seo_artifacts($config['content_dir'], $publicDir);
+
+    respond(200, [
+      'ok' => true,
+      'cleared' => true,
+      'cacheVersion' => $version,
+      'clearedAt' => $clearedAt,
+      'indexTouched' => $indexTouched,
+      'seo' => $seo,
+      'message' => 'Site cache cleared. Ask visitors to hard-refresh once (Ctrl/Cmd+Shift+R) if they still see an old layout.',
+    ]);
 
   case 'leads':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);

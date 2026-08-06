@@ -1119,6 +1119,9 @@ function renderTracking(d) {
 }
 
 function renderSettings(d) {
+  const cleared = d.cacheClearedAt
+    ? new Date(d.cacheClearedAt).toLocaleString()
+    : "Never";
   return `
   ${card(
     "Settings",
@@ -1129,6 +1132,19 @@ function renderSettings(d) {
     ${field("Notes", "notes", d.notes, "textarea")}
   `,
   )}
+  <div class="card">
+    <h3>Site cache</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 .75rem">
+      Desktop browsers often keep an old <code>index.html</code> that points at deleted CSS/JS files,
+      which makes the site look unstyled. Use <strong>Clear cache</strong> after deploys or whenever
+      the live site looks broken on desktop.
+    </p>
+    <p style="font-size:.85rem;margin:0 0 1rem">
+      Cache version: <code>${escapeHtml(d.cacheVersion || "—")}</code><br />
+      Last cleared: <strong>${escapeHtml(cleared)}</strong>
+    </p>
+    <button type="button" class="btn btn-gold" data-action="clear-cache">Clear site cache now</button>
+  </div>
   <div class="card">
     <h3>Marketing tags</h3>
     <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0">
@@ -1253,6 +1269,9 @@ function handleAction(action, index) {
     ensure("statsBand").push({ value: "0+", label: "Label" });
   } else if (action === "del-home-statsband") {
     ensure("statsBand").splice(i, 1);
+  } else if (action === "clear-cache") {
+    clearSiteCache();
+    return;
   } else return;
 
   if (d.navItems) {
@@ -1263,6 +1282,22 @@ function handleAction(action, index) {
 
   setDirty(true);
   renderEditor();
+}
+
+async function clearSiteCache() {
+  const btn = $("#clear-cache-btn");
+  if (btn) btn.disabled = true;
+  try {
+    const res = await api("clear-cache", {});
+    toast(res.message || `Cache cleared (v${res.cacheVersion})`);
+    if (state.current === "settings") {
+      await openCollection("settings");
+    }
+  } catch (e) {
+    toast(e.message || "Could not clear cache", "err");
+  } finally {
+    if (btn) btn.disabled = false;
+  }
 }
 
 async function save() {
@@ -1319,6 +1354,7 @@ async function init() {
 
   $("#save-btn").onclick = save;
   $("#reload-btn").onclick = () => state.current && openCollection(state.current);
+  $("#clear-cache-btn").onclick = () => clearSiteCache();
 
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
