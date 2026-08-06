@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
 import "./Placeholder.css";
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 
 export function WhatsAppFloat() {
+  const { company } = useCms();
   return (
     <a
       className="wa-float"

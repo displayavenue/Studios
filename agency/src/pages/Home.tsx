@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import { homeServices } from "../data/services";
 import { industries } from "../data/industries";
 import { featuredHomePackages } from "../data/packages";
 import { toolCategories } from "../data/tools";
-import { featuredCaseStudies, clientLogos } from "../data/work";
-import { blogPosts, testimonials } from "../data/content";
+import { featuredCaseStudies } from "../data/work";
+import { blogPosts } from "../data/content";
 import { solutionCategories } from "../data/solutions";
 import "../styles/pages.css";
 
@@ -22,27 +22,26 @@ const partners = [
 ];
 
 export function Home() {
+  const { company, home, content } = useCms();
+  const clientLogos = content.clientLogos;
+  const testimonials = content.testimonials;
   return (
     <>
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <p className="hero-eyebrow">AI-POWERED DIGITAL GROWTH PARTNER</p>
+            <p className="hero-eyebrow">{home.hero.eyebrow}</p>
             <h1>
-              Transform Your Business with{" "}
-              <em>AI-Powered Digital Growth.</em>
+              {home.hero.titleBefore}{" "}
+              <em>{home.hero.titleAccent}</em>
             </h1>
-            <p className="hero-lead">
-              DisplayAvenue helps brands generate leads, build brands, and scale
-              with digital marketing, web development, and AI automation — under
-              one roof.
-            </p>
+            <p className="hero-lead">{home.hero.lead}</p>
             <div className="hero-actions">
               <Link to="/contact" className="btn btn-primary">
-                Book Free Consultation →
+                {home.hero.primaryCta}
               </Link>
               <Link to="/contact" className="btn btn-outline">
-                Get Free Proposal
+                {home.hero.secondaryCta}
               </Link>
             </div>
             <div className="hero-links">
@@ -112,7 +111,7 @@ export function Home() {
       <section className="home-section" style={{ paddingTop: "1.5rem" }}>
         <div className="container">
           <p style={{ textAlign: "center", color: "var(--text-muted)", marginBottom: "0.85rem", fontWeight: 600 }}>
-            Trusted by 500+ businesses
+            {home.trustLabel}
           </p>
           <div className="logo-strip">
             {clientLogos.map((logo) => (
@@ -160,10 +159,8 @@ export function Home() {
 
       <section className="home-section">
         <div className="container">
-          <h2 className="section-title">End-to-End Digital Solutions Under One Roof.</h2>
-          <p className="section-sub">
-            Marketing, product, creative, and AI — built to compound growth.
-          </p>
+          <h2 className="section-title">{home.servicesTitle}</h2>
+          <p className="section-sub">{home.servicesSub}</p>
           <div className="category-grid" style={{ marginTop: "1.5rem" }}>
             {homeServices.map((service) => (
               <Link key={service.title} to={service.href} className="category-card">

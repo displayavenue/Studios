@@ -26,9 +26,9 @@ npm run preview
 
 ## Deploy to Hostinger (displayavenue.com)
 
-### Live demo (recommended while WordPress still runs)
+### Live demo + CMS (recommended while WordPress still runs)
 
-Deploys to **https://displayavenue.com/demo/** without replacing WordPress:
+Deploys SPA + admin + content JSON to **https://displayavenue.com/demo/** (WordPress root untouched):
 
 ```bash
 cd agency
@@ -36,11 +36,11 @@ export SSH_PASS='...'
 bash scripts/deploy-ssh-demo.sh
 ```
 
-### Full site cutover (later)
+- Website: https://displayavenue.com/demo/
+- CMS: https://displayavenue.com/demo/admin/  
+  Password in `public/admin/config.php` (`DisplayAgency@2026` — change it)
 
-When ready to replace WordPress at the domain root, rebuild with `DEPLOY_BASE=/` and upload to `domains/displayavenue.com/public_html` (backup WordPress first).
-
-Use a **separate** path from Studios (`displayavenuestudios.com`).
+Remote `/demo/content/` edits are preserved across deploys.
 
 
 ## Pages

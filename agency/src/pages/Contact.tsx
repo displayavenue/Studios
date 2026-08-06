@@ -1,9 +1,10 @@
 import type { CSSProperties } from "react";
 import { Icon } from "../components/Icon";
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import "../styles/pages.css";
 
 export function Contact() {
+  const { company } = useCms();
   return (
     <div className="page-shell">
       <div className="container">

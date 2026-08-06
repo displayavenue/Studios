@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
-import { solutionPages } from "../data/solutionCatalog";
+import { useCms } from "../cms/CmsProvider";
 import { solutionCategories } from "../data/solutions";
 import "../styles/pages.css";
 
 export function Solutions() {
+  const { solutions } = useCms();
   return (
     <div className="page-shell">
       <div className="container">
@@ -24,7 +25,7 @@ export function Solutions() {
           </div>
 
           <div className="category-grid" style={{ marginTop: "1.75rem" }}>
-            {solutionPages.map((item) => (
+            {solutions.map((item) => (
               <Link
                 key={item.slug}
                 to={`/solutions/${item.slug}`}

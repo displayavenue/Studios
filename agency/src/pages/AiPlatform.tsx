@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { AiPlatformMenu } from "../components/menus/AiPlatformMenu";
-import { aiPages } from "../data/aiCatalog";
+import { useCms } from "../cms/CmsProvider";
 import { Icon } from "../components/Icon";
 import "../styles/pages.css";
 
 export function AiPlatform() {
+  const { ai } = useCms();
   return (
     <div className="page-shell">
       <div className="container-wide">
@@ -19,7 +20,7 @@ export function AiPlatform() {
             Every suite has a dedicated page with deliverables, process, and FAQs.
           </p>
           <div className="category-grid" style={{ marginTop: "1rem" }}>
-            {aiPages.map((item) => (
+            {ai.map((item) => (
               <Link key={item.slug} to={`/ai-platform/${item.slug}`} className="category-card">
                 <span className="icon-box" style={{ background: `${item.color}18` }}>
                   <Icon name={item.icon} color={item.color} />

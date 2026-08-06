@@ -1,0 +1,6 @@
+{
+  "siteName": "DisplayAvenue",
+  "siteUrl": "https://displayavenue.com",
+  "demoBasePath": "/demo",
+  "notes": "Agency CMS — edit any section and Save. Website reads /content/*.json."
+}

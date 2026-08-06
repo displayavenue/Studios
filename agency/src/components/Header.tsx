@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { company, navItems, type MegaKey } from "../data/company";
+import { type MegaKey } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import { Logo } from "./Logo";
 import { Icon } from "./Icon";
 import { WhatWeDoMenu } from "./menus/WhatWeDoMenu";
@@ -10,6 +11,8 @@ import { IndustriesMenu } from "./menus/IndustriesMenu";
 import "./Header.css";
 
 export function Header() {
+  const { company } = useCms();
+  const navItems = company.navItems;
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey | null>(null);
@@ -52,7 +55,10 @@ export function Header() {
     <header className="site-header">
       <div className="announcement">
         <div className="container-wide announcement-inner">
-          <span>New! AI-Powered Marketing Solutions are now available.</span>
+          <span>
+            {company.announcement ||
+              "New! AI-Powered Marketing Solutions are now available."}
+          </span>
           <div className="announcement-actions">
             <Link to="/contact">Book Free Audit</Link>
             <a href={company.phoneHref}>{company.phone}</a>
@@ -119,11 +125,6 @@ export function Header() {
                       keepOpen();
                       if (item.mega) openMega(item.mega);
                       else setMega(null);
-                    }}
-                    onClick={() => {
-                      if (item.mega) {
-                        // Keep mega available; page still navigates
-                      }
                     }}
                   >
                     {item.label}

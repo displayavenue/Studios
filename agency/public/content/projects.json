@@ -1,0 +1,412 @@
+{
+  "items": [
+    {
+      "icon": "bag",
+      "color": "#065f46",
+      "eyebrow": "E-commerce",
+      "headline": "Vaidraj Ayurvedic Store",
+      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Vaidraj Ayurvedic Store.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align vaidraj ayurvedic store with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Vaidraj Ayurvedic Store roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Vaidraj Ayurvedic Store?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Portfolio",
+          "href": "/portfolio"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Start Your Project",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "vaidraj",
+      "kind": "project",
+      "title": "Vaidraj Ayurvedic Store",
+      "category": "E-commerce"
+    },
+    {
+      "icon": "code",
+      "color": "#1e3a8a",
+      "eyebrow": "Web Development",
+      "headline": "Bhaskar Patil Group Website",
+      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Bhaskar Patil Group Website.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align bhaskar patil group website with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Bhaskar Patil Group Website roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Bhaskar Patil Group Website?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Portfolio",
+          "href": "/portfolio"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Start Your Project",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "bpg",
+      "kind": "project",
+      "title": "Bhaskar Patil Group Website",
+      "category": "Web Development"
+    },
+    {
+      "icon": "brand",
+      "color": "#4c1d95",
+      "eyebrow": "Branding",
+      "headline": "RAK Ceramics Brand System",
+      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for RAK Ceramics Brand System.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align rak ceramics brand system with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated RAK Ceramics Brand System roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start RAK Ceramics Brand System?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Portfolio",
+          "href": "/portfolio"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Start Your Project",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "rak",
+      "kind": "project",
+      "title": "RAK Ceramics Brand System",
+      "category": "Branding"
+    },
+    {
+      "icon": "megaphone",
+      "color": "#9a3412",
+      "eyebrow": "Digital Marketing",
+      "headline": "Royal Mouth Fresheners Growth",
+      "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Royal Mouth Fresheners Growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align royal mouth fresheners growth with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Royal Mouth Fresheners Growth roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Royal Mouth Fresheners Growth?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Portfolio",
+          "href": "/portfolio"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Start Your Project",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "royal",
+      "kind": "project",
+      "title": "Royal Mouth Fresheners Growth",
+      "category": "Digital Marketing"
+    }
+  ]
+}

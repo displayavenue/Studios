@@ -1,59 +1,60 @@
 import { Link } from "react-router-dom";
-import { company } from "../data/company";
+import { useCms } from "../cms/CmsProvider";
 import { Logo } from "./Logo";
 import { Icon } from "./Icon";
 import "./Footer.css";
 
-const footerCols = [
-  {
-    title: "Services",
-    links: [
-      { label: "Digital Marketing", href: "/services/digital-marketing" },
-      { label: "Web Development", href: "/services/web-development" },
-      { label: "AI Solutions", href: "/ai-platform" },
-      { label: "Branding", href: "/services/branding" },
-      { label: "E-commerce", href: "/services/ecommerce" },
-    ],
-  },
-  {
-    title: "Industries",
-    links: [
-      { label: "Healthcare", href: "/industries/healthcare" },
-      { label: "Real Estate", href: "/industries/real-estate" },
-      { label: "E-commerce", href: "/industries/ecommerce" },
-      { label: "SaaS", href: "/industries/saas" },
-      { label: "Education", href: "/industries/education" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Blog", href: "/resources/blog" },
-      { label: "Case Studies", href: "/case-studies" },
-      { label: "Free Tools", href: "/free-tools" },
-      { label: "Packages", href: "/packages" },
-      { label: "Portfolio", href: "/portfolio" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "Why DisplayAvenue", href: "/why-displayavenue" },
-      { label: "Contact", href: "/contact" },
-      { label: "Get Free Proposal", href: "/contact" },
-      { label: "Client Login", href: company.clientLogin },
-    ],
-  },
-];
-
 export function Footer() {
+  const { company, content } = useCms();
+  const footerCols = [
+    {
+      title: "Services",
+      links: [
+        { label: "Digital Marketing", href: "/services/digital-marketing" },
+        { label: "Web Development", href: "/services/web-development" },
+        { label: "AI Solutions", href: "/ai-platform" },
+        { label: "Branding", href: "/services/branding" },
+        { label: "E-commerce", href: "/services/ecommerce" },
+      ],
+    },
+    {
+      title: "Industries",
+      links: [
+        { label: "Healthcare", href: "/industries/healthcare" },
+        { label: "Real Estate", href: "/industries/real-estate" },
+        { label: "E-commerce", href: "/industries/ecommerce" },
+        { label: "SaaS", href: "/industries/saas" },
+        { label: "Education", href: "/industries/education" },
+      ],
+    },
+    {
+      title: "Resources",
+      links: [
+        { label: "Blog", href: "/resources/blog" },
+        { label: "Case Studies", href: "/case-studies" },
+        { label: "Free Tools", href: "/free-tools" },
+        { label: "Packages", href: "/packages" },
+        { label: "Portfolio", href: "/portfolio" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { label: "Why DisplayAvenue", href: "/why-displayavenue" },
+        { label: "Contact", href: "/contact" },
+        { label: "Get Free Proposal", href: "/contact" },
+        { label: "Client Login", href: company.clientLogin },
+      ],
+    },
+  ];
+
   return (
     <footer className="site-footer">
       <div className="footer-cta">
         <div className="container footer-cta-inner">
           <div>
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Book a free consultation or request a custom proposal today.</p>
+            <h2>{content.footerCta.title}</h2>
+            <p>{content.footerCta.sub}</p>
           </div>
           <div className="footer-cta-actions">
             <Link to="/contact" className="btn btn-primary">
@@ -143,7 +144,9 @@ export function Footer() {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <span>© {new Date().getFullYear()} DisplayAvenue. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} {company.name}. All rights reserved.
+          </span>
           <div className="footer-legal">
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/terms">Terms & Conditions</Link>
