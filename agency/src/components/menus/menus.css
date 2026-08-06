@@ -145,40 +145,43 @@
 
 .what-we-do-grid {
   display: grid;
-  grid-template-columns: 1.1fr 1.2fr 1fr 1fr 0.9fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 1.15fr 1.25fr 1fr 1fr 0.95fr 1.05fr;
+  gap: 1rem 1.15rem;
   padding-bottom: 1rem;
+  align-items: start;
 }
 
 .solutions-layout {
   display: grid;
-  grid-template-columns: 220px 1fr 220px;
+  grid-template-columns: 220px minmax(0, 1fr) 220px;
   gap: 1.25rem;
   padding-bottom: 0.75rem;
+  align-items: start;
 }
 
 .solutions-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem 1rem;
 }
 
 .ai-layout {
   display: grid;
-  grid-template-columns: 240px 1fr 220px;
+  grid-template-columns: 240px minmax(0, 1fr) 220px;
   gap: 1.25rem;
   padding-bottom: 0.75rem;
+  align-items: start;
 }
 
 .ai-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
 }
 
 .industries-mega-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.55rem;
   padding-bottom: 1rem;
 }

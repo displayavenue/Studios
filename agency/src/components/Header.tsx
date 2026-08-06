@@ -35,11 +35,15 @@ export function Header() {
 
   const scheduleClose = () => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setMega(null), 120);
+    closeTimer.current = window.setTimeout(() => setMega(null), 160);
+  };
+
+  const keepOpen = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
   };
 
   const isActive = (href: string, key?: MegaKey | false) => {
-    if (href === "/") return pathname === "/";
+    if (href === "/") return pathname === "/" || pathname === "";
     if (key && mega === key) return true;
     return pathname === href || pathname.startsWith(`${href}/`);
   };
@@ -48,9 +52,7 @@ export function Header() {
     <header className="site-header">
       <div className="announcement">
         <div className="container-wide announcement-inner">
-          <span>
-            New! AI-Powered Marketing Solutions are now available.
-          </span>
+          <span>New! AI-Powered Marketing Solutions are now available.</span>
           <div className="announcement-actions">
             <Link to="/contact">Book Free Audit</Link>
             <a href={company.phoneHref}>{company.phone}</a>
@@ -58,41 +60,9 @@ export function Header() {
         </div>
       </div>
 
-      <div
-        className="header-bar"
-        onMouseLeave={scheduleClose}
-      >
-        <div className="container-wide header-inner">
+      <div className="header-top">
+        <div className="container-wide header-top-inner">
           <Logo light />
-
-          <nav className="desktop-nav" aria-label="Primary">
-            {navItems.map((item) => {
-              const hasMega = Boolean(item.mega);
-              return (
-                <div
-                  key={item.label}
-                  className={`nav-item ${hasMega ? "has-mega" : ""} ${
-                    isActive(item.href, item.mega) ? "active" : ""
-                  }`}
-                  onMouseEnter={() =>
-                    item.mega ? openMega(item.mega) : setMega(null)
-                  }
-                >
-                  <NavLink
-                    to={item.href}
-                    className="nav-link"
-                    onFocus={() =>
-                      item.mega ? openMega(item.mega) : setMega(null)
-                    }
-                  >
-                    {item.label}
-                    {hasMega && <Icon name="chevron" size={12} />}
-                  </NavLink>
-                </div>
-              );
-            })}
-          </nav>
-
           <div className="header-actions">
             <button className="icon-btn" aria-label="Search" type="button">
               <Icon name="search" size={18} color="#fff" />
@@ -120,14 +90,62 @@ export function Header() {
             </button>
           </div>
         </div>
+      </div>
+
+      <div
+        className={`header-nav ${mega ? "mega-open" : ""}`}
+        onMouseLeave={scheduleClose}
+      >
+        <div className="container-wide header-nav-inner">
+          <nav className="desktop-nav" aria-label="Primary">
+            {navItems.map((item) => {
+              const hasMega = Boolean(item.mega);
+              return (
+                <div
+                  key={item.label}
+                  className={`nav-item ${hasMega ? "has-mega" : ""} ${
+                    isActive(item.href, item.mega) ? "active" : ""
+                  }`}
+                  onMouseEnter={() => {
+                    keepOpen();
+                    if (item.mega) openMega(item.mega);
+                    else setMega(null);
+                  }}
+                >
+                  <NavLink
+                    to={item.href}
+                    className="nav-link"
+                    onFocus={() => {
+                      keepOpen();
+                      if (item.mega) openMega(item.mega);
+                      else setMega(null);
+                    }}
+                    onClick={() => {
+                      if (item.mega) {
+                        // Keep mega available; page still navigates
+                      }
+                    }}
+                  >
+                    {item.label}
+                    {hasMega && (
+                      <span className="nav-caret" aria-hidden>
+                        <Icon name="chevron" size={11} />
+                      </span>
+                    )}
+                  </NavLink>
+                </div>
+              );
+            })}
+          </nav>
+        </div>
 
         {mega && (
           <div
             className="mega-panel"
-            onMouseEnter={() => openMega(mega)}
+            onMouseEnter={keepOpen}
             onMouseLeave={scheduleClose}
           >
-            <div className="container-wide">
+            <div className="container-wide mega-panel-inner">
               {mega === "whatWeDo" && <WhatWeDoMenu />}
               {mega === "solutions" && <SolutionsMenu />}
               {mega === "aiPlatform" && <AiPlatformMenu />}
@@ -182,7 +200,11 @@ export function Header() {
             );
           })}
           <div className="mobile-cta">
-            <Link to="/contact" className="btn btn-primary" onClick={() => setOpen(false)}>
+            <Link
+              to="/contact"
+              className="btn btn-primary"
+              onClick={() => setOpen(false)}
+            >
               Get Free Proposal
             </Link>
             <a className="btn btn-outline" href={company.clientLogin}>
