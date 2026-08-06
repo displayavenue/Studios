@@ -40,7 +40,7 @@ export const img = {
 
   // Corporate / India business context
   officeTeam: u("photo-1556761175-5973dc0f32e7"),
-  businessMeeting: u("photo-1573164713714-d95e4367658e"),
+  businessMeeting: u("photo-1600880292203-757bb62b4baf"),
   conference: u("photo-1540575467063-178a50c2df87"),
   awardStage: u("photo-1492684223066-81342ee5ff30"),
   interview: u("photo-1551836022-d5d88e9218df"),

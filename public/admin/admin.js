@@ -46,8 +46,15 @@ function setDirty(v) {
 }
 
 function showLogin(show) {
-  $("#login-view").hidden = !show;
-  $("#cms-view").hidden = show;
+  const login = $("#login-view");
+  const cms = $("#cms-view");
+  if (!login || !cms) return;
+  // show=true → login visible; show=false → CMS visible
+  login.hidden = !show;
+  cms.hidden = !!show;
+  login.classList.toggle("is-hidden", !show);
+  cms.classList.toggle("is-hidden", !!show);
+  document.body.classList.toggle("is-authed", !show);
 }
 
 function field(label, path, value, type = "text") {
@@ -146,6 +153,7 @@ function renderEditor() {
   }
 
   if (key === "home") wrap.innerHTML = renderHome(data);
+  else if (key === "menu") wrap.innerHTML = renderMenu(data);
   else if (key === "company") wrap.innerHTML = renderCompany(data);
   else if (key === "services") wrap.innerHTML = renderServices(data);
   else if (key === "packages") wrap.innerHTML = renderPackages(data);
@@ -305,6 +313,147 @@ function renderHome(d) {
   </div>`;
 }
 
+function renderMenu(d) {
+  const items = d.items || [];
+  const services = d.servicesMega || {};
+  const packages = d.packagesMega || {};
+  const explore = d.exploreMega || {};
+  const discover = explore.discoverLinks || [];
+  const mobile = d.mobileLinks || [];
+  const cta = d.cta || {};
+
+  return `
+  <div class="card">
+    <h3>Header & mega menu</h3>
+    <div class="help-banner">
+      Edit top navigation labels, mega-menu copy, service categories, Explore links and the Book Now button.
+      Service / package / city lists still come from those collections — this controls labels, order and which mega panels open.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>Desktop nav items (${items.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-menu-item">Add nav item</button>
+    </div>
+    <p class="help-banner" style="margin-top:0">Type <code>link</code> needs a path. Type <code>mega</code> needs mega = services, packages or explore.</p>
+    ${items.map((item, i) => `
+      <details class="item-card" ${i < 3 ? "open" : ""}>
+        <summary>
+          <span>
+            <span class="pill">${escapeHtml(item.type || "link")}</span>
+            ${escapeHtml(item.label || item.id || "Item")}
+          </span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-menu-item" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("ID (unique)", `items.${i}.id`, item.id)}
+          ${field("Label", `items.${i}.label`, item.label)}
+          ${field("Type (link or mega)", `items.${i}.type`, item.type || "link")}
+          ${field("Path (for link)", `items.${i}.path`, item.path || "")}
+          ${field("Mega key (services / packages / explore)", `items.${i}.mega`, item.mega || "")}
+        </div>
+      </details>
+    `).join("")}
+  </div>
+
+  <div class="card">
+    <h3>Header CTA button</h3>
+    <div class="grid-2">
+      ${field("Button label", "cta.label", cta.label)}
+      ${field("Button path", "cta.path", cta.path)}
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Services mega menu</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "servicesMega.eyebrow", services.eyebrow)}
+      ${field("Title", "servicesMega.title", services.title)}
+      ${field("View all label", "servicesMega.viewAllLabel", services.viewAllLabel)}
+      ${field("View all path", "servicesMega.viewAllPath", services.viewAllPath)}
+      ${field("Links per category", "servicesMega.linksPerCategory", services.linksPerCategory ?? 5, "number")}
+      ${field("Popular section label", "servicesMega.popularLabel", services.popularLabel)}
+      ${field("Popular count", "servicesMega.popularCount", services.popularCount ?? 6, "number")}
+    </div>
+    <div class="field full">
+      <label>Category columns (one per line — must match service categories)</label>
+      <textarea data-path="servicesMega.categories" data-array="true">${escapeHtml((services.categories || []).join("\n"))}</textarea>
+    </div>
+    <div class="field full">
+      <label>Popular service slugs (one per line — leave blank to use Services → homepage featured slugs)</label>
+      <textarea data-path="servicesMega.popularSlugs" data-array="true">${escapeHtml((services.popularSlugs || []).join("\n"))}</textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Packages mega menu</h3>
+    <div class="grid-2">
+      ${field("All packages eyebrow", "packagesMega.allEyebrow", packages.allEyebrow)}
+      ${field("All packages label", "packagesMega.allLabel", packages.allLabel)}
+      ${field("All packages text", "packagesMega.allText", packages.allText, "textarea")}
+      ${field("All packages path", "packagesMega.allPath", packages.allPath)}
+      ${field("Package card eyebrow", "packagesMega.itemEyebrow", packages.itemEyebrow)}
+      ${field("Pricing eyebrow", "packagesMega.pricingEyebrow", packages.pricingEyebrow)}
+      ${field("Pricing label", "packagesMega.pricingLabel", packages.pricingLabel)}
+      ${field("Pricing text", "packagesMega.pricingText", packages.pricingText, "textarea")}
+      ${field("Pricing path", "packagesMega.pricingPath", packages.pricingPath)}
+      <div class="field">
+        <label for="packages_showPricing">Show pricing card</label>
+        <input type="checkbox" data-path="packagesMega.showPricing" id="packages_showPricing" ${packages.showPricing !== false ? "checked" : ""} />
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Explore mega menu</h3>
+    <div class="grid-2">
+      ${field("Discover title", "exploreMega.discoverTitle", explore.discoverTitle)}
+      ${field("Cities title", "exploreMega.citiesTitle", explore.citiesTitle)}
+      ${field("Cities count", "exploreMega.citiesCount", explore.citiesCount ?? 8, "number")}
+      ${field("CTA eyebrow", "exploreMega.ctaEyebrow", explore.ctaEyebrow)}
+      ${field("CTA title", "exploreMega.ctaTitle", explore.ctaTitle)}
+      ${field("CTA text", "exploreMega.ctaText", explore.ctaText, "textarea")}
+      ${field("Primary button label", "exploreMega.ctaPrimaryLabel", explore.ctaPrimaryLabel)}
+      ${field("Primary button path", "exploreMega.ctaPrimaryPath", explore.ctaPrimaryPath)}
+      ${field("Secondary button label", "exploreMega.ctaSecondaryLabel", explore.ctaSecondaryLabel)}
+      <div class="field">
+        <label for="explore_showWhatsApp">Show WhatsApp button</label>
+        <input type="checkbox" data-path="exploreMega.showWhatsApp" id="explore_showWhatsApp" ${explore.showWhatsApp !== false ? "checked" : ""} />
+      </div>
+    </div>
+    <div class="card-head" style="margin-top:1rem">
+      <h3 style="font-size:1rem;margin:0">Discover links (${discover.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-discover-link">Add link</button>
+    </div>
+    ${discover.map((link, i) => `
+      <div class="grid-2 item-card" style="padding:1rem;margin-top:.65rem">
+        ${field("Label", `exploreMega.discoverLinks.${i}.label`, link.label)}
+        ${field("Path", `exploreMega.discoverLinks.${i}.path`, link.path)}
+        <div class="field full">
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-discover-link" data-index="${i}">Delete link</button>
+        </div>
+      </div>
+    `).join("")}
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>Mobile drawer links (${mobile.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-mobile-link">Add mobile link</button>
+    </div>
+    ${mobile.map((link, i) => `
+      <div class="grid-2 item-card" style="padding:1rem;margin-top:.65rem">
+        ${field("Label", `mobileLinks.${i}.label`, link.label)}
+        ${field("Path", `mobileLinks.${i}.path`, link.path)}
+        <div class="field full">
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-mobile-link" data-index="${i}">Delete</button>
+        </div>
+      </div>
+    `).join("")}
+  </div>`;
+}
+
 function renderCompany(d) {
   return `
   <div class="card">
@@ -358,7 +507,7 @@ function renderServices(d) {
       <button type="button" class="btn btn-gold btn-sm" data-action="add-service">Add service</button>
     </div>
     <div class="help-banner">
-      Tip: paste a YouTube link on any service to show a video section on its page. Use search below to jump quickly.
+      Tip: paste a YouTube link on any service to show a video section on its page. Each service also has its own reviews list (editable below) shown on that service page. Use search to jump quickly.
     </div>
     <div class="field full">
       <label>Search services</label>
@@ -397,6 +546,47 @@ function renderServices(d) {
         <div class="field full">
           <label>Related service slugs (one per line)</label>
           <textarea data-path="services.${i}.related" data-array="true">${escapeHtml((s.related || []).join("\n"))}</textarea>
+        </div>
+        <div class="field full" style="margin-top:1rem">
+          <div class="card-head">
+            <h3 style="font-size:1rem;margin:0">Service reviews (${(s.reviews || []).length})</h3>
+            <button type="button" class="btn btn-gold btn-sm" data-action="add-service-review" data-index="${i}">Add review</button>
+          </div>
+          <p class="help-banner" style="margin:.65rem 0 0">These appear only on this service page. Edit name, role, quote, rating (1–5) and photo URL.</p>
+          ${(s.reviews || []).map((r, ri) => `
+            <details class="item-card" style="margin-top:.65rem" ${ri < 2 ? "open" : ""}>
+              <summary>
+                <span>${escapeHtml(r.name || "Review")} <small style="color:#888;font-weight:400">${escapeHtml(r.role || "")}</small></span>
+                <button type="button" class="btn btn-danger btn-sm" data-action="del-service-review" data-index="${i}" data-review-index="${ri}">Delete</button>
+              </summary>
+              <div class="grid-2" style="margin-top:1rem">
+                ${field("Name", `services.${i}.reviews.${ri}.name`, r.name)}
+                ${field("Role / city", `services.${i}.reviews.${ri}.role`, r.role)}
+                ${field("Rating (1-5)", `services.${i}.reviews.${ri}.rating`, r.rating ?? 5, "number")}
+                ${field("Photo URL", `services.${i}.reviews.${ri}.image`, r.image || "")}
+                ${field("Quote", `services.${i}.reviews.${ri}.quote`, r.quote, "textarea")}
+              </div>
+            </details>
+          `).join("")}
+        </div>
+        <div class="field full" style="margin-top:1.25rem">
+          <div class="card-head">
+            <h3 style="font-size:1rem;margin:0">Tips &amp; facts (${(s.tips || []).length})</h3>
+            <button type="button" class="btn btn-gold btn-sm" data-action="add-service-tip" data-index="${i}">Add tip</button>
+          </div>
+          <p class="help-banner" style="margin:.65rem 0 0">Interesting facts and tips shown on this service page. Add, edit or remove anytime.</p>
+          ${(s.tips || []).map((t, ti) => `
+            <details class="item-card" style="margin-top:.65rem" ${ti < 3 ? "open" : ""}>
+              <summary>
+                <span>${escapeHtml(t.title || "Tip")}</span>
+                <button type="button" class="btn btn-danger btn-sm" data-action="del-service-tip" data-index="${i}" data-tip-index="${ti}">Delete</button>
+              </summary>
+              <div class="grid-2" style="margin-top:1rem">
+                ${field("Title", `services.${i}.tips.${ti}.title`, t.title)}
+                ${field("Tip / fact text", `services.${i}.tips.${ti}.text`, t.text, "textarea")}
+              </div>
+            </details>
+          `).join("")}
         </div>
       </div>
     </details>
@@ -599,9 +789,54 @@ function handleAction(action, btn) {
 
   switch (action) {
     case "add-service":
-      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", youtubeUrl: "", category: "Wedding", related: [] });
+      add("services", { slug: "new-service", title: "New Service", short: "", description: "", benefits: [], image: "", youtubeUrl: "", category: "Wedding", related: [], reviews: [], tips: [] });
       break;
     case "del-service": del("services"); break;
+    case "add-service-review": {
+      const si = Number(btn.dataset.index);
+      d.services = d.services || [];
+      d.services[si].reviews = d.services[si].reviews || [];
+      d.services[si].reviews.unshift({
+        name: "New Client",
+        role: "Client · Mumbai",
+        quote: "Share what they loved about this service.",
+        rating: 5,
+        image: "",
+      });
+      setDirty(true);
+      renderEditor();
+      break;
+    }
+    case "del-service-review": {
+      const si = Number(btn.dataset.index);
+      const ri = Number(btn.dataset.reviewIndex);
+      if (!confirm("Delete this review?")) return;
+      d.services[si].reviews.splice(ri, 1);
+      setDirty(true);
+      renderEditor();
+      break;
+    }
+    case "add-service-tip": {
+      const si = Number(btn.dataset.index);
+      d.services = d.services || [];
+      d.services[si].tips = d.services[si].tips || [];
+      d.services[si].tips.unshift({
+        title: "New tip",
+        text: "Write an interesting fact or practical tip for this service.",
+      });
+      setDirty(true);
+      renderEditor();
+      break;
+    }
+    case "del-service-tip": {
+      const si = Number(btn.dataset.index);
+      const ti = Number(btn.dataset.tipIndex);
+      if (!confirm("Delete this tip?")) return;
+      d.services[si].tips.splice(ti, 1);
+      setDirty(true);
+      renderEditor();
+      break;
+    }
     case "add-portfolio":
       add("portfolio", { slug: "new-project", title: "New Project", category: "Wedding", location: "Mumbai", description: "", image: "", gallery: [] });
       break;
@@ -633,6 +868,28 @@ function handleAction(action, btn) {
     case "del-why": del("whyChoose"); break;
     case "add-process": add("processSteps", { step: "0", title: "Step", text: "" }); break;
     case "del-process": del("processSteps"); break;
+    case "add-menu-item":
+      d.items = d.items || [];
+      d.items.push({ id: `item-${Date.now()}`, label: "New link", type: "link", path: "/" });
+      setDirty(true); renderEditor(); break;
+    case "del-menu-item":
+      if (!confirm("Delete this nav item?")) return;
+      d.items.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-discover-link":
+      d.exploreMega = d.exploreMega || {};
+      d.exploreMega.discoverLinks = d.exploreMega.discoverLinks || [];
+      d.exploreMega.discoverLinks.push({ label: "New page", path: "/" });
+      setDirty(true); renderEditor(); break;
+    case "del-discover-link":
+      if (!confirm("Delete this Discover link?")) return;
+      d.exploreMega.discoverLinks.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-mobile-link":
+      d.mobileLinks = d.mobileLinks || [];
+      d.mobileLinks.push({ label: "New link", path: "/" });
+      setDirty(true); renderEditor(); break;
+    case "del-mobile-link":
+      if (!confirm("Delete this mobile link?")) return;
+      d.mobileLinks.splice(i, 1); setDirty(true); renderEditor(); break;
     case "sync-seo":
       (async () => {
         try {
@@ -684,19 +941,42 @@ $("#login-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const password = $("#password").value;
   const err = $("#login-error");
+  const btn = e.target.querySelector('button[type="submit"]');
   err.hidden = true;
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Signing in…";
+  }
   try {
-    await api("login", { password });
+    const loginRes = await api("login", { password });
+    if (!loginRes || loginRes.ok === false) {
+      throw new Error(loginRes?.error || "Login failed");
+    }
     state.authed = true;
     showLogin(false);
-    const status = await fetch(`${API}?action=status`, { credentials: "include" }).then((r) => r.json());
-    state.collections = status.collections || {};
+    try {
+      const status = await fetch(`${API}?action=status`, { credentials: "include" }).then((r) => r.json());
+      state.collections = status.collections || state.collections || {};
+    } catch (_) {
+      /* keep collections from prior status if cookie race */
+    }
+    if (!Object.keys(state.collections || {}).length) {
+      const status = await fetch(`${API}?action=status`, { credentials: "include" }).then((r) => r.json());
+      state.collections = status.collections || {};
+    }
     renderNav();
     const first = Object.keys(state.collections)[0];
-    if (first) loadCollection(first);
+    if (first) await loadCollection(first);
   } catch (ex) {
+    state.authed = false;
+    showLogin(true);
     err.hidden = false;
     err.textContent = ex.message || "Login failed";
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Sign in";
+    }
   }
 });
 

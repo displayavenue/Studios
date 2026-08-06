@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO, FAQPageSchema, BreadcrumbSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
@@ -57,6 +58,8 @@ export function FAQs() {
           ))}
         </div>
       </section>
+
+      <TestimonialsSection compact limit={3} />
 
       <CTABanner title="Still have a question?" text="WhatsApp us or book a consultation — we typically respond within a few hours during business days." />
     </div>

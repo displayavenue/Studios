@@ -7,7 +7,6 @@ export function useReveal<T extends HTMLElement>() {
     const el = ref.current;
     if (!el) return;
 
-    const targets = el.querySelectorAll(".reveal");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -17,11 +16,25 @@ export function useReveal<T extends HTMLElement>() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.08, rootMargin: "0px 0px -24px 0px" },
     );
 
-    targets.forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
+    const observeAll = () => {
+      el.querySelectorAll(".reveal:not(.is-visible)").forEach((t) => {
+        observer.observe(t);
+      });
+    };
+
+    observeAll();
+
+    // CMS content loads after mount — pick up newly inserted .reveal nodes
+    const mutation = new MutationObserver(() => observeAll());
+    mutation.observe(el, { childList: true, subtree: true });
+
+    return () => {
+      mutation.disconnect();
+      observer.disconnect();
+    };
   }, []);
 
   return ref;

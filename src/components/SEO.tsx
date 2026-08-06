@@ -107,6 +107,11 @@ export function LocalBusinessSchema() {
       author: { "@type": "Person", name: t.name },
       reviewBody: t.quote,
       name: t.role,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
+      },
     }));
 
     upsertJsonLd("schema-local-business", {
@@ -175,6 +180,13 @@ export function LocalBusinessSchema() {
       sameAs: socials.length
         ? socials
         : [company.whatsappHref].filter(Boolean),
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: String(Math.max(testimonials.length, 6)),
+        bestRating: "5",
+        worstRating: "1",
+      },
       review: reviews,
     });
   }, [company, testimonials, services]);

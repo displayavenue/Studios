@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { SEO, ServiceSchema, BreadcrumbSchema, FAQPageSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
+import { ServiceReviews } from "../components/ServiceReviews";
+import { ServiceTips } from "../components/ServiceTips";
 import { useReveal } from "../hooks/useReveal";
 import { useCms, useService } from "../cms/CmsProvider";
 import { getYoutubeEmbedUrl } from "../utils/youtube";
@@ -10,7 +12,7 @@ import "./Page.css";
 export function ServiceDetail() {
   const { slug } = useParams();
   const service = useService(slug || "");
-  const { services, faqs, testimonials, packageGroups, portfolio } = useCms();
+  const { company, services, faqs, packageGroups, portfolio } = useCms();
   const ref = useReveal<HTMLDivElement>();
 
   if (!service) {
@@ -217,29 +219,31 @@ export function ServiceDetail() {
       </section>
 
       <section className="section section--light">
-        <div className="container grid-2" style={{ alignItems: "start" }}>
-          <div className="reveal">
+        <div className="container">
+          <div className="section-head reveal">
             <p className="eyebrow">FAQs</p>
             <h2>Common questions</h2>
+          </div>
+          <div className="reveal" style={{ maxWidth: 820 }}>
             <FAQAccordion items={faqs.slice(0, 4)} />
           </div>
-          <div className="reveal">
-            <p className="eyebrow">Testimonials</p>
-            <h2>Client voices</h2>
-            <div className="stack-gap">
-              {testimonials.slice(0, 2).map((t) => (
-                <article key={t.name} className="testimonial-card card">
-                  <p className="testimonial-card__quote">“{t.quote}”</p>
-                  <strong>{t.name}</strong>
-                  <span style={{ display: "block", color: "#666", fontSize: "0.85rem" }}>
-                    {t.role}
-                  </span>
-                </article>
-              ))}
-            </div>
+          <div className="section-cta reveal" style={{ marginTop: "1.25rem" }}>
+            <a href={company.phoneHref} className="btn btn--gold btn--sm">
+              Call to book
+            </a>
+            <Link to="/book-now" className="btn btn--outline btn--sm">
+              Book consultation
+            </Link>
           </div>
         </div>
       </section>
+
+      <ServiceTips serviceTitle={service.title} tips={service.tips || []} />
+
+      <ServiceReviews
+        serviceTitle={service.title}
+        reviews={service.reviews || []}
+      />
 
       <section className="section">
         <div className="container">

@@ -2,6 +2,8 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { TestimonialsSection } from "../components/TestimonialsSection";
+import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
@@ -67,6 +69,22 @@ export function Contact() {
               </p>
               <p>Coverage: {company.coverage}</p>
               <p>Primary focus: {company.primaryFocus}</p>
+              <div className="contact-quick-actions">
+                <a href={company.phoneHref} className="btn btn--gold btn--sm">
+                  Call Now
+                </a>
+                <a
+                  href={company.whatsappHref}
+                  className="btn btn--outline btn--sm"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  WhatsApp
+                </a>
+                <Link to="/book-now" className="btn btn--ghost btn--sm">
+                  Book Now
+                </Link>
+              </div>
             </article>
             <div className="contact-map card">
               <iframe
@@ -117,6 +135,18 @@ export function Contact() {
           </form>
         </div>
       </section>
+
+      <TestimonialsSection
+        compact
+        limit={3}
+        title="Clients who called us — and booked"
+        text="Social proof from weddings, brands and events across India."
+      />
+
+      <CTABanner
+        title="Prefer a quick consult?"
+        text="Call, WhatsApp or send a booking request — we’ll help you choose the right package."
+      />
     </div>
   );
 }

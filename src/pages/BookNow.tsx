@@ -8,7 +8,7 @@ import "./Page.css";
 
 export function BookNow() {
   const ref = useReveal<HTMLDivElement>();
-  const { company, packageGroups } = useCms();
+  const { company, packageGroups, testimonials } = useCms();
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = (e: FormEvent) => {
@@ -143,12 +143,35 @@ export function BookNow() {
               <p>
                 Compare packages first, or call us for a quick consult.
               </p>
-              <Link to="/packages" className="btn btn--outline">
-                Compare Packages
-              </Link>
-              <a href={company.phoneHref} className="btn btn--ghost">
-                Call {company.phone}
-              </a>
+              <div className="book-aside__actions">
+                <a href={company.phoneHref} className="btn btn--gold">
+                  Call {company.phone}
+                </a>
+                <a
+                  href={company.whatsappHref}
+                  className="btn btn--outline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  WhatsApp
+                </a>
+                <Link to="/packages" className="btn btn--ghost">
+                  Compare Packages
+                </Link>
+              </div>
+            </div>
+            <div className="info-panel card book-aside__reviews">
+              <p className="eyebrow">Client reviews</p>
+              <p className="book-aside__score">★★★★★ 4.9/5</p>
+              {testimonials.slice(0, 2).map((t) => (
+                <blockquote key={t.name} className="book-aside__quote">
+                  <p>“{t.quote}”</p>
+                  <footer>
+                    <strong>{t.name}</strong>
+                    <span>{t.role}</span>
+                  </footer>
+                </blockquote>
+              ))}
             </div>
           </aside>
         </div>

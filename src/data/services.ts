@@ -1,3 +1,16 @@
+export type ServiceReview = {
+  name: string;
+  role: string;
+  quote: string;
+  rating?: number;
+  image?: string;
+};
+
+export type ServiceTip = {
+  title: string;
+  text: string;
+};
+
 export type Service = {
   slug: string;
   title: string;
@@ -9,6 +22,10 @@ export type Service = {
   related: string[];
   /** Optional YouTube watch / share / embed URL — shown on the service page when set */
   youtubeUrl?: string;
+  /** Per-service client reviews shown on the service detail page */
+  reviews?: ServiceReview[];
+  /** Interesting facts & tips for this service — CMS editable */
+  tips?: ServiceTip[];
 };
 
 export const services: Service[] = [
@@ -195,7 +212,7 @@ export const services: Service[] = [
       "Delivery for web, LinkedIn and events",
     ],
     image:
-      "https://images.unsplash.com/photo-1573164713714-d95e4367658e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80",
     category: "Corporate",
     related: ["brand-story-videos", "commercial-ad-films", "interview-videos"],
   },

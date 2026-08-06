@@ -16,16 +16,20 @@ export function CTABanner({
 
   return (
     <section className="cta-banner section">
-      <div className="container cta-banner__inner reveal">
+      <div className="container cta-banner__inner">
         <div>
           <p className="eyebrow">{banner.eyebrow}</p>
           <h2>{resolvedTitle}</h2>
           <p>{resolvedText}</p>
+          <p className="cta-banner__phone">
+            Prefer to talk?{" "}
+            <a href={company.phoneHref}>{company.phone}</a>
+          </p>
         </div>
         <div className="cta-banner__actions">
-          <Link to={banner.primaryPath || "/book-now"} className="btn btn--gold">
-            {banner.primaryLabel || "Book Consultation"}
-          </Link>
+          <a href={company.phoneHref} className="btn btn--gold">
+            Call Now
+          </a>
           <a
             href={company.whatsappHref}
             className="btn btn--outline-light"
@@ -34,6 +38,9 @@ export function CTABanner({
           >
             WhatsApp
           </a>
+          <Link to={banner.primaryPath || "/book-now"} className="btn btn--outline-light">
+            {banner.primaryLabel || "Book Consultation"}
+          </Link>
         </div>
       </div>
     </section>
