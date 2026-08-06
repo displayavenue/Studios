@@ -1,19 +1,40 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
+import { GoogleReviews } from "../components/GoogleReviews";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
+import { submitInquiry } from "../utils/submitInquiry";
 import "./Page.css";
 
 export function Contact() {
   const ref = useReveal<HTMLDivElement>();
   const { company } = useCms();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError("");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setLoading(true);
+    try {
+      await submitInquiry("contact", {
+        name: String(data.get("name") ?? ""),
+        phone: String(data.get("phone") ?? ""),
+        email: String(data.get("email") ?? ""),
+        message: String(data.get("message") ?? ""),
+      });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not send message.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -85,8 +106,11 @@ export function Contact() {
                 <h2>Message sent</h2>
                 <p>
                   Thank you for contacting DisplayAvenue Studios. We&apos;ll get
-                  back to you soon.
+                  back to you within one business day.
                 </p>
+                <a href={company.whatsappHref} className="btn btn--outline" target="_blank" rel="noreferrer">
+                  Chat on WhatsApp
+                </a>
               </div>
             ) : (
               <>
@@ -94,29 +118,42 @@ export function Contact() {
                 <div className="form-grid">
                   <div className="form-field">
                     <label htmlFor="cname">Name</label>
-                    <input id="cname" required />
+                    <input id="cname" name="name" required disabled={loading} />
                   </div>
                   <div className="form-field">
                     <label htmlFor="cphone">Phone</label>
-                    <input id="cphone" required />
+                    <input id="cphone" name="phone" required disabled={loading} />
                   </div>
                   <div className="form-field form-field--full">
                     <label htmlFor="cemail">Email</label>
-                    <input id="cemail" type="email" required />
+                    <input id="cemail" name="email" type="email" required disabled={loading} />
                   </div>
                   <div className="form-field form-field--full">
                     <label htmlFor="cmsg">Message</label>
-                    <textarea id="cmsg" required placeholder="How can we help?" />
+                    <textarea
+                      id="cmsg"
+                      name="message"
+                      required
+                      placeholder="How can we help?"
+                      disabled={loading}
+                    />
                   </div>
                 </div>
-                <button type="submit" className="btn btn--gold">
-                  Send Message
+                {error && <p className="form-error" role="alert">{error}</p>}
+                <button type="submit" className="btn btn--gold" disabled={loading}>
+                  {loading ? "Sending…" : "Send Message"}
                 </button>
+                <p className="form-note">
+                  Prefer a call?{" "}
+                  <a href={company.phoneHref}>{company.phone}</a>
+                </p>
               </>
             )}
           </form>
         </div>
       </section>
+
+      <GoogleReviews title="What clients say" />
     </div>
   );
 }

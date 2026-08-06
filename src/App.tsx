@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
@@ -17,6 +17,7 @@ import { FAQs } from "./pages/FAQs";
 import { BookNow } from "./pages/BookNow";
 import { Contact } from "./pages/Contact";
 import { AllPages } from "./pages/AllPages";
+import { PrivacyPolicy, TermsOfService, BookingPolicy } from "./pages/Legal";
 
 export default function App() {
   return (
@@ -41,6 +42,10 @@ export default function App() {
           <Route path="faqs" element={<FAQs />} />
           <Route path="book-now" element={<BookNow />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
+          <Route path="terms" element={<TermsOfService />} />
+          <Route path="booking-policy" element={<BookingPolicy />} />
+          <Route path="package" element={<Navigate to="/packages" replace />} />
           <Route path="pages" element={<AllPages />} />
         </Route>
       </Routes>

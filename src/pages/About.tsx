@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { ClientLogoWall } from "../components/ClientLogoWall";
+import { GoogleReviews } from "../components/GoogleReviews";
+import { TrustStats } from "../components/TrustStats";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
@@ -28,9 +31,15 @@ export function About() {
           <h1>A luxury visual studio built for India&apos;s most important moments</h1>
           <p>
             DisplayAvenue Studios is a premium photography, videography and film
-            production company headquartered in Mira Road East, Mumbai - serving
-            couples, brands and institutions across India.
+            production company headquartered in Mira Road East, Mumbai - trusted by
+            120+ brands, hotels and families across 11 industry verticals.
           </p>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="container">
+          <TrustStats compact />
         </div>
       </section>
 
@@ -188,6 +197,10 @@ export function About() {
           </p>
         </div>
       </section>
+
+      <ClientLogoWall />
+
+      <GoogleReviews title="What our clients say on Google" />
 
       <CTABanner title="Let’s build your next visual story" />
     </div>

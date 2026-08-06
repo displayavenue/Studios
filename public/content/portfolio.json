@@ -3,6 +3,7 @@
     {
       "slug": "udaipur-palace-wedding",
       "title": "Udaipur Palace Wedding",
+      "client": "Mehta–Kapoor Family",
       "category": "Wedding",
       "location": "Udaipur",
       "description": "A three-day destination wedding filmed across lakeside courtyards, with golden-hour portraits and a cinematic highlight film.",
@@ -16,6 +17,7 @@
     {
       "slug": "mumbai-heritage-ceremony",
       "title": "Mumbai Heritage Ceremony",
+      "client": "Sharma Wedding",
       "category": "Wedding",
       "location": "Mumbai",
       "description": "An intimate city wedding blending traditional rituals with contemporary reception styling at a heritage Mumbai venue.",
@@ -28,6 +30,7 @@
     {
       "slug": "fintech-brand-film",
       "title": "Fintech Brand Film",
+      "client": "PaySwift India",
       "category": "Corporate",
       "location": "Bengaluru",
       "description": "A founder-led brand story and workplace photography system for a growing fintech scale-up.",
@@ -40,6 +43,7 @@
     {
       "slug": "jewellery-campaign",
       "title": "Jewellery Campaign",
+      "client": "Aurum Jewellers",
       "category": "Products",
       "location": "Mumbai",
       "description": "Art-directed product and campaign stills for a premium jewellery launch across e-commerce and print.",
@@ -52,6 +56,7 @@
     {
       "slug": "hospitality-goa-resort",
       "title": "Goa Resort Visuals",
+      "client": "Azure Bay Resort",
       "category": "Hotels",
       "location": "Goa",
       "description": "Hospitality photography and drone coverage for a coastal resort - rooms, dining and experiential lifestyle.",
@@ -64,6 +69,7 @@
     {
       "slug": "restaurant-launch-bandra",
       "title": "Bandra Restaurant Launch",
+      "client": "Maison Table",
       "category": "Restaurants",
       "location": "Mumbai",
       "description": "Food, ambience and launch-night coverage for a new fine-dining restaurant in Bandra.",
@@ -76,6 +82,7 @@
     {
       "slug": "industrial-plant-story",
       "title": "Industrial Plant Story",
+      "client": "Precision Forge Ltd",
       "category": "Corporate",
       "location": "Pune",
       "description": "Factory photography and manufacturing film for a precision engineering company seeking global buyers.",
@@ -88,6 +95,7 @@
     {
       "slug": "luxury-villa-aerials",
       "title": "Luxury Villa Aerials",
+      "client": "Hillside Estates",
       "category": "Drone",
       "location": "Lonavala",
       "description": "Licensed drone photography and twilight exteriors for a luxury villa listing.",
@@ -100,6 +108,7 @@
     {
       "slug": "award-night-delhi",
       "title": "Delhi Award Night",
+      "client": "India Business Council",
       "category": "Events",
       "location": "New Delhi",
       "description": "Red-carpet and stage coverage for a national awards evening with same-night press delivery.",
@@ -112,6 +121,7 @@
     {
       "slug": "south-mumbai-residence",
       "title": "South Mumbai Residence",
+      "client": "Birla Estates",
       "category": "Real Estate",
       "location": "Mumbai",
       "description": "Interior and architectural photography for a restored South Mumbai residence.",
@@ -119,6 +129,30 @@
       "gallery": [
         "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=80",
         "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+    {
+      "slug": "hospital-trust-film",
+      "title": "Hospital Trust Film",
+      "client": "MetroCare Hospitals",
+      "category": "Healthcare",
+      "location": "Hyderabad",
+      "description": "Patient-centred brand film and facility photography for a multi-speciality hospital network.",
+      "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1400&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+    {
+      "slug": "fashion-lookbook",
+      "title": "Festive Lookbook",
+      "client": "Luxe Loom",
+      "category": "Fashion",
+      "location": "Mumbai",
+      "description": "Seasonal lookbook and reel content for a contemporary ethnic wear label.",
+      "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1400&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=80"
       ]
     }
   ],
@@ -131,6 +165,8 @@
     "Drone",
     "Hotels",
     "Restaurants",
-    "Real Estate"
+    "Real Estate",
+    "Healthcare",
+    "Fashion"
   ]
 }

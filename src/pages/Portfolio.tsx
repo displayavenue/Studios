@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { ClientLogoWall } from "../components/ClientLogoWall";
+import { TrustStats } from "../components/TrustStats";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
@@ -35,11 +37,18 @@ export function Portfolio() {
             <span>Portfolio</span>
           </nav>
           <p className="eyebrow">Portfolio</p>
-          <h1>Selected work across weddings, brands and spaces</h1>
+          <h1>850+ productions across weddings, brands and institutions</h1>
           <p>
-            Every project page highlights craft, location and outcomes - built
-            for inspiration and SEO discovery.
+            A curated selection of destination weddings, corporate films,
+            hospitality, product campaigns and event coverage delivered for
+            clients across India.
           </p>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="container">
+          <TrustStats compact />
         </div>
       </section>
 
@@ -68,6 +77,9 @@ export function Portfolio() {
                 <div className="masonry__overlay" style={{ opacity: 1, transform: "none" }}>
                   <span>{item.category}</span>
                   <strong>{item.title}</strong>
+                  {"client" in item && item.client ? (
+                    <b className="masonry__client">{item.client}</b>
+                  ) : null}
                   <em>{item.location}</em>
                 </div>
               </Link>
@@ -75,6 +87,8 @@ export function Portfolio() {
           </div>
         </div>
       </section>
+
+      <ClientLogoWall label="Clients we've produced for" />
 
       <CTABanner title="Want work like this for your date or brand?" />
     </div>

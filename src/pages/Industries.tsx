@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { TrustStats } from "../components/TrustStats";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
@@ -25,11 +26,18 @@ export function Industries() {
             <span>Industries</span>
           </nav>
           <p className="eyebrow">Industries</p>
-          <h1>Sector expertise with a luxury studio standard</h1>
+          <h1>11 industry verticals. One luxury studio standard.</h1>
           <p>
-            We adapt creative direction, permissions and delivery formats to
-            the realities of each industry - without compromising craft.
+            We have delivered 850+ productions for manufacturing, healthcare,
+            hospitality, fashion, real estate, government and more - adapting creative
+            direction to each sector without compromising craft.
           </p>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="container">
+          <TrustStats compact />
         </div>
       </section>
 
@@ -45,6 +53,9 @@ export function Industries() {
               <div>
                 <h2>{ind.title}</h2>
                 <p>{ind.text}</p>
+                {"projectCount" in ind && ind.projectCount ? (
+                  <span className="industry-card__count">{String(ind.projectCount)}+ projects delivered</span>
+                ) : null}
                 <span className="text-link">Open industry page →</span>
               </div>
             </Link>

@@ -30,70 +30,64 @@
     }
   },
   "navLinks": [
-    {
-      "label": "Home",
-      "path": "/"
-    },
-    {
-      "label": "About",
-      "path": "/about"
-    },
-    {
-      "label": "Services",
-      "path": "/services"
-    },
-    {
-      "label": "Packages",
-      "path": "/packages"
-    },
-    {
-      "label": "Portfolio",
-      "path": "/portfolio"
-    },
-    {
-      "label": "Locations",
-      "path": "/locations"
-    },
-    {
-      "label": "Blog",
-      "path": "/blog"
-    },
-    {
-      "label": "Contact",
-      "path": "/contact"
-    },
-    {
-      "label": "Pricing",
-      "path": "/pricing"
-    },
-    {
-      "label": "Industries",
-      "path": "/industries"
-    },
-    {
-      "label": "FAQs",
-      "path": "/faqs"
-    }
+    { "label": "Home", "path": "/" },
+    { "label": "About", "path": "/about" },
+    { "label": "Services", "path": "/services" },
+    { "label": "Portfolio", "path": "/portfolio" },
+    { "label": "Industries", "path": "/industries" },
+    { "label": "Packages", "path": "/packages" },
+    { "label": "Locations", "path": "/locations" },
+    { "label": "Pricing", "path": "/pricing" },
+    { "label": "Blog", "path": "/blog" },
+    { "label": "Contact", "path": "/contact" },
+    { "label": "FAQs", "path": "/faqs" }
   ],
   "trustBadges": [
-    "Pan India Coverage",
-    "Professional Team",
-    "Luxury Experience",
-    "Fast Delivery"
+    "850+ Projects Delivered",
+    "Pan India Crew Network",
+    "Cinema-Grade Equipment",
+    "4.9★ Client Rating"
+  ],
+  "stats": [
+    { "value": "850+", "label": "Projects delivered" },
+    { "value": "120+", "label": "Brand & wedding clients" },
+    { "value": "11", "label": "Industry verticals" },
+    { "value": "18", "label": "Cities across India" },
+    { "value": "4.9★", "label": "Average client rating" }
   ],
   "brandLogos": [
     "Taj Hotels",
-    "Reliance",
+    "Reliance Retail",
     "Nykaa",
     "MakeMyTrip",
     "FabIndia",
-    "Tata",
+    "Tata Motors",
     "Marriott",
-    "Boat"
+    "boAt",
+    "HDFC Bank",
+    "Infosys",
+    "Sun Pharma",
+    "Lenskart",
+    "Swiggy",
+    "Zomato",
+    "Asian Paints",
+    "Mahindra",
+    "ITC Hotels",
+    "PVR Cinemas",
+    "Birla Estates",
+    "Cipla",
+    "Aditya Birla",
+    "Vedanta",
+    "JSW Steel",
+    "Godrej Properties"
   ],
   "socials": [
     "https://www.instagram.com/displayavenuestudios/",
     "https://www.youtube.com/@displayavenuestudios",
     "https://www.linkedin.com/company/displayavenue-studios"
-  ]
+  ],
+  "googleRating": "4.9",
+  "googleReviewCount": "127",
+  "googleReviewsUrl": "https://www.google.com/maps/search/DisplayAvenue+Studios+Mumbai/reviews",
+  "brandDisclaimer": ""
 }

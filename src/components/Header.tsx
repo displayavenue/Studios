@@ -5,33 +5,52 @@ import { useCms } from "../cms/CmsProvider";
 import "./Header.css";
 
 const serviceCategories = [
-  "Wedding",
-  "Corporate",
-  "Product",
-  "Events",
-  "Aerial",
-  "Post",
+  { key: "Wedding", label: "Weddings", anchor: "wedding" },
+  { key: "Corporate", label: "Corporate & brands", anchor: "corporate" },
+  { key: "Product", label: "Product & e‑commerce", anchor: "product" },
+  { key: "Events", label: "Events", anchor: "events" },
+  { key: "Aerial", label: "Drone & aerial", anchor: "aerial" },
+  { key: "Post", label: "Content & post", anchor: "post" },
 ] as const;
 
-type OpenMenu = "services" | "packages" | "explore" | null;
+const FALLBACK_SERVICE_IMAGE =
+  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80";
+
+type OpenMenu = "services" | "packages" | "more" | null;
+
+function NavServiceThumb({ src }: { src: string }) {
+  const [img, setImg] = useState(src);
+  return (
+    <img
+      src={img}
+      alt=""
+      loading="lazy"
+      onError={() => setImg(FALLBACK_SERVICE_IMAGE)}
+    />
+  );
+}
 
 export function Header() {
-  const { company, services, packageGroups, locations, homeServices } =
-    useCms();
+  const { company, services, packageGroups } = useCms();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<OpenMenu>(null);
-  const [mobileSection, setMobileSection] = useState<string | null>("services");
   const navRef = useRef<HTMLElement>(null);
+  const scrollLockY = useRef(0);
   const servicesId = useId();
   const packagesId = useId();
-  const exploreId = useId();
+  const moreId = useId();
 
-  const featuredServices = homeServices
+  const popularServices = [
+    "wedding-photography",
+    "wedding-videography",
+    "corporate-photography",
+    "product-photography",
+    "drone-photography",
+  ]
     .map((slug) => services.find((s) => s.slug === slug))
-    .filter(Boolean)
-    .slice(0, 8);
+    .filter(Boolean);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
@@ -46,11 +65,26 @@ export function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    document.body.classList.toggle("menu-open", open);
+    if (!open) return;
+
+    scrollLockY.current = window.scrollY;
+    document.body.classList.add("menu-open");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollLockY.current}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = "";
       document.body.classList.remove("menu-open");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+      window.scrollTo(0, scrollLockY.current);
     };
   }, [open]);
 
@@ -101,10 +135,6 @@ export function Header() {
           </Link>
 
           <nav className="site-nav site-nav--desktop" aria-label="Primary" ref={navRef}>
-            <NavLink to="/about" className="nav-link" onClick={() => setMenu(null)}>
-              About
-            </NavLink>
-
             <div
               className={`nav-dropdown ${menu === "services" ? "is-open" : ""}`}
               onMouseEnter={() => setMenu("services")}
@@ -121,23 +151,31 @@ export function Header() {
                 <span className="nav-caret" aria-hidden />
               </button>
               <div id={servicesId} className="nav-panel nav-panel--mega" role="region" aria-label="Services menu">
-                <div className="nav-panel__intro">
-                  <p className="eyebrow">Services</p>
-                  <strong>Photography, film &amp; post</strong>
-                  <p>Browse by category or jump into popular briefs.</p>
-                  <Link to="/services" className="btn btn--dark btn--sm" onClick={close}>
-                    All services
-                  </Link>
+                <div className="nav-mega__head">
+                  <div className="nav-panel__intro">
+                    <p className="eyebrow">What we shoot</p>
+                    <strong>Photography, film &amp; post</strong>
+                    <p>Weddings, brands, products and events — pan India.</p>
+                  </div>
+                  <div className="nav-mega__actions">
+                    <Link to="/services" className="btn btn--dark btn--sm" onClick={close}>
+                      All services
+                    </Link>
+                    <Link to="/book-now" className="btn btn--outline btn--sm" onClick={close}>
+                      Get a quote
+                    </Link>
+                  </div>
                 </div>
+
                 <div className="nav-panel__cols">
-                  {serviceCategories.map((category) => {
-                    const items = services
-                      .filter((s) => s.category === category)
-                      .slice(0, 4);
+                  {serviceCategories.map(({ key, label, anchor }) => {
+                    const items = services.filter((s) => s.category === key).slice(0, 2);
                     if (!items.length) return null;
                     return (
-                      <div key={category} className="nav-col">
-                        <p className="nav-col__title">{category}</p>
+                      <div key={key} className="nav-col">
+                        <Link to={`/services#${anchor}`} className="nav-col__title" onClick={close}>
+                          {label}
+                        </Link>
                         {items.map((s) => (
                           <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
                             {s.title}
@@ -147,10 +185,11 @@ export function Header() {
                     );
                   })}
                 </div>
-                <div className="nav-panel__featured">
-                  <p className="nav-col__title">Popular now</p>
+
+                <div className="nav-mega__popular">
+                  <p className="nav-col__title">Popular</p>
                   <div className="nav-featured-grid">
-                    {featuredServices.slice(0, 4).map(
+                    {popularServices.map(
                       (s) =>
                         s && (
                           <Link
@@ -159,7 +198,7 @@ export function Header() {
                             className="nav-featured-card"
                             onClick={close}
                           >
-                            <img src={s.image} alt="" loading="lazy" />
+                            <NavServiceThumb src={s.image} />
                             <span>{s.title}</span>
                           </Link>
                         ),
@@ -168,6 +207,10 @@ export function Header() {
                 </div>
               </div>
             </div>
+
+            <NavLink to="/portfolio" className="nav-link" onClick={() => setMenu(null)}>
+              Portfolio
+            </NavLink>
 
             <div
               className={`nav-dropdown ${menu === "packages" ? "is-open" : ""}`}
@@ -199,61 +242,41 @@ export function Header() {
               </div>
             </div>
 
-            <NavLink to="/portfolio" className="nav-link" onClick={() => setMenu(null)}>
-              Portfolio
+            <NavLink to="/about" className="nav-link" onClick={() => setMenu(null)}>
+              About
             </NavLink>
 
             <div
-              className={`nav-dropdown ${menu === "explore" ? "is-open" : ""}`}
-              onMouseEnter={() => setMenu("explore")}
+              className={`nav-dropdown ${menu === "more" ? "is-open" : ""}`}
+              onMouseEnter={() => setMenu("more")}
               onMouseLeave={() => setMenu(null)}
             >
               <button
                 type="button"
-                className={`nav-link nav-link--btn ${["/locations", "/industries", "/blog", "/faqs", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
-                aria-expanded={menu === "explore"}
-                aria-controls={exploreId}
-                onClick={() => toggleMenu("explore")}
+                className={`nav-link nav-link--btn ${["/industries", "/locations", "/blog", "/faqs", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
+                aria-expanded={menu === "more"}
+                aria-controls={moreId}
+                onClick={() => toggleMenu("more")}
               >
-                Explore
+                More
                 <span className="nav-caret" aria-hidden />
               </button>
-              <div id={exploreId} className="nav-panel nav-panel--wide" role="region" aria-label="Explore menu">
-                <div className="nav-col">
-                  <p className="nav-col__title">Discover</p>
-                  <Link to="/locations" onClick={close}>Locations</Link>
-                  <Link to="/industries" onClick={close}>Industries</Link>
-                  <Link to="/blog" onClick={close}>Blog</Link>
-                  <Link to="/faqs" onClick={close}>FAQs</Link>
-                  <Link to="/pages" onClick={close}>All pages</Link>
-                </div>
-                <div className="nav-col">
-                  <p className="nav-col__title">Top cities</p>
-                  {locations.slice(0, 6).map((loc) => (
-                    <Link key={loc.slug} to={`/locations/${loc.slug}`} onClick={close}>
-                      {loc.city}
-                    </Link>
-                  ))}
-                </div>
-                <div className="nav-panel__cta-card">
-                  <p className="eyebrow">Ready to book?</p>
-                  <strong>Plan your shoot in minutes</strong>
-                  <p>Tell us your date, city and style - we reply fast on WhatsApp.</p>
-                  <div className="nav-panel__cta-actions">
-                    <Link to="/book-now" className="btn btn--gold btn--sm" onClick={close}>
-                      Book Now
-                    </Link>
-                    <a
-                      href={company.whatsappHref}
-                      className="btn btn--ghost btn--sm"
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={close}
-                    >
-                      WhatsApp
-                    </a>
-                  </div>
-                </div>
+              <div id={moreId} className="nav-panel nav-panel--sm" role="region" aria-label="More pages">
+                <Link to="/industries" onClick={close}>
+                  Industries
+                </Link>
+                <Link to="/locations" onClick={close}>
+                  Locations
+                </Link>
+                <Link to="/blog" onClick={close}>
+                  Blog
+                </Link>
+                <Link to="/faqs" onClick={close}>
+                  FAQs
+                </Link>
+                <Link to="/pages" onClick={close}>
+                  Site map
+                </Link>
               </div>
             </div>
 
@@ -263,9 +286,6 @@ export function Header() {
           </nav>
 
           <div className="site-header__actions">
-            <a className="header-phone" href={company.phoneHref} aria-label={`Call ${company.phone}`}>
-              {company.phone}
-            </a>
             <a
               className="header-wa"
               href={company.whatsappHref}
@@ -293,78 +313,74 @@ export function Header() {
         </div>
       </header>
 
-      {typeof document !== "undefined" &&
+      {open &&
+        typeof document !== "undefined" &&
         createPortal(
-          <div className={`mobile-drawer ${open ? "is-open" : ""}`} aria-hidden={!open}>
-            <div className="mobile-drawer__inner">
+          <div className="mobile-drawer is-open" role="dialog" aria-modal="true" aria-label="Site menu">
+            <div className="mobile-drawer__bar">
               <p className="mobile-drawer__label">Menu</p>
+              <button type="button" className="mobile-drawer__close" onClick={close} aria-label="Close menu">
+                Close
+              </button>
+            </div>
 
-              <div className="mobile-acc">
-                <button
-                  type="button"
-                  className={`mobile-acc__btn ${mobileSection === "services" ? "is-open" : ""}`}
-                  onClick={() =>
-                    setMobileSection((s) => (s === "services" ? null : "services"))
-                  }
+            <div className="mobile-drawer__inner">
+              <div className="mobile-drawer__ctas">
+                <Link to="/book-now" className="btn btn--gold" onClick={close}>
+                  Book Now
+                </Link>
+                <a
+                  href={company.whatsappHref}
+                  className="btn btn--outline"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={close}
                 >
+                  WhatsApp
+                </a>
+              </div>
+
+              <nav className="mobile-nav" aria-label="Mobile primary">
+                <NavLink to="/services" onClick={close}>
                   Services
-                </button>
-                {mobileSection === "services" && (
-                  <div className="mobile-acc__body">
-                    <Link to="/services" onClick={close}>
-                      All services
-                    </Link>
-                    {featuredServices.map(
-                      (s) =>
-                        s && (
-                          <Link key={s.slug} to={`/services/${s.slug}`} onClick={close}>
-                            {s.title}
-                          </Link>
-                        ),
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <div className="mobile-acc">
-                <button
-                  type="button"
-                  className={`mobile-acc__btn ${mobileSection === "packages" ? "is-open" : ""}`}
-                  onClick={() =>
-                    setMobileSection((s) => (s === "packages" ? null : "packages"))
-                  }
-                >
-                  Packages
-                </button>
-                {mobileSection === "packages" && (
-                  <div className="mobile-acc__body">
-                    <Link to="/packages" onClick={close}>
-                      All packages
-                    </Link>
-                    {packageGroups.map((g) => (
-                      <Link key={g.slug} to={`/packages/${g.slug}`} onClick={close}>
-                        {g.title}
-                      </Link>
-                    ))}
-                    <Link to="/pricing" onClick={close}>
-                      Pricing
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              <nav className="mobile-drawer__links" aria-label="Mobile">
-                <NavLink to="/about" onClick={close}>
-                  About
                 </NavLink>
                 <NavLink to="/portfolio" onClick={close}>
                   Portfolio
                 </NavLink>
+                <NavLink to="/packages" onClick={close}>
+                  Packages
+                </NavLink>
+                <NavLink to="/about" onClick={close}>
+                  About
+                </NavLink>
+                <NavLink to="/contact" onClick={close}>
+                  Contact
+                </NavLink>
+              </nav>
+
+              <div className="mobile-nav__section">
+                <p className="mobile-nav__heading">Browse by category</p>
+                <div className="mobile-chip-grid">
+                  {serviceCategories.map(({ label, anchor }) => (
+                    <Link key={anchor} to={`/services#${anchor}`} onClick={close}>
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+                <Link to="/services" className="mobile-nav__all" onClick={close}>
+                  View all services →
+                </Link>
+              </div>
+
+              <nav className="mobile-nav mobile-nav--secondary" aria-label="Mobile secondary">
+                <NavLink to="/industries" onClick={close}>
+                  Industries
+                </NavLink>
                 <NavLink to="/locations" onClick={close}>
                   Locations
                 </NavLink>
-                <NavLink to="/industries" onClick={close}>
-                  Industries
+                <NavLink to="/pricing" onClick={close}>
+                  Pricing
                 </NavLink>
                 <NavLink to="/blog" onClick={close}>
                   Blog
@@ -372,28 +388,11 @@ export function Header() {
                 <NavLink to="/faqs" onClick={close}>
                   FAQs
                 </NavLink>
-                <NavLink to="/contact" onClick={close}>
-                  Contact
-                </NavLink>
               </nav>
 
-              <div className="mobile-drawer__actions">
-                <Link to="/book-now" className="btn btn--gold" onClick={close}>
-                  Book Now
-                </Link>
-                <a
-                  href={company.whatsappHref}
-                  className="btn btn--dark"
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={close}
-                >
-                  WhatsApp us
-                </a>
-                <a href={company.phoneHref} className="mobile-drawer__phone">
-                  {company.phone}
-                </a>
-              </div>
+              <a href={company.phoneHref} className="mobile-drawer__phone">
+                Call {company.phone}
+              </a>
             </div>
           </div>,
           document.body,

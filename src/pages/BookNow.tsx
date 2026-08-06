@@ -4,16 +4,40 @@ import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
+import { submitInquiry } from "../utils/submitInquiry";
 import "./Page.css";
 
 export function BookNow() {
   const ref = useReveal<HTMLDivElement>();
   const { company, packageGroups } = useCms();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError("");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setLoading(true);
+    try {
+      await submitInquiry("book-now", {
+        name: String(data.get("name") ?? ""),
+        phone: String(data.get("phone") ?? ""),
+        email: String(data.get("email") ?? ""),
+        city: String(data.get("city") ?? ""),
+        date: String(data.get("date") ?? ""),
+        package: String(data.get("package") ?? ""),
+        service: String(data.get("service") ?? ""),
+        message: String(data.get("message") ?? ""),
+      });
+      setSubmitted(true);
+      form.reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not submit booking request.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,27 +84,27 @@ export function BookNow() {
                 <div className="form-grid">
                   <div className="form-field">
                     <label htmlFor="name">Full name</label>
-                    <input id="name" name="name" required placeholder="Your name" />
+                    <input id="name" name="name" required placeholder="Your name" disabled={loading} />
                   </div>
                   <div className="form-field">
                     <label htmlFor="phone">Phone / WhatsApp</label>
-                    <input id="phone" name="phone" required placeholder="+91" />
+                    <input id="phone" name="phone" required placeholder="+91" disabled={loading} />
                   </div>
                   <div className="form-field">
                     <label htmlFor="email">Email</label>
-                    <input id="email" name="email" type="email" required placeholder="you@email.com" />
+                    <input id="email" name="email" type="email" required placeholder="you@email.com" disabled={loading} />
                   </div>
                   <div className="form-field">
                     <label htmlFor="city">City</label>
-                    <input id="city" name="city" required placeholder="Mumbai" />
+                    <input id="city" name="city" required placeholder="Mumbai" disabled={loading} />
                   </div>
                   <div className="form-field">
                     <label htmlFor="date">Preferred date</label>
-                    <input id="date" name="date" type="date" required />
+                    <input id="date" name="date" type="date" required disabled={loading} />
                   </div>
                   <div className="form-field">
                     <label htmlFor="package">Package interest</label>
-                    <select id="package" name="package" defaultValue="">
+                    <select id="package" name="package" defaultValue="" disabled={loading}>
                       <option value="" disabled>
                         Select a package
                       </option>
@@ -96,7 +120,7 @@ export function BookNow() {
                   </div>
                   <div className="form-field form-field--full">
                     <label htmlFor="service">Service needed</label>
-                    <select id="service" name="service" defaultValue="Wedding Photography">
+                    <select id="service" name="service" defaultValue="Wedding Photography" disabled={loading}>
                       <option>Wedding Photography</option>
                       <option>Wedding Videography</option>
                       <option>Corporate Photography</option>
@@ -112,11 +136,13 @@ export function BookNow() {
                       id="message"
                       name="message"
                       placeholder="Venue, guest count, deliverables, budget range…"
+                      disabled={loading}
                     />
                   </div>
                 </div>
-                <button type="submit" className="btn btn--gold">
-                  Submit Booking Request
+                {error && <p className="form-error" role="alert">{error}</p>}
+                <button type="submit" className="btn btn--gold" disabled={loading}>
+                  {loading ? "Submitting…" : "Submit Booking Request"}
                 </button>
                 <p className="form-note">
                   Prefer chatting?{" "}

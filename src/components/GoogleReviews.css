@@ -1,0 +1,126 @@
+.google-reviews__head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.google-reviews__score {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  min-width: 220px;
+}
+
+.google-reviews__brand {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #4285f4;
+  box-shadow: 0 2px 8px rgba(66, 133, 244, 0.15);
+}
+
+.google-reviews__score strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+  display: block;
+}
+
+.google-reviews__stars {
+  color: #f4b400;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.google-reviews__score em {
+  display: block;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.google-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.google-review-card {
+  padding: 1.25rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.google-review-card__top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.google-review-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cream);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.google-review-card__top strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.google-review-card__top span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.google-review-card__when {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.google-review-card__stars {
+  color: #f4b400;
+  font-size: 0.85rem;
+}
+
+.google-review-card p {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.google-reviews__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .google-reviews__head {
+    grid-template-columns: 1fr;
+  }
+
+  .google-reviews__grid {
+    grid-template-columns: 1fr;
+  }
+}

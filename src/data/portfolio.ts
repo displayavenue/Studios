@@ -1,6 +1,7 @@
 export type PortfolioItem = {
   slug: string;
   title: string;
+  client?: string;
   category: string;
   location: string;
   description: string;

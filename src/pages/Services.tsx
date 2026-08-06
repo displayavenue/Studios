@@ -38,8 +38,9 @@ export function Services() {
 
       {categories.map((category) => {
         const items = services.filter((s) => s.category === category);
+        const anchor = category.toLowerCase();
         return (
-          <section key={category} className="section">
+          <section key={category} id={anchor} className="section">
             <div className="container">
               <div className="section-head reveal">
                 <p className="eyebrow">{category}</p>
