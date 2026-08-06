@@ -263,16 +263,24 @@ export function ServiceSchema({
   description,
   path,
   category,
+  areaServed,
+  keywords,
 }: {
   name: string;
   description: string;
   path: string;
   category?: string;
+  areaServed?: string[];
+  keywords?: string[];
 }) {
   const { company } = useCms();
 
   useEffect(() => {
     const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
+    const areas =
+      areaServed && areaServed.length
+        ? areaServed.map((city) => ({ "@type": "City", name: city }))
+        : [{ "@type": "Country", name: "India" }];
     upsertJsonLd("schema-service", {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -281,11 +289,66 @@ export function ServiceSchema({
       url: absoluteUrl(company.website, path),
       serviceType: category || name,
       provider: { "@id": `${site}/#business` },
-      areaServed: { "@type": "Country", name: "India" },
+      areaServed: areas,
       brand: { "@type": "Brand", name: company.name },
+      ...(keywords?.length ? { keywords: keywords.join(", ") } : {}),
     });
     return () => upsertJsonLd("schema-service", null);
-  }, [name, description, path, category, company]);
+  }, [name, description, path, category, areaServed, keywords, company]);
+
+  return null;
+}
+
+export function ReviewListSchema({
+  serviceName,
+  reviews,
+}: {
+  serviceName: string;
+  reviews: {
+    name: string;
+    role?: string;
+    quote: string;
+    rating: number;
+  }[];
+}) {
+  const { company } = useCms();
+
+  useEffect(() => {
+    if (!reviews.length) {
+      upsertJsonLd("schema-reviews", null);
+      return;
+    }
+    const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
+    const avg =
+      reviews.reduce((sum, r) => sum + (r.rating || 5), 0) / reviews.length;
+    upsertJsonLd("schema-reviews", {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: `${serviceName} by ${company.name}`,
+      description: `${serviceName} services from ${company.name}`,
+      brand: { "@type": "Brand", name: company.name },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: avg.toFixed(1),
+        reviewCount: String(reviews.length),
+        bestRating: "5",
+        worstRating: "1",
+      },
+      review: reviews.slice(0, 25).map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.name },
+        reviewBody: r.quote,
+        name: r.role || serviceName,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: String(r.rating || 5),
+          bestRating: "5",
+        },
+      })),
+      provider: { "@id": `${site}/#business` },
+    });
+    return () => upsertJsonLd("schema-reviews", null);
+  }, [serviceName, reviews, company]);
 
   return null;
 }

@@ -43,8 +43,14 @@ sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
   "if ls -d /tmp/da-content-backup-* >/dev/null 2>&1; then \
      rm -rf $DOC/content; \
      mv /tmp/da-content-backup-* $DOC/content; \
-   fi; \
-   chmod 755 $DOC $DOC/content $DOC/admin; \
+   fi"
+
+# Always ship the latest enriched services.json (mega-menu pages) from this build
+sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
+  /tmp/da-agency-deploy/content/services.json "$HOST:$DOC/content/services.json"
+
+sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
+  "chmod 755 $DOC $DOC/content $DOC/admin; \
    chmod 644 $DOC/content/*.json $DOC/index.html $DOC/.htaccess $DOC/robots.txt $DOC/sitemap.xml $DOC/llms.txt 2>/dev/null || true; \
    chmod 664 $DOC/content/*.json; \
    php -r \"require '$DOC/admin/seo-sync.php'; \\\$r=da_sync_seo_artifacts('$DOC/content', '$DOC'); echo 'SEO_URLS='.\\\$r['urlCount'].PHP_EOL;\" 2>/dev/null || echo 'SEO sync skipped (no php CLI)'; \

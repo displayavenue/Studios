@@ -5,26 +5,6 @@
   min-width: 0;
 }
 
-.logo-mark {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #0056ff, #0039b8);
-  color: #fff;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  place-items: center;
-  font-weight: 800;
-  font-size: 0.72rem;
-  letter-spacing: -0.04em;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 86, 255, 0.35);
-}
-
-.logo-mark span:last-child {
-  color: #ff6b8a;
-}
-
 .logo-text {
   display: flex;
   flex-direction: column;
@@ -32,18 +12,19 @@
 }
 
 .logo-text strong {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--navy);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   line-height: 1.1;
 }
 
 .logo-text small {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
   font-weight: 500;
   white-space: nowrap;
+  margin-top: 0.12rem;
 }
 
 .logo-light .logo-text strong {
@@ -51,5 +32,5 @@
 }
 
 .logo-light .logo-text small {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.7);
 }

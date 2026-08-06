@@ -1,6 +1,22 @@
 export type Faq = { q: string; a: string };
 export type Benefit = { title: string; desc: string };
 export type ProcessStep = { title: string; desc: string };
+export type ServiceReview = {
+  name: string;
+  role: string;
+  company?: string;
+  city?: string;
+  region?: string;
+  rating: number;
+  quote: string;
+};
+export type ServiceLocation = {
+  city: string;
+  region?: string;
+  country?: string;
+  note?: string;
+};
+export type ContentSection = { title: string; body: string };
 
 export type DetailPageContent = {
   slug: string;
@@ -12,6 +28,18 @@ export type DetailPageContent = {
   eyebrow: string;
   headline: string;
   summary: string;
+  /** Longer humanized intro (CMS-editable). */
+  intro?: string;
+  sections?: ContentSection[];
+  whoItsFor?: string[];
+  longTailKeywords?: string[];
+  locations?: ServiceLocation[];
+  reviews?: ServiceReview[];
+  seo?: {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+  };
   benefits: Benefit[];
   deliverables: string[];
   process: ProcessStep[];

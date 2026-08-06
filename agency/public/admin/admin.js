@@ -307,6 +307,31 @@ function blankCatalogItem(kind) {
       { title: "Optimize", desc: "Step description" },
     ],
     faqs: [{ q: "Sample question?", a: "Sample answer." }],
+    intro: "Edit this longer intro in the CMS. Write like a human explaining the service.",
+    sections: [
+      { title: "How we work", body: "Describe your approach." },
+      { title: "What clients get", body: "Describe outcomes." },
+    ],
+    whoItsFor: ["Founders", "Marketing teams"],
+    longTailKeywords: ["service in mumbai", "best agency india"],
+    locations: [
+      { city: "Mumbai", region: "Maharashtra", country: "India", note: "HQ & workshops" },
+    ],
+    reviews: [
+      {
+        name: "Sample Client",
+        role: "Founder",
+        company: "Example brand",
+        city: "Mumbai",
+        rating: 5,
+        quote: "Replace with a real client review.",
+      },
+    ],
+    seo: {
+      title: "",
+      description: "",
+      keywords: [],
+    },
     related: [
       { label: "Contact", href: "/contact" },
       { label: "Packages", href: "/packages" },
@@ -359,7 +384,16 @@ function renderCatalog(d, kindLabel) {
           ${field("Eyebrow", `items.${i}.eyebrow`, item.eyebrow)}
           ${field("Headline", `items.${i}.headline`, item.headline, "textarea")}
           ${field("Summary", `items.${i}.summary`, item.summary, "textarea")}
+          ${field("Long intro", `items.${i}.intro`, item.intro || "", "textarea")}
           ${field("CTA label", `items.${i}.ctaLabel`, item.ctaLabel)}
+          ${field("SEO title", `items.${i}.seo.title`, item.seo?.title || "")}
+          ${field("SEO description", `items.${i}.seo.description`, item.seo?.description || "", "textarea")}
+          <div class="field full"><label>Long-tail keywords (one per line)</label>
+            <textarea data-path="items.${i}.longTailKeywords" data-array="true">${escapeHtml((item.longTailKeywords || item.seo?.keywords || []).join("\n"))}</textarea>
+          </div>
+          <div class="field full"><label>Who it's for (one per line)</label>
+            <textarea data-path="items.${i}.whoItsFor" data-array="true">${escapeHtml((item.whoItsFor || []).join("\n"))}</textarea>
+          </div>
           <div class="field full"><label>Deliverables (one per line)</label>
             <textarea data-path="items.${i}.deliverables" data-array="true">${escapeHtml((item.deliverables || []).join("\n"))}</textarea>
           </div>
@@ -367,10 +401,19 @@ function renderCatalog(d, kindLabel) {
         <h4 style="margin:1rem 0 .5rem">Benefits</h4>
         ${benefits || "<p class='empty'>No benefits</p>"}
         <button type="button" class="btn btn-ghost" data-action="add-benefit" data-index="${i}">+ Benefit</button>
-        <h4 style="margin:1rem 0 .5rem">FAQs</h4>
+        <h4 style="margin:1rem 0 .5rem">FAQs (unique per service)</h4>
         ${faqs || "<p class='empty'>No FAQs</p>"}
         <button type="button" class="btn btn-ghost" data-action="add-faq" data-index="${i}">+ FAQ</button>
-        <div class="field full" style="margin-top:1rem"><label>Related links JSON</label>
+        <div class="field full" style="margin-top:1rem"><label>Content sections JSON</label>
+          <textarea data-path="items.${i}.sections" data-json="true">${escapeHtml(JSON.stringify(item.sections || [], null, 2))}</textarea>
+        </div>
+        <div class="field full"><label>Locations JSON (cities you serve)</label>
+          <textarea data-path="items.${i}.locations" data-json="true">${escapeHtml(JSON.stringify(item.locations || [], null, 2))}</textarea>
+        </div>
+        <div class="field full"><label>Reviews JSON (20+ recommended)</label>
+          <textarea data-path="items.${i}.reviews" data-json="true">${escapeHtml(JSON.stringify(item.reviews || [], null, 2))}</textarea>
+        </div>
+        <div class="field full"><label>Related links JSON</label>
           <textarea data-path="items.${i}.related" data-json="true">${escapeHtml(JSON.stringify(item.related || [], null, 2))}</textarea>
         </div>
         <div class="field full"><label>Process JSON</label>
@@ -378,6 +421,9 @@ function renderCatalog(d, kindLabel) {
         </div>
         <div class="field full"><label>Metrics JSON</label>
           <textarea data-path="items.${i}.metrics" data-json="true">${escapeHtml(JSON.stringify(item.metrics || [], null, 2))}</textarea>
+        </div>
+        <div class="field full"><label>SEO object JSON</label>
+          <textarea data-path="items.${i}.seo" data-json="true">${escapeHtml(JSON.stringify(item.seo || {}, null, 2))}</textarea>
         </div>
       </details>`;
     })
@@ -388,7 +434,7 @@ function renderCatalog(d, kindLabel) {
       <div class="list-item-head">
         <div>
           <h3>${escapeHtml(kindLabel)} pages (${d.items.length})</h3>
-          <p class="hint">Each item is a full website page. Slug becomes the URL.</p>
+          <p class="hint">Each item is a full website page. Slug becomes the URL. Edit intro, FAQs, reviews, locations, and keywords — Save updates the live JSON instantly.</p>
         </div>
         <button type="button" class="btn btn-gold" data-action="add-item" data-index="${escapeAttr(kindLabel)}">Add ${escapeHtml(kindLabel)}</button>
       </div>
