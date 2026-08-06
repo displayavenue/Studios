@@ -63,6 +63,13 @@ if [ -f /tmp/da-demo-content.tgz ]; then
   "
 fi
 
+# Always prefer this build's key CMS files (nav, catalogue, chatbot, homepage)
+for f in company.json catalogue.json chatbot.json home.json settings.json; do
+  if [ -f "public/content/$f" ]; then
+    cp -a "public/content/$f" "/tmp/da-agency-root/content/$f"
+  fi
+done
+
 echo "Removing WordPress leftovers from public_html (backup already saved)…"
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
   "test -f \$HOME/backups/displayavenue-wordpress-backup-20260806-073054.tar.gz || \
