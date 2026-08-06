@@ -6,6 +6,8 @@ const state = {
   current: null,
   data: null,
   dirty: false,
+  newLeads: 0,
+  notifyEmail: "info@displayavenue.com",
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -125,14 +127,23 @@ function bindFields(root = $("#editor-wrap")) {
 
 function renderNav() {
   const nav = $("#nav");
-  nav.innerHTML = Object.entries(state.collections)
-    .map(
-      ([key, label]) =>
-        `<button type="button" data-key="${key}" class="${
-          state.current === key ? "active" : ""
-        }">${escapeHtml(label)}</button>`,
-    )
-    .join("");
+  const badge =
+    state.newLeads > 0
+      ? ` <span class="nav-badge">${state.newLeads > 99 ? "99+" : state.newLeads}</span>`
+      : "";
+  const leadBtn = `<button type="button" data-key="leads" class="${
+    state.current === "leads" ? "active" : ""
+  }">Form Leads (Inbox)${badge}</button>`;
+  nav.innerHTML =
+    leadBtn +
+    Object.entries(state.collections)
+      .map(
+        ([key, label]) =>
+          `<button type="button" data-key="${key}" class="${
+            state.current === key ? "active" : ""
+          }">${escapeHtml(label)}</button>`,
+      )
+      .join("");
   nav.querySelectorAll("button").forEach((btn) => {
     btn.onclick = () => openCollection(btn.dataset.key);
   });
@@ -140,6 +151,9 @@ function renderNav() {
 
 async function openCollection(key) {
   if (state.dirty && !confirm("Discard unsaved changes?")) return;
+  if (key === "leads") {
+    return openLeads();
+  }
   try {
     const url = `${API}?action=get&collection=${encodeURIComponent(key)}`;
     const r = await fetch(url, { credentials: "include" });
@@ -150,6 +164,24 @@ async function openCollection(key) {
     setDirty(false);
     $("#panel-title").textContent = state.collections[key] || key;
     $("#panel-sub").textContent = `Editing ${key}.json - Save to publish.`;
+    $("#save-btn").hidden = false;
+    renderNav();
+    renderEditor();
+  } catch (e) {
+    toast(e.message, "err");
+  }
+}
+
+async function openLeads() {
+  try {
+    const json = await api("leads");
+    state.current = "leads";
+    state.data = json.data || { items: [] };
+    state.newLeads = (state.data.items || []).filter((i) => (i.status || "new") === "new").length;
+    setDirty(false);
+    $("#panel-title").textContent = "Form Leads (Inbox)";
+    $("#panel-sub").textContent = `Submissions from the website. New leads are also emailed to ${state.notifyEmail}.`;
+    $("#save-btn").hidden = true;
     renderNav();
     renderEditor();
   } catch (e) {
@@ -163,6 +195,17 @@ function renderEditor() {
   const key = state.current;
   if (!d || !key) {
     wrap.innerHTML = `<p class="empty">Select a collection from the left.</p>`;
+    return;
+  }
+  if (key === "leads") {
+    wrap.innerHTML = renderLeads(d);
+    wrap.querySelectorAll("[data-action]").forEach((btn) => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleLeadAction(btn.dataset.action, btn.dataset.id);
+      };
+    });
     return;
   }
   const map = {
@@ -190,6 +233,80 @@ function renderEditor() {
       handleAction(btn.dataset.action, btn.dataset.index);
     };
   });
+}
+
+function renderLeads(d) {
+  const items = d.items || [];
+  const newCount = items.filter((i) => (i.status || "new") === "new").length;
+  if (!items.length) {
+    return `
+      <section class="card">
+        <h3>No leads yet</h3>
+        <p class="muted">When someone fills the contact or newsletter form on the website, it will appear here and also email <strong>${escapeHtml(state.notifyEmail)}</strong>.</p>
+      </section>`;
+  }
+  const rows = items
+    .map((item) => {
+      const status = item.status || "new";
+      const when = item.createdAt ? new Date(item.createdAt).toLocaleString() : "—";
+      return `
+      <article class="lead-card ${status === "new" ? "is-new" : ""}">
+        <div class="lead-card-head">
+          <div>
+            <strong>${escapeHtml(item.name || "—")}</strong>
+            <span class="lead-meta">${escapeHtml(item.source || "contact")} · ${escapeHtml(when)}</span>
+          </div>
+          <span class="lead-status status-${escapeHtml(status)}">${escapeHtml(status)}</span>
+        </div>
+        <div class="lead-body">
+          <p><a href="mailto:${escapeHtml(item.email || "")}">${escapeHtml(item.email || "—")}</a>
+            ${item.phone ? ` · <a href="tel:${escapeHtml(item.phone)}">${escapeHtml(item.phone)}</a>` : ""}</p>
+          <p class="lead-message">${escapeHtml(item.message || "—")}</p>
+          ${item.page ? `<p class="lead-meta">From: ${escapeHtml(item.page)}</p>` : ""}
+        </div>
+        <div class="lead-actions">
+          ${status === "new" ? `<button type="button" class="btn btn-ghost btn-sm" data-action="lead-read" data-id="${escapeHtml(item.id)}">Mark read</button>` : ""}
+          ${status !== "replied" ? `<button type="button" class="btn btn-ghost btn-sm" data-action="lead-replied" data-id="${escapeHtml(item.id)}">Mark replied</button>` : ""}
+          ${status !== "archived" ? `<button type="button" class="btn btn-ghost btn-sm" data-action="lead-archive" data-id="${escapeHtml(item.id)}">Archive</button>` : ""}
+          <a class="btn btn-ghost btn-sm" href="mailto:${escapeHtml(item.email || "")}?subject=${encodeURIComponent("Re: DisplayAvenue enquiry")}">Email reply</a>
+          <button type="button" class="btn btn-danger btn-sm" data-action="lead-delete" data-id="${escapeHtml(item.id)}">Delete</button>
+        </div>
+      </article>`;
+    })
+    .join("");
+
+  return `
+    <section class="card">
+      <h3>Inbox · ${items.length} total${newCount ? ` · ${newCount} new` : ""}</h3>
+      <p class="muted">Notifications go to <strong>${escapeHtml(state.notifyEmail)}</strong>. Lead data is private (not on the public website).</p>
+    </section>
+    <div class="leads-list">${rows}</div>`;
+}
+
+async function handleLeadAction(action, id) {
+  try {
+    if (action === "lead-delete") {
+      if (!confirm("Delete this lead permanently?")) return;
+      const json = await api("lead-delete", { id });
+      state.data = json.data;
+    } else {
+      const statusMap = {
+        "lead-read": "read",
+        "lead-replied": "replied",
+        "lead-archive": "archived",
+      };
+      const status = statusMap[action];
+      if (!status) return;
+      const json = await api("lead-update", { id, status });
+      state.data = json.data;
+    }
+    state.newLeads = (state.data.items || []).filter((i) => (i.status || "new") === "new").length;
+    renderNav();
+    renderEditor();
+    toast("Lead updated");
+  } catch (e) {
+    toast(e.message, "err");
+  }
 }
 
 function card(title, body) {
@@ -1149,7 +1266,7 @@ function handleAction(action, index) {
 }
 
 async function save() {
-  if (!state.current || !state.data) return;
+  if (!state.current || !state.data || state.current === "leads") return;
   // Coerce nav mega strings
   if (state.data.navItems) {
     state.data.navItems.forEach((n) => {
@@ -1165,6 +1282,12 @@ async function save() {
   }
 }
 
+function applyStatus(status) {
+  state.collections = status.collections || {};
+  state.newLeads = status.newLeads || 0;
+  if (status.notifyEmail) state.notifyEmail = status.notifyEmail;
+}
+
 async function init() {
   $("#login-form").onsubmit = async (e) => {
     e.preventDefault();
@@ -1173,11 +1296,10 @@ async function init() {
       await api("login", { password: $("#password").value });
       state.authed = true;
       const status = await api("status");
-      state.collections = status.collections || {};
+      applyStatus(status);
       showLogin(false);
       renderNav();
-      const first = Object.keys(state.collections)[0];
-      if (first) openCollection(first);
+      openLeads();
     } catch (err) {
       $("#login-error").hidden = false;
       $("#login-error").textContent = err.message;
@@ -1189,7 +1311,9 @@ async function init() {
     state.authed = false;
     state.current = null;
     state.data = null;
+    state.newLeads = 0;
     setDirty(false);
+    $("#save-btn").hidden = false;
     showLogin(true);
   };
 
@@ -1199,19 +1323,18 @@ async function init() {
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
       e.preventDefault();
-      if (state.dirty) save();
+      if (state.dirty && state.current !== "leads") save();
     }
   });
 
   try {
     const status = await api("status");
-    state.collections = status.collections || {};
+    applyStatus(status);
     if (status.authenticated) {
       state.authed = true;
       showLogin(false);
       renderNav();
-      const first = Object.keys(state.collections)[0];
-      if (first) openCollection(first);
+      openLeads();
     } else showLogin(true);
   } catch {
     showLogin(true);

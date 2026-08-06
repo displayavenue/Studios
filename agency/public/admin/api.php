@@ -174,6 +174,27 @@ function writeJson(string $path, $data): void {
   rename($tmp, $path);
 }
 
+function leadsFilePath(array $config): string {
+  return (string)($config['leads_file'] ?? (__DIR__ . '/data/leads.json'));
+}
+
+function readLeadsStore(array $config): array {
+  $path = leadsFilePath($config);
+  if (!is_file($path)) return ['items' => [], 'updatedAt' => null];
+  $data = json_decode((string)file_get_contents($path), true);
+  if (!is_array($data)) return ['items' => [], 'updatedAt' => null];
+  if (!isset($data['items']) || !is_array($data['items'])) $data['items'] = [];
+  return $data;
+}
+
+function writeLeadsStore(array $config, array $store): void {
+  $path = leadsFilePath($config);
+  $dir = dirname($path);
+  if (!is_dir($dir)) mkdir($dir, 0750, true);
+  $store['updatedAt'] = gmdate('c');
+  writeJson($path, $store);
+}
+
 $body = [];
 $raw = file_get_contents('php://input');
 if ($raw) {
@@ -182,7 +203,7 @@ if ($raw) {
 }
 
 $action = (string)($_GET['action'] ?? ($body['action'] ?? ''));
-$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo'], true)
+$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'lead-update', 'lead-delete'], true)
   || strtoupper((string)($_SERVER['REQUEST_METHOD'] ?? '')) === 'POST';
 
 if ($mutating) {
@@ -191,10 +212,19 @@ if ($mutating) {
 
 switch ($action) {
   case 'status':
+    $authed = isAuthed($config);
+    $newLeads = 0;
+    if ($authed) {
+      foreach (readLeadsStore($config)['items'] as $item) {
+        if (($item['status'] ?? 'new') === 'new') $newLeads++;
+      }
+    }
     respond(200, [
       'ok' => true,
-      'authenticated' => isAuthed($config),
-      'collections' => isAuthed($config) ? $config['collections'] : new stdClass(),
+      'authenticated' => $authed,
+      'collections' => $authed ? $config['collections'] : new stdClass(),
+      'newLeads' => $newLeads,
+      'notifyEmail' => $authed ? (string)($config['notify_email'] ?? 'info@displayavenue.com') : null,
     ]);
 
   case 'login':
@@ -246,6 +276,48 @@ switch ($action) {
     require_once __DIR__ . '/seo-sync.php';
     $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
     respond(200, ['ok' => true, 'seo' => $seo]);
+
+  case 'leads':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    respond(200, ['ok' => true, 'data' => readLeadsStore($config)]);
+
+  case 'lead-update':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $id = (string)($body['id'] ?? '');
+    $status = (string)($body['status'] ?? '');
+    if ($id === '' || !in_array($status, ['new', 'read', 'replied', 'archived'], true)) {
+      respond(400, ['ok' => false, 'error' => 'Invalid lead update']);
+    }
+    $store = readLeadsStore($config);
+    $found = false;
+    foreach ($store['items'] as &$item) {
+      if (($item['id'] ?? '') === $id) {
+        $item['status'] = $status;
+        $item['updatedAt'] = gmdate('c');
+        $found = true;
+        break;
+      }
+    }
+    unset($item);
+    if (!$found) respond(404, ['ok' => false, 'error' => 'Lead not found']);
+    writeLeadsStore($config, $store);
+    respond(200, ['ok' => true, 'data' => $store]);
+
+  case 'lead-delete':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $id = (string)($body['id'] ?? '');
+    if ($id === '') respond(400, ['ok' => false, 'error' => 'Missing lead id']);
+    $store = readLeadsStore($config);
+    $before = count($store['items']);
+    $store['items'] = array_values(array_filter(
+      $store['items'],
+      static fn($item) => ($item['id'] ?? '') !== $id
+    ));
+    if (count($store['items']) === $before) {
+      respond(404, ['ok' => false, 'error' => 'Lead not found']);
+    }
+    writeLeadsStore($config, $store);
+    respond(200, ['ok' => true, 'data' => $store]);
 
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);

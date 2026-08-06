@@ -1,11 +1,37 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties, type FormEvent } from "react";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { submitLead } from "../lib/submitLead";
 import "../styles/pages.css";
 
 export function Contact() {
   const { company } = useCms();
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
+  const [error, setError] = useState("");
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setStatus("sending");
+    setError("");
+    try {
+      await submitLead({
+        name: String(data.get("name") || ""),
+        email: String(data.get("email") || ""),
+        phone: String(data.get("phone") || ""),
+        message: String(data.get("message") || ""),
+        source: "contact",
+      });
+      form.reset();
+      setStatus("ok");
+    } catch (err) {
+      setStatus("err");
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    }
+  }
+
   return (
     <div className="page-shell">
       <SEO title="Get Free Proposal | DisplayAvenue" description="Book a free consultation or request a custom proposal from DisplayAvenue." path="/contact" />
@@ -77,11 +103,17 @@ export function Contact() {
             <form
               className="card"
               style={{ padding: "1.25rem", display: "grid", gap: "0.75rem" }}
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Demo form - connect this to your CRM or email when going live.");
-              }}
+              onSubmit={onSubmit}
             >
+              {/* honeypot */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-9999px", height: 0, width: 0, opacity: 0 }}
+              />
               <label>
                 <span className="sr-only">Name</span>
                 <input
@@ -89,6 +121,7 @@ export function Contact() {
                   name="name"
                   placeholder="Your name"
                   style={inputStyle}
+                  disabled={status === "sending"}
                 />
               </label>
               <label>
@@ -99,6 +132,7 @@ export function Contact() {
                   name="email"
                   placeholder="Work email"
                   style={inputStyle}
+                  disabled={status === "sending"}
                 />
               </label>
               <label>
@@ -107,6 +141,7 @@ export function Contact() {
                   name="phone"
                   placeholder="Phone / WhatsApp"
                   style={inputStyle}
+                  disabled={status === "sending"}
                 />
               </label>
               <label>
@@ -116,11 +151,22 @@ export function Contact() {
                   rows={5}
                   placeholder="Tell us about your project or goals"
                   style={{ ...inputStyle, resize: "vertical" }}
+                  disabled={status === "sending"}
                 />
               </label>
-              <button type="submit" className="btn btn-primary">
-                Get Free Proposal →
+              <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
+                {status === "sending" ? "Sending…" : "Get Free Proposal →"}
               </button>
+              {status === "ok" && (
+                <p style={{ color: "#067647", fontSize: "0.9rem", margin: 0 }}>
+                  Thanks — we received your request and emailed the team at info@displayavenue.com. We’ll reply within 24 hours.
+                </p>
+              )}
+              {status === "err" && (
+                <p style={{ color: "#b42318", fontSize: "0.9rem", margin: 0 }}>
+                  {error || "Could not send. Please email info@displayavenue.com"}
+                </p>
+              )}
             </form>
           </div>
         </div>

@@ -31,6 +31,16 @@ Replace `admin_password_hash` with the output. Never commit or publish plaintext
 | Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
 | Settings | Site name & notes |
 
+## Form leads
+
+Website contact + newsletter forms post to `/lead.php`.
+Each submission is:
+
+1. Saved privately under `admin/data/leads.json` (not publicly readable)
+2. Emailed to `info@displayavenue.com` (configurable via `notify_email` in `config.php`)
+
+Open **Form Leads (Inbox)** in the CMS sidebar to view, mark, and delete submissions.
+
 ## Permissions
 
 `content/` must be writable by PHP on Hostinger (`chmod 755` or `775` on the folder).

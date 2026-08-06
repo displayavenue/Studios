@@ -27,6 +27,8 @@ return [
   'session_name' => 'da_agency_admin',
   'login_max_attempts' => 8,
   'login_lockout_seconds' => 900, // 15 minutes
+  'notify_email' => 'info@displayavenue.com',
+  'leads_file' => __DIR__ . '/data/leads.json',
   'content_dir' => dirname(__DIR__) . '/content',
   'collections' => [
     'company' => 'Header, Footer & Company',

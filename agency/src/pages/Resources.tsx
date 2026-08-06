@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
@@ -8,9 +9,29 @@ import {
   popularThisWeek,
   resourceTrustBar,
 } from "../data/content";
+import { submitLead } from "../lib/submitLead";
 import "../styles/pages.css";
 
 export function Resources() {
+  const [subStatus, setSubStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
+  const [subError, setSubError] = useState("");
+
+  async function onSubscribe(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = String(new FormData(form).get("email") || "");
+    setSubStatus("sending");
+    setSubError("");
+    try {
+      await submitLead({ email, source: "newsletter" });
+      form.reset();
+      setSubStatus("ok");
+    } catch (err) {
+      setSubStatus("err");
+      setSubError(err instanceof Error ? err.message : "Could not subscribe");
+    }
+  }
+
   return (
     <div className="page-shell">
       <SEO title="Resources & Insights | DisplayAvenue" description="Guides, blogs, templates, and playbooks for digital growth." path="/resources" />
@@ -116,21 +137,42 @@ export function Resources() {
                 <h4>Stay Updated</h4>
                 <p>Get growth insights and free resources in your inbox.</p>
                 <form
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={onSubscribe}
                   style={{ display: "grid", gap: "0.5rem" }}
                 >
                   <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: "absolute", left: "-9999px", height: 0, width: 0, opacity: 0 }}
+                  />
+                  <input
                     type="email"
+                    name="email"
+                    required
                     placeholder="Enter your email"
+                    disabled={subStatus === "sending"}
                     style={{
                       padding: "0.7rem 0.85rem",
                       borderRadius: 10,
                       border: "1px solid var(--border)",
                     }}
                   />
-                  <button type="submit" className="btn btn-primary btn-sm">
-                    Subscribe Now
+                  <button type="submit" className="btn btn-primary btn-sm" disabled={subStatus === "sending"}>
+                    {subStatus === "sending" ? "Subscribing…" : "Subscribe Now"}
                   </button>
+                  {subStatus === "ok" && (
+                    <p style={{ color: "#067647", fontSize: "0.78rem", margin: 0 }}>
+                      You’re subscribed — thanks!
+                    </p>
+                  )}
+                  {subStatus === "err" && (
+                    <p style={{ color: "#b42318", fontSize: "0.78rem", margin: 0 }}>
+                      {subError}
+                    </p>
+                  )}
                 </form>
               </div>
             </aside>
