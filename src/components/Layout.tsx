@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { WhatsAppFloat } from "./WhatsAppFloat";
 import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
+import { TrackingScripts } from "./TrackingScripts";
 
 export function Layout() {
   const { pathname } = useLocation();
@@ -14,6 +15,7 @@ export function Layout() {
 
   return (
     <>
+      <TrackingScripts />
       <LocalBusinessSchema />
       <WebSiteSchema />
       <Header />

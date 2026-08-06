@@ -21,6 +21,21 @@ Edit it in: `/admin/config.php` → `admin_password`
 - Portfolio projects & gallery images
 - FAQs, blog posts, testimonials, team, industries, locations
 - Process steps & “Why choose us”
+- **Settings & Tracking** — GTM, Google Analytics, Google Ads, Meta Pixel, custom ad/AI scripts
+
+## Marketing & tracking codes
+
+In **Settings & Tracking** you can manage:
+
+- Google Tag Manager ID (`GTM-…`)
+- Google Analytics ID (`G-…`)
+- Google Ads conversion tag (`AW-…`)
+- Meta (Facebook) Pixel ID
+- Google Search Console verification code
+- **Additional head scripts** — paste full `<script>` tags from any ad platform (Google Ads, LinkedIn, Microsoft, AI ad tools, etc.)
+- **Additional body snippets** — noscript fallbacks or pixel HTML
+
+Save changes — tags load on the live site without rebuilding the website.
 
 ## Automatic SEO
 

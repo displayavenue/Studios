@@ -47,18 +47,21 @@ export function SEO({
   image = "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
   noindex = false,
 }: SEOProps) {
-  const { company } = useCms();
+  const { company, settings } = useCms();
+  const siteVerification = settings.tracking.googleSiteVerification?.trim();
 
   useEffect(() => {
     document.title = title;
     const url = `${company.website}${path === "/" ? "" : path}`;
 
     setMeta('meta[name="description"]', "content", description);
-    setMeta(
-      'meta[name="google-site-verification"]',
-      "content",
-      "80ZVa9R1VjKZnfedwtUgfAYvfs1WsncTMsAwiSeSTBM",
-    );
+    if (siteVerification) {
+      setMeta(
+        'meta[name="google-site-verification"]',
+        "content",
+        siteVerification,
+      );
+    }
     setMeta(
       'meta[name="robots"]',
       "content",
@@ -88,7 +91,7 @@ export function SEO({
       document.head.appendChild(canonical);
     }
     canonical.href = url;
-  }, [title, description, path, type, image, noindex, company.website, company.name]);
+  }, [title, description, path, type, image, noindex, company.website, company.name, siteVerification]);
 
   return null;
 }

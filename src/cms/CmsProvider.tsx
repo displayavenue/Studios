@@ -31,6 +31,11 @@ import {
   team as fallbackTeam,
 } from "../data/content";
 import { homeContent as fallbackHome, type HomeContent } from "../data/home";
+import {
+  defaultTracking,
+  mergeTracking,
+  type SiteSettings,
+} from "../data/settings";
 
 export type CmsState = {
   company: typeof fallbackCompany & {
@@ -53,6 +58,7 @@ export type CmsState = {
   industries: typeof fallbackIndustries;
   locations: typeof fallbackLocations;
   team: typeof fallbackTeam;
+  settings: SiteSettings & { tracking: typeof defaultTracking };
   ready: boolean;
 };
 
@@ -96,6 +102,10 @@ const defaults: CmsState = {
   industries: fallbackIndustries,
   locations: fallbackLocations,
   team: fallbackTeam,
+  settings: {
+    siteName: "DisplayAvenue Studios",
+    tracking: defaultTracking,
+  },
   ready: false,
 };
 
@@ -117,7 +127,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [company, home, services, packages, portfolio, content] =
+      const [company, home, services, packages, portfolio, content, settingsJson] =
         await Promise.all([
           fetchJson<Record<string, unknown>>("/content/company.json"),
           fetchJson<Partial<HomeContent>>("/content/home.json"),
@@ -132,6 +142,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             portfolioCategories?: string[];
           }>("/content/portfolio.json"),
           fetchJson<Record<string, unknown>>("/content/content.json"),
+          fetchJson<SiteSettings>("/content/settings.json"),
         ]);
 
       if (cancelled) return;
@@ -176,6 +187,10 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         locations:
           (content?.locations as CmsState["locations"]) || fallbackLocations,
         team: (content?.team as CmsState["team"]) || fallbackTeam,
+        settings: {
+          ...(settingsJson || {}),
+          tracking: mergeTracking(settingsJson?.tracking),
+        },
         ready: true,
       });
     })();
