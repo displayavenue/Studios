@@ -47,6 +47,7 @@ return [
     'chatbot' => 'Website Chatbot',
     'catalogue' => 'Catalogue (PDF)',
     'shop' => 'Shop (Products & Orders)',
+    'landings' => 'Landing Pages (Ads)',
     'settings' => 'Settings',
   ],
   // Optional: set an OpenAI key for smarter chatbot replies.

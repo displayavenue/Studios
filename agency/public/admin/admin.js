@@ -234,6 +234,7 @@ function renderEditor() {
     chatbot: renderChatbot,
     catalogue: renderCatalogue,
     shop: renderShop,
+    landings: renderLandings,
     settings: renderSettings,
   };
   wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
@@ -1516,6 +1517,221 @@ async function handleShopOrderAction(action, id) {
   }
 }
 
+function blankLandingPackage() {
+  const id = `pkg-${Date.now().toString(36)}`;
+  return {
+    id,
+    name: "New package",
+    price: 9999,
+    compareAtPrice: 0,
+    features: ["Feature one", "Feature two"],
+    highlighted: false,
+    ctaLabel: "Buy now",
+    razorpayEnabled: true,
+  };
+}
+
+function blankLanding() {
+  const slug = `landing-${Date.now().toString(36)}`;
+  return {
+    slug,
+    enabled: true,
+    name: "New ads landing page",
+    channel: "google",
+    seoTitle: "",
+    seoDescription: "",
+    eyebrow: "Special offer",
+    headline: "Your headline for Google or Meta ads",
+    subheadline: "Supporting line that explains the offer and next step.",
+    heroImage: "",
+    primaryCta: "Get started",
+    showPhone: true,
+    showWhatsapp: true,
+    trustBadges: ["Trusted by growing brands", "Fast response"],
+    benefits: [
+      { title: "Benefit one", desc: "Short explanation." },
+      { title: "Benefit two", desc: "Short explanation." },
+    ],
+    bullets: ["Bullet one", "Bullet two", "Bullet three"],
+    formTitle: "Get a free consultation",
+    formSubtitle: "We reply within one business day.",
+    formButton: "Submit",
+    thankYouMessage: "Thanks! We will contact you shortly.",
+    showForm: true,
+    packagesTitle: "Choose a package",
+    packages: [blankLandingPackage()],
+    faqs: [{ q: "How does this work?", a: "Submit the form or buy a package online." }],
+    googleAds: { conversionId: "", conversionLabel: "" },
+    metaAds: { pixelEvent: "Lead", contentName: "" },
+    utmCampaign: slug,
+    utmSource: "google",
+    utmMedium: "cpc",
+    footerNote: "DisplayAvenue · info@displayavenue.com · +91 9222 122333",
+  };
+}
+
+function renderLandings(d) {
+  const items = Array.isArray(d.items) ? d.items : [];
+  const rows = items
+    .map((lp, i) => {
+      const benefits = Array.isArray(lp.benefits) ? lp.benefits : [];
+      const packages = Array.isArray(lp.packages) ? lp.packages : [];
+      const faqs = Array.isArray(lp.faqs) ? lp.faqs : [];
+      const badges = Array.isArray(lp.trustBadges) ? lp.trustBadges : [];
+      const bullets = Array.isArray(lp.bullets) ? lp.bullets : [];
+      const benefitRows = benefits
+        .map(
+          (b, bi) => `
+          <div class="grid">
+            ${field("Benefit title", `items.${i}.benefits.${bi}.title`, b.title || "")}
+            ${field("Benefit description", `items.${i}.benefits.${bi}.desc`, b.desc || "", "textarea")}
+          </div>`,
+        )
+        .join("");
+      const packageRows = packages
+        .map((p, pi) => {
+          const feats = Array.isArray(p.features) ? p.features : [];
+          return `
+          <div class="list-item">
+            <div class="list-item-head">
+              <strong>Package ${pi + 1}: ${escapeHtml(p.name || "")}</strong>
+              <button type="button" class="btn btn-ghost" data-action="del-landing-package" data-index="${i}:${pi}">Delete package</button>
+            </div>
+            <div class="grid">
+              ${field("Package id", `items.${i}.packages.${pi}.id`, p.id || "")}
+              ${field("Name", `items.${i}.packages.${pi}.name`, p.name || "")}
+              ${field("Price (INR)", `items.${i}.packages.${pi}.price`, p.price ?? 0, "number")}
+              ${field("Compare-at price", `items.${i}.packages.${pi}.compareAtPrice`, p.compareAtPrice ?? 0, "number")}
+              ${field("CTA button label", `items.${i}.packages.${pi}.ctaLabel`, p.ctaLabel || "Buy now")}
+              <div class="field full"><label>Features (one per line)</label>
+                <textarea data-path="items.${i}.packages.${pi}.features" data-array="true">${escapeHtml(feats.join("\n"))}</textarea>
+              </div>
+              <div class="field"><label>Highlighted package</label>
+                <input type="checkbox" data-path="items.${i}.packages.${pi}.highlighted" ${p.highlighted ? "checked" : ""} />
+              </div>
+              <div class="field"><label>Razorpay enabled</label>
+                <input type="checkbox" data-path="items.${i}.packages.${pi}.razorpayEnabled" ${p.razorpayEnabled !== false ? "checked" : ""} />
+              </div>
+            </div>
+          </div>`;
+        })
+        .join("");
+      const faqRows = faqs
+        .map(
+          (f, fi) => `
+          <div class="grid">
+            ${field("FAQ question", `items.${i}.faqs.${fi}.q`, f.q || "")}
+            ${field("FAQ answer", `items.${i}.faqs.${fi}.a`, f.a || "", "textarea")}
+          </div>`,
+        )
+        .join("");
+
+      return `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(lp.name || lp.slug || `Landing ${i + 1}`)}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-landing" data-index="${i}">Delete</button>
+        </div>
+        <p class="muted" style="margin:0 0 .75rem">
+          Public URL:
+          <a href="/lp/${escapeAttr(lp.slug || "")}" target="_blank" rel="noreferrer">
+            https://displayavenue.com/lp/${escapeHtml(lp.slug || "")}
+          </a>
+          · Use this URL in Google Ads / Meta Ads.
+        </p>
+        <div class="grid">
+          <div class="field"><label>Enabled</label>
+            <input type="checkbox" data-path="items.${i}.enabled" ${lp.enabled !== false ? "checked" : ""} />
+          </div>
+          ${field("Internal name", `items.${i}.name`, lp.name || "")}
+          ${field("URL slug", `items.${i}.slug`, lp.slug || "")}
+          ${field("Channel (google / meta / both)", `items.${i}.channel`, lp.channel || "google")}
+          ${field("SEO title", `items.${i}.seoTitle`, lp.seoTitle || "")}
+          ${field("SEO description", `items.${i}.seoDescription`, lp.seoDescription || "", "textarea")}
+          ${field("Eyebrow", `items.${i}.eyebrow`, lp.eyebrow || "")}
+          ${field("Headline", `items.${i}.headline`, lp.headline || "")}
+          ${field("Subheadline", `items.${i}.subheadline`, lp.subheadline || "", "textarea")}
+          ${field("Hero image URL", `items.${i}.heroImage`, lp.heroImage || "")}
+          ${field("Primary CTA label", `items.${i}.primaryCta`, lp.primaryCta || "")}
+          <div class="field"><label>Show phone CTA</label>
+            <input type="checkbox" data-path="items.${i}.showPhone" ${lp.showPhone !== false ? "checked" : ""} />
+          </div>
+          <div class="field"><label>Show WhatsApp CTA</label>
+            <input type="checkbox" data-path="items.${i}.showWhatsapp" ${lp.showWhatsapp !== false ? "checked" : ""} />
+          </div>
+          <div class="field full"><label>Trust badges (one per line)</label>
+            <textarea data-path="items.${i}.trustBadges" data-array="true">${escapeHtml(badges.join("\n"))}</textarea>
+          </div>
+          <div class="field full"><label>Bullet points (one per line)</label>
+            <textarea data-path="items.${i}.bullets" data-array="true">${escapeHtml(bullets.join("\n"))}</textarea>
+          </div>
+        </div>
+
+        <h4 style="margin:1rem 0 .5rem">Lead form</h4>
+        <div class="grid">
+          <div class="field"><label>Show lead form</label>
+            <input type="checkbox" data-path="items.${i}.showForm" ${lp.showForm !== false ? "checked" : ""} />
+          </div>
+          ${field("Form title", `items.${i}.formTitle`, lp.formTitle || "")}
+          ${field("Form subtitle", `items.${i}.formSubtitle`, lp.formSubtitle || "")}
+          ${field("Form button", `items.${i}.formButton`, lp.formButton || "Submit")}
+          ${field("Thank-you message", `items.${i}.thankYouMessage`, lp.thankYouMessage || "", "textarea")}
+        </div>
+
+        <div class="list-item-head" style="margin-top:1rem">
+          <h4 style="margin:0">Benefits</h4>
+          <button type="button" class="btn btn-gold" data-action="add-landing-benefit" data-index="${i}">Add benefit</button>
+        </div>
+        ${benefitRows || "<p class='empty'>No benefits yet.</p>"}
+
+        <div class="list-item-head" style="margin-top:1rem">
+          <h4 style="margin:0">Packages (with Razorpay)</h4>
+          <button type="button" class="btn btn-gold" data-action="add-landing-package" data-index="${i}">Add package</button>
+        </div>
+        ${field("Packages section title", `items.${i}.packagesTitle`, lp.packagesTitle || "Choose a package")}
+        ${packageRows || "<p class='empty'>No packages yet.</p>"}
+
+        <div class="list-item-head" style="margin-top:1rem">
+          <h4 style="margin:0">FAQs</h4>
+          <button type="button" class="btn btn-gold" data-action="add-landing-faq" data-index="${i}">Add FAQ</button>
+        </div>
+        ${faqRows || "<p class='empty'>No FAQs yet.</p>"}
+
+        <h4 style="margin:1rem 0 .5rem">Google Ads</h4>
+        <div class="grid">
+          ${field("Conversion ID (AW-…)", `items.${i}.googleAds.conversionId`, lp.googleAds?.conversionId || "")}
+          ${field("Conversion label", `items.${i}.googleAds.conversionLabel`, lp.googleAds?.conversionLabel || "")}
+          ${field("Default utm_source", `items.${i}.utmSource`, lp.utmSource || "google")}
+          ${field("Default utm_medium", `items.${i}.utmMedium`, lp.utmMedium || "cpc")}
+          ${field("Default utm_campaign", `items.${i}.utmCampaign`, lp.utmCampaign || "")}
+        </div>
+
+        <h4 style="margin:1rem 0 .5rem">Meta Ads</h4>
+        <div class="grid">
+          ${field("Pixel event name (Lead / CompleteRegistration…)", `items.${i}.metaAds.pixelEvent`, lp.metaAds?.pixelEvent || "Lead")}
+          ${field("Content name", `items.${i}.metaAds.contentName`, lp.metaAds?.contentName || "")}
+        </div>
+
+        ${field("Footer note", `items.${i}.footerNote`, lp.footerNote || "", "textarea")}
+      </div>`;
+    })
+    .join("");
+
+  return `
+  <div class="card">
+    <div class="list-item-head">
+      <h3>Ads landing pages (${items.length})</h3>
+      <button type="button" class="btn btn-gold" data-action="add-landing">Add landing page</button>
+    </div>
+    <p class="hint">
+      Create dedicated pages for Google Ads and Meta Ads. Each page has offer copy, lead form,
+      priced packages with Razorpay, and conversion fields. Public URLs look like
+      <code>/lp/your-slug</code>. Site-wide GTM/GA/Meta Pixel still come from <strong>Tracking &amp; Pixels</strong>.
+    </p>
+    ${rows || "<p class='empty'>No landing pages yet. Click Add landing page.</p>"}
+  </div>`;
+}
+
 function renderSettings(d) {
   const cleared = d.cacheClearedAt
     ? new Date(d.cacheClearedAt).toLocaleString()
@@ -1596,6 +1812,54 @@ function handleAction(action, index) {
   if (action === "del-shop-product") {
     if (!confirm("Delete this product?")) return;
     d.products.splice(i, 1);
+    setDirty(true);
+    renderEditor();
+    return;
+  }
+  if (action === "add-landing") {
+    d.items = d.items || [];
+    d.items.unshift(blankLanding());
+    setDirty(true);
+    renderEditor();
+    return;
+  }
+  if (action === "del-landing") {
+    if (!confirm("Delete this landing page?")) return;
+    d.items.splice(i, 1);
+    setDirty(true);
+    renderEditor();
+    return;
+  }
+  if (action === "add-landing-benefit") {
+    const item = d.items[i];
+    item.benefits = item.benefits || [];
+    item.benefits.push({ title: "New benefit", desc: "" });
+    setDirty(true);
+    renderEditor();
+    return;
+  }
+  if (action === "add-landing-package") {
+    const item = d.items[i];
+    item.packages = item.packages || [];
+    item.packages.push(blankLandingPackage());
+    setDirty(true);
+    renderEditor();
+    return;
+  }
+  if (action === "del-landing-package") {
+    const parts = String(index || "").split(":");
+    const li = Number(parts[0]);
+    const pi = Number(parts[1]);
+    if (!confirm("Delete this package?")) return;
+    d.items[li]?.packages?.splice(pi, 1);
+    setDirty(true);
+    renderEditor();
+    return;
+  }
+  if (action === "add-landing-faq") {
+    const item = d.items[i];
+    item.faqs = item.faqs || [];
+    item.faqs.push({ q: "New question?", a: "" });
     setDirty(true);
     renderEditor();
     return;
@@ -1788,6 +2052,42 @@ async function save() {
           .map((s) => s.trim())
           .filter(Boolean);
       }
+    });
+  }
+  if (state.current === "landings" && Array.isArray(state.data.items)) {
+    state.data.items.forEach((lp) => {
+      const slug = String(lp.slug || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      lp.slug = slug || `landing-${Date.now().toString(36)}`;
+      if (!Array.isArray(lp.trustBadges)) {
+        lp.trustBadges = String(lp.trustBadges || "")
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean);
+      }
+      if (!Array.isArray(lp.bullets)) {
+        lp.bullets = String(lp.bullets || "")
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean);
+      }
+      if (!Array.isArray(lp.packages)) lp.packages = [];
+      lp.packages.forEach((p) => {
+        p.id = String(p.id || p.name || "package")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+        p.price = Number(p.price) || 0;
+        p.compareAtPrice = Number(p.compareAtPrice) || 0;
+        if (!Array.isArray(p.features)) {
+          p.features = String(p.features || "")
+            .split("\n")
+            .map((s) => s.trim())
+            .filter(Boolean);
+        }
+      });
     });
   }
   try {

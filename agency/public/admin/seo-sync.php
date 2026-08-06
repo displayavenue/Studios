@@ -51,11 +51,13 @@ function da_collect_urls(string $contentDir): array {
   $resources = da_read_json_file($contentDir . '/resources.json');
   $catalogue = da_read_json_file($contentDir . '/catalogue.json');
   $shop = da_read_json_file($contentDir . '/shop.json');
+  $landings = da_read_json_file($contentDir . '/landings.json');
 
   $today = gmdate('Y-m-d');
   $settingsLast = da_lastmod((string)($settings['updatedAt'] ?? $settings['seoSyncedAt'] ?? $today));
   $catalogueLast = da_lastmod((string)($catalogue['updatedAt'] ?? $catalogue['uploadedAt'] ?? $settingsLast));
   $shopLast = da_lastmod((string)($shop['updatedAt'] ?? $settingsLast));
+  $landingsLast = da_lastmod((string)($landings['updatedAt'] ?? $settingsLast));
 
   $static = [
     ['path' => '/', 'priority' => '1.0', 'changefreq' => 'daily', 'lastmod' => $settingsLast],
@@ -127,6 +129,20 @@ function da_collect_urls(string $contentDir): array {
         'lastmod' => $shopLast,
       ];
     }
+  }
+
+  // Ads landing pages (/lp/:slug)
+  foreach (da_items($landings) as $landing) {
+    if (!is_array($landing)) continue;
+    if (($landing['enabled'] ?? true) === false) continue;
+    $slug = (string)($landing['slug'] ?? '');
+    if ($slug === '') continue;
+    $urls[] = [
+      'path' => '/lp/' . $slug,
+      'priority' => '0.6',
+      'changefreq' => 'weekly',
+      'lastmod' => da_lastmod((string)($landing['updatedAt'] ?? $landingsLast)),
+    ];
   }
 
   $seen = [];

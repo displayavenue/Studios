@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
+import { LandingLayout } from "./components/LandingLayout";
 import { Home } from "./pages/Home";
 import { Industries } from "./pages/Industries";
 import { Packages } from "./pages/Packages";
@@ -16,6 +17,7 @@ import { Catalogue } from "./pages/Catalogue";
 import { Shop } from "./pages/Shop";
 import { ShopProductPage } from "./pages/ShopProduct";
 import { LegalPage } from "./pages/LegalPage";
+import LandingPage from "./pages/LandingPage";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -33,6 +35,9 @@ export default function App() {
   return (
     <BrowserRouter basename={basename === "/" ? undefined : basename}>
       <Routes>
+        <Route element={<LandingLayout />}>
+          <Route path="lp/:slug" element={<LandingPage />} />
+        </Route>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="industries" element={<Industries />} />

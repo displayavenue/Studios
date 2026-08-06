@@ -74,6 +74,12 @@ done
 if [ ! -f /tmp/da-agency-root/content/catalogue.json ] && [ -f public/content/catalogue.json ]; then
   cp -a public/content/catalogue.json /tmp/da-agency-root/content/catalogue.json
 fi
+if [ ! -f /tmp/da-agency-root/content/landings.json ] && [ -f public/content/landings.json ]; then
+  cp -a public/content/landings.json /tmp/da-agency-root/content/landings.json
+fi
+if [ ! -f /tmp/da-agency-root/content/shop.json ] && [ -f public/content/shop.json ]; then
+  cp -a public/content/shop.json /tmp/da-agency-root/content/shop.json
+fi
 
 echo "Removing WordPress leftovers from public_html (backup already saved)…"
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
@@ -118,10 +124,11 @@ sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
   /tmp/da-agency-root/content/chatbot.json \
   "$HOST:$DOC/content/"
 
-# Seed catalogue.json / shop.json only if missing on the server
+# Seed catalogue.json / shop.json / landings.json only if missing on the server
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
   "if [ ! -f \$HOME/$DOC/content/catalogue.json ]; then echo MISSING_CATALOGUE; else echo HAS_CATALOGUE; fi; \
-   if [ ! -f \$HOME/$DOC/content/shop.json ]; then echo MISSING_SHOP; else echo HAS_SHOP; fi" | tee /tmp/da-content-check.txt
+   if [ ! -f \$HOME/$DOC/content/shop.json ]; then echo MISSING_SHOP; else echo HAS_SHOP; fi; \
+   if [ ! -f \$HOME/$DOC/content/landings.json ]; then echo MISSING_LANDINGS; else echo HAS_LANDINGS; fi" | tee /tmp/da-content-check.txt
 if grep -q MISSING_CATALOGUE /tmp/da-content-check.txt 2>/dev/null; then
   sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
     /tmp/da-agency-root/content/catalogue.json \
@@ -130,6 +137,11 @@ fi
 if grep -q MISSING_SHOP /tmp/da-content-check.txt 2>/dev/null; then
   sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
     /tmp/da-agency-root/content/shop.json \
+    "$HOST:$DOC/content/"
+fi
+if grep -q MISSING_LANDINGS /tmp/da-content-check.txt 2>/dev/null; then
+  sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
+    /tmp/da-agency-root/content/landings.json \
     "$HOST:$DOC/content/"
 fi
 

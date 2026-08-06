@@ -84,7 +84,7 @@ $message = trim((string)($body['message'] ?? ''));
 $source = trim((string)($body['source'] ?? 'contact'));
 $page = trim((string)($body['page'] ?? ''));
 
-$allowedSources = ['contact', 'newsletter', 'proposal', 'consultation', 'other'];
+$allowedSources = ['contact', 'newsletter', 'proposal', 'consultation', 'landing', 'other'];
 if (!in_array($source, $allowedSources, true)) {
   $source = 'other';
 }
@@ -135,6 +135,15 @@ $lead = [
   'phone' => $phone,
   'message' => $message,
   'page' => $page !== '' ? $page : ((string)($_SERVER['HTTP_REFERER'] ?? '')),
+  'landingSlug' => mb_substr(trim((string)($body['landingSlug'] ?? '')), 0, 120),
+  'packageId' => mb_substr(trim((string)($body['packageId'] ?? '')), 0, 80),
+  'utmSource' => mb_substr(trim((string)($body['utmSource'] ?? '')), 0, 80),
+  'utmMedium' => mb_substr(trim((string)($body['utmMedium'] ?? '')), 0, 80),
+  'utmCampaign' => mb_substr(trim((string)($body['utmCampaign'] ?? '')), 0, 120),
+  'utmContent' => mb_substr(trim((string)($body['utmContent'] ?? '')), 0, 120),
+  'utmTerm' => mb_substr(trim((string)($body['utmTerm'] ?? '')), 0, 120),
+  'gclid' => mb_substr(trim((string)($body['gclid'] ?? '')), 0, 120),
+  'fbclid' => mb_substr(trim((string)($body['fbclid'] ?? '')), 0, 120),
   'ip' => lead_client_ip(),
   'userAgent' => mb_substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 250),
   'emailed' => false,
@@ -159,12 +168,16 @@ $subjectSource = [
   'newsletter' => 'New newsletter subscription',
   'proposal' => 'New proposal request',
   'consultation' => 'New consultation request',
+  'landing' => 'New landing page lead',
   'other' => 'New website lead',
 ][$source] ?? 'New website lead';
 
 $subject = '[DisplayAvenue] ' . $subjectSource . ' — ' . $name;
 $bodyText = "New lead from displayavenue.com\n\n"
   . "Source: {$source}\n"
+  . "Landing: " . (($lead['landingSlug'] ?? '') !== '' ? $lead['landingSlug'] : '—') . "\n"
+  . "Package: " . (($lead['packageId'] ?? '') !== '' ? $lead['packageId'] : '—') . "\n"
+  . "UTM: " . trim(($lead['utmSource'] ?? '') . ' / ' . ($lead['utmMedium'] ?? '') . ' / ' . ($lead['utmCampaign'] ?? ''), ' /') . "\n"
   . "Name: {$name}\n"
   . "Email: {$email}\n"
   . "Phone: " . ($phone !== '' ? $phone : '—') . "\n"

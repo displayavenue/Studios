@@ -299,6 +299,14 @@ switch ($action) {
       writeJson($path, $defaults);
       respond(200, ['ok' => true, 'collection' => $collection, 'data' => $defaults]);
     }
+    if ($collection === 'landings' && !is_file($path)) {
+      $defaults = [
+        'items' => [],
+        'updatedAt' => gmdate('c'),
+      ];
+      writeJson($path, $defaults);
+      respond(200, ['ok' => true, 'collection' => $collection, 'data' => $defaults]);
+    }
     $payload = ['ok' => true, 'collection' => $collection, 'data' => readJson($path)];
     if ($collection === 'shop' && isAuthed($config)) {
       $ordersPath = (string)($config['shop_orders_file'] ?? (__DIR__ . '/data/shop-orders.json'));

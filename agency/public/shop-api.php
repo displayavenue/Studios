@@ -156,23 +156,64 @@ if (($shop['enabled'] ?? true) === false && $action !== '') {
 
 switch ($action) {
   case 'create-order': {
-    if (($shop['enabled'] ?? true) === false) {
-      shop_respond(403, ['ok' => false, 'error' => 'Shop is temporarily unavailable']);
-    }
+    $landingSlug = trim((string)($body['landingSlug'] ?? ''));
+    $packageId = trim((string)($body['packageId'] ?? ''));
     $productId = trim((string)($body['productId'] ?? $body['slug'] ?? ''));
     $qty = max(1, min(10, (int)($body['quantity'] ?? 1)));
     $name = trim((string)($body['name'] ?? ''));
     $email = trim((string)($body['email'] ?? ''));
     $phone = trim((string)($body['phone'] ?? ''));
 
-    if ($productId === '') shop_respond(400, ['ok' => false, 'error' => 'Select a product']);
     if ($name === '') shop_respond(400, ['ok' => false, 'error' => 'Name is required']);
     if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
       shop_respond(400, ['ok' => false, 'error' => 'A valid email is required']);
     }
 
-    $product = shop_find_product($products, $productId);
-    if (!$product) shop_respond(404, ['ok' => false, 'error' => 'Product not found']);
+    $product = null;
+    $orderSource = 'shop';
+
+    if ($landingSlug !== '') {
+      $landingsPath = rtrim((string)$config['content_dir'], '/\\') . '/landings.json';
+      $landingsFile = is_file($landingsPath) ? json_decode((string)file_get_contents($landingsPath), true) : [];
+      $landingItems = is_array($landingsFile['items'] ?? null) ? $landingsFile['items'] : [];
+      $landing = null;
+      foreach ($landingItems as $item) {
+        if (!is_array($item)) continue;
+        if (($item['enabled'] ?? true) === false) continue;
+        if ((string)($item['slug'] ?? '') === $landingSlug) {
+          $landing = $item;
+          break;
+        }
+      }
+      if (!$landing) shop_respond(404, ['ok' => false, 'error' => 'Landing page not found']);
+      $packages = is_array($landing['packages'] ?? null) ? $landing['packages'] : [];
+      $pkg = null;
+      foreach ($packages as $p) {
+        if (!is_array($p)) continue;
+        if ((string)($p['id'] ?? '') === $packageId) {
+          $pkg = $p;
+          break;
+        }
+      }
+      if (!$pkg) shop_respond(404, ['ok' => false, 'error' => 'Package not found']);
+      if (($pkg['razorpayEnabled'] ?? true) === false) {
+        shop_respond(400, ['ok' => false, 'error' => 'Online payment is disabled for this package']);
+      }
+      $product = [
+        'id' => 'lp:' . $landingSlug . ':' . (string)($pkg['id'] ?? ''),
+        'slug' => $landingSlug . '-' . (string)($pkg['id'] ?? ''),
+        'title' => (string)($landing['name'] ?? $landingSlug) . ' — ' . (string)($pkg['name'] ?? 'Package'),
+        'price' => (float)($pkg['price'] ?? 0),
+      ];
+      $orderSource = 'landing';
+    } else {
+      if (($shop['enabled'] ?? true) === false) {
+        shop_respond(403, ['ok' => false, 'error' => 'Shop is temporarily unavailable']);
+      }
+      if ($productId === '') shop_respond(400, ['ok' => false, 'error' => 'Select a product']);
+      $product = shop_find_product($products, $productId);
+      if (!$product) shop_respond(404, ['ok' => false, 'error' => 'Product not found']);
+    }
 
     $unitPrice = (float)($product['price'] ?? 0);
     if ($unitPrice <= 0) shop_respond(400, ['ok' => false, 'error' => 'Product price is invalid']);
@@ -190,6 +231,9 @@ switch ($action) {
         'product_id' => (string)($product['id'] ?? ''),
         'product_title' => (string)($product['title'] ?? ''),
         'customer_email' => $email,
+        'source' => $orderSource,
+        'landing_slug' => $landingSlug,
+        'package_id' => $packageId,
       ],
     ]);
     if (!$rz['ok']) shop_respond(502, ['ok' => false, 'error' => $rz['error'] ?? 'Could not create payment order']);
@@ -201,6 +245,9 @@ switch ($action) {
       'status' => 'created',
       'createdAt' => gmdate('c'),
       'updatedAt' => gmdate('c'),
+      'source' => $orderSource,
+      'landingSlug' => $landingSlug,
+      'packageId' => $packageId,
       'productId' => (string)($product['id'] ?? ''),
       'productSlug' => (string)($product['slug'] ?? $product['id'] ?? ''),
       'productTitle' => (string)($product['title'] ?? ''),

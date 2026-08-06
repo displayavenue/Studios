@@ -6,8 +6,17 @@ export type LeadPayload = {
   email: string;
   phone?: string;
   message?: string;
-  source?: "contact" | "newsletter" | "proposal" | "consultation" | "other";
+  source?: "contact" | "newsletter" | "proposal" | "consultation" | "landing" | "other";
   page?: string;
+  landingSlug?: string;
+  packageId?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  utmTerm?: string;
+  gclid?: string;
+  fbclid?: string;
 };
 
 export type LeadResult = {
@@ -26,6 +35,15 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
     message: payload.message?.trim() || "",
     source: payload.source || "contact",
     page: payload.page || (typeof window !== "undefined" ? window.location.href : ""),
+    landingSlug: payload.landingSlug || "",
+    packageId: payload.packageId || "",
+    utmSource: payload.utmSource || "",
+    utmMedium: payload.utmMedium || "",
+    utmCampaign: payload.utmCampaign || "",
+    utmContent: payload.utmContent || "",
+    utmTerm: payload.utmTerm || "",
+    gclid: payload.gclid || "",
+    fbclid: payload.fbclid || "",
     website: "", // honeypot
   };
 

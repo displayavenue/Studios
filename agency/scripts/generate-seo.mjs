@@ -54,6 +54,7 @@ const projects = readJson("projects.json");
 const resources = readJson("resources.json");
 const catalogue = readJson("catalogue.json");
 const shop = readJson("shop.json");
+const landings = readJson("landings.json");
 
 const today = new Date().toISOString().slice(0, 10);
 const settingsLast = lastmod(settings.updatedAt || settings.seoSyncedAt, today);
@@ -62,6 +63,7 @@ const catalogueLast = lastmod(
   settingsLast,
 );
 const shopLast = lastmod(shop.updatedAt, settingsLast);
+const landingsLast = lastmod(landings.updatedAt, settingsLast);
 
 const staticPages = [
   ["/", "1.0", "daily"],
@@ -132,6 +134,17 @@ if (shop.enabled !== false) {
       lastmod: shopLast,
     });
   }
+}
+
+for (const landing of items(landings)) {
+  if (!landing || landing.enabled === false) continue;
+  if (!landing.slug) continue;
+  urls.push({
+    path: `/lp/${landing.slug}`,
+    priority: "0.6",
+    changefreq: "weekly",
+    lastmod: lastmod(landing.updatedAt || landingsLast, landingsLast),
+  });
 }
 
 const seen = new Set();
