@@ -11,7 +11,203 @@ const state = {
   mailStats: { sent: 0, failed: 0, attempted: 0, byType: {}, recent: [] },
   shopOrders: { items: [] },
   razorpayConfigured: false,
+  previewOpen: true,
+  previewUrl: "/",
 };
+
+/** WordPress-style menu groups + Elementor-friendly labels */
+const NAV_META = {
+  dashboard: {
+    label: "Dashboard",
+    group: "Start here",
+    help: "Quick links to the most common edits.",
+    preview: "/",
+    icon: "home",
+  },
+  leads: {
+    label: "Form Leads",
+    group: "Inbox",
+    help: "Messages from contact forms and landing pages.",
+    preview: "/contact",
+    icon: "inbox",
+  },
+  company: {
+    label: "Header & Footer",
+    group: "Design your site",
+    help: "Logo, phone, menu, address, and social links.",
+    preview: "/",
+    icon: "layout",
+  },
+  home: {
+    label: "Homepage Builder",
+    group: "Design your site",
+    help: "Visual sections — turn blocks on/off like Elementor.",
+    preview: "/",
+    icon: "paint",
+  },
+  services: {
+    label: "Services Pages",
+    group: "Website pages",
+    help: "All service detail pages visitors can open.",
+    preview: "/services",
+    icon: "grid",
+  },
+  industries: {
+    label: "Industries",
+    group: "Website pages",
+    help: "Industry landing pages.",
+    preview: "/industries",
+    icon: "building",
+  },
+  packages: {
+    label: "Packages",
+    group: "Website pages",
+    help: "Package / pricing pages.",
+    preview: "/packages",
+    icon: "box",
+  },
+  solutions: {
+    label: "Solutions",
+    group: "Website pages",
+    help: "Solution pages for business goals.",
+    preview: "/solutions",
+    icon: "target",
+  },
+  ai: {
+    label: "AI Platform",
+    group: "Website pages",
+    help: "AI suite pages.",
+    preview: "/ai-platform",
+    icon: "spark",
+  },
+  tools: {
+    label: "Free Tools",
+    group: "Website pages",
+    help: "Free tools category pages.",
+    preview: "/free-tools",
+    icon: "tool",
+  },
+  cases: {
+    label: "Case Studies",
+    group: "Website pages",
+    help: "Success stories and results.",
+    preview: "/case-studies",
+    icon: "chart",
+  },
+  projects: {
+    label: "Portfolio",
+    group: "Website pages",
+    help: "Project showcase pages.",
+    preview: "/portfolio",
+    icon: "image",
+  },
+  resources: {
+    label: "Resources / Blog",
+    group: "Website pages",
+    help: "Articles and resource pages.",
+    preview: "/resources",
+    icon: "book",
+  },
+  content: {
+    label: "Testimonials",
+    group: "Website pages",
+    help: "Quotes and extra content blocks.",
+    preview: "/",
+    icon: "quote",
+  },
+  landings: {
+    label: "Ads Landing Pages",
+    group: "Marketing",
+    help: "Google Ads / Meta pages with leads + packages.",
+    preview: "/lp/seo-leads-mumbai",
+    icon: "megaphone",
+  },
+  shop: {
+    label: "Shop & Orders",
+    group: "Marketing",
+    help: "Products, prices, and Razorpay orders.",
+    preview: "/shop",
+    icon: "cart",
+  },
+  catalogue: {
+    label: "PDF Catalogue",
+    group: "Marketing",
+    help: "Upload the company catalogue PDF.",
+    preview: "/catalogue",
+    icon: "file",
+  },
+  tracking: {
+    label: "Pixels & Tracking",
+    group: "Marketing",
+    help: "GTM, Google Ads, Meta Pixel scripts.",
+    preview: "/",
+    icon: "code",
+  },
+  chatbot: {
+    label: "Website Chatbot",
+    group: "Settings",
+    help: "Chat replies and FAQs.",
+    preview: "/",
+    icon: "chat",
+  },
+  settings: {
+    label: "Site Settings",
+    group: "Settings",
+    help: "Sitemap, cache, and site URL.",
+    preview: "/",
+    icon: "gear",
+  },
+};
+
+const NAV_ORDER = [
+  "dashboard",
+  "leads",
+  "company",
+  "home",
+  "services",
+  "industries",
+  "packages",
+  "solutions",
+  "ai",
+  "tools",
+  "cases",
+  "projects",
+  "resources",
+  "content",
+  "landings",
+  "shop",
+  "catalogue",
+  "tracking",
+  "chatbot",
+  "settings",
+];
+
+function navIcon(name) {
+  const common = 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+  const icons = {
+    home: `<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>`,
+    inbox: `<path d="M4 6h16v12H4z"/><path d="M4 10l8 5 8-5"/>`,
+    layout: `<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/>`,
+    paint: `<path d="M12 3v7"/><path d="M8 10h8l-1 10H9L8 10z"/><circle cx="12" cy="5" r="2"/>`,
+    grid: `<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>`,
+    building: `<path d="M4 20V6l8-3 8 3v14"/><path d="M9 20v-6h6v6"/>`,
+    box: `<path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/>`,
+    target: `<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>`,
+    spark: `<path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/>`,
+    tool: `<path d="M14 7l3 3-8 8H6v-3l8-8z"/><path d="M13 8l3 3"/>`,
+    chart: `<path d="M4 19V5M4 19h16"/><path d="M8 16v-5M12 16V8M16 16v-3"/>`,
+    image: `<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-8 8"/>`,
+    book: `<path d="M5 4h11a2 2 0 012 2v14H7a2 2 0 01-2-2V4z"/><path d="M7 18h12"/>`,
+    quote: `<path d="M7 10h4v6H7zM13 10h4v6h-4z"/><path d="M7 10c0-3 2-5 5-5M13 10c0-3 2-5 5-5"/>`,
+    megaphone: `<path d="M4 11v2l12 4V7L4 11z"/><path d="M16 9v6M8 13v5"/>`,
+    cart: `<circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M3 4h2l2.5 11h10L20 7H7"/>`,
+    file: `<path d="M7 3h7l5 5v13H7V3z"/><path d="M14 3v5h5"/>`,
+    code: `<path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/>`,
+    chat: `<path d="M4 5h16v11H8l-4 3V5z"/>`,
+    gear: `<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1l2.1-2.1M17 7l2.1-2.1"/>`,
+  };
+  return `<span class="nav-ico"><svg viewBox="0 0 24 24" ${common}>${icons[name] || icons.grid}</svg></span>`;
+}
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -53,8 +249,9 @@ function toast(msg, type = "ok") {
 function setDirty(v) {
   state.dirty = v;
   const btn = $("#save-btn");
+  if (!btn) return;
   btn.disabled = !v;
-  btn.textContent = v ? "Save changes *" : "Save changes";
+  btn.textContent = v ? "Publish *" : "Publish";
   document.body.classList.toggle("is-dirty", !!v);
 }
 
@@ -356,35 +553,98 @@ function bindFields(root = $("#editor-wrap")) {
   });
 }
 
+function metaFor(key) {
+  return (
+    NAV_META[key] || {
+      label: state.collections[key] || key,
+      group: "More",
+      help: "Edit this section, then Publish.",
+      preview: "/",
+      icon: "grid",
+    }
+  );
+}
+
+function setPreviewUrl(url) {
+  state.previewUrl = url || "/";
+  const frame = $("#preview-frame");
+  const open = $("#preview-open");
+  if (open) open.href = state.previewUrl;
+  if (frame && state.previewOpen) {
+    const bust = state.previewUrl.includes("?")
+      ? `${state.previewUrl}&cms_preview=${Date.now()}`
+      : `${state.previewUrl}?cms_preview=${Date.now()}`;
+    frame.src = bust;
+  }
+}
+
+function refreshPreview() {
+  setPreviewUrl(state.previewUrl || "/");
+}
+
+function applyPreviewVisibility() {
+  const panel = $("#preview-panel");
+  const body = document.querySelector(".workspace-body");
+  const btn = $("#toggle-preview-btn");
+  if (!panel || !body) return;
+  panel.hidden = !state.previewOpen;
+  body.classList.toggle("has-preview", !!state.previewOpen);
+  if (btn) btn.textContent = state.previewOpen ? "Hide Preview" : "Live Preview";
+  if (state.previewOpen) refreshPreview();
+}
+
 function renderNav() {
   const nav = $("#nav");
-  const badge =
-    state.newLeads > 0
-      ? ` <span class="nav-badge">${state.newLeads > 99 ? "99+" : state.newLeads}</span>`
-      : "";
-  const leadBtn = `<button type="button" data-key="leads" class="${
-    state.current === "leads" ? "active" : ""
-  }">Form Leads (Inbox)${badge}</button>`;
-  nav.innerHTML =
-    leadBtn +
-    Object.entries(state.collections)
-      .map(
-        ([key, label]) =>
-          `<button type="button" data-key="${key}" class="${
+  const keys = ["dashboard", "leads", ...Object.keys(state.collections || {})];
+  const ordered = [
+    ...NAV_ORDER.filter((k) => keys.includes(k) || k === "dashboard" || k === "leads"),
+    ...keys.filter((k) => !NAV_ORDER.includes(k)),
+  ];
+  const unique = [...new Set(ordered)];
+  const groups = {};
+  unique.forEach((key) => {
+    if (key !== "dashboard" && key !== "leads" && !state.collections[key]) return;
+    const meta = metaFor(key);
+    if (!groups[meta.group]) groups[meta.group] = [];
+    groups[meta.group].push(key);
+  });
+
+  nav.innerHTML = Object.entries(groups)
+    .map(([group, items]) => {
+      const buttons = items
+        .map((key) => {
+          const meta = metaFor(key);
+          const badge =
+            key === "leads" && state.newLeads > 0
+              ? `<span class="nav-badge">${state.newLeads > 99 ? "99+" : state.newLeads}</span>`
+              : "";
+          return `<button type="button" data-key="${escapeAttr(key)}" class="${
             state.current === key ? "active" : ""
-          }">${escapeHtml(label)}</button>`,
-      )
-      .join("");
+          }">${navIcon(meta.icon)}<span>${escapeHtml(meta.label)}</span>${badge}</button>`;
+        })
+        .join("");
+      return `<div class="nav-group"><div class="nav-group-title">${escapeHtml(group)}</div>${buttons}</div>`;
+    })
+    .join("");
+
   nav.querySelectorAll("button").forEach((btn) => {
     btn.onclick = () => openCollection(btn.dataset.key);
   });
 }
 
+function setPanelChrome(key) {
+  const meta = metaFor(key);
+  const eyebrow = $("#panel-eyebrow");
+  if (eyebrow) eyebrow.textContent = meta.group || "Editor";
+  $("#panel-title").textContent = meta.label;
+  $("#panel-sub").textContent = meta.help;
+  setPreviewUrl(meta.preview || "/");
+}
+
 async function openCollection(key) {
-  if (state.dirty && !confirm("Discard unsaved changes?")) return;
-  if (key === "leads") {
-    return openLeads();
-  }
+  if (state.dirty && !confirm("You have unsaved edits. Leave without publishing?")) return;
+  if (key === "dashboard") return openDashboard();
+  if (key === "leads") return openLeads();
   try {
     const url = `${API}?action=get&collection=${encodeURIComponent(key)}`;
     const r = await fetch(url, { credentials: "include" });
@@ -396,15 +656,86 @@ async function openCollection(key) {
       state.shopOrders = json.orders || { items: [] };
       state.razorpayConfigured = Boolean(json.razorpayConfigured);
     }
+    if (key === "landings") {
+      const first = (json.data?.items || []).find((x) => x.enabled !== false && x.slug);
+      if (first?.slug) {
+        setPanelChrome(key);
+        setPreviewUrl(`/lp/${first.slug}`);
+      } else {
+        setPanelChrome(key);
+      }
+    } else {
+      setPanelChrome(key);
+    }
     setDirty(false);
-    $("#panel-title").textContent = state.collections[key] || key;
-    $("#panel-sub").textContent = `Editing ${key}.json - Save to publish.`;
     $("#save-btn").hidden = false;
     renderNav();
     renderEditor();
   } catch (e) {
     toast(e.message, "err");
   }
+}
+
+function renderDashboard() {
+  const cards = [
+    { key: "home", title: "Edit Homepage", desc: "Change hero text, services, and sections visually." },
+    { key: "landings", title: "Ads Landing Pages", desc: "Build Google / Meta pages with forms & packages." },
+    { key: "company", title: "Header & Footer", desc: "Logo, phone, menu links, and contact details." },
+    { key: "shop", title: "Shop Products", desc: "Add products, prices, and images." },
+    { key: "services", title: "Services Pages", desc: "Update service titles, images, and copy." },
+    { key: "leads", title: "Form Leads Inbox", desc: "See who filled forms on the website." },
+    { key: "catalogue", title: "Upload Catalogue PDF", desc: "Replace the downloadable company catalogue." },
+    { key: "tracking", title: "Pixels & Tracking", desc: "Google Ads, Meta Pixel, GTM." },
+    { key: "settings", title: "Site Settings", desc: "Sitemap and cache tools." },
+  ];
+  const grid = cards
+    .map((c) => {
+      const meta = metaFor(c.key);
+      return `<button type="button" class="dash-card" data-open="${escapeAttr(c.key)}">
+        <div class="dash-ico">${navIcon(meta.icon)}</div>
+        <h4>${escapeHtml(c.title)}</h4>
+        <p>${escapeHtml(c.desc)}</p>
+      </button>`;
+    })
+    .join("");
+
+  return `
+    <section class="card dash-hero">
+      <h3>Welcome to your website builder</h3>
+      <p>This works like WordPress + Elementor — pick a section, edit the boxes, then click <strong>Publish</strong>. Use Live Preview on the right to check the site.</p>
+      <div class="dash-actions">
+        <button type="button" data-open="home">Open Homepage Builder</button>
+        <button type="button" data-open="landings">Create Ads Landing Page</button>
+        <a href="../" target="_blank" rel="noreferrer">View live website ↗</a>
+      </div>
+    </section>
+    <div class="builder-banner">
+      <strong>How to edit (3 steps)</strong>
+      <div class="steps">
+        <span>1. Choose a section on the left</span>
+        <span>2. Change text / upload images</span>
+        <span>3. Click Publish</span>
+      </div>
+    </div>
+    <div class="dash-grid">${grid}</div>
+    <section class="card">
+      <h3>Inbox snapshot</h3>
+      <p class="muted" style="margin:0">
+        New leads waiting: <strong>${escapeHtml(String(state.newLeads || 0))}</strong>
+        · Notify email: <strong>${escapeHtml(state.notifyEmail || "info@displayavenue.com")}</strong>
+      </p>
+    </section>`;
+}
+
+function openDashboard() {
+  if (state.dirty && !confirm("You have unsaved edits. Leave without publishing?")) return;
+  state.current = "dashboard";
+  state.data = { ok: true };
+  setDirty(false);
+  setPanelChrome("dashboard");
+  $("#save-btn").hidden = true;
+  renderNav();
+  renderEditor();
 }
 
 async function openLeads() {
@@ -416,8 +747,7 @@ async function openLeads() {
     if (json.mailStats) state.mailStats = json.mailStats;
     if (json.notifyEmail) state.notifyEmail = json.notifyEmail;
     setDirty(false);
-    $("#panel-title").textContent = "Form Leads (Inbox)";
-    $("#panel-sub").textContent = `Submissions from the website. New leads are also emailed to ${state.notifyEmail}.`;
+    setPanelChrome("leads");
     $("#save-btn").hidden = true;
     renderNav();
     renderEditor();
@@ -431,7 +761,14 @@ function renderEditor() {
   const d = state.data;
   const key = state.current;
   if (!d || !key) {
-    wrap.innerHTML = `<p class="empty">Select a collection from the left.</p>`;
+    wrap.innerHTML = `<p class="empty">Select a section from the left menu.</p>`;
+    return;
+  }
+  if (key === "dashboard") {
+    wrap.innerHTML = renderDashboard();
+    wrap.querySelectorAll("[data-open]").forEach((btn) => {
+      btn.onclick = () => openCollection(btn.getAttribute("data-open"));
+    });
     return;
   }
   if (key === "leads") {
@@ -447,7 +784,7 @@ function renderEditor() {
   }
   const map = {
     company: renderCompany,
-    home: renderHome,
+    home: () => renderHome(d),
     services: () => renderCatalog(d, "Service"),
     industries: () => renderCatalog(d, "Industry"),
     packages: () => renderCatalog(d, "Package"),
@@ -465,7 +802,21 @@ function renderEditor() {
     landings: renderLandings,
     settings: renderSettings,
   };
-  wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
+  const banner =
+    key === "home" || key === "landings"
+      ? `<div class="builder-banner">
+          <strong>${key === "home" ? "Homepage Builder" : "Landing Page Builder"}</strong>
+          — edit each block below like Elementor widgets. Toggle “Show” to hide a section. Upload images with the size guide next to each upload.
+          <div class="steps">
+            <span>Edit a block</span>
+            <span>Upload images</span>
+            <span>Publish to go live</span>
+          </div>
+        </div>`
+      : `<div class="help-banner">Tip: Change the fields below, then click <strong>Publish</strong>. Use <strong>Live Preview</strong> to check the website without leaving this screen.</div>`;
+
+  wrap.innerHTML =
+    banner + (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
   bindFields(wrap);
   bindImageFields(wrap);
   wrap.querySelectorAll("[data-action]").forEach((btn) => {
@@ -711,15 +1062,17 @@ function renderCompany(d) {
 function homeSection(id, title, enabled, body) {
   const on = enabled !== false;
   return `
-    <section class="card home-section-card" id="home-sec-${id}">
-      <div class="home-section-head">
-        <h3>${title}</h3>
-        <label class="toggle-inline">
+    <section class="card home-section-card el-widget" id="home-sec-${id}">
+      <div class="home-section-head el-widget-head">
+        <span class="el-handle" aria-hidden="true">⋮⋮</span>
+        <span class="el-ico" aria-hidden="true">${navIcon("paint")}</span>
+        <strong>${title}</strong>
+        <label class="toggle-inline el-eye">
           <input type="checkbox" data-path="sections.${id}" ${on ? "checked" : ""} />
-          Show on homepage
+          Show on site
         </label>
       </div>
-      <div class="grid">${body}</div>
+      <div class="grid el-widget-body">${body}</div>
     </section>`;
 }
 
@@ -913,8 +1266,8 @@ function renderHome(d) {
 
   return `
     <div class="home-intro card">
-      <h3>Homepage builder</h3>
-      <p>Edit every homepage section below. Toggle <strong>Show on homepage</strong> to hide a block. Click <strong>Save changes</strong> to publish instantly.</p>
+      <h3>Homepage Builder</h3>
+      <p>Each block below is a website section. Open one, edit the text or images, toggle Show on site, then Publish — just like Elementor widgets.</p>
       <div class="home-jump">
         <a href="#home-sec-seo">SEO</a>
         <a href="#home-sec-hero">Hero</a>
@@ -1875,6 +2228,9 @@ function renderLandings(d) {
           </a>
           · Use this URL in Google Ads / Meta Ads.
         </p>
+        <div class="builder-banner" style="margin-bottom:.85rem">
+          <strong>Landing page editor</strong> — fill the offer, upload a hero image, add packages, then Publish.
+        </div>
         <div class="grid">
           <div class="field"><label>Enabled</label>
             <input type="checkbox" data-path="items.${i}.enabled" ${lp.enabled !== false ? "checked" : ""} />
@@ -1956,13 +2312,13 @@ function renderLandings(d) {
   return `
   <div class="card">
     <div class="list-item-head">
-      <h3>Ads landing pages (${items.length})</h3>
+      <h3>Ads Landing Pages (${items.length})</h3>
       <button type="button" class="btn btn-gold" data-action="add-landing">Add landing page</button>
     </div>
     <p class="hint">
-      Create dedicated pages for Google Ads and Meta Ads. Each page has offer copy, lead form,
-      priced packages with Razorpay, and conversion fields. Public URLs look like
-      <code>/lp/your-slug</code>. Site-wide GTM/GA/Meta Pixel still come from <strong>Tracking &amp; Pixels</strong>.
+      Build Google Ads / Meta pages like Elementor templates. Each page has offer copy, lead form,
+      priced packages with Razorpay, and conversion fields. Public URL:
+      <code>/lp/your-slug</code>. Site-wide pixels stay under <strong>Pixels &amp; Tracking</strong>.
     </p>
     ${rows || "<p class='empty'>No landing pages yet. Click Add landing page.</p>"}
   </div>`;
@@ -2265,7 +2621,7 @@ async function clearSiteCache() {
 }
 
 async function save() {
-  if (!state.current || !state.data || state.current === "leads") return;
+  if (!state.current || !state.data || state.current === "leads" || state.current === "dashboard") return;
   // Coerce nav mega strings
   if (state.data.navItems) {
     state.data.navItems.forEach((n) => {
@@ -2329,7 +2685,8 @@ async function save() {
   try {
     await api("save", { collection: state.current, data: state.data });
     setDirty(false);
-    toast("Saved - sitemap auto-updated. Refresh the website to see changes");
+    toast("Published — refresh Live Preview to see it");
+    refreshPreview();
   } catch (e) {
     toast(e.message, "err");
   }
@@ -2352,8 +2709,9 @@ async function init() {
       const status = await api("status");
       applyStatus(status);
       showLogin(false);
+      applyPreviewVisibility();
       renderNav();
-      openLeads();
+      openDashboard();
     } catch (err) {
       $("#login-error").hidden = false;
       $("#login-error").textContent = err.message;
@@ -2372,14 +2730,31 @@ async function init() {
   };
 
   $("#save-btn").onclick = save;
-  $("#reload-btn").onclick = () => state.current && openCollection(state.current);
+  $("#reload-btn").onclick = () => {
+    if (!state.current) return;
+    if (state.current === "dashboard") openDashboard();
+    else openCollection(state.current);
+  };
   $("#clear-cache-btn").onclick = () => clearSiteCache();
   $("#sync-seo-btn").onclick = () => regenerateSitemap();
+  $("#toggle-preview-btn")?.addEventListener("click", () => {
+    state.previewOpen = !state.previewOpen;
+    applyPreviewVisibility();
+  });
+  $("#preview-refresh")?.addEventListener("click", () => refreshPreview());
+  document.querySelectorAll(".device-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".device-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const wrap = document.querySelector(".preview-frame-wrap");
+      if (wrap) wrap.setAttribute("data-device", btn.dataset.device || "desktop");
+    });
+  });
 
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
       e.preventDefault();
-      if (state.dirty && state.current !== "leads") save();
+      if (state.dirty && state.current !== "leads" && state.current !== "dashboard") save();
     }
   });
 
@@ -2389,8 +2764,9 @@ async function init() {
     if (status.authenticated) {
       state.authed = true;
       showLogin(false);
+      applyPreviewVisibility();
       renderNav();
-      openLeads();
+      openDashboard();
     } else showLogin(true);
   } catch {
     showLogin(true);
