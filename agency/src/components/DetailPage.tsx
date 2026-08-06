@@ -53,8 +53,20 @@ function LayoutBody({ page }: { page: DetailPageContent }) {
 
 export function DetailPage({ page }: { page: DetailPageContent }) {
   const path = pathFor(page);
+  const kindLabel: Record<string, string> = {
+    service: "Services",
+    industry: "Industry",
+    package: "Package",
+    solution: "Solution",
+    ai: "AI Suite",
+    tool: "Free Tools",
+    "case-study": "Case Study",
+    project: "Portfolio",
+    resource: "Resource",
+  };
+  const suffix = kindLabel[page.kind] || "Page";
   const title =
-    page.seo?.title || `${page.title} Services | DisplayAvenue`;
+    page.seo?.title || `${page.title} ${suffix} | DisplayAvenue`;
   const description = page.seo?.description || page.summary;
   const crumbs = [
     { name: "Home", path: "/" },
@@ -68,10 +80,17 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
   const reviews = page.reviews || [];
   const locations = page.locations || [];
   const keywords = page.longTailKeywords || page.seo?.keywords || [];
+  const seoImage = page.coverImage || page.image;
 
   return (
     <>
-      <SEO title={title} description={description} path={path} />
+      <SEO
+        title={title}
+        description={description}
+        path={path}
+        image={seoImage}
+        imageAlt={page.title}
+      />
       <BreadcrumbSchema items={crumbs} />
       {(page.kind === "service" ||
         page.kind === "solution" ||
@@ -112,6 +131,12 @@ export function NotFoundDetail({
 }) {
   return (
     <div className="detail-page">
+      <SEO
+        title={`${kind} not found | DisplayAvenue`}
+        description={`No ${kind.toLowerCase()} page was found for “${slug}”.`}
+        path={`/${kind.toLowerCase().replace(/\s+/g, "-")}/${slug}`}
+        noindex
+      />
       <section className="section">
         <div className="container" style={{ padding: "4rem 0", textAlign: "center" }}>
           <h1 className="section-title">{kind} not found</h1>

@@ -54,6 +54,15 @@ Options -Indexes
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+  # Prefer apex host (www → non-www)
+  RewriteCond %{HTTP_HOST} ^www\.displayavenue\.com$ [NC]
+  RewriteRule ^ https://displayavenue.com%{REQUEST_URI} [L,R=301]
+
+  # Normalize trailing slash (keep root "/")
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteRule ^ %1 [L,R=301]
+
   # Old /demo URLs → root
   RewriteRule ^demo/?(.*)$ /$1 [R=301,L]
 

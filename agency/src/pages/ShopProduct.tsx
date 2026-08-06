@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link, useParams } from "react-router-dom";
-import { SEO } from "../components/SEO";
+import {
+  SEO,
+  ProductOfferSchema,
+  BreadcrumbSchema,
+} from "../components/SEO";
 import { VectorArt, vectorVariantFor } from "../components/VectorArt";
 import "../styles/pages.css";
 import "./Shop.css";
@@ -172,6 +176,12 @@ export function ShopProductPage() {
   if (!enabled || !product) {
     return (
       <div className="page-shell">
+        <SEO
+          title="Product not found | DisplayAvenue"
+          description="This product is unavailable or the shop is closed."
+          path={`/shop/${slug}`}
+          noindex
+        />
         <div className="container">
           <div className="page-frame shop-empty" style={{ padding: "2rem" }}>
             <h1 className="section-title">Product not found</h1>
@@ -189,14 +199,34 @@ export function ShopProductPage() {
   const compare = Number(product.compareAtPrice) || 0;
   const features = Array.isArray(product.features) ? product.features : [];
   const total = price * qty;
+  const productPath = `/shop/${product.slug || product.id}`;
 
   return (
     <div className="page-shell">
       <SEO
         title={`${product.title} | Shop | DisplayAvenue`}
-        description={product.summary || product.description || ""}
-        path={`/shop/${product.slug || product.id}`}
+        description={product.summary || product.description || `${product.title} from DisplayAvenue.`}
+        path={productPath}
+        image={product.image || undefined}
+        imageAlt={product.title}
       />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Shop", path: "/shop" },
+          { name: product.title, path: productPath },
+        ]}
+      />
+      {price > 0 ? (
+        <ProductOfferSchema
+          name={product.title}
+          description={product.summary || product.description || product.title}
+          path={productPath}
+          image={product.image}
+          price={price}
+          currency={data.currency || "INR"}
+        />
+      ) : null}
       <div className="container-wide">
         <div className="page-frame shop-product">
           <nav className="shop-breadcrumb" aria-label="Breadcrumb">

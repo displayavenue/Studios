@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { LandingLayout } from "./components/LandingLayout";
 import { Home } from "./pages/Home";
@@ -18,6 +18,7 @@ import { Shop } from "./pages/Shop";
 import { ShopProductPage } from "./pages/ShopProduct";
 import { LegalPage } from "./pages/LegalPage";
 import LandingPage from "./pages/LandingPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -65,7 +66,7 @@ export default function App() {
           <Route path="shop/:slug" element={<ShopProductPage />} />
           <Route path="privacy" element={<LegalPage type="privacy" />} />
           <Route path="terms" element={<LegalPage type="terms" />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

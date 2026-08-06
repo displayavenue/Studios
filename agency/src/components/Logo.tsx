@@ -8,7 +8,7 @@ export function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link to="/" className={`logo ${light ? "logo-light" : ""}`}>
       {logoSrc ? (
-        <img className="logo-mark" src={logoSrc} alt="" width={40} height={40} />
+        <img className="logo-mark" src={logoSrc} alt={`${company.name} logo`} width={40} height={40} />
       ) : null}
       <span className="logo-text">
         <strong>{company.name}</strong>

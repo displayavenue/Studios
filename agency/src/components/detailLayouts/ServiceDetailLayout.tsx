@@ -25,7 +25,7 @@ export function ServiceDetailLayout({ page }: { page: DetailPageContent }) {
           <div className="svc-side card">
             {page.coverImage || page.image ? (
               <div className="svc-side-media">
-                <img src={page.coverImage || page.image} alt="" loading="lazy" />
+                <img src={page.coverImage || page.image} alt={page.title} loading="lazy" />
               </div>
             ) : (
               <span className="icon-box" style={{ background: `${page.color}18` }}>

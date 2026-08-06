@@ -9,7 +9,7 @@ export function CaseDetailLayout({ page }: { page: DetailPageContent }) {
         <div className="container">
           {(page.coverImage || page.image) && (
             <div className="case-hero-media">
-              <img src={page.coverImage || page.image} alt="" loading="eager" />
+              <img src={page.coverImage || page.image} alt={page.title} loading="eager" />
             </div>
           )}
           <p className="badge">{page.category}</p>

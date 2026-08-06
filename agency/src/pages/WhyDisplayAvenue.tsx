@@ -15,7 +15,7 @@ import "../styles/pages.css";
 export function WhyDisplayAvenue() {
   return (
     <div className="page-shell">
-      <SEO title="Why DisplayAvenue" description="Why brands choose DisplayAvenue for measurable ROI, AI delivery, and transparent growth." path="/why-displayavenue" />
+      <SEO title="Why DisplayAvenue | DisplayAvenue" description="Why brands choose DisplayAvenue for measurable ROI, AI delivery, and transparent growth." path="/why-displayavenue" />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

@@ -7,6 +7,7 @@ type SEOProps = {
   path?: string;
   type?: string;
   image?: string;
+  imageAlt?: string;
   noindex?: boolean;
 };
 
@@ -47,28 +48,30 @@ function setMeta(selector: string, attr: string, value: string) {
   el.setAttribute(attr, value);
 }
 
-const DEFAULT_OG =
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80";
+const DEFAULT_OG = "https://displayavenue.com/og-share.jpg";
+
+function resolveImageUrl(website: string, image?: string, companyOg?: string) {
+  const pick = (image && image !== DEFAULT_OG ? image : companyOg || DEFAULT_OG).trim();
+  if (!pick) return DEFAULT_OG;
+  if (/^https?:\/\//i.test(pick)) return pick;
+  return absoluteUrl(website, pick.startsWith("/") ? pick : `/${pick}`);
+}
 
 export function SEO({
   title,
   description,
   path = "/",
   type = "website",
-  image = DEFAULT_OG,
+  image,
+  imageAlt = "DisplayAvenue",
   noindex = false,
 }: SEOProps) {
   const { company, tracking } = useCms();
   const siteVerification = tracking.googleSiteVerification?.trim();
+  const bingVerification = (tracking as { bingSiteVerification?: string })
+    .bingSiteVerification?.trim();
   const companyOg = (company as { ogImage?: string }).ogImage?.trim();
-  const resolvedImage =
-    image && image !== DEFAULT_OG
-      ? image
-      : companyOg
-        ? companyOg.startsWith("http")
-          ? companyOg
-          : absoluteUrl(company.website, companyOg)
-        : DEFAULT_OG;
+  const resolvedImage = resolveImageUrl(company.website, image, companyOg);
 
   useEffect(() => {
     document.title = title;
@@ -82,6 +85,9 @@ export function SEO({
         siteVerification,
       );
     }
+    if (bingVerification) {
+      setMeta('meta[name="msvalidate.01"]', "content", bingVerification);
+    }
     setMeta(
       'meta[name="robots"]',
       "content",
@@ -92,17 +98,33 @@ export function SEO({
     setMeta('meta[name="author"]', "content", company.name);
     setMeta('meta[name="geo.region"]', "content", "IN-MH");
     setMeta('meta[name="geo.placename"]', "content", company.address.city || "Mumbai");
+    if (company.googleMaps?.lat != null && company.googleMaps?.lng != null) {
+      setMeta(
+        'meta[name="geo.position"]',
+        "content",
+        `${company.googleMaps.lat};${company.googleMaps.lng}`,
+      );
+      setMeta(
+        'meta[name="ICBM"]',
+        "content",
+        `${company.googleMaps.lat}, ${company.googleMaps.lng}`,
+      );
+    }
     setMeta('meta[property="og:site_name"]', "content", company.name);
     setMeta('meta[property="og:title"]', "content", title);
     setMeta('meta[property="og:description"]', "content", description);
     setMeta('meta[property="og:type"]', "content", type);
     setMeta('meta[property="og:url"]', "content", url);
     setMeta('meta[property="og:image"]', "content", resolvedImage);
+    setMeta('meta[property="og:image:width"]', "content", "1200");
+    setMeta('meta[property="og:image:height"]', "content", "630");
+    setMeta('meta[property="og:image:alt"]', "content", imageAlt || title);
     setMeta('meta[property="og:locale"]', "content", "en_IN");
     setMeta('meta[name="twitter:card"]', "content", "summary_large_image");
     setMeta('meta[name="twitter:title"]', "content", title);
     setMeta('meta[name="twitter:description"]', "content", description);
     setMeta('meta[name="twitter:image"]', "content", resolvedImage);
+    setMeta('meta[name="twitter:image:alt"]', "content", imageAlt || title);
 
     let canonical = document.querySelector(
       'link[rel="canonical"]',
@@ -119,12 +141,16 @@ export function SEO({
     path,
     type,
     image,
+    imageAlt,
     resolvedImage,
     noindex,
     company.website,
     company.name,
     company.address.city,
+    company.googleMaps?.lat,
+    company.googleMaps?.lng,
     siteVerification,
+    bingVerification,
   ]);
 
   return null;
@@ -138,6 +164,14 @@ export function LocalBusinessSchema() {
       /^https?:\/\//i.test(u),
     );
     const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
+    const og = resolveImageUrl(
+      company.website,
+      undefined,
+      (company as { ogImage?: string }).ogImage,
+    );
+    const logoSrc =
+      (company as { logoImage?: string }).logoImage ||
+      absoluteUrl(company.website, "/favicon.svg");
 
     const reviews = content.testimonials.slice(0, 5).map((t) => ({
       "@type": "Review",
@@ -151,6 +185,9 @@ export function LocalBusinessSchema() {
       },
     }));
 
+    const lat = company.googleMaps?.lat;
+    const lng = company.googleMaps?.lng;
+
     upsertJsonLd("schema-local-business", {
       "@context": "https://schema.org",
       "@type": ["ProfessionalService", "Organization"],
@@ -161,8 +198,10 @@ export function LocalBusinessSchema() {
       url: site,
       telephone: company.phone,
       email: company.email,
-      image: [DEFAULT_OG],
-      logo: absoluteUrl(company.website, "/favicon.svg"),
+      image: [og],
+      logo: logoSrc.startsWith("http")
+        ? logoSrc
+        : absoluteUrl(company.website, logoSrc),
       priceRange: "₹₹₹",
       currenciesAccepted: "INR",
       address: {
@@ -170,8 +209,18 @@ export function LocalBusinessSchema() {
         streetAddress: (company.address.lines || []).join(", "),
         addressLocality: company.address.city || "Mumbai",
         addressRegion: "Maharashtra",
+        postalCode: "401107",
         addressCountry: "IN",
       },
+      ...(lat != null && lng != null
+        ? {
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: lat,
+              longitude: lng,
+            },
+          }
+        : {}),
       areaServed: [
         { "@type": "Country", name: "India" },
         { "@type": "City", name: company.address.city || "Mumbai" },
@@ -208,13 +257,20 @@ export function LocalBusinessSchema() {
               company.googleMaps.shareUrl || company.googleMaps.profileUrl,
           }
         : {}),
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "150",
-        bestRating: "5",
-      },
-      review: reviews,
+      ...(reviews.length
+        ? {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: (
+                content.testimonials.reduce((s, t) => s + (t.rating || 5), 0) /
+                Math.max(1, content.testimonials.length)
+              ).toFixed(1),
+              reviewCount: String(content.testimonials.length),
+              bestRating: "5",
+            },
+            review: reviews,
+          }
+        : {}),
     });
   }, [company, content.testimonials, services]);
 
@@ -242,6 +298,53 @@ export function WebSiteSchema() {
       },
     });
   }, [company]);
+
+  return null;
+}
+
+export function ProductOfferSchema({
+  name,
+  description,
+  path,
+  image,
+  price,
+  currency = "INR",
+}: {
+  name: string;
+  description: string;
+  path: string;
+  image?: string;
+  price: number;
+  currency?: string;
+}) {
+  const { company } = useCms();
+
+  useEffect(() => {
+    const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
+    const img = image
+      ? image.startsWith("http")
+        ? image
+        : absoluteUrl(company.website, image)
+      : DEFAULT_OG;
+    upsertJsonLd("schema-product", {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name,
+      description,
+      image: [img],
+      brand: { "@type": "Brand", name: company.name },
+      url: absoluteUrl(company.website, path),
+      offers: {
+        "@type": "Offer",
+        url: absoluteUrl(company.website, path),
+        priceCurrency: currency,
+        price: String(price),
+        availability: "https://schema.org/InStock",
+        seller: { "@id": `${site}/#business` },
+      },
+    });
+    return () => upsertJsonLd("schema-product", null);
+  }, [name, description, path, image, price, currency, company]);
 
   return null;
 }

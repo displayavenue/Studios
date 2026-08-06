@@ -79,7 +79,7 @@ export function Industries() {
                   >
                     {item.image ? (
                       <span className="category-card-media">
-                        <img src={item.image} alt="" loading="lazy" />
+                        <img src={item.image} alt={item.title} loading="lazy" />
                       </span>
                     ) : (
                       <Icon name={item.icon} color={item.color || "#0056ff"} />

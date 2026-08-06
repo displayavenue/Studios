@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import { submitLead } from "../lib/submitLead";
+import { SEO, FAQPageSchema, BreadcrumbSchema } from "../components/SEO";
 import { VectorArt, vectorVariantFor } from "../components/VectorArt";
 import "./LandingPage.css";
 
@@ -155,20 +156,6 @@ export default function LandingPage() {
     };
   }, [slug]);
 
-  useEffect(() => {
-    if (!landing) return;
-    const title = landing.seoTitle || landing.headline || "Landing page";
-    document.title = title;
-    const desc = landing.seoDescription || landing.subheadline || "";
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", desc);
-  }, [landing]);
-
   async function onLeadSubmit(e: FormEvent) {
     e.preventDefault();
     if (!landing?.slug) return;
@@ -304,6 +291,7 @@ export default function LandingPage() {
   if (loading) {
     return (
       <div className="lp-shell">
+        <SEO title="Loading… | DisplayAvenue" description="Loading landing page." path={`/lp/${slug}`} noindex />
         <div className="lp-loading">Loading…</div>
       </div>
     );
@@ -312,6 +300,12 @@ export default function LandingPage() {
   if (notFound || !landing) {
     return (
       <div className="lp-shell">
+        <SEO
+          title="Landing page not found | DisplayAvenue"
+          description="This campaign URL is inactive or does not exist."
+          path={`/lp/${slug}`}
+          noindex
+        />
         <div className="lp-missing">
           <h1>Landing page not found</h1>
           <p>This campaign URL is inactive or does not exist.</p>
@@ -335,9 +329,28 @@ export default function LandingPage() {
       : landing.channel === "both"
         ? "Google & Meta Ads"
         : "Google Ads";
+  const seoTitle = landing.seoTitle || landing.headline || "Landing page";
+  const seoDesc = landing.seoDescription || landing.subheadline || "";
+  const faqSchema = faqs
+    .filter((f) => f.q && f.a)
+    .map((f) => ({ question: String(f.q), answer: String(f.a) }));
 
   return (
     <div className="lp-shell">
+      <SEO
+        title={seoTitle}
+        description={seoDesc}
+        path={`/lp/${landing.slug || slug}`}
+        image={landing.heroImage || undefined}
+        imageAlt={landing.headline || seoTitle}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: landing.name || "Campaign", path: `/lp/${landing.slug || slug}` },
+        ]}
+      />
+      {faqSchema.length > 0 ? <FAQPageSchema faqs={faqSchema} /> : null}
       <header className="lp-top">
         <div className="lp-brand">DisplayAvenue</div>
         <div className="lp-top-actions">
@@ -388,7 +401,7 @@ export default function LandingPage() {
         </div>
         <div className="lp-hero-media">
           {landing.heroImage ? (
-            <img src={landing.heroImage} alt="" />
+            <img src={landing.heroImage} alt={landing.headline || landing.name || "Campaign visual"} />
           ) : (
             <VectorArt
               className="lp-hero-vector"

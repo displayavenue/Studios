@@ -8,6 +8,8 @@ export type TrackingSettings = {
   /** Meta (Facebook) Pixel ID */
   metaPixelId?: string;
   googleSiteVerification?: string;
+  /** Bing Webmaster Tools meta verification code */
+  bingSiteVerification?: string;
   /** Paste full script tags from Google Ads, LinkedIn, AI ad platforms, etc. */
   headScripts?: string;
   /** Paste noscript / iframe snippets (GTM noscript, Meta fallback, etc.) */
@@ -23,6 +25,7 @@ export const defaultTracking: Required<
     | "googleAdsId"
     | "metaPixelId"
     | "googleSiteVerification"
+    | "bingSiteVerification"
     | "headScripts"
     | "bodyStartHtml"
   >
@@ -33,6 +36,7 @@ export const defaultTracking: Required<
   googleAdsId: "",
   metaPixelId: "",
   googleSiteVerification: "",
+  bingSiteVerification: "",
   headScripts: "",
   bodyStartHtml: "",
 };

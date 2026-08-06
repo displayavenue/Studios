@@ -189,7 +189,7 @@ export function Home() {
           <div className="hero-visual">
             {home.hero.image ? (
               <div className="hero-photo">
-                <img src={home.hero.image} alt="" loading="eager" />
+                <img src={home.hero.image} alt={home.hero.titleAccent || home.hero.titleBefore || "DisplayAvenue"} loading="eager" />
               </div>
             ) : null}
             {show("heroDashboard") && (

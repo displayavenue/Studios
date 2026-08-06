@@ -1778,6 +1778,7 @@ function renderTracking(d) {
       ${field("Google Ads tag ID (AW-…)", "googleAdsId", d.googleAdsId || "")}
       ${field("Meta Pixel ID", "metaPixelId", d.metaPixelId || "")}
       ${field("Google Search Console verification", "googleSiteVerification", d.googleSiteVerification || "")}
+      ${field("Bing Webmaster verification (msvalidate.01)", "bingSiteVerification", d.bingSiteVerification || "")}
     </div>
     <div class="field full" style="margin-top:1rem">
       <label for="tracking_head_scripts">Additional &lt;head&gt; scripts</label>
