@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { type MegaKey } from "../data/company";
 import { useCms } from "../cms/CmsProvider";
@@ -8,6 +8,7 @@ import { WhatWeDoMenu } from "./menus/WhatWeDoMenu";
 import { SolutionsMenu } from "./menus/SolutionsMenu";
 import { AiPlatformMenu } from "./menus/AiPlatformMenu";
 import { IndustriesMenu } from "./menus/IndustriesMenu";
+import { SiteSearch } from "./SiteSearch";
 import "./Header.css";
 
 export function Header() {
@@ -17,19 +18,44 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey | null>(null);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
   const closeTimer = useRef<number | null>(null);
   const navId = useId();
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   useEffect(() => {
     setOpen(false);
     setMega(null);
     setMobileSection(null);
+    setSearchOpen(false);
   }, [pathname]);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
     return () => document.body.classList.remove("menu-open");
   }, [open]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      const typing =
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable);
+      if (typing) return;
+      if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   const openMega = (key: MegaKey) => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
@@ -70,7 +96,13 @@ export function Header() {
         <div className="container-wide header-top-inner">
           <Logo light />
           <div className="header-actions">
-            <button className="icon-btn" aria-label="Search" type="button">
+            <button
+              className="icon-btn"
+              aria-label="Search"
+              type="button"
+              aria-expanded={searchOpen}
+              onClick={() => setSearchOpen(true)}
+            >
               <Icon name="search" size={18} color="#fff" />
             </button>
             <a
@@ -162,6 +194,17 @@ export function Header() {
         hidden={!open}
       >
         <div className="mobile-drawer-inner">
+          <button
+            type="button"
+            className="mobile-link search-mobile-btn"
+            onClick={() => {
+              setOpen(false);
+              setSearchOpen(true);
+            }}
+          >
+            <Icon name="search" size={16} color="#0056ff" />
+            Search the site
+          </button>
           {navItems.map((item) => {
             const expanded = mobileSection === item.label;
             if (!item.mega) {
@@ -214,6 +257,8 @@ export function Header() {
           </div>
         </div>
       </div>
+
+      <SiteSearch open={searchOpen} onClose={closeSearch} />
     </header>
   );
 }
