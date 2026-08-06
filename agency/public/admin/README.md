@@ -2,13 +2,21 @@
 
 Edit the live agency site content from the browser.
 
-## URL (demo deploy)
+## URL
 
-https://displayavenue.com/demo/admin/
+https://displayavenue.com/admin/
 
 ## Login
 
-Default password is in [`config.php`](config.php): `DisplayAgency@2026` - **change it**.
+Use the admin password configured as a **bcrypt hash** in `config.php` (`admin_password_hash`).
+
+To rotate the password on the server:
+
+```bash
+php -r "echo password_hash('YOUR_NEW_PASSWORD', PASSWORD_DEFAULT), PHP_EOL;"
+```
+
+Replace `admin_password_hash` with the output. Never commit or publish plaintext passwords.
 
 ## What you can edit
 
@@ -16,16 +24,19 @@ Default password is in [`config.php`](config.php): `DisplayAgency@2026` - **chan
 |--------|----------|
 | Header, Footer & Company | Brand, contact, announcement, nav links, stats, socials |
 | Homepage | Hero copy and section titles |
-| Services | All 70+ service detail pages (add/edit/delete) |
+| Services | All service detail pages (add/edit/delete) |
 | Industries / Packages / Solutions / AI / Tools | Full catalog pages |
 | Case Studies / Portfolio / Resources | Detail pages |
 | Testimonials & Extras | Home social proof + footer CTA |
 | Tracking & Pixels | GTM, GA, Google Ads, Meta Pixel, Search Console, custom head/body scripts |
 | Settings | Site name & notes |
 
-Open **Tracking & Pixels**, paste your IDs when ready, click **Save changes**, refresh the website.
-
-
 ## Permissions
 
 `content/` must be writable by PHP on Hostinger (`chmod 755` or `775` on the folder).
+
+## Security notes
+
+- `config.php` and `seo-sync.php` are blocked from direct HTTP access
+- Admin API is same-origin only, with secure HttpOnly cookies and login rate limiting
+- Keep the CMS password private and rotate it if it may have been shared

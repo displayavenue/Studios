@@ -18,7 +18,7 @@ async function api(action, payload = null) {
     body: payload ? JSON.stringify({ action, ...payload }) : undefined,
   };
   const url = payload
-    ? API
+    ? `${API}?action=${encodeURIComponent(action)}`
     : `${API}?action=${encodeURIComponent(action)}${
         payload?.collection
           ? `&collection=${encodeURIComponent(payload.collection)}`
