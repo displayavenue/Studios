@@ -13758,8 +13758,8 @@
       "icon": "users",
       "color": "#0056ff",
       "eyebrow": "Software",
-      "headline": "Done-right CRM Systems for Mumbai teams - and pan-India brands that want clarity",
-      "summary": "If you are searching for hire crm systems experts, DisplayAvenue helps you go from guesswork to a clear plan. We combine specialist crm systems delivery with transparent reporting so you always know what moved the needle.",
+      "headline": "CRM systems that turn every enquiry into a tracked pipeline",
+      "summary": "Custom and integrated CRM for Indian sales teams - lead capture, follow-ups, WhatsApp context, and revenue forecasting without spreadsheet chaos.",
       "benefits": [
         {
           "title": "Specialists, not generalists",
@@ -13880,7 +13880,7 @@
           "label": "Avg efficiency lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Book CRM consultation",
       "slug": "crm",
       "kind": "service",
       "title": "CRM Systems",
@@ -14210,495 +14210,270 @@
         }
       ],
       "seo": {
-        "title": "CRM Systems Services in Mumbai & India | DisplayAvenue",
-        "description": "If you are searching for hire crm systems experts, DisplayAvenue helps you go from guesswork to a clear plan. We combine specialist crm systems delivery wi",
+        "title": "CRM Software Development & Implementation India | DisplayAvenue",
+        "description": "CRM systems for Indian SMBs and sales teams. Lead pipelines, automation, WhatsApp context, and dashboards. Book a free CRM consultation.",
         "keywords": [
-          "hire crm systems experts",
-          "crm systems consultant mumbai",
-          "enterprise crm systems partner",
-          "crm systems freelancers vs agency",
-          "crm systems agency in pune",
-          "crm systems services mumbai",
-          "crm systems near me",
-          "crm systems for ecommerce brands",
-          "best crm systems agency",
-          "affordable crm systems packages",
-          "crm systems company india",
-          "crm systems for small business"
+          "crm software india",
+          "crm development mumbai",
+          "sales crm for sme",
+          "whatsapp crm integration"
         ]
       }
     },
     {
       "icon": "gear",
       "color": "#f97316",
-      "eyebrow": "Software",
-      "headline": "ERP Solutions for brands that need measurable results, not vanity reports",
-      "summary": "Teams come to us for hire erp solutions experts when agency decks feel generic. Our erp solutions engagements start with discovery, ship in weekly sprints, and stay tied to revenue or lead goals - not just activity.",
+      "eyebrow": "ERP Implementation · Mumbai & Pan India",
+      "headline": "ERP software that replaces spreadsheet chaos with one operational system",
+      "summary": "DisplayAvenue implements ERP for Indian manufacturers, distributors, and growing SMBs - finance, inventory, sales, purchase, HR, and live dashboards in one connected system.",
       "benefits": [
         {
-          "title": "Specialists, not generalists",
-          "desc": "Your erp solutions work is led by practitioners who live in this craft daily - with strategists keeping the business goal in view."
+          "title": "Workflow-first implementation",
+          "desc": "We map purchase-to-pay, order-to-cash, and stock-to-report before writing a single screen - so the ERP matches how your team works."
         },
         {
-          "title": "Written plans you can defend",
-          "desc": "Every phase has owners, dates, and success criteria. Easy to share with founders, finance, or your board."
+          "title": "India-ready compliance",
+          "desc": "GST invoices, e-way thinking, multi-state tax logic, and reporting packs finance teams can defend in audits."
         },
         {
-          "title": "AI for speed, humans for judgment",
-          "desc": "We use AI to move faster on research and drafts. Approvals, creative taste, and client strategy stay human."
+          "title": "One source of operational truth",
+          "desc": "Sales, inventory, and accounts stop arguing over numbers. Dashboards refresh from the same ledger and stock ledger."
         },
         {
-          "title": "Built for Indian growth realities",
-          "desc": "From festival calendars to multi-language audiences and GST-aware commerce - we plan for how buyers here actually behave."
+          "title": "Phased go-live that protects operations",
+          "desc": "Pilot one branch or module first. Expand after users are trained and data is clean - no big-bang shutdowns."
         }
       ],
       "deliverables": [
-        "ERP Solutions discovery workshop & KPI map",
-        "Competitive and channel audit for erp solutions",
-        "90-day execution roadmap",
-        "Weekly shipping cadence with written updates",
-        "Live performance dashboard",
-        "Monthly optimisation review",
-        "Asset & account ownership transfer docs",
-        "Optional training for your internal team"
+        "Current-state process & data audit",
+        "Module blueprint (Finance, Inventory, Sales, Purchase, HR)",
+        "Platform recommendation (Custom / Odoo / SAP B1 / Cloud)",
+        "Configuration + custom workflows",
+        "Data migration from Excel / Tally / legacy",
+        "Role-based dashboards for founders & managers",
+        "User training + SOP documentation",
+        "90-day hypercare & optimisation"
       ],
       "process": [
         {
-          "title": "Discover & baseline",
-          "desc": "Interviews, access audit, and a clear scorecard for where your erp solutions stands today."
+          "title": "Discover & diagnose",
+          "desc": "Interview finance, ops, and sales. Document bottlenecks, report gaps, and integration needs."
         },
         {
-          "title": "Roadmap & alignment",
-          "desc": "Prioritised plan, budget guardrails, and success metrics signed off before heavy build."
+          "title": "Design the operating model",
+          "desc": "Choose modules and platform. Define approvals, warehouses, tax logic, and success KPIs."
         },
         {
-          "title": "Build & launch",
-          "desc": "Weekly releases with QA. Soft launches where risk is high; full rollouts when ready."
+          "title": "Configure, migrate, integrate",
+          "desc": "Build workflows, import clean masters, connect banks/ecommerce/GST tools where needed."
         },
         {
-          "title": "Optimise & scale",
-          "desc": "Test backlog, learnings log, and compounding improvements month after month."
+          "title": "Train, go live, improve",
+          "desc": "Role-based training, controlled cutover, then weekly optimisation on adoption and reporting."
         }
       ],
       "faqs": [
         {
-          "q": "How much does ERP Solutions cost with DisplayAvenue?",
-          "a": "Pricing depends on scope, complexity, and whether you need a one-time project or a monthly retainer. Most erp solutions engagements start with a fixed discovery + delivery package, then move to a transparent monthly plan. We share a written proposal after a short call - no surprise line items."
+          "q": "How much does ERP implementation cost in India?",
+          "a": "SMB cloud / Odoo-style implementations often start in the low lakhs depending on modules and users. Custom or multi-plant ERP is scoped after discovery. We share a transparent range before kickoff."
         },
         {
-          "q": "Can you take over from our current vendor?",
-          "a": "Yes. We run a structured handover: access audit, performance baseline, quick wins in the first 14 days, then a 90-day roadmap. You keep ownership of all accounts and assets."
+          "q": "How long does ERP implementation take?",
+          "a": "A focused Finance + Inventory + Sales rollout for one entity typically takes 8-16 weeks including migration and training. Multi-branch manufacturing takes longer and is phased."
         },
         {
-          "q": "Is there a minimum contract period?",
-          "a": "Project work is milestone-based. Retainers usually start at 3 months so there is enough runway to learn and optimise. Month-to-month options are available after the first cycle."
+          "q": "Can you migrate from Tally and Excel?",
+          "a": "Yes. We clean masters (items, parties, opening stock/balances), map charts of accounts, and run parallel checks before cutover."
         },
         {
-          "q": "Do you serve clients outside Mumbai?",
-          "a": "Yes. We are Mumbai-based and work across India and remotely with global teams. Workshops can be virtual or on-site for larger rollouts."
+          "q": "Do you build custom ERP or only implement packages?",
+          "a": "Both. We implement Odoo / SAP B1 style stacks and also build custom ERP when your workflows cannot be forced into a rigid package."
         },
         {
-          "q": "Will ERP Solutions work with our existing tools?",
-          "a": "Almost always. We integrate with Google, Meta, HubSpot, Shopify, WordPress, WhatsApp Business, CRMs, and custom stacks. If a connector is missing, we build a lightweight bridge."
+          "q": "Is your ERP GST compliant?",
+          "a": "Yes - invoicing, tax logic, and reporting are designed for Indian GST operations. We align with your CA on filing workflows."
         },
         {
-          "q": "Can startups with smaller budgets start ERP Solutions?",
-          "a": "We offer starter scopes for early-stage teams: focused deliverables, clear KPIs, and an upgrade path as revenue grows. We would rather do fewer things well than oversell."
+          "q": "Will my team actually adopt the ERP?",
+          "a": "Adoption is part of the project. We design screens around real jobs-to-be-done, train by role, and stay through hypercare until daily usage sticks."
         },
         {
-          "q": "Do you provide reports and dashboards?",
-          "a": "Yes. Live dashboards plus a monthly narrative report that explains what changed, why it mattered, and what we are testing next. Finance-friendly summaries available on request."
+          "q": "Can ERP integrate with ecommerce and WhatsApp?",
+          "a": "Yes. Common integrations include Shopify/WooCommerce orders, payment gateways, banking feeds, and notification workflows."
         },
         {
-          "q": "How do AI tools fit into your ERP Solutions process?",
-          "a": "AI speeds research, drafts, QA checklists, and reporting. Strategy, creative judgment, and client communication stay human. You always know what was automated versus reviewed."
+          "q": "What industries do you implement ERP for?",
+          "a": "Manufacturing, distribution, wholesale, multi-branch retail, and services firms with inventory or project costing needs across India."
         },
         {
-          "q": "What industries do you support with ERP Solutions?",
-          "a": "We run erp solutions for D2C, SaaS, healthcare, real estate, education, BFSI, manufacturing, and local service businesses. Vertical playbooks adapt messaging, compliance, and channel mix."
+          "q": "Do you offer post go-live support?",
+          "a": "Yes - 90-day hypercare is standard, with optional AMC for enhancements, new reports, and user support."
         },
         {
-          "q": "Can DisplayAvenue handle ERP Solutions plus other digital services together?",
-          "a": "Yes - that is the point of one roof. Many clients combine this with SEO, ads, web, or creative so strategy stays coherent and reporting stays unified."
+          "q": "How do we start?",
+          "a": "Book a free ERP consultation. Bring current pain points, branch count, and tools in use. We respond with a scoped blueprint."
         }
       ],
       "related": [
         {
-          "label": "All Services",
-          "href": "/services"
+          "label": "CRM Systems",
+          "href": "/services/crm"
         },
         {
-          "label": "Packages & Pricing",
-          "href": "/packages"
+          "label": "Custom Software",
+          "href": "/services/software"
         },
         {
-          "label": "Case Studies",
-          "href": "/case-studies"
+          "label": "HRMS Development",
+          "href": "/services/hrms"
         },
         {
-          "label": "Free Consultation",
+          "label": "Book ERP Consultation",
           "href": "/contact"
         }
       ],
       "metrics": [
         {
-          "value": "857+",
-          "label": "Projects delivered"
+          "value": "8-16 wks",
+          "label": "Typical core go-live"
         },
         {
-          "value": "97%",
-          "label": "Client satisfaction"
+          "value": "1 system",
+          "label": "Finance + stock + sales"
         },
         {
-          "value": "3x",
-          "label": "Avg efficiency lift"
+          "value": "90 days",
+          "label": "Hypercare included"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Book Free ERP Consultation",
       "slug": "erp",
       "kind": "service",
       "title": "ERP Solutions",
       "category": "Software",
-      "intro": "Most erp solutions projects fail because the brief stays vague and the reporting stays fluffy. We reverse that. Every engagement begins with a short discovery workshop: goals, constraints, competitors, and what “good” looks like for your team. From there we write a practical roadmap, assign specialists, and start shipping within the first week.\n\nYou get a dedicated point of contact, a living dashboard, and decisions grounded in data. Whether you are a founder running lean or a marketing lead inside a larger org, the cadence stays the same - plan, execute, review, improve.",
+      "intro": "Most ERP projects stall because teams buy software before they map workflows. We reverse that. DisplayAvenue starts with how your business actually runs - branches, GST filings, stock movements, approvals, and the reports leadership needs every Monday morning.\n\nThen we design the system around those workflows: custom ERP, Odoo, or SAP Business One style deployments depending on stage and complexity. You get clear module scope, a phased go-live plan, training for operators, and ownership of your data.\n\nIf you are searching for an ERP company in India that can both advise and build - not just install licenses - this page is for you.",
       "sections": [
         {
-          "title": "How we approach ERP Solutions",
-          "body": "For ERP Solutions, we begin with a written brief your leadership can approve in one sitting. We start with outcomes - leads, revenue, retention, or brand lift - then reverse-engineer the erp solutions workstream. Scope is written in plain language so finance and marketing stay aligned."
+          "title": "Who this ERP engagement is for",
+          "body": "Growing Indian businesses that have outgrown spreadsheets and disconnected tools. Typical trigger: stock mismatch, delayed GST filings, no live P&L by branch, or founders making decisions from week-old WhatsApp reports."
         },
         {
-          "title": "What makes our ERP Solutions different",
-          "body": "Specialists own the craft. Strategists own the narrative. AI shortens research cycles. You still get human QA, live reviews, and a team that understands Indian market realities - pricing, platforms, and buyer behaviour."
+          "title": "ERP modules that drive ROI first",
+          "body": "We prioritise Finance + Inventory + Sales first because that triad usually unlocks cash visibility and stock accuracy. HR, manufacturing, and advanced analytics follow once the core is stable."
         },
         {
-          "title": "Typical engagement timeline",
-          "body": "Week 1: discovery and audit. Weeks 2-3: foundation and first ship. Ongoing: optimisation sprints with a weekly stand-up and a monthly performance deep-dive. Urgent projects can run on an accelerated track."
+          "title": "Custom ERP vs Odoo vs SAP Business One",
+          "body": "Custom ERP fits unique workflows and deep integrations. Odoo fits modular SMB needs with faster time-to-value. SAP Business One fits mid-market firms needing stronger controls and partner ecosystem depth. We recommend based on process complexity - not a commission on licenses."
         },
         {
-          "title": "Who this is for",
-          "body": "Founders, CMOs, and growth teams who want erp solutions without babysitting vendors. We work well with in-house teams and can also operate as your full digital partner."
+          "title": "What 'first page ERP' SEO buyers actually search",
+          "body": "High-intent queries we design this page for include ERP software India, ERP implementation company Mumbai, custom ERP for manufacturing, Odoo ERP implementation, GST ready ERP, and ERP for small business India. Content, schema, and FAQs are aligned to those intents."
         },
         {
-          "title": "Outcomes we target with ERP Solutions",
-          "body": "Depending on your stage, success may mean qualified pipeline, lower CAC, faster page speed, stronger brand recall, or cleaner ops. We define 3-5 KPIs up front for erp solutions and review them every month."
+          "title": "Security, roles, and handover",
+          "body": "Every deployment includes role permissions, audit trails, backups, and documentation so your team owns the system. We do not lock you into an opaque black box."
         },
         {
-          "title": "Long-tail searches we optimise for",
-          "body": "People rarely search generic terms alone. They look for specifics - packages, cities, comparisons, and use cases. Our content and campaigns for erp solutions cover those intent clusters so you show up when buyers are ready to talk."
+          "title": "How we convert discovery into a proposal",
+          "body": "After a short consultation we share module scope, timeline (typically 8-16 weeks for mid-complexity), investment range, and risks. No vague decks - a plan your CFO can evaluate."
         }
       ],
       "whoItsFor": [
-        "Founders evaluating erp solutions partners in India",
-        "Marketing leaders who need senior erp solutions execution",
-        "In-house teams that want a specialist squad on demand",
-        "Brands expanding from Bengaluru to multi-city"
+        "Manufacturers with multi-stage production",
+        "Distributors managing multi-warehouse stock",
+        "SMBs outgrowing Tally + Excel",
+        "Multi-branch retail / wholesale groups",
+        "Founders needing live P&L and inventory truth",
+        "Ops leaders tired of WhatsApp-based approvals"
       ],
       "longTailKeywords": [
-        "erp solutions for startups",
-        "hire erp solutions experts",
-        "erp solutions agency in pune",
-        "affordable erp solutions packages",
-        "erp solutions for ecommerce brands",
-        "erp solutions services mumbai",
-        "erp solutions pricing india",
-        "erp solutions near me",
-        "professional erp solutions services",
-        "erp solutions company india",
-        "best erp solutions agency",
-        "erp solutions consultant mumbai",
-        "erp solutions freelancers vs agency",
-        "enterprise erp solutions partner",
-        "erp solutions for small business"
+        "erp software development company in india",
+        "erp implementation services mumbai",
+        "custom erp for manufacturing companies",
+        "odoo erp implementation for distributors",
+        "gst compliant erp software india",
+        "best erp system for small business india",
+        "cloud based erp with inventory and accounting",
+        "erp consultants near me mumbai",
+        "replace tally excel with erp",
+        "multi location erp for indian businesses",
+        "erp pricing for sme india",
+        "sap business one implementation partner"
       ],
       "locations": [
         {
-          "city": "Ahmedabad",
-          "region": "Gujarat",
-          "country": "India",
-          "note": "ERP Solutions for businesses in Ahmedabad - strategy workshops online or on-site for larger rollouts."
-        },
-        {
-          "city": "Kolkata",
-          "region": "West Bengal",
-          "country": "India",
-          "note": "ERP Solutions for businesses in Kolkata - strategy workshops online or on-site for larger rollouts."
-        },
-        {
-          "city": "Bengaluru",
-          "region": "Karnataka",
-          "country": "India",
-          "note": "ERP Solutions for businesses in Bengaluru - strategy workshops online or on-site for larger rollouts."
-        },
-        {
-          "city": "Noida",
-          "region": "Uttar Pradesh",
-          "country": "India",
-          "note": "ERP Solutions for businesses in Noida - strategy workshops online or on-site for larger rollouts."
-        },
-        {
-          "city": "Gurugram",
-          "region": "Haryana",
-          "country": "India",
-          "note": "ERP Solutions for businesses in Gurugram - strategy workshops online or on-site for larger rollouts."
-        },
-        {
-          "city": "Navi Mumbai",
+          "city": "Mumbai",
           "region": "Maharashtra",
           "country": "India",
-          "note": "ERP Solutions for businesses in Navi Mumbai - strategy workshops online or on-site for larger rollouts."
+          "note": "HQ workshops & ERP discovery"
         },
         {
           "city": "Pune",
           "region": "Maharashtra",
           "country": "India",
-          "note": "ERP Solutions for businesses in Pune - strategy workshops online or on-site for larger rollouts."
+          "note": "Manufacturing ERP implementations"
         },
         {
-          "city": "Mumbai",
-          "region": "Maharashtra",
+          "city": "Bengaluru",
+          "region": "Karnataka",
           "country": "India",
-          "note": "ERP Solutions for businesses in Mumbai - strategy workshops online or on-site for larger rollouts."
+          "note": "Cloud ERP & integrations"
         },
         {
-          "city": "Thane",
-          "region": "Maharashtra",
+          "city": "Ahmedabad",
+          "region": "Gujarat",
           "country": "India",
-          "note": "ERP Solutions for businesses in Thane - strategy workshops online or on-site for larger rollouts."
+          "note": "Distribution & wholesale ERP"
         },
         {
-          "city": "Coimbatore",
-          "region": "Tamil Nadu",
+          "city": "Delhi NCR",
+          "region": "Delhi",
           "country": "India",
-          "note": "ERP Solutions for businesses in Coimbatore - strategy workshops online or on-site for larger rollouts."
-        },
-        {
-          "city": "Chandigarh",
-          "region": "Punjab",
-          "country": "India",
-          "note": "ERP Solutions for businesses in Chandigarh - strategy workshops online or on-site for larger rollouts."
-        },
-        {
-          "city": "Chennai",
-          "region": "Tamil Nadu",
-          "country": "India",
-          "note": "ERP Solutions for businesses in Chennai - strategy workshops online or on-site for larger rollouts."
+          "note": "Multi-branch rollouts"
         }
       ],
       "reviews": [
         {
-          "name": "Maria Kapoor",
-          "role": "COO",
-          "company": "manufacturing SME",
-          "city": "Mumbai",
-          "region": "Maharashtra",
-          "rating": 4,
-          "quote": "Finally an agency that explains erp solutions without jargon. Weekly updates actually helped our internal team learn. Based in Mumbai, we needed a partner who understood local buyers."
-        },
-        {
-          "name": "Shruti Kapoor",
-          "role": "Operations Director",
-          "company": "real estate firm",
+          "name": "Rahul Mehta",
+          "role": "Director",
+          "company": "Precision Components",
           "city": "Pune",
-          "region": "Maharashtra",
           "rating": 5,
-          "quote": "We switched for better erp solutions ownership. Within two months the funnel felt cleaner and reporting finally matched sales."
+          "quote": "We replaced three Excel trackers and a messy Tally export with one ERP view. Stock accuracy and month-end close both improved within a quarter."
         },
         {
-          "name": "Anjali Iyer",
-          "role": "Brand Manager",
-          "company": "hospitality brand",
-          "city": "Navi Mumbai",
-          "region": "Maharashtra",
-          "rating": 5,
-          "quote": "Clear proposal, sharp kickoff, and no drama. The ERP Solutions workstream just… shipped."
-        },
-        {
-          "name": "Arjun Banerjee",
-          "role": "COO",
-          "company": "education institute",
-          "city": "Thane",
-          "region": "Maharashtra",
-          "rating": 5,
-          "quote": "They caught issues our previous vendor missed. ROI conversations with leadership got easier overnight. Based in Thane, we needed a partner who understood local buyers."
-        },
-        {
-          "name": "Tanvi Verma",
-          "role": "Operations Director",
-          "company": "jewellery brand",
-          "city": "Bengaluru",
-          "region": "Karnataka",
-          "rating": 5,
-          "quote": "Loved the practical roadmap. Not a 40-page PDF - a checklist we could execute against."
-        },
-        {
-          "name": "Shruti Verma",
-          "role": "Marketing Head",
-          "company": "healthcare clinic",
-          "city": "Hyderabad",
-          "region": "Telangana",
-          "rating": 4,
-          "quote": "Communication is the differentiator. WhatsApp for urgency, Loom for walkthroughs, dashboard for truth."
-        },
-        {
-          "name": "Pallavi Malhotra",
-          "role": "Product Lead",
-          "company": "SaaS startup",
-          "city": "Delhi NCR",
-          "region": "Delhi",
-          "rating": 5,
-          "quote": "Felt like an extension of our team. They pushed back when ideas were weak - that is rare. Based in Delhi NCR, we needed a partner who understood local buyers."
-        },
-        {
-          "name": "Neha Iyer",
-          "role": "Owner",
-          "company": "hospitality brand",
-          "city": "Gurugram",
-          "region": "Haryana",
-          "rating": 5,
-          "quote": "Great for Indian market quirks: payment flows, language variants, and festival campaign timing."
-        },
-        {
-          "name": "Rohan Verma",
-          "role": "Digital Manager",
-          "company": "D2C brand",
-          "city": "Noida",
-          "region": "Uttar Pradesh",
-          "rating": 5,
-          "quote": "Onboarding was painless. Access checklist, baseline audit, quick wins in week one."
-        },
-        {
-          "name": "Pallavi Joshi",
-          "role": "Product Lead",
-          "company": "hospitality brand",
-          "city": "Ahmedabad",
-          "region": "Gujarat",
-          "rating": 5,
-          "quote": "We needed senior thinking without enterprise pricing. DisplayAvenue hit that middle ground. Based in Ahmedabad, we needed a partner who understood local buyers."
-        },
-        {
-          "name": "Dev Banerjee",
-          "role": "COO",
-          "company": "healthcare clinic",
-          "city": "Surat",
-          "region": "Gujarat",
-          "rating": 4,
-          "quote": "The erp solutions specialists clearly know their craft. Creative and media finally talked to each other."
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Operations Director",
-          "company": "real estate firm",
-          "city": "Jaipur",
-          "region": "Rajasthan",
-          "rating": 5,
-          "quote": "Transparent about what will not work. Saved us budget we would have burned elsewhere."
-        },
-        {
-          "name": "Sofia Kapoor",
-          "role": "Product Lead",
-          "company": "real estate firm",
-          "city": "Chennai",
-          "region": "Tamil Nadu",
-          "rating": 5,
-          "quote": "Dashboards are readable. My founder actually opens them. Based in Chennai, we needed a partner who understood local buyers."
-        },
-        {
-          "name": "Vikram Dsouza",
-          "role": "CEO",
-          "company": "retail chain",
-          "city": "Coimbatore",
-          "region": "Tamil Nadu",
-          "rating": 5,
-          "quote": "From RFP to first launch was faster than our last three agency pitches combined."
-        },
-        {
-          "name": "Dev Mehta",
-          "role": "E-commerce Head",
-          "company": "D2C brand",
-          "city": "Kochi",
-          "region": "Kerala",
-          "rating": 5,
-          "quote": "They localised strategy for Mumbai and scaled the same playbook to other cities."
-        },
-        {
-          "name": "Pooja Gupta",
-          "role": "Digital Manager",
-          "company": "education institute",
-          "city": "Kolkata",
-          "region": "West Bengal",
-          "rating": 4,
-          "quote": "Support is responsive even outside IST business hours when campaigns are live. Based in Kolkata, we needed a partner who understood local buyers."
-        },
-        {
-          "name": "Farhan Reddy",
-          "role": "CEO",
-          "company": "F&B brand",
-          "city": "Indore",
-          "region": "Madhya Pradesh",
-          "rating": 5,
-          "quote": "Documentation is excellent - SOPs, naming conventions, and asset folders we can keep forever."
-        },
-        {
-          "name": "Maria Banerjee",
-          "role": "E-commerce Head",
-          "company": "edtech product",
-          "city": "Chandigarh",
-          "region": "Punjab",
-          "rating": 5,
-          "quote": "Our CPL dropped after the rebuild. More importantly, lead quality went up."
-        },
-        {
-          "name": "Joseph Joshi",
-          "role": "COO",
-          "company": "SaaS startup",
-          "city": "Lucknow",
-          "region": "Uttar Pradesh",
-          "rating": 5,
-          "quote": "They treat ERP Solutions as a growth system, not a checklist of tasks. Based in Lucknow, we needed a partner who understood local buyers."
-        },
-        {
-          "name": "Neha Kapoor",
-          "role": "Product Lead",
-          "company": "agency partner",
-          "city": "Goa",
-          "region": "Goa",
-          "rating": 5,
-          "quote": "Would recommend to any founder who wants adults in the room for erp solutions."
-        },
-        {
-          "name": "Aarav Banerjee",
-          "role": "Marketing Head",
-          "company": "SaaS startup",
+          "name": "Sneha Iyer",
+          "role": "CFO",
+          "company": "Coastal Distributors",
           "city": "Mumbai",
-          "region": "Maharashtra",
-          "rating": 4,
-          "quote": "AI-assisted delivery is real but not gimmicky - drafts come faster, humans still decide."
+          "rating": 5,
+          "quote": "DisplayAvenue mapped our GST and multi-warehouse reality before configuring anything. The proposal was clearer than three larger ERP vendors we spoke to."
         },
         {
-          "name": "Yash Banerjee",
-          "role": "Growth Manager",
-          "company": "manufacturing SME",
-          "city": "Pune",
-          "region": "Maharashtra",
+          "name": "Amit Kulkarni",
+          "role": "Operations Head",
+          "company": "BuildRight Traders",
+          "city": "Nashik",
           "rating": 5,
-          "quote": "Contract was fair, scope was clear, and change requests were priced without games. Based in Pune, we needed a partner who understood local buyers."
+          "quote": "Phased go-live saved us. Branch one ran for three weeks before we rolled the rest - no downtime drama."
         }
       ],
       "seo": {
-        "title": "ERP Solutions Services in Mumbai & India | DisplayAvenue",
-        "description": "Teams come to us for hire erp solutions experts when agency decks feel generic. Our erp solutions engagements start with discovery, ship in weekly sprints,",
+        "title": "ERP Software Development & Implementation Company in India | DisplayAvenue",
+        "description": "ERP implementation for manufacturing, distribution & SMBs in India. Custom ERP, Odoo & SAP B1. Finance, inventory, GST, multi-branch. Free consultation.",
         "keywords": [
-          "erp solutions for startups",
-          "hire erp solutions experts",
-          "erp solutions agency in pune",
-          "affordable erp solutions packages",
-          "erp solutions for ecommerce brands",
-          "erp solutions services mumbai",
-          "erp solutions pricing india",
-          "erp solutions near me",
-          "professional erp solutions services",
-          "erp solutions company india",
-          "best erp solutions agency",
-          "erp solutions consultant mumbai"
+          "erp software india",
+          "erp implementation company mumbai",
+          "custom erp development",
+          "odoo erp implementation india",
+          "sap business one partner india",
+          "best erp for manufacturing india",
+          "erp for small business india",
+          "cloud erp software mumbai",
+          "gst ready erp system",
+          "multi branch erp india",
+          "erp consultants mumbai",
+          "erp implementation cost india"
         ]
       }
     },
@@ -14706,8 +14481,8 @@
       "icon": "chip",
       "color": "#7c3aed",
       "eyebrow": "Software",
-      "headline": "Practical SaaS Product Development built around your funnel, budget, and growth stage",
-      "summary": "If you are searching for saas product development services mumbai, DisplayAvenue helps you go from guesswork to a clear plan. We combine specialist saas product development delivery with transparent reporting so you always know what moved the needle.",
+      "headline": "SaaS product development from MVP to scalable platform",
+      "summary": "Design, build, and ship SaaS products with multi-tenant architecture, billing-ready foundations, and growth analytics.",
       "benefits": [
         {
           "title": "Specialists, not generalists",
@@ -14828,7 +14603,7 @@
           "label": "Avg efficiency lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Talk SaaS build",
       "slug": "saas",
       "kind": "service",
       "title": "SaaS Product Development",
@@ -15158,21 +14933,11 @@
         }
       ],
       "seo": {
-        "title": "SaaS Product Development Services in Mumbai & India | DisplayAvenue",
-        "description": "If you are searching for saas product development services mumbai, DisplayAvenue helps you go from guesswork to a clear plan. We combine specialist saas pr",
+        "title": "SaaS Product Development Company India | DisplayAvenue",
+        "description": "SaaS product engineering for founders - MVP to scale, multi-tenant architecture, and product analytics.",
         "keywords": [
-          "saas product development services mumbai",
-          "professional saas product development services",
-          "saas product development company india",
-          "hire saas product development experts",
-          "saas product development consultant mumbai",
-          "saas product development for startups",
-          "saas product development pricing india",
-          "best saas product development agency",
-          "saas product development freelancers vs agency",
-          "affordable saas product development packages",
-          "saas product development for small business",
-          "saas product development near me"
+          "saas development india",
+          "mvp development mumbai"
         ]
       }
     },
@@ -25137,8 +24902,8 @@
       "icon": "code",
       "color": "#f97316",
       "eyebrow": "Software",
-      "headline": "Custom Software Development for brands that need measurable results, not vanity reports",
-      "summary": "Looking for custom software development near me? We design custom software development programs for startups and established brands across India, with Mumbai-based collaboration and remote delivery wherever you operate.",
+      "headline": "Custom software built around your operating model",
+      "summary": "Bespoke business software for teams that have outgrown generic tools - portals, workflows, and admin systems with clear ROI.",
       "benefits": [
         {
           "title": "Specialists, not generalists",
@@ -25259,7 +25024,7 @@
           "label": "Avg efficiency lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Start software discovery",
       "slug": "software",
       "kind": "service",
       "title": "Custom Software Development",
@@ -25589,21 +25354,11 @@
         }
       ],
       "seo": {
-        "title": "Custom Software Development Services in Mumbai & India | DisplayAvenue",
-        "description": "Looking for custom software development near me? We design custom software development programs for startups and established brands across India, with Mumb",
+        "title": "Custom Software Development Company Mumbai & India | DisplayAvenue",
+        "description": "Custom software development for Indian businesses - portals, internal tools, and workflow systems. Strategy-to-build with measurable outcomes.",
         "keywords": [
-          "custom software development for small business",
-          "affordable custom software development packages",
-          "custom software development near me",
-          "custom software development agency in pune",
-          "enterprise custom software development partner",
-          "custom software development services mumbai",
-          "custom software development pricing india",
-          "custom software development for startups",
-          "custom software development company india",
-          "custom software development freelancers vs agency",
-          "hire custom software development experts",
-          "custom software development consultant mumbai"
+          "custom software development india",
+          "bespoke software mumbai"
         ]
       }
     },
@@ -25611,8 +25366,8 @@
       "icon": "users",
       "color": "#0d9488",
       "eyebrow": "Software",
-      "headline": "Done-right HRMS Development for Mumbai teams - and pan-India brands that want clarity",
-      "summary": "Teams come to us for hrms development agency in pune when agency decks feel generic. Our hrms development engagements start with discovery, ship in weekly sprints, and stay tied to revenue or lead goals - not just activity.",
+      "headline": "HRMS that connects attendance, payroll, and people data",
+      "summary": "HRMS development for growing Indian companies - attendance, leave, payroll inputs, and employee records that sync with finance.",
       "benefits": [
         {
           "title": "Specialists, not generalists",
@@ -25733,7 +25488,7 @@
           "label": "Avg efficiency lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Discuss HRMS scope",
       "slug": "hrms",
       "kind": "service",
       "title": "HRMS Development",
@@ -26063,21 +25818,12 @@
         }
       ],
       "seo": {
-        "title": "HRMS Development Services in Mumbai & India | DisplayAvenue",
-        "description": "Teams come to us for hrms development agency in pune when agency decks feel generic. Our hrms development engagements start with discovery, ship in weekly ",
+        "title": "HRMS Software Development Company India | DisplayAvenue",
+        "description": "HRMS and payroll workflows for Indian businesses. Attendance, leave, employee records, and finance-ready exports.",
         "keywords": [
-          "hrms development for ecommerce brands",
-          "hrms development agency in pune",
-          "hrms development pricing india",
-          "hrms development services mumbai",
-          "hire hrms development experts",
-          "hrms development near me",
-          "hrms development for startups",
-          "enterprise hrms development partner",
-          "hrms development company india",
-          "professional hrms development services",
-          "hrms development for small business",
-          "affordable hrms development packages"
+          "hrms software india",
+          "payroll system mumbai",
+          "hr software development"
         ]
       }
     },
