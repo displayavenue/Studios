@@ -369,6 +369,13 @@ const paths: Record<string, ReactNode> = {
   ),
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   chevron: <path d="M9 6l6 6-6 6" />,
+  external: (
+    <>
+      <path d="M14 4h6v6" />
+      <path d="M10 14L20 4" />
+      <path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+    </>
+  ),
   searchIcon: (
     <>
       <circle cx="11" cy="11" r="6" />

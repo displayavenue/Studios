@@ -8,6 +8,8 @@ import {
   BreadcrumbSchema,
   ArticleSchema,
 } from "./SEO";
+import { toolCategories } from "../data/tools";
+import { getExternalToolUrl } from "../data/toolLinks";
 import "./DetailPage.css";
 
 function pathFor(page: DetailPageContent): string {
@@ -106,6 +108,43 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
           </div>
         </div>
       </section>
+
+      {page.kind === "tool" && (() => {
+        const cat = toolCategories.find(
+          (c) =>
+            c.title === page.title ||
+            c.href.endsWith(`/${page.slug}`) ||
+            page.title.toLowerCase().includes(c.title.toLowerCase().replace(" tools", "")),
+        );
+        if (!cat?.tools.length) return null;
+        return (
+          <section className="section detail-alt">
+            <div className="container">
+              <h2 className="section-title">Open free tools (new tab)</h2>
+              <p className="section-sub" style={{ marginBottom: "1rem" }}>
+                Each link opens a trusted free online utility on your device in a new window.
+              </p>
+              <ul className="mega-links detail-tool-links">
+                {cat.tools.map((tool) => {
+                  const url = getExternalToolUrl(tool);
+                  return (
+                    <li key={tool}>
+                      {url ? (
+                        <a href={url} target="_blank" rel="noopener noreferrer">
+                          {tool}
+                          <Icon name="external" size={14} />
+                        </a>
+                      ) : (
+                        <span>{tool}</span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </section>
+        );
+      })()}
 
       <section className="section">
         <div className="container">
