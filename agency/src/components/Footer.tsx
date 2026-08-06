@@ -79,17 +79,37 @@ export function Footer() {
               build brands, and scale with measurable ROI.
             </p>
             <div className="footer-socials">
-              <a href={company.socials.facebook} aria-label="Facebook">
-                FB
+              <a
+                href={company.socials.facebook}
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name="facebook" size={16} color="currentColor" />
               </a>
-              <a href={company.socials.instagram} aria-label="Instagram">
-                IG
+              <a
+                href={company.socials.instagram}
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name="instagram" size={16} color="currentColor" />
               </a>
-              <a href={company.socials.linkedin} aria-label="LinkedIn">
-                in
+              <a
+                href={company.socials.linkedin}
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name="linkedin" size={16} color="currentColor" />
               </a>
-              <a href={company.socials.youtube} aria-label="YouTube">
-                YT
+              <a
+                href={company.socials.youtube}
+                aria-label="YouTube"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name="youtube" size={16} color="currentColor" />
               </a>
             </div>
           </div>
