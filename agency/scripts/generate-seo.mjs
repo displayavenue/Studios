@@ -52,9 +52,14 @@ const tools = readJson("tools.json");
 const cases = readJson("cases.json");
 const projects = readJson("projects.json");
 const resources = readJson("resources.json");
+const catalogue = readJson("catalogue.json");
 
 const today = new Date().toISOString().slice(0, 10);
 const settingsLast = lastmod(settings.updatedAt || settings.seoSyncedAt, today);
+const catalogueLast = lastmod(
+  catalogue.updatedAt || catalogue.uploadedAt,
+  settingsLast,
+);
 
 const staticPages = [
   ["/", "1.0", "daily"],
@@ -67,18 +72,24 @@ const staticPages = [
   ["/case-studies", "0.8", "weekly"],
   ["/portfolio", "0.8", "weekly"],
   ["/resources", "0.8", "weekly"],
+  ["/catalogue", "0.75", "monthly", catalogueLast],
   ["/why-displayavenue", "0.7", "monthly"],
   ["/contact", "0.8", "monthly"],
   ["/privacy", "0.3", "yearly"],
   ["/terms", "0.3", "yearly"],
 ];
 
-const urls = staticPages.map(([path, priority, changefreq]) => ({
-  path,
-  priority,
-  changefreq,
-  lastmod: settingsLast,
-}));
+const urls = staticPages
+  .filter(([path]) => {
+    if (path === "/catalogue" && catalogue.enabled === false) return false;
+    return true;
+  })
+  .map(([path, priority, changefreq, pageLast]) => ({
+    path,
+    priority,
+    changefreq,
+    lastmod: pageLast || settingsLast,
+  }));
 
 const maps = [
   [items(services), "/services/", "0.7", "weekly"],

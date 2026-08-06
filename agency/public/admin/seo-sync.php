@@ -49,9 +49,11 @@ function da_collect_urls(string $contentDir): array {
   $cases = da_read_json_file($contentDir . '/cases.json');
   $projects = da_read_json_file($contentDir . '/projects.json');
   $resources = da_read_json_file($contentDir . '/resources.json');
+  $catalogue = da_read_json_file($contentDir . '/catalogue.json');
 
   $today = gmdate('Y-m-d');
   $settingsLast = da_lastmod((string)($settings['updatedAt'] ?? $settings['seoSyncedAt'] ?? $today));
+  $catalogueLast = da_lastmod((string)($catalogue['updatedAt'] ?? $catalogue['uploadedAt'] ?? $settingsLast));
 
   $static = [
     ['path' => '/', 'priority' => '1.0', 'changefreq' => 'daily', 'lastmod' => $settingsLast],
@@ -64,11 +66,17 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/case-studies', 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => $settingsLast],
     ['path' => '/portfolio', 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => $settingsLast],
     ['path' => '/resources', 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => $settingsLast],
+    ['path' => '/catalogue', 'priority' => '0.75', 'changefreq' => 'monthly', 'lastmod' => $catalogueLast],
     ['path' => '/why-displayavenue', 'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => $settingsLast],
     ['path' => '/contact', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => $settingsLast],
     ['path' => '/privacy', 'priority' => '0.3', 'changefreq' => 'yearly', 'lastmod' => $settingsLast],
     ['path' => '/terms', 'priority' => '0.3', 'changefreq' => 'yearly', 'lastmod' => $settingsLast],
   ];
+
+  // Hide catalogue from sitemap when disabled in CMS
+  if (array_key_exists('enabled', $catalogue) && $catalogue['enabled'] === false) {
+    $static = array_values(array_filter($static, static fn($u) => ($u['path'] ?? '') !== '/catalogue'));
+  }
 
   $urls = $static;
 

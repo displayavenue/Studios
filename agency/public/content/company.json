@@ -100,6 +100,11 @@
       "mega": false
     },
     {
+      "label": "Catalogue",
+      "href": "/catalogue",
+      "mega": false
+    },
+    {
       "label": "Why DisplayAvenue",
       "href": "/why-displayavenue",
       "mega": false

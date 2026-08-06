@@ -32,6 +32,7 @@ export function Footer() {
       links: [
         { label: "Blog", href: "/resources/blog" },
         { label: "Case Studies", href: "/case-studies" },
+        { label: "Catalogue", href: "/catalogue" },
         { label: "Free Tools", href: "/free-tools" },
         { label: "Packages", href: "/packages" },
         { label: "Portfolio", href: "/portfolio" },
@@ -41,6 +42,7 @@ export function Footer() {
       title: "Company",
       links: [
         { label: "Why DisplayAvenue", href: "/why-displayavenue" },
+        { label: "Catalogue", href: "/catalogue" },
         { label: "Contact", href: "/contact" },
         { label: "Get Free Proposal", href: "/contact" },
         { label: "Client Login", href: company.clientLogin },

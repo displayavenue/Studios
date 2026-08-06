@@ -45,10 +45,13 @@ return [
     'content' => 'Testimonials & Extras',
     'tracking' => 'Tracking & Pixels',
     'chatbot' => 'Website Chatbot',
+    'catalogue' => 'Catalogue (PDF)',
     'settings' => 'Settings',
   ],
   // Optional: set an OpenAI key for smarter chatbot replies.
   // Leave empty to use built-in answers from website + CMS chatbot content.
   'openai_api_key' => '',
   'openai_model' => 'gpt-4o-mini',
+  'uploads_dir' => dirname(__DIR__) . '/uploads',
+  'catalogue_max_bytes' => 30 * 1024 * 1024, // 30 MB
 ];

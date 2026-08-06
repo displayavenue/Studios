@@ -3,7 +3,9 @@
   "siteUrl": "https://displayavenue.com",
   "demoBasePath": "",
   "notes": "Agency CMS - live at domain root.",
-  "seoSyncedAt": "2026-08-06T13:04:29.349Z",
-  "sitemapUrlCount": 193,
-  "updatedAt": "2026-08-06T13:04:29.349Z"
+  "seoSyncedAt": "2026-08-06T13:58:58.331Z",
+  "sitemapUrlCount": 194,
+  "updatedAt": "2026-08-06T13:58:58.331Z",
+  "sitemapUrl": "https://displayavenue.com/sitemap.xml",
+  "autoSitemap": true
 }

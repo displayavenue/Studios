@@ -70,5 +70,6 @@ export const navItems: NavItem[] = [
   { label: "Case Studies", href: "/case-studies", mega: false },
   { label: "Portfolio", href: "/portfolio", mega: false },
   { label: "Resources", href: "/resources", mega: false },
+  { label: "Catalogue", href: "/catalogue", mega: false },
   { label: "Why DisplayAvenue", href: "/why-displayavenue", mega: false },
 ];

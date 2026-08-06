@@ -223,6 +223,7 @@ function renderEditor() {
     content: renderContent,
     tracking: renderTracking,
     chatbot: renderChatbot,
+    catalogue: renderCatalogue,
     settings: renderSettings,
   };
   wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
@@ -234,6 +235,14 @@ function renderEditor() {
       handleAction(btn.dataset.action, btn.dataset.index);
     };
   });
+  if (key === "catalogue") {
+    const input = wrap.querySelector("#catalogue-pdf");
+    if (input) {
+      input.onchange = () => {
+        void uploadCataloguePdf(input);
+      };
+    }
+  }
 }
 
 function renderLeads(d) {
@@ -1187,6 +1196,112 @@ function renderChatbot(d) {
   </div>`;
 }
 
+function formatBytes(n) {
+  const bytes = Number(n) || 0;
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1048576).toFixed(1)} MB`;
+}
+
+function renderCatalogue(d) {
+  const hasPdf = Boolean(d.pdfUrl);
+  const uploaded = d.uploadedAt ? new Date(d.uploadedAt).toLocaleString() : "—";
+  return `
+  ${card(
+    "Catalogue PDF",
+    `
+    <p class="hint field full">
+      Upload the DisplayAvenue company catalogue (PDF). It appears on the public
+      <a href="/catalogue" target="_blank" rel="noreferrer"><code>/catalogue</code></a> page for visitors to view and download.
+      Max size 30&nbsp;MB. Replacing the file removes the previous PDF.
+    </p>
+    <div class="field"><label>Show on website</label>
+      <input type="checkbox" data-path="enabled" ${d.enabled !== false ? "checked" : ""} />
+    </div>
+    <div class="list-item" style="margin-top:1rem">
+      <div class="list-item-head">
+        <strong>${hasPdf ? "Current PDF" : "No PDF uploaded yet"}</strong>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button type="button" class="btn btn-gold" data-action="pick-catalogue">${hasPdf ? "Replace PDF" : "Upload PDF"}</button>
+          ${hasPdf ? `<button type="button" class="btn btn-ghost" data-action="remove-catalogue">Remove</button>` : ""}
+        </div>
+      </div>
+      <input type="file" id="catalogue-pdf" accept="application/pdf,.pdf" hidden />
+      ${
+        hasPdf
+          ? `<p style="margin:.5rem 0 0;line-height:1.6;font-size:.92rem">
+              File: <strong>${escapeHtml(d.fileName || "catalogue.pdf")}</strong><br />
+              Size: ${escapeHtml(formatBytes(d.fileSize))}<br />
+              Uploaded: ${escapeHtml(uploaded)}<br />
+              Public URL: <a href="${escapeAttr(d.pdfUrl)}" target="_blank" rel="noreferrer">${escapeHtml(d.pdfUrl)}</a>
+            </p>
+            <p style="margin:.75rem 0 0">
+              <a class="btn btn-ghost" href="${escapeAttr(d.pdfUrl)}" target="_blank" rel="noreferrer">Open PDF</a>
+              <a class="btn btn-ghost" href="/catalogue" target="_blank" rel="noreferrer">View catalogue page</a>
+            </p>`
+          : `<p class="muted" style="margin:.5rem 0 0">Choose a PDF from your computer to publish the catalogue.</p>`
+      }
+    </div>
+  `,
+  )}
+  ${card(
+    "Page copy",
+    `
+    ${field("Page title", "title", d.title || "DisplayAvenue Catalogue")}
+    ${field("Eyebrow", "eyebrow", d.eyebrow || "Company Catalogue")}
+    ${field("Headline", "headline", d.headline || "")}
+    ${field("Summary", "summary", d.summary || "", "textarea")}
+    ${field("Download button label", "ctaLabel", d.ctaLabel || "Download PDF")}
+    ${field("Secondary CTA label", "secondaryCtaLabel", d.secondaryCtaLabel || "Request a proposal")}
+    ${field("Secondary CTA link", "secondaryCtaHref", d.secondaryCtaHref || "/contact")}
+    <p class="hint" style="margin-top:.75rem">After editing copy, click <strong>Save changes</strong>. PDF upload/remove saves automatically.</p>
+  `,
+  )}`;
+}
+
+async function uploadCataloguePdf(input) {
+  const file = input?.files?.[0];
+  if (!file) return;
+  if (!/\.pdf$/i.test(file.name) && file.type !== "application/pdf") {
+    toast("Please choose a PDF file", "err");
+    input.value = "";
+    return;
+  }
+  const fd = new FormData();
+  fd.append("file", file);
+  try {
+    toast("Uploading catalogue PDF…");
+    const res = await fetch(`${API}?action=upload-catalogue`, {
+      method: "POST",
+      credentials: "include",
+      body: fd,
+    });
+    const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+    if (!res.ok || json.ok === false) throw new Error(json.error || "Upload failed");
+    state.data = json.data || state.data;
+    setDirty(false);
+    renderEditor();
+    toast(json.message || "Catalogue PDF uploaded");
+  } catch (e) {
+    toast(e.message || "Upload failed", "err");
+  } finally {
+    if (input) input.value = "";
+  }
+}
+
+async function removeCataloguePdf() {
+  if (!confirm("Remove the catalogue PDF from the website?")) return;
+  try {
+    const res = await api("remove-catalogue", {});
+    state.data = res.data || state.data;
+    setDirty(false);
+    renderEditor();
+    toast("Catalogue PDF removed");
+  } catch (e) {
+    toast(e.message || "Could not remove PDF", "err");
+  }
+}
+
 function renderSettings(d) {
   const cleared = d.cacheClearedAt
     ? new Date(d.cacheClearedAt).toLocaleString()
@@ -1248,6 +1363,15 @@ function renderSettings(d) {
 function handleAction(action, index) {
   const d = state.data;
   const i = Number(index);
+
+  if (action === "pick-catalogue") {
+    document.getElementById("catalogue-pdf")?.click();
+    return;
+  }
+  if (action === "remove-catalogue") {
+    void removeCataloguePdf();
+    return;
+  }
 
   const ensure = (key, fallback = []) => {
     if (!Array.isArray(d[key])) d[key] = fallback;

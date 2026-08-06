@@ -202,8 +202,8 @@ if ($raw) {
   if (is_array($decoded)) $body = $decoded;
 }
 
-$action = (string)($_GET['action'] ?? ($body['action'] ?? ''));
-$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'clear-cache', 'lead-update', 'lead-delete'], true)
+$action = (string)($_GET['action'] ?? ($body['action'] ?? ($_POST['action'] ?? '')));
+$mutating = in_array($action, ['login', 'logout', 'save', 'sync-seo', 'clear-cache', 'upload-catalogue', 'remove-catalogue', 'lead-update', 'lead-delete'], true)
   || strtoupper((string)($_SERVER['REQUEST_METHOD'] ?? '')) === 'POST';
 
 if ($mutating) {
@@ -259,6 +259,25 @@ switch ($action) {
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
     $collection = (string)($_GET['collection'] ?? ($body['collection'] ?? ''));
     $path = contentPath($config, $collection);
+    if ($collection === 'catalogue' && !is_file($path)) {
+      $defaults = [
+        'enabled' => true,
+        'title' => 'DisplayAvenue Catalogue',
+        'eyebrow' => 'Company Catalogue',
+        'headline' => 'Explore the DisplayAvenue catalogue',
+        'summary' => 'Download our latest catalogue for services and capabilities.',
+        'ctaLabel' => 'Download PDF',
+        'secondaryCtaLabel' => 'Request a proposal',
+        'secondaryCtaHref' => '/contact',
+        'pdfUrl' => '',
+        'fileName' => '',
+        'fileSize' => 0,
+        'uploadedAt' => null,
+        'updatedAt' => gmdate('c'),
+      ];
+      writeJson($path, $defaults);
+      respond(200, ['ok' => true, 'collection' => $collection, 'data' => $defaults]);
+    }
     respond(200, ['ok' => true, 'collection' => $collection, 'data' => readJson($path)]);
 
   case 'save':
@@ -266,10 +285,134 @@ switch ($action) {
     $collection = (string)($body['collection'] ?? '');
     if (!array_key_exists('data', $body)) respond(400, ['ok' => false, 'error' => 'Missing data']);
     $path = contentPath($config, $collection);
+    // Preserve PDF metadata if save payload omitted it
+    if ($collection === 'catalogue' && is_file($path)) {
+      $existing = json_decode((string)file_get_contents($path), true);
+      if (is_array($existing) && is_array($body['data'])) {
+        foreach (['pdfUrl', 'fileName', 'fileSize', 'uploadedAt'] as $keep) {
+          if (!array_key_exists($keep, $body['data']) || $body['data'][$keep] === '' || $body['data'][$keep] === null) {
+            if (!empty($existing[$keep])) $body['data'][$keep] = $existing[$keep];
+          }
+        }
+      }
+    }
+    if (is_array($body['data'])) {
+      $body['data']['updatedAt'] = gmdate('c');
+    }
     writeJson($path, $body['data']);
     require_once __DIR__ . '/seo-sync.php';
     $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
     respond(200, ['ok' => true, 'collection' => $collection, 'saved' => true, 'seo' => $seo]);
+
+  case 'upload-catalogue':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    if (empty($_FILES['file']) || !is_array($_FILES['file'])) {
+      respond(400, ['ok' => false, 'error' => 'Choose a PDF file to upload']);
+    }
+    $file = $_FILES['file'];
+    if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+      respond(400, ['ok' => false, 'error' => 'Upload failed (error ' . (int)($file['error'] ?? 0) . ')']);
+    }
+    $maxBytes = (int)($config['catalogue_max_bytes'] ?? (30 * 1024 * 1024));
+    $size = (int)($file['size'] ?? 0);
+    if ($size <= 0 || $size > $maxBytes) {
+      respond(400, ['ok' => false, 'error' => 'PDF must be under ' . (int)round($maxBytes / 1048576) . ' MB']);
+    }
+    $original = (string)($file['name'] ?? 'catalogue.pdf');
+    $ext = strtolower(pathinfo($original, PATHINFO_EXTENSION));
+    if ($ext !== 'pdf') {
+      respond(400, ['ok' => false, 'error' => 'Only PDF files are allowed']);
+    }
+    $tmp = (string)($file['tmp_name'] ?? '');
+    if ($tmp === '' || !is_uploaded_file($tmp)) {
+      respond(400, ['ok' => false, 'error' => 'Invalid upload']);
+    }
+    $fh = fopen($tmp, 'rb');
+    $magic = $fh ? (string)fread($fh, 5) : '';
+    if ($fh) fclose($fh);
+    if (strpos($magic, '%PDF') !== 0) {
+      respond(400, ['ok' => false, 'error' => 'File does not look like a valid PDF']);
+    }
+    $finfoMime = '';
+    if (function_exists('finfo_open')) {
+      $finfo = finfo_open(FILEINFO_MIME_TYPE);
+      if ($finfo) {
+        $finfoMime = (string)finfo_file($finfo, $tmp);
+        finfo_close($finfo);
+      }
+    }
+    $allowedMimes = ['application/pdf', 'application/x-pdf', 'application/octet-stream'];
+    if ($finfoMime !== '' && !in_array($finfoMime, $allowedMimes, true)) {
+      respond(400, ['ok' => false, 'error' => 'Only PDF uploads are accepted']);
+    }
+
+    $uploadsRoot = rtrim((string)($config['uploads_dir'] ?? (dirname(__DIR__) . '/uploads')), '/\\');
+    $destDir = $uploadsRoot . '/catalogue';
+    if (!is_dir($destDir) && !mkdir($destDir, 0755, true)) {
+      respond(500, ['ok' => false, 'error' => 'Could not create uploads folder']);
+    }
+    $safeBase = preg_replace('/[^a-zA-Z0-9._-]+/', '-', pathinfo($original, PATHINFO_FILENAME)) ?: 'displayavenue-catalogue';
+    $safeBase = trim($safeBase, '-') ?: 'displayavenue-catalogue';
+    $storedName = $safeBase . '-' . gmdate('YmdHis') . '.pdf';
+    $destPath = $destDir . '/' . $storedName;
+    if (!move_uploaded_file($tmp, $destPath)) {
+      respond(500, ['ok' => false, 'error' => 'Could not save the PDF on the server']);
+    }
+    @chmod($destPath, 0644);
+
+    // Remove older catalogue PDFs to avoid filling disk
+    foreach (glob($destDir . '/*.pdf') ?: [] as $old) {
+      if (realpath($old) !== realpath($destPath)) @unlink($old);
+    }
+
+    $publicUrl = '/uploads/catalogue/' . rawurlencode($storedName);
+    $cataloguePath = contentPath($config, 'catalogue');
+    $data = is_file($cataloguePath) ? readJson($cataloguePath) : [];
+    if (!is_array($data)) $data = [];
+    $data['enabled'] = array_key_exists('enabled', $data) ? (bool)$data['enabled'] : true;
+    $data['title'] = $data['title'] ?? 'DisplayAvenue Catalogue';
+    $data['eyebrow'] = $data['eyebrow'] ?? 'Company Catalogue';
+    $data['headline'] = $data['headline'] ?? 'Explore the DisplayAvenue catalogue';
+    $data['summary'] = $data['summary'] ?? 'Download our latest catalogue.';
+    $data['ctaLabel'] = $data['ctaLabel'] ?? 'Download PDF';
+    $data['secondaryCtaLabel'] = $data['secondaryCtaLabel'] ?? 'Request a proposal';
+    $data['secondaryCtaHref'] = $data['secondaryCtaHref'] ?? '/contact';
+    $data['pdfUrl'] = $publicUrl;
+    $data['fileName'] = $original;
+    $data['fileSize'] = $size;
+    $data['uploadedAt'] = gmdate('c');
+    $data['updatedAt'] = gmdate('c');
+    writeJson($cataloguePath, $data);
+
+    require_once __DIR__ . '/seo-sync.php';
+    $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']), false);
+
+    respond(200, [
+      'ok' => true,
+      'uploaded' => true,
+      'data' => $data,
+      'seo' => $seo,
+      'message' => 'Catalogue PDF uploaded successfully',
+    ]);
+
+  case 'remove-catalogue':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $cataloguePath = contentPath($config, 'catalogue');
+    $data = is_file($cataloguePath) ? readJson($cataloguePath) : [];
+    if (!is_array($data)) $data = [];
+    $pdfUrl = (string)($data['pdfUrl'] ?? '');
+    if ($pdfUrl !== '' && str_starts_with($pdfUrl, '/uploads/catalogue/')) {
+      $uploadsRoot = rtrim((string)($config['uploads_dir'] ?? (dirname(__DIR__) . '/uploads')), '/\\');
+      $filePath = $uploadsRoot . '/catalogue/' . basename(rawurldecode($pdfUrl));
+      if (is_file($filePath)) @unlink($filePath);
+    }
+    $data['pdfUrl'] = '';
+    $data['fileName'] = '';
+    $data['fileSize'] = 0;
+    $data['uploadedAt'] = null;
+    $data['updatedAt'] = gmdate('c');
+    writeJson($cataloguePath, $data);
+    respond(200, ['ok' => true, 'removed' => true, 'data' => $data]);
 
   case 'sync-seo':
     if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);

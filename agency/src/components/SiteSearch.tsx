@@ -97,6 +97,13 @@ const STATIC_PAGES: SearchHit[] = [
     href: "/resources",
   },
   {
+    id: "page-catalogue",
+    title: "Catalogue",
+    category: "Page",
+    summary: "Download the DisplayAvenue company catalogue PDF",
+    href: "/catalogue",
+  },
+  {
     id: "page-contact",
     title: "Contact / Free Proposal",
     category: "Page",
