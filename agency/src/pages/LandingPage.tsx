@@ -360,7 +360,7 @@ export default function LandingPage() {
             </a>
           ) : null}
           {showWa ? (
-            <a className="lp-wa" href={whatsappHref} target="_blank" rel="noreferrer">
+            <a className="lp-wa" href={whatsappHref} target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>
           ) : null}

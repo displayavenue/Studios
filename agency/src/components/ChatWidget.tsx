@@ -218,7 +218,7 @@ export function ChatWidget() {
                 {handoff.label || "Talk to a human"}
               </Link>
               {handoff.whatsapp && (
-                <a href={handoff.whatsapp} target="_blank" rel="noreferrer">
+                <a href={handoff.whatsapp} target="_blank" rel="noopener noreferrer">
                   WhatsApp
                 </a>
               )}

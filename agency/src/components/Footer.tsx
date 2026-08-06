@@ -123,7 +123,13 @@ export function Footer() {
                 {col.links.map((link) => (
                   <li key={link.label}>
                     {link.href.startsWith("http") ? (
-                      <a href={link.href}>{link.label}</a>
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.label}
+                      </a>
                     ) : (
                       <Link to={link.href}>{link.label}</Link>
                     )}
@@ -166,7 +172,7 @@ export function Footer() {
               className="btn btn-primary btn-sm"
               href={company.whatsappHref}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               style={{ background: "#25d366", marginTop: "0.75rem" }}
             >
               Chat on WhatsApp

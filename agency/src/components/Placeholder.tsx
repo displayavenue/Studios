@@ -10,7 +10,7 @@ export function WhatsAppFloat() {
       className="wa-float"
       href={company.whatsappHref}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
     >
       <Icon name="chat" size={24} color="#fff" />

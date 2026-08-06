@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import "../styles/pages.css";
 
 export function NotFoundPage() {
+  const location = useLocation();
+  const path = location.pathname || "/404";
   return (
     <div className="page-shell">
       <SEO
         title="Page not found | DisplayAvenue"
         description="The page you requested does not exist on DisplayAvenue."
-        path="/404"
+        path={path}
         noindex
       />
       <div className="container">

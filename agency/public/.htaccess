@@ -71,7 +71,12 @@ Options -Indexes
   RewriteRule ^sitemap\.xsl$ - [L]
 
   RewriteRule ^index\.html$ - [L]
+  RewriteRule ^spa-router\.php$ - [L]
+
+  # Known routes → 200; unknown → HTTP 404 (spa-router.php). Avoids soft-404 SEO errors.
+  # Skip static asset extensions so missing files get a real file 404, not the SPA shell.
+  RewriteCond %{REQUEST_URI} !\.(?:js|css|map|png|jpe?g|gif|webp|ico|svg|woff2?|ttf|otf|json|xml|txt|pdf|php|webmanifest)$ [NC]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  RewriteRule . /spa-router.php [L]
 </IfModule>
