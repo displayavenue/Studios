@@ -63,12 +63,17 @@ if [ -f /tmp/da-demo-content.tgz ]; then
   "
 fi
 
-# Always prefer this build's key CMS files (nav, catalogue, chatbot, homepage)
-for f in company.json catalogue.json chatbot.json home.json settings.json; do
+# Always prefer this build's key CMS files (nav, chatbot, homepage).
+# Do NOT overwrite catalogue.json here — live PDF upload metadata must survive deploys.
+for f in company.json chatbot.json home.json settings.json; do
   if [ -f "public/content/$f" ]; then
     cp -a "public/content/$f" "/tmp/da-agency-root/content/$f"
   fi
 done
+# Ensure catalogue defaults exist if the server never had the file
+if [ ! -f /tmp/da-agency-root/content/catalogue.json ] && [ -f public/content/catalogue.json ]; then
+  cp -a public/content/catalogue.json /tmp/da-agency-root/content/catalogue.json
+fi
 
 echo "Removing WordPress leftovers from public_html (backup already saved)…"
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
@@ -110,9 +115,17 @@ sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
   /tmp/da-agency-root/content/company.json \
   /tmp/da-agency-root/content/settings.json \
   /tmp/da-agency-root/content/services.json \
-  /tmp/da-agency-root/content/catalogue.json \
   /tmp/da-agency-root/content/chatbot.json \
   "$HOST:$DOC/content/"
+
+# Seed catalogue.json only if missing on the server (never wipe live PDF metadata)
+sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
+  "if [ ! -f \$HOME/$DOC/content/catalogue.json ]; then echo MISSING_CATALOGUE; else echo HAS_CATALOGUE; fi" | tee /tmp/da-catalogue-check.txt
+if grep -q MISSING_CATALOGUE /tmp/da-catalogue-check.txt 2>/dev/null; then
+  sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" \
+    /tmp/da-agency-root/content/catalogue.json \
+    "$HOST:$DOC/content/"
+fi
 
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
   "chmod 755 \$HOME/$DOC \$HOME/$DOC/content \$HOME/$DOC/admin \$HOME/$DOC/uploads \$HOME/$DOC/uploads/catalogue \$HOME/$DOC/admin/data; \

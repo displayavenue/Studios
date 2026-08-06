@@ -849,3 +849,158 @@
     border-bottom: 1px solid var(--border-soft);
   }
 }
+
+/* Catalogue page */
+.catalogue-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.5rem;
+  align-items: start;
+}
+
+.catalogue-side .section-title {
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  margin-top: 0.65rem;
+}
+
+.catalogue-summary {
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.catalogue-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  margin-top: 1.15rem;
+}
+
+.catalogue-filemeta {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.catalogue-highlights {
+  margin-top: 1.25rem;
+}
+
+.catalogue-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.catalogue-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-soft, #f5f8ff);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+}
+
+.catalogue-toolbar strong {
+  display: block;
+  color: var(--navy);
+  font-size: 0.92rem;
+}
+
+.catalogue-toolbar span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.catalogue-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.catalogue-viewer-wrap {
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eef2f7;
+  min-height: min(78vh, 820px);
+}
+
+.catalogue-viewer {
+  display: block;
+  width: 100%;
+  height: min(78vh, 820px);
+  border: 0;
+  background: #fff;
+}
+
+.catalogue-hint {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.catalogue-empty {
+  display: grid;
+  gap: 0.65rem;
+  justify-items: start;
+  padding: 2rem 1.5rem;
+  border: 1px dashed var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-soft, #f5f8ff);
+  min-height: 320px;
+  align-content: center;
+}
+
+.catalogue-empty h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1.15rem;
+}
+
+.catalogue-empty p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 36rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .catalogue-layout {
+    grid-template-columns: 1fr;
+    padding: 1.15rem;
+  }
+
+  .catalogue-viewer-wrap,
+  .catalogue-viewer {
+    min-height: 65vh;
+    height: 65vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .catalogue-toolbar {
+    align-items: flex-start;
+  }
+
+  .catalogue-viewer-wrap {
+    /* Prefer download on small screens — keep a usable preview height */
+    min-height: 55vh;
+  }
+
+  .catalogue-viewer {
+    height: 55vh;
+  }
+}

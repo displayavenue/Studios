@@ -1,6 +1,7 @@
 .wa-float {
   position: fixed;
-  right: 1.25rem;
+  left: 1.25rem;
+  right: auto;
   bottom: 1.25rem;
   width: 56px;
   height: 56px;
