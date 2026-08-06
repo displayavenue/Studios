@@ -12,7 +12,18 @@ import { AiPlatform } from "./pages/AiPlatform";
 import { Solutions } from "./pages/Solutions";
 import { Services } from "./pages/Services";
 import { Contact } from "./pages/Contact";
-import { DetailStub } from "./pages/DetailStub";
+import { LegalPage } from "./pages/LegalPage";
+import {
+  ServiceDetail,
+  IndustryDetail,
+  PackageDetail,
+  SolutionDetail,
+  AiSuiteDetail,
+  ToolCategoryDetail,
+  CaseStudyDetail,
+  ProjectDetail,
+  ResourceDetail,
+} from "./pages/CatalogDetails";
 
 export default function App() {
   const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
@@ -22,27 +33,27 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="industries" element={<Industries />} />
-          <Route path="industries/:slug" element={<DetailStub kind="Industry" />} />
+          <Route path="industries/:slug" element={<IndustryDetail />} />
           <Route path="packages" element={<Packages />} />
-          <Route path="packages/:slug" element={<DetailStub kind="Package" />} />
+          <Route path="packages/:slug" element={<PackageDetail />} />
           <Route path="free-tools" element={<FreeTools />} />
-          <Route path="free-tools/:slug" element={<DetailStub kind="Tool category" />} />
+          <Route path="free-tools/:slug" element={<ToolCategoryDetail />} />
           <Route path="case-studies" element={<CaseStudies />} />
-          <Route path="case-studies/:slug" element={<DetailStub kind="Case study" />} />
+          <Route path="case-studies/:slug" element={<CaseStudyDetail />} />
           <Route path="portfolio" element={<Portfolio />} />
-          <Route path="portfolio/:slug" element={<DetailStub kind="Project" />} />
+          <Route path="portfolio/:slug" element={<ProjectDetail />} />
           <Route path="resources" element={<Resources />} />
-          <Route path="resources/:slug" element={<DetailStub kind="Resource" />} />
+          <Route path="resources/:slug" element={<ResourceDetail />} />
           <Route path="why-displayavenue" element={<WhyDisplayAvenue />} />
           <Route path="ai-platform" element={<AiPlatform />} />
-          <Route path="ai-platform/:slug" element={<DetailStub kind="AI suite" />} />
+          <Route path="ai-platform/:slug" element={<AiSuiteDetail />} />
           <Route path="solutions" element={<Solutions />} />
-          <Route path="solutions/:slug" element={<DetailStub kind="Solution" />} />
+          <Route path="solutions/:slug" element={<SolutionDetail />} />
           <Route path="services" element={<Services />} />
-          <Route path="services/:slug" element={<DetailStub kind="Service" />} />
+          <Route path="services/:slug" element={<ServiceDetail />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="privacy" element={<DetailStub kind="Privacy Policy" />} />
-          <Route path="terms" element={<DetailStub kind="Terms" />} />
+          <Route path="privacy" element={<LegalPage type="privacy" />} />
+          <Route path="terms" element={<LegalPage type="terms" />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
