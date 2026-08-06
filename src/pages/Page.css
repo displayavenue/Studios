@@ -38,7 +38,7 @@
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
 }
 
@@ -561,6 +561,14 @@ th {
   padding-left: 1.25rem;
   display: grid;
   gap: 0.35rem;
+}
+
+.industry-card__count {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
 }
 
 .portfolio-note {

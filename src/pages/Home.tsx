@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { SEO, FAQPageSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
+import { ClientLogoWall } from "../components/ClientLogoWall";
 import { FAQAccordion } from "../components/FAQAccordion";
+import { GoogleReviews } from "../components/GoogleReviews";
+import { IndustryShowcase } from "../components/IndustryShowcase";
+import { TrustStats } from "../components/TrustStats";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Home.css";
@@ -9,7 +13,7 @@ import "./Home.css";
 export function Home() {
   const ref = useReveal<HTMLDivElement>();
   const {
-    company: { trustBadges, brandLogos, brandDisclaimer },
+    company: { trustBadges },
     home,
     homeServices,
     services,
@@ -71,19 +75,13 @@ export function Home() {
         </div>
       </section>
 
-      <section className="brands-strip section">
+      <section className="section section--tight">
         <div className="container">
-          <p className="brands-strip__label reveal">{home.brands.label}</p>
-          <div className="brands-strip__row reveal">
-            {brandLogos.map((brand) => (
-              <span key={brand}>{brand}</span>
-            ))}
-          </div>
-          {brandDisclaimer && (
-            <p className="brands-strip__disclaimer reveal">{brandDisclaimer}</p>
-          )}
+          <TrustStats />
         </div>
       </section>
+
+      <ClientLogoWall />
 
       <section className="section section--light">
         <div className="container">
@@ -216,6 +214,8 @@ export function Home() {
         </div>
       </section>
 
+      <IndustryShowcase />
+
       <section className="section">
         <div className="container">
           <div className="section-head section-head--center reveal">
@@ -282,6 +282,8 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <GoogleReviews />
 
       <section className="section section--light">
         <div className="container faq-home">

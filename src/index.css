@@ -6,6 +6,7 @@
   --text: #222222;
   --text-muted: #666666;
   --bg-light: #f8f8f8;
+  --cream: #f5f2eb;
   --border: #e5e5e5;
   --shadow: 0 8px 30px rgba(11, 11, 11, 0.06);
   --shadow-hover: 0 16px 40px rgba(11, 11, 11, 0.1);
@@ -96,6 +97,10 @@ p {
 
 .section {
   padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.section--tight {
+  padding: 1.5rem 0;
 }
 
 .section--light {

@@ -45,6 +45,7 @@ export function PortfolioDetail() {
           </nav>
           <p className="eyebrow">
             {item.category} · {item.location}
+            {item.client ? ` · ${item.client}` : ""}
           </p>
           <h1>{item.title}</h1>
           <p>{item.description}</p>

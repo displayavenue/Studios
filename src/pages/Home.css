@@ -236,6 +236,12 @@
   font-size: 1.35rem;
 }
 
+.masonry__client {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
 .masonry__overlay em {
   font-style: normal;
   font-size: 0.85rem;

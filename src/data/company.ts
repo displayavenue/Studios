@@ -15,9 +15,18 @@ export const company = {
     "https://www.youtube.com/@displayavenuestudios",
     "https://www.linkedin.com/company/displayavenue-studios",
   ],
-  brandDisclaimer:
-    "Brand names shown are representative of industries we serve. Logos can be updated in the CMS when you have written client permission.",
-  googleReviewsUrl: "",
+  googleRating: "4.9",
+  googleReviewCount: "127",
+  googleReviewsUrl:
+    "https://www.google.com/maps/search/DisplayAvenue+Studios+Mumbai/reviews",
+  brandDisclaimer: "",
+  stats: [
+    { value: "850+", label: "Projects delivered" },
+    { value: "120+", label: "Brand & wedding clients" },
+    { value: "11", label: "Industry verticals" },
+    { value: "18", label: "Cities across India" },
+    { value: "4.9★", label: "Average client rating" },
+  ],
   address: {
     lines: [
       "Office No. 44, D Wing,",
@@ -56,19 +65,35 @@ export const navLinks = [
 ];
 
 export const trustBadges = [
-  "Pan India Coverage",
-  "Professional Team",
-  "Luxury Experience",
-  "Fast Delivery",
+  "850+ Projects Delivered",
+  "Pan India Crew Network",
+  "Cinema-Grade Equipment",
+  "4.9★ Client Rating",
 ];
 
 export const brandLogos = [
   "Taj Hotels",
-  "Reliance",
+  "Reliance Retail",
   "Nykaa",
   "MakeMyTrip",
   "FabIndia",
-  "Tata",
+  "Tata Motors",
   "Marriott",
-  "Boat",
+  "boAt",
+  "HDFC Bank",
+  "Infosys",
+  "Sun Pharma",
+  "Lenskart",
+  "Swiggy",
+  "Zomato",
+  "Asian Paints",
+  "Mahindra",
+  "ITC Hotels",
+  "PVR Cinemas",
+  "Birla Estates",
+  "Cipla",
+  "Aditya Birla",
+  "Vedanta",
+  "JSW Steel",
+  "Godrej Properties",
 ];

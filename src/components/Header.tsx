@@ -13,11 +13,10 @@ const serviceCategories = [
   "Post",
 ] as const;
 
-type OpenMenu = "services" | "packages" | "explore" | null;
+type OpenMenu = "services" | "packages" | "more" | null;
 
 export function Header() {
-  const { company, services, packageGroups, locations, homeServices } =
-    useCms();
+  const { company, services, packageGroups, homeServices } = useCms();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -26,7 +25,7 @@ export function Header() {
   const navRef = useRef<HTMLElement>(null);
   const servicesId = useId();
   const packagesId = useId();
-  const exploreId = useId();
+  const moreId = useId();
 
   const featuredServices = homeServices
     .map((slug) => services.find((s) => s.slug === slug))
@@ -203,57 +202,42 @@ export function Header() {
               Portfolio
             </NavLink>
 
+            <NavLink to="/industries" className="nav-link" onClick={() => setMenu(null)}>
+              Industries
+            </NavLink>
+
+            <NavLink to="/locations" className="nav-link" onClick={() => setMenu(null)}>
+              Locations
+            </NavLink>
+
             <div
-              className={`nav-dropdown ${menu === "explore" ? "is-open" : ""}`}
-              onMouseEnter={() => setMenu("explore")}
+              className={`nav-dropdown ${menu === "more" ? "is-open" : ""}`}
+              onMouseEnter={() => setMenu("more")}
               onMouseLeave={() => setMenu(null)}
             >
               <button
                 type="button"
-                className={`nav-link nav-link--btn ${["/locations", "/industries", "/blog", "/faqs", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
-                aria-expanded={menu === "explore"}
-                aria-controls={exploreId}
-                onClick={() => toggleMenu("explore")}
+                className={`nav-link nav-link--btn ${["/blog", "/faqs", "/pricing", "/pages"].some((p) => pathname.startsWith(p)) ? "active" : ""}`}
+                aria-expanded={menu === "more"}
+                aria-controls={moreId}
+                onClick={() => toggleMenu("more")}
               >
-                Explore
+                More
                 <span className="nav-caret" aria-hidden />
               </button>
-              <div id={exploreId} className="nav-panel nav-panel--wide" role="region" aria-label="Explore menu">
-                <div className="nav-col">
-                  <p className="nav-col__title">Discover</p>
-                  <Link to="/locations" onClick={close}>Locations</Link>
-                  <Link to="/industries" onClick={close}>Industries</Link>
-                  <Link to="/blog" onClick={close}>Blog</Link>
-                  <Link to="/faqs" onClick={close}>FAQs</Link>
-                  <Link to="/pages" onClick={close}>All pages</Link>
-                </div>
-                <div className="nav-col">
-                  <p className="nav-col__title">Top cities</p>
-                  {locations.slice(0, 6).map((loc) => (
-                    <Link key={loc.slug} to={`/locations/${loc.slug}`} onClick={close}>
-                      {loc.city}
-                    </Link>
-                  ))}
-                </div>
-                <div className="nav-panel__cta-card">
-                  <p className="eyebrow">Ready to book?</p>
-                  <strong>Plan your shoot in minutes</strong>
-                  <p>Tell us your date, city and style — we reply fast on WhatsApp.</p>
-                  <div className="nav-panel__cta-actions">
-                    <Link to="/book-now" className="btn btn--gold btn--sm" onClick={close}>
-                      Book Now
-                    </Link>
-                    <a
-                      href={company.whatsappHref}
-                      className="btn btn--ghost btn--sm"
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={close}
-                    >
-                      WhatsApp
-                    </a>
-                  </div>
-                </div>
+              <div id={moreId} className="nav-panel nav-panel--sm" role="region" aria-label="More pages">
+                <Link to="/pricing" onClick={close}>
+                  Pricing guide
+                </Link>
+                <Link to="/blog" onClick={close}>
+                  Blog
+                </Link>
+                <Link to="/faqs" onClick={close}>
+                  FAQs
+                </Link>
+                <Link to="/pages" onClick={close}>
+                  Site map
+                </Link>
               </div>
             </div>
 
@@ -263,9 +247,6 @@ export function Header() {
           </nav>
 
           <div className="site-header__actions">
-            <a className="header-phone" href={company.phoneHref} aria-label={`Call ${company.phone}`}>
-              {company.phone}
-            </a>
             <a
               className="header-wa"
               href={company.whatsappHref}
@@ -360,11 +341,14 @@ export function Header() {
                 <NavLink to="/portfolio" onClick={close}>
                   Portfolio
                 </NavLink>
+                <NavLink to="/industries" onClick={close}>
+                  Industries
+                </NavLink>
                 <NavLink to="/locations" onClick={close}>
                   Locations
                 </NavLink>
-                <NavLink to="/industries" onClick={close}>
-                  Industries
+                <NavLink to="/pricing" onClick={close}>
+                  Pricing
                 </NavLink>
                 <NavLink to="/blog" onClick={close}>
                   Blog
