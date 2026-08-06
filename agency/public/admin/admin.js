@@ -323,6 +323,8 @@ function renderHome(d) {
       `
       ${field("Services title", "servicesTitle", d.servicesTitle)}
       ${field("Services subtitle", "servicesSub", d.servicesSub)}
+      ${field("View all label", "servicesViewAllLabel", d.servicesViewAllLabel || "View All Services →")}
+      ${field("View all link", "servicesViewAllHref", d.servicesViewAllHref || "/services")}
       <div class="field full"><label>Service cards JSON (title, desc, icon, color, href)</label>
         <textarea data-path="services" data-json="true">${escapeHtml(JSON.stringify(d.services || [], null, 2))}</textarea>
       </div>
@@ -351,14 +353,25 @@ function renderHome(d) {
     `,
     )}
     ${card(
-      "Challenges & packages",
+      "Solutions by goal & business size",
       `
-      ${field("Challenges title", "challengesTitle", d.challengesTitle || "")}
-      <div class="field full"><label>Challenge links JSON (label, desc, href, icon)</label>
+      ${field("Goals title", "challengesTitle", d.challengesTitle || "Solutions by Goal")}
+      <div class="field full"><label>Goal links JSON (label, desc, href, icon)</label>
         <textarea data-path="challengeLinks" data-json="true">${escapeHtml(JSON.stringify(d.challengeLinks || [], null, 2))}</textarea>
       </div>
+      ${field("Business size title", "businessSizeTitle", d.businessSizeTitle || "Solutions by Business Size")}
+      <div class="field full"><label>Business size links JSON (label, desc, href, icon)</label>
+        <textarea data-path="businessSizeLinks" data-json="true">${escapeHtml(JSON.stringify(d.businessSizeLinks || [], null, 2))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Featured packages",
+      `
       ${field("Packages title", "packagesTitle", d.packagesTitle || "")}
       ${field("Packages subtitle", "packagesSub", d.packagesSub || "")}
+      ${field("Compare label", "packagesCompareLabel", d.packagesCompareLabel || "Compare All Packages →")}
+      ${field("Compare link", "packagesCompareHref", d.packagesCompareHref || "/packages")}
       <div class="field full"><label>Featured packages JSON (include href to /packages/...)</label>
         <textarea data-path="packages" data-json="true">${escapeHtml(JSON.stringify(d.packages || [], null, 2))}</textarea>
       </div>
@@ -368,7 +381,7 @@ function renderHome(d) {
     `,
     )}
     ${card(
-      "Tools, cases, testimonials, insights",
+      "Tools, cases, portfolio, testimonials, insights",
       `
       ${field("Tools title", "toolsTitle", d.toolsTitle || "")}
       ${field("Tools CTA label", "toolsCtaLabel", d.toolsCtaLabel || "")}
@@ -380,7 +393,16 @@ function renderHome(d) {
       <div class="field full"><label>Case study slugs (one per line)</label>
         <textarea data-path="caseSlugs" data-array="true">${escapeHtml((d.caseSlugs || []).join("\n"))}</textarea>
       </div>
+      ${field("Portfolio title", "portfolioTitle", d.portfolioTitle || "")}
+      ${field("Portfolio CTA label", "portfolioCtaLabel", d.portfolioCtaLabel || "")}
+      ${field("Portfolio CTA link", "portfolioCtaHref", d.portfolioCtaHref || "/portfolio")}
+      <div class="field full"><label>Portfolio project slugs (one per line)</label>
+        <textarea data-path="portfolioSlugs" data-array="true">${escapeHtml((d.portfolioSlugs || []).join("\n"))}</textarea>
+      </div>
       ${field("Testimonials title", "testimonialsTitle", d.testimonialsTitle || "")}
+      <div class="field full"><label>Ratings JSON (label, score)</label>
+        <textarea data-path="ratings" data-json="true">${escapeHtml(JSON.stringify(d.ratings || [], null, 2))}</textarea>
+      </div>
       ${field("Insights title", "insightsTitle", d.insightsTitle || "")}
       ${field("Insights CTA label", "insightsCtaLabel", d.insightsCtaLabel || "")}
       ${field("Insights CTA link", "insightsCtaHref", d.insightsCtaHref || "/resources")}

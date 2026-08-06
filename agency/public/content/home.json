@@ -21,17 +21,32 @@
     "title": "Campaign Performance",
     "meta": "This Month · Revenue Generated",
     "metrics": [
-      { "value": "₹2.45 Cr", "label": "+24.5% trend" },
-      { "value": "12,458", "label": "Leads Generated" },
-      { "value": "3.20X", "label": "ROAS" }
+      {
+        "value": "₹2.45 Cr",
+        "label": "+24.5% trend"
+      },
+      {
+        "value": "12,458",
+        "label": "Leads Generated"
+      },
+      {
+        "value": "3.20X",
+        "label": "ROAS"
+      }
     ]
   },
   "aiAssist": {
     "title": "AI Assistant",
     "body": "Ask for a strategy, audit, or creative brief instantly.",
     "actions": [
-      { "label": "Generate Strategy", "href": "/ai-platform" },
-      { "label": "Analyze Website", "href": "/contact" }
+      {
+        "label": "Generate Strategy",
+        "href": "/ai-platform"
+      },
+      {
+        "label": "Analyze Website",
+        "href": "/contact"
+      }
     ]
   },
   "trustLabel": "Trusted by 500+ businesses",
@@ -126,35 +141,35 @@
     "construction",
     "travel"
   ],
-  "challengesTitle": "We Solve Real Business Challenges",
+  "challengesTitle": "Solutions by Goal",
   "challengeLinks": [
     {
       "label": "Lead Generation",
-      "desc": "Goal-oriented solutions built for measurable outcomes.",
+      "desc": "Pipeline systems that attract and convert qualified buyers.",
       "href": "/solutions/lead-generation",
       "icon": "target"
     },
     {
       "label": "E-commerce Growth",
-      "desc": "Goal-oriented solutions built for measurable outcomes.",
+      "desc": "Storefront, ads, and CRO programs that increase revenue.",
       "href": "/solutions/ecommerce-growth",
       "icon": "growth"
     },
     {
       "label": "Brand Awareness",
-      "desc": "Goal-oriented solutions built for measurable outcomes.",
+      "desc": "Campaigns that make your brand memorable and trusted.",
       "href": "/solutions/brand-awareness",
       "icon": "brand"
     },
     {
       "label": "App Installs",
-      "desc": "Goal-oriented solutions built for measurable outcomes.",
+      "desc": "Acquisition funnels that grow active users profitably.",
       "href": "/solutions/app-installs",
       "icon": "phone"
     },
     {
       "label": "Revenue Growth",
-      "desc": "Goal-oriented solutions built for measurable outcomes.",
+      "desc": "Full-funnel strategy focused on measurable ROI.",
       "href": "/solutions/revenue-growth",
       "icon": "dollar"
     }
@@ -166,7 +181,11 @@
       "name": "Starter",
       "price": "₹12,000",
       "period": "/mo",
-      "features": ["SEO essentials", "Social management", "Monthly report"],
+      "features": [
+        "SEO essentials",
+        "Social management",
+        "Monthly report"
+      ],
       "highlighted": false,
       "href": "/packages/seo",
       "ctaLabel": "View Details"
@@ -176,7 +195,12 @@
       "price": "₹24,000",
       "period": "/mo",
       "badge": "Best Value",
-      "features": ["SEO + Ads", "Content calendar", "CRO audits", "Bi-weekly calls"],
+      "features": [
+        "SEO + Ads",
+        "Content calendar",
+        "CRO audits",
+        "Bi-weekly calls"
+      ],
       "highlighted": true,
       "href": "/packages/digital-marketing",
       "ctaLabel": "View Details"
@@ -185,7 +209,11 @@
       "name": "Business",
       "price": "₹48,000",
       "period": "/mo",
-      "features": ["Full funnel", "AI tools access", "Dedicated strategist"],
+      "features": [
+        "Full funnel",
+        "AI tools access",
+        "Dedicated strategist"
+      ],
       "highlighted": false,
       "href": "/packages/ecommerce",
       "ctaLabel": "View Details"
@@ -194,19 +222,39 @@
       "name": "Enterprise",
       "price": "Custom",
       "period": "",
-      "features": ["Multi-brand", "Custom SLAs", "On-site workshops"],
+      "features": [
+        "Multi-brand",
+        "Custom SLAs",
+        "On-site workshops"
+      ],
       "highlighted": false,
       "href": "/contact",
-      "ctaLabel": "Talk to Sales"
+      "ctaLabel": "Contact Us"
     }
   ],
-  "packagePills": ["No Setup Fee", "Transparent Pricing", "100% ROI Focused"],
+  "packagePills": [
+    "No Setup Fee",
+    "Transparent Pricing",
+    "100% ROI Focused"
+  ],
   "toolsTitle": "Free Tools to Grow Faster",
   "toolsCtaLabel": "Explore All Tools →",
   "toolsCtaHref": "/free-tools",
-  "toolCategorySlugs": ["seo", "website", "marketing", "social", "content", "ai"],
+  "toolCategorySlugs": [
+    "seo",
+    "website",
+    "marketing",
+    "social",
+    "content",
+    "ai"
+  ],
   "casesTitle": "Real Results. Proven Impact.",
-  "caseSlugs": ["vaidraj-seo", "bpg-ads", "royal-ecom", "island360"],
+  "caseSlugs": [
+    "vaidraj-seo",
+    "bpg-ads",
+    "royal-ecom",
+    "island360"
+  ],
   "testimonialsTitle": "Loved by Clients. Proven by Results.",
   "insightsTitle": "Latest Insights",
   "insightsCtaLabel": "View All Resources →",
@@ -243,5 +291,59 @@
     "sub": "Find us on Google Maps and Google Business Profile. Book a consultation online or drop by for a strategy workshop.",
     "ctaLabel": "Open Google Business Profile",
     "directionsLabel": "Get Directions"
-  }
+  },
+  "servicesViewAllLabel": "View All Services →",
+  "servicesViewAllHref": "/services",
+  "packagesCompareLabel": "Compare All Packages →",
+  "packagesCompareHref": "/packages",
+  "businessSizeTitle": "Solutions by Business Size",
+  "businessSizeLinks": [
+    {
+      "label": "Startups",
+      "desc": "Lean growth systems for early-stage brands.",
+      "href": "/solutions/startups",
+      "icon": "rocket"
+    },
+    {
+      "label": "Small & Medium Business",
+      "desc": "Scalable marketing and web systems for SMBs.",
+      "href": "/solutions/smb",
+      "icon": "building"
+    },
+    {
+      "label": "Enterprise",
+      "desc": "Multi-brand programs with custom SLAs.",
+      "href": "/solutions/enterprise",
+      "icon": "briefcase"
+    },
+    {
+      "label": "Agencies",
+      "desc": "White-label delivery and partner workflows.",
+      "href": "/solutions/agencies",
+      "icon": "users"
+    }
+  ],
+  "portfolioTitle": "Creativity That Delivers Results.",
+  "portfolioCtaLabel": "View Full Portfolio →",
+  "portfolioCtaHref": "/portfolio",
+  "portfolioSlugs": [
+    "vaidraj",
+    "bpg",
+    "rak",
+    "royal"
+  ],
+  "ratings": [
+    {
+      "label": "Google",
+      "score": "4.9/5"
+    },
+    {
+      "label": "Clutch",
+      "score": "4.8/5"
+    },
+    {
+      "label": "GoodFirms",
+      "score": "5.0/5"
+    }
+  ]
 }

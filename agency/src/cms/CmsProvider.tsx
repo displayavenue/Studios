@@ -18,7 +18,7 @@ import { projectPages as fallbackProjects } from "../data/projectCatalog";
 import { resourcePages as fallbackResources } from "../data/resourceCatalog";
 import { testimonials as fallbackTestimonials } from "../data/content";
 import { clientLogos as fallbackLogos } from "../data/work";
-import { homeServices as fallbackHomeServices } from "../data/services";
+import { homeDefaults, pickList } from "../data/homeDefaults";
 import type { DetailPageContent } from "../data/catalogTypes";
 import {
   defaultTracking,
@@ -44,6 +44,13 @@ export type HomeLinkCard = {
   icon: string;
   color: string;
   href: string;
+};
+
+export type HomeLinkRow = {
+  label: string;
+  desc: string;
+  href: string;
+  icon: string;
 };
 
 export type HomeCms = {
@@ -76,6 +83,8 @@ export type HomeCms = {
   partners?: string[];
   servicesTitle: string;
   servicesSub: string;
+  servicesViewAllLabel?: string;
+  servicesViewAllHref?: string;
   services?: HomeLinkCard[];
   allServicesCard?: { title: string; desc: string; href: string };
   aiBanner?: {
@@ -90,14 +99,13 @@ export type HomeCms = {
   industriesCtaHref?: string;
   industrySlugs?: string[];
   challengesTitle?: string;
-  challengeLinks?: {
-    label: string;
-    desc: string;
-    href: string;
-    icon: string;
-  }[];
+  challengeLinks?: HomeLinkRow[];
+  businessSizeTitle?: string;
+  businessSizeLinks?: HomeLinkRow[];
   packagesTitle?: string;
   packagesSub?: string;
+  packagesCompareLabel?: string;
+  packagesCompareHref?: string;
   packages?: {
     name: string;
     price: string;
@@ -115,7 +123,12 @@ export type HomeCms = {
   toolCategorySlugs?: string[];
   casesTitle?: string;
   caseSlugs?: string[];
+  portfolioTitle?: string;
+  portfolioCtaLabel?: string;
+  portfolioCtaHref?: string;
+  portfolioSlugs?: string[];
   testimonialsTitle?: string;
+  ratings?: { label: string; score: string }[];
   insightsTitle?: string;
   insightsCtaLabel?: string;
   insightsCtaHref?: string;
@@ -158,39 +171,38 @@ export type AgencyCms = {
 };
 
 const fallbackHome: HomeCms = {
-  hero: {
-    eyebrow: "AI-POWERED DIGITAL GROWTH PARTNER",
-    titleBefore: "Transform Your Business with",
-    titleAccent: "AI-Powered Digital Growth.",
-    lead: "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, and AI automation - under one roof.",
-    primaryCta: "Book Free Consultation →",
-    primaryCtaHref: "/contact",
-    secondaryCta: "Get Free Proposal",
-    secondaryCtaHref: "/contact",
-    showreelLabel: "Watch Showreel",
-    showreelHref: "/portfolio",
-    portfolioLabel: "View Portfolio",
-    portfolioHref: "/portfolio",
+  ...homeDefaults,
+  hero: { ...homeDefaults.hero },
+  services: [...homeDefaults.services],
+  partners: [...homeDefaults.partners],
+  industrySlugs: [...homeDefaults.industrySlugs],
+  challengeLinks: homeDefaults.challengeLinks.map((item) => ({ ...item })),
+  businessSizeLinks: homeDefaults.businessSizeLinks.map((item) => ({ ...item })),
+  packages: homeDefaults.packages.map((pkg) => ({
+    ...pkg,
+    features: [...pkg.features],
+  })),
+  packagePills: [...homeDefaults.packagePills],
+  toolCategorySlugs: [...homeDefaults.toolCategorySlugs],
+  caseSlugs: [...homeDefaults.caseSlugs],
+  portfolioSlugs: [...homeDefaults.portfolioSlugs],
+  ratings: homeDefaults.ratings.map((item) => ({ ...item })),
+  insightLinks: homeDefaults.insightLinks.map((item) => ({ ...item })),
+  aiBanner: {
+    ...homeDefaults.aiBanner,
+    bullets: [...homeDefaults.aiBanner.bullets],
   },
-  trustLabel: "Trusted by 500+ businesses",
-  partners: [
-    "Google Partner",
-    "Meta Business Partner",
-    "HubSpot",
-    "Clutch",
-    "GoodFirms",
-    "DesignRush",
-    "Shopify",
-    "AWS",
-  ],
-  servicesTitle: "End-to-End Digital Solutions Under One Roof.",
-  servicesSub: "Marketing, product, creative, and AI - built to compound growth.",
-  services: fallbackHomeServices,
-  allServicesCard: {
-    title: "See All Services",
-    desc: "Explore 300+ services across marketing, product, and AI.",
-    href: "/services",
+  heroDashboard: {
+    ...homeDefaults.heroDashboard,
+    metrics: homeDefaults.heroDashboard.metrics.map((m) => ({ ...m })),
   },
+  aiAssist: {
+    ...homeDefaults.aiAssist,
+    actions: homeDefaults.aiAssist.actions.map((a) => ({ ...a })),
+  },
+  allServicesCard: { ...homeDefaults.allServicesCard },
+  location: { ...homeDefaults.location },
+  seo: { ...homeDefaults.seo },
 };
 
 const defaults: AgencyCms = {
@@ -311,7 +323,70 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         home: {
           ...fallbackHome,
           ...(home || {}),
+          seo: { ...fallbackHome.seo, ...(home?.seo || {}) },
           hero: { ...fallbackHome.hero, ...(home?.hero || {}) },
+          heroDashboard: {
+            ...fallbackHome.heroDashboard!,
+            ...(home?.heroDashboard || {}),
+            metrics: pickList(
+              home?.heroDashboard?.metrics,
+              fallbackHome.heroDashboard!.metrics,
+            ),
+          },
+          aiAssist: {
+            ...fallbackHome.aiAssist!,
+            ...(home?.aiAssist || {}),
+            actions: pickList(
+              home?.aiAssist?.actions,
+              fallbackHome.aiAssist!.actions,
+            ),
+          },
+          partners: pickList(home?.partners, fallbackHome.partners || []),
+          services: pickList(home?.services, fallbackHome.services || []),
+          allServicesCard: {
+            ...fallbackHome.allServicesCard!,
+            ...(home?.allServicesCard || {}),
+          },
+          aiBanner: {
+            ...fallbackHome.aiBanner!,
+            ...(home?.aiBanner || {}),
+            bullets: pickList(
+              home?.aiBanner?.bullets,
+              fallbackHome.aiBanner!.bullets,
+            ),
+          },
+          industrySlugs: pickList(
+            home?.industrySlugs,
+            fallbackHome.industrySlugs || [],
+          ),
+          challengeLinks: pickList(
+            home?.challengeLinks,
+            fallbackHome.challengeLinks || [],
+          ),
+          businessSizeLinks: pickList(
+            home?.businessSizeLinks,
+            fallbackHome.businessSizeLinks || [],
+          ),
+          packages: pickList(home?.packages, fallbackHome.packages || []),
+          packagePills: pickList(
+            home?.packagePills,
+            fallbackHome.packagePills || [],
+          ),
+          toolCategorySlugs: pickList(
+            home?.toolCategorySlugs,
+            fallbackHome.toolCategorySlugs || [],
+          ),
+          caseSlugs: pickList(home?.caseSlugs, fallbackHome.caseSlugs || []),
+          portfolioSlugs: pickList(
+            home?.portfolioSlugs,
+            fallbackHome.portfolioSlugs || [],
+          ),
+          ratings: pickList(home?.ratings, fallbackHome.ratings || []),
+          insightLinks: pickList(
+            home?.insightLinks,
+            fallbackHome.insightLinks || [],
+          ),
+          location: { ...fallbackHome.location, ...(home?.location || {}) },
         },
         services: itemsOf(services, fallbackServices),
         industries: itemsOf(industries, fallbackIndustries),

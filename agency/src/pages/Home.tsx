@@ -4,6 +4,7 @@ import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { toolCategories } from "../data/tools";
+import { homeDefaults, pickList } from "../data/homeDefaults";
 import "../styles/pages.css";
 
 function InternalLink({
@@ -32,28 +33,43 @@ function InternalLink({
 }
 
 export function Home() {
-  const { company, home, content, industries, cases, tools } = useCms();
+  const { company, home, content, industries, cases, tools, projects } = useCms();
   const clientLogos = content.clientLogos;
   const testimonials = content.testimonials;
-  const partners = home.partners || [];
-  const serviceCards = home.services || [];
-  const allServices = home.allServicesCard;
-  const aiBanner = home.aiBanner;
-  const challenges = home.challengeLinks || [];
-  const packages = home.packages || [];
-  const insightLinks = home.insightLinks || [];
+  const partners = pickList(home.partners, homeDefaults.partners);
+  const serviceCards = pickList(home.services, homeDefaults.services);
+  const allServices = home.allServicesCard || homeDefaults.allServicesCard;
+  const aiBanner = home.aiBanner || homeDefaults.aiBanner;
+  const challenges = pickList(home.challengeLinks, homeDefaults.challengeLinks);
+  const businessSizeLinks = pickList(
+    home.businessSizeLinks,
+    homeDefaults.businessSizeLinks,
+  );
+  const packages = pickList(home.packages, homeDefaults.packages);
+  const insightLinks = pickList(home.insightLinks, homeDefaults.insightLinks);
+  const ratings = pickList(home.ratings, homeDefaults.ratings);
   const maps = company.googleMaps;
-  const location = home.location;
+  const location = home.location || homeDefaults.location;
 
-  const industryCards = (home.industrySlugs || [])
+  const industryCards = pickList(home.industrySlugs, homeDefaults.industrySlugs)
     .map((slug) => industries.find((i) => i.slug === slug))
     .filter(Boolean);
 
-  const caseCards = (home.caseSlugs || [])
+  const caseCards = pickList(home.caseSlugs, homeDefaults.caseSlugs)
     .map((slug) => cases.find((c) => c.slug === slug))
     .filter(Boolean);
 
-  const toolCards = (home.toolCategorySlugs || [])
+  const portfolioCards = pickList(
+    home.portfolioSlugs,
+    homeDefaults.portfolioSlugs,
+  )
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter(Boolean);
+
+  const toolCards = pickList(
+    home.toolCategorySlugs,
+    homeDefaults.toolCategorySlugs,
+  )
     .map((slug) => {
       const fromCms = tools.find((t) => t.slug === slug);
       const fromStatic = toolCategories.find((t) => t.href.endsWith(`/${slug}`));
@@ -88,8 +104,8 @@ export function Home() {
   const seoTitle =
     home.seo?.title || `${company.name} | Digital Growth. AI Powered.`;
   const seoDesc = home.seo?.description || home.hero.lead;
-  const dash = home.heroDashboard;
-  const assist = home.aiAssist;
+  const dash = home.heroDashboard || homeDefaults.heroDashboard;
+  const assist = home.aiAssist || homeDefaults.aiAssist;
 
   const caseGradients = [
     "linear-gradient(135deg,#0ea5e9,#0369a1)",
@@ -159,34 +175,30 @@ export function Home() {
           </div>
 
           <div className="hero-visual">
-            {dash && (
-              <div className="dash-card">
-                <h3>{dash.title}</h3>
-                <p className="dash-meta">{dash.meta}</p>
-                <div className="sparkline" />
-                <div className="dash-metrics">
-                  {dash.metrics.map((m) => (
-                    <div key={m.label}>
-                      <strong>{m.value}</strong>
-                      <span>{m.label}</span>
-                    </div>
-                  ))}
-                </div>
+            <div className="dash-card">
+              <h3>{dash.title}</h3>
+              <p className="dash-meta">{dash.meta}</p>
+              <div className="sparkline" />
+              <div className="dash-metrics">
+                {dash.metrics.map((m) => (
+                  <div key={m.label}>
+                    <strong>{m.value}</strong>
+                    <span>{m.label}</span>
+                  </div>
+                ))}
               </div>
-            )}
-            {assist && (
-              <div className="ai-assist">
-                <h4>{assist.title}</h4>
-                <p>{assist.body}</p>
-                <div className="ai-assist-actions">
-                  {assist.actions.map((a) => (
-                    <InternalLink key={a.label} to={a.href}>
-                      {a.label}
-                    </InternalLink>
-                  ))}
-                </div>
+            </div>
+            <div className="ai-assist">
+              <h4>{assist.title}</h4>
+              <p>{assist.body}</p>
+              <div className="ai-assist-actions">
+                {assist.actions.map((a) => (
+                  <InternalLink key={a.label} to={a.href}>
+                    {a.label}
+                  </InternalLink>
+                ))}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
@@ -253,8 +265,18 @@ export function Home() {
 
       <section className="home-section">
         <div className="container">
-          <h2 className="section-title">{home.servicesTitle}</h2>
-          <p className="section-sub">{home.servicesSub}</p>
+          <div className="section-head">
+            <div>
+              <h2 className="section-title">{home.servicesTitle}</h2>
+              <p className="section-sub">{home.servicesSub}</p>
+            </div>
+            <InternalLink
+              to={home.servicesViewAllHref || "/services"}
+              className="link-arrow"
+            >
+              {home.servicesViewAllLabel || "View All Services →"}
+            </InternalLink>
+          </div>
           <div className="category-grid" style={{ marginTop: "1.5rem" }}>
             {serviceCards.map((service) => (
               <InternalLink
@@ -275,100 +297,101 @@ export function Home() {
                 </span>
               </InternalLink>
             ))}
-            {allServices && (
-              <InternalLink
-                to={allServices.href}
-                className="category-card"
-                style={{ background: "var(--blue)", color: "#fff", border: 0 }}
-              >
-                <h3 style={{ color: "#fff" }}>{allServices.title}</h3>
-                <p style={{ color: "rgba(255,255,255,0.85)" }}>
-                  {allServices.desc}
-                </p>
-                <span className="arrow" style={{ color: "#fff" }}>
-                  <Icon name="arrow" size={16} color="#fff" />
-                </span>
-              </InternalLink>
-            )}
+            <InternalLink
+              to={allServices.href}
+              className="category-card"
+              style={{ background: "var(--blue)", color: "#fff", border: 0 }}
+            >
+              <h3 style={{ color: "#fff" }}>{allServices.title}</h3>
+              <p style={{ color: "rgba(255,255,255,0.85)" }}>{allServices.desc}</p>
+              <span className="arrow" style={{ color: "#fff" }}>
+                <Icon name="arrow" size={16} color="#fff" />
+              </span>
+            </InternalLink>
           </div>
         </div>
       </section>
 
-      {aiBanner && (
-        <section className="home-section alt">
-          <div className="container">
+      <section className="home-section alt">
+        <div className="container">
+          <div
+            className="card"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.2fr 0.8fr",
+              gap: "1.5rem",
+              padding: "1.5rem",
+              background: "linear-gradient(120deg,#050a1f,#0a1435)",
+              color: "#fff",
+              border: 0,
+            }}
+          >
+            <div>
+              <h2 className="section-title" style={{ color: "#fff" }}>
+                {aiBanner.title}
+              </h2>
+              <p className="section-sub" style={{ color: "rgba(255,255,255,0.75)" }}>
+                {aiBanner.sub}
+              </p>
+              <ul className="feature-list" style={{ marginTop: "1.25rem" }}>
+                {aiBanner.bullets.map((item) => (
+                  <li key={item}>
+                    <Icon name="check" color="#7dd3fc" />
+                    <strong style={{ color: "#fff" }}>{item}</strong>
+                  </li>
+                ))}
+              </ul>
+              <InternalLink
+                to={aiBanner.ctaHref}
+                className="btn btn-primary"
+                style={{ marginTop: "0.5rem" }}
+              >
+                {aiBanner.ctaLabel}
+              </InternalLink>
+            </div>
             <div
-              className="card"
               style={{
+                borderRadius: "16px",
+                background:
+                  "radial-gradient(circle at 50% 40%, rgba(124,58,237,0.45), transparent 55%), linear-gradient(160deg,#1e1b4b,#0f172a)",
+                minHeight: "220px",
                 display: "grid",
-                gridTemplateColumns: "1.2fr 0.8fr",
-                gap: "1.5rem",
-                padding: "1.5rem",
-                background: "linear-gradient(120deg,#050a1f,#0a1435)",
-                color: "#fff",
-                border: 0,
+                placeItems: "center",
               }}
             >
-              <div>
-                <h2 className="section-title" style={{ color: "#fff" }}>
-                  {aiBanner.title}
-                </h2>
-                <p
-                  className="section-sub"
-                  style={{ color: "rgba(255,255,255,0.75)" }}
-                >
-                  {aiBanner.sub}
-                </p>
-                <ul className="feature-list" style={{ marginTop: "1.25rem" }}>
-                  {aiBanner.bullets.map((item) => (
-                    <li key={item}>
-                      <Icon name="check" color="#7dd3fc" />
-                      <strong style={{ color: "#fff" }}>{item}</strong>
-                    </li>
-                  ))}
-                </ul>
-                <InternalLink
-                  to={aiBanner.ctaHref}
-                  className="btn btn-primary"
-                  style={{ marginTop: "0.5rem" }}
-                >
-                  {aiBanner.ctaLabel}
-                </InternalLink>
-              </div>
-              <div
-                style={{
-                  borderRadius: "16px",
-                  background:
-                    "radial-gradient(circle at 50% 40%, rgba(124,58,237,0.45), transparent 55%), linear-gradient(160deg,#1e1b4b,#0f172a)",
-                  minHeight: "220px",
-                  display: "grid",
-                  placeItems: "center",
-                }}
-              >
-                <Icon name="brain" size={72} color="#c4b5fd" strokeWidth={1.2} />
-              </div>
+              <Icon name="brain" size={72} color="#c4b5fd" strokeWidth={1.2} />
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       <section className="home-section">
         <div className="container">
           <h2 className="section-title">
             {home.industriesTitle || "Tailored Solutions for Every Industry."}
           </h2>
-          <div className="category-grid" style={{ marginTop: "1.25rem" }}>
+          <div className="industry-grid" style={{ marginTop: "1.25rem" }}>
             {industryCards.map((item) => (
               <InternalLink
                 key={item!.slug}
                 to={`/industries/${item!.slug}`}
-                className="category-card"
+                className="industry-chip"
               >
-                <Icon name={item!.icon} color="#0056ff" />
-                <h3>{item!.title}</h3>
-                <p>{item!.summary}</p>
+                <span className="industry-icon">
+                  <Icon name={item!.icon} color="#0056ff" />
+                </span>
+                <strong>{item!.title}</strong>
               </InternalLink>
             ))}
+            <InternalLink
+              to={home.industriesCtaHref || "/industries"}
+              className="industry-chip more"
+            >
+              <span className="industry-icon">
+                <Icon name="grid" color="#0056ff" />
+              </span>
+              <strong>More Industries</strong>
+            </InternalLink>
           </div>
           <div className="center-footer">
             <InternalLink
@@ -383,25 +406,17 @@ export function Home() {
 
       <section className="home-section alt">
         <div className="container">
-          <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}
-            className="home-split"
-          >
+          <div className="home-split solutions-split">
             <div>
               <h2 className="section-title">
-                {home.challengesTitle || "We Solve Real Business Challenges"}
+                {home.challengesTitle || "Solutions by Goal"}
               </h2>
-              <div style={{ display: "grid", gap: "0.65rem", marginTop: "1rem" }}>
+              <div className="link-stack">
                 {challenges.map((item) => (
                   <InternalLink
                     key={item.href}
                     to={item.href}
-                    className="category-card"
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: "0.75rem",
-                    }}
+                    className="category-card row-card"
                   >
                     <span className="icon-box" style={{ background: "#e8f0ff" }}>
                       <Icon name={item.icon} color="#0056ff" />
@@ -414,7 +429,43 @@ export function Home() {
                   </InternalLink>
                 ))}
               </div>
+              <InternalLink to="/solutions" className="link-arrow" style={{ marginTop: "0.85rem" }}>
+                View All Goal Solutions →
+              </InternalLink>
             </div>
+            <div>
+              <h2 className="section-title">
+                {home.businessSizeTitle || "Solutions by Business Size"}
+              </h2>
+              <div className="link-stack">
+                {businessSizeLinks.map((item) => (
+                  <InternalLink
+                    key={item.href}
+                    to={item.href}
+                    className="category-card row-card"
+                  >
+                    <span className="icon-box" style={{ background: "#e8f0ff" }}>
+                      <Icon name={item.icon} color="#0056ff" />
+                    </span>
+                    <div style={{ flex: 1 }}>
+                      <h3>{item.label}</h3>
+                      <p>{item.desc}</p>
+                    </div>
+                    <Icon name="chevron" color="#0056ff" />
+                  </InternalLink>
+                ))}
+              </div>
+              <InternalLink to="/solutions" className="link-arrow" style={{ marginTop: "0.85rem" }}>
+                View All Size Solutions →
+              </InternalLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-section">
+        <div className="container">
+          <div className="section-head">
             <div>
               <h2 className="section-title">
                 {home.packagesTitle || "Featured Packages"}
@@ -422,43 +473,95 @@ export function Home() {
               <p className="section-sub">
                 {home.packagesSub || "Transparent pricing. Scalable plans."}
               </p>
+            </div>
+            <InternalLink
+              to={home.packagesCompareHref || "/packages"}
+              className="link-arrow"
+            >
+              {home.packagesCompareLabel || "Compare All Packages →"}
+            </InternalLink>
+          </div>
+          <div className="pricing-cards" style={{ marginTop: "1.25rem" }}>
+            {packages.map((pkg) => (
               <div
-                className="pricing-cards"
-                style={{ marginTop: "1rem", gridTemplateColumns: "1fr 1fr" }}
+                key={pkg.name}
+                className={`price-card ${pkg.highlighted ? "featured" : ""}`}
               >
-                {packages.map((pkg) => (
-                  <div
-                    key={pkg.name}
-                    className={`price-card ${pkg.highlighted ? "featured" : ""}`}
-                  >
-                    {pkg.badge && <span className="badge">{pkg.badge}</span>}
-                    <h3>{pkg.name}</h3>
-                    <div className="price">
-                      {pkg.price}
-                      <small>{pkg.period}</small>
-                    </div>
-                    <ul>
-                      {pkg.features.map((f) => (
-                        <li key={f}>
-                          <Icon name="check" size={14} color="#16a34a" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                    <InternalLink
-                      to={pkg.href}
-                      className={`btn ${pkg.highlighted ? "btn-primary" : "btn-outline"} btn-sm`}
-                    >
-                      {pkg.ctaLabel || "View Details"}
-                    </InternalLink>
-                  </div>
-                ))}
+                {pkg.badge && <span className="badge">{pkg.badge}</span>}
+                <h3>{pkg.name}</h3>
+                <div className="price">
+                  {pkg.price}
+                  <small>{pkg.period}</small>
+                </div>
+                <ul>
+                  {pkg.features.map((f) => (
+                    <li key={f}>
+                      <Icon name="check" size={14} color="#16a34a" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <InternalLink
+                  to={pkg.href}
+                  className={`btn ${pkg.highlighted ? "btn-primary" : "btn-outline"} btn-sm`}
+                >
+                  {pkg.ctaLabel || "View Details"}
+                </InternalLink>
               </div>
-              <div className="pill-row" style={{ marginTop: "1rem" }}>
-                {(home.packagePills || []).map((pill) => (
-                  <span key={pill} className="pill">
-                    {pill}
-                  </span>
+            ))}
+          </div>
+          <div className="pill-row" style={{ marginTop: "1rem" }}>
+            {pickList(home.packagePills, homeDefaults.packagePills).map((pill) => (
+              <span key={pill} className="pill">
+                {pill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-section alt">
+        <div className="container">
+          <div className="home-split">
+            <div className="card ecosystem-card">
+              <h2 className="section-title">{aiBanner.title}</h2>
+              <p className="section-sub">{aiBanner.sub}</p>
+              <ul className="feature-list" style={{ marginTop: "1rem" }}>
+                {aiBanner.bullets.map((item) => (
+                  <li key={item}>
+                    <Icon name="check" color="#0056ff" />
+                    <strong>{item}</strong>
+                  </li>
+                ))}
+              </ul>
+              <InternalLink to="/ai-platform" className="btn btn-primary">
+                Explore AI Platform →
+              </InternalLink>
+            </div>
+            <div>
+              <div className="section-head">
+                <h2 className="section-title">
+                  {home.toolsTitle || "Free Tools to Grow Faster"}
+                </h2>
+                <InternalLink
+                  to={home.toolsCtaHref || "/free-tools"}
+                  className="link-arrow"
+                >
+                  {home.toolsCtaLabel || "Explore All Tools →"}
+                </InternalLink>
+              </div>
+              <div className="category-grid tools-grid" style={{ marginTop: "1rem" }}>
+                {toolCards.map((cat) => (
+                  <InternalLink key={cat.title} to={cat.href} className="category-card">
+                    <span
+                      className="icon-box"
+                      style={{ background: `${cat.color}18` }}
+                    >
+                      <Icon name={cat.icon} color={cat.color} />
+                    </span>
+                    <h3>{cat.title}</h3>
+                    <p>{cat.blurb}</p>
+                  </InternalLink>
                 ))}
               </div>
             </div>
@@ -468,46 +571,14 @@ export function Home() {
 
       <section className="home-section">
         <div className="container">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "1rem",
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="section-head">
             <h2 className="section-title">
-              {home.toolsTitle || "Free Tools to Grow Faster"}
+              {home.casesTitle || "Real Results. Proven Impact."}
             </h2>
-            <InternalLink
-              to={home.toolsCtaHref || "/free-tools"}
-              className="link-arrow"
-            >
-              {home.toolsCtaLabel || "Explore All Tools →"}
+            <InternalLink to="/case-studies" className="link-arrow">
+              View All Case Studies →
             </InternalLink>
           </div>
-          <div className="category-grid" style={{ marginTop: "1.25rem" }}>
-            {toolCards.map((cat) => (
-              <InternalLink key={cat.title} to={cat.href} className="category-card">
-                <span
-                  className="icon-box"
-                  style={{ background: `${cat.color}18` }}
-                >
-                  <Icon name={cat.icon} color={cat.color} />
-                </span>
-                <h3>{cat.title}</h3>
-                <p>{cat.blurb}</p>
-              </InternalLink>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="home-section alt">
-        <div className="container">
-          <h2 className="section-title">
-            {home.casesTitle || "Real Results. Proven Impact."}
-          </h2>
           <div className="mini-grid-4" style={{ marginTop: "1.25rem" }}>
             {caseCards.map((item, i) => (
               <InternalLink
@@ -537,11 +608,61 @@ export function Home() {
         </div>
       </section>
 
+      <section className="home-section alt">
+        <div className="container">
+          <div className="section-head">
+            <h2 className="section-title">
+              {home.portfolioTitle || "Creativity That Delivers Results."}
+            </h2>
+            <InternalLink
+              to={home.portfolioCtaHref || "/portfolio"}
+              className="link-arrow"
+            >
+              {home.portfolioCtaLabel || "View Full Portfolio →"}
+            </InternalLink>
+          </div>
+          <div className="mini-grid-4" style={{ marginTop: "1.25rem" }}>
+            {portfolioCards.map((item, i) => (
+              <InternalLink
+                key={item!.slug}
+                to={`/portfolio/${item!.slug}`}
+                className="featured-card"
+              >
+                <div
+                  className="featured-media"
+                  style={{ background: caseGradients[(i + 1) % caseGradients.length] }}
+                >
+                  <span className="featured-tag" style={{ color: "#fff" }}>
+                    {item!.category}
+                  </span>
+                </div>
+                <div className="featured-body">
+                  <p>{item!.category}</p>
+                  <h3>{item!.title}</h3>
+                  <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                    {item!.summary}
+                  </p>
+                  <span className="link-arrow">View Project →</span>
+                </div>
+              </InternalLink>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="home-section">
         <div className="container">
           <h2 className="section-title">
             {home.testimonialsTitle || "Loved by Clients. Proven by Results."}
           </h2>
+          <div className="rating-row">
+            {ratings.map((r) => (
+              <div key={r.label} className="rating-chip">
+                <strong>{r.label}</strong>
+                <span>{r.score}</span>
+              </div>
+            ))}
+          </div>
           <div className="testimonial-grid" style={{ marginTop: "1.25rem" }}>
             {testimonials.map((t) => (
               <div key={t.name} className="testimonial-card">
@@ -557,14 +678,7 @@ export function Home() {
 
       <section className="home-section alt">
         <div className="container">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "1rem",
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="section-head">
             <h2 className="section-title">
               {home.insightsTitle || "Latest Insights"}
             </h2>
@@ -671,6 +785,84 @@ export function Home() {
       )}
 
       <style>{`
+        .section-head {
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+          align-items: flex-end;
+          flex-wrap: wrap;
+        }
+        .link-stack {
+          display: grid;
+          gap: 0.65rem;
+          margin-top: 1rem;
+        }
+        .row-card {
+          flex-direction: row !important;
+          align-items: center !important;
+          gap: 0.75rem !important;
+        }
+        .industry-grid {
+          display: grid;
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+          gap: 0.85rem;
+        }
+        .industry-chip {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.55rem;
+          text-align: center;
+          text-decoration: none;
+          color: var(--navy);
+          background: #fff;
+          border: 1px solid var(--border-soft);
+          border-radius: 16px;
+          padding: 1rem 0.7rem;
+          transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        .industry-chip:hover {
+          transform: translateY(-2px);
+          border-color: #bfd0ff;
+          box-shadow: var(--shadow-sm);
+        }
+        .industry-chip.more {
+          border-style: dashed;
+          color: var(--blue);
+        }
+        .industry-icon {
+          width: 48px;
+          height: 48px;
+          border-radius: 999px;
+          display: grid;
+          place-items: center;
+          background: #e8f0ff;
+        }
+        .rating-row {
+          display: flex;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+          margin-top: 1rem;
+        }
+        .rating-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          background: #fff;
+          border: 1px solid var(--border-soft);
+          border-radius: 999px;
+          padding: 0.45rem 0.85rem;
+          font-size: 0.9rem;
+        }
+        .rating-chip strong { color: var(--navy); }
+        .rating-chip span { color: var(--text-muted); font-weight: 600; }
+        .ecosystem-card {
+          padding: 1.35rem;
+          background: #fff;
+        }
+        .tools-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
         .ai-assist-actions a {
           display: inline-flex;
           padding: 0.35rem 0.7rem;
@@ -682,6 +874,11 @@ export function Home() {
           text-decoration: none;
         }
         .ai-assist-actions a:hover { background: rgba(0, 86, 255, 0.16); }
+        .home-split {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+        }
         .home-location {
           display: grid;
           grid-template-columns: 1fr 1.1fr;
@@ -706,10 +903,18 @@ export function Home() {
           min-height: 280px;
           border: 0;
         }
+        @media (max-width: 1100px) {
+          .industry-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
         @media (max-width: 900px) {
           .home-split { grid-template-columns: 1fr !important; }
           .home-section .card { grid-template-columns: 1fr !important; }
           .home-location { grid-template-columns: 1fr; }
+          .industry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          .tools-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          .industry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
       `}</style>
     </>
