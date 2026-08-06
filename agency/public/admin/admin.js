@@ -243,6 +243,16 @@ function renderCompany(d) {
     `,
     )}
     ${card(
+      "Google Maps / GMB",
+      `
+      ${field("Business name on Google", "googleMaps.name", d.googleMaps?.name || "")}
+      ${field("Share / GMB link", "googleMaps.shareUrl", d.googleMaps?.shareUrl || "")}
+      ${field("Google profile / search URL", "googleMaps.profileUrl", d.googleMaps?.profileUrl || "")}
+      ${field("Maps embed URL", "googleMaps.embedUrl", d.googleMaps?.embedUrl || "", "textarea")}
+      ${field("Knowledge Graph ID (kgmid)", "googleMaps.kgmid", d.googleMaps?.kgmid || "")}
+    `,
+    )}
+    ${card(
       "Socials",
       `
       ${field("Facebook", "socials.facebook", d.socials?.facebook)}
@@ -263,20 +273,132 @@ function renderCompany(d) {
 }
 
 function renderHome(d) {
-  return card(
-    "Hero",
-    `
-    ${field("Eyebrow", "hero.eyebrow", d.hero?.eyebrow)}
-    ${field("Title (before accent)", "hero.titleBefore", d.hero?.titleBefore)}
-    ${field("Title accent", "hero.titleAccent", d.hero?.titleAccent)}
-    ${field("Lead", "hero.lead", d.hero?.lead, "textarea")}
-    ${field("Primary CTA", "hero.primaryCta", d.hero?.primaryCta)}
-    ${field("Secondary CTA", "hero.secondaryCta", d.hero?.secondaryCta)}
-    ${field("Trust label", "trustLabel", d.trustLabel)}
-    ${field("Services title", "servicesTitle", d.servicesTitle)}
-    ${field("Services subtitle", "servicesSub", d.servicesSub)}
-  `,
-  );
+  return `
+    ${card(
+      "SEO",
+      `
+      ${field("SEO title", "seo.title", d.seo?.title || "")}
+      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+    `,
+    )}
+    ${card(
+      "Hero",
+      `
+      ${field("Eyebrow", "hero.eyebrow", d.hero?.eyebrow)}
+      ${field("Title (before accent)", "hero.titleBefore", d.hero?.titleBefore)}
+      ${field("Title accent", "hero.titleAccent", d.hero?.titleAccent)}
+      ${field("Lead", "hero.lead", d.hero?.lead, "textarea")}
+      ${field("Primary CTA label", "hero.primaryCta", d.hero?.primaryCta)}
+      ${field("Primary CTA link", "hero.primaryCtaHref", d.hero?.primaryCtaHref || "/contact")}
+      ${field("Secondary CTA label", "hero.secondaryCta", d.hero?.secondaryCta)}
+      ${field("Secondary CTA link", "hero.secondaryCtaHref", d.hero?.secondaryCtaHref || "/contact")}
+      ${field("Showreel label", "hero.showreelLabel", d.hero?.showreelLabel || "")}
+      ${field("Showreel link", "hero.showreelHref", d.hero?.showreelHref || "/portfolio")}
+      ${field("Portfolio label", "hero.portfolioLabel", d.hero?.portfolioLabel || "")}
+      ${field("Portfolio link", "hero.portfolioHref", d.hero?.portfolioHref || "/portfolio")}
+    `,
+    )}
+    ${card(
+      "Hero dashboard + AI assist",
+      `
+      <div class="field full"><label>Hero dashboard JSON</label>
+        <textarea data-path="heroDashboard" data-json="true">${escapeHtml(JSON.stringify(d.heroDashboard || {}, null, 2))}</textarea>
+      </div>
+      <div class="field full"><label>AI assist JSON (actions with href)</label>
+        <textarea data-path="aiAssist" data-json="true">${escapeHtml(JSON.stringify(d.aiAssist || {}, null, 2))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Trust & partners",
+      `
+      ${field("Trust label", "trustLabel", d.trustLabel)}
+      <div class="field full"><label>Partners (one per line)</label>
+        <textarea data-path="partners" data-array="true">${escapeHtml((d.partners || []).join("\n"))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Services section",
+      `
+      ${field("Services title", "servicesTitle", d.servicesTitle)}
+      ${field("Services subtitle", "servicesSub", d.servicesSub)}
+      <div class="field full"><label>Service cards JSON (title, desc, icon, color, href)</label>
+        <textarea data-path="services" data-json="true">${escapeHtml(JSON.stringify(d.services || [], null, 2))}</textarea>
+      </div>
+      <div class="field full"><label>All-services card JSON</label>
+        <textarea data-path="allServicesCard" data-json="true">${escapeHtml(JSON.stringify(d.allServicesCard || {}, null, 2))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "AI banner",
+      `
+      <div class="field full"><label>AI banner JSON</label>
+        <textarea data-path="aiBanner" data-json="true">${escapeHtml(JSON.stringify(d.aiBanner || {}, null, 2))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Industries",
+      `
+      ${field("Industries title", "industriesTitle", d.industriesTitle || "")}
+      ${field("CTA label", "industriesCtaLabel", d.industriesCtaLabel || "")}
+      ${field("CTA link", "industriesCtaHref", d.industriesCtaHref || "/industries")}
+      <div class="field full"><label>Industry slugs (one per line - must exist in Industries CMS)</label>
+        <textarea data-path="industrySlugs" data-array="true">${escapeHtml((d.industrySlugs || []).join("\n"))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Challenges & packages",
+      `
+      ${field("Challenges title", "challengesTitle", d.challengesTitle || "")}
+      <div class="field full"><label>Challenge links JSON (label, desc, href, icon)</label>
+        <textarea data-path="challengeLinks" data-json="true">${escapeHtml(JSON.stringify(d.challengeLinks || [], null, 2))}</textarea>
+      </div>
+      ${field("Packages title", "packagesTitle", d.packagesTitle || "")}
+      ${field("Packages subtitle", "packagesSub", d.packagesSub || "")}
+      <div class="field full"><label>Featured packages JSON (include href to /packages/...)</label>
+        <textarea data-path="packages" data-json="true">${escapeHtml(JSON.stringify(d.packages || [], null, 2))}</textarea>
+      </div>
+      <div class="field full"><label>Package pills (one per line)</label>
+        <textarea data-path="packagePills" data-array="true">${escapeHtml((d.packagePills || []).join("\n"))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Tools, cases, testimonials, insights",
+      `
+      ${field("Tools title", "toolsTitle", d.toolsTitle || "")}
+      ${field("Tools CTA label", "toolsCtaLabel", d.toolsCtaLabel || "")}
+      ${field("Tools CTA link", "toolsCtaHref", d.toolsCtaHref || "/free-tools")}
+      <div class="field full"><label>Tool category slugs (one per line)</label>
+        <textarea data-path="toolCategorySlugs" data-array="true">${escapeHtml((d.toolCategorySlugs || []).join("\n"))}</textarea>
+      </div>
+      ${field("Cases title", "casesTitle", d.casesTitle || "")}
+      <div class="field full"><label>Case study slugs (one per line)</label>
+        <textarea data-path="caseSlugs" data-array="true">${escapeHtml((d.caseSlugs || []).join("\n"))}</textarea>
+      </div>
+      ${field("Testimonials title", "testimonialsTitle", d.testimonialsTitle || "")}
+      ${field("Insights title", "insightsTitle", d.insightsTitle || "")}
+      ${field("Insights CTA label", "insightsCtaLabel", d.insightsCtaLabel || "")}
+      ${field("Insights CTA link", "insightsCtaHref", d.insightsCtaHref || "/resources")}
+      <div class="field full"><label>Insight cards JSON (title, date, href, gradient)</label>
+        <textarea data-path="insightLinks" data-json="true">${escapeHtml(JSON.stringify(d.insightLinks || [], null, 2))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Google location / GMB section",
+      `
+      <div class="field full"><label>Location section JSON (enabled, title, sub, ctaLabel, directionsLabel)</label>
+        <textarea data-path="location" data-json="true">${escapeHtml(JSON.stringify(d.location || {}, null, 2))}</textarea>
+      </div>
+      <p class="hint">Map URLs themselves are edited under Header/Company → Google Maps / GMB.</p>
+    `,
+    )}
+  `;
 }
 
 function blankCatalogItem(kind) {

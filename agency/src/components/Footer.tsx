@@ -128,6 +128,17 @@ export function Footer() {
               <li>
                 <a href={company.phoneHref}>{company.phone}</a>
               </li>
+              {company.googleMaps?.shareUrl && (
+                <li>
+                  <a
+                    href={company.googleMaps.shareUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Google Business Profile / Maps
+                  </a>
+                </li>
+              )}
             </ul>
             <a
               className="btn btn-primary btn-sm"

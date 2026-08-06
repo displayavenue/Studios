@@ -192,6 +192,12 @@ export function LocalBusinessSchema() {
         },
       ],
       sameAs: socials.length ? socials : [company.whatsappHref].filter(Boolean),
+      ...(company.googleMaps?.shareUrl || company.googleMaps?.profileUrl
+        ? {
+            hasMap:
+              company.googleMaps.shareUrl || company.googleMaps.profileUrl,
+          }
+        : {}),
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.9",

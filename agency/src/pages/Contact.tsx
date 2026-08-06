@@ -54,6 +54,23 @@ export function Contact() {
                     <span>{company.address.city}</span>
                   </div>
                 </li>
+                {company.googleMaps?.shareUrl && (
+                  <li>
+                    <Icon name="globe" color="#0056ff" />
+                    <div>
+                      <strong>
+                        <a
+                          href={company.googleMaps.shareUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Google Business Profile
+                        </a>
+                      </strong>
+                      <span>Maps, reviews & directions</span>
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
 

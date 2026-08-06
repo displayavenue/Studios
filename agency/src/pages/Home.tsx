@@ -1,37 +1,103 @@
 import { Link } from "react-router-dom";
+import type { CSSProperties, ReactNode } from "react";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
-import { homeServices } from "../data/services";
-import { industries } from "../data/industries";
-import { featuredHomePackages } from "../data/packages";
 import { toolCategories } from "../data/tools";
-import { featuredCaseStudies } from "../data/work";
-import { blogPosts } from "../data/content";
-import { solutionCategories } from "../data/solutions";
 import "../styles/pages.css";
 
-const partners = [
-  "Google Partner",
-  "Meta Business Partner",
-  "HubSpot",
-  "Clutch",
-  "GoodFirms",
-  "DesignRush",
-  "Shopify",
-  "AWS",
-];
+function InternalLink({
+  to,
+  className,
+  children,
+  style,
+}: {
+  to: string;
+  className?: string;
+  children: ReactNode;
+  style?: CSSProperties;
+}) {
+  if (to.startsWith("http")) {
+    return (
+      <a href={to} className={className} style={style} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link to={to} className={className} style={style}>
+      {children}
+    </Link>
+  );
+}
 
 export function Home() {
-  const { company, home, content } = useCms();
+  const { company, home, content, industries, cases, tools } = useCms();
   const clientLogos = content.clientLogos;
   const testimonials = content.testimonials;
+  const partners = home.partners || [];
+  const serviceCards = home.services || [];
+  const allServices = home.allServicesCard;
+  const aiBanner = home.aiBanner;
+  const challenges = home.challengeLinks || [];
+  const packages = home.packages || [];
+  const insightLinks = home.insightLinks || [];
+  const maps = company.googleMaps;
+  const location = home.location;
+
+  const industryCards = (home.industrySlugs || [])
+    .map((slug) => industries.find((i) => i.slug === slug))
+    .filter(Boolean);
+
+  const caseCards = (home.caseSlugs || [])
+    .map((slug) => cases.find((c) => c.slug === slug))
+    .filter(Boolean);
+
+  const toolCards = (home.toolCategorySlugs || [])
+    .map((slug) => {
+      const fromCms = tools.find((t) => t.slug === slug);
+      const fromStatic = toolCategories.find((t) => t.href.endsWith(`/${slug}`));
+      if (fromCms) {
+        return {
+          title: fromCms.title,
+          href: `/free-tools/${fromCms.slug}`,
+          icon: fromCms.icon,
+          color: fromCms.color,
+          blurb: (fromStatic?.tools || []).slice(0, 3).join(" · ") || fromCms.summary,
+        };
+      }
+      if (fromStatic) {
+        return {
+          title: fromStatic.title,
+          href: fromStatic.href,
+          icon: fromStatic.icon,
+          color: fromStatic.color,
+          blurb: fromStatic.tools.slice(0, 3).join(" · "),
+        };
+      }
+      return null;
+    })
+    .filter(Boolean) as {
+    title: string;
+    href: string;
+    icon: string;
+    color: string;
+    blurb: string;
+  }[];
+
   const seoTitle =
-    home.seo?.title ||
-    `${company.name} | Digital Growth. AI Powered.`;
-  const seoDesc =
-    home.seo?.description ||
-    home.hero.lead;
+    home.seo?.title || `${company.name} | Digital Growth. AI Powered.`;
+  const seoDesc = home.seo?.description || home.hero.lead;
+  const dash = home.heroDashboard;
+  const assist = home.aiAssist;
+
+  const caseGradients = [
+    "linear-gradient(135deg,#0ea5e9,#0369a1)",
+    "linear-gradient(135deg,#8b5cf6,#4c1d95)",
+    "linear-gradient(135deg,#f97316,#c2410c)",
+    "linear-gradient(135deg,#10b981,#047857)",
+  ];
+
   return (
     <>
       <SEO title={seoTitle} description={seoDesc} path="/" />
@@ -45,20 +111,28 @@ export function Home() {
             </h1>
             <p className="hero-lead">{home.hero.lead}</p>
             <div className="hero-actions">
-              <Link to="/contact" className="btn btn-primary">
+              <InternalLink
+                to={home.hero.primaryCtaHref || "/contact"}
+                className="btn btn-primary"
+              >
                 {home.hero.primaryCta}
-              </Link>
-              <Link to="/contact" className="btn btn-outline">
+              </InternalLink>
+              <InternalLink
+                to={home.hero.secondaryCtaHref || "/contact"}
+                className="btn btn-outline"
+              >
                 {home.hero.secondaryCta}
-              </Link>
+              </InternalLink>
             </div>
             <div className="hero-links">
-              <Link to="/portfolio">
-                <Icon name="play" size={16} color="#0056ff" /> Watch Showreel
-              </Link>
-              <Link to="/portfolio">
-                <Icon name="image" size={16} color="#0056ff" /> View Portfolio
-              </Link>
+              <InternalLink to={home.hero.showreelHref || "/portfolio"}>
+                <Icon name="play" size={16} color="#0056ff" />{" "}
+                {home.hero.showreelLabel || "Watch Showreel"}
+              </InternalLink>
+              <InternalLink to={home.hero.portfolioHref || "/portfolio"}>
+                <Icon name="image" size={16} color="#0056ff" />{" "}
+                {home.hero.portfolioLabel || "View Portfolio"}
+              </InternalLink>
             </div>
             <div className="hero-stats">
               <div>
@@ -85,40 +159,48 @@ export function Home() {
           </div>
 
           <div className="hero-visual">
-            <div className="dash-card">
-              <h3>Campaign Performance</h3>
-              <p className="dash-meta">This Month · Revenue Generated</p>
-              <div className="sparkline" />
-              <div className="dash-metrics">
-                <div>
-                  <strong>₹2.45 Cr</strong>
-                  <span>+24.5% trend</span>
-                </div>
-                <div>
-                  <strong>12,458</strong>
-                  <span>Leads Generated</span>
-                </div>
-                <div>
-                  <strong>3.20X</strong>
-                  <span>ROAS</span>
+            {dash && (
+              <div className="dash-card">
+                <h3>{dash.title}</h3>
+                <p className="dash-meta">{dash.meta}</p>
+                <div className="sparkline" />
+                <div className="dash-metrics">
+                  {dash.metrics.map((m) => (
+                    <div key={m.label}>
+                      <strong>{m.value}</strong>
+                      <span>{m.label}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="ai-assist">
-              <h4>AI Assistant</h4>
-              <p>Ask for a strategy, audit, or creative brief instantly.</p>
-              <div className="ai-assist-actions">
-                <span>Generate Strategy</span>
-                <span>Analyze Website</span>
+            )}
+            {assist && (
+              <div className="ai-assist">
+                <h4>{assist.title}</h4>
+                <p>{assist.body}</p>
+                <div className="ai-assist-actions">
+                  {assist.actions.map((a) => (
+                    <InternalLink key={a.label} to={a.href}>
+                      {a.label}
+                    </InternalLink>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
 
       <section className="home-section" style={{ paddingTop: "1.5rem" }}>
         <div className="container">
-          <p style={{ textAlign: "center", color: "var(--text-muted)", marginBottom: "0.85rem", fontWeight: 600 }}>
+          <p
+            style={{
+              textAlign: "center",
+              color: "var(--text-muted)",
+              marginBottom: "0.85rem",
+              fontWeight: 600,
+            }}
+          >
             {home.trustLabel}
           </p>
           <div className="logo-strip">
@@ -130,7 +212,11 @@ export function Home() {
           </div>
           <div className="logo-strip" style={{ marginTop: "0.85rem" }}>
             {partners.map((p) => (
-              <span key={p} className="logo-chip" style={{ background: "#fff", border: "1px solid var(--border-soft)" }}>
+              <span
+                key={p}
+                className="logo-chip"
+                style={{ background: "#fff", border: "1px solid var(--border-soft)" }}
+              >
                 {p}
               </span>
             ))}
@@ -170,9 +256,16 @@ export function Home() {
           <h2 className="section-title">{home.servicesTitle}</h2>
           <p className="section-sub">{home.servicesSub}</p>
           <div className="category-grid" style={{ marginTop: "1.5rem" }}>
-            {homeServices.map((service) => (
-              <Link key={service.title} to={service.href} className="category-card">
-                <span className="icon-box" style={{ background: `${service.color}18` }}>
+            {serviceCards.map((service) => (
+              <InternalLink
+                key={service.title}
+                to={service.href}
+                className="category-card"
+              >
+                <span
+                  className="icon-box"
+                  style={{ background: `${service.color}18` }}
+                >
                   <Icon name={service.icon} color={service.color} />
                 </span>
                 <h3>{service.title}</h3>
@@ -180,21 +273,110 @@ export function Home() {
                 <span className="arrow">
                   <Icon name="arrow" size={16} />
                 </span>
-              </Link>
+              </InternalLink>
             ))}
-            <Link
-              to="/services"
-              className="category-card"
-              style={{ background: "var(--blue)", color: "#fff", border: 0 }}
+            {allServices && (
+              <InternalLink
+                to={allServices.href}
+                className="category-card"
+                style={{ background: "var(--blue)", color: "#fff", border: 0 }}
+              >
+                <h3 style={{ color: "#fff" }}>{allServices.title}</h3>
+                <p style={{ color: "rgba(255,255,255,0.85)" }}>
+                  {allServices.desc}
+                </p>
+                <span className="arrow" style={{ color: "#fff" }}>
+                  <Icon name="arrow" size={16} color="#fff" />
+                </span>
+              </InternalLink>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {aiBanner && (
+        <section className="home-section alt">
+          <div className="container">
+            <div
+              className="card"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1.2fr 0.8fr",
+                gap: "1.5rem",
+                padding: "1.5rem",
+                background: "linear-gradient(120deg,#050a1f,#0a1435)",
+                color: "#fff",
+                border: 0,
+              }}
             >
-              <h3 style={{ color: "#fff" }}>See All Services</h3>
-              <p style={{ color: "rgba(255,255,255,0.85)" }}>
-                Explore 300+ services across marketing, product, and AI.
-              </p>
-              <span className="arrow" style={{ color: "#fff" }}>
-                <Icon name="arrow" size={16} color="#fff" />
-              </span>
-            </Link>
+              <div>
+                <h2 className="section-title" style={{ color: "#fff" }}>
+                  {aiBanner.title}
+                </h2>
+                <p
+                  className="section-sub"
+                  style={{ color: "rgba(255,255,255,0.75)" }}
+                >
+                  {aiBanner.sub}
+                </p>
+                <ul className="feature-list" style={{ marginTop: "1.25rem" }}>
+                  {aiBanner.bullets.map((item) => (
+                    <li key={item}>
+                      <Icon name="check" color="#7dd3fc" />
+                      <strong style={{ color: "#fff" }}>{item}</strong>
+                    </li>
+                  ))}
+                </ul>
+                <InternalLink
+                  to={aiBanner.ctaHref}
+                  className="btn btn-primary"
+                  style={{ marginTop: "0.5rem" }}
+                >
+                  {aiBanner.ctaLabel}
+                </InternalLink>
+              </div>
+              <div
+                style={{
+                  borderRadius: "16px",
+                  background:
+                    "radial-gradient(circle at 50% 40%, rgba(124,58,237,0.45), transparent 55%), linear-gradient(160deg,#1e1b4b,#0f172a)",
+                  minHeight: "220px",
+                  display: "grid",
+                  placeItems: "center",
+                }}
+              >
+                <Icon name="brain" size={72} color="#c4b5fd" strokeWidth={1.2} />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="home-section">
+        <div className="container">
+          <h2 className="section-title">
+            {home.industriesTitle || "Tailored Solutions for Every Industry."}
+          </h2>
+          <div className="category-grid" style={{ marginTop: "1.25rem" }}>
+            {industryCards.map((item) => (
+              <InternalLink
+                key={item!.slug}
+                to={`/industries/${item!.slug}`}
+                className="category-card"
+              >
+                <Icon name={item!.icon} color="#0056ff" />
+                <h3>{item!.title}</h3>
+                <p>{item!.summary}</p>
+              </InternalLink>
+            ))}
+          </div>
+          <div className="center-footer">
+            <InternalLink
+              to={home.industriesCtaHref || "/industries"}
+              className="btn btn-outline"
+            >
+              {home.industriesCtaLabel || "View All Industries →"}
+            </InternalLink>
           </div>
         </div>
       </section>
@@ -202,107 +384,54 @@ export function Home() {
       <section className="home-section alt">
         <div className="container">
           <div
-            className="card"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.2fr 0.8fr",
-              gap: "1.5rem",
-              padding: "1.5rem",
-              background: "linear-gradient(120deg,#050a1f,#0a1435)",
-              color: "#fff",
-              border: 0,
-            }}
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}
+            className="home-split"
           >
             <div>
-              <h2 className="section-title" style={{ color: "#fff" }}>
-                Smarter Solutions. Powered by AI.
+              <h2 className="section-title">
+                {home.challengesTitle || "We Solve Real Business Challenges"}
               </h2>
-              <p className="section-sub" style={{ color: "rgba(255,255,255,0.75)" }}>
-                Deploy AI across marketing, sales, content, and operations with
-                the DisplayAvenue AI Platform.
-              </p>
-              <ul className="feature-list" style={{ marginTop: "1.25rem" }}>
-                {["SEO Optimizer", "Content Generator", "Ad Copy AI", "Chatbot Builder", "Workflow Automation"].map(
-                  (item) => (
-                    <li key={item}>
-                      <Icon name="check" color="#7dd3fc" />
-                      <strong style={{ color: "#fff" }}>{item}</strong>
-                    </li>
-                  ),
-                )}
-              </ul>
-              <Link to="/ai-platform" className="btn btn-primary" style={{ marginTop: "0.5rem" }}>
-                Explore AI Platform →
-              </Link>
-            </div>
-            <div
-              style={{
-                borderRadius: "16px",
-                background:
-                  "radial-gradient(circle at 50% 40%, rgba(124,58,237,0.45), transparent 55%), linear-gradient(160deg,#1e1b4b,#0f172a)",
-                minHeight: "220px",
-                display: "grid",
-                placeItems: "center",
-              }}
-            >
-              <Icon name="brain" size={72} color="#c4b5fd" strokeWidth={1.2} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="home-section">
-        <div className="container">
-          <h2 className="section-title">Tailored Solutions for Every Industry.</h2>
-          <div className="category-grid" style={{ marginTop: "1.25rem" }}>
-            {industries.slice(0, 12).map((item) => (
-              <Link key={item.slug} to={`/industries/${item.slug}`} className="category-card">
-                <Icon name={item.icon} color="#0056ff" />
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </Link>
-            ))}
-          </div>
-          <div className="center-footer">
-            <Link to="/industries" className="btn btn-outline">
-              View All Industries →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="home-section alt">
-        <div className="container">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }} className="home-split">
-            <div>
-              <h2 className="section-title">We Solve Real Business Challenges</h2>
               <div style={{ display: "grid", gap: "0.65rem", marginTop: "1rem" }}>
-                {solutionCategories[0].links.map((item, i) => (
-                  <Link
+                {challenges.map((item) => (
+                  <InternalLink
                     key={item.href}
                     to={item.href}
                     className="category-card"
-                    style={{ flexDirection: "row", alignItems: "center", gap: "0.75rem" }}
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                    }}
                   >
                     <span className="icon-box" style={{ background: "#e8f0ff" }}>
-                      <Icon name={["target", "growth", "brand", "phone", "dollar"][i] ?? "target"} color="#0056ff" />
+                      <Icon name={item.icon} color="#0056ff" />
                     </span>
                     <div style={{ flex: 1 }}>
                       <h3>{item.label}</h3>
-                      <p>Goal-oriented solutions built for measurable outcomes.</p>
+                      <p>{item.desc}</p>
                     </div>
                     <Icon name="chevron" color="#0056ff" />
-                  </Link>
+                  </InternalLink>
                 ))}
               </div>
             </div>
             <div>
-              <h2 className="section-title">Featured Packages</h2>
-              <p className="section-sub">Transparent pricing. Scalable plans.</p>
-              <div className="pricing-cards" style={{ marginTop: "1rem", gridTemplateColumns: "1fr 1fr" }}>
-                {featuredHomePackages.map((pkg) => (
-                  <div key={pkg.name} className={`price-card ${pkg.highlighted ? "featured" : ""}`}>
-                    {"badge" in pkg && pkg.badge && <span className="badge">{pkg.badge}</span>}
+              <h2 className="section-title">
+                {home.packagesTitle || "Featured Packages"}
+              </h2>
+              <p className="section-sub">
+                {home.packagesSub || "Transparent pricing. Scalable plans."}
+              </p>
+              <div
+                className="pricing-cards"
+                style={{ marginTop: "1rem", gridTemplateColumns: "1fr 1fr" }}
+              >
+                {packages.map((pkg) => (
+                  <div
+                    key={pkg.name}
+                    className={`price-card ${pkg.highlighted ? "featured" : ""}`}
+                  >
+                    {pkg.badge && <span className="badge">{pkg.badge}</span>}
                     <h3>{pkg.name}</h3>
                     <div className="price">
                       {pkg.price}
@@ -316,16 +445,21 @@ export function Home() {
                         </li>
                       ))}
                     </ul>
-                    <Link to="/packages" className={`btn ${pkg.highlighted ? "btn-primary" : "btn-outline"} btn-sm`}>
-                      View Details
-                    </Link>
+                    <InternalLink
+                      to={pkg.href}
+                      className={`btn ${pkg.highlighted ? "btn-primary" : "btn-outline"} btn-sm`}
+                    >
+                      {pkg.ctaLabel || "View Details"}
+                    </InternalLink>
                   </div>
                 ))}
               </div>
               <div className="pill-row" style={{ marginTop: "1rem" }}>
-                <span className="pill">No Setup Fee</span>
-                <span className="pill">Transparent Pricing</span>
-                <span className="pill">100% ROI Focused</span>
+                {(home.packagePills || []).map((pill) => (
+                  <span key={pill} className="pill">
+                    {pill}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -334,21 +468,36 @@ export function Home() {
 
       <section className="home-section">
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-            <h2 className="section-title">Free Tools to Grow Faster</h2>
-            <Link to="/free-tools" className="link-arrow">
-              Explore All Tools →
-            </Link>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "1rem",
+              flexWrap: "wrap",
+            }}
+          >
+            <h2 className="section-title">
+              {home.toolsTitle || "Free Tools to Grow Faster"}
+            </h2>
+            <InternalLink
+              to={home.toolsCtaHref || "/free-tools"}
+              className="link-arrow"
+            >
+              {home.toolsCtaLabel || "Explore All Tools →"}
+            </InternalLink>
           </div>
           <div className="category-grid" style={{ marginTop: "1.25rem" }}>
-            {toolCategories.slice(0, 6).map((cat) => (
-              <Link key={cat.title} to={cat.href} className="category-card">
-                <span className="icon-box" style={{ background: `${cat.color}18` }}>
+            {toolCards.map((cat) => (
+              <InternalLink key={cat.title} to={cat.href} className="category-card">
+                <span
+                  className="icon-box"
+                  style={{ background: `${cat.color}18` }}
+                >
                   <Icon name={cat.icon} color={cat.color} />
                 </span>
                 <h3>{cat.title}</h3>
-                <p>{cat.tools.slice(0, 3).join(" · ")}</p>
-              </Link>
+                <p>{cat.blurb}</p>
+              </InternalLink>
             ))}
           </div>
         </div>
@@ -356,28 +505,33 @@ export function Home() {
 
       <section className="home-section alt">
         <div className="container">
-          <h2 className="section-title">Real Results. Proven Impact.</h2>
+          <h2 className="section-title">
+            {home.casesTitle || "Real Results. Proven Impact."}
+          </h2>
           <div className="mini-grid-4" style={{ marginTop: "1.25rem" }}>
-            {featuredCaseStudies.map((item) => (
-              <Link key={item.href} to={item.href} className="featured-card">
-                <div className="featured-media" style={{ background: item.gradient }}>
-                  <span className="featured-tag" style={{ color: item.tagColor }}>
-                    {item.tag}
+            {caseCards.map((item, i) => (
+              <InternalLink
+                key={item!.slug}
+                to={`/case-studies/${item!.slug}`}
+                className="featured-card"
+              >
+                <div
+                  className="featured-media"
+                  style={{ background: caseGradients[i % caseGradients.length] }}
+                >
+                  <span className="featured-tag" style={{ color: "#fff" }}>
+                    {item!.category}
                   </span>
                 </div>
                 <div className="featured-body">
-                  <p>{item.client}</p>
-                  <h3>{item.title}</h3>
-                  <div className="metric-row">
-                    {item.metrics.map((m) => (
-                      <span key={m} className="metric-chip">
-                        {m}
-                      </span>
-                    ))}
-                  </div>
+                  <p>{item!.eyebrow || item!.category}</p>
+                  <h3>{item!.title}</h3>
+                  <p style={{ fontSize: "0.85rem", color: "var(--text-muted)" }}>
+                    {item!.summary}
+                  </p>
                   <span className="link-arrow">View Case Study →</span>
                 </div>
-              </Link>
+              </InternalLink>
             ))}
           </div>
         </div>
@@ -385,7 +539,9 @@ export function Home() {
 
       <section className="home-section">
         <div className="container">
-          <h2 className="section-title">Loved by Clients. Proven by Results.</h2>
+          <h2 className="section-title">
+            {home.testimonialsTitle || "Loved by Clients. Proven by Results."}
+          </h2>
           <div className="testimonial-grid" style={{ marginTop: "1.25rem" }}>
             {testimonials.map((t) => (
               <div key={t.name} className="testimonial-card">
@@ -401,31 +557,159 @@ export function Home() {
 
       <section className="home-section alt">
         <div className="container">
-          <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-            <h2 className="section-title">Latest Insights</h2>
-            <Link to="/resources" className="link-arrow">
-              View All Resources →
-            </Link>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "1rem",
+              flexWrap: "wrap",
+            }}
+          >
+            <h2 className="section-title">
+              {home.insightsTitle || "Latest Insights"}
+            </h2>
+            <InternalLink
+              to={home.insightsCtaHref || "/resources"}
+              className="link-arrow"
+            >
+              {home.insightsCtaLabel || "View All Resources →"}
+            </InternalLink>
           </div>
           <div className="blog-grid" style={{ marginTop: "1.25rem" }}>
-            {blogPosts.map((post) => (
-              <Link key={post.href} to={post.href} className="featured-card">
-                <div className="featured-media" style={{ background: post.gradient }} />
+            {insightLinks.map((post) => (
+              <InternalLink
+                key={post.href}
+                to={post.href}
+                className="featured-card"
+              >
+                <div
+                  className="featured-media"
+                  style={{ background: post.gradient }}
+                />
                 <div className="featured-body">
                   <p>{post.date}</p>
                   <h3>{post.title}</h3>
                   <span className="link-arrow">Read More →</span>
                 </div>
-              </Link>
+              </InternalLink>
             ))}
           </div>
         </div>
       </section>
 
+      {location?.enabled !== false && maps?.shareUrl && (
+        <section className="home-section">
+          <div className="container">
+            <div className="home-location">
+              <div>
+                <p className="badge">Google Business Profile</p>
+                <h2 className="section-title" style={{ marginTop: "0.65rem" }}>
+                  {location?.title || "Visit DisplayAvenue in Mumbai"}
+                </h2>
+                <p className="section-sub">
+                  {location?.sub ||
+                    "Find us on Google Maps and Google Business Profile."}
+                </p>
+                <ul className="feature-list" style={{ marginTop: "1rem" }}>
+                  <li>
+                    <Icon name="building" color="#0056ff" />
+                    <strong>
+                      {(company.address.lines || []).join(", ") ||
+                        company.address.city}
+                    </strong>
+                  </li>
+                  <li>
+                    <Icon name="clock" color="#0056ff" />
+                    <strong>{company.address.hours}</strong>
+                  </li>
+                  <li>
+                    <Icon name="phone" color="#0056ff" />
+                    <strong>{company.phone}</strong>
+                  </li>
+                </ul>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "0.75rem",
+                    flexWrap: "wrap",
+                    marginTop: "1.25rem",
+                  }}
+                >
+                  <a
+                    href={maps.shareUrl}
+                    className="btn btn-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {location?.ctaLabel || "Open Google Business Profile"}
+                  </a>
+                  <a
+                    href={maps.profileUrl || maps.shareUrl}
+                    className="btn btn-outline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {location?.directionsLabel || "Get Directions"}
+                  </a>
+                </div>
+              </div>
+              <div className="home-map-frame">
+                <iframe
+                  title={`${maps.name || company.name} on Google Maps`}
+                  src={
+                    maps.embedUrl ||
+                    "https://maps.google.com/maps?q=Display+Avenue+Mumbai&hl=en&z=15&output=embed"
+                  }
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       <style>{`
+        .ai-assist-actions a {
+          display: inline-flex;
+          padding: 0.35rem 0.7rem;
+          border-radius: 999px;
+          background: rgba(0, 86, 255, 0.08);
+          color: var(--navy);
+          font-size: 0.8rem;
+          font-weight: 600;
+          text-decoration: none;
+        }
+        .ai-assist-actions a:hover { background: rgba(0, 86, 255, 0.16); }
+        .home-location {
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          gap: 1.5rem;
+          align-items: stretch;
+          background: #fff;
+          border: 1px solid var(--border-soft);
+          border-radius: var(--radius-lg);
+          padding: 1.5rem;
+          box-shadow: var(--shadow-sm);
+        }
+        .home-map-frame {
+          border-radius: 14px;
+          overflow: hidden;
+          min-height: 280px;
+          border: 1px solid var(--border-soft);
+          background: #e8eef8;
+        }
+        .home-map-frame iframe {
+          width: 100%;
+          height: 100%;
+          min-height: 280px;
+          border: 0;
+        }
         @media (max-width: 900px) {
           .home-split { grid-template-columns: 1fr !important; }
           .home-section .card { grid-template-columns: 1fr !important; }
+          .home-location { grid-template-columns: 1fr; }
         }
       `}</style>
     </>

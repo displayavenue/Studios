@@ -18,6 +18,7 @@ import { projectPages as fallbackProjects } from "../data/projectCatalog";
 import { resourcePages as fallbackResources } from "../data/resourceCatalog";
 import { testimonials as fallbackTestimonials } from "../data/content";
 import { clientLogos as fallbackLogos } from "../data/work";
+import { homeServices as fallbackHomeServices } from "../data/services";
 import type { DetailPageContent } from "../data/catalogTypes";
 import {
   defaultTracking,
@@ -28,9 +29,24 @@ import {
 type CompanyCms = typeof fallbackCompany & {
   announcement?: string;
   navItems: typeof fallbackNav;
+  googleMaps?: {
+    name?: string;
+    shareUrl?: string;
+    profileUrl?: string;
+    embedUrl?: string;
+    kgmid?: string;
+  };
 };
 
-type HomeCms = {
+export type HomeLinkCard = {
+  title: string;
+  desc: string;
+  icon: string;
+  color: string;
+  href: string;
+};
+
+export type HomeCms = {
   seo?: { title?: string; description?: string };
   hero: {
     eyebrow: string;
@@ -38,11 +54,84 @@ type HomeCms = {
     titleAccent: string;
     lead: string;
     primaryCta: string;
+    primaryCtaHref?: string;
     secondaryCta: string;
+    secondaryCtaHref?: string;
+    showreelLabel?: string;
+    showreelHref?: string;
+    portfolioLabel?: string;
+    portfolioHref?: string;
+  };
+  heroDashboard?: {
+    title: string;
+    meta: string;
+    metrics: { value: string; label: string }[];
+  };
+  aiAssist?: {
+    title: string;
+    body: string;
+    actions: { label: string; href: string }[];
   };
   trustLabel: string;
+  partners?: string[];
   servicesTitle: string;
   servicesSub: string;
+  services?: HomeLinkCard[];
+  allServicesCard?: { title: string; desc: string; href: string };
+  aiBanner?: {
+    title: string;
+    sub: string;
+    bullets: string[];
+    ctaLabel: string;
+    ctaHref: string;
+  };
+  industriesTitle?: string;
+  industriesCtaLabel?: string;
+  industriesCtaHref?: string;
+  industrySlugs?: string[];
+  challengesTitle?: string;
+  challengeLinks?: {
+    label: string;
+    desc: string;
+    href: string;
+    icon: string;
+  }[];
+  packagesTitle?: string;
+  packagesSub?: string;
+  packages?: {
+    name: string;
+    price: string;
+    period: string;
+    features: string[];
+    highlighted?: boolean;
+    badge?: string;
+    href: string;
+    ctaLabel?: string;
+  }[];
+  packagePills?: string[];
+  toolsTitle?: string;
+  toolsCtaLabel?: string;
+  toolsCtaHref?: string;
+  toolCategorySlugs?: string[];
+  casesTitle?: string;
+  caseSlugs?: string[];
+  testimonialsTitle?: string;
+  insightsTitle?: string;
+  insightsCtaLabel?: string;
+  insightsCtaHref?: string;
+  insightLinks?: {
+    title: string;
+    date: string;
+    href: string;
+    gradient: string;
+  }[];
+  location?: {
+    enabled?: boolean;
+    title?: string;
+    sub?: string;
+    ctaLabel?: string;
+    directionsLabel?: string;
+  };
 };
 
 type ContentCms = {
@@ -75,15 +164,41 @@ const fallbackHome: HomeCms = {
     titleAccent: "AI-Powered Digital Growth.",
     lead: "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, and AI automation - under one roof.",
     primaryCta: "Book Free Consultation →",
+    primaryCtaHref: "/contact",
     secondaryCta: "Get Free Proposal",
+    secondaryCtaHref: "/contact",
+    showreelLabel: "Watch Showreel",
+    showreelHref: "/portfolio",
+    portfolioLabel: "View Portfolio",
+    portfolioHref: "/portfolio",
   },
   trustLabel: "Trusted by 500+ businesses",
+  partners: [
+    "Google Partner",
+    "Meta Business Partner",
+    "HubSpot",
+    "Clutch",
+    "GoodFirms",
+    "DesignRush",
+    "Shopify",
+    "AWS",
+  ],
   servicesTitle: "End-to-End Digital Solutions Under One Roof.",
   servicesSub: "Marketing, product, creative, and AI - built to compound growth.",
+  services: fallbackHomeServices,
+  allServicesCard: {
+    title: "See All Services",
+    desc: "Explore 300+ services across marketing, product, and AI.",
+    href: "/services",
+  },
 };
 
 const defaults: AgencyCms = {
-  company: { ...fallbackCompany, announcement: "New! AI-Powered Marketing Solutions are now available.", navItems: fallbackNav },
+  company: {
+    ...fallbackCompany,
+    announcement: "New! AI-Powered Marketing Solutions are now available.",
+    navItems: fallbackNav,
+  },
   home: fallbackHome,
   services: fallbackServices,
   industries: fallbackIndustries,
@@ -120,8 +235,13 @@ async function fetchJson<T>(name: string): Promise<T | null> {
   }
 }
 
-function itemsOf(data: { items?: DetailPageContent[] } | null, fallback: DetailPageContent[]) {
-  return data?.items?.length ? data.items : fallback;
+function itemsOf<T>(
+  payload: { items?: T[] } | null,
+  fallback: T[],
+): T[] {
+  return Array.isArray(payload?.items) && payload!.items!.length
+    ? payload!.items!
+    : fallback;
 }
 
 export function CmsProvider({ children }: { children: ReactNode }) {
@@ -143,10 +263,10 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         projects,
         resources,
         content,
-        trackingJson,
+        tracking,
       ] = await Promise.all([
-        fetchJson<Partial<CompanyCms>>("company"),
-        fetchJson<Partial<HomeCms>>("home"),
+        fetchJson<CompanyCms>("company"),
+        fetchJson<HomeCms>("home"),
         fetchJson<{ items: DetailPageContent[] }>("services"),
         fetchJson<{ items: DetailPageContent[] }>("industries"),
         fetchJson<{ items: DetailPageContent[] }>("packages"),
@@ -156,17 +276,19 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         fetchJson<{ items: DetailPageContent[] }>("cases"),
         fetchJson<{ items: DetailPageContent[] }>("projects"),
         fetchJson<{ items: DetailPageContent[] }>("resources"),
-        fetchJson<Partial<ContentCms>>("content"),
+        fetchJson<ContentCms>("content"),
         fetchJson<TrackingSettings>("tracking"),
       ]);
-
       if (cancelled) return;
-
-      const navItems = (company?.navItems || fallbackNav).map((n) => {
+      const navItems = (company?.navItems?.length
+        ? company.navItems
+        : defaults.company.navItems
+      ).map((n) => {
         const mega = (n as { mega?: unknown }).mega;
         return {
           ...n,
-          mega: mega === false || mega === "false" ? false : (mega as typeof n.mega),
+          mega:
+            mega === false || mega === "false" ? false : (mega as typeof n.mega),
         };
       });
 
@@ -177,6 +299,10 @@ export function CmsProvider({ children }: { children: ReactNode }) {
           address: { ...fallbackCompany.address, ...(company?.address || {}) },
           socials: { ...fallbackCompany.socials, ...(company?.socials || {}) },
           stats: { ...fallbackCompany.stats, ...(company?.stats || {}) },
+          googleMaps: {
+            ...fallbackCompany.googleMaps,
+            ...(company?.googleMaps || {}),
+          },
           announcement:
             company?.announcement ||
             "New! AI-Powered Marketing Solutions are now available.",
@@ -208,7 +334,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             ...(content?.footerCta || {}),
           },
         },
-        tracking: mergeTracking(trackingJson),
+        tracking: mergeTracking(tracking || {}),
         ready: true,
       });
     })();
