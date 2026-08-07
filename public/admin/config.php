@@ -1,6 +1,6 @@
 <?php
 /**
- * DisplayAvenue Studios — CMS config
+ * DisplayAvenue Studios - CMS config
  * Change ADMIN_PASSWORD below, then delete or protect this file's visibility.
  */
 return [

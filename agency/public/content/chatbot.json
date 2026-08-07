@@ -1,0 +1,59 @@
+{
+  "enabled": true,
+  "botName": "DA Assist",
+  "welcomeMessage": "Hi! I’m DA Assist — DisplayAvenue’s website guide. Ask me about our services, packages, industries, location, or how we can help your brand grow.",
+  "placeholder": "Ask about SEO, ads, websites, packages…",
+  "primaryColor": "#0056ff",
+  "suggestedPrompts": [
+    "What services do you offer?",
+    "Where is your Mumbai office?",
+    "How can I get a free proposal?",
+    "Do you work with ecommerce brands?"
+  ],
+  "fallbackMessage": "I don’t have that exact detail on the site yet. Share a bit more, or contact our team — we’ll help right away.",
+  "handoffLabel": "Talk to a human",
+  "handoffHref": "/contact",
+  "facts": [
+    "DisplayAvenue is an AI-powered digital growth partner based in Mumbai, India.",
+    "We help brands with digital marketing, SEO, Google Ads, Meta Ads, web development, ecommerce, branding, and AI automation.",
+    "Office: Office No. 44, Shree Sharanam CHS, D Wing, Kanakia Layout, Unique Gardens, Gaurav City, Mira Road East, Mumbai, Maharashtra 401107.",
+    "Hours: Mon–Sat · 10:00 AM – 7:00 PM IST.",
+    "Phone / WhatsApp: +91 9222 122333.",
+    "Email: info@displayavenue.com.",
+    "Website: https://displayavenue.com/",
+    "We have delivered 850+ projects across 25+ industries with 98% client satisfaction.",
+    "You can request a free consultation or proposal from the Contact page.",
+    "The DisplayAvenue company catalogue PDF is available at https://displayavenue.com/catalogue."
+  ],
+  "faqs": [
+    {
+      "q": "What services do you offer?",
+      "a": "We offer digital marketing, SEO, Google Ads, Meta Ads, web development, ecommerce, branding, creative, and AI automation — plus packages and free tools. Browse https://displayavenue.com/services or ask about a specific service."
+    },
+    {
+      "q": "What does DisplayAvenue do?",
+      "a": "DisplayAvenue is an AI-powered digital agency that helps brands generate leads, build websites and ecommerce experiences, run SEO and paid ads, create branding, and automate growth with AI — under one roof."
+    },
+    {
+      "q": "Where are you located?",
+      "a": "We’re in Mira Road East, Mumbai — Office No. 44, Shree Sharanam CHS, D Wing, Kanakia Layout, Unique Gardens, Gaurav City, Maharashtra 401107. You can get directions from the homepage map or Google Maps."
+    },
+    {
+      "q": "How do I contact you?",
+      "a": "Call or WhatsApp +91 9222 122333, email info@displayavenue.com, or submit the form on https://displayavenue.com/contact for a free proposal."
+    },
+    {
+      "q": "What are your working hours?",
+      "a": "We’re available Monday to Saturday, 10:00 AM – 7:00 PM IST."
+    },
+    {
+      "q": "Do you offer free consultation?",
+      "a": "Yes. You can book a free consultation or request a custom proposal on our Contact page — no obligation to start."
+    },
+    {
+      "q": "Which industries do you serve?",
+      "a": "We work across healthcare, real estate, ecommerce, travel, manufacturing, SaaS, education, and more — with industry-specific growth playbooks."
+    }
+  ],
+  "updatedAt": "2026-08-06T13:50:00Z"
+}

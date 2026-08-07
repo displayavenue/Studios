@@ -1,0 +1,51 @@
+# DisplayAvenue
+> Digital Growth. AI Powered.
+
+AI-powered digital marketing, web development, ecommerce, branding, and automation agency based in Mumbai, India.
+
+## Primary pages
+- https://displayavenue.com/
+- https://displayavenue.com/services
+- https://displayavenue.com/industries
+- https://displayavenue.com/solutions
+- https://displayavenue.com/ai-platform
+- https://displayavenue.com/packages
+- https://displayavenue.com/free-tools
+- https://displayavenue.com/case-studies
+- https://displayavenue.com/portfolio
+- https://displayavenue.com/resources
+- https://displayavenue.com/shop
+- https://displayavenue.com/contact
+
+## Services (sample)
+- Digital Marketing: https://displayavenue.com/services/digital-marketing
+- SEO: https://displayavenue.com/services/seo
+- AI SEO (GEO): https://displayavenue.com/services/ai-seo
+- Local SEO: https://displayavenue.com/services/local-seo
+- Google Ads: https://displayavenue.com/services/google-ads
+- Meta Ads: https://displayavenue.com/services/meta-ads
+- Linkedin Ads: https://displayavenue.com/services/linkedin-ads
+- Email Marketing: https://displayavenue.com/services/email-marketing
+- Social Media Marketing: https://displayavenue.com/services/social-media
+- Content Marketing: https://displayavenue.com/services/content-marketing
+- Influencer Marketing: https://displayavenue.com/services/influencer-marketing
+- Marketing Automation: https://displayavenue.com/services/marketing-automation
+- CRO & Landing Pages: https://displayavenue.com/services/cro
+- Analytics & Tracking: https://displayavenue.com/services/analytics
+- Reputation Management: https://displayavenue.com/services/reputation
+- Web Development: https://displayavenue.com/services/web-development
+- Corporate Websites: https://displayavenue.com/services/corporate-websites
+- Startup Websites: https://displayavenue.com/services/startup-websites
+- Landing Pages: https://displayavenue.com/services/landing-pages
+- Shopify: https://displayavenue.com/services/shopify
+- Woocommerce: https://displayavenue.com/services/woocommerce
+- Magento: https://displayavenue.com/services/magento
+- Custom Ecommerce: https://displayavenue.com/services/custom-ecommerce
+- E-commerce Solutions: https://displayavenue.com/services/ecommerce
+- Wordpress: https://displayavenue.com/services/wordpress
+
+## Contact
+- Phone: +91 9222 122333
+- Email: info@displayavenue.com
+- Website: https://displayavenue.com/
+- Sitemap: https://displayavenue.com/sitemap.xml

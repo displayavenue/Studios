@@ -143,7 +143,7 @@ export function Home() {
               >
                 <img
                   src={item.image}
-                  alt={`${item.title} — ${item.category} project in ${item.location}`}
+                  alt={`${item.title} - ${item.category} project in ${item.location}`}
                   loading="lazy"
                   width={800}
                   height={1000}

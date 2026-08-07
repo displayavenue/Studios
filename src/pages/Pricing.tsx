@@ -56,7 +56,7 @@ export function Pricing() {
           <h1>Transparent pricing for premium visual production</h1>
           <p>
             We publish starting packages and explain what influences the final
-            quote — so you can plan with confidence before booking.
+            quote - so you can plan with confidence before booking.
           </p>
         </div>
       </section>

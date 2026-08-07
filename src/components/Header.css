@@ -644,7 +644,7 @@ a.nav-col__title:hover {
 }
 
 .mobile-acc__btn.is-open::after {
-  content: "–";
+  content: "-";
 }
 
 .mobile-acc__body {

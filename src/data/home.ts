@@ -127,7 +127,7 @@ export const homeContent: HomeContent = {
   ctaBanner: {
     eyebrow: "Book Consultation",
     title: "Ready to Capture Your Story?",
-    text: "Book a consultation with DisplayAvenue Studios — India's Premium Visual Production Studio for weddings, brands and events.",
+    text: "Book a consultation with DisplayAvenue Studios - India's Premium Visual Production Studio for weddings, brands and events.",
     primaryLabel: "Book Consultation",
     primaryPath: "/book-now",
   },

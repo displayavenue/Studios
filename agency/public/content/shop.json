@@ -1,0 +1,89 @@
+{
+  "enabled": true,
+  "title": "Shop",
+  "eyebrow": "Online Store",
+  "headline": "Shop DisplayAvenue products",
+  "summary": "Browse and buy products online. Secure checkout powered by Razorpay.",
+  "currency": "INR",
+  "currencySymbol": "₹",
+  "successMessage": "Payment received. We will email your order confirmation and next steps shortly.",
+  "products": [
+    {
+      "id": "seo-audit-report",
+      "slug": "seo-audit-report",
+      "title": "SEO Audit Report",
+      "summary": "Full technical + content SEO audit PDF for your website, delivered within 5 business days.",
+      "description": "A detailed SEO audit product covering crawl health, indexation, on-page issues, keyword gaps, and prioritised fixes. After purchase you receive a kickoff form; we deliver the report as a downloadable PDF.",
+      "price": 9999,
+      "compareAtPrice": 14999,
+      "category": "Digital products",
+      "image": "",
+      "features": [
+        "Technical SEO checklist",
+        "On-page & content gaps",
+        "Priority fix roadmap",
+        "PDF delivery in 5 business days"
+      ],
+      "enabled": true,
+      "featured": true
+    },
+    {
+      "id": "brand-kit-starter",
+      "slug": "brand-kit-starter",
+      "title": "Brand Kit Starter",
+      "summary": "Logo usage guide, colour system, and social templates for a consistent brand rollout.",
+      "description": "A ready-to-use brand kit product with colour tokens, typography guidance, logo clear-space rules, and editable social post templates so your team stays on-brand.",
+      "price": 14999,
+      "compareAtPrice": 19999,
+      "category": "Branding",
+      "image": "",
+      "features": [
+        "Colour & type system",
+        "Logo usage rules",
+        "Social template pack",
+        "Brand do's and don'ts"
+      ],
+      "enabled": true,
+      "featured": true
+    },
+    {
+      "id": "ads-creative-pack",
+      "slug": "ads-creative-pack",
+      "title": "Ads Creative Pack",
+      "summary": "10 performance-ready ad creatives sized for Meta and Google placements.",
+      "description": "A product pack of 10 ad creatives tailored to your offer, exported for Meta feed/story and Google display sizes, with suggested primary text variants.",
+      "price": 12999,
+      "compareAtPrice": 0,
+      "category": "Creative",
+      "image": "",
+      "features": [
+        "10 ad creatives",
+        "Meta + Google sizes",
+        "Copy variants included",
+        "Editable source files"
+      ],
+      "enabled": true,
+      "featured": false
+    },
+    {
+      "id": "ai-content-playbook",
+      "slug": "ai-content-playbook",
+      "title": "AI Content Playbook",
+      "summary": "Prompt library and workflow playbook to produce on-brand content with AI faster.",
+      "description": "A practical product for marketing teams: prompt library, review checklist, channel workflows, and a 30-day content calendar template powered by AI assist.",
+      "price": 4999,
+      "compareAtPrice": 7999,
+      "category": "Digital products",
+      "image": "",
+      "features": [
+        "Prompt library",
+        "QA checklist",
+        "Channel workflows",
+        "30-day calendar template"
+      ],
+      "enabled": true,
+      "featured": true
+    }
+  ],
+  "updatedAt": "2026-08-06T15:20:00Z"
+}

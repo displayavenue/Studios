@@ -111,7 +111,7 @@ export function BookNow() {
                       {packageGroups.flatMap((g) =>
                         g.tiers.map((t) => (
                           <option key={t.id} value={t.id}>
-                            {g.title} — {t.name}
+                            {g.title} - {t.name}
                           </option>
                         )),
                       )}

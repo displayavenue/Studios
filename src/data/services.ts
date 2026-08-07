@@ -7,7 +7,7 @@ export type Service = {
   image: string;
   category: "Wedding" | "Corporate" | "Product" | "Events" | "Aerial" | "Post";
   related: string[];
-  /** Optional YouTube watch / share / embed URL — shown on the service page when set */
+  /** Optional YouTube watch / share / embed URL - shown on the service page when set */
   youtubeUrl?: string;
 };
 
@@ -34,7 +34,7 @@ export const services: Service[] = [
     title: "Wedding Videography",
     short: "Cinematic wedding films crafted like feature storytelling.",
     description:
-      "We produce cinematic wedding films that blend emotion, culture and craft — from highlight reels to full ceremony documentation worthy of the big screen.",
+      "We produce cinematic wedding films that blend emotion, culture and craft - from highlight reels to full ceremony documentation worthy of the big screen.",
     benefits: [
       "4K cinematic production with dual camera coverage",
       "Drone sequences for venue and baraat moments",
@@ -51,7 +51,7 @@ export const services: Service[] = [
     title: "Pre Wedding Shoot",
     short: "Styled love stories shot at iconic and intimate locations.",
     description:
-      "Romantic, fashion-forward pre-wedding sessions designed around your chemistry — city skylines, heritage venues or destination escapes.",
+      "Romantic, fashion-forward pre-wedding sessions designed around your chemistry - city skylines, heritage venues or destination escapes.",
     benefits: [
       "Concept moodboard and location scouting",
       "Wardrobe and styling guidance",
@@ -68,7 +68,7 @@ export const services: Service[] = [
     title: "Engagement Photography",
     short: "Elegant coverage of rings, rituals and first celebrations.",
     description:
-      "Celebrate your engagement with refined photography that honours tradition and personality — perfect for announcements and wedding invitations.",
+      "Celebrate your engagement with refined photography that honours tradition and personality - perfect for announcements and wedding invitations.",
     benefits: [
       "Ceremony and family portrait coverage",
       "Natural light and controlled flash setups",
@@ -238,7 +238,7 @@ export const services: Service[] = [
     title: "Manufacturing Videos",
     short: "Process films that explain quality, scale and capability.",
     description:
-      "Manufacturing videos that help buyers understand your process, certifications and capacity — ideal for B2B sales and websites.",
+      "Manufacturing videos that help buyers understand your process, certifications and capacity - ideal for B2B sales and websites.",
     benefits: [
       "Process storytelling scripts",
       "Safety-first filming protocols",
@@ -255,7 +255,7 @@ export const services: Service[] = [
     title: "Product Photography",
     short: "Catalogue, lifestyle and packshot imagery that sells.",
     description:
-      "Premium product photography for e-commerce, lookbooks and campaigns — crisp packshots and lifestyle scenes that convert.",
+      "Premium product photography for e-commerce, lookbooks and campaigns - crisp packshots and lifestyle scenes that convert.",
     benefits: [
       "Studio packshots on white and custom sets",
       "Lifestyle and flat-lay compositions",
@@ -272,7 +272,7 @@ export const services: Service[] = [
     title: "Product Videography",
     short: "Dynamic product films for ads, reels and launches.",
     description:
-      "Motion that makes products irresistible — from 360 spins to cinematic launch films for digital and retail campaigns.",
+      "Motion that makes products irresistible - from 360 spins to cinematic launch films for digital and retail campaigns.",
     benefits: [
       "360° and hero product videos",
       "Social-first vertical formats",
@@ -323,7 +323,7 @@ export const services: Service[] = [
     title: "Food Photography",
     short: "Appetite-led imagery for menus, delivery apps and brands.",
     description:
-      "Styled food photography that makes dishes irresistible — for restaurants, cloud kitchens, hotels and CPG brands.",
+      "Styled food photography that makes dishes irresistible - for restaurants, cloud kitchens, hotels and CPG brands.",
     benefits: [
       "On-location and studio food styling",
       "Menu and delivery-app crops",
@@ -357,7 +357,7 @@ export const services: Service[] = [
     title: "Hotel Photography",
     short: "Rooms, amenities and lifestyle imagery for hospitality.",
     description:
-      "Hospitality photography built for OTAs and brand sites — rooms, suites, dining, spa and experiential lifestyle frames.",
+      "Hospitality photography built for OTAs and brand sites - rooms, suites, dining, spa and experiential lifestyle frames.",
     benefits: [
       "Room and suite architectural framing",
       "Amenity and F&B coverage",
@@ -374,7 +374,7 @@ export const services: Service[] = [
     title: "Fashion Photography",
     short: "Editorial and campaign imagery for apparel and jewellery.",
     description:
-      "Fashion photography with strong direction — lookbooks, e-commerce sets, jewellery campaigns and seasonal collections.",
+      "Fashion photography with strong direction - lookbooks, e-commerce sets, jewellery campaigns and seasonal collections.",
     benefits: [
       "Studio and on-location fashion sets",
       "Model direction and posing support",
@@ -408,7 +408,7 @@ export const services: Service[] = [
     title: "Architecture Photography",
     short: "Form, light and structure for architects and developers.",
     description:
-      "Architectural photography that respects design intent — exteriors, façades and contextual storytelling for portfolios and marketing.",
+      "Architectural photography that respects design intent - exteriors, façades and contextual storytelling for portfolios and marketing.",
     benefits: [
       "Perspective-corrected architectural frames",
       "Golden-hour and twilight sessions",
@@ -425,7 +425,7 @@ export const services: Service[] = [
     title: "Interior Photography",
     short: "Spaces photographed to feel lived-in and aspirational.",
     description:
-      "Interior photography for designers, hotels and real estate — balanced lighting, styling guidance and lifestyle framing.",
+      "Interior photography for designers, hotels and real estate - balanced lighting, styling guidance and lifestyle framing.",
     benefits: [
       "Natural and supplemental light blending",
       "Styling support for vignettes",
@@ -442,7 +442,7 @@ export const services: Service[] = [
     title: "Real Estate Photography",
     short: "Listing imagery that helps properties sell faster.",
     description:
-      "Real estate photography and walkthrough support for brokers, developers and luxury homes — clear, bright and inviting.",
+      "Real estate photography and walkthrough support for brokers, developers and luxury homes - clear, bright and inviting.",
     benefits: [
       "HDR interiors and exteriors",
       "Twilight exterior packages",
@@ -510,7 +510,7 @@ export const services: Service[] = [
     title: "Event Videography",
     short: "Highlight films and full documentation for live events.",
     description:
-      "Event films that capture speeches, atmosphere and brand moments — ideal for recaps, sponsors and internal sharing.",
+      "Event films that capture speeches, atmosphere and brand moments - ideal for recaps, sponsors and internal sharing.",
     benefits: [
       "Multi-camera event coverage",
       "Highlight reel and full edit options",
@@ -578,7 +578,7 @@ export const services: Service[] = [
     title: "Conferences",
     short: "Speaker, audience and brand coverage for summits.",
     description:
-      "Conference visual production covering keynotes, panels, exhibition floors and networking — built for organisers and sponsors.",
+      "Conference visual production covering keynotes, panels, exhibition floors and networking - built for organisers and sponsors.",
     benefits: [
       "Multi-hall coverage planning",
       "Speaker portrait and stage sets",
@@ -595,7 +595,7 @@ export const services: Service[] = [
     title: "Live Streaming",
     short: "Multi-camera live streams for weddings and events.",
     description:
-      "Reliable live streaming with professional switching, graphics and backup — for destination guests, conferences and hybrid events.",
+      "Reliable live streaming with professional switching, graphics and backup - for destination guests, conferences and hybrid events.",
     benefits: [
       "Multi-camera live switching",
       "Branded overlays and lower-thirds",
@@ -612,7 +612,7 @@ export const services: Service[] = [
     title: "Podcast Production",
     short: "Multi-cam podcast filming with polished audio.",
     description:
-      "End-to-end podcast production — set design guidance, multi-camera filming, audio capture and edit-ready deliverables.",
+      "End-to-end podcast production - set design guidance, multi-camera filming, audio capture and edit-ready deliverables.",
     benefits: [
       "Multi-camera podcast setups",
       "Clean audio capture and mixing",
@@ -646,7 +646,7 @@ export const services: Service[] = [
     title: "Social Media Reels",
     short: "Scroll-stopping vertical content for Instagram and Shorts.",
     description:
-      "Reel production designed for reach — hooks, pacing and platform-native framing for weddings, brands and creators.",
+      "Reel production designed for reach - hooks, pacing and platform-native framing for weddings, brands and creators.",
     benefits: [
       "Hook-first scripting approach",
       "Vertical-native filming",
@@ -680,7 +680,7 @@ export const services: Service[] = [
     title: "YouTube Videos",
     short: "Channel-ready long-form videos with strong retention.",
     description:
-      "YouTube production from concept to thumbnail — tutorials, vlogs, brand episodes and educational series.",
+      "YouTube production from concept to thumbnail - tutorials, vlogs, brand episodes and educational series.",
     benefits: [
       "Episode planning and shot lists",
       "Thumbnail photography options",
@@ -697,7 +697,7 @@ export const services: Service[] = [
     title: "Video Editing",
     short: "Precision editing for films, ads and social content.",
     description:
-      "Professional video editing for wedding films, commercial spots, reels and corporate content — paced for emotion and clarity.",
+      "Professional video editing for wedding films, commercial spots, reels and corporate content - paced for emotion and clarity.",
     benefits: [
       "Narrative and commercial editing styles",
       "Sound design and music sync",
@@ -714,7 +714,7 @@ export const services: Service[] = [
     title: "Photo Editing",
     short: "Colour, retouching and batch finishing at studio standard.",
     description:
-      "Photo editing and retouching services for weddings, products and campaigns — consistent colour and premium finish.",
+      "Photo editing and retouching services for weddings, products and campaigns - consistent colour and premium finish.",
     benefits: [
       "Culling and colour consistency",
       "Skin and product retouching",
@@ -748,7 +748,7 @@ export const services: Service[] = [
     title: "Color Grading",
     short: "Film-inspired colour that elevates every frame.",
     description:
-      "Professional colour grading for wedding films, commercials and brand content — cohesive looks across stills and motion.",
+      "Professional colour grading for wedding films, commercials and brand content - cohesive looks across stills and motion.",
     benefits: [
       "Show LUT and custom grade options",
       "Shot matching across cameras",
@@ -765,7 +765,7 @@ export const services: Service[] = [
     title: "Motion Graphics",
     short: "Titles, explainers and brand motion for premium films.",
     description:
-      "Motion graphics that clarify and elevate — openers, lower-thirds, explainer sequences and brand identity animation.",
+      "Motion graphics that clarify and elevate - openers, lower-thirds, explainer sequences and brand identity animation.",
     benefits: [
       "Custom title design systems",
       "Explainer and infographic motion",
@@ -799,7 +799,7 @@ export const services: Service[] = [
     title: "Commercial Ad Films",
     short: "Campaign films built for TV, digital and retail screens.",
     description:
-      "End-to-end commercial production — concept, casting support, shoot and finish — for brands that need standout ads.",
+      "End-to-end commercial production - concept, casting support, shoot and finish - for brands that need standout ads.",
     benefits: [
       "Concept and treatment development",
       "Full production crew and gear",
@@ -816,7 +816,7 @@ export const services: Service[] = [
     title: "Brand Story Videos",
     short: "Founder and brand origin films that build emotional trust.",
     description:
-      "Brand story videos that introduce who you are, why you exist and what makes your craft different — ideal for websites and fundraising.",
+      "Brand story videos that introduce who you are, why you exist and what makes your craft different - ideal for websites and fundraising.",
     benefits: [
       "Interview-led storytelling",
       "Process and craft B-roll",

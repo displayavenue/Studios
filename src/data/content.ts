@@ -33,7 +33,7 @@ export const faqs: FAQ[] = [
     category: "Delivery",
     question: "How long does delivery take?",
     answer:
-      "Social selects can be shared within 24–72 hours. Full wedding galleries typically deliver in 4–8 weeks. Films and commercial projects follow the timeline confirmed in your proposal.",
+      "Social selects can be shared within 24-72 hours. Full wedding galleries typically deliver in 4-8 weeks. Films and commercial projects follow the timeline confirmed in your proposal.",
   },
   {
     category: "Delivery",
@@ -90,7 +90,7 @@ export const whyChoose = [
   },
   {
     title: "Creative Storytelling",
-    text: "We design narratives — not just coverage — so your film and gallery feel intentional, emotional and premium.",
+    text: "We design narratives - not just coverage - so your film and gallery feel intentional, emotional and premium.",
   },
   {
     title: "Fast Delivery",
@@ -125,7 +125,7 @@ export const processSteps = [
   {
     step: "04",
     title: "Shoot",
-    text: "Our on-ground team arrives prepared — briefed, equipped and directed.",
+    text: "Our on-ground team arrives prepared - briefed, equipped and directed.",
   },
   {
     step: "05",
@@ -193,7 +193,7 @@ export const blogs = [
     slug: "destination-wedding-film-checklist",
     title: "Destination Wedding Film Checklist for Couples",
     excerpt:
-      "From permits to playlist references — everything couples should align with their cinematographer before a destination wedding.",
+      "From permits to playlist references - everything couples should align with their cinematographer before a destination wedding.",
     category: "Films",
     date: "18 Feb 2026",
     image:
@@ -322,7 +322,7 @@ export const locations = [
     city: "Mumbai",
     service: "Wedding Photography",
     intro:
-      "Luxury wedding photography across Mumbai — from intimate ceremonies in heritage venues to grand receptions in luxury hotels.",
+      "Luxury wedding photography across Mumbai - from intimate ceremonies in heritage venues to grand receptions in luxury hotels.",
   },
   {
     slug: "wedding-photographer-delhi",

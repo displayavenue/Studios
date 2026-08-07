@@ -1,0 +1,1840 @@
+{
+  "items": [
+    {
+      "icon": "factory",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Manufacturing",
+      "summary": "Industry-specific marketing, websites, and AI systems for manufacturing brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align manufacturing with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Manufacturing roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Manufacturing?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "manufacturing",
+      "kind": "industry",
+      "title": "Manufacturing",
+      "category": "Industries"
+    },
+    {
+      "icon": "heart",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Healthcare",
+      "summary": "Industry-specific marketing, websites, and AI systems for healthcare brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align healthcare with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Healthcare roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Healthcare?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "healthcare",
+      "kind": "industry",
+      "title": "Healthcare",
+      "category": "Industries"
+    },
+    {
+      "icon": "book",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Education",
+      "summary": "Industry-specific marketing, websites, and AI systems for education brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align education with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Education roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Education?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "education",
+      "kind": "industry",
+      "title": "Education",
+      "category": "Industries"
+    },
+    {
+      "icon": "building",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Real Estate",
+      "summary": "Industry-specific marketing, websites, and AI systems for real estate brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align real estate with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Real Estate roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Real Estate?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "real-estate",
+      "kind": "industry",
+      "title": "Real Estate",
+      "category": "Industries"
+    },
+    {
+      "icon": "hotel",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Hospitality",
+      "summary": "Industry-specific marketing, websites, and AI systems for hospitality brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align hospitality with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Hospitality roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Hospitality?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "hospitality",
+      "kind": "industry",
+      "title": "Hospitality",
+      "category": "Industries"
+    },
+    {
+      "icon": "utensils",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Restaurants & F&B",
+      "summary": "Industry-specific marketing, websites, and AI systems for restaurants & f&b brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align restaurants & f&b with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Restaurants & F&B roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Restaurants & F&B?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "restaurants",
+      "kind": "industry",
+      "title": "Restaurants & F&B",
+      "category": "Industries"
+    },
+    {
+      "icon": "cart",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for E-commerce",
+      "summary": "Industry-specific marketing, websites, and AI systems for e-commerce brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align e-commerce with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated E-commerce roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start E-commerce?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "ecommerce",
+      "kind": "industry",
+      "title": "E-commerce",
+      "category": "Industries"
+    },
+    {
+      "icon": "chip",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for SaaS & Technology",
+      "summary": "Industry-specific marketing, websites, and AI systems for saas & technology brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align saas & technology with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated SaaS & Technology roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start SaaS & Technology?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "saas",
+      "kind": "industry",
+      "title": "SaaS & Technology",
+      "category": "Industries"
+    },
+    {
+      "icon": "bank",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Finance & Banking",
+      "summary": "Industry-specific marketing, websites, and AI systems for finance & banking brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align finance & banking with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Finance & Banking roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Finance & Banking?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "finance",
+      "kind": "industry",
+      "title": "Finance & Banking",
+      "category": "Industries"
+    },
+    {
+      "icon": "car",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Automotive",
+      "summary": "Industry-specific marketing, websites, and AI systems for automotive brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align automotive with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Automotive roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Automotive?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "automotive",
+      "kind": "industry",
+      "title": "Automotive",
+      "category": "Industries"
+    },
+    {
+      "icon": "hardhat",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Construction",
+      "summary": "Industry-specific marketing, websites, and AI systems for construction brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align construction with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Construction roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Construction?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "construction",
+      "kind": "industry",
+      "title": "Construction",
+      "category": "Industries"
+    },
+    {
+      "icon": "plane",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Travel & Tourism",
+      "summary": "Industry-specific marketing, websites, and AI systems for travel & tourism brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align travel & tourism with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Travel & Tourism roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Travel & Tourism?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "travel",
+      "kind": "industry",
+      "title": "Travel & Tourism",
+      "category": "Industries"
+    },
+    {
+      "icon": "shirt",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Fashion & Apparel",
+      "summary": "Industry-specific marketing, websites, and AI systems for fashion & apparel brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align fashion & apparel with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Fashion & Apparel roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Fashion & Apparel?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "fashion",
+      "kind": "industry",
+      "title": "Fashion & Apparel",
+      "category": "Industries"
+    },
+    {
+      "icon": "gem",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Jewellery",
+      "summary": "Industry-specific marketing, websites, and AI systems for jewellery brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align jewellery with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Jewellery roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Jewellery?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "jewellery",
+      "kind": "industry",
+      "title": "Jewellery",
+      "category": "Industries"
+    },
+    {
+      "icon": "leaf",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Homeopathy & Wellness",
+      "summary": "Industry-specific marketing, websites, and AI systems for homeopathy & wellness brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align homeopathy & wellness with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Homeopathy & Wellness roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Homeopathy & Wellness?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "wellness",
+      "kind": "industry",
+      "title": "Homeopathy & Wellness",
+      "category": "Industries"
+    },
+    {
+      "icon": "briefcase",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for B2B Services",
+      "summary": "Industry-specific marketing, websites, and AI systems for b2b services brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align b2b services with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated B2B Services roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start B2B Services?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "b2b",
+      "kind": "industry",
+      "title": "B2B Services",
+      "category": "Industries"
+    },
+    {
+      "icon": "hands",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for NGO & Non-Profit",
+      "summary": "Industry-specific marketing, websites, and AI systems for ngo & non-profit brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ngo & non-profit with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated NGO & Non-Profit roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start NGO & Non-Profit?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "ngo",
+      "kind": "industry",
+      "title": "NGO & Non-Profit",
+      "category": "Industries"
+    },
+    {
+      "icon": "rocket",
+      "color": "#0056ff",
+      "eyebrow": "Industries",
+      "headline": "Digital growth strategies for Startups",
+      "summary": "Industry-specific marketing, websites, and AI systems for startups brands - built around your buyers, compliance needs, and growth goals.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align startups with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Startups roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Startups?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Case Studies",
+          "href": "/case-studies"
+        },
+        {
+          "label": "Get Industry Analysis",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "startups",
+      "kind": "industry",
+      "title": "Startups",
+      "category": "Industries"
+    }
+  ]
+}

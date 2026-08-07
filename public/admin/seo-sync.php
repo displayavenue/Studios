@@ -128,7 +128,7 @@ function da_build_llms_txt(array $bundle): string {
   $lines = [];
   $lines[] = '# ' . $name;
   $lines[] = '';
-  $lines[] = '> ' . $tagline . ' — luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India.';
+  $lines[] = '> ' . $tagline . ' - luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India.';
   $lines[] = '';
   $lines[] = '- Website: ' . $base;
   if ($phone) $lines[] = '- Phone / WhatsApp: ' . $phone;

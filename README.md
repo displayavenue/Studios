@@ -1,6 +1,8 @@
 # DisplayAvenue Studios
 
-Premium website for **DisplayAvenue Studios** — India's Premium Visual Production Studio.
+Premium website for **DisplayAvenue Studios** - India's Premium Visual Production Studio.
+
+> **Agency demo (separate):** see [`agency/`](agency/) for the **DisplayAvenue** digital growth agency site targeting [displayavenue.com](https://displayavenue.com). Run with `cd agency && npm install && npm run dev`.
 
 ## Stack
 
@@ -26,9 +28,9 @@ npm run preview
 
 1. Deploy the build to Hostinger `public_html`
 2. Open `https://displayavenuestudios.com/admin/`
-3. Login — default password in `admin/config.php`: `DisplayAdmin@2026` (**change it**)
+3. Login - default password in `admin/config.php`: `DisplayAdmin@2026` (**change it**)
 4. Edit company info, services, packages, portfolio, blogs, FAQs, team, etc.
-5. Click **Save changes** — refresh the website to see updates
+5. Click **Save changes** - refresh the website to see updates
 
 Ensure the `content/` folder is writable (chmod 755/775).
 

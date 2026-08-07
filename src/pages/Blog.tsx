@@ -33,7 +33,7 @@ export function Blog() {
           <p className="eyebrow">Blog</p>
           <h1>Guides built for planning, SEO and better bookings</h1>
           <p>
-            High-intent guides for couples, brands and local search — updated
+            High-intent guides for couples, brands and local search - updated
             from the CMS whenever you publish.
           </p>
         </div>
@@ -136,7 +136,7 @@ export function BlogPost() {
               <p>
                 At DisplayAvenue Studios, we speak with couples, marketing
                 teams and venue partners every week. The patterns are clear:
-                the best visual outcomes come from early clarity — on style,
+                the best visual outcomes come from early clarity - on style,
                 scope, timeline and usage.
               </p>
               <h2>Start with the outcome, not the gear</h2>
@@ -149,7 +149,7 @@ export function BlogPost() {
               <h2>Ask for process, not only portfolio</h2>
               <p>
                 Beautiful images matter. So does the operating system behind
-                them — contracts, shot lists, backup media, delivery portals and
+                them - contracts, shot lists, backup media, delivery portals and
                 revision rounds. A luxury studio should feel calm on the day and
                 precise after it.
               </p>

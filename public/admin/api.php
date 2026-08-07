@@ -59,7 +59,7 @@ function writeJson(string $path, $data): void {
   if ($json === false) respond(500, ['ok' => false, 'error' => 'Encode failed']);
   $tmp = $path . '.tmp';
   if (file_put_contents($tmp, $json . "\n") === false) {
-    respond(500, ['ok' => false, 'error' => 'Write failed — check folder permissions on /content']);
+    respond(500, ['ok' => false, 'error' => 'Write failed - check folder permissions on /content']);
   }
   rename($tmp, $path);
 }

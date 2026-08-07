@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>DisplayAvenue — Website Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css?v=builder3" />
+</head>
+<body>
+  <div id="app">
+    <section id="login-view" class="login-view">
+      <div class="login-card">
+        <div class="login-brand">
+          <span class="logo">DA</span>
+          <div>
+            <strong>DisplayAvenue</strong>
+            <small>Website Builder</small>
+          </div>
+        </div>
+        <h1>Sign in to edit your website</h1>
+        <p>Simple visual editor — like WordPress + Elementor. Change text, images, and sections, then click Publish.</p>
+        <form id="login-form">
+          <label for="password">Admin password</label>
+          <input id="password" type="password" autocomplete="current-password" required placeholder="Enter password" />
+          <button type="submit" class="btn btn-primary">Sign in</button>
+          <p id="login-error" class="error" hidden></p>
+        </form>
+        <p class="hint">Authorized staff only. Your session expires automatically.</p>
+      </div>
+    </section>
+
+    <section id="cms-view" class="cms-view" hidden>
+      <div class="wp-admin-bar">
+        <a class="wp-ab-brand" href="../" target="_blank" rel="noreferrer">
+          <span class="logo logo-sm">DA</span>
+          DisplayAvenue
+        </a>
+        <span class="wp-ab-sep">Website Builder</span>
+        <div class="wp-ab-right">
+          <a href="../" target="_blank" rel="noreferrer">View site ↗</a>
+          <button type="button" id="logout-btn" class="linkish">Log out</button>
+        </div>
+      </div>
+
+      <div class="cms-shell">
+        <aside class="sidebar">
+          <div class="sidebar-brand">
+            <span class="logo">DA</span>
+            <div>
+              <strong>Builder</strong>
+              <small>Easy mode</small>
+            </div>
+          </div>
+          <nav id="nav" class="sidebar-nav" aria-label="Website sections"></nav>
+          <div class="sidebar-help">
+            <strong>Need help?</strong>
+            <p>Edit a section on the left, then click <em>Publish</em>. Use Live Preview to see changes.</p>
+          </div>
+        </aside>
+
+        <div class="workspace">
+          <header class="topbar">
+            <div class="topbar-copy">
+              <p class="eyebrow" id="panel-eyebrow">Dashboard</p>
+              <h2 id="panel-title">Dashboard</h2>
+              <p id="panel-sub">Pick something to edit. Changes go live when you Publish.</p>
+            </div>
+            <div class="topbar-actions">
+              <button type="button" id="toggle-preview-btn" class="btn btn-ghost" title="Show or hide live preview">Live Preview</button>
+              <button type="button" id="clear-cache-btn" class="btn btn-ghost" title="Clear site cache after big updates">Clear cache</button>
+              <button type="button" id="sync-seo-btn" class="btn btn-ghost" title="Rebuild sitemap">Sitemap</button>
+              <button type="button" id="reload-btn" class="btn btn-ghost">Reload</button>
+              <button type="button" id="save-btn" class="btn btn-primary" disabled>Publish</button>
+            </div>
+          </header>
+
+          <div class="workspace-body">
+            <div id="toast" class="toast" hidden></div>
+            <div id="editor-wrap" class="editor-wrap">
+              <p class="empty">Loading…</p>
+            </div>
+            <aside id="preview-panel" class="preview-panel" hidden>
+              <div class="preview-toolbar">
+                <strong>Live preview</strong>
+                <div class="preview-devices" role="group" aria-label="Preview size">
+                  <button type="button" class="device-btn active" data-device="desktop" title="Desktop">Desktop</button>
+                  <button type="button" class="device-btn" data-device="tablet" title="Tablet">Tablet</button>
+                  <button type="button" class="device-btn" data-device="mobile" title="Mobile">Mobile</button>
+                </div>
+                <button type="button" id="preview-refresh" class="btn btn-ghost btn-sm">Refresh</button>
+                <a id="preview-open" class="btn btn-ghost btn-sm" href="/" target="_blank" rel="noreferrer">Open ↗</a>
+              </div>
+              <div class="preview-frame-wrap" data-device="desktop">
+                <iframe id="preview-frame" title="Website preview" src="about:blank"></iframe>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="admin.js?v=builder3"></script>
+</body>
+</html>

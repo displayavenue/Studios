@@ -29,7 +29,7 @@ export function Industries() {
           <h1>11 industry verticals. One luxury studio standard.</h1>
           <p>
             We have delivered 850+ productions for manufacturing, healthcare,
-            hospitality, fashion, real estate, government and more — adapting creative
+            hospitality, fashion, real estate, government and more - adapting creative
             direction to each sector without compromising craft.
           </p>
         </div>

@@ -30,7 +30,7 @@ export function Services() {
           <h1>Photography, videography and post production for every brief</h1>
           <p>
             SEO-ready service pages for weddings, brands, hospitality, events
-            and commercial content — each designed to help you book with
+            and commercial content - each designed to help you book with
             clarity.
           </p>
         </div>

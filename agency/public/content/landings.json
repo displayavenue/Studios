@@ -1,0 +1,186 @@
+{
+  "items": [
+    {
+      "slug": "seo-leads-mumbai",
+      "enabled": true,
+      "name": "SEO Leads Mumbai (Google Ads)",
+      "channel": "google",
+      "seoTitle": "SEO Agency Mumbai | Get More Qualified Leads | DisplayAvenue",
+      "seoDescription": "Grow organic and paid search leads with DisplayAvenue. Book a free SEO consultation or choose a ready package online.",
+      "eyebrow": "Google Ads landing page",
+      "headline": "Get more qualified SEO leads for your Mumbai business",
+      "subheadline": "Audit, fix, and scale search visibility with a team that reports pipeline - not vanity rankings.",
+      "heroImage": "",
+      "primaryCta": "Get free SEO audit",
+      "showPhone": true,
+      "showWhatsapp": true,
+      "trustBadges": [
+        "850+ projects delivered",
+        "98% client satisfaction",
+        "Transparent monthly reporting"
+      ],
+      "benefits": [
+        {
+          "title": "Technical SEO foundation",
+          "desc": "Crawl, indexation, speed and on-page fixes that unlock rankings."
+        },
+        {
+          "title": "Keyword-to-revenue map",
+          "desc": "We prioritise terms that convert, not just traffic."
+        },
+        {
+          "title": "Content that compounds",
+          "desc": "A practical 30-day plan your team can publish and measure."
+        }
+      ],
+      "bullets": [
+        "Dedicated strategist + weekly updates",
+        "Local + national SEO playbooks",
+        "Conversion tracking set up properly"
+      ],
+      "formTitle": "Get your free SEO audit",
+      "formSubtitle": "Share your website - we reply within 1 business day.",
+      "formButton": "Request free audit",
+      "thankYouMessage": "Thanks! Our SEO team will email you shortly with next steps.",
+      "showForm": true,
+      "packagesTitle": "Choose an SEO package",
+      "packages": [
+        {
+          "id": "seo-starter",
+          "name": "SEO Starter",
+          "price": 14999,
+          "compareAtPrice": 19999,
+          "features": [
+            "Technical audit",
+            "Keyword map",
+            "30-day content plan",
+            "Kickoff call"
+          ],
+          "highlighted": false,
+          "ctaLabel": "Buy Starter",
+          "razorpayEnabled": true
+        },
+        {
+          "id": "seo-growth",
+          "name": "SEO Growth",
+          "price": 34999,
+          "compareAtPrice": 44999,
+          "features": [
+            "Everything in Starter",
+            "On-page optimisation batch",
+            "Competitor gap analysis",
+            "Monthly reporting setup"
+          ],
+          "highlighted": true,
+          "ctaLabel": "Buy Growth",
+          "razorpayEnabled": true
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast will I see results?",
+          "a": "Technical fixes can help quickly; ranking and lead lift usually builds over 60-90 days depending on competition."
+        },
+        {
+          "q": "Can I pay online?",
+          "a": "Yes - package buttons open secure Razorpay checkout. You can also submit the form for a custom proposal."
+        }
+      ],
+      "googleAds": {
+        "conversionId": "",
+        "conversionLabel": ""
+      },
+      "metaAds": {
+        "pixelEvent": "Lead",
+        "contentName": "SEO Leads Mumbai"
+      },
+      "utmCampaign": "seo-leads-mumbai",
+      "utmSource": "google",
+      "utmMedium": "cpc",
+      "footerNote": "DisplayAvenue · Mira Road East, Mumbai · +91 9222 122333",
+      "updatedAt": "2026-08-06T15:30:00Z"
+    },
+    {
+      "slug": "meta-leads-ecommerce",
+      "enabled": true,
+      "name": "Meta Ads Ecommerce Leads",
+      "channel": "meta",
+      "seoTitle": "Meta Ads for Ecommerce Brands | DisplayAvenue",
+      "seoDescription": "Scale profitable Meta leads and sales with creative testing, tracking, and offer packaging.",
+      "eyebrow": "Meta Ads landing page",
+      "headline": "Turn Meta traffic into profitable ecommerce leads",
+      "subheadline": "Creative testing, clean tracking, and offers built for ROAS - not vanity reach.",
+      "heroImage": "",
+      "primaryCta": "Book Meta strategy call",
+      "showPhone": true,
+      "showWhatsapp": true,
+      "trustBadges": [
+        "Performance creative + media under one roof",
+        "Pixel & CAPI friendly setups",
+        "Weekly optimisation loops"
+      ],
+      "benefits": [
+        {
+          "title": "Offer-led campaigns",
+          "desc": "We structure ads around conversion events your business actually cares about."
+        },
+        {
+          "title": "Creative that learns",
+          "desc": "Hooks, angles and formats tested in a clear weekly cadence."
+        },
+        {
+          "title": "Tracking you can trust",
+          "desc": "Pixel/CAPI and attribution hygiene so spend decisions are cleaner."
+        }
+      ],
+      "bullets": [
+        "Account audit in week one",
+        "Creative brief + launch pack",
+        "Clear KPI dashboard"
+      ],
+      "formTitle": "Book a Meta Ads strategy call",
+      "formSubtitle": "Tell us your store URL and monthly ad budget.",
+      "formButton": "Book free call",
+      "thankYouMessage": "Thanks! We will reach out to schedule your Meta strategy call.",
+      "showForm": true,
+      "packagesTitle": "Meta launch packages",
+      "packages": [
+        {
+          "id": "meta-launch",
+          "name": "Meta Launch",
+          "price": 19999,
+          "compareAtPrice": 0,
+          "features": [
+            "Account structure",
+            "Pixel checklist",
+            "Creative starter pack",
+            "Launch support"
+          ],
+          "highlighted": true,
+          "ctaLabel": "Buy Meta Launch",
+          "razorpayEnabled": true
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Do you manage ads monthly?",
+          "a": "Yes - Launch is a setup package. Ask on the form if you want a monthly retainer quote."
+        }
+      ],
+      "googleAds": {
+        "conversionId": "",
+        "conversionLabel": ""
+      },
+      "metaAds": {
+        "pixelEvent": "Lead",
+        "contentName": "Meta Ecommerce Leads"
+      },
+      "utmCampaign": "meta-leads-ecommerce",
+      "utmSource": "facebook",
+      "utmMedium": "paid",
+      "footerNote": "DisplayAvenue · info@displayavenue.com · +91 9222 122333",
+      "updatedAt": "2026-08-06T15:30:00Z"
+    }
+  ],
+  "updatedAt": "2026-08-06T15:30:00Z"
+}

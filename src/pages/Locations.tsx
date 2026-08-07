@@ -18,7 +18,7 @@ function locationFaqs(city: string, service: string) {
     },
     {
       question: `How far in advance should I book in ${city}?`,
-      answer: `Peak wedding and event dates in ${city} often book 2–6 months ahead. Corporate and product shoots can sometimes be scheduled sooner — WhatsApp us to check availability.`,
+      answer: `Peak wedding and event dates in ${city} often book 2-6 months ahead. Corporate and product shoots can sometimes be scheduled sooner - WhatsApp us to check availability.`,
     },
     {
       question: `What is included in a ${city} photography package?`,
@@ -35,7 +35,7 @@ export function Locations() {
     <div ref={ref}>
       <SEO
         title="Wedding & Commercial Photographers Across India | Locations"
-        description="DisplayAvenue Studios location pages for Mumbai, Delhi, Bangalore, Pune, Hyderabad, Ahmedabad, Goa, Jaipur and more — book luxury photography & film pan India."
+        description="DisplayAvenue Studios location pages for Mumbai, Delhi, Bangalore, Pune, Hyderabad, Ahmedabad, Goa, Jaipur and more - book luxury photography & film pan India."
         path="/locations"
       />
       <BreadcrumbSchema
@@ -55,7 +55,7 @@ export function Locations() {
           <p className="eyebrow">Locations</p>
           <h1>Pan India coverage with Mumbai as home base</h1>
           <p>
-            Local SEO pages for cities we shoot often — each built to help you
+            Local SEO pages for cities we shoot often - each built to help you
             find the right crew, package and booking path for your celebration
             or brand.
           </p>
@@ -259,7 +259,7 @@ export function LocationDetail() {
 
       <CTABanner
         title={`Book your ${loc.city} shoot today`}
-        text={`Talk to DisplayAvenue Studios about ${loc.service.toLowerCase()} in ${loc.city} — WhatsApp or book a consultation online.`}
+        text={`Talk to DisplayAvenue Studios about ${loc.service.toLowerCase()} in ${loc.city} - WhatsApp or book a consultation online.`}
       />
     </div>
   );

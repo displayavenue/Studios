@@ -1,4 +1,4 @@
-# DisplayAvenue Studios — SPA routing for Hostinger/Apache
+# DisplayAvenue Studios - SPA routing for Hostinger/Apache
 DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>
