@@ -16,7 +16,26 @@ const serviceCategories = [
 const FALLBACK_SERVICE_IMAGE =
   "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80";
 
-type OpenMenu = "services" | "packages" | "more" | null;
+const siteLanguages = [
+  { code: "en", label: "English", native: "English" },
+  { code: "hi", label: "Hindi", native: "हिन्दी" },
+  { code: "mr", label: "Marathi", native: "मराठी" },
+  { code: "bn", label: "Bengali", native: "বাংলা" },
+  { code: "te", label: "Telugu", native: "తెలుగు" },
+  { code: "ta", label: "Tamil", native: "தமிழ்" },
+  { code: "gu", label: "Gujarati", native: "ગુજરાતી" },
+  { code: "ur", label: "Urdu", native: "اردو" },
+  { code: "kn", label: "Kannada", native: "ಕನ್ನಡ" },
+  { code: "or", label: "Odia", native: "ଓଡ଼ିଆ" },
+  { code: "ml", label: "Malayalam", native: "മലയാളം" },
+] as const;
+
+function translationUrl(languageCode: string) {
+  if (languageCode === "en") return window.location.href;
+  return `https://translate.google.com/translate?sl=auto&tl=${languageCode}&u=${encodeURIComponent(window.location.href)}`;
+}
+
+type OpenMenu = "services" | "packages" | "more" | "language" | null;
 
 function NavServiceThumb({ src }: { src: string }) {
   const [img, setImg] = useState(src);
@@ -41,6 +60,7 @@ export function Header() {
   const servicesId = useId();
   const packagesId = useId();
   const moreId = useId();
+  const languageId = useId();
 
   const popularServices = [
     "wedding-photography",
@@ -280,6 +300,37 @@ export function Header() {
               </div>
             </div>
 
+            <div
+              className={`nav-dropdown nav-dropdown--language ${menu === "language" ? "is-open" : ""}`}
+              onMouseEnter={() => setMenu("language")}
+              onMouseLeave={() => setMenu(null)}
+            >
+              <button
+                type="button"
+                className="nav-link nav-link--btn language-toggle"
+                aria-expanded={menu === "language"}
+                aria-controls={languageId}
+                onClick={() => toggleMenu("language")}
+              >
+                English
+                <span className="nav-caret" aria-hidden />
+              </button>
+              <div id={languageId} className="nav-panel nav-panel--language" role="region" aria-label="Choose language">
+                <p className="language-menu__title">Choose language</p>
+                {siteLanguages.map((language) => (
+                  <a
+                    key={language.code}
+                    href={translationUrl(language.code)}
+                    lang={language.code}
+                    onClick={() => setMenu(null)}
+                  >
+                    <span>{language.label}</span>
+                    <small>{language.native}</small>
+                  </a>
+                ))}
+              </div>
+            </div>
+
             <NavLink to="/contact" className="nav-link" onClick={() => setMenu(null)}>
               Contact
             </NavLink>
@@ -389,6 +440,18 @@ export function Header() {
                   FAQs
                 </NavLink>
               </nav>
+
+              <div className="mobile-nav__section mobile-language-menu">
+                <p className="mobile-nav__heading">Choose language</p>
+                <div className="mobile-language-grid">
+                  {siteLanguages.map((language) => (
+                    <a key={language.code} href={translationUrl(language.code)} lang={language.code} onClick={close}>
+                      <span>{language.label}</span>
+                      <small>{language.native}</small>
+                    </a>
+                  ))}
+                </div>
+              </div>
 
               <a href={company.phoneHref} className="mobile-drawer__phone">
                 Call {company.phone}
