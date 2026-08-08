@@ -1,0 +1,125 @@
+@import "@homeopathypharma/ui/styles.css";
+
+:root {
+  --app-font-display: var(--font-display, var(--hp-font-display));
+  --app-font-body: var(--font-body, var(--hp-font-body));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--app-font-body);
+  color: var(--hp-color-text);
+  background: var(--hp-gradient-surface);
+}
+
+/* Subtle apothecary paper grain — not flat */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgb(168 196 184 / 18%), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgb(11 61 58 / 6%), transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.font-display {
+  font-family: var(--app-font-display);
+}
+
+.font-body {
+  font-family: var(--app-font-body);
+}
+
+.hp-link {
+  color: var(--hp-color-primary);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.hp-link:hover {
+  text-decoration: underline;
+}
+
+.hp-link:focus-visible {
+  outline: var(--hp-focus-ring-width) solid var(--hp-focus-ring-color);
+  outline-offset: var(--hp-focus-ring-offset);
+  border-radius: var(--hp-radius-sm);
+}
+
+/* Hero full-bleed visual plane */
+.hero-visual-plane {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(135deg, rgb(11 61 58 / 92%) 0%, rgb(5 40 38 / 78%) 40%, rgb(168 196 184 / 25%) 100%),
+    radial-gradient(circle at 70% 30%, rgb(217 119 6 / 12%), transparent 45%),
+    linear-gradient(180deg, var(--hp-color-teal-900) 0%, var(--hp-color-teal-950) 100%);
+}
+
+.hero-visual-plane::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23a8c4b8' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M200 20c40 80-60 120 0 200s-40 120 0 160'/%3E%3Cpath d='M80 200c80-40 120 60 200 0s120 40 160 0'/%3E%3C/g%3E%3C/svg%3E")
+    center / cover no-repeat;
+  mix-blend-mode: soft-light;
+}
+
+.page-section {
+  padding-block: var(--hp-space-12);
+}
+
+.page-section--narrow {
+  max-width: var(--hp-container-narrow);
+  margin-inline: auto;
+}
+
+.disclaimer-banner {
+  padding: var(--hp-space-4);
+  background: rgb(227 237 231 / 60%);
+  border: 1px solid var(--hp-color-border);
+  border-radius: var(--hp-radius-md);
+  font-size: var(--hp-text-sm);
+  color: var(--hp-color-text-muted);
+}
+
+.product-section {
+  padding-block: var(--hp-space-8);
+  border-bottom: 1px solid var(--hp-color-border);
+}
+
+.product-section:last-child {
+  border-bottom: none;
+}
+
+.product-section h2 {
+  font-family: var(--app-font-display);
+  font-size: var(--hp-text-xl);
+  margin: 0 0 var(--hp-space-4);
+  color: var(--hp-color-teal-900);
+}
+
+.product-placeholder {
+  padding: var(--hp-space-6);
+  background: var(--hp-color-surface-elevated);
+  border: 1px dashed var(--hp-color-border-strong);
+  border-radius: var(--hp-radius-md);
+  color: var(--hp-color-text-muted);
+  font-size: var(--hp-text-sm);
+}
