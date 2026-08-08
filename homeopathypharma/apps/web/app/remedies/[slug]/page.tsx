@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildMedicalWebPageJsonLd, serializeJsonLd } from "@homeopathypharma/seo";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
-import { REMEDY_SLUGS, toParams } from "@/lib/static-params";
+import { ProductGrid } from "@/components/product-grid";
+import { productsByRemedy } from "@/lib/content/products";
+import { getRemedy, listRemedySlugs } from "@/lib/content/remedies";
+import { toParams } from "@/lib/static-params";
 
 export function generateStaticParams() {
-  return toParams(REMEDY_SLUGS);
+  return toParams(listRemedySlugs());
 }
 
 interface RemedyPageProps {
@@ -14,26 +17,37 @@ interface RemedyPageProps {
 
 export async function generateMetadata({ params }: RemedyPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const title = slug.replace(/-/g, " ");
+  const remedy = getRemedy(slug);
   return buildPageMetadata(
-    title,
+    remedy?.name ?? slug.replace(/-/g, " "),
     `/remedies/${slug}`,
-    `Educational overview of ${title} — homeopathic materia medica reference.`,
+    remedy?.summary ?? `Educational overview of ${slug.replace(/-/g, " ")}.`,
   );
 }
 
 export default async function RemedyPage({ params }: RemedyPageProps) {
   const { slug } = await params;
-  const title = slug.replace(/-/g, " ");
+  const remedy = getRemedy(slug);
+  const products = productsByRemedy(slug);
+
+  if (!remedy) {
+    return (
+      <ContentPage title="Remedy not found" path={`/remedies/${slug}`}>
+        <Link href="/remedies/" className="hp-link">
+          ← All remedies
+        </Link>
+      </ContentPage>
+    );
+  }
 
   const jsonLd = serializeJsonLd(
     buildMedicalWebPageJsonLd({
-      name: title,
-      description: `General educational information about ${title} in homeopathic literature — not medical advice.`,
+      name: remedy.name,
+      description: remedy.summary,
       url: `/remedies/${slug}`,
       lastReviewed: new Date().toISOString().slice(0, 10),
-      reviewedByName: "HomeopathyPharma Medical Review",
-      reviewedByCredential: "Editorial review pending",
+      reviewedByName: "HomeopathyPharma Editorial",
+      reviewedByCredential: "Educational catalogue review",
     }),
   );
 
@@ -41,14 +55,29 @@ export default async function RemedyPage({ params }: RemedyPageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ContentPage
-        title={title}
-        description="Master remedy profile — source classification, common names, and educational background."
+        title={remedy.name}
+        description={`${remedy.latinName} — educational materia medica reference`}
         path={`/remedies/${slug}`}
       >
-        <div className="product-placeholder">
-          Remedy monograph from <code>GET /v1/remedies/{slug}</code>. Includes source type, pharmacopoeial
-          references, and linked commercial products (potency/form/pack as variant attributes).
-        </div>
+        <p style={{ maxWidth: "65ch" }}>{remedy.summary}</p>
+        <ul className="detail-meta">
+          <li>
+            <strong>Latin name</strong>
+            <span>{remedy.latinName}</span>
+          </li>
+          <li>
+            <strong>Forms in shop</strong>
+            <span>{remedy.commonForms.join(" · ")}</span>
+          </li>
+          <li>
+            <strong>Products</strong>
+            <span>{products.length} published packs</span>
+          </li>
+        </ul>
+        <h2 className="font-display" style={{ color: "var(--hp-color-teal-900)" }}>
+          Available products
+        </h2>
+        <ProductGrid products={products} />
         <p style={{ marginTop: "var(--hp-space-6)" }}>
           <Link href="/remedies/" className="hp-link hp-focus-ring">
             ← All remedies

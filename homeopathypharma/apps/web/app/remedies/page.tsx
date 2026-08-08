@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
-import { REMEDY_SLUGS } from "@/lib/static-params";
+import { remedies } from "@/lib/content/remedies";
 
 export const metadata: Metadata = buildPageMetadata(
   "Remedies",
@@ -13,18 +13,21 @@ export default function RemediesIndexPage() {
   return (
     <ContentPage
       title="Remedies"
-      description="Browse master remedy profiles used across our catalog. Educational reference only — not prescribing guidance."
+      description="Browse master remedy profiles used across our catalogue. Educational reference only — not prescribing guidance."
       path="/remedies"
     >
       <p style={{ marginTop: 0, maxWidth: "60ch" }}>
-        Each remedy page describes source classification, common names, and general background from published
-        materia medica. Commercial listings (potency, form, pack) live on product pages linked from each remedy.
+        {remedies.length} remedies with published commercial packs. Each page links to potencies, forms, and brands
+        available in the shop.
       </p>
-      <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "var(--hp-space-3)" }}>
-        {REMEDY_SLUGS.map((slug) => (
-          <li key={slug}>
-            <Link href={`/remedies/${slug}/`} className="hp-link hp-focus-ring font-display">
-              {slug.replace(/-/g, " ")}
+      <ul className="catalog-grid" role="list">
+        {remedies.map((remedy) => (
+          <li key={remedy.slug} className="catalog-tile">
+            <Link href={`/remedies/${remedy.slug}/`} className="catalog-tile__link hp-focus-ring">
+              <p className="catalog-tile__eyebrow">{remedy.productCount} products</p>
+              <h3 className="catalog-tile__title font-display">{remedy.name}</h3>
+              <p className="catalog-tile__meta">{remedy.latinName}</p>
+              <p className="catalog-tile__stock">{remedy.commonForms.join(" · ")}</p>
             </Link>
           </li>
         ))}

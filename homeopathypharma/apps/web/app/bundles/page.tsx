@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
-import { BUNDLE_SLUGS } from "@/lib/static-params";
+import { ProductGrid } from "@/components/product-grid";
+import { PRODUCTS } from "@/lib/content/products";
 
 export const metadata: Metadata = buildPageMetadata(
   "Bundles & kits",
@@ -10,6 +11,8 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function BundlesIndexPage() {
+  const bundles = PRODUCTS.filter((p) => p.category === "Bundles");
+
   return (
     <ContentPage
       title="Bundles & kits"
@@ -17,22 +20,14 @@ export default function BundlesIndexPage() {
       path="/bundles"
     >
       <p style={{ marginTop: 0, maxWidth: "60ch" }}>
-        Bundles group published SKUs with transparent pricing. Each bundle page lists included variants (potency,
-        form, pack) without implying disease treatment.
+        Bundles group published SKUs with transparent pricing. Each kit page lists pack details without implying
+        disease treatment.
       </p>
-      <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "var(--hp-space-3)" }}>
-        {BUNDLE_SLUGS.map((slug) => (
-          <li key={slug}>
-            <Link href={`/bundles/${slug}/`} className="hp-link hp-focus-ring font-display">
-              {slug.replace(/-/g, " ")}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <ProductGrid products={bundles} />
       <p style={{ marginTop: "var(--hp-space-6)" }}>
-        Also browse via{" "}
-        <Link href="/shop/bundles/" className="hp-link hp-focus-ring">
-          Shop → Bundles
+        Prefer single remedies?{" "}
+        <Link href="/shop/" className="hp-link hp-focus-ring">
+          Browse the full shop
         </Link>
         .
       </p>

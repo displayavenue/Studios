@@ -1,11 +1,17 @@
-/** Placeholder slugs for static export shells — not production catalog data. */
+import { listBrandSlugs } from "./content/brands";
+import { listAllDoctorSlugs } from "./content/doctors";
+import { listProductSlugs } from "./content/products";
+import { listRemedySlugs } from "./content/remedies";
 
-export const PRODUCT_SLUGS = ["arnica-montana-30c"] as const;
-export const DOCTOR_SLUGS = ["sample-practitioner"] as const;
-export const REMEDY_SLUGS = ["arnica-montana"] as const;
-export const BRAND_SLUGS = ["sample-brand"] as const;
-export const BUNDLE_SLUGS = ["family-starter"] as const;
+/** Static export params — derived from live storefront content modules. */
+
+export const PRODUCT_SLUGS = listProductSlugs();
+export const DOCTOR_SLUGS = listAllDoctorSlugs();
+export const REMEDY_SLUGS = listRemedySlugs();
+export const BRAND_SLUGS = listBrandSlugs();
+export const BUNDLE_SLUGS = ["family-winter-wellness-kit", "digestive-care-starter"] as const;
 export const HEALTH_AREA_SLUGS = [
+  "general-wellness",
   "digestive-health",
   "respiratory-health",
   "skin-health",

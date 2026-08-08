@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
+import { ProductGrid } from "@/components/product-grid";
+import { PRODUCTS } from "@/lib/content/products";
 
 export const metadata: Metadata = buildPageMetadata(
   "Shop",
@@ -9,12 +11,11 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 const browseDimensions = [
-  { href: "/shop/categories/", label: "Categories", hint: "Store navigation tree" },
+  { href: "/shop/categories/", label: "Categories", hint: "Single remedies, biochemic, bundles, pet care" },
   { href: "/brands/", label: "Brands", hint: "First-class brand hubs" },
   { href: "/remedies/", label: "Remedies", hint: "Master remedy monographs" },
   { href: "/shop/health-areas/", label: "Health areas", hint: "Shop-by wellness themes" },
   { href: "/bundles/", label: "Bundles", hint: "Curated multi-product kits" },
-  { href: "/shop/offers/", label: "Offers", hint: "Promotions and deals" },
   { href: "/shop/new-arrivals/", label: "New arrivals", hint: "Recently published products" },
   { href: "/shop/bestsellers/", label: "Bestsellers", hint: "Popular products" },
 ] as const;
@@ -23,12 +24,12 @@ export default function ShopPage() {
   return (
     <ContentPage
       title="Shop"
-      description="Multidimensional catalog browse — categories, brands, remedies, health areas, bundles, and more."
+      description="Browse the live catalogue by category, brand, remedy, or health area — each path links to the same published products."
       path="/shop"
     >
       <p style={{ marginTop: 0, maxWidth: "60ch" }}>
-        Our catalogue is organized across several dimensions, not a single category tree. Choose how you want to
-        explore — each path links to the same underlying product catalog with different discovery lenses.
+        {PRODUCTS.length} products currently published. Choose how you want to explore, or scroll the full grid
+        below.
       </p>
       <ul
         style={{
@@ -50,9 +51,11 @@ export default function ShopPage() {
           </li>
         ))}
       </ul>
-      <p className="product-placeholder" style={{ marginTop: "var(--hp-space-8)" }}>
-        Product grid from <code>GET /v1/products</code>.
-      </p>
+
+      <h2 className="font-display" style={{ marginTop: "var(--hp-space-10)", color: "var(--hp-color-teal-900)" }}>
+        All products
+      </h2>
+      <ProductGrid products={PRODUCTS} />
     </ContentPage>
   );
 }

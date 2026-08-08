@@ -1,39 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
-import { listDoctors } from "@/lib/api";
+import { DoctorGrid } from "@/components/doctor-grid";
+import { DOCTORS } from "@/lib/content/doctors";
 
 export const metadata: Metadata = buildPageMetadata(
   "Find a doctor",
   "/doctors",
-  "Connect with verified homeopathic practitioners for consultations.",
+  "Browse 100 BHMS homeopathic practitioners listed across Mumbai for online and clinic consultations.",
 );
 
-export default async function DoctorsPage() {
-  const doctors = await listDoctors();
-
+export default function DoctorsPage() {
   return (
     <ContentPage
       title="Find a doctor"
-      description="Browse verified homeopathic practitioners available for video and chat consultations."
+      description="Browse BHMS practitioners listed in Mumbai for online video and clinic consultations. Profiles are for discovery and booking requests — verification badges are issued only after admin review."
       path="/doctors"
     >
-      {doctors.length === 0 ? (
-        <p className="product-placeholder">Doctor directory loads from <code>GET /v1/doctors</code>.</p>
-      ) : (
-        <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "var(--hp-space-4)" }}>
-          {doctors.map((doc) => (
-            <li key={doc.slug}>
-              <Link href={`/doctors/${doc.slug}`} className="hp-link hp-focus-ring">
-                {doc.name}
-              </Link>
-              <span style={{ color: "var(--hp-color-text-muted)", marginLeft: "var(--hp-space-2)" }}>
-                {doc.credentials}
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
+      <p style={{ marginTop: 0, maxWidth: "62ch" }}>
+        {DOCTORS.length} practitioners currently listed in Mumbai across localities from Andheri to Navi Mumbai.
+        Fees and formats are shown on each profile. Educational guidance only — not a substitute for emergency care.
+      </p>
+      <p style={{ marginTop: "var(--hp-space-4)" }}>
+        <Link href="/doctors/city/mumbai/" className="hp-link hp-focus-ring">
+          View Mumbai directory →
+        </Link>
+        {" · "}
+        <Link href="/consult/" className="hp-link hp-focus-ring">
+          Consultation options
+        </Link>
+      </p>
+      <DoctorGrid doctors={DOCTORS} />
     </ContentPage>
   );
 }

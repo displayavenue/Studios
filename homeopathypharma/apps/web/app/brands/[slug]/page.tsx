@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
-import { BRAND_SLUGS, toParams } from "@/lib/static-params";
+import { ProductGrid } from "@/components/product-grid";
+import { getBrand, listBrandSlugs } from "@/lib/content/brands";
+import { productsByBrand } from "@/lib/content/products";
+import { toParams } from "@/lib/static-params";
 
 export function generateStaticParams() {
-  return toParams(BRAND_SLUGS);
+  return toParams(listBrandSlugs());
 }
 
 interface BrandPageProps {
@@ -13,34 +16,43 @@ interface BrandPageProps {
 
 export async function generateMetadata({ params }: BrandPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const title = slug.replace(/-/g, " ");
+  const brand = getBrand(slug);
   return buildPageMetadata(
-    title,
+    brand?.name ?? slug.replace(/-/g, " "),
     `/brands/${slug}`,
-    `Explore ${title} homeopathic products — brand profile, manufacturers, and catalog.`,
+    brand?.summary ?? `Explore ${slug.replace(/-/g, " ")} homeopathic products.`,
   );
 }
 
 export default async function BrandDetailPage({ params }: BrandPageProps) {
   const { slug } = await params;
-  const title = slug.replace(/-/g, " ");
+  const brand = getBrand(slug);
+  const products = productsByBrand(slug);
+
+  if (!brand) {
+    return (
+      <ContentPage title="Brand not found" path={`/brands/${slug}`}>
+        <Link href="/brands/" className="hp-link">
+          ← All brands
+        </Link>
+      </ContentPage>
+    );
+  }
 
   return (
-    <ContentPage
-      title={title}
-      description="Brand hub — logo, country, linked manufacturers, regulatory notes, and product catalog."
-      path={`/brands/${slug}`}
-    >
-      <div className="product-placeholder">
-        Brand profile from <code>GET /v1/brands/{slug}</code>. Includes logo, country of origin, manufacturer
-        links (<code>brand_manufacturer_map</code>), regulatory notes, SEO metadata, and published products.
-      </div>
-      <ul style={{ marginTop: "var(--hp-space-6)", paddingLeft: "var(--hp-space-6)" }}>
-        <li>Logo and official website (when published)</li>
-        <li>Primary and secondary manufacturers (separate entities)</li>
-        <li>Product grid filtered by brand</li>
-        <li>Regulatory notes for admin/compliance review — not a legal opinion</li>
+    <ContentPage title={brand.name} description={brand.tagline} path={`/brands/${slug}`}>
+      <p style={{ maxWidth: "65ch" }}>{brand.summary}</p>
+      <ul className="detail-meta">
+        <li>
+          <strong>Manufacturer</strong>
+          <span>{brand.manufacturer}</span>
+        </li>
+        <li>
+          <strong>Products</strong>
+          <span>{products.length} published SKUs</span>
+        </li>
       </ul>
+      <ProductGrid products={products} />
       <p style={{ marginTop: "var(--hp-space-6)" }}>
         <Link href="/brands/" className="hp-link hp-focus-ring">
           ← All brands

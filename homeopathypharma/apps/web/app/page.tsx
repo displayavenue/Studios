@@ -66,7 +66,7 @@ export default function HomePage() {
           }}
         >
           Explore pharmacy-grade remedies and educational health resources — with optional consultations from
-          verified homeopathic doctors.
+          listed BHMS practitioners in Mumbai.
         </p>
 
         <div

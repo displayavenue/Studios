@@ -1,41 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
-import { BRAND_SLUGS } from "@/lib/static-params";
+import { brands } from "@/lib/content/brands";
 
 export const metadata: Metadata = buildPageMetadata(
   "Brands",
   "/brands",
-  "Homeopathic and wellness brands — first-class brand hubs with products, manufacturers, and regulatory notes.",
+  "Homeopathic and wellness brands — brand hubs with products and manufacturer notes.",
 );
 
 export default function BrandsIndexPage() {
   return (
     <ContentPage
       title="Brands"
-      description="Explore homeopathic and wellness brands as first-class catalog entities — each with its own profile, manufacturer links, and product catalog."
+      description="Explore published brands as first-class catalogue entities — each with manufacturer notes and a product grid."
       path="/brands"
     >
-      <p style={{ marginTop: 0, maxWidth: "60ch" }}>
-        Brands are separate from manufacturers. A brand hub includes logo, country, linked manufacturing partners,
-        and published products. Shop context:{" "}
-        <Link href="/shop/brands/" className="hp-link hp-focus-ring">
-          Shop by brand
-        </Link>
-        .
-      </p>
-      <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: "var(--hp-space-3)" }}>
-        {BRAND_SLUGS.map((slug) => (
-          <li key={slug}>
-            <Link href={`/brands/${slug}/`} className="hp-link hp-focus-ring font-display">
-              {slug.replace(/-/g, " ")}
+      <ul className="catalog-grid" role="list">
+        {brands.map((brand) => (
+          <li key={brand.slug} className="catalog-tile">
+            <Link href={`/brands/${brand.slug}/`} className="catalog-tile__link hp-focus-ring">
+              <p className="catalog-tile__eyebrow">{brand.productCount} products</p>
+              <h3 className="catalog-tile__title font-display">{brand.name}</h3>
+              <p className="catalog-tile__meta">{brand.tagline}</p>
+              <p className="catalog-tile__stock">{brand.manufacturer}</p>
             </Link>
           </li>
         ))}
       </ul>
-      <p className="product-placeholder" style={{ marginTop: "var(--hp-space-6)" }}>
-        Full directory from <code>GET /v1/brands</code>.
-      </p>
     </ContentPage>
   );
 }
