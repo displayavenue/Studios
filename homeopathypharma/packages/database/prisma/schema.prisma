@@ -448,17 +448,17 @@ model CustomerProfile {
   updatedById    String?
   deletedAt      DateTime?
 
-  user           User                   @relation(fields: [userId], references: [id])
-  addresses      CustomerAddress[]
-  preferences    CustomerPreference?
-  wallet         CustomerWallet?
-  referrals      CustomerReferral[]     @relation("ReferredCustomer")
-  notifications  CustomerNotification[]
-  carts          Cart[]
-  orders         Order[]
-  appointments   DoctorAppointment[]
-  productReviews ProductReview[]
-  doctorReviews  DoctorReview[]
+  user            User                   @relation(fields: [userId], references: [id])
+  addresses       CustomerAddress[]
+  preferences     CustomerPreference?
+  wallet          CustomerWallet?
+  referrals       CustomerReferral[]     @relation("ReferredCustomer")
+  notifications   CustomerNotification[]
+  carts           Cart[]
+  orders          Order[]
+  appointments    DoctorAppointment[]
+  productReviews  ProductReview[]
+  doctorReviews   DoctorReview[]
   customerCoupons CustomerCoupon[]
 
   @@index([status])
@@ -913,9 +913,9 @@ model DoctorReferralCode {
   updatedById        String?
   deletedAt          DateTime?
 
-  doctor    DoctorProfile      @relation(fields: [doctorId], references: [id])
-  referrals CustomerReferral[]
-  rules     ReferralRule[]
+  doctor              DoctorProfile        @relation(fields: [doctorId], references: [id])
+  referrals           CustomerReferral[]
+  rules               ReferralRule[]
   doctorReferralRules DoctorReferralRule[]
 
   @@index([doctorId, status])
@@ -967,44 +967,68 @@ model DoctorEarningsLedger {
 // ─── Catalog ─────────────────────────────────────────────────
 
 model Brand {
-  id          String        @id @default(cuid())
-  name        String
-  slug        String        @unique
-  description String?
-  status      PublishStatus @default(DRAFT)
-  ownerUserId String?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  createdById String?
-  updatedById String?
-  deletedAt   DateTime?
+  id                 String        @id @default(cuid())
+  name               String
+  slug               String        @unique
+  description        String?
+  logoStorageKey     String?
+  countryCode        String?
+  officialWebsiteUrl String?
+  regulatoryNotes    String?
+  seoTitle           String?
+  seoDescription     String?
+  status             PublishStatus @default(DRAFT)
+  ownerUserId        String?
+  publishedAt        DateTime?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  createdById        String?
+  updatedById        String?
+  deletedAt          DateTime?
 
-  products Product[]
+  products      Product[]
+  manufacturers BrandManufacturerMap[]
+  documents     BrandDocument[]
 
+  @@index([status])
   @@map("brands")
 }
 
 model Manufacturer {
-  id          String        @id @default(cuid())
-  name        String
-  slug        String        @unique
-  countryCode String?
-  status      PublishStatus @default(DRAFT)
-  ownerUserId String?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  createdById String?
-  updatedById String?
-  deletedAt   DateTime?
+  id           String        @id @default(cuid())
+  name         String
+  slug         String        @unique
+  legalName    String?
+  countryCode  String?
+  addressLine1 String?
+  city         String?
+  state        String?
+  postalCode   String?
+  licenseInfo  String?
+  gmpNotes     String?
+  contactEmail String?
+  contactPhone String?
+  status       PublishStatus @default(DRAFT)
+  ownerUserId  String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  createdById  String?
+  updatedById  String?
+  deletedAt    DateTime?
 
   products Product[]
+  brands   BrandManufacturerMap[]
 
+  @@index([status])
   @@map("manufacturers")
 }
 
 model Category {
   id          String        @id @default(cuid())
   parentId    String?
+  /// Store taxonomy root kind: MEDICINES | WELLNESS | PET_CARE | BUNDLES | BOOKS | OFFERS
+  /// Body systems/conditions/symptoms/remedies stay in their own entity tables.
+  treeKind    String        @default("MEDICINES")
   name        String
   slug        String        @unique
   description String?
@@ -1016,12 +1040,13 @@ model Category {
   updatedById String?
   deletedAt   DateTime?
 
-  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
-  children Category[] @relation("CategoryTree")
-  products Product[]
+  parent      Category?            @relation("CategoryTree", fields: [parentId], references: [id])
+  children    Category[]           @relation("CategoryTree")
+  products    Product[]
   productMaps ProductCategoryMap[]
 
   @@index([parentId])
+  @@index([treeKind, status])
   @@map("categories")
 }
 
@@ -1066,21 +1091,27 @@ model Product {
   updatedById         String?
   deletedAt           DateTime?
 
-  brand         Brand?                @relation(fields: [brandId], references: [id])
-  manufacturer  Manufacturer?         @relation(fields: [manufacturerId], references: [id])
-  category      Category?             @relation(fields: [categoryId], references: [id])
-  productGroup  ProductGroup?         @relation(fields: [productGroupId], references: [id])
-  variants      ProductVariant[]
-  images        ProductImage[]
-  tags          ProductTag[]
-  contentBlocks ProductContentBlock[]
-  ingredients   ProductIngredient[]
-  relationships ProductRelationship[] @relation("ProductFrom")
-  relatedFrom   ProductRelationship[] @relation("ProductTo")
-  faqs          ProductFaq[]
-  reviews       ProductReview[]
-  bundleItems   BundleItem[]
-  categoryMaps  ProductCategoryMap[]
+  brand           Brand?                 @relation(fields: [brandId], references: [id])
+  manufacturer    Manufacturer?          @relation(fields: [manufacturerId], references: [id])
+  category        Category?              @relation(fields: [categoryId], references: [id])
+  productGroup    ProductGroup?          @relation(fields: [productGroupId], references: [id])
+  variants        ProductVariant[]
+  images          ProductImage[]
+  tags            ProductTag[]
+  contentBlocks   ProductContentBlock[]
+  ingredients     ProductIngredient[]
+  relationships   ProductRelationship[]  @relation("ProductFrom")
+  relatedFrom     ProductRelationship[]  @relation("ProductTo")
+  faqs            ProductFaq[]
+  reviews         ProductReview[]
+  bundleItems     BundleItem[]
+  categoryMaps    ProductCategoryMap[]
+  remedyMaps      ProductRemedyMap[]
+  healthAreaMaps  ProductHealthAreaMap[]
+  badgeMaps       ProductBadgeMap[]
+  conditionMaps   ConditionProductMap[]
+  storageNotes    String?
+  countryOfOrigin String?                @default("IN")
 
   @@index([status, publishedAt])
   @@index([brandId])
@@ -1090,26 +1121,40 @@ model Product {
 
 /// Variant is the sellable SKU truth for price/stock identity
 model ProductVariant {
-  id             String    @id @default(cuid())
-  productId      String
-  sku            String    @unique
-  barcode        String?
-  potency        String?
-  packSize       String?
-  form           String?
-  title          String
-  currency       String    @default("INR")
-  priceMinor     Int
-  compareAtMinor Int?
-  weightGrams    Int?
-  status         String    @default("ACTIVE")
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  createdById    String?
-  updatedById    String?
-  deletedAt      DateTime?
+  id                   String    @id @default(cuid())
+  productId            String
+  sku                  String    @unique
+  barcode              String?
+  gtin                 String?
+  /// Legacy free-text snapshots — prefer FKs below for truth
+  potency              String?
+  packSize             String?
+  form                 String?
+  dosageFormId         String?
+  potencyId            String?
+  packQuantity         Decimal?  @db.Decimal(12, 3)
+  packUnit             String?
+  netQuantityLabel     String?
+  title                String
+  currency             String    @default("INR")
+  mrpMinor             Int?
+  priceMinor           Int
+  compareAtMinor       Int?
+  taxCode              String?
+  weightGrams          Int?
+  prescriptionRequired Boolean   @default(false)
+  ageRestrictionNote   String?
+  countryOfOrigin      String?   @default("IN")
+  status               String    @default("ACTIVE")
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  createdById          String?
+  updatedById          String?
+  deletedAt            DateTime?
 
   product           Product            @relation(fields: [productId], references: [id])
+  dosageForm        DosageForm?        @relation(fields: [dosageFormId], references: [id])
+  potencyRef        Potency?           @relation(fields: [potencyId], references: [id])
   inventoryBatches  InventoryBatch[]
   stockReservations StockReservation[]
   cartItems         CartItem[]
@@ -1117,6 +1162,8 @@ model ProductVariant {
   bundleItems       BundleItem[]
 
   @@index([productId, status])
+  @@index([dosageFormId])
+  @@index([potencyId])
   @@map("product_variants")
 }
 
@@ -1230,16 +1277,19 @@ model ProductFaq {
 
 /// Standalone ingredient catalog — normalized names for search, SEO, and cross-product linking
 model Ingredient {
-  id          String        @id @default(cuid())
-  name        String
-  slug        String        @unique
-  description String?
-  status      PublishStatus @default(DRAFT)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  createdById String?
-  updatedById String?
-  deletedAt   DateTime?
+  id             String        @id @default(cuid())
+  name           String
+  slug           String        @unique
+  scientificName String?
+  description    String?
+  status         PublishStatus @default(DRAFT)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  createdById    String?
+  updatedById    String?
+  deletedAt      DateTime?
+
+  remedies Remedy[]
 
   @@index([status])
   @@map("ingredients")
@@ -1247,13 +1297,13 @@ model Ingredient {
 
 /// Many-to-many product ↔ category with primary category flag
 model ProductCategoryMap {
-  id          String        @id @default(cuid())
+  id          String   @id @default(cuid())
   productId   String
   categoryId  String
-  isPrimary   Boolean       @default(false)
-  status      String        @default("ACTIVE")
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  isPrimary   Boolean  @default(false)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   createdById String?
   updatedById String?
 
@@ -1350,10 +1400,12 @@ model Condition {
   updatedById         String?
   deletedAt           DateTime?
 
-  bodySystem BodySystem?        @relation(fields: [bodySystemId], references: [id])
-  organ      Organ?             @relation(fields: [organId], references: [id])
-  symptoms   ConditionSymptom[]
-  articles   KnowledgeArticle[]
+  bodySystem  BodySystem?           @relation(fields: [bodySystemId], references: [id])
+  organ       Organ?                @relation(fields: [organId], references: [id])
+  symptoms    ConditionSymptom[]
+  articles    KnowledgeArticle[]
+  productMaps ConditionProductMap[]
+  remedyMaps  ConditionRemedyMap[]
 
   @@index([bodySystemId])
   @@index([organId])
@@ -1644,9 +1696,9 @@ model Coupon {
   updatedById String?
   deletedAt   DateTime?
 
-  campaign    Campaign?          @relation(fields: [campaignId], references: [id])
-  rules       CouponRule[]
-  redemptions CouponRedemption[]
+  campaign            Campaign?          @relation(fields: [campaignId], references: [id])
+  rules               CouponRule[]
+  redemptions         CouponRedemption[]
   customerAssignments CustomerCoupon[]
 
   @@index([status, startsAt, endsAt])
@@ -2547,4 +2599,312 @@ model ReviewModerationQueue {
   @@index([reviewType, reviewId])
   @@index([assigneeUserId, status])
   @@map("review_moderation_queue")
+}
+
+// ─── Multidimensional Catalogue Graph ────────────────────────
+// Categories ≠ body systems ≠ conditions ≠ remedies.
+// Connect via relationship tables. Brands stay first-class.
+
+model BrandManufacturerMap {
+  id             String   @id @default(cuid())
+  brandId        String
+  manufacturerId String
+  isPrimary      Boolean  @default(false)
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  brand        Brand        @relation(fields: [brandId], references: [id])
+  manufacturer Manufacturer @relation(fields: [manufacturerId], references: [id])
+
+  @@unique([brandId, manufacturerId])
+  @@map("brand_manufacturer_map")
+}
+
+model BrandDocument {
+  id           String    @id @default(cuid())
+  brandId      String
+  title        String
+  storageKey   String
+  documentType String
+  status       String    @default("ACTIVE")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  createdById  String?
+  updatedById  String?
+  deletedAt    DateTime?
+
+  brand Brand @relation(fields: [brandId], references: [id])
+
+  @@index([brandId])
+  @@map("brand_documents")
+}
+
+/// Controlled source classification (plant, mineral, chemical, animal, nosode, etc.)
+model RemedySourceType {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  remedies Remedy[]
+
+  @@map("remedy_source_types")
+}
+
+/// Master homeopathic remedy entity — NOT the sellable SKU
+model Remedy {
+  id                  String              @id @default(cuid())
+  name                String
+  slug                String              @unique
+  commonNames         String?
+  scientificName      String?
+  sourceTypeId        String?
+  ingredientId        String?
+  pharmacopoeialRefs  String?
+  educationalSummary  String?
+  status              PublishStatus       @default(DRAFT)
+  medicalReviewStatus MedicalReviewStatus @default(PENDING)
+  ownerUserId         String?
+  publishedAt         DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  createdById         String?
+  updatedById         String?
+  deletedAt           DateTime?
+
+  sourceType    RemedySourceType?    @relation(fields: [sourceTypeId], references: [id])
+  ingredient    Ingredient?          @relation(fields: [ingredientId], references: [id])
+  productMaps   ProductRemedyMap[]
+  conditionMaps ConditionRemedyMap[]
+
+  @@index([status, publishedAt])
+  @@index([sourceTypeId])
+  @@map("remedies")
+}
+
+model ProductRemedyMap {
+  id          String   @id @default(cuid())
+  productId   String
+  remedyId    String
+  isPrimary   Boolean  @default(true)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product @relation(fields: [productId], references: [id])
+  remedy  Remedy  @relation(fields: [remedyId], references: [id])
+
+  @@unique([productId, remedyId])
+  @@index([remedyId])
+  @@map("product_remedy_map")
+}
+
+/// Decimal / Centesimal / LM — potencies are attributes, not categories
+model PotencySystem {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  potencies Potency[]
+
+  @@map("potency_systems")
+}
+
+/// Only potencies actually offered should be linked to variants — do not auto-fill all possible values
+model Potency {
+  id          String   @id @default(cuid())
+  systemId    String
+  code        String
+  label       String
+  sortOrder   Int      @default(0)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  system   PotencySystem    @relation(fields: [systemId], references: [id])
+  variants ProductVariant[]
+
+  @@unique([systemId, code])
+  @@map("potencies")
+}
+
+/// Admin-extensible dosage forms (no code deploy to add forms)
+model DosageForm {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  variants ProductVariant[]
+
+  @@map("dosage_forms")
+}
+
+/// Shop-by health area discovery — NOT disease/treatment claim categories
+model HealthArea {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  description String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  products ProductHealthAreaMap[]
+
+  @@index([status])
+  @@map("health_areas")
+}
+
+model ProductHealthAreaMap {
+  id           String   @id @default(cuid())
+  productId    String
+  healthAreaId String
+  status       String   @default("ACTIVE")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  product    Product    @relation(fields: [productId], references: [id])
+  healthArea HealthArea @relation(fields: [healthAreaId], references: [id])
+
+  @@unique([productId, healthAreaId])
+  @@index([healthAreaId])
+  @@map("product_health_area_map")
+}
+
+/// Admin-controlled badges — never auto "doctor recommended" without auditable link
+model ProductBadge {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  products ProductBadgeMap[]
+
+  @@map("product_badges")
+}
+
+model ProductBadgeMap {
+  id          String    @id @default(cuid())
+  productId   String
+  badgeId     String
+  status      String    @default("ACTIVE")
+  startsAt    DateTime?
+  endsAt      DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product      @relation(fields: [productId], references: [id])
+  badge   ProductBadge @relation(fields: [badgeId], references: [id])
+
+  @@unique([productId, badgeId])
+  @@map("product_badge_map")
+}
+
+/// Educational link only — does NOT assert that a product treats a condition
+model ConditionProductMap {
+  id               String   @id @default(cuid())
+  conditionId      String
+  productId        String
+  relationshipNote String?
+  status           String   @default("ACTIVE")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  condition Condition @relation(fields: [conditionId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
+
+  @@unique([conditionId, productId])
+  @@map("condition_product_map")
+}
+
+model ConditionRemedyMap {
+  id               String   @id @default(cuid())
+  conditionId      String
+  remedyId         String
+  relationshipNote String?
+  status           String   @default("ACTIVE")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  condition Condition @relation(fields: [conditionId], references: [id])
+  remedy    Remedy    @relation(fields: [remedyId], references: [id])
+
+  @@unique([conditionId, remedyId])
+  @@map("condition_remedy_map")
+}
+
+/// Future-ready recurring purchase — enable only where legal/product rules allow
+model SubscriptionPlan {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  intervalDays Int
+  status       String   @default("DRAFT")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  subscriptions CustomerSubscription[]
+
+  @@map("subscription_plans")
+}
+
+model CustomerSubscription {
+  id          String    @id @default(cuid())
+  customerId  String
+  planId      String
+  variantId   String?
+  status      String    @default("PENDING")
+  nextOrderAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  plan SubscriptionPlan @relation(fields: [planId], references: [id])
+
+  @@index([customerId, status])
+  @@map("customer_subscriptions")
 }
