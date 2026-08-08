@@ -1,94 +1,95 @@
 # Product roadmap
 
-Phased delivery plan for HomeopathyPharma.com aligned with the product brief. Phases are **sequential capabilities**, not calendar commitments — each phase exits when its exit criteria are met in staging.
+Phased delivery plan for HomeopathyPharma.com. Phases are **sequential capabilities**, not calendar commitments — each phase exits when its exit criteria are met in staging.
 
-## Phase 1 — Monorepo, database, auth
+## Launch order (priority stack)
 
-**Goal:** Development foundation and secure identity.
+The following order reflects production launch dependencies — later phases must not block earlier revenue paths.
+
+### 1) Identity, catalog, doctor verification, checkout, shipping, admin
+
+**Goal:** Secure commerce core with operational console.
+
+| Deliverable | Status |
+|-------------|--------|
+| Google + OTP auth (backend ID token verify) | Stub — routes + verifier skeleton |
+| MFA policy for admin/doctor roles | Closed-in-design (`requiresMfa`) |
+| CSRF protection for cookie auth | Closed-in-design (`CsrfGuard`) |
+| RBAC + SUPER_ADMIN role | Done |
+| Prisma catalog schema + migrations | Done |
+| Doctor verification workflow | Schema done; admin queue stub |
+| Checkout + server-side pricing | Stub |
+| Razorpay integration + webhook HMAC | Stub — `assertWebhookSignatureOrThrow` |
+| Inventory reservation before payment | Schema done; API stub |
+| Shiprocket shipping + webhooks | Stub |
+| Admin console scaffold | Done |
+
+**Exit criteria:** Staging user can authenticate; verified doctor visible; test order paid (Razorpay test mode); label created (Shiprocket sandbox); inventory reserved then decremented; admin audit log populated.
+
+### 2) Products, bundles, appointments
+
+**Goal:** Full catalog surface and consultation revenue.
+
+| Deliverable | Status |
+|-------------|--------|
+| ProductGroup / variant PDP | In progress |
+| Ingredient catalog + ProductCategoryMap | Schema done |
+| Bundle composition | Schema done |
+| OpenSearch indexing | Stub |
+| Appointment booking + payment linkage | Stub |
+| Doctor availability API | Stub |
+| Customer coupons (`CustomerCoupon`) | Schema done |
+
+**Exit criteria:** Published product group with variants purchasable; bundle checkout works; paid appointment creates `DoctorAppointment` row.
+
+### 3) Health content, body, conditions, pets, SEO
+
+**Goal:** Organic discovery and trusted educational content.
+
+| Deliverable | Status |
+|-------------|--------|
+| Condition / organ / body-system pages | Scaffold |
+| Pet content sections | Scaffold |
+| Medical review workflow | Schema done |
+| Segmented sitemaps (100k+ ready) | Documented |
+| JSON-LD (`MedicalWebPage`, `lastReviewed`) | Package done |
+| Merchant Center feed export | Feature flag |
+| Referral program (`DoctorReferralRule`) | Schema done |
+
+**Exit criteria:** Medically reviewed content publishable; sitemap index validates in Search Console staging; feed matches PDP for sample SKUs.
+
+### 4) AI discovery on clean entity graph
+
+**Goal:** AI-assisted search and recommendations on governed entities only.
+
+| Deliverable | Status |
+|-------------|--------|
+| Entity graph (`EntityContentMap`, ingredients, conditions) | Schema done |
+| AI discovery API (feature-flagged) | Planned |
+| Guardrails — no thin generated pages | Closed-in-design (SEO policy) |
+| Semantic search over OpenSearch | Planned |
+
+**Exit criteria:** AI responses cite only published, reviewed entities; no auto-generated indexable URLs; discovery disabled by default in production until content graph populated.
+
+---
+
+## Foundation (cross-cutting, Phase 1 enablers)
 
 | Deliverable | Status |
 |-------------|--------|
 | pnpm + Turborepo monorepo | Done |
-| Prisma schema + migrations | Done |
 | Docker compose (Postgres, Redis, OpenSearch, MinIO) | Done |
 | NestJS API skeleton + `/v1` routes | Done |
-| Google + OTP auth stubs | In progress |
 | Redis session store | In progress |
-| RBAC packages | Done |
 | CI pipeline | Done |
 | Dev bootstrap script | Done |
 
-**Exit criteria:** User can register/login in staging; session persists; migrations run in CI; health checks green.
-
-## Phase 2 — Storefront & catalog
-
-**Goal:** Browse and search homeopathic products.
+## Hardening (ongoing from Phase 1 → production)
 
 | Deliverable | Status |
 |-------------|--------|
-| Next.js web app shell | Done (scaffold) |
-| Product/category pages | In progress |
-| OpenSearch indexing pipeline | Stub |
-| Cart API | Stub |
-| Public SEO (robots, sitemap stub) | In progress |
-| `@homeopathypharma/seo` package | Done |
-
-**Exit criteria:** Published products searchable and purchasable path started; segmented sitemap for catalog; PDP renders server-fetched prices.
-
-## Phase 3 — Doctor portal
-
-**Goal:** Verified doctors manage profiles and consultations.
-
-| Deliverable | Status |
-|-------------|--------|
-| Doctor Next.js app | Scaffold |
-| Verification submission flow | Stub |
-| Admin verification queue | Stub |
-| Consultation availability API | Stub |
-| Appointment booking ( unpaid path ) | Stub |
-
-**Exit criteria:** End-to-end verification in staging; approved doctor visible on public profile URL; booking creates `Appointment` row.
-
-## Phase 4 — Admin, payments, shipping
-
-**Goal:** Operate commerce at scale.
-
-| Deliverable | Status |
-|-------------|--------|
-| Admin console | Scaffold |
-| Product publish workflow | Stub |
-| Checkout + Razorpay | Stub |
-| Webhook reconciliation | Stub |
-| Shiprocket integration | Stub |
-| Inventory batches + reservations | Schema done |
-| Order fulfillment UI | Planned |
-
-**Exit criteria:** Test order paid via Razorpay test mode; label created in Shiprocket sandbox; inventory decrements correctly; admin audit log populated.
-
-## Phase 5 — SEO & knowledge base
-
-**Goal:** Organic discovery and trusted health content.
-
-| Deliverable | Status |
-|-------------|--------|
-| Condition / organ / pet content pages | Scaffold |
-| Medical review workflow | Schema done |
-| Sitemap segmentation (100k+ ready) | Documented |
-| JSON-LD on PDP and articles | Package done |
-| Merchant Center feed export | Feature flag |
-| Referral program | Stub |
-
-**Exit criteria:** Medically reviewed content publishable; sitemap index validates in Search Console staging; feed matches PDP for sample SKUs.
-
-## Phase 6 — Hardening & production
-
-**Goal:** Security, compliance, and operational readiness.
-
-| Deliverable | Status |
-|-------------|--------|
-| Threat model closure tests | Documented |
+| Threat model + loophole checklist | Documented |
 | Rate limiting (Redis) | Stub |
-| MFA for admin | Config flag |
 | Observability (OTel, Sentry) | Hooks |
 | k8s / terraform deploy paths | Documented |
 | Load testing (search, checkout) | Planned |
@@ -101,13 +102,16 @@ Phased delivery plan for HomeopathyPharma.com aligned with the product brief. Ph
 
 | Workstream | Phases |
 |------------|--------|
-| Documentation (`docs/`) | 1–6 |
-| Testing pyramid (`tests/`) | 1–6 |
-| Compliance review | 4–6 |
-| Performance & scaling | 2, 5, 6 |
+| Documentation (`docs/`) | All |
+| Testing pyramid (`tests/`) | All |
+| Compliance review | 1–4 |
+| Performance & scaling | 2–4 |
 
 ## Related documents
 
+- [SITE_MAP.md](./SITE_MAP.md)
+- [ADMIN_ARCHITECTURE.md](./ADMIN_ARCHITECTURE.md)
+- [LOOPHOLES.md](./LOOPHOLES.md)
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [ASSUMPTIONS.md](./ASSUMPTIONS.md)
 - [COMPLIANCE.md](./COMPLIANCE.md)

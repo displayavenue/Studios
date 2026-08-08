@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware.js';
 import { RateLimitMiddleware } from './common/middleware/rate-limit.middleware.js';
+import { CsrfGuard } from './common/guards/csrf.guard.js';
 import { AuthGuard } from './common/guards/auth.guard.js';
 import { RolesGuard } from './common/guards/roles.guard.js';
 import { PermissionsGuard } from './common/guards/permissions.guard.js';
@@ -64,6 +65,7 @@ import { HealthModule } from './modules/health/health.module.js';
     { provide: SESSION_STORE, useClass: InMemorySessionStore },
     { provide: SessionStore, useExisting: SESSION_STORE },
     { provide: APP_GUARD, useClass: AuthGuard },
+    { provide: APP_GUARD, useClass: CsrfGuard },
     { provide: APP_GUARD, useClass: RolesGuard },
     { provide: APP_GUARD, useClass: PermissionsGuard },
     { provide: APP_FILTER, useClass: HttpExceptionFilter },

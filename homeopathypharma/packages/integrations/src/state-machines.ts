@@ -1,9 +1,19 @@
 /**
  * Payment and shipment state machines — SERVER-SIDE ONLY.
  * Enforce transitions in the API service; do not expose transition helpers to clients.
+ *
+ * Payment lifecycle (Razorpay-aligned, matches Prisma `PaymentStatus`):
+ * ```
+ * CREATED → PENDING → AUTHORIZED → CAPTURED
+ *                  ↘ FAILED
+ * CAPTURED → REFUNDED | PARTIALLY_REFUNDED
+ * ```
+ *
+ * Never trust frontend payment totals — amounts are frozen in checkout snapshots before CREATED.
  */
 
 export enum PaymentStatus {
+  CREATED = "CREATED",
   PENDING = "PENDING",
   AUTHORIZED = "AUTHORIZED",
   CAPTURED = "CAPTURED",
@@ -28,9 +38,10 @@ export enum ShipmentStatus {
 }
 
 const PAYMENT_TRANSITIONS: Record<PaymentStatus, PaymentStatus[]> = {
+  [PaymentStatus.CREATED]: [PaymentStatus.PENDING, PaymentStatus.FAILED, PaymentStatus.CANCELLED],
   [PaymentStatus.PENDING]: [PaymentStatus.AUTHORIZED, PaymentStatus.FAILED, PaymentStatus.CANCELLED],
   [PaymentStatus.AUTHORIZED]: [PaymentStatus.CAPTURED, PaymentStatus.FAILED, PaymentStatus.CANCELLED],
-  [PaymentStatus.CAPTURED]: [PaymentStatus.REFUND_PENDING, PaymentStatus.PARTIALLY_REFUNDED],
+  [PaymentStatus.CAPTURED]: [PaymentStatus.REFUND_PENDING, PaymentStatus.PARTIALLY_REFUNDED, PaymentStatus.REFUNDED],
   [PaymentStatus.FAILED]: [],
   [PaymentStatus.REFUND_PENDING]: [PaymentStatus.REFUNDED, PaymentStatus.PARTIALLY_REFUNDED],
   [PaymentStatus.REFUNDED]: [],

@@ -31,8 +31,22 @@ export type {
 export {
   stubGoogleIdTokenVerifier,
   GoogleIdTokenVerificationError,
+  GoogleIdTokenVerifierImpl,
 } from "./google/verify-id-token.js";
 export type {
   GoogleTokenPayload,
   GoogleIdTokenVerifier,
+  GoogleIdTokenVerifierOptions,
 } from "./google/verify-id-token.js";
+
+export { requiresMfa } from "./policies/mfa.js";
+
+export {
+  createCsrfToken,
+  verifyCsrfToken,
+} from "./csrf/tokens.js";
+export type {
+  CsrfTokenPayload,
+  CreateCsrfTokenOptions,
+  VerifyCsrfTokenOptions,
+} from "./csrf/tokens.js";

@@ -11,6 +11,9 @@ export {
 export {
   stubRazorpayClient,
   RazorpayNotConfiguredError,
+  RazorpayWebhookSignatureError,
+  assertWebhookSignatureOrThrow,
+  computeRazorpayWebhookSignature,
   type RazorpayClient,
   type RazorpayCreateOrderInput,
   type RazorpayOrder,

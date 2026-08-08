@@ -5,16 +5,19 @@ Search engine guidelines for HomeopathyPharma.com. SEO helpers live in `packages
 ## Principles
 
 1. **Visible content = structured data.** Schema.org JSON-LD must reflect what users see on the page — no fabricated ratings, prices, or availability.
-2. **Quality over volume.** No thin AI-generated pages; every indexable URL must serve genuine user intent.
-3. **Segment at scale.** Product and content catalogs target 100k+ URLs — sitemaps and crawl budget must be managed deliberately.
+2. **Quality over volume.** **No thin AI-generated pages** — every indexable URL must serve genuine user intent and pass editorial/medical review.
+3. **Segment at scale.** Product and content catalogs target 100k+ URLs — **segmented sitemaps** and crawl budget must be managed deliberately.
 4. **Separate private from public.** Authenticated, checkout, and admin surfaces are never indexed.
+5. **ProductGroup for variants.** Group potency/pack-size variants under one canonical ProductGroup URL; individual SKUs use variant-specific PDP only when distinct content exists.
 
 ## URL strategy
 
 | Surface | Pattern | Indexable |
 |---------|---------|-----------|
 | Home | `/` | Yes |
-| Product PDP | `/products/{slug}` | Yes (published only) |
+| ProductGroup hub | `/products/groups/{slug}` | Yes (published group) |
+| Product PDP | `/products/{slug}` | Yes (published only; prefer group canonical when variants share content) |
+| Product variant SKU | `/products/{slug}?variant={sku}` | Yes (parameterized; canonical to group when thin) |
 | Category | `/categories/{slug}` | Yes |
 | Health content | `/health/conditions/{slug}`, `/health/organs/{slug}` | Yes (medically reviewed) |
 | Pet content | `/pets/{species}`, `/pets/conditions/{slug}` | Yes (if published) |
@@ -28,6 +31,15 @@ Search engine guidelines for HomeopathyPharma.com. SEO helpers live in `packages
 - Lowercase, hyphenated, stable after first publish (redirect on slug change).
 - One canonical URL per entity — trailing slash policy enforced in `@homeopathypharma/seo`.
 - Hreflang reserved for future locales; default `en-IN` until translated content exists.
+
+## ProductGroup & variant guidance
+
+- **`ProductGroup`** aggregates variants (potency, pack size, form) that share educational content.
+- One **canonical URL** per group when variant pages would be thin duplicates.
+- **`ProductVariant`** (SKU) drives price, inventory, and Merchant Center identity — not the group slug.
+- PDP JSON-LD `Product` + `Offer` must reference the **variant SKU** displayed to the user.
+- Use `ProductCategoryMap.isPrimary` to determine breadcrumb category; secondary categories for faceted navigation only (no duplicate index URLs).
+- **`Ingredient`** pages (future) link from PDP ingredient lists — each ingredient requires substantive copy before indexing.
 
 ## Sitemap segmentation (100k+ URLs)
 
@@ -57,9 +69,10 @@ Implementation: `packages/seo/src/sitemap/` + `apps/web/app/sitemap.ts`.
 
 | Page type | Allowed types | Rules |
 |-----------|---------------|-------|
-| Product PDP | `Product`, `Offer`, `BreadcrumbList` | Price/availability from API at render time; match PDP |
+| ProductGroup | `ProductGroup`, `BreadcrumbList` | Canonical hub for variant family; links to member PDPs |
+| Product PDP | `Product`, `Offer`, `BreadcrumbList` | Price/availability from API at render time; match PDP variant shown |
 | Organization | `Organization`, `WebSite` | Site-wide on layout |
-| Article / condition | `MedicalWebPage` or `Article` | Author attribution; `lastReviewed` when medically reviewed |
+| Article / condition | **`MedicalWebPage`** or `Article` | Author attribution; **`lastReviewed`** date when medically reviewed; `reviewedBy` when credentialed |
 | Doctor profile | `Physician` | Only verified doctors; no fake credentials |
 | FAQ | `FAQPage` | Questions must appear visibly on page |
 
@@ -102,8 +115,8 @@ When `FEATURE_MERCHANT_CENTER_EXPORT=true`:
 
 ## Content quality
 
-- **No thin AI pages** — content requires editorial workflow and medical review where health information is presented.
-- **E-E-A-T signals** — author bios, reviewer credentials, publish and review dates on health content.
+- **No thin AI pages** — AI may assist drafting, but content requires editorial workflow, medical review where health information is presented, and human approval before publish. Auto-generated URLs are **never** added to sitemaps.
+- **E-E-A-T signals** — author bios, reviewer credentials, publish and **`lastReviewed`** dates on health content (`MedicalWebPage` JSON-LD).
 - **Internal linking** — content pages link to relevant products; products link to educational content, not duplicate copy.
 - **Performance** — Core Web Vitals targets via Next.js image optimization and edge caching (production).
 
@@ -115,6 +128,7 @@ When `FEATURE_MERCHANT_CENTER_EXPORT=true`:
 
 ## Related documents
 
+- [SITE_MAP.md](./SITE_MAP.md)
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [COMPLIANCE.md](./COMPLIANCE.md)
 - [packages/seo/README.md](../packages/seo/README.md)

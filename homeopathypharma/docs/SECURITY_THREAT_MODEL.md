@@ -34,8 +34,8 @@ Untrusted input crosses at: browser → API, webhooks → API, file uploads → 
 | **A04 Insecure Design** | Backend source of truth; idempotency; state machines; immutable ledgers |
 | **A05 Security Misconfiguration** | Security headers (see `infrastructure/nginx/README.md`); disable debug in prod; MinIO/S3 bucket policies least-privilege |
 | **A06 Vulnerable Components** | Dependabot/npm audit in CI; pinned base images |
-| **A07 Auth Failures** | Server-side Google token verification; OTP rate limits; session rotation on privilege change; admin MFA (`ADMIN_REQUIRE_MFA`) |
-| **A08 Software/Data Integrity** | Webhook HMAC verification; signed deploy artifacts; CI lint/test gates |
+| **A07 Auth Failures** | Server-side Google ID token verification (`GoogleIdTokenVerifierImpl` — verify signature, `aud`, `iss`, `exp` via `google-auth-library`); NEVER trust client user IDs; OTP rate limits; session rotation on privilege change; MFA mandatory for SUPER_ADMIN, ADMIN, DOCTOR, FINANCE, SUPPORT, CONTENT_EDITOR, MEDICAL_REVIEWER (`requiresMfa()`) |
+| **A08 Software/Data Integrity** | Razorpay webhook HMAC mandatory (`assertWebhookSignatureOrThrow`); Shiprocket webhook signature; CSRF token on cookie-auth mutations (`x-csrf-token`); signed deploy artifacts; CI lint/test gates |
 | **A09 Logging Failures** | Structured audit logs; correlation IDs; no PII/passwords in logs |
 | **A10 SSRF** | Allowlist outbound URLs for integrations; no user-controlled fetch URLs |
 
@@ -73,27 +73,27 @@ Untrusted input crosses at: browser → API, webhooks → API, file uploads → 
 
 | Threat | Selling more units than available (race at checkout) |
 |--------|-----------------------------------------------------|
-| Controls | Transactional inventory reservation; batch-level quantity checks; reservation TTL; movement ledger |
-| Verification | Integration test: concurrent checkout attempts — only N succeed |
+| Controls | **Inventory reservation before payment** — transactional `StockReservation` at checkout start; batch-level quantity checks; reservation TTL; movement ledger; payment only after reservation succeeds |
+| Verification | Integration test: concurrent checkout attempts — only N succeed; reservation released on payment failure/timeout |
 
 ### Payment / webhook spoofing
 
 | Threat | Attacker fakes payment success or webhook events |
 |--------|--------------------------------------------------|
-| Controls | Razorpay payment signature verify (`razorpay_order_id|payment_id` HMAC with key secret); webhook `X-Razorpay-Signature` with webhook secret; Shiprocket webhook signature; idempotent webhook store |
+| Controls | Razorpay payment signature verify (`razorpay_order_id|payment_id` HMAC with key secret); **webhook `X-Razorpay-Signature` mandatory** via `assertWebhookSignatureOrThrow` — reject unsigned webhooks; Shiprocket webhook signature; idempotent webhook store; payment state machine enforces CREATED→PENDING→AUTHORIZED→CAPTURED |
 | Verification | Integration tests with valid/invalid signatures; reject unsigned webhooks |
 
 **Implementation references:**
 
-- `@homeopathypharma/integrations` — Razorpay/Shiprocket clients
-- `services/api/src/modules/webhooks/` — signature verification hooks
-- Google ID token: **`google-auth-library` `verifyIdToken`** on backend only — never trust client-decoded JWT payload
+- `@homeopathypharma/integrations` — `assertWebhookSignatureOrThrow`, Razorpay/Shiprocket clients
+- `services/api/src/modules/webhooks/` — signature verification hooks (`@Public`, CSRF skipped)
+- Google ID token: **`GoogleIdTokenVerifierImpl.verifyIdToken`** on backend only — client sends `{ idToken }` to `POST /v1/auth/google`; never trust client-decoded JWT or user IDs
 
 ### Unauthorized admin edits
 
 | Threat | Stolen session or privilege escalation changing prices, orders, or content |
 |--------|---------------------------------------------------------------------------|
-| Controls | RBAC permissions; admin MFA; optional IP allowlist (`ADMIN_ALLOWED_IPS`); audit log on mutations; separate admin app origin |
+| Controls | RBAC permissions; **MFA mandatory** for admin-adjacent roles; CSRF token on state-changing requests; optional IP allowlist (`ADMIN_ALLOWED_IPS`); audit log on mutations; separate admin app origin |
 | Verification | Contract tests for 403 without permission; audit row created on admin write |
 
 ### Content tampering
@@ -160,7 +160,8 @@ Untrusted input crosses at: browser → API, webhooks → API, file uploads → 
 | Transport | HTTP-only cookie (`SESSION_COOKIE_NAME`) |
 | TTL | `SESSION_TTL_SECONDS` (default 14 days) |
 | Rotation | New session on login; invalidate on logout and password change |
-| CSRF | SameSite cookie + CSRF token on state-changing forms (admin) |
+| CSRF | SameSite cookie **plus** `x-csrf-token` header on all state-changing cookie-auth requests (POST/PUT/PATCH/DELETE); `@Public` webhook routes exempt |
+| MFA | Mandatory enrollment for SUPER_ADMIN, ADMIN, DOCTOR, FINANCE, SUPPORT, CONTENT_EDITOR, MEDICAL_REVIEWER before privileged access |
 
 ## Secrets management
 

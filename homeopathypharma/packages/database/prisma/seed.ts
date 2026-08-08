@@ -13,6 +13,7 @@ const ROLES = [
   { code: "CUSTOMER", name: "Customer" },
   { code: "DOCTOR", name: "Doctor" },
   { code: "ADMIN", name: "Admin" },
+  { code: "SUPER_ADMIN", name: "Super Admin" },
   { code: "CONTENT_EDITOR", name: "Content Editor" },
   { code: "MEDICAL_REVIEWER", name: "Medical Reviewer" },
   { code: "SUPPORT", name: "Support" },
@@ -56,15 +57,18 @@ async function main() {
   }
 
   const admin = await prisma.role.findUniqueOrThrow({ where: { code: "ADMIN" } });
+  const superAdmin = await prisma.role.findUniqueOrThrow({ where: { code: "SUPER_ADMIN" } });
   const allPerms = await prisma.permission.findMany();
   for (const perm of allPerms) {
-    await prisma.rolePermission.upsert({
-      where: {
-        roleId_permissionId: { roleId: admin.id, permissionId: perm.id },
-      },
-      update: {},
-      create: { roleId: admin.id, permissionId: perm.id },
-    });
+    for (const role of [admin, superAdmin]) {
+      await prisma.rolePermission.upsert({
+        where: {
+          roleId_permissionId: { roleId: role.id, permissionId: perm.id },
+        },
+        update: {},
+        create: { roleId: role.id, permissionId: perm.id },
+      });
+    }
   }
 
   // Structural taxonomy shells (unpublished) — content teams fill later under review.

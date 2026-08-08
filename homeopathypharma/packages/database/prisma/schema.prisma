@@ -142,6 +142,17 @@ enum ReviewModerationStatus {
   REMOVED
 }
 
+enum ReviewQueueType {
+  PRODUCT
+  DOCTOR
+}
+
+enum ReviewQueueItemStatus {
+  PENDING
+  IN_REVIEW
+  RESOLVED
+}
+
 enum CouponType {
   PERCENT
   FIXED
@@ -448,6 +459,7 @@ model CustomerProfile {
   appointments   DoctorAppointment[]
   productReviews ProductReview[]
   doctorReviews  DoctorReview[]
+  customerCoupons CustomerCoupon[]
 
   @@index([status])
   @@map("customer_profiles")
@@ -904,6 +916,7 @@ model DoctorReferralCode {
   doctor    DoctorProfile      @relation(fields: [doctorId], references: [id])
   referrals CustomerReferral[]
   rules     ReferralRule[]
+  doctorReferralRules DoctorReferralRule[]
 
   @@index([doctorId, status])
   @@map("doctor_referral_codes")
@@ -1006,6 +1019,7 @@ model Category {
   parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
   children Category[] @relation("CategoryTree")
   products Product[]
+  productMaps ProductCategoryMap[]
 
   @@index([parentId])
   @@map("categories")
@@ -1066,6 +1080,7 @@ model Product {
   faqs          ProductFaq[]
   reviews       ProductReview[]
   bundleItems   BundleItem[]
+  categoryMaps  ProductCategoryMap[]
 
   @@index([status, publishedAt])
   @@index([brandId])
@@ -1211,6 +1226,43 @@ model ProductFaq {
 
   @@index([productId, sortOrder])
   @@map("product_faqs")
+}
+
+/// Standalone ingredient catalog — normalized names for search, SEO, and cross-product linking
+model Ingredient {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  description String?
+  status      PublishStatus @default(DRAFT)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  @@index([status])
+  @@map("ingredients")
+}
+
+/// Many-to-many product ↔ category with primary category flag
+model ProductCategoryMap {
+  id          String        @id @default(cuid())
+  productId   String
+  categoryId  String
+  isPrimary   Boolean       @default(false)
+  status      String        @default("ACTIVE")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+
+  product  Product  @relation(fields: [productId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@unique([productId, categoryId])
+  @@index([categoryId, status])
+  @@map("product_category_map")
 }
 
 model ProductReview {
@@ -1595,6 +1647,7 @@ model Coupon {
   campaign    Campaign?          @relation(fields: [campaignId], references: [id])
   rules       CouponRule[]
   redemptions CouponRedemption[]
+  customerAssignments CustomerCoupon[]
 
   @@index([status, startsAt, endsAt])
   @@map("coupons")
@@ -1637,6 +1690,29 @@ model CouponRedemption {
   @@map("coupon_redemptions")
 }
 
+/// Per-customer coupon assignment (referral rewards, campaigns, support grants)
+model CustomerCoupon {
+  id          String    @id @default(cuid())
+  customerId  String
+  couponId    String
+  source      String
+  status      String    @default("ACTIVE")
+  assignedAt  DateTime  @default(now())
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  customer CustomerProfile @relation(fields: [customerId], references: [id])
+  coupon   Coupon          @relation(fields: [couponId], references: [id])
+
+  @@unique([customerId, couponId, source])
+  @@index([customerId, status])
+  @@index([couponId])
+  @@map("customer_coupons")
+}
+
 model DiscountApplication {
   id          String   @id @default(cuid())
   orderId     String
@@ -1652,6 +1728,7 @@ model DiscountApplication {
   @@map("discount_applications")
 }
 
+/// Legacy referral rule table — prefer DoctorReferralRule for new doctor referral logic.
 model ReferralRule {
   id             String   @id @default(cuid())
   referralCodeId String
@@ -1667,6 +1744,24 @@ model ReferralRule {
 
   @@index([referralCodeId])
   @@map("referral_rules")
+}
+
+/// Doctor-specific referral rules linked to referral codes (preferred over ReferralRule alias).
+model DoctorReferralRule {
+  id             String   @id @default(cuid())
+  referralCodeId String
+  ruleType       String
+  ruleValue      Json
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  referralCode DoctorReferralCode @relation(fields: [referralCodeId], references: [id])
+
+  @@index([referralCodeId])
+  @@map("doctor_referral_rules")
 }
 
 // ─── Commerce ────────────────────────────────────────────────
@@ -2432,4 +2527,24 @@ model EntityContentMap {
   @@unique([commerceType, commerceId, contentType, contentId, relationshipType])
   @@index([contentType, contentId])
   @@map("entity_content_maps")
+}
+
+/// Admin moderation queue for product and doctor reviews
+model ReviewModerationQueue {
+  id             String                @id @default(cuid())
+  reviewType     ReviewQueueType
+  reviewId       String
+  status         ReviewQueueItemStatus @default(PENDING)
+  priority       Int                   @default(0)
+  assigneeUserId String?
+  notes          String?
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  @@index([status, priority])
+  @@index([reviewType, reviewId])
+  @@index([assigneeUserId, status])
+  @@map("review_moderation_queue")
 }
