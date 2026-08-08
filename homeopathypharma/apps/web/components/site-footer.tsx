@@ -10,6 +10,9 @@ const trustLinks = [
 
 const exploreLinks = [
   { href: "/shop", label: "Shop" },
+  { href: "/remedies", label: "Remedies" },
+  { href: "/brands", label: "Brands" },
+  { href: "/bundles", label: "Bundles" },
   { href: "/consult", label: "Consult" },
   { href: "/how-it-works", label: "How it works" },
   { href: "/health", label: "Health knowledge hub" },

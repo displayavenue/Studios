@@ -4,14 +4,27 @@ Domain overview for HomeopathyPharma.com. The canonical schema is `packages/data
 
 ## Domain overview
 
+The commerce catalogue is a **multidimensional entity graph** — not a single category tree. See [CATALOGUE.md](./CATALOGUE.md) for architecture, URL patterns, and compliance boundaries.
+
 ```mermaid
 erDiagram
   User ||--o{ Session : has
   User ||--o| CustomerProfile : extends
   User ||--o| DoctorProfile : extends
   DoctorProfile ||--o{ DoctorVerificationDocument : submits
+  Brand ||--o{ Product : markets
+  Manufacturer ||--o{ BrandManufacturerMap : links
+  Brand ||--o{ BrandManufacturerMap : links
+  Remedy ||--o{ ProductRemedyMap : referenced_by
+  Product ||--o{ ProductRemedyMap : contains
   Product ||--o{ ProductVariant : has
   ProductVariant ||--o{ InventoryBatch : stocked
+  Product ||--o{ ProductHealthAreaMap : tagged
+  HealthArea ||--o{ ProductHealthAreaMap : groups
+  Condition ||--o{ ConditionProductMap : educational_link
+  Condition ||--o{ ConditionRemedyMap : educational_link
+  ProductVariant }o--|| Potency : attribute
+  ProductVariant }o--|| DosageForm : attribute
   CustomerProfile ||--o{ Order : places
   Order ||--|{ OrderLineSnapshot : contains
   Order ||--o| Payment : paid_by
@@ -36,8 +49,14 @@ erDiagram
 
 | Entity | Purpose |
 |--------|---------|
-| `Product`, `ProductVariant` | Catalog SKU, attributes, publish status |
-| `Category`, `Brand` | Navigation and filtering |
+| `Product`, `ProductVariant` | Catalog SKU; potency/form/pack as variant attributes |
+| `Category` | Store navigation tree (`treeKind`) |
+| `Brand` | First-class brand identity (`/brands/{slug}/`) |
+| `Manufacturer`, `BrandManufacturerMap` | Licence holders linked to brands |
+| `Remedy`, `ProductRemedyMap` | Master remedy monographs linked to products |
+| `PotencySystem`, `Potency`, `DosageForm` | Admin-extensible variant dimensions |
+| `HealthArea`, `ProductHealthAreaMap` | Shop-by wellness themes (discovery, not claims) |
+| `ProductBadge`, `ProductBadgeMap` | Merchandising badges (doctor recommended requires audit) |
 | `InventoryBatch` | Batch/lot tracking with expiry |
 | `InventoryMovement` | Append-only stock ledger |
 | `Cart`, `CartLine` | Pre-checkout basket |
@@ -57,6 +76,8 @@ erDiagram
 | `ConsultationService` | Offerings (online/offline) |
 | `Appointment` | Booking with payment state |
 | `MedicalReviewSubmission` | Content clinical review |
+| `Condition`, `ConditionProductMap`, `ConditionRemedyMap` | Educational graph edges (no auto treatment claims) |
+| `RemedySourceType` | Plant/mineral/chemical/animal/nosode classifications |
 
 ### Content & SEO
 
@@ -198,6 +219,7 @@ Production deploys use `pnpm db:migrate:deploy`. Seed scripts must not create fa
 
 ## Related documents
 
+- [CATALOGUE.md](./CATALOGUE.md) — multidimensional catalogue architecture and relationship graph
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [WORKFLOWS.md](./WORKFLOWS.md)
 - [SECURITY_THREAT_MODEL.md](./SECURITY_THREAT_MODEL.md)

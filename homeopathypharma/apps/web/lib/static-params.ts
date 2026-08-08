@@ -2,6 +2,15 @@
 
 export const PRODUCT_SLUGS = ["arnica-montana-30c"] as const;
 export const DOCTOR_SLUGS = ["sample-practitioner"] as const;
+export const REMEDY_SLUGS = ["arnica-montana"] as const;
+export const BRAND_SLUGS = ["sample-brand"] as const;
+export const BUNDLE_SLUGS = ["family-starter"] as const;
+export const HEALTH_AREA_SLUGS = [
+  "digestive-health",
+  "respiratory-health",
+  "skin-health",
+  "pet-care",
+] as const;
 export const BODY_SYSTEM_SLUGS = [
   "cardiovascular-system",
   "respiratory-system",

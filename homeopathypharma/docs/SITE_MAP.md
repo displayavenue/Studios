@@ -10,6 +10,15 @@ Full URL inventory for HomeopathyPharma.com across public storefront, authentica
 | `/search` | Site search (query param) | No |
 | `/products/{slug}` | Product detail (PDP) — variant/SKU from API | Yes (published) |
 | `/categories/{slug}` | Category listing | Yes (published) |
+| `/remedies` | Master remedy directory | Yes |
+| `/remedies/{slug}` | Remedy monograph (educational) | Yes (medically reviewed) |
+| `/brands` | Brand directory (first-class) | Yes |
+| `/brands/{slug}` | Brand hub — logo, manufacturers, products | Yes (published) |
+| `/bundles` | Bundle & kit directory | Yes |
+| `/bundles/{slug}` | Bundle detail | Yes (published) |
+| `/shop/health-areas` | Shop-by wellness themes index | Yes |
+| `/shop/health-areas/{slug}` | Health area product discovery (no disease claims) | Yes (published) |
+| `/manufacturers` | Manufacturer directory | Yes |
 | `/cart` | Shopping cart | No |
 | `/checkout` | Checkout flow | No |
 | `/account` | Account hub (redirects to login if anonymous) | No |
@@ -35,6 +44,11 @@ Full URL inventory for HomeopathyPharma.com across public storefront, authentica
 | Path | Description | Index |
 |------|-------------|-------|
 | `/health` | Health hub | Yes |
+| `/health/womens-health` | Women's wellness education shell | Yes (reviewed) |
+| `/health/mens-health` | Men's wellness education shell | Yes (reviewed) |
+| `/health/child-health` | Child wellness education shell | Yes (reviewed) |
+| `/health/senior-health` | Senior wellness education shell | Yes (reviewed) |
+| `/health/pet-health` | Pet wellness education shell | Yes (reviewed) |
 | `/health/conditions/{slug}` | Condition guide (medically reviewed) | Yes (published) |
 | `/health/body-systems/{slug}` | Body system overview | Yes (published) |
 | `/health/organs/{slug}` | Organ-specific content | Yes (published) |
@@ -121,6 +135,7 @@ Full URL inventory for HomeopathyPharma.com across public storefront, authentica
 
 ## Related documents
 
+- [CATALOGUE.md](./CATALOGUE.md) — master multidimensional catalogue architecture
 - [SEO.md](./SEO.md) — indexing rules and sitemap segmentation
 - [ADMIN_ARCHITECTURE.md](./ADMIN_ARCHITECTURE.md) — admin domain boundaries
 - [SECURITY_THREAT_MODEL.md](./SECURITY_THREAT_MODEL.md) — private route protection

@@ -16,6 +16,11 @@ const hubs = [
   { href: "/health/symptoms/", label: "Symptoms", slug: "symptoms" },
   { href: "/health/age-groups/", label: "Age groups", slug: "age-groups" },
   { href: "/health/gender-health/", label: "Gender health", slug: "gender-health" },
+  { href: "/health/womens-health/", label: "Women's health", slug: "womens-health" },
+  { href: "/health/mens-health/", label: "Men's health", slug: "mens-health" },
+  { href: "/health/child-health/", label: "Child health", slug: "child-health" },
+  { href: "/health/senior-health/", label: "Senior health", slug: "senior-health" },
+  { href: "/health/pet-health/", label: "Pet health", slug: "pet-health" },
   { href: "/health/lifestyle/", label: "Lifestyle", slug: "lifestyle" },
   { href: "/health/faq/", label: "Health FAQ", slug: "faq" },
 ];

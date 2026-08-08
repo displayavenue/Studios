@@ -65,6 +65,21 @@ export function SiteHeader() {
             </Link>
           </li>
           <li>
+            <Link href="/remedies" className="hp-link hp-focus-ring">
+              Remedies
+            </Link>
+          </li>
+          <li>
+            <Link href="/brands" className="hp-link hp-focus-ring">
+              Brands
+            </Link>
+          </li>
+          <li>
+            <Link href="/bundles" className="hp-link hp-focus-ring">
+              Bundles
+            </Link>
+          </li>
+          <li>
             <Link href="/consult" className="hp-link hp-focus-ring">
               Consult
             </Link>
