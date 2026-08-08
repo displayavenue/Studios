@@ -47,7 +47,7 @@ export function SiteHeader() {
         />
       </form>
 
-      <nav aria-label="Account and cart">
+      <nav aria-label="Primary">
         <ul
           style={{
             display: "flex",
@@ -60,13 +60,23 @@ export function SiteHeader() {
           }}
         >
           <li>
-            <Link href="/health" className="hp-link hp-focus-ring">
-              Health hub
+            <Link href="/shop" className="hp-link hp-focus-ring">
+              Shop
             </Link>
           </li>
           <li>
-            <Link href="/doctors" className="hp-link hp-focus-ring">
-              Doctors
+            <Link href="/consult" className="hp-link hp-focus-ring">
+              Consult
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="hp-link hp-focus-ring">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/how-it-works" className="hp-link hp-focus-ring">
+              How it works
             </Link>
           </li>
           <li>

@@ -11,8 +11,14 @@ export const metadata: Metadata = buildPageMetadata(
 const hubs = [
   { href: "/health/body-systems/cardiovascular-system/", label: "Body systems", slug: "body-systems" },
   { href: "/health/organs/heart/", label: "Organs", slug: "organs" },
+  { href: "/health/body/", label: "Body & organs", slug: "body" },
   { href: "/health/conditions/common-cold/", label: "Conditions", slug: "conditions" },
-]
+  { href: "/health/symptoms/", label: "Symptoms", slug: "symptoms" },
+  { href: "/health/age-groups/", label: "Age groups", slug: "age-groups" },
+  { href: "/health/gender-health/", label: "Gender health", slug: "gender-health" },
+  { href: "/health/lifestyle/", label: "Lifestyle", slug: "lifestyle" },
+  { href: "/health/faq/", label: "Health FAQ", slug: "faq" },
+];
 
 export default function HealthHubPage() {
   return (

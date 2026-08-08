@@ -4,12 +4,17 @@ const trustLinks = [
   { href: "/legal/privacy", label: "Privacy policy" },
   { href: "/legal/terms", label: "Terms of service" },
   { href: "/legal/disclaimer", label: "Medical disclaimer" },
+  { href: "/shipping-policy", label: "Shipping policy" },
+  { href: "/return-policy", label: "Return policy" },
 ];
 
 const exploreLinks = [
+  { href: "/shop", label: "Shop" },
+  { href: "/consult", label: "Consult" },
+  { href: "/how-it-works", label: "How it works" },
   { href: "/health", label: "Health knowledge hub" },
-  { href: "/pets", label: "Pet care" },
   { href: "/doctors", label: "Find a doctor" },
+  { href: "/pets", label: "Pet care" },
 ];
 
 export function SiteFooter() {
