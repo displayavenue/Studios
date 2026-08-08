@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Pets"
-      description="Your registered companion animals."
+      description="Pet profiles for care browsing."
       path="/account/pets"
-      apiHint="Data loads from GET /v1/account/pets."
+      emptyTitle="No pets added"
+      emptyBody="Add a pet profile to personalise pet-care browsing. Always follow veterinary guidance."
+      primaryHref="/shop/health-areas/pet-care/"
+      primaryLabel="Browse pet care"
     />
   );
 }

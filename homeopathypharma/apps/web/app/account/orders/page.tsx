@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Orders"
-      description="Order history and status."
+      description="Order history and delivery status."
       path="/account/orders"
-      apiHint="Data loads from GET /v1/account/orders."
+      emptyTitle="No orders yet"
+      emptyBody="When you place an order, it will show up here with tracking updates."
+      primaryHref="/shop/"
+      primaryLabel="Shop medicines"
     />
   );
 }

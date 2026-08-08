@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Referrals"
-      description="Refer friends and track rewards."
+      description="Invite friends and family."
       path="/account/referrals"
-      apiHint="Data loads from GET /v1/account/referrals."
+      emptyTitle="Share HomeopathyPharma"
+      emptyBody="Your personal invite link appears here after you sign in."
+      primaryHref="/signup/"
+      primaryLabel="Create account"
     />
   );
 }

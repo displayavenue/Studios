@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Consultations"
-      description="Past and upcoming consultations."
+      description="Past and upcoming consultation requests."
       path="/account/consultations"
-      apiHint="Data loads from GET /v1/account/consultations."
+      emptyTitle="No consultations yet"
+      emptyBody="Your booking requests and completed sessions will appear here."
+      primaryHref="/doctors/"
+      primaryLabel="Find a doctor"
     />
   );
 }

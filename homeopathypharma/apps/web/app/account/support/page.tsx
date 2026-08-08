@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Support"
-      description="Help tickets and contact options."
+      description="Help with orders, deliveries, and account questions."
       path="/account/support"
-      apiHint="Data loads from GET /v1/account/support."
+      emptyTitle="Need help?"
+      emptyBody="Message our support team for order or account questions. We reply on business days."
+      primaryHref="/contact/"
+      primaryLabel="Contact support"
     />
   );
 }

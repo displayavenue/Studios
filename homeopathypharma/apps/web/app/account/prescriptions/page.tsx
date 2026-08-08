@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Prescriptions"
-      description="Prescription records linked to your account."
+      description="Prescription notes linked to your consultations."
       path="/account/prescriptions"
-      apiHint="Data loads from GET /v1/account/prescriptions."
+      emptyTitle="No prescriptions on file"
+      emptyBody="After a consultation, any shared notes will be saved here for your reference."
+      primaryHref="/consult/"
+      primaryLabel="Book consultation"
     />
   );
 }

@@ -39,7 +39,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ContentPage title={title} path={`/blog/${slug}`}>
-        <article className="product-placeholder">Blog post body from GET /v1/blog/{slug}.</article>
+        <article style={{ maxWidth: "65ch", lineHeight: "var(--hp-leading-relaxed)" }}>
+          <p>
+            An editorial note from HomeopathyPharma on thoughtful homeopathic care, clear labelling, and consulting
+            qualified practitioners when you need guidance.
+          </p>
+        </article>
       </ContentPage>
     </>
   );

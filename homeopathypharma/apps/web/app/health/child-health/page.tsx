@@ -5,16 +5,21 @@ import { HealthEducationShell } from "@/components/health-education-shell";
 export const metadata: Metadata = buildPageMetadata(
   "Child health",
   "/health/child-health",
-  "Educational resources on children's wellness — not medical advice.",
+  "Educational resources on child wellness — not medical advice.",
 );
 
 export default function ChildHealthPage() {
   return (
     <HealthEducationShell
       title="Child health"
-      description="Age-appropriate wellness education for children and caregivers. Always consult a paediatric provider for your child."
+      description="Educational wellness topics for children and caregivers."
       path="/health/child-health"
-      apiHint="Child health hub from GET /v1/health/child-health. Links to age-group content, articles, and educational references — no paediatric treatment claims."
+      body="Find caregiver-friendly educational topics about child wellness. Always seek a qualified paediatric or homeopathic practitioner for a child's personal care."
+      links={[
+        { href: "/health/age-groups/children/", label: "Children's topics" },
+        { href: "/doctors/", label: "Consult a doctor" },
+        { href: "/shop/", label: "Shop medicines" },
+      ]}
     />
   );
 }

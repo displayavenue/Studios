@@ -42,8 +42,8 @@ export default async function BodyOrganAliasPage({ params }: BodyOrganAliasPageP
             </Link>
           </p>
         </header>
-        <article className="product-placeholder">
-          Organ content from <code>GET /v1/health/organs/{slug}</code>.
+        <article style={{ maxWidth: "65ch", lineHeight: "var(--hp-leading-relaxed)" }}>
+          <p>Educational overview for the {title}. Browse linked remedies and consult a practitioner for personal care.</p>
         </article>
         <p className="disclaimer-banner" style={{ marginTop: "var(--hp-space-6)" }}>
           For general education only. Not intended to diagnose, treat, cure, or prevent any disease. Consult a

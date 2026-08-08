@@ -39,10 +39,9 @@ export default async function ConditionPage({ params }: ConditionPageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ContentPage title={title} path={`/health/conditions/${slug}`}>
-        <div className="product-placeholder">
-          Condition overview from <code>GET /v1/health/conditions/{slug}</code>. No treatment claims — educational
-          framing only.
-        </div>
+        <p style={{ maxWidth: "65ch", lineHeight: "var(--hp-leading-relaxed)" }}>
+          Educational overview related to {title}. No treatment claims — general learning only.
+        </p>
         <p className="disclaimer-banner" style={{ marginTop: "var(--hp-space-6)" }}>
           Never use this information to self-diagnose. Contact a licensed healthcare provider for evaluation and
           treatment options.

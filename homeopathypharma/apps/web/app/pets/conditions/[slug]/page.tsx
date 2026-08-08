@@ -21,9 +21,10 @@ export default async function PetConditionPage({ params }: PetConditionPageProps
 
   return (
     <ContentPage title={slug.replace(/-/g, " ")} path={`/pets/conditions/${slug}`}>
-      <div className="product-placeholder">
-        Pet condition education from <code>GET /v1/pets/conditions/{slug}</code>.
-      </div>
+      <p style={{ maxWidth: "60ch" }}>
+        Educational notes related to {slug.replace(/-/g, " ")}. Not veterinary advice and not a substitute for
+        professional animal care.
+      </p>
       <p className="disclaimer-banner" style={{ marginTop: "var(--hp-space-6)" }}>
         Not veterinary medical advice. Contact your veterinarian for diagnosis and treatment.
       </p>

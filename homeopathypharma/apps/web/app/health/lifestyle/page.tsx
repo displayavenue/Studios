@@ -3,18 +3,18 @@ import { buildPageMetadata } from "@/components/content-page";
 import { HealthEducationShell } from "@/components/health-education-shell";
 
 export const metadata: Metadata = buildPageMetadata(
-  "Lifestyle & wellness",
+  "Lifestyle",
   "/health/lifestyle",
-  "Sleep, nutrition, stress, and daily habits — educational only.",
+  "Everyday wellness education — not medical advice.",
 );
 
 export default function LifestylePage() {
   return (
     <HealthEducationShell
-      title="Lifestyle & wellness"
-      description="Educational articles on daily habits that support general wellness."
+      title="Lifestyle"
+      description="Everyday wellness education for sleep, stress, and routines."
       path="/health/lifestyle"
-      apiHint="Lifestyle articles from GET /v1/health/lifestyle."
+      body="Practical educational articles on everyday wellness habits. For personal health decisions, consult a qualified practitioner."
     />
   );
 }

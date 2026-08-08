@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Addresses"
-      description="Saved shipping and billing addresses."
+      description="Saved delivery addresses."
       path="/account/addresses"
-      apiHint="Data loads from GET /v1/account/addresses."
+      emptyTitle="No saved addresses"
+      emptyBody="Add a home or office address so checkout is faster next time."
+      primaryHref="/account/profile/"
+      primaryLabel="Update profile"
     />
   );
 }

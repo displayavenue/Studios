@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Appointments"
-      description="Scheduled in-clinic visits."
+      description="Upcoming clinic and video slots."
       path="/account/appointments"
-      apiHint="Data loads from GET /v1/account/appointments."
+      emptyTitle="No appointments scheduled"
+      emptyBody="Book a consultation with a Mumbai BHMS practitioner when you need guidance."
+      primaryHref="/consult/"
+      primaryLabel="Book consultation"
     />
   );
 }

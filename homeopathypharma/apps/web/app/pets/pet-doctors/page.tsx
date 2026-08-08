@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@homeopathypharma/ui";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 
-export const metadata: Metadata = buildPageMetadata(
-  "Pet doctors",
-  "/pets/pet-doctors",
-  "Find veterinarians and pet-care practitioners.",
-);
+export const metadata: Metadata = buildPageMetadata("Pet doctors", "/pets/pet-doctors", "Find pet-focused homeopathy guidance.");
 
-export default function PetDoctorsPage() {
+export default function Page() {
   return (
-    <ContentPage title="Pet doctors" path="/pets/pet-doctors">
-      <p className="product-placeholder">Pet doctor listings from GET /v1/pets/doctors.</p>
-      <p className="disclaimer-banner" style={{ marginTop: "var(--hp-space-6)" }}>
-        Pet health content is educational. Consult a licensed veterinarian for diagnosis and treatment.
+    <ContentPage title="Pet doctors" description="Request guidance for pet care under qualified supervision." path="/pets/pet-doctors">
+      <p style={{ maxWidth: "60ch" }}>
+        Pet consultations should involve a qualified veterinary professional. Browse pet-care products for discovery,
+        and contact support if you need help finding appropriate guidance.
       </p>
+      <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1.25rem" }}>
+        <Link href="/pets/pet-consultation/"><Button variant="accent">Request pet consultation</Button></Link>
+        <Link href="/shop/health-areas/pet-care/"><Button variant="secondary">Pet care products</Button></Link>
+      </div>
     </ContentPage>
   );
 }

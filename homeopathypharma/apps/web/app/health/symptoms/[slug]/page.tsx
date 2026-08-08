@@ -26,7 +26,7 @@ export default async function SymptomPage({ params }: SymptomPageProps) {
       title={title}
       description="Educational overview — not a diagnostic tool."
       path={`/health/symptoms/${slug}`}
-      apiHint={`Symptom content from GET /v1/health/symptoms/${slug}.`}
+      body={`General educational notes related to ${title}. This is not a diagnosis tool and not a substitute for professional care.`}
     />
   );
 }

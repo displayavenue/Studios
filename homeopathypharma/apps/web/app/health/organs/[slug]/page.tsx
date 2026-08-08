@@ -39,9 +39,10 @@ export default async function OrganPage({ params }: OrganPageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ContentPage title={title} path={`/health/organs/${slug}`}>
-        <div className="product-placeholder">
-          Organ education content from <code>GET /v1/health/organs/{slug}</code>.
-        </div>
+        <p style={{ maxWidth: "65ch", lineHeight: "var(--hp-leading-relaxed)" }}>
+          Educational notes about the {title}. This page supports general understanding and does not replace
+          professional medical evaluation.
+        </p>
         <p className="disclaimer-banner" style={{ marginTop: "var(--hp-space-6)" }}>
           For educational purposes only. Seek professional care for symptoms or concerns about organ health.
         </p>

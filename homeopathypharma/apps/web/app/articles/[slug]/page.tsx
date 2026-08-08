@@ -42,8 +42,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ContentPage title={title} description={article?.excerpt} path={`/articles/${slug}`}>
-        <article className="product-placeholder">
-          Article body from <code>GET /v1/articles/{slug}</code>.
+        <article style={{ maxWidth: "65ch", lineHeight: "var(--hp-leading-relaxed)" }}>
+          <p>
+            This educational article covers {title}. It is published for general learning and is not personal medical
+            advice.
+          </p>
         </article>
       </ContentPage>
     </>

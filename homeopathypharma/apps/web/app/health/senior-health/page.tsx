@@ -5,16 +5,21 @@ import { HealthEducationShell } from "@/components/health-education-shell";
 export const metadata: Metadata = buildPageMetadata(
   "Senior health",
   "/health/senior-health",
-  "Educational resources on wellness in later life — not medical advice.",
+  "Educational resources on senior wellness — not medical advice.",
 );
 
 export default function SeniorHealthPage() {
   return (
     <HealthEducationShell
       title="Senior health"
-      description="Wellness education for older adults. Consult your healthcare provider before changing any health regimen."
+      description="Educational wellness topics for older adults."
       path="/health/senior-health"
-      apiHint="Senior health hub from GET /v1/health/senior-health. Links to age-group content, articles, and educational product references only."
+      body="Read educational guides related to senior wellness. These pages do not replace clinical evaluation — consult a qualified practitioner for personal care."
+      links={[
+        { href: "/health/age-groups/seniors/", label: "Senior topics" },
+        { href: "/doctors/", label: "Consult a doctor" },
+        { href: "/shop/", label: "Shop medicines" },
+      ]}
     />
   );
 }

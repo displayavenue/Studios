@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Coupons"
-      description="Saved coupon codes and offers."
+      description="Offers saved to your account."
       path="/account/coupons"
-      apiHint="Data loads from GET /v1/account/coupons."
+      emptyTitle="No coupons saved"
+      emptyBody="Browse current deals and apply codes at checkout when available."
+      primaryHref="/shop/offers/"
+      primaryLabel="See offers"
     />
   );
 }

@@ -23,9 +23,10 @@ export default async function PetSpeciesPage({ params }: PetSpeciesPageProps) {
 
   return (
     <ContentPage title={`${label} care`} path={`/pets/${species}`}>
-      <div className="product-placeholder">
-        Species hub content from <code>GET /v1/pets/{species}</code>.
-      </div>
+      <p style={{ maxWidth: "60ch" }}>
+        Educational care topics and product discovery for {label.toLowerCase()}. Always follow qualified veterinary
+        guidance for animal health decisions.
+      </p>
     </ContentPage>
   );
 }

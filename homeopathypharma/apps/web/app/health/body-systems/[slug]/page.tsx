@@ -39,9 +39,10 @@ export default async function BodySystemPage({ params }: HealthTopicPageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       <ContentPage title={title} path={`/health/body-systems/${slug}`}>
-        <div className="product-placeholder">
-          Educational body-system content from <code>GET /v1/health/body-systems/{slug}</code>.
-        </div>
+        <p style={{ maxWidth: "65ch", lineHeight: "var(--hp-leading-relaxed)" }}>
+          An educational overview of the {title}. Use this for general learning about anatomy and wellness
+          concepts — not for personal diagnosis or treatment decisions.
+        </p>
         <p className="disclaimer-banner" style={{ marginTop: "var(--hp-space-6)" }}>
           This page describes general anatomy and wellness concepts. It does not provide personalized medical
           guidance.

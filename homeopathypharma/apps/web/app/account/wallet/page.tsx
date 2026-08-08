@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Wallet"
-      description="Store credit and wallet balance."
+      description="Store credit and refund balance."
       path="/account/wallet"
-      apiHint="Data loads from GET /v1/account/wallet."
+      emptyTitle="Wallet balance ₹0"
+      emptyBody="Refunds and promotional credit will appear here when available."
+      primaryHref="/shop/offers/"
+      primaryLabel="View offers"
     />
   );
 }

@@ -833,3 +833,67 @@ body::before {
   color: var(--hp-color-text-muted);
   font-size: var(--hp-text-sm);
 }
+
+.account-signin,
+.account-empty {
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--hp-color-border);
+  border-radius: 0.85rem;
+  background: #fff;
+  max-width: 40rem;
+}
+
+.account-empty h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1.35rem;
+  color: var(--hp-color-teal-900);
+}
+
+.account-empty p,
+.account-signin p {
+  margin: 0;
+  color: var(--hp-color-text-muted);
+  line-height: 1.6;
+}
+
+.account-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.account-nav-grid {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+}
+
+.account-nav-card {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--hp-color-border);
+  border-radius: 0.75rem;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  min-height: 100%;
+}
+
+.account-nav-card strong {
+  color: var(--hp-color-teal-900);
+}
+
+.account-nav-card span {
+  font-size: 0.85rem;
+  color: var(--hp-color-text-muted);
+}
+
+.account-nav-card:hover {
+  border-color: rgb(11 61 58 / 30%);
+}

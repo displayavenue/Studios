@@ -7,9 +7,12 @@ export default function Page() {
   return (
     <AccountSectionShell
       title="Reviews"
-      description="Product and consultation reviews you have submitted."
+      description="Feedback you have left on products."
       path="/account/reviews"
-      apiHint="Data loads from GET /v1/account/reviews."
+      emptyTitle="No reviews yet"
+      emptyBody="After you receive an order, you can rate products from this page."
+      primaryHref="/account/orders/"
+      primaryLabel="View orders"
     />
   );
 }

@@ -18,12 +18,13 @@ export async function generateMetadata({ params }: AgeGroupPageProps): Promise<M
 
 export default async function AgeGroupPage({ params }: AgeGroupPageProps) {
   const { slug } = await params;
+  const label = slug.replace(/-/g, " ");
 
   return (
     <HealthEducationShell
-      title={slug.replace(/-/g, " ")}
+      title={label}
       path={`/health/age-groups/${slug}`}
-      apiHint={`Age-group content from GET /v1/health/age-groups/${slug}.`}
+      body={`Educational topics for ${label}. Use this as general context, then consult a qualified practitioner for personal care.`}
     />
   );
 }

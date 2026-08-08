@@ -12,9 +12,14 @@ export default function MensHealthPage() {
   return (
     <HealthEducationShell
       title="Men's health"
-      description="Life-stage and gender-specific wellness education for men. Consult a qualified provider for personal health decisions."
+      description="Educational wellness topics for men."
       path="/health/mens-health"
-      apiHint="Men's health hub from GET /v1/health/mens-health. Links to gender-health articles, age-group content, and educational product references only."
+      body="Browse educational content on men's wellness. Use these guides for general understanding, then consult a qualified practitioner when you need personal advice."
+      links={[
+        { href: "/health/gender-health/mens-wellness/", label: "Men's wellness topics" },
+        { href: "/doctors/", label: "Consult a doctor" },
+        { href: "/shop/", label: "Shop medicines" },
+      ]}
     />
   );
 }

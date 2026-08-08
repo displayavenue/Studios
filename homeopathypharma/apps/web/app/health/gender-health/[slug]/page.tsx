@@ -18,12 +18,13 @@ export async function generateMetadata({ params }: GenderHealthPageProps): Promi
 
 export default async function GenderHealthPage({ params }: GenderHealthPageProps) {
   const { slug } = await params;
+  const label = slug.replace(/-/g, " ");
 
   return (
     <HealthEducationShell
-      title={slug.replace(/-/g, " ")}
+      title={label}
       path={`/health/gender-health/${slug}`}
-      apiHint={`Gender health content from GET /v1/health/gender-health/${slug}.`}
+      body={`Educational overview for ${label}. General wellness learning only — not personal medical advice.`}
     />
   );
 }

@@ -12,9 +12,14 @@ export default function WomensHealthPage() {
   return (
     <HealthEducationShell
       title="Women's health"
-      description="Life-stage and gender-specific wellness education for women. Consult a qualified provider for personal health decisions."
+      description="Life-stage and gender-specific wellness education for women."
       path="/health/womens-health"
-      apiHint="Women's health hub from GET /v1/health/womens-health. Links to gender-health articles, age-group content, and educational product references only."
+      body="Explore educational articles on women's wellness across life stages. These pages are for general learning — speak with a qualified practitioner for personal care decisions."
+      links={[
+        { href: "/health/gender-health/womens-wellness/", label: "Women's wellness topics" },
+        { href: "/doctors/", label: "Consult a doctor" },
+        { href: "/shop/", label: "Shop medicines" },
+      ]}
     />
   );
 }
