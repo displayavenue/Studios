@@ -18,7 +18,7 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "test:e2e": "pnpm --filter @homeopathypharma/e2e test",
+    "test:e2e": "pnpm --filter @homeopathypharma/e2e test:e2e",
     "db:generate": "pnpm --filter @homeopathypharma/database generate",
     "db:migrate": "pnpm --filter @homeopathypharma/database migrate:dev",
     "db:migrate:deploy": "pnpm --filter @homeopathypharma/database migrate:deploy",

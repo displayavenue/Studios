@@ -4,7 +4,8 @@
   "private": true,
   "description": "Playwright end-to-end tests for HomeopathyPharma.com critical flows",
   "scripts": {
-    "test": "playwright test",
+    "test": "echo 'e2e skipped in unit CI — use pnpm test:e2e'",
+    "test:e2e": "playwright test",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "report": "playwright show-report",
