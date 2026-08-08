@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { ProductGrid } from "@/components/product-grid";
+import { featuredBrands } from "@/lib/content/brands";
 import { categoryImageDataUrl } from "@/lib/content/images";
 import { PRODUCTS } from "@/lib/content/products";
 import { productsForCategory } from "@/lib/content/products-by-taxonomy";
@@ -14,7 +15,10 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function ShopPage() {
-  const featured = PRODUCTS.slice(0, 16);
+  const featured = PRODUCTS.filter((p) =>
+    ["sbl", "dr-reckeweg", "schwabe"].includes(p.brandSlug),
+  ).slice(0, 16);
+  const majorBrands = featuredBrands();
 
   return (
     <ContentPage
@@ -23,11 +27,26 @@ export default function ShopPage() {
       path="/shop"
     >
       <p style={{ marginTop: 0, maxWidth: "62ch" }}>
-        Full catalogue from the updated homeopathy product categories — browse by body system, then open a topic or
-        product pack.
+        Full catalogue including SBL, Dr. Reckeweg, and Schwabe — browse by brand, body system, or topic.
       </p>
 
       <h2 className="font-display" style={{ marginTop: "1.5rem", color: "var(--hp-color-teal-900)" }}>
+        Top brands
+      </h2>
+      <ul className="brand-card-grid brand-card-grid--compact" role="list">
+        {majorBrands.map((brand) => (
+          <li key={brand.slug}>
+            <Link href={`/brands/${brand.slug}/`} className="brand-card brand-card--featured hp-focus-ring">
+              <p className="brand-card__count">{brand.productCount} products</p>
+              <h3 className="font-display">{brand.name}</h3>
+              <p>{brand.tagline}</p>
+              <span className="brand-card__cta">Shop {brand.name} →</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <h2 className="font-display" style={{ marginTop: "1.75rem", color: "var(--hp-color-teal-900)" }}>
         Shop by category
       </h2>
       <ul className="category-browse-grid" role="list">

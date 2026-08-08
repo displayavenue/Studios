@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { MobileShopStrip } from "@/components/mobile-shop-strip";
 import { HOMEPAGE } from "@/lib/content/homepage";
 
 const categoryNav = [
   { href: "/shop/categories/", label: "Categories" },
   { href: "/shop/", label: "Medicines" },
+  { href: "/brands/sbl/", label: "SBL" },
+  { href: "/brands/dr-reckeweg/", label: "Reckeweg" },
+  { href: "/brands/schwabe/", label: "Schwabe" },
+  { href: "/brands/", label: "All brands" },
   { href: "/remedies/", label: "Remedies" },
-  { href: "/brands/", label: "Brands" },
-  { href: "/bundles/", label: "Health kits" },
   { href: "/consult/", label: "Consult doctors" },
-  { href: "/health/", label: "Health library" },
   { href: "/doctors/city/mumbai/", label: "Doctors in Mumbai" },
 ];
 
@@ -32,6 +34,7 @@ export function SiteHeader() {
             autoComplete="off"
             aria-label={HOMEPAGE.searchPlaceholder}
             className="site-header__search-input hp-focus-ring"
+            enterKeyHint="search"
           />
         </form>
 
@@ -47,6 +50,8 @@ export function SiteHeader() {
           </Link>
         </div>
       </div>
+
+      <MobileShopStrip />
 
       <nav className="site-header__cats" aria-label="Shop categories">
         <ul>

@@ -9,8 +9,12 @@ import { categoryImageDataUrl } from "@/lib/content/images";
 import { PRODUCTS } from "@/lib/content/products";
 
 export default function HomePage() {
-  const bestsellers = PRODUCTS.filter((p) => p.category === "Single Remedies").slice(0, 10);
-  const offers = PRODUCTS.filter((p) => p.mrpInr > p.priceInr).slice(0, 8);
+  const bestsellers = PRODUCTS.filter((p) =>
+    ["sbl", "dr-reckeweg", "schwabe"].includes(p.brandSlug),
+  ).slice(0, 12);
+  const offers = PRODUCTS.filter(
+    (p) => p.mrpInr > p.priceInr && ["sbl", "dr-reckeweg", "schwabe"].includes(p.brandSlug),
+  ).slice(0, 8);
   const doctors = DOCTORS.slice(0, 8);
   const hero = HOMEPAGE.banners[0]!;
   const secondary = HOMEPAGE.banners.slice(1);

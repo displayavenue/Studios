@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BrandProductBrowser } from "@/components/brand-product-browser";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
-import { ProductGrid } from "@/components/product-grid";
 import { getBrand, listBrandSlugs } from "@/lib/content/brands";
 import { productsByBrand } from "@/lib/content/products";
 import { toParams } from "@/lib/static-params";
@@ -52,7 +52,7 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
           <span>{products.length} published SKUs</span>
         </li>
       </ul>
-      <ProductGrid products={products} />
+      <BrandProductBrowser products={products} />
       <p style={{ marginTop: "var(--hp-space-6)" }}>
         <Link href="/brands/" className="hp-link hp-focus-ring">
           ← All brands

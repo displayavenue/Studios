@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { BRAND_CATALOG_PRODUCTS } from "./brand-catalogs";
 import type { Product, ProductFaq } from "./product-types";
 import { TAXONOMY_PRODUCTS } from "./taxonomy-products";
 
@@ -3784,8 +3785,12 @@ function applyProductOverrides(list: Product[]): Product[] {
     .filter((p) => (map[p.id]?.listed ?? true) !== false);
 }
 
-/** Live catalogue after Admin CMS overrides are applied — includes full PDF taxonomy SKUs. */
-export const PRODUCTS = applyProductOverrides([...PRODUCT_SEED, ...TAXONOMY_PRODUCTS]);
+/** Live catalogue after Admin CMS overrides — seed + PDF taxonomy + SBL / Reckeweg / Schwabe. */
+export const PRODUCTS = applyProductOverrides([
+  ...PRODUCT_SEED,
+  ...TAXONOMY_PRODUCTS,
+  ...BRAND_CATALOG_PRODUCTS,
+]);
 
 export function getProduct(slug: string) {
   return PRODUCTS.find((p) => p.slug === slug);

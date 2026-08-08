@@ -16,14 +16,18 @@ export default function BrandsIndexPage() {
       description="Explore published brands as first-class catalogue entities — each with manufacturer notes and a product grid."
       path="/brands"
     >
-      <ul className="catalog-grid" role="list">
+      <ul className="brand-card-grid" role="list">
         {brands.map((brand) => (
-          <li key={brand.slug} className="catalog-tile">
-            <Link href={`/brands/${brand.slug}/`} className="catalog-tile__link hp-focus-ring">
-              <p className="catalog-tile__eyebrow">{brand.productCount} products</p>
-              <h3 className="catalog-tile__title font-display">{brand.name}</h3>
-              <p className="catalog-tile__meta">{brand.tagline}</p>
-              <p className="catalog-tile__stock">{brand.manufacturer}</p>
+          <li key={brand.slug}>
+            <Link
+              href={`/brands/${brand.slug}/`}
+              className={`brand-card hp-focus-ring${brand.featured ? " brand-card--featured" : ""}`}
+            >
+              {brand.featured ? <span className="brand-card__badge">Featured</span> : null}
+              <p className="brand-card__count">{brand.productCount} products</p>
+              <h2 className="font-display">{brand.name}</h2>
+              <p>{brand.tagline}</p>
+              <span className="brand-card__cta">View catalogue →</span>
             </Link>
           </li>
         ))}

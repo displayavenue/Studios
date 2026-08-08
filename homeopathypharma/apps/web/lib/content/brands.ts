@@ -7,12 +7,37 @@ export type Brand = {
   summary: string;
   manufacturer: string;
   productCount: number;
+  featured?: boolean;
 };
 
 const brandMeta: Record<
   string,
-  { name: string; tagline: string; summary: string; manufacturer: string }
+  { name: string; tagline: string; summary: string; manufacturer: string; featured?: boolean }
 > = {
+  sbl: {
+    name: "SBL",
+    tagline: "India’s most widely stocked homeopathy brand",
+    summary:
+      "Browse SBL single-remedy dilutions and globules, mother tinctures, and biochemic tissue salts with clear potency and pack sizes. Educational retail listings only — follow pack labels and practitioner guidance.",
+    manufacturer: "SBL Pvt. Ltd. · India",
+    featured: true,
+  },
+  "dr-reckeweg": {
+    name: "Dr. Reckeweg",
+    tagline: "German R-series specialities and dilutions",
+    summary:
+      "Shop the complete Dr. Reckeweg World Famous Specialities R1–R89 line plus popular single dilutions. Product titles reflect retail trade names; listings are for discovery and do not make treatment or cure claims.",
+    manufacturer: "Dr. Reckeweg & Co. GmbH · Germany (imported / distributed in India)",
+    featured: true,
+  },
+  schwabe: {
+    name: "Schwabe",
+    tagline: "Schwabe dilutions, mother tinctures & Alpha range",
+    summary:
+      "Explore Schwabe single-remedy dilutions, mother tinctures, and Alpha specialty packs. Compare forms and pack sizes, then open a product page for label directions and warnings.",
+    manufacturer: "Dr. Willmar Schwabe India Pvt. Ltd.",
+    featured: true,
+  },
   "homeopathypharma-essentials": {
     name: "HomeopathyPharma Essentials",
     tagline: "Core dilutions, globules, and everyday packs",
@@ -43,6 +68,8 @@ const brandMeta: Record<
   },
 };
 
+const FEATURED_ORDER = ["sbl", "dr-reckeweg", "schwabe"];
+
 export const brands: Brand[] = (Object.entries(brandMeta) as [string, (typeof brandMeta)[string]][])
   .map(([slug, meta]) => ({
     slug,
@@ -50,9 +77,19 @@ export const brands: Brand[] = (Object.entries(brandMeta) as [string, (typeof br
     tagline: meta.tagline,
     summary: meta.summary,
     manufacturer: meta.manufacturer,
+    featured: meta.featured,
     productCount: PRODUCTS.filter((p) => p.brandSlug === slug).length,
   }))
-  .sort((a, b) => a.name.localeCompare(b.name));
+  .sort((a, b) => {
+    const ai = FEATURED_ORDER.indexOf(a.slug);
+    const bi = FEATURED_ORDER.indexOf(b.slug);
+    if (ai !== -1 || bi !== -1) {
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    }
+    return a.name.localeCompare(b.name);
+  });
 
 export function getBrand(slug: string) {
   return brands.find((b) => b.slug === slug);
@@ -60,4 +97,8 @@ export function getBrand(slug: string) {
 
 export function listBrandSlugs() {
   return brands.map((b) => b.slug);
+}
+
+export function featuredBrands() {
+  return brands.filter((b) => b.featured);
 }
