@@ -1,10 +1,23 @@
-import { Body, Controller, Get, Patch, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Put, Query } from '@nestjs/common';
+import { Public } from '../../common/decorators/public.decorator.js';
 import { Roles } from '../../common/decorators/roles.decorator.js';
 import { DoctorsService } from './doctors.service.js';
 
 @Controller('doctors')
 export class DoctorsController {
   constructor(private readonly doctorsService: DoctorsService) {}
+
+  @Public()
+  @Get()
+  listPublic(@Query('city') city?: string) {
+    return this.doctorsService.listPublic(city);
+  }
+
+  @Public()
+  @Get('directory/:slug')
+  getBySlug(@Param('slug') slug: string) {
+    return this.doctorsService.getBySlug(slug);
+  }
 
   @Roles('doctor')
   @Get('profile')
@@ -35,5 +48,4 @@ export class DoctorsController {
   listPatients() {
     return this.doctorsService.listPatients();
   }
-
 }

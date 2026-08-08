@@ -3,6 +3,9 @@
  * Profiles are listed for discovery and booking requests.
  * Verified-badge issuance remains a backend admin workflow — do not invent verification here.
  */
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 export type DoctorProfile = {
   id: string;
   slug: string;
@@ -29,7 +32,7 @@ export type DoctorProfile = {
   acceptingPatients: boolean;
 };
 
-export const DOCTORS: DoctorProfile[] = [
+const DOCTOR_SEED: DoctorProfile[] = [
   {
     "id": "doc_001",
     "slug": "dr-aarav-sharma-001",
@@ -3855,6 +3858,48 @@ export const DOCTORS: DoctorProfile[] = [
     "acceptingPatients": true
   }
 ];
+
+type DoctorOverride = {
+  consultationFeeInr?: number;
+  acceptingPatients?: boolean;
+  availabilityNote?: string;
+  verificationStatus?: "LISTED" | "VERIFIED";
+  listed?: boolean;
+};
+
+function loadDoctorOverrides(): Record<string, DoctorOverride> {
+  try {
+    const path = join(process.cwd(), "../../data/cms/doctor-overrides.json");
+    return JSON.parse(readFileSync(path, "utf8")) as Record<string, DoctorOverride>;
+  } catch {
+    try {
+      const path = join(process.cwd(), "data/cms/doctor-overrides.json");
+      return JSON.parse(readFileSync(path, "utf8")) as Record<string, DoctorOverride>;
+    } catch {
+      return {};
+    }
+  }
+}
+
+function applyDoctorOverrides(list: DoctorProfile[]): DoctorProfile[] {
+  const map = loadDoctorOverrides();
+  return list
+    .map((d) => {
+      const o = map[d.id];
+      if (!o) return d;
+      return {
+        ...d,
+        consultationFeeInr: o.consultationFeeInr ?? d.consultationFeeInr,
+        acceptingPatients: o.acceptingPatients ?? d.acceptingPatients,
+        availabilityNote: o.availabilityNote ?? d.availabilityNote,
+        verificationStatus: o.verificationStatus ?? d.verificationStatus,
+        listed: o.listed ?? d.listed,
+      };
+    })
+    .filter((d) => d.listed !== false);
+}
+
+export const DOCTORS = applyDoctorOverrides(DOCTOR_SEED);
 
 export function getDoctorBySlug(slug: string): DoctorProfile | undefined {
   return DOCTORS.find((d) => d.slug === slug);

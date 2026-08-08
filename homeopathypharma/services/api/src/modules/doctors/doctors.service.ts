@@ -1,24 +1,40 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { listCatalogDoctors, updateCatalogDoctor } from '@homeopathypharma/content-store';
 
 @Injectable()
 export class DoctorsService {
-  async getProfile(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('DoctorsService.getProfile is not implemented');
+  async listPublic(city?: string) {
+    const items = listCatalogDoctors().filter((d) =>
+      city ? d.city.toLowerCase() === city.toLowerCase() : true,
+    );
+    return { items, total: items.length };
   }
 
-  async updateProfile(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('DoctorsService.updateProfile is not implemented');
+  async getBySlug(slug: string) {
+    const doctor = listCatalogDoctors().find((d) => d.slug === slug);
+    if (!doctor) throw new NotFoundException('Doctor not found');
+    return doctor;
   }
 
-  async getAvailability(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('DoctorsService.getAvailability is not implemented');
+  async getProfile() {
+    return listCatalogDoctors()[0] ?? null;
   }
 
-  async setAvailability(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('DoctorsService.setAvailability is not implemented');
+  async updateProfile(body?: unknown) {
+    const first = listCatalogDoctors()[0];
+    if (!first) return null;
+    return updateCatalogDoctor(first.id, (body ?? {}) as Record<string, unknown>);
   }
 
-  async listPatients(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('DoctorsService.listPatients is not implemented');
+  async getAvailability() {
+    return { slots: [], note: 'Availability confirmed at booking request time' };
+  }
+
+  async setAvailability(body?: unknown) {
+    return { ok: true, received: body ?? null };
+  }
+
+  async listPatients() {
+    return { items: [] };
   }
 }

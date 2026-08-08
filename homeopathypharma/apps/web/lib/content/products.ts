@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 export type ProductFaq = { q: string; a: string };
 export type Product = {
   id: string;
@@ -25,7 +28,15 @@ export type Product = {
   category: string;
 };
 
-export const PRODUCTS: Product[] = [
+type ProductOverride = {
+  name?: string;
+  priceInr?: number;
+  mrpInr?: number;
+  inStock?: boolean;
+  listed?: boolean;
+};
+
+const PRODUCT_SEED: Product[] = [
   {
     "id": "prd_0001",
     "slug": "arnica-montana-dilution-200c-30ml-1",
@@ -3765,13 +3776,59 @@ export const PRODUCTS: Product[] = [
   }
 ];
 
-export function getProduct(slug: string) { return PRODUCTS.find(p => p.slug === slug); }
-export function listProductSlugs() { return PRODUCTS.map(p => p.slug); }
-export function productsByBrand(brandSlug: string) { return PRODUCTS.filter(p => p.brandSlug === brandSlug); }
-export function productsByRemedy(remedySlug: string) { return PRODUCTS.filter(p => p.remedySlug === remedySlug); }
-export function productsByHealthArea(area: string) { return PRODUCTS.filter(p => p.healthAreas.includes(area)); }
+function loadProductOverrides(): Record<string, ProductOverride> {
+  try {
+    const path = join(process.cwd(), "../../data/cms/product-overrides.json");
+    return JSON.parse(readFileSync(path, "utf8")) as Record<string, ProductOverride>;
+  } catch {
+    try {
+      const path = join(process.cwd(), "data/cms/product-overrides.json");
+      return JSON.parse(readFileSync(path, "utf8")) as Record<string, ProductOverride>;
+    } catch {
+      return {};
+    }
+  }
+}
+
+function applyProductOverrides(list: Product[]): Product[] {
+  const map = loadProductOverrides();
+  return list
+    .map((p) => {
+      const o = map[p.id];
+      if (!o) return p;
+      return {
+        ...p,
+        name: o.name ?? p.name,
+        priceInr: o.priceInr ?? p.priceInr,
+        mrpInr: o.mrpInr ?? p.mrpInr,
+        inStock: o.inStock ?? p.inStock,
+      };
+    })
+    .filter((p) => (map[p.id]?.listed ?? true) !== false);
+}
+
+/** Live catalogue after Admin CMS overrides are applied. */
+export const PRODUCTS = applyProductOverrides(PRODUCT_SEED);
+
+export function getProduct(slug: string) {
+  return PRODUCTS.find((p) => p.slug === slug);
+}
+export function listProductSlugs() {
+  return PRODUCTS.map((p) => p.slug);
+}
+export function productsByBrand(brandSlug: string) {
+  return PRODUCTS.filter((p) => p.brandSlug === brandSlug);
+}
+export function productsByRemedy(remedySlug: string) {
+  return PRODUCTS.filter((p) => p.remedySlug === remedySlug);
+}
+export function productsByHealthArea(area: string) {
+  return PRODUCTS.filter((p) => p.healthAreas.includes(area));
+}
 export function relatedProducts(slug: string, limit = 4) {
   const p = getProduct(slug);
   if (!p) return [];
-  return PRODUCTS.filter(x => x.slug !== slug && (x.remedySlug === p.remedySlug || x.brandSlug === p.brandSlug)).slice(0, limit);
+  return PRODUCTS.filter(
+    (x) => x.slug !== slug && (x.remedySlug === p.remedySlug || x.brandSlug === p.brandSlug),
+  ).slice(0, limit);
 }

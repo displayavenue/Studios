@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container, Section } from "@homeopathypharma/ui";
-import { getDashboardMetrics } from "@/lib/api";
+import { getCmsSummary, listCatalogDoctors, listCatalogProducts } from "@homeopathypharma/content-store";
 
 export const metadata: Metadata = { title: "Dashboard" };
 
-export default async function AdminDashboardPage() {
-  const metrics = await getDashboardMetrics();
+export default function AdminDashboardPage() {
+  const products = listCatalogProducts();
+  const doctors = listCatalogDoctors();
+  const cms = getCmsSummary();
 
   const cards = [
-    { label: "Doctor verifications", value: metrics.pendingVerifications },
-    { label: "Content reviews", value: metrics.contentReviews },
-    { label: "Open orders", value: metrics.openOrders },
-    { label: "Flagged reviews", value: metrics.flaggedReviews },
+    { label: "Published products", value: products.length },
+    { label: "Listed doctors", value: doctors.length },
+    { label: "Pending verification", value: doctors.filter((d) => d.verificationStatus !== "VERIFIED").length },
+    { label: "Homepage banners", value: cms.bannerCount },
   ];
 
   return (
@@ -22,7 +25,7 @@ export default async function AdminDashboardPage() {
             Command center
           </h1>
           <p style={{ color: "var(--hp-color-text-muted)", marginBottom: "var(--hp-space-8)" }}>
-            Operational overview — metrics from <code>GET /v1/admin/dashboard</code>.
+            Control homepage, catalogue pricing/stock, and doctor directory. CMS path: <code>{cms.cmsDir}</code>
           </p>
           <div className="metric-grid">
             {cards.map((card) => (
@@ -32,6 +35,23 @@ export default async function AdminDashboardPage() {
               </div>
             ))}
           </div>
+          <ul style={{ marginTop: "1.5rem", paddingLeft: "1.2rem", lineHeight: 1.7 }}>
+            <li>
+              <Link href="/homepage" className="hp-link">
+                Edit homepage banners & rails
+              </Link>
+            </li>
+            <li>
+              <Link href="/catalog" className="hp-link">
+                Manage product price & stock
+              </Link>
+            </li>
+            <li>
+              <Link href="/doctors" className="hp-link">
+                Manage doctor fees & verification
+              </Link>
+            </li>
+          </ul>
         </div>
       </Container>
     </Section>

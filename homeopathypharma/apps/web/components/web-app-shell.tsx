@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { StorefrontShell } from "@homeopathypharma/ui";
+import { MobileNav } from "@/components/mobile-nav";
 
 interface WebAppShellProps {
   header: ReactNode;
@@ -11,8 +12,11 @@ interface WebAppShellProps {
 
 export function WebAppShell({ header, footer, children }: WebAppShellProps) {
   return (
-    <StorefrontShell header={header} footer={footer}>
-      {children}
-    </StorefrontShell>
+    <>
+      <StorefrontShell header={header} footer={footer}>
+        <div className="storefront-main">{children}</div>
+      </StorefrontShell>
+      <MobileNav />
+    </>
   );
 }

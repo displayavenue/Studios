@@ -162,3 +162,55 @@ body {
   color: var(--hp-color-text-muted);
   margin-top: var(--hp-space-4);
 }
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.75rem 0.65rem;
+  border-bottom: 1px solid var(--hp-color-border);
+  vertical-align: top;
+}
+
+.admin-table th {
+  color: var(--hp-color-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-input {
+  width: 100%;
+  min-width: 5rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--hp-color-border);
+  border-radius: 0.4rem;
+  font: inherit;
+  background: #fff;
+}
+
+.admin-field {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.admin-fieldset {
+  border: 1px solid var(--hp-color-border);
+  border-radius: 0.65rem;
+  padding: 0.85rem 1rem 1rem;
+  margin: 1rem 0;
+}
+
+.admin-fieldset legend {
+  padding: 0 0.35rem;
+  font-weight: 700;
+  color: var(--hp-color-teal-900);
+}

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Public } from '../../common/decorators/public.decorator.js';
 import { Roles } from '../../common/decorators/roles.decorator.js';
 import { Permissions } from '../../common/decorators/permissions.decorator.js';
@@ -16,8 +16,8 @@ export class CatalogController {
 
   @Public()
   @Get('products/:slug')
-  getProduct() {
-    return this.catalogService.getProduct();
+  getProduct(@Param('slug') slug: string) {
+    return this.catalogService.getProduct(slug);
   }
 
   @Public()
@@ -32,18 +32,17 @@ export class CatalogController {
     return this.catalogService.listBrands();
   }
 
-  @Roles('admin')
+  @Roles('admin', 'super-admin', 'catalog-manager')
   @Permissions('catalog:write')
   @Post('products')
   createProduct(@Body() body?: unknown) {
     return this.catalogService.createProduct(body);
   }
 
-  @Roles('admin')
+  @Roles('admin', 'super-admin', 'catalog-manager')
   @Permissions('catalog:write')
   @Patch('products/:id')
-  updateProduct(@Body() body?: unknown) {
-    return this.catalogService.updateProduct(body);
+  updateProduct(@Param('id') id: string, @Body() body?: unknown) {
+    return this.catalogService.updateProduct(id, body);
   }
-
 }

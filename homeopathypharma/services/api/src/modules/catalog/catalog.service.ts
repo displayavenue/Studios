@@ -1,28 +1,42 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  listCatalogProducts,
+  readCatalogSnapshot,
+  updateCatalogProduct,
+} from '@homeopathypharma/content-store';
 
 @Injectable()
 export class CatalogService {
-  async listProducts(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('CatalogService.listProducts is not implemented');
+  async listProducts() {
+    return { items: listCatalogProducts(), total: listCatalogProducts().length };
   }
 
-  async getProduct(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('CatalogService.getProduct is not implemented');
+  async getProduct(slug?: string) {
+    const product = listCatalogProducts().find((p) => p.slug === slug);
+    if (!product) throw new NotFoundException('Product not found');
+    return product;
   }
 
-  async listCategories(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('CatalogService.listCategories is not implemented');
+  async listCategories() {
+    return { items: readCatalogSnapshot().categories };
   }
 
-  async listBrands(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('CatalogService.listBrands is not implemented');
+  async listBrands() {
+    return { items: readCatalogSnapshot().brands };
   }
 
-  async createProduct(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('CatalogService.createProduct is not implemented');
+  async createProduct(body?: unknown) {
+    return {
+      ok: false,
+      message: 'Create product via catalog seed + overrides. Use PATCH for price/stock/listing control.',
+      received: body ?? null,
+    };
   }
 
-  async updateProduct(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('CatalogService.updateProduct is not implemented');
+  async updateProduct(id: string, body?: unknown) {
+    const patch = (body && typeof body === 'object' ? body : {}) as Record<string, unknown>;
+    const updated = updateCatalogProduct(id, patch);
+    if (!updated) throw new NotFoundException('Product not found');
+    return updated;
   }
 }

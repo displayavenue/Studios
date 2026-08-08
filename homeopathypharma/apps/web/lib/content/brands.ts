@@ -43,18 +43,15 @@ const brandMeta: Record<
   },
 };
 
-export const brands: Brand[] = Object.keys(brandMeta)
-  .map((slug) => {
-    const meta = brandMeta[slug];
-    return {
-      slug,
-      name: meta.name,
-      tagline: meta.tagline,
-      summary: meta.summary,
-      manufacturer: meta.manufacturer,
-      productCount: PRODUCTS.filter((p) => p.brandSlug === slug).length,
-    };
-  })
+export const brands: Brand[] = (Object.entries(brandMeta) as [string, (typeof brandMeta)[string]][])
+  .map(([slug, meta]) => ({
+    slug,
+    name: meta.name,
+    tagline: meta.tagline,
+    summary: meta.summary,
+    manufacturer: meta.manufacturer,
+    productCount: PRODUCTS.filter((p) => p.brandSlug === slug).length,
+  }))
   .sort((a, b) => a.name.localeCompare(b.name));
 
 export function getBrand(slug: string) {

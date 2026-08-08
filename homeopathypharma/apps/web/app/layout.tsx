@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Serif_4 } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 import { buildOrganizationJsonLd, buildWebSiteJsonLd, serializeJsonLd } from "@homeopathypharma/seo";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -12,7 +12,7 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -23,17 +23,23 @@ const siteUrl = process.env.WEB_URL ?? process.env.NEXT_PUBLIC_WEB_URL ?? "http:
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "HomeopathyPharma — Thoughtful homeopathic care",
+    default: "HomeopathyPharma — Medicines, doctors & health guidance",
     template: "%s · HomeopathyPharma",
   },
   description:
-    "Premium homeopathic pharmacy and health education platform. Explore remedies, connect with verified practitioners, and learn from curated educational content.",
+    "Order homeopathic medicines, explore remedies, and consult listed BHMS practitioners in Mumbai. Clear labelling and educational health resources.",
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "en_IN",
     siteName: "HomeopathyPharma",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover" as const,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -54,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 
   return (
-    <html lang="en" className={`${fraunces.variable} ${sourceSerif.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${manrope.variable}`}>
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: orgJsonLd }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />

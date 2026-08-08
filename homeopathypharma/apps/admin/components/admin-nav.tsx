@@ -35,7 +35,9 @@ const navigation: NavGroup[] = [
   {
     title: "Operations",
     items: [
+      { href: "/homepage", label: "Homepage CMS", roles: ["super-admin", "catalog-manager"] },
       { href: "/catalog", label: "Catalog", roles: ["super-admin", "catalog-manager"] },
+      { href: "/doctors", label: "Doctors", roles: ["super-admin", "medical-reviewer", "catalog-manager"] },
       { href: "/inventory", label: "Inventory", roles: ["super-admin", "catalog-manager"] },
       { href: "/orders", label: "Orders", roles: ["super-admin", "support"] },
       { href: "/shipments", label: "Shipments", roles: ["super-admin", "support"] },

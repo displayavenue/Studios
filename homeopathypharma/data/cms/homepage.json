@@ -1,0 +1,49 @@
+{
+  "searchPlaceholder": "Search medicines, remedies & doctors",
+  "banners": [
+    {
+      "id": "banner-remedies",
+      "eyebrow": "Pharmacy",
+      "title": "Homeopathic medicines delivered with clear labelling",
+      "subtitle": "Browse dilutions, globules, biochemics, and kits — educational listings, not treatment claims.",
+      "ctaLabel": "Shop medicines",
+      "ctaHref": "/shop/",
+      "tone": "teal"
+    },
+    {
+      "id": "banner-consult",
+      "eyebrow": "Consult",
+      "title": "Talk to BHMS practitioners in Mumbai",
+      "subtitle": "100 listed doctors for online video and clinic visits. Verification badges only after admin review.",
+      "ctaLabel": "Find a doctor",
+      "ctaHref": "/doctors/",
+      "tone": "amber"
+    },
+    {
+      "id": "banner-health",
+      "eyebrow": "Learn",
+      "title": "Health topics explained without hype",
+      "subtitle": "Educational guides across wellness themes — always consult a qualified professional for care.",
+      "ctaLabel": "Explore health hub",
+      "ctaHref": "/health/",
+      "tone": "sage"
+    }
+  ],
+  "categories": [
+    { "label": "Single remedies", "href": "/shop/categories/", "seed": "remedies" },
+    { "label": "Biochemic", "href": "/shop/categories/", "seed": "biochemic" },
+    { "label": "Bundles", "href": "/bundles/", "seed": "bundles" },
+    { "label": "Digestive", "href": "/shop/health-areas/digestive-health/", "seed": "digestive" },
+    { "label": "Respiratory", "href": "/shop/health-areas/respiratory-health/", "seed": "respiratory" },
+    { "label": "Skin", "href": "/shop/health-areas/skin-health/", "seed": "skin" },
+    { "label": "Pet care", "href": "/shop/health-areas/pet-care/", "seed": "pet" },
+    { "label": "Brands", "href": "/brands/", "seed": "brands" }
+  ],
+  "rails": {
+    "bestsellersTitle": "Popular medicines",
+    "consultTitle": "Consult a homeopathy doctor",
+    "consultBody": "Book online or clinic visits with listed BHMS practitioners across Mumbai.",
+    "brandsTitle": "Shop by brand",
+    "doctorsTitle": "Doctors near you · Mumbai"
+  }
+}

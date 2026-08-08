@@ -1,0 +1,4131 @@
+{
+  "products": [
+    {
+      "id": "prd_0001",
+      "slug": "arnica-montana-dilution-200c-30ml-1",
+      "name": "Arnica montana 200C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 105,
+      "priceInr": 91,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "arnica-montana",
+      "remedyName": "Arnica montana",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0002",
+      "slug": "arnica-montana-dilution-30c-100ml-2",
+      "name": "Arnica montana 30C Dilution (100 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 120,
+      "priceInr": 103,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "arnica-montana",
+      "remedyName": "Arnica montana",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0003",
+      "slug": "aconitum-napellus-globules-30c-10g-3",
+      "name": "Aconitum napellus 30C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 135,
+      "priceInr": 115,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "aconitum-napellus",
+      "remedyName": "Aconitum napellus",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0004",
+      "slug": "aconitum-napellus-globules-200c-10g-4",
+      "name": "Aconitum napellus 200C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 150,
+      "priceInr": 127,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "aconitum-napellus",
+      "remedyName": "Aconitum napellus",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0005",
+      "slug": "nux-vomica-tablets-30c-25g-5",
+      "name": "Nux vomica 30C Tablets (25 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 165,
+      "priceInr": 139,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "nux-vomica",
+      "remedyName": "Nux vomica",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0006",
+      "slug": "nux-vomica-mother-tincture-mt-30ml-6",
+      "name": "Nux vomica Ø Mother Tincture (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 180,
+      "priceInr": 151,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "nux-vomica",
+      "remedyName": "Nux vomica",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0007",
+      "slug": "belladonna-ointment-—-25g-7",
+      "name": "Belladonna — Ointment (25 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 195,
+      "priceInr": 163,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "belladonna",
+      "remedyName": "Belladonna",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0008",
+      "slug": "belladonna-biochemic-tablet-6x-25g-8",
+      "name": "Belladonna 6X Biochemic tablet (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 210,
+      "priceInr": 175,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "belladonna",
+      "remedyName": "Belladonna",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0009",
+      "slug": "bryonia-alba-dilution-30c-30ml-9",
+      "name": "Bryonia alba 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 225,
+      "priceInr": 187,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "bryonia-alba",
+      "remedyName": "Bryonia alba",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0010",
+      "slug": "bryonia-alba-dilution-200c-30ml-10",
+      "name": "Bryonia alba 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 240,
+      "priceInr": 199,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "bryonia-alba",
+      "remedyName": "Bryonia alba",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0011",
+      "slug": "pulsatilla-dilution-30c-100ml-11",
+      "name": "Pulsatilla nigricans 30C Dilution (100 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 255,
+      "priceInr": 211,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "pulsatilla",
+      "remedyName": "Pulsatilla nigricans",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0012",
+      "slug": "pulsatilla-globules-30c-10g-12",
+      "name": "Pulsatilla nigricans 30C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 270,
+      "priceInr": 223,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "pulsatilla",
+      "remedyName": "Pulsatilla nigricans",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0013",
+      "slug": "rhus-tox-globules-200c-10g-13",
+      "name": "Rhus toxicodendron 200C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 285,
+      "priceInr": 235,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "rhus-tox",
+      "remedyName": "Rhus toxicodendron",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0014",
+      "slug": "rhus-tox-tablets-30c-25g-14",
+      "name": "Rhus toxicodendron 30C Tablets (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 300,
+      "priceInr": 247,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "rhus-tox",
+      "remedyName": "Rhus toxicodendron",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0015",
+      "slug": "gelsemium-mother-tincture-mt-30ml-15",
+      "name": "Gelsemium sempervirens Ø Mother Tincture (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 315,
+      "priceInr": 259,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "gelsemium",
+      "remedyName": "Gelsemium sempervirens",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0016",
+      "slug": "gelsemium-ointment-—-25g-16",
+      "name": "Gelsemium sempervirens — Ointment (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 330,
+      "priceInr": 271,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "gelsemium",
+      "remedyName": "Gelsemium sempervirens",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0017",
+      "slug": "gelsemium-biochemic-tablet-6x-25g-17",
+      "name": "Gelsemium sempervirens 6X Biochemic tablet (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 345,
+      "priceInr": 283,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "gelsemium",
+      "remedyName": "Gelsemium sempervirens",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0018",
+      "slug": "hepar-sulph-dilution-30c-30ml-18",
+      "name": "Hepar sulphuris 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 360,
+      "priceInr": 295,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "hepar-sulph",
+      "remedyName": "Hepar sulphuris",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0019",
+      "slug": "hepar-sulph-dilution-200c-30ml-19",
+      "name": "Hepar sulphuris 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 375,
+      "priceInr": 307,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "hepar-sulph",
+      "remedyName": "Hepar sulphuris",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0020",
+      "slug": "mercurius-solubilis-dilution-30c-100ml-20",
+      "name": "Mercurius solubilis 30C Dilution (100 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 90,
+      "priceInr": 79,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "mercurius-solubilis",
+      "remedyName": "Mercurius solubilis",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0021",
+      "slug": "mercurius-solubilis-globules-30c-10g-21",
+      "name": "Mercurius solubilis 30C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 105,
+      "priceInr": 91,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "mercurius-solubilis",
+      "remedyName": "Mercurius solubilis",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0022",
+      "slug": "sulphur-globules-200c-10g-22",
+      "name": "Sulphur 200C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 120,
+      "priceInr": 103,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "sulphur",
+      "remedyName": "Sulphur",
+      "healthAreas": [
+        "skin-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0023",
+      "slug": "sulphur-tablets-30c-25g-23",
+      "name": "Sulphur 30C Tablets (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 135,
+      "priceInr": 115,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "sulphur",
+      "remedyName": "Sulphur",
+      "healthAreas": [
+        "skin-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0024",
+      "slug": "calcarea-carbonica-mother-tincture-mt-30ml-24",
+      "name": "Calcarea carbonica Ø Mother Tincture (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 150,
+      "priceInr": 127,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "calcarea-carbonica",
+      "remedyName": "Calcarea carbonica",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0025",
+      "slug": "calcarea-carbonica-ointment-—-25g-25",
+      "name": "Calcarea carbonica — Ointment (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 165,
+      "priceInr": 139,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "calcarea-carbonica",
+      "remedyName": "Calcarea carbonica",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0026",
+      "slug": "calcarea-carbonica-biochemic-tablet-6x-25g-26",
+      "name": "Calcarea carbonica 6X Biochemic tablet (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 180,
+      "priceInr": 151,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "calcarea-carbonica",
+      "remedyName": "Calcarea carbonica",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0027",
+      "slug": "natrum-muriaticum-dilution-30c-30ml-27",
+      "name": "Natrum muriaticum 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 195,
+      "priceInr": 163,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "natrum-muriaticum",
+      "remedyName": "Natrum muriaticum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0028",
+      "slug": "natrum-muriaticum-dilution-200c-30ml-28",
+      "name": "Natrum muriaticum 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 210,
+      "priceInr": 175,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "natrum-muriaticum",
+      "remedyName": "Natrum muriaticum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0029",
+      "slug": "natrum-muriaticum-dilution-30c-100ml-29",
+      "name": "Natrum muriaticum 30C Dilution (100 ml)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 225,
+      "priceInr": 187,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "natrum-muriaticum",
+      "remedyName": "Natrum muriaticum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0030",
+      "slug": "kali-phosphoricum-globules-30c-10g-30",
+      "name": "Kali phosphoricum 30C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 240,
+      "priceInr": 199,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "kali-phosphoricum",
+      "remedyName": "Kali phosphoricum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0031",
+      "slug": "kali-phosphoricum-globules-200c-10g-31",
+      "name": "Kali phosphoricum 200C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 255,
+      "priceInr": 211,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "kali-phosphoricum",
+      "remedyName": "Kali phosphoricum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0032",
+      "slug": "kali-phosphoricum-tablets-30c-25g-32",
+      "name": "Kali phosphoricum 30C Tablets (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 270,
+      "priceInr": 223,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "kali-phosphoricum",
+      "remedyName": "Kali phosphoricum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0033",
+      "slug": "silicea-mother-tincture-mt-30ml-33",
+      "name": "Silicea Ø Mother Tincture (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 285,
+      "priceInr": 235,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "silicea",
+      "remedyName": "Silicea",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0034",
+      "slug": "silicea-ointment-—-25g-34",
+      "name": "Silicea — Ointment (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 300,
+      "priceInr": 247,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "silicea",
+      "remedyName": "Silicea",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0035",
+      "slug": "silicea-biochemic-tablet-6x-25g-35",
+      "name": "Silicea 6X Biochemic tablet (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 315,
+      "priceInr": 259,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "silicea",
+      "remedyName": "Silicea",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0036",
+      "slug": "chamomilla-dilution-30c-30ml-36",
+      "name": "Chamomilla 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 330,
+      "priceInr": 271,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "chamomilla",
+      "remedyName": "Chamomilla",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0037",
+      "slug": "chamomilla-dilution-200c-30ml-37",
+      "name": "Chamomilla 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 345,
+      "priceInr": 283,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "chamomilla",
+      "remedyName": "Chamomilla",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0038",
+      "slug": "cina-dilution-30c-100ml-38",
+      "name": "Cina 30C Dilution (100 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 360,
+      "priceInr": 295,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "cina",
+      "remedyName": "Cina",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0039",
+      "slug": "cina-globules-30c-10g-39",
+      "name": "Cina 30C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 375,
+      "priceInr": 307,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "cina",
+      "remedyName": "Cina",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0040",
+      "slug": "drosera-globules-200c-10g-40",
+      "name": "Drosera rotundifolia 200C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 90,
+      "priceInr": 79,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "drosera",
+      "remedyName": "Drosera rotundifolia",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0041",
+      "slug": "drosera-tablets-30c-25g-41",
+      "name": "Drosera rotundifolia 30C Tablets (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 105,
+      "priceInr": 91,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "drosera",
+      "remedyName": "Drosera rotundifolia",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0042",
+      "slug": "antimonium-tart-mother-tincture-mt-30ml-42",
+      "name": "Antimonium tartaricum Ø Mother Tincture (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 120,
+      "priceInr": 103,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "antimonium-tart",
+      "remedyName": "Antimonium tartaricum",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0043",
+      "slug": "antimonium-tart-ointment-—-25g-43",
+      "name": "Antimonium tartaricum — Ointment (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 135,
+      "priceInr": 115,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "antimonium-tart",
+      "remedyName": "Antimonium tartaricum",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0044",
+      "slug": "antimonium-tart-biochemic-tablet-6x-25g-44",
+      "name": "Antimonium tartaricum 6X Biochemic tablet (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 150,
+      "priceInr": 127,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "antimonium-tart",
+      "remedyName": "Antimonium tartaricum",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0045",
+      "slug": "arsenicum-album-dilution-30c-30ml-45",
+      "name": "Arsenicum album 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 165,
+      "priceInr": 139,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "arsenicum-album",
+      "remedyName": "Arsenicum album",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0046",
+      "slug": "arsenicum-album-dilution-200c-30ml-46",
+      "name": "Arsenicum album 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 180,
+      "priceInr": 151,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "arsenicum-album",
+      "remedyName": "Arsenicum album",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0047",
+      "slug": "phosphorus-dilution-30c-100ml-47",
+      "name": "Phosphorus 30C Dilution (100 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 195,
+      "priceInr": 163,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "phosphorus",
+      "remedyName": "Phosphorus",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0048",
+      "slug": "phosphorus-globules-30c-10g-48",
+      "name": "Phosphorus 30C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 210,
+      "priceInr": 175,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "phosphorus",
+      "remedyName": "Phosphorus",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0049",
+      "slug": "lycopodium-globules-200c-10g-49",
+      "name": "Lycopodium clavatum 200C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 225,
+      "priceInr": 187,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "lycopodium",
+      "remedyName": "Lycopodium clavatum",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0050",
+      "slug": "lycopodium-tablets-30c-25g-50",
+      "name": "Lycopodium clavatum 30C Tablets (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 240,
+      "priceInr": 199,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "lycopodium",
+      "remedyName": "Lycopodium clavatum",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0051",
+      "slug": "carbo-veg-mother-tincture-mt-30ml-51",
+      "name": "Carbo vegetabilis Ø Mother Tincture (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 255,
+      "priceInr": 211,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "carbo-veg",
+      "remedyName": "Carbo vegetabilis",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0052",
+      "slug": "carbo-veg-ointment-—-25g-52",
+      "name": "Carbo vegetabilis — Ointment (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 270,
+      "priceInr": 223,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "carbo-veg",
+      "remedyName": "Carbo vegetabilis",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0053",
+      "slug": "carbo-veg-biochemic-tablet-6x-25g-53",
+      "name": "Carbo vegetabilis 6X Biochemic tablet (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 285,
+      "priceInr": 235,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "carbo-veg",
+      "remedyName": "Carbo vegetabilis",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0054",
+      "slug": "ipecac-dilution-30c-30ml-54",
+      "name": "Ipecacuanha 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 300,
+      "priceInr": 247,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "ipecac",
+      "remedyName": "Ipecacuanha",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0055",
+      "slug": "ipecac-dilution-200c-30ml-55",
+      "name": "Ipecacuanha 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 315,
+      "priceInr": 259,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "ipecac",
+      "remedyName": "Ipecacuanha",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0056",
+      "slug": "colocynthis-dilution-30c-100ml-56",
+      "name": "Colocynthis 30C Dilution (100 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 330,
+      "priceInr": 271,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "colocynthis",
+      "remedyName": "Colocynthis",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0057",
+      "slug": "colocynthis-globules-30c-10g-57",
+      "name": "Colocynthis 30C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 345,
+      "priceInr": 283,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "colocynthis",
+      "remedyName": "Colocynthis",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0058",
+      "slug": "magnesia-phosphorica-globules-200c-10g-58",
+      "name": "Mag phos 200C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 360,
+      "priceInr": 295,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "magnesia-phosphorica",
+      "remedyName": "Mag phos",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0059",
+      "slug": "magnesia-phosphorica-tablets-30c-25g-59",
+      "name": "Mag phos 30C Tablets (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 375,
+      "priceInr": 307,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "magnesia-phosphorica",
+      "remedyName": "Mag phos",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0060",
+      "slug": "magnesia-phosphorica-mother-tincture-mt-30ml-60",
+      "name": "Mag phos Ø Mother Tincture (30 ml)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 90,
+      "priceInr": 79,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "magnesia-phosphorica",
+      "remedyName": "Mag phos",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0061",
+      "slug": "ferrum-phos-ointment-—-25g-61",
+      "name": "Ferrum phosphoricum — Ointment (25 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 105,
+      "priceInr": 91,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "ferrum-phos",
+      "remedyName": "Ferrum phosphoricum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0062",
+      "slug": "ferrum-phos-biochemic-tablet-6x-25g-62",
+      "name": "Ferrum phosphoricum 6X Biochemic tablet (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 120,
+      "priceInr": 103,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "ferrum-phos",
+      "remedyName": "Ferrum phosphoricum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0063",
+      "slug": "ferrum-phos-dilution-30c-30ml-63",
+      "name": "Ferrum phosphoricum 30C Dilution (30 ml)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 135,
+      "priceInr": 115,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "ferrum-phos",
+      "remedyName": "Ferrum phosphoricum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0064",
+      "slug": "thuja-dilution-200c-30ml-64",
+      "name": "Thuja occidentalis 200C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 150,
+      "priceInr": 127,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "thuja",
+      "remedyName": "Thuja occidentalis",
+      "healthAreas": [
+        "skin-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0065",
+      "slug": "thuja-dilution-30c-100ml-65",
+      "name": "Thuja occidentalis 30C Dilution (100 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 165,
+      "priceInr": 139,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "thuja",
+      "remedyName": "Thuja occidentalis",
+      "healthAreas": [
+        "skin-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0066",
+      "slug": "hypericum-globules-30c-10g-66",
+      "name": "Hypericum perforatum 30C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 180,
+      "priceInr": 151,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "hypericum",
+      "remedyName": "Hypericum perforatum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0067",
+      "slug": "hypericum-globules-200c-10g-67",
+      "name": "Hypericum perforatum 200C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 195,
+      "priceInr": 163,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "hypericum",
+      "remedyName": "Hypericum perforatum",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0068",
+      "slug": "ledum-tablets-30c-25g-68",
+      "name": "Ledum palustre 30C Tablets (25 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 210,
+      "priceInr": 175,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "ledum",
+      "remedyName": "Ledum palustre",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0069",
+      "slug": "ledum-mother-tincture-mt-30ml-69",
+      "name": "Ledum palustre Ø Mother Tincture (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 225,
+      "priceInr": 187,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "ledum",
+      "remedyName": "Ledum palustre",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0070",
+      "slug": "apis-mellifica-ointment-—-25g-70",
+      "name": "Apis mellifica — Ointment (25 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 240,
+      "priceInr": 199,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "apis-mellifica",
+      "remedyName": "Apis mellifica",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0071",
+      "slug": "apis-mellifica-biochemic-tablet-6x-25g-71",
+      "name": "Apis mellifica 6X Biochemic tablet (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 255,
+      "priceInr": 211,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "apis-mellifica",
+      "remedyName": "Apis mellifica",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0072",
+      "slug": "sepia-dilution-30c-30ml-72",
+      "name": "Sepia 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 270,
+      "priceInr": 223,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "sepia",
+      "remedyName": "Sepia",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0073",
+      "slug": "sepia-dilution-200c-30ml-73",
+      "name": "Sepia 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 285,
+      "priceInr": 235,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "sepia",
+      "remedyName": "Sepia",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0074",
+      "slug": "lachesis-dilution-30c-100ml-74",
+      "name": "Lachesis 30C Dilution (100 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 300,
+      "priceInr": 247,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "lachesis",
+      "remedyName": "Lachesis",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0075",
+      "slug": "lachesis-globules-30c-10g-75",
+      "name": "Lachesis 30C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 315,
+      "priceInr": 259,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "lachesis",
+      "remedyName": "Lachesis",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0076",
+      "slug": "croton-tiglium-globules-200c-10g-76",
+      "name": "Croton tiglium 200C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 330,
+      "priceInr": 271,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "croton-tiglium",
+      "remedyName": "Croton tiglium",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0077",
+      "slug": "croton-tiglium-tablets-30c-25g-77",
+      "name": "Croton tiglium 30C Tablets (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 345,
+      "priceInr": 283,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "croton-tiglium",
+      "remedyName": "Croton tiglium",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0078",
+      "slug": "podophyllum-mother-tincture-mt-30ml-78",
+      "name": "Podophyllum Ø Mother Tincture (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 360,
+      "priceInr": 295,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "podophyllum",
+      "remedyName": "Podophyllum",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0079",
+      "slug": "podophyllum-ointment-—-25g-79",
+      "name": "Podophyllum — Ointment (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 375,
+      "priceInr": 307,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "podophyllum",
+      "remedyName": "Podophyllum",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0080",
+      "slug": "podophyllum-biochemic-tablet-6x-25g-80",
+      "name": "Podophyllum 6X Biochemic tablet (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 90,
+      "priceInr": 79,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "podophyllum",
+      "remedyName": "Podophyllum",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0081",
+      "slug": "allium-cepa-dilution-30c-30ml-81",
+      "name": "Allium cepa 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 105,
+      "priceInr": 91,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "allium-cepa",
+      "remedyName": "Allium cepa",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0082",
+      "slug": "allium-cepa-dilution-200c-30ml-82",
+      "name": "Allium cepa 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 120,
+      "priceInr": 103,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "allium-cepa",
+      "remedyName": "Allium cepa",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0083",
+      "slug": "euphrasia-dilution-30c-100ml-83",
+      "name": "Euphrasia 30C Dilution (100 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "100 ml",
+      "mrpInr": 135,
+      "priceInr": 115,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "euphrasia",
+      "remedyName": "Euphrasia",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0084",
+      "slug": "euphrasia-globules-30c-10g-84",
+      "name": "Euphrasia 30C Globules (10 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Globules",
+      "potency": "30C",
+      "packSize": "10 g",
+      "mrpInr": 150,
+      "priceInr": 127,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "euphrasia",
+      "remedyName": "Euphrasia",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0085",
+      "slug": "sabadilla-globules-200c-10g-85",
+      "name": "Sabadilla 200C Globules (10 g)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Globules",
+      "potency": "200C",
+      "packSize": "10 g",
+      "mrpInr": 165,
+      "priceInr": 139,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "sabadilla",
+      "remedyName": "Sabadilla",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0086",
+      "slug": "sabadilla-tablets-30c-25g-86",
+      "name": "Sabadilla 30C Tablets (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Tablets",
+      "potency": "30C",
+      "packSize": "25 g",
+      "mrpInr": 180,
+      "priceInr": 151,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "sabadilla",
+      "remedyName": "Sabadilla",
+      "healthAreas": [
+        "general-wellness"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0087",
+      "slug": "spongia-mother-tincture-mt-30ml-87",
+      "name": "Spongia tosta Ø Mother Tincture (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Mother Tincture",
+      "potency": "Ø",
+      "packSize": "30 ml",
+      "mrpInr": 195,
+      "priceInr": 163,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "spongia",
+      "remedyName": "Spongia tosta",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0088",
+      "slug": "spongia-ointment-—-25g-88",
+      "name": "Spongia tosta — Ointment (25 g)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Ointment",
+      "potency": "—",
+      "packSize": "25 g",
+      "mrpInr": 210,
+      "priceInr": 175,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "spongia",
+      "remedyName": "Spongia tosta",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0089",
+      "slug": "spongia-biochemic-tablet-6x-25g-89",
+      "name": "Spongia tosta 6X Biochemic tablet (25 g)",
+      "brandSlug": "coastal-biochemic",
+      "brandName": "Coastal Biochemic",
+      "form": "Biochemic tablet",
+      "potency": "6X",
+      "packSize": "25 g",
+      "mrpInr": 225,
+      "priceInr": 187,
+      "inStock": true,
+      "category": "Biochemic / Tissue Salts",
+      "remedySlug": "spongia",
+      "remedyName": "Spongia tosta",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0090",
+      "slug": "rumex-dilution-30c-30ml-90",
+      "name": "Rumex crispus 30C Dilution (30 ml)",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Dilution",
+      "potency": "30C",
+      "packSize": "30 ml",
+      "mrpInr": 240,
+      "priceInr": 199,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "rumex",
+      "remedyName": "Rumex crispus",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0091",
+      "slug": "rumex-dilution-200c-30ml-91",
+      "name": "Rumex crispus 200C Dilution (30 ml)",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Dilution",
+      "potency": "200C",
+      "packSize": "30 ml",
+      "mrpInr": 255,
+      "priceInr": 211,
+      "inStock": true,
+      "category": "Single Remedies",
+      "remedySlug": "rumex",
+      "remedyName": "Rumex crispus",
+      "healthAreas": [
+        "respiratory-health"
+      ],
+      "manufacturer": "Licensed contract manufacturer · Maharashtra"
+    },
+    {
+      "id": "prd_0092",
+      "slug": "family-winter-wellness-kit",
+      "name": "Family Winter Wellness Kit",
+      "brandSlug": "homeopathypharma-essentials",
+      "brandName": "HomeopathyPharma Essentials",
+      "form": "Bundle",
+      "potency": "—",
+      "packSize": "1 kit",
+      "mrpInr": 1299,
+      "priceInr": 999,
+      "inStock": true,
+      "category": "Bundles",
+      "remedySlug": "arnica-montana",
+      "remedyName": "Assorted",
+      "healthAreas": [
+        "general-wellness",
+        "respiratory-health"
+      ],
+      "manufacturer": "HomeopathyPharma fulfilment"
+    },
+    {
+      "id": "prd_0093",
+      "slug": "digestive-care-starter",
+      "name": "Digestive Care Starter Pack",
+      "brandSlug": "harbour-leaf-remedies",
+      "brandName": "Harbour Leaf Remedies",
+      "form": "Bundle",
+      "potency": "—",
+      "packSize": "1 kit",
+      "mrpInr": 899,
+      "priceInr": 749,
+      "inStock": true,
+      "category": "Bundles",
+      "remedySlug": "nux-vomica",
+      "remedyName": "Assorted",
+      "healthAreas": [
+        "digestive-health"
+      ],
+      "manufacturer": "HomeopathyPharma fulfilment"
+    },
+    {
+      "id": "prd_0094",
+      "slug": "pet-calm-travel-pack-dogs",
+      "name": "Dog Travel Comfort Pack",
+      "brandSlug": "saffron-grove-care",
+      "brandName": "Saffron Grove Care",
+      "form": "Bundle",
+      "potency": "—",
+      "packSize": "1 kit",
+      "mrpInr": 799,
+      "priceInr": 649,
+      "inStock": true,
+      "category": "Pet Care",
+      "remedySlug": "arnica-montana",
+      "remedyName": "Assorted",
+      "healthAreas": [
+        "pet-care"
+      ],
+      "manufacturer": "HomeopathyPharma fulfilment"
+    }
+  ],
+  "doctors": [
+    {
+      "id": "doc_001",
+      "slug": "dr-aarav-sharma-001",
+      "fullName": "Dr. Aarav Sharma",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Andheri West",
+      "specialties": [
+        "General Homeopathy",
+        "Men's Health"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 3,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Andheri West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_002",
+      "slug": "dr-aditi-nair-002",
+      "fullName": "Dr. Aditi Nair",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Andheri East",
+      "specialties": [
+        "Pediatric Homeopathy",
+        "Skin & Dermatology support"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 4,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Andheri East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_003",
+      "slug": "dr-ananya-banerjee-003",
+      "fullName": "Dr. Ananya Banerjee",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bandra West",
+      "specialties": [
+        "Women's Health",
+        "Digestive Health"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 5,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bandra West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_004",
+      "slug": "dr-arjun-menon-004",
+      "fullName": "Dr. Arjun Menon",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bandra East",
+      "specialties": [
+        "Men's Health",
+        "Respiratory Health"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 6,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bandra East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_005",
+      "slug": "dr-aisha-rodrigues-005",
+      "fullName": "Dr. Aisha Rodrigues",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Dadar West",
+      "specialties": [
+        "Skin & Dermatology support",
+        "Joint & Musculoskeletal"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 7,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Dadar West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_006",
+      "slug": "dr-bhavya-more-006",
+      "fullName": "Dr. Bhavya More",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Dadar East",
+      "specialties": [
+        "Digestive Health",
+        "Lifestyle & Wellness"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 8,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Dadar East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_007",
+      "slug": "dr-chirag-bhatia-007",
+      "fullName": "Dr. Chirag Bhatia",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Powai",
+      "specialties": [
+        "Respiratory Health",
+        "Senior Care"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 9,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Powai Homeopathy Clinic"
+    },
+    {
+      "id": "doc_008",
+      "slug": "dr-deepa-pandey-008",
+      "fullName": "Dr. Deepa Pandey",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Goregaon West",
+      "specialties": [
+        "Joint & Musculoskeletal",
+        "Allergy-related care"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 10,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Goregaon West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_009",
+      "slug": "dr-dev-date-009",
+      "fullName": "Dr. Dev Date",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Goregaon East",
+      "specialties": [
+        "Lifestyle & Wellness",
+        "Hair & Scalp"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 11,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Goregaon East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_010",
+      "slug": "dr-diya-shah-010",
+      "fullName": "Dr. Diya Shah",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Malad West",
+      "specialties": [
+        "Senior Care",
+        "Urinary Health"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 12,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Malad West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_011",
+      "slug": "dr-esha-singh-011",
+      "fullName": "Dr. Esha Singh",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kandivali West",
+      "specialties": [
+        "Allergy-related care",
+        "Sleep & Stress support"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 13,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kandivali West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_012",
+      "slug": "dr-farhan-das-012",
+      "fullName": "Dr. Farhan Das",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Borivali West",
+      "specialties": [
+        "Hair & Scalp",
+        "Family Practice"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 14,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Borivali West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_013",
+      "slug": "dr-gauri-shetty-013",
+      "fullName": "Dr. Gauri Shetty",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Thane West",
+      "specialties": [
+        "Urinary Health",
+        "General Homeopathy"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 15,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Thane West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_014",
+      "slug": "dr-harsh-patil-014",
+      "fullName": "Dr. Harsh Patil",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Navi Mumbai — Vashi",
+      "specialties": [
+        "Sleep & Stress support",
+        "Pediatric Homeopathy"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 16,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Navi Mumbai — Vashi Homeopathy Clinic"
+    },
+    {
+      "id": "doc_015",
+      "slug": "dr-isha-rane-015",
+      "fullName": "Dr. Isha Rane",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Navi Mumbai — Nerul",
+      "specialties": [
+        "Family Practice",
+        "Women's Health"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 17,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Navi Mumbai — Nerul Homeopathy Clinic"
+    },
+    {
+      "id": "doc_016",
+      "slug": "dr-jatin-saxena-016",
+      "fullName": "Dr. Jatin Saxena",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Chembur",
+      "specialties": [
+        "General Homeopathy",
+        "Men's Health"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 18,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Chembur Homeopathy Clinic"
+    },
+    {
+      "id": "doc_017",
+      "slug": "dr-kavya-gokhale-017",
+      "fullName": "Dr. Kavya Gokhale",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Ghatkopar East",
+      "specialties": [
+        "Pediatric Homeopathy",
+        "Skin & Dermatology support"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 19,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Ghatkopar East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_018",
+      "slug": "dr-kunal-tendulkar-018",
+      "fullName": "Dr. Kunal Tendulkar",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mulund West",
+      "specialties": [
+        "Women's Health",
+        "Digestive Health"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 20,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mulund West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_019",
+      "slug": "dr-leela-kulkarni-019",
+      "fullName": "Dr. Leela Kulkarni",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Worli",
+      "specialties": [
+        "Men's Health",
+        "Respiratory Health"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 21,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Worli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_020",
+      "slug": "dr-manish-agarwal-020",
+      "fullName": "Dr. Manish Agarwal",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Lower Parel",
+      "specialties": [
+        "Skin & Dermatology support",
+        "Joint & Musculoskeletal"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 22,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Lower Parel Homeopathy Clinic"
+    },
+    {
+      "id": "doc_021",
+      "slug": "dr-meera-pillai-021",
+      "fullName": "Dr. Meera Pillai",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Colaba",
+      "specialties": [
+        "Digestive Health",
+        "Lifestyle & Wellness"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 23,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Colaba Homeopathy Clinic"
+    },
+    {
+      "id": "doc_022",
+      "slug": "dr-nikhil-pereira-022",
+      "fullName": "Dr. Nikhil Pereira",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Fort",
+      "specialties": [
+        "Respiratory Health",
+        "Senior Care"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 24,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Fort Homeopathy Clinic"
+    },
+    {
+      "id": "doc_023",
+      "slug": "dr-neha-gaikwad-023",
+      "fullName": "Dr. Neha Gaikwad",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Santacruz West",
+      "specialties": [
+        "Joint & Musculoskeletal",
+        "Allergy-related care"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 25,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Santacruz West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_024",
+      "slug": "dr-omkar-kapoor-024",
+      "fullName": "Dr. Omkar Kapoor",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Juhu",
+      "specialties": [
+        "Lifestyle & Wellness",
+        "Hair & Scalp"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 26,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Juhu Homeopathy Clinic"
+    },
+    {
+      "id": "doc_025",
+      "slug": "dr-pooja-mishra-025",
+      "fullName": "Dr. Pooja Mishra",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Versova",
+      "specialties": [
+        "Senior Care",
+        "Urinary Health"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 27,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Versova Homeopathy Clinic"
+    },
+    {
+      "id": "doc_026",
+      "slug": "dr-pranav-oak-026",
+      "fullName": "Dr. Pranav Oak",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kurla West",
+      "specialties": [
+        "Allergy-related care",
+        "Sleep & Stress support"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 28,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kurla West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_027",
+      "slug": "dr-priya-mehta-027",
+      "fullName": "Dr. Priya Mehta",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Sion",
+      "specialties": [
+        "Hair & Scalp",
+        "Family Practice"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 29,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Sion Homeopathy Clinic"
+    },
+    {
+      "id": "doc_028",
+      "slug": "dr-rahul-reddy-028",
+      "fullName": "Dr. Rahul Reddy",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Matunga",
+      "specialties": [
+        "Urinary Health",
+        "General Homeopathy"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 30,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Matunga Homeopathy Clinic"
+    },
+    {
+      "id": "doc_029",
+      "slug": "dr-rhea-mukherjee-029",
+      "fullName": "Dr. Rhea Mukherjee",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mahim",
+      "specialties": [
+        "Sleep & Stress support",
+        "Pediatric Homeopathy"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 3,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mahim Homeopathy Clinic"
+    },
+    {
+      "id": "doc_030",
+      "slug": "dr-rohan-naik-030",
+      "fullName": "Dr. Rohan Naik",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Khar West",
+      "specialties": [
+        "Family Practice",
+        "Women's Health"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 4,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Khar West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_031",
+      "slug": "dr-sana-kamble-031",
+      "fullName": "Dr. Sana Kamble",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bhandup West",
+      "specialties": [
+        "General Homeopathy",
+        "Men's Health"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 5,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bhandup West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_032",
+      "slug": "dr-sanjay-chavan-032",
+      "fullName": "Dr. Sanjay Chavan",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Vikhroli",
+      "specialties": [
+        "Pediatric Homeopathy",
+        "Skin & Dermatology support"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 6,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Vikhroli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_033",
+      "slug": "dr-sara-chopra-033",
+      "fullName": "Dr. Sara Chopra",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Panvel",
+      "specialties": [
+        "Women's Health",
+        "Digestive Health"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 7,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Panvel Homeopathy Clinic"
+    },
+    {
+      "id": "doc_034",
+      "slug": "dr-shreya-apte-034",
+      "fullName": "Dr. Shreya Apte",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kalyan",
+      "specialties": [
+        "Men's Health",
+        "Respiratory Health"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 8,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kalyan Homeopathy Clinic"
+    },
+    {
+      "id": "doc_035",
+      "slug": "dr-siddharth-phadke-035",
+      "fullName": "Dr. Siddharth Phadke",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Dombivli",
+      "specialties": [
+        "Skin & Dermatology support",
+        "Joint & Musculoskeletal"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 9,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Dombivli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_036",
+      "slug": "dr-simran-desai-036",
+      "fullName": "Dr. Simran Desai",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mira Road",
+      "specialties": [
+        "Digestive Health",
+        "Lifestyle & Wellness"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 10,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mira Road Homeopathy Clinic"
+    },
+    {
+      "id": "doc_037",
+      "slug": "dr-sneha-gupta-037",
+      "fullName": "Dr. Sneha Gupta",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bhayandar",
+      "specialties": [
+        "Respiratory Health",
+        "Senior Care"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 11,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bhayandar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_038",
+      "slug": "dr-tanvi-sen-038",
+      "fullName": "Dr. Tanvi Sen",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Airoli",
+      "specialties": [
+        "Joint & Musculoskeletal",
+        "Allergy-related care"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 12,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Airoli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_039",
+      "slug": "dr-uday-dsouza-039",
+      "fullName": "Dr. Uday D'Souza",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kharghar",
+      "specialties": [
+        "Lifestyle & Wellness",
+        "Hair & Scalp"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 13,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kharghar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_040",
+      "slug": "dr-varun-jadhav-040",
+      "fullName": "Dr. Varun Jadhav",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Belapur",
+      "specialties": [
+        "Senior Care",
+        "Urinary Health"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 14,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Belapur Homeopathy Clinic"
+    },
+    {
+      "id": "doc_041",
+      "slug": "dr-vikram-malhotra-041",
+      "fullName": "Dr. Vikram Malhotra",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Sewri",
+      "specialties": [
+        "Allergy-related care",
+        "Sleep & Stress support"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 15,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Sewri Homeopathy Clinic"
+    },
+    {
+      "id": "doc_042",
+      "slug": "dr-yash-tiwari-042",
+      "fullName": "Dr. Yash Tiwari",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Parel",
+      "specialties": [
+        "Hair & Scalp",
+        "Family Practice"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 16,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Parel Homeopathy Clinic"
+    },
+    {
+      "id": "doc_043",
+      "slug": "dr-zara-limaye-043",
+      "fullName": "Dr. Zara Limaye",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Byculla",
+      "specialties": [
+        "Urinary Health",
+        "General Homeopathy"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 17,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Byculla Homeopathy Clinic"
+    },
+    {
+      "id": "doc_044",
+      "slug": "dr-amit-patel-044",
+      "fullName": "Dr. Amit Patel",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mazgaon",
+      "specialties": [
+        "Sleep & Stress support",
+        "Pediatric Homeopathy"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 18,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mazgaon Homeopathy Clinic"
+    },
+    {
+      "id": "doc_045",
+      "slug": "dr-anjali-iyer-045",
+      "fullName": "Dr. Anjali Iyer",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Walkeshwar",
+      "specialties": [
+        "Family Practice",
+        "Women's Health"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 19,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Walkeshwar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_046",
+      "slug": "dr-ashwin-chatterjee-046",
+      "fullName": "Dr. Ashwin Chatterjee",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Pedder Road",
+      "specialties": [
+        "General Homeopathy",
+        "Men's Health"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 20,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Pedder Road Homeopathy Clinic"
+    },
+    {
+      "id": "doc_047",
+      "slug": "dr-bhakti-rao-047",
+      "fullName": "Dr. Bhakti Rao",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Prabhadevi",
+      "specialties": [
+        "Pediatric Homeopathy",
+        "Skin & Dermatology support"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 21,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Prabhadevi Homeopathy Clinic"
+    },
+    {
+      "id": "doc_048",
+      "slug": "dr-chetan-dias-048",
+      "fullName": "Dr. Chetan Dias",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "King's Circle",
+      "specialties": [
+        "Women's Health",
+        "Digestive Health"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 22,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "King's Circle Homeopathy Clinic"
+    },
+    {
+      "id": "doc_049",
+      "slug": "dr-darshan-salvi-049",
+      "fullName": "Dr. Darshan Salvi",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Tilak Nagar",
+      "specialties": [
+        "Men's Health",
+        "Respiratory Health"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 23,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Tilak Nagar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_050",
+      "slug": "dr-ekta-arora-050",
+      "fullName": "Dr. Ekta Arora",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Govandi",
+      "specialties": [
+        "Skin & Dermatology support",
+        "Joint & Musculoskeletal"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 24,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Govandi Homeopathy Clinic"
+    },
+    {
+      "id": "doc_051",
+      "slug": "dr-fatima-kulkarni-051",
+      "fullName": "Dr. Fatima Kulkarni",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Andheri West",
+      "specialties": [
+        "Digestive Health",
+        "Lifestyle & Wellness"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 25,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Andheri West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_052",
+      "slug": "dr-gopal-kelkar-052",
+      "fullName": "Dr. Gopal Kelkar",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Andheri East",
+      "specialties": [
+        "Respiratory Health",
+        "Senior Care"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 26,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Andheri East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_053",
+      "slug": "dr-heena-joshi-053",
+      "fullName": "Dr. Heena Joshi",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bandra West",
+      "specialties": [
+        "Joint & Musculoskeletal",
+        "Allergy-related care"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 27,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bandra West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_054",
+      "slug": "dr-imran-khan-054",
+      "fullName": "Dr. Imran Khan",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bandra East",
+      "specialties": [
+        "Lifestyle & Wellness",
+        "Hair & Scalp"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 28,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bandra East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_055",
+      "slug": "dr-jyoti-bose-055",
+      "fullName": "Dr. Jyoti Bose",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Dadar West",
+      "specialties": [
+        "Senior Care",
+        "Urinary Health"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 29,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Dadar West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_056",
+      "slug": "dr-kiran-fernandes-056",
+      "fullName": "Dr. Kiran Fernandes",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Dadar East",
+      "specialties": [
+        "Allergy-related care",
+        "Sleep & Stress support"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 30,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Dadar East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_057",
+      "slug": "dr-lakshmi-sawant-057",
+      "fullName": "Dr. Lakshmi Sawant",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Powai",
+      "specialties": [
+        "Hair & Scalp",
+        "Family Practice"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 3,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Powai Homeopathy Clinic"
+    },
+    {
+      "id": "doc_058",
+      "slug": "dr-mohit-thakur-058",
+      "fullName": "Dr. Mohit Thakur",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Goregaon West",
+      "specialties": [
+        "Urinary Health",
+        "General Homeopathy"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 4,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Goregaon West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_059",
+      "slug": "dr-nandini-verma-059",
+      "fullName": "Dr. Nandini Verma",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Goregaon East",
+      "specialties": [
+        "Sleep & Stress support",
+        "Pediatric Homeopathy"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 5,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Goregaon East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_060",
+      "slug": "dr-otima-bhave-060",
+      "fullName": "Dr. Otima Bhave",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Malad West",
+      "specialties": [
+        "Family Practice",
+        "Women's Health"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 6,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Malad West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_061",
+      "slug": "dr-parth-sharma-061",
+      "fullName": "Dr. Parth Sharma",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kandivali West",
+      "specialties": [
+        "General Homeopathy",
+        "Men's Health"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 7,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kandivali West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_062",
+      "slug": "dr-qasim-nair-062",
+      "fullName": "Dr. Qasim Nair",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Borivali West",
+      "specialties": [
+        "Pediatric Homeopathy",
+        "Skin & Dermatology support"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 8,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Borivali West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_063",
+      "slug": "dr-rajesh-banerjee-063",
+      "fullName": "Dr. Rajesh Banerjee",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Thane West",
+      "specialties": [
+        "Women's Health",
+        "Digestive Health"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 9,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Thane West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_064",
+      "slug": "dr-ritu-menon-064",
+      "fullName": "Dr. Ritu Menon",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Navi Mumbai — Vashi",
+      "specialties": [
+        "Men's Health",
+        "Respiratory Health"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 10,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Navi Mumbai — Vashi Homeopathy Clinic"
+    },
+    {
+      "id": "doc_065",
+      "slug": "dr-suresh-rodrigues-065",
+      "fullName": "Dr. Suresh Rodrigues",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Navi Mumbai — Nerul",
+      "specialties": [
+        "Skin & Dermatology support",
+        "Joint & Musculoskeletal"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 11,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Navi Mumbai — Nerul Homeopathy Clinic"
+    },
+    {
+      "id": "doc_066",
+      "slug": "dr-trisha-more-066",
+      "fullName": "Dr. Trisha More",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Chembur",
+      "specialties": [
+        "Digestive Health",
+        "Lifestyle & Wellness"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 12,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Chembur Homeopathy Clinic"
+    },
+    {
+      "id": "doc_067",
+      "slug": "dr-urvashi-bhatia-067",
+      "fullName": "Dr. Urvashi Bhatia",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Ghatkopar East",
+      "specialties": [
+        "Respiratory Health",
+        "Senior Care"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 13,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Ghatkopar East Homeopathy Clinic"
+    },
+    {
+      "id": "doc_068",
+      "slug": "dr-vivek-pandey-068",
+      "fullName": "Dr. Vivek Pandey",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mulund West",
+      "specialties": [
+        "Joint & Musculoskeletal",
+        "Allergy-related care"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 14,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mulund West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_069",
+      "slug": "dr-wasim-date-069",
+      "fullName": "Dr. Wasim Date",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Worli",
+      "specialties": [
+        "Lifestyle & Wellness",
+        "Hair & Scalp"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 15,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Worli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_070",
+      "slug": "dr-yamini-shah-070",
+      "fullName": "Dr. Yamini Shah",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Lower Parel",
+      "specialties": [
+        "Senior Care",
+        "Urinary Health"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 16,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Lower Parel Homeopathy Clinic"
+    },
+    {
+      "id": "doc_071",
+      "slug": "dr-ankit-singh-071",
+      "fullName": "Dr. Ankit Singh",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Colaba",
+      "specialties": [
+        "Allergy-related care",
+        "Sleep & Stress support"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 17,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Colaba Homeopathy Clinic"
+    },
+    {
+      "id": "doc_072",
+      "slug": "dr-bhavesh-das-072",
+      "fullName": "Dr. Bhavesh Das",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Fort",
+      "specialties": [
+        "Hair & Scalp",
+        "Family Practice"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 18,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Fort Homeopathy Clinic"
+    },
+    {
+      "id": "doc_073",
+      "slug": "dr-chitra-shetty-073",
+      "fullName": "Dr. Chitra Shetty",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Santacruz West",
+      "specialties": [
+        "Urinary Health",
+        "General Homeopathy"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 19,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Santacruz West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_074",
+      "slug": "dr-dhruv-patil-074",
+      "fullName": "Dr. Dhruv Patil",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Juhu",
+      "specialties": [
+        "Sleep & Stress support",
+        "Pediatric Homeopathy"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 20,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Juhu Homeopathy Clinic"
+    },
+    {
+      "id": "doc_075",
+      "slug": "dr-eva-rane-075",
+      "fullName": "Dr. Eva Rane",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Versova",
+      "specialties": [
+        "Family Practice",
+        "Women's Health"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 21,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Versova Homeopathy Clinic"
+    },
+    {
+      "id": "doc_076",
+      "slug": "dr-falguni-saxena-076",
+      "fullName": "Dr. Falguni Saxena",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kurla West",
+      "specialties": [
+        "General Homeopathy",
+        "Men's Health"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 22,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kurla West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_077",
+      "slug": "dr-girish-gokhale-077",
+      "fullName": "Dr. Girish Gokhale",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Sion",
+      "specialties": [
+        "Pediatric Homeopathy",
+        "Skin & Dermatology support"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 23,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Sion Homeopathy Clinic"
+    },
+    {
+      "id": "doc_078",
+      "slug": "dr-hitesh-tendulkar-078",
+      "fullName": "Dr. Hitesh Tendulkar",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Matunga",
+      "specialties": [
+        "Women's Health",
+        "Digestive Health"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 24,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Matunga Homeopathy Clinic"
+    },
+    {
+      "id": "doc_079",
+      "slug": "dr-indira-kulkarni-079",
+      "fullName": "Dr. Indira Kulkarni",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mahim",
+      "specialties": [
+        "Men's Health",
+        "Respiratory Health"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 25,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mahim Homeopathy Clinic"
+    },
+    {
+      "id": "doc_080",
+      "slug": "dr-jaya-agarwal-080",
+      "fullName": "Dr. Jaya Agarwal",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Khar West",
+      "specialties": [
+        "Skin & Dermatology support",
+        "Joint & Musculoskeletal"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 26,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Khar West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_081",
+      "slug": "dr-karthik-pillai-081",
+      "fullName": "Dr. Karthik Pillai",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bhandup West",
+      "specialties": [
+        "Digestive Health",
+        "Lifestyle & Wellness"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 27,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bhandup West Homeopathy Clinic"
+    },
+    {
+      "id": "doc_082",
+      "slug": "dr-lata-pereira-082",
+      "fullName": "Dr. Lata Pereira",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Vikhroli",
+      "specialties": [
+        "Respiratory Health",
+        "Senior Care"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 28,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Vikhroli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_083",
+      "slug": "dr-madhuri-gaikwad-083",
+      "fullName": "Dr. Madhuri Gaikwad",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Panvel",
+      "specialties": [
+        "Joint & Musculoskeletal",
+        "Allergy-related care"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 29,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Panvel Homeopathy Clinic"
+    },
+    {
+      "id": "doc_084",
+      "slug": "dr-naveen-kapoor-084",
+      "fullName": "Dr. Naveen Kapoor",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kalyan",
+      "specialties": [
+        "Lifestyle & Wellness",
+        "Hair & Scalp"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 30,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kalyan Homeopathy Clinic"
+    },
+    {
+      "id": "doc_085",
+      "slug": "dr-olive-mishra-085",
+      "fullName": "Dr. Olive Mishra",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Dombivli",
+      "specialties": [
+        "Senior Care",
+        "Urinary Health"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 3,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Dombivli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_086",
+      "slug": "dr-pallavi-oak-086",
+      "fullName": "Dr. Pallavi Oak",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mira Road",
+      "specialties": [
+        "Allergy-related care",
+        "Sleep & Stress support"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 4,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mira Road Homeopathy Clinic"
+    },
+    {
+      "id": "doc_087",
+      "slug": "dr-quincy-mehta-087",
+      "fullName": "Dr. Quincy Mehta",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Bhayandar",
+      "specialties": [
+        "Hair & Scalp",
+        "Family Practice"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 5,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Bhayandar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_088",
+      "slug": "dr-ramesh-reddy-088",
+      "fullName": "Dr. Ramesh Reddy",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Airoli",
+      "specialties": [
+        "Urinary Health",
+        "General Homeopathy"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 6,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Airoli Homeopathy Clinic"
+    },
+    {
+      "id": "doc_089",
+      "slug": "dr-seema-mukherjee-089",
+      "fullName": "Dr. Seema Mukherjee",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Kharghar",
+      "specialties": [
+        "Sleep & Stress support",
+        "Pediatric Homeopathy"
+      ],
+      "consultationFeeInr": 499,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 7,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Kharghar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_090",
+      "slug": "dr-tejas-naik-090",
+      "fullName": "Dr. Tejas Naik",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Belapur",
+      "specialties": [
+        "Family Practice",
+        "Women's Health"
+      ],
+      "consultationFeeInr": 549,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 8,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Belapur Homeopathy Clinic"
+    },
+    {
+      "id": "doc_091",
+      "slug": "dr-umesh-kamble-091",
+      "fullName": "Dr. Umesh Kamble",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Sewri",
+      "specialties": [
+        "General Homeopathy",
+        "Men's Health"
+      ],
+      "consultationFeeInr": 599,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 9,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Sewri Homeopathy Clinic"
+    },
+    {
+      "id": "doc_092",
+      "slug": "dr-veena-chavan-092",
+      "fullName": "Dr. Veena Chavan",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Parel",
+      "specialties": [
+        "Pediatric Homeopathy",
+        "Skin & Dermatology support"
+      ],
+      "consultationFeeInr": 649,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 10,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Parel Homeopathy Clinic"
+    },
+    {
+      "id": "doc_093",
+      "slug": "dr-waheeda-chopra-093",
+      "fullName": "Dr. Waheeda Chopra",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Byculla",
+      "specialties": [
+        "Women's Health",
+        "Digestive Health"
+      ],
+      "consultationFeeInr": 699,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 11,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Byculla Homeopathy Clinic"
+    },
+    {
+      "id": "doc_094",
+      "slug": "dr-yogesh-apte-094",
+      "fullName": "Dr. Yogesh Apte",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Mazgaon",
+      "specialties": [
+        "Men's Health",
+        "Respiratory Health"
+      ],
+      "consultationFeeInr": 749,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 12,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Mazgaon Homeopathy Clinic"
+    },
+    {
+      "id": "doc_095",
+      "slug": "dr-zubin-phadke-095",
+      "fullName": "Dr. Zubin Phadke",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Walkeshwar",
+      "specialties": [
+        "Skin & Dermatology support",
+        "Joint & Musculoskeletal"
+      ],
+      "consultationFeeInr": 799,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 13,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Walkeshwar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_096",
+      "slug": "dr-alok-desai-096",
+      "fullName": "Dr. Alok Desai",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Pedder Road",
+      "specialties": [
+        "Digestive Health",
+        "Lifestyle & Wellness"
+      ],
+      "consultationFeeInr": 849,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 14,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Pedder Road Homeopathy Clinic"
+    },
+    {
+      "id": "doc_097",
+      "slug": "dr-bindu-gupta-097",
+      "fullName": "Dr. Bindu Gupta",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Prabhadevi",
+      "specialties": [
+        "Respiratory Health",
+        "Senior Care"
+      ],
+      "consultationFeeInr": 299,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 15,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Prabhadevi Homeopathy Clinic"
+    },
+    {
+      "id": "doc_098",
+      "slug": "dr-cyrus-sen-098",
+      "fullName": "Dr. Cyrus Sen",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "King's Circle",
+      "specialties": [
+        "Joint & Musculoskeletal",
+        "Allergy-related care"
+      ],
+      "consultationFeeInr": 349,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 16,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "King's Circle Homeopathy Clinic"
+    },
+    {
+      "id": "doc_099",
+      "slug": "dr-disha-dsouza-099",
+      "fullName": "Dr. Disha D'Souza",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Tilak Nagar",
+      "specialties": [
+        "Lifestyle & Wellness",
+        "Hair & Scalp"
+      ],
+      "consultationFeeInr": 399,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 17,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Tilak Nagar Homeopathy Clinic"
+    },
+    {
+      "id": "doc_100",
+      "slug": "dr-eshan-jadhav-100",
+      "fullName": "Dr. Eshan Jadhav",
+      "credentials": "BHMS",
+      "city": "Mumbai",
+      "locality": "Govandi",
+      "specialties": [
+        "Senior Care",
+        "Urinary Health"
+      ],
+      "consultationFeeInr": 449,
+      "formats": [
+        "Online video",
+        "Clinic visit"
+      ],
+      "yearsExperience": 18,
+      "acceptingPatients": true,
+      "verificationStatus": "LISTED",
+      "listed": true,
+      "clinicName": "Govandi Homeopathy Clinic"
+    }
+  ],
+  "brands": [
+    {
+      "slug": "homeopathypharma-essentials",
+      "name": "HomeopathyPharma Essentials",
+      "manufacturer": "Licensed contract manufacturer · Maharashtra",
+      "productCount": 41
+    },
+    {
+      "slug": "harbour-leaf-remedies",
+      "name": "Harbour Leaf Remedies",
+      "manufacturer": "Licensed contract manufacturer · Maharashtra",
+      "productCount": 41
+    },
+    {
+      "slug": "coastal-biochemic",
+      "name": "Coastal Biochemic",
+      "manufacturer": "Licensed contract manufacturer · Maharashtra",
+      "productCount": 11
+    },
+    {
+      "slug": "saffron-grove-care",
+      "name": "Saffron Grove Care",
+      "manufacturer": "HomeopathyPharma fulfilment",
+      "productCount": 1
+    }
+  ],
+  "categories": [
+    {
+      "slug": "single-remedies",
+      "name": "Single Remedies"
+    },
+    {
+      "slug": "biochemic-tissue-salts",
+      "name": "Biochemic / Tissue Salts"
+    },
+    {
+      "slug": "bundles",
+      "name": "Bundles"
+    },
+    {
+      "slug": "pet-care",
+      "name": "Pet Care"
+    }
+  ]
+}

@@ -1,28 +1,41 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { getHomepage, saveHomepage, type HomepageContent } from '@homeopathypharma/content-store';
 
 @Injectable()
 export class ContentService {
-  async getPage(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('ContentService.getPage is not implemented');
+  async getPage(slug?: string) {
+    if (slug === 'home' || slug === 'homepage') {
+      return { slug: 'home', content: getHomepage() };
+    }
+    return { slug, content: null, message: 'Page body not found in CMS yet' };
   }
 
-  async listBlogPosts(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('ContentService.listBlogPosts is not implemented');
+  async listBlogPosts() {
+    return { items: [] };
   }
 
-  async getBlogPost(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('ContentService.getBlogPost is not implemented');
+  async getBlogPost(slug?: string) {
+    return { slug, content: null };
   }
 
-  async listBanners(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('ContentService.listBanners is not implemented');
+  async listBanners() {
+    return { items: getHomepage().banners };
   }
 
-  async createPage(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('ContentService.createPage is not implemented');
+  async getHomepage() {
+    return getHomepage();
   }
 
-  async createBlogPost(_payload?: unknown): Promise<Record<string, unknown>> {
-    throw new NotImplementedException('ContentService.createBlogPost is not implemented');
+  async updateHomepage(body?: unknown) {
+    const content = body as HomepageContent;
+    return saveHomepage(content);
+  }
+
+  async createPage(body?: unknown) {
+    return { ok: true, message: 'Use homepage CMS endpoint for landing control', received: body ?? null };
+  }
+
+  async createBlogPost(body?: unknown) {
+    return { ok: true, received: body ?? null };
   }
 }

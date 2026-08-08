@@ -25,30 +25,30 @@
   --hp-color-success: #067647;
   --hp-color-warning: #b54708;
 
-  /* Semantic aliases */
+  /* Semantic aliases — pharmacy storefront (1mg-like clarity, teal brand) */
   --hp-color-primary: var(--hp-color-teal-900);
   --hp-color-primary-hover: var(--hp-color-teal-800);
   --hp-color-accent: var(--hp-color-amber-500);
   --hp-color-accent-hover: var(--hp-color-amber-600);
-  --hp-color-surface: var(--hp-color-ivory-50);
+  --hp-color-surface: #f5f7f6;
   --hp-color-surface-elevated: var(--hp-color-white);
   --hp-color-text: var(--hp-color-charcoal-900);
   --hp-color-text-muted: var(--hp-color-charcoal-500);
-  --hp-color-border: var(--hp-color-sage-200);
+  --hp-color-border: #dde5e1;
   --hp-color-border-strong: var(--hp-color-sage-300);
 
-  /* Paper texture feel via subtle gradient */
+  /* Soft clinical wash — not flat white, not cream editorial */
   --hp-gradient-surface: linear-gradient(
-    165deg,
-    var(--hp-color-ivory-50) 0%,
-    var(--hp-color-ivory-100) 45%,
-    var(--hp-color-sage-100) 100%
+    180deg,
+    #ffffff 0%,
+    #f5f7f6 42%,
+    #eaf1ed 100%
   );
 
-  /* Typography */
+  /* Typography — expressive brand display + clean UI sans (not Inter/Roboto/Arial) */
   --hp-font-display: "Fraunces", "Georgia", serif;
-  --hp-font-body: "Source Serif 4", "Literata", "Georgia", serif;
-  --hp-font-ui: "Source Serif 4", "Literata", serif;
+  --hp-font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  --hp-font-ui: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
 
   --hp-text-xs: 0.75rem;
   --hp-text-sm: 0.875rem;
@@ -91,9 +91,10 @@
   --hp-focus-ring-offset: 2px;
 
   /* Layout */
-  --hp-container-max: 72rem;
+  --hp-container-max: 74rem;
   --hp-container-narrow: 42rem;
-  --hp-header-height: 4rem;
+  --hp-header-height: 4.25rem;
+  --hp-mobile-nav-height: 3.75rem;
 
   /* Motion */
   --hp-duration-fast: 120ms;
