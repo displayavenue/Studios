@@ -1,32 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import type { Product, ProductFaq } from "./product-types";
+import { TAXONOMY_PRODUCTS } from "./taxonomy-products";
 
-export type ProductFaq = { q: string; a: string };
-export type Product = {
-  id: string;
-  slug: string;
-  name: string;
-  remedySlug: string;
-  remedyName: string;
-  brandSlug: string;
-  brandName: string;
-  manufacturer: string;
-  form: string;
-  potency: string;
-  packSize: string;
-  source: string;
-  mrpInr: number;
-  priceInr: number;
-  inStock: boolean;
-  batchNote: string;
-  directions: string;
-  warnings: string;
-  ingredients: string;
-  storage: string;
-  faqs: ProductFaq[];
-  healthAreas: string[];
-  category: string;
-};
+export type { Product, ProductFaq } from "./product-types";
 
 type ProductOverride = {
   name?: string;
@@ -3807,8 +3784,8 @@ function applyProductOverrides(list: Product[]): Product[] {
     .filter((p) => (map[p.id]?.listed ?? true) !== false);
 }
 
-/** Live catalogue after Admin CMS overrides are applied. */
-export const PRODUCTS = applyProductOverrides(PRODUCT_SEED);
+/** Live catalogue after Admin CMS overrides are applied — includes full PDF taxonomy SKUs. */
+export const PRODUCTS = applyProductOverrides([...PRODUCT_SEED, ...TAXONOMY_PRODUCTS]);
 
 export function getProduct(slug: string) {
   return PRODUCTS.find((p) => p.slug === slug);

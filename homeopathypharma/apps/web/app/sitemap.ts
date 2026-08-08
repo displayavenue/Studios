@@ -3,6 +3,7 @@ import { brands } from "@/lib/content/brands";
 import { DOCTORS } from "@/lib/content/doctors";
 import { PRODUCTS } from "@/lib/content/products";
 import { remedies } from "@/lib/content/remedies";
+import { CATALOG_TAXONOMY, listCatalogTopicSlugs } from "@/lib/content/taxonomy";
 import { BUNDLE_SLUGS, HEALTH_AREA_SLUGS } from "@/lib/static-params";
 
 export const dynamic = "force-static";
@@ -26,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/shop/bestsellers/",
     "/shop/doctor-recommended/",
     "/shop/health-areas/",
+    "/login/",
+    "/login/patient/",
+    "/login/doctor/",
+    "/login/admin/",
+    "/doctor/",
+    "/ops/",
     "/remedies/",
     "/brands/",
     "/bundles/",
@@ -65,6 +72,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     ...staticPaths,
     ...HEALTH_AREA_SLUGS.map((slug) => `/shop/health-areas/${slug}/`),
+    ...CATALOG_TAXONOMY.map((c) => `/shop/categories/${c.slug}/`),
+    ...[...new Set(listCatalogTopicSlugs())].map((slug) => `/shop/topics/${slug}/`),
     ...BUNDLE_SLUGS.map((slug) => `/bundles/${slug}/`),
     ...brands.map((b) => `/brands/${b.slug}/`),
     ...remedies.map((r) => `/remedies/${r.slug}/`),

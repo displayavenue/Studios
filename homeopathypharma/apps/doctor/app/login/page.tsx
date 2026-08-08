@@ -20,7 +20,7 @@ export default function DoctorLoginPage() {
     if (result.ok) {
       router.push("/dashboard");
     } else {
-      setError("Sign-in failed — API auth at /v1/doctor/auth/login will validate credentials.");
+      setError("Sign-in failed. Check your email and password, then try again.");
     }
   }
 
@@ -30,7 +30,7 @@ export default function DoctorLoginPage() {
         Doctor sign in
       </h1>
       <p style={{ color: "var(--hp-color-text-muted)", fontSize: "var(--hp-text-sm)" }}>
-        Verified practitioners only. Session enforced by the API.
+        For listed BHMS practitioners. Use your clinic email to continue.
       </p>
       <form onSubmit={onSubmit} style={{ display: "grid", gap: "var(--hp-space-4)", marginTop: "var(--hp-space-6)" }}>
         <div>

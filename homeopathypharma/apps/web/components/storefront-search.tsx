@@ -29,9 +29,11 @@ export function StorefrontSearch({ products, doctors, remedies, brands }: Props)
             p.name.toLowerCase().includes(q) ||
             p.remedyName.toLowerCase().includes(q) ||
             p.brandName.toLowerCase().includes(q) ||
+            p.category.toLowerCase().includes(q) ||
+            p.healthAreas.some((area) => area.includes(q.replace(/\s+/g, "-"))) ||
             p.potency.toLowerCase().includes(q),
         )
-        .slice(0, 12),
+        .slice(0, 16),
       doctors: doctors
         .filter(
           (d) =>

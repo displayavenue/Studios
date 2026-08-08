@@ -1,44 +1,36 @@
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@homeopathypharma/ui";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
+import { RoleLogin } from "@/components/role-login";
 
-export const metadata: Metadata = buildPageMetadata("Log in", "/login", "Sign in to HomeopathyPharma.");
+export const metadata: Metadata = buildPageMetadata(
+  "Sign in",
+  "/login",
+  "Sign in as a patient, doctor, or admin on HomeopathyPharma.",
+);
 
 export default function Page() {
   return (
-    <ContentPage title="Log in" description="Access your orders, consultations, and saved addresses." path="/login">
-      <form style={{ display: "grid", gap: "var(--hp-space-4)", maxWidth: "24rem" }}>
-        <label style={{ display: "grid", gap: "var(--hp-space-2)" }}>
-          <span>Email or mobile</span>
-          <input name="identifier" required className="hp-focus-ring" style={inputStyle} />
-        </label>
-        <label style={{ display: "grid", gap: "var(--hp-space-2)" }}>
-          <span>Password</span>
-          <input name="password" type="password" required className="hp-focus-ring" style={inputStyle} />
-        </label>
-        <Button variant="accent" type="submit">
-          Continue
-        </Button>
-      </form>
-      <p style={{ marginTop: "var(--hp-space-4)" }}>
-        <Link href="/forgot-password/" className="hp-link">
-          Forgot password
+    <ContentPage
+      title="Sign in"
+      description="Choose your role — patient/customer, doctor, or admin — then continue."
+      path="/login"
+    >
+      <RoleLogin initialRole="patient" />
+      <p style={{ marginTop: "1.25rem", fontSize: "0.9rem", color: "var(--hp-color-text-muted)" }}>
+        Prefer a direct link?{" "}
+        <Link href="/login/patient/" className="hp-link">
+          Patient
         </Link>
         {" · "}
-        <Link href="/signup/" className="hp-link">
-          Create account
+        <Link href="/login/doctor/" className="hp-link">
+          Doctor
+        </Link>
+        {" · "}
+        <Link href="/login/admin/" className="hp-link">
+          Admin
         </Link>
       </p>
     </ContentPage>
   );
 }
-
-const inputStyle: CSSProperties = {
-  padding: "0.75rem 0.9rem",
-  border: "1px solid var(--hp-color-border)",
-  borderRadius: "var(--hp-radius-md)",
-  font: "inherit",
-  background: "var(--hp-color-surface-elevated)",
-};

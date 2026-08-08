@@ -13,7 +13,7 @@ export function Container({ narrow, children, style, className = "", ...props }:
         width: "100%",
         maxWidth: narrow ? "var(--hp-container-narrow)" : "var(--hp-container-max)",
         marginInline: "auto",
-        paddingInline: "var(--hp-space-4)",
+        paddingInline: "clamp(0.75rem, 3vw, var(--hp-space-4))",
         ...style,
       }}
       {...props}

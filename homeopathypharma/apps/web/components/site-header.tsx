@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HOMEPAGE } from "@/lib/content/homepage";
 
 const categoryNav = [
+  { href: "/shop/categories/", label: "Categories" },
   { href: "/shop/", label: "Medicines" },
   { href: "/remedies/", label: "Remedies" },
   { href: "/brands/", label: "Brands" },
@@ -36,10 +37,10 @@ export function SiteHeader() {
 
         <div className="site-header__actions">
           <Link href="/consult/" className="site-header__action hp-focus-ring">
-            <span className="site-header__action-label">Consult</span>
+            Consult
           </Link>
-          <Link href="/account/" className="site-header__action hp-focus-ring">
-            <span className="site-header__action-label">Account</span>
+          <Link href="/login/" className="site-header__action hp-focus-ring">
+            Sign in
           </Link>
           <Link href="/cart/" className="site-header__cart hp-focus-ring">
             Cart

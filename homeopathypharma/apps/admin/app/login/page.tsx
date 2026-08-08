@@ -31,7 +31,7 @@ export default function AdminLoginPage() {
       setMfaRequired(true);
       return;
     }
-    setError("Sign-in failed — credentials and MFA validated at /v1/admin/auth/login.");
+    setError("Sign-in failed. Check your credentials and try again.");
   }
 
   return (
@@ -40,8 +40,7 @@ export default function AdminLoginPage() {
         Admin sign in
       </h1>
       <p style={{ color: "var(--hp-color-text-muted)", fontSize: "var(--hp-text-sm)" }}>
-        Multi-factor authentication is required for admin access when{" "}
-        <code>ADMIN_REQUIRE_MFA</code> is enabled.
+        Authorised staff only. Enter your MFA code when prompted.
       </p>
       <form onSubmit={onSubmit} style={{ display: "grid", gap: "var(--hp-space-4)", marginTop: "var(--hp-space-6)" }}>
         <div>

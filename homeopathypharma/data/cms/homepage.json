@@ -1,13 +1,13 @@
 {
-  "searchPlaceholder": "Search medicines, remedies & doctors",
+  "searchPlaceholder": "Search medicines, categories & doctors",
   "banners": [
     {
       "id": "banner-remedies",
-      "eyebrow": "Pharmacy",
-      "title": "Homeopathic medicines delivered with clear labelling",
-      "subtitle": "Browse dilutions, globules, biochemics, and kits — educational listings, not treatment claims.",
-      "ctaLabel": "Shop medicines",
-      "ctaHref": "/shop/",
+      "eyebrow": "Full catalogue",
+      "title": "Every homeopathy category in one pharmacy browse",
+      "subtitle": "Head & hair to senior wellness — dilutions, globules, tablets, and kits with clear labelling.",
+      "ctaLabel": "Browse all categories",
+      "ctaHref": "/shop/categories/",
       "tone": "teal"
     },
     {
@@ -30,14 +30,18 @@
     }
   ],
   "categories": [
-    { "label": "Single remedies", "href": "/shop/categories/", "seed": "remedies" },
-    { "label": "Biochemic", "href": "/shop/categories/", "seed": "biochemic" },
-    { "label": "Bundles", "href": "/bundles/", "seed": "bundles" },
-    { "label": "Digestive", "href": "/shop/health-areas/digestive-health/", "seed": "digestive" },
-    { "label": "Respiratory", "href": "/shop/health-areas/respiratory-health/", "seed": "respiratory" },
-    { "label": "Skin", "href": "/shop/health-areas/skin-health/", "seed": "skin" },
-    { "label": "Pet care", "href": "/shop/health-areas/pet-care/", "seed": "pet" },
-    { "label": "Brands", "href": "/brands/", "seed": "brands" }
+    { "label": "Head & Hair", "href": "/shop/categories/head-and-hair/", "seed": "hair" },
+    { "label": "Face & Skin", "href": "/shop/categories/face-and-skin/", "seed": "skin" },
+    { "label": "Digestive", "href": "/shop/categories/digestive-health/", "seed": "digestive" },
+    { "label": "Respiratory", "href": "/shop/categories/respiratory-health/", "seed": "respiratory" },
+    { "label": "Women's Health", "href": "/shop/categories/womens-health/", "seed": "women" },
+    { "label": "Men's Health", "href": "/shop/categories/mens-health/", "seed": "men" },
+    { "label": "Children", "href": "/shop/categories/childrens-health/", "seed": "child" },
+    { "label": "Senior Health", "href": "/shop/categories/senior-health/", "seed": "senior" },
+    { "label": "Sleep", "href": "/shop/categories/sleep-health/", "seed": "sleep" },
+    { "label": "Immunity", "href": "/shop/categories/immunity-and-general-wellness/", "seed": "immunity" },
+    { "label": "Joints", "href": "/shop/categories/bone-joint-and-muscle-care/", "seed": "joints" },
+    { "label": "All categories", "href": "/shop/categories/", "seed": "all" }
   ],
   "rails": {
     "bestsellersTitle": "Popular medicines",
