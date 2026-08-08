@@ -1,0 +1,109 @@
+/**
+ * HomeopathyPharma design tokens — calm clinical-apothecary direction.
+ * Import via @homeopathypharma/ui/styles.css in app entry.
+ */
+:root {
+  /* Brand palette */
+  --hp-color-teal-950: #052826;
+  --hp-color-teal-900: #0b3d3a;
+  --hp-color-teal-800: #0f4f4b;
+  --hp-color-teal-700: #156660;
+  --hp-color-sage-300: #a8c4b8;
+  --hp-color-sage-200: #c5d9cc;
+  --hp-color-sage-100: #e3ede7;
+  --hp-color-ivory-50: #faf8f4;
+  --hp-color-ivory-100: #f3efe8;
+  --hp-color-charcoal-900: #1a1f1e;
+  --hp-color-charcoal-700: #3d4543;
+  --hp-color-charcoal-500: #5c6663;
+  --hp-color-charcoal-300: #8a9490;
+  --hp-color-amber-600: #b45309;
+  --hp-color-amber-500: #d97706;
+  --hp-color-amber-400: #f59e0b;
+  --hp-color-white: #ffffff;
+  --hp-color-error: #b42318;
+  --hp-color-success: #067647;
+  --hp-color-warning: #b54708;
+
+  /* Semantic aliases */
+  --hp-color-primary: var(--hp-color-teal-900);
+  --hp-color-primary-hover: var(--hp-color-teal-800);
+  --hp-color-accent: var(--hp-color-amber-500);
+  --hp-color-accent-hover: var(--hp-color-amber-600);
+  --hp-color-surface: var(--hp-color-ivory-50);
+  --hp-color-surface-elevated: var(--hp-color-white);
+  --hp-color-text: var(--hp-color-charcoal-900);
+  --hp-color-text-muted: var(--hp-color-charcoal-500);
+  --hp-color-border: var(--hp-color-sage-200);
+  --hp-color-border-strong: var(--hp-color-sage-300);
+
+  /* Paper texture feel via subtle gradient */
+  --hp-gradient-surface: linear-gradient(
+    165deg,
+    var(--hp-color-ivory-50) 0%,
+    var(--hp-color-ivory-100) 45%,
+    var(--hp-color-sage-100) 100%
+  );
+
+  /* Typography */
+  --hp-font-display: "Fraunces", "Georgia", serif;
+  --hp-font-body: "Source Serif 4", "Literata", "Georgia", serif;
+  --hp-font-ui: "Source Serif 4", "Literata", serif;
+
+  --hp-text-xs: 0.75rem;
+  --hp-text-sm: 0.875rem;
+  --hp-text-base: 1rem;
+  --hp-text-lg: 1.125rem;
+  --hp-text-xl: 1.25rem;
+  --hp-text-2xl: 1.5rem;
+  --hp-text-3xl: 1.875rem;
+  --hp-text-4xl: 2.25rem;
+
+  --hp-leading-tight: 1.25;
+  --hp-leading-normal: 1.6;
+  --hp-leading-relaxed: 1.75;
+
+  /* Spacing scale */
+  --hp-space-1: 0.25rem;
+  --hp-space-2: 0.5rem;
+  --hp-space-3: 0.75rem;
+  --hp-space-4: 1rem;
+  --hp-space-5: 1.25rem;
+  --hp-space-6: 1.5rem;
+  --hp-space-8: 2rem;
+  --hp-space-10: 2.5rem;
+  --hp-space-12: 3rem;
+  --hp-space-16: 4rem;
+
+  /* Radii */
+  --hp-radius-sm: 0.25rem;
+  --hp-radius-md: 0.5rem;
+  --hp-radius-lg: 0.75rem;
+  --hp-radius-full: 9999px;
+
+  /* Shadows — soft, not card-heavy */
+  --hp-shadow-sm: 0 1px 2px rgb(11 61 58 / 6%);
+  --hp-shadow-md: 0 4px 12px rgb(11 61 58 / 8%);
+
+  /* Focus ring */
+  --hp-focus-ring-color: var(--hp-color-teal-700);
+  --hp-focus-ring-width: 3px;
+  --hp-focus-ring-offset: 2px;
+
+  /* Layout */
+  --hp-container-max: 72rem;
+  --hp-container-narrow: 42rem;
+  --hp-header-height: 4rem;
+
+  /* Motion */
+  --hp-duration-fast: 120ms;
+  --hp-duration-normal: 200ms;
+  --hp-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --hp-duration-fast: 0ms;
+    --hp-duration-normal: 0ms;
+  }
+}

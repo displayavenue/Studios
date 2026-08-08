@@ -1,0 +1,21 @@
+/**
+ * WCAG 2.2 visible focus — applied via .hp-focus-ring utility class.
+ */
+.hp-focus-ring:focus {
+  outline: none;
+}
+
+.hp-focus-ring:focus-visible {
+  outline: var(--hp-focus-ring-width) solid var(--hp-focus-ring-color);
+  outline-offset: var(--hp-focus-ring-offset);
+}
+
+.hp-focus-ring:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-focus-ring:focus-visible {
+    transition: outline-offset var(--hp-duration-fast) var(--hp-ease-out);
+  }
+}
