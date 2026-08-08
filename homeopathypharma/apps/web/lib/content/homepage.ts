@@ -18,15 +18,26 @@ function loadHomepage(): HomepageContent {
     }
   }
   return {
-    searchPlaceholder: "Search medicines, remedies & doctors",
-    banners: [],
+    searchPlaceholder: "Search medicines, brands & doctors",
+    banners: [
+      {
+        id: "banner-hero",
+        eyebrow: "",
+        title: "Homeopathy, labelled clearly.",
+        subtitle:
+          "Shop SBL, Dr. Reckeweg, and Schwabe — then book a listed BHMS doctor when you need guidance.",
+        ctaLabel: "Shop medicines",
+        ctaHref: "/shop/",
+        tone: "teal",
+      },
+    ],
     categories: [],
     rails: {
-      bestsellersTitle: "Popular medicines",
-      consultTitle: "Consult a homeopathy doctor",
-      consultBody: "Book online or clinic visits with listed BHMS practitioners.",
-      brandsTitle: "Shop by brand",
-      doctorsTitle: "Doctors near you",
+      bestsellersTitle: "Popular from SBL, Reckeweg & Schwabe",
+      consultTitle: "Consult a listed BHMS doctor",
+      consultBody: "Online video or clinic visits with practitioners listed for Mumbai.",
+      brandsTitle: "Trusted brands in stock",
+      doctorsTitle: "Doctors in Mumbai",
     },
   };
 }
