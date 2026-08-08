@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { buildArticleJsonLd, serializeJsonLd } from "@homeopathypharma/seo";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { getArticle } from "@/lib/api";
+import { ARTICLE_SLUGS, toParams } from "@/lib/static-params";
+
+
+export function generateStaticParams() {
+  return toParams(ARTICLE_SLUGS);
+}
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;

@@ -4,6 +4,12 @@ import { Button, Container, Section } from "@homeopathypharma/ui";
 import { buildProductJsonLd, serializeJsonLd } from "@homeopathypharma/seo";
 import { getProduct } from "@/lib/api";
 import { buildPageMetadata } from "@/components/content-page";
+import { PRODUCT_SLUGS, toParams } from "@/lib/static-params";
+
+
+export function generateStaticParams() {
+  return toParams(PRODUCT_SLUGS);
+}
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;

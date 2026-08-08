@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Container, Section } from "@homeopathypharma/ui";
-import { searchCatalog } from "@/lib/api";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 
 export const metadata: Metadata = buildPageMetadata(
@@ -9,21 +7,18 @@ export const metadata: Metadata = buildPageMetadata(
   "Search homeopathic remedies, health topics, and educational articles.",
 );
 
-interface SearchPageProps {
-  searchParams: Promise<{ q?: string }>;
-}
-
-export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const { q = "" } = await searchParams;
-  const results = q ? await searchCatalog(q) : null;
-
+/**
+ * Static-export friendly search shell.
+ * Query handling and live results require the API (`/v1/search`) — not available on shared Hostinger static hosting.
+ */
+export default function SearchPage() {
   return (
     <ContentPage
       title="Search"
       description="Find remedies, health topics, and articles across HomeopathyPharma."
       path="/search"
     >
-      <form action="/search" role="search" style={{ marginBottom: "var(--hp-space-8)" }}>
+      <form action="/search/" role="search" method="get" style={{ marginBottom: "var(--hp-space-8)" }}>
         <label htmlFor="search-q" style={{ display: "block", marginBottom: "var(--hp-space-2)", fontWeight: 600 }}>
           Search query
         </label>
@@ -31,8 +26,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           id="search-q"
           name="q"
           type="search"
-          defaultValue={q}
           className="hp-focus-ring"
+          placeholder="Search remedies, conditions, doctors…"
           style={{
             width: "100%",
             maxWidth: "32rem",
@@ -45,31 +40,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         />
       </form>
 
-      {results ? (
-        <Section aria-labelledby="results-heading">
-          <h2 id="results-heading" style={{ fontSize: "var(--hp-text-xl)" }}>
-            Results for &ldquo;{q}&rdquo;
-          </h2>
-          {results.total === 0 ? (
-            <p className="product-placeholder">No results yet — API stub returned empty. Try again when search is live.</p>
-          ) : (
-            <ul style={{ paddingLeft: "var(--hp-space-6)" }}>
-              {results.products.map((p) => (
-                <li key={p.slug}>
-                  <a href={`/products/${p.slug}`} className="hp-link">
-                    {p.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </Section>
-      ) : (
-        <p className="disclaimer-banner">
-          Enter a term above to search the catalog. Results are fetched from <code>API_URL/v1/search</code> when
-          available.
-        </p>
-      )}
+      <p className="disclaimer-banner">
+        Live search connects to the HomeopathyPharma API. This static Hostinger deploy shows the storefront shell;
+        catalog search activates when the API is online.
+      </p>
     </ContentPage>
   );
 }

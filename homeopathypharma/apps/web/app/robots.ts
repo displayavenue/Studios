@@ -1,13 +1,11 @@
 import type { MetadataRoute } from "next";
-import { DEFAULT_ROBOTS_TXT_RULES, renderRobotsTxt } from "@homeopathypharma/seo";
-import { getSitemapManifest } from "@/lib/api";
+import { DEFAULT_ROBOTS_TXT_RULES } from "@homeopathypharma/seo";
 
-const siteUrl = process.env.WEB_URL ?? process.env.NEXT_PUBLIC_WEB_URL ?? "http://localhost:3000";
+export const dynamic = "force-static";
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  // Stub: future manifest may drive disallow rules per environment
-  await getSitemapManifest();
+const siteUrl = process.env.WEB_URL ?? process.env.NEXT_PUBLIC_WEB_URL ?? "https://homeopathypharma.com";
 
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: DEFAULT_ROBOTS_TXT_RULES.map((rule) => ({
       userAgent: rule.userAgent,
@@ -18,9 +16,4 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
   };
-}
-
-/** Optional plain-text robots.txt body via route handler pattern — metadata route above is canonical for Next 15. */
-export function generateRobotsTxtBody(): string {
-  return renderRobotsTxt(`${siteUrl}/sitemap.xml`, DEFAULT_ROBOTS_TXT_RULES);
 }

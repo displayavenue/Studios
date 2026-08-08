@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { buildMedicalWebPageJsonLd, serializeJsonLd } from "@homeopathypharma/seo";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { getHealthTopic } from "@/lib/api";
+import { BODY_SYSTEM_SLUGS, toParams } from "@/lib/static-params";
+
+
+export function generateStaticParams() {
+  return toParams(BODY_SYSTEM_SLUGS);
+}
 
 interface HealthTopicPageProps {
   params: Promise<{ slug: string }>;

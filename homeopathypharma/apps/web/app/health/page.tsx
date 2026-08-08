@@ -9,10 +9,10 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 const hubs = [
-  { href: "/health/body-systems/overview", label: "Body systems", slug: "body-systems" },
-  { href: "/health/organs/overview", label: "Organs", slug: "organs" },
-  { href: "/health/conditions/overview", label: "Conditions", slug: "conditions" },
-];
+  { href: "/health/body-systems/cardiovascular-system/", label: "Body systems", slug: "body-systems" },
+  { href: "/health/organs/heart/", label: "Organs", slug: "organs" },
+  { href: "/health/conditions/common-cold/", label: "Conditions", slug: "conditions" },
+]
 
 export default function HealthHubPage() {
   return (

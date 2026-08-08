@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Button } from "@homeopathypharma/ui";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { getDoctor } from "@/lib/api";
+import { DOCTOR_SLUGS, toParams } from "@/lib/static-params";
+
+
+export function generateStaticParams() {
+  return toParams(DOCTOR_SLUGS);
+}
 
 interface DoctorProfilePageProps {
   params: Promise<{ slug: string }>;

@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
+import { PET_SPECIES_SLUGS, toSpeciesParams } from "@/lib/static-params";
+
+
+export function generateStaticParams() {
+  return toSpeciesParams(PET_SPECIES_SLUGS);
+}
 
 interface PetSpeciesPageProps {
   params: Promise<{ species: string }>;

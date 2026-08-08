@@ -77,7 +77,19 @@ pnpm build            # production build all packages
 pnpm ci               # lint + typecheck + test + build
 pnpm docker:logs      # infrastructure logs
 pnpm docker:down      # stop containers
+pnpm deploy:hostinger # static storefront → Hostinger (requires SSH_PASS)
 ```
+
+## Hostinger production (storefront)
+
+`homeopathypharma.com` is deployed as a **static Next.js export** to Hostinger shared hosting (`domains/homeopathypharma.com/public_html`). WordPress was removed; prior copies are kept under `~/backups/`.
+
+```bash
+export SSH_PASS='…'
+pnpm deploy:hostinger
+```
+
+This hosting path serves the customer storefront shell only. NestJS API, Postgres, Redis, and workers require a Node.js Web App / VPS plan before checkout, auth, and consultations go live.
 
 ## Documentation
 
