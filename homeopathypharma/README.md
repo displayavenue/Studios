@@ -21,7 +21,7 @@ pnpm docker:up                # Postgres, Redis, OpenSearch, MinIO
 pnpm install
 pnpm db:generate
 pnpm db:migrate
-pnpm db:seed                  # optional demo data
+pnpm db:seed                  # RBAC + taxonomy shells only (no fake production data)
 pnpm dev                      # all apps + API + worker
 ```
 

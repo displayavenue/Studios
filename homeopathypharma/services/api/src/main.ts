@@ -18,7 +18,7 @@ async function bootstrap(): Promise<void> {
   app.setGlobalPrefix('v1');
   app.useGlobalPipes(GlobalValidationPipe);
 
-  const port = process.env.API_PORT ?? process.env.PORT ?? 3001;
+  const port = Number(process.env.API_PORT ?? process.env.PORT ?? 4000);
   await app.listen(port);
 
   logger.info('API listening', { port, prefix: '/v1' });
