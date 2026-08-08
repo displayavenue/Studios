@@ -1,32 +1,14 @@
 {
-  "searchPlaceholder": "Search medicines, categories & doctors",
+  "searchPlaceholder": "Search medicines, brands & doctors",
   "banners": [
     {
-      "id": "banner-remedies",
-      "eyebrow": "Full catalogue",
-      "title": "Every homeopathy category in one pharmacy browse",
-      "subtitle": "Head & hair to senior wellness — dilutions, globules, tablets, and kits with clear labelling.",
-      "ctaLabel": "Browse all categories",
-      "ctaHref": "/shop/categories/",
+      "id": "banner-hero",
+      "eyebrow": "",
+      "title": "Homeopathy, labelled clearly.",
+      "subtitle": "Shop SBL, Dr. Reckeweg, and Schwabe — then book a listed BHMS doctor when you need guidance.",
+      "ctaLabel": "Shop medicines",
+      "ctaHref": "/shop/",
       "tone": "teal"
-    },
-    {
-      "id": "banner-consult",
-      "eyebrow": "Consult",
-      "title": "Talk to BHMS practitioners in Mumbai",
-      "subtitle": "100 listed doctors for online video and clinic visits. Verification badges only after admin review.",
-      "ctaLabel": "Find a doctor",
-      "ctaHref": "/doctors/",
-      "tone": "amber"
-    },
-    {
-      "id": "banner-health",
-      "eyebrow": "Learn",
-      "title": "Health topics explained without hype",
-      "subtitle": "Educational guides across wellness themes — always consult a qualified professional for care.",
-      "ctaLabel": "Explore health hub",
-      "ctaHref": "/health/",
-      "tone": "sage"
     }
   ],
   "categories": [
@@ -44,10 +26,10 @@
     { "label": "All categories", "href": "/shop/categories/", "seed": "all" }
   ],
   "rails": {
-    "bestsellersTitle": "Popular medicines",
-    "consultTitle": "Consult a homeopathy doctor",
-    "consultBody": "Book online or clinic visits with listed BHMS practitioners across Mumbai.",
-    "brandsTitle": "Shop by brand",
-    "doctorsTitle": "Doctors near you · Mumbai"
+    "bestsellersTitle": "Popular from SBL, Reckeweg & Schwabe",
+    "consultTitle": "Consult a listed BHMS doctor",
+    "consultBody": "Online video or clinic visits with practitioners listed for Mumbai — no fake verified badges.",
+    "brandsTitle": "Trusted brands in stock",
+    "doctorsTitle": "Doctors in Mumbai"
   }
 }
