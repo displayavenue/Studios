@@ -107,6 +107,12 @@ model Organization {
   campaignMetrics CampaignMetric[]
   aiRecommendations AiRecommendation[]
   referrals      Referral[]
+  quoteClients   QuoteClient[]
+  quotations     Quotation[]
+  quotePayments  QuotePayment[]
+  quoteInvoices  QuoteInvoice[]
+  quoteReceipts  QuoteReceipt[]
+  quoteSubscriptions QuoteSubscription[]
 
   @@index([type, status])
 }
@@ -793,4 +799,475 @@ model WorkflowDefinition {
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// ─── Quotation Platform (DisplayAvenue / Mediashouter) ───────────────────────
+
+enum QuotationStatus {
+  DRAFT
+  SENT
+  VIEWED
+  ACCEPTED
+  PARTIALLY_PAID
+  PAID
+  EXPIRED
+  CANCELLED
+  REJECTED
+}
+
+enum QuotePaymentStatus {
+  UNPAID
+  INITIATED
+  PARTIALLY_PAID
+  PAID
+  FAILED
+  REFUNDED
+  OVERDUE
+}
+
+enum QuotePaymentPlanType {
+  ADVANCE_BALANCE
+  FULL
+  CUSTOM_PERCENT
+  MILESTONE
+  SUBSCRIPTION
+  CUSTOM_SCHEDULE
+}
+
+enum QuoteSubStatus {
+  DRAFT
+  CREATED
+  PENDING
+  ACTIVE
+  PAUSED
+  CANCELLED
+  COMPLETED
+  FAILED
+}
+
+enum QuoteInvoiceStatus {
+  DRAFT
+  ISSUED
+  PARTIALLY_PAID
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+model CompanyProfile {
+  id                 String   @id @default(cuid())
+  legalName          String   @default("Mediashouter")
+  brandName          String   @default("DisplayAvenue")
+  gstin              String   @default("27ALJPY9454C1ZJ")
+  pan                String?
+  phone              String   @default("9222122333")
+  whatsapp           String?
+  email              String?
+  website            String   @default("https://displayavenue.com")
+  registeredAddress  String?
+  billingAddress     String?
+  state              String   @default("Maharashtra")
+  city               String?
+  pincode            String?
+  country            String   @default("India")
+  logoUrl            String?
+  faviconUrl         String?
+  authorizedPerson   String?
+  designation        String?
+  signatureUrl       String?
+  bankName           String?
+  accountName        String?
+  accountNumber      String?
+  ifsc               String?
+  upiId              String?
+  defaultGstPercent  Float    @default(18)
+  defaultAdvancePct  Float    @default(60)
+  defaultValidityDays Int     @default(15)
+  quotationPrefix    String   @default("DA")
+  quotationDigits    Int      @default(5)
+  invoicePrefix      String   @default("DAV")
+  receiptPrefix      String   @default("DAR")
+  currency           String   @default("INR")
+  razorpayEnabled    Boolean  @default(true)
+  subscriptionEnabled Boolean @default(true)
+  showWhyChoose      Boolean  @default(true)
+  whyChooseItems     Json?
+  trustItems         Json?
+  whatsappTemplate   String?
+  emailSubjectTemplate String?
+  emailBodyTemplate  String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model QuoteClient {
+  id             String   @id @default(cuid())
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  clientCode     String   @unique
+  companyName    String
+  contactPerson  String?
+  email          String?
+  mobile         String?
+  whatsapp       String?
+  gstin          String?
+  pan            String?
+  address        String?
+  city           String?
+  state          String?
+  pincode        String?
+  country        String   @default("India")
+  website        String?
+  notes          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  quotations     Quotation[]
+  payments       QuotePayment[]
+  invoices       QuoteInvoice[]
+  receipts       QuoteReceipt[]
+  subscriptions  QuoteSubscription[]
+
+  @@index([companyName])
+  @@index([email])
+  @@index([mobile])
+  @@index([organizationId])
+}
+
+model QuoteServiceCategory {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  services  QuoteCatalogService[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuoteCatalogService {
+  id              String   @id @default(cuid())
+  categoryId      String?
+  category        QuoteServiceCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  name            String
+  description     String?
+  defaultPriceInr Float    @default(0)
+  gstPercent      Float    @default(18)
+  billingType     String   @default("one_time") // one_time | recurring
+  monthlyPriceInr Float?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([categoryId, isActive])
+  @@index([name])
+}
+
+model TermsTemplate {
+  id        String   @id @default(cuid())
+  name      String
+  body      String
+  isDefault Boolean  @default(false)
+  isActive  Boolean  @default(true)
+  archived  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuotationSequence {
+  id        String @id @default(cuid())
+  prefix    String
+  year      Int
+  lastNumber Int   @default(0)
+
+  @@unique([prefix, year])
+}
+
+model InvoiceSequence {
+  id         String @id @default(cuid())
+  prefix     String
+  fyLabel    String
+  lastNumber Int    @default(0)
+
+  @@unique([prefix, fyLabel])
+}
+
+model ReceiptSequence {
+  id         String @id @default(cuid())
+  prefix     String
+  fyLabel    String
+  lastNumber Int    @default(0)
+
+  @@unique([prefix, fyLabel])
+}
+
+model Quotation {
+  id                String             @id @default(cuid())
+  organizationId    String?
+  organization      Organization?      @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  clientId          String
+  client            QuoteClient        @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  quotationNumber   String             @unique
+  secureToken       String             @unique
+  passwordHash      String?
+  status            QuotationStatus    @default(DRAFT)
+  paymentStatus     QuotePaymentStatus @default(UNPAID)
+  version           Int                @default(1)
+  quotationDate     DateTime           @default(now())
+  validUntil        DateTime
+  title             String?
+  notes             String?
+  internalNotes     String?
+  currency          String             @default("INR")
+  companyState      String             @default("Maharashtra")
+  clientState       String?
+  gstMode           String             @default("CGST_SGST")
+  subtotalPaise     Int                @default(0)
+  discountPaise     Int                @default(0)
+  taxablePaise      Int                @default(0)
+  cgstPaise         Int                @default(0)
+  sgstPaise         Int                @default(0)
+  igstPaise         Int                @default(0)
+  totalGstPaise     Int                @default(0)
+  grandTotalPaise   Int                @default(0)
+  paymentPlanType   QuotePaymentPlanType @default(ADVANCE_BALANCE)
+  advancePercent    Float              @default(60)
+  advancePaise      Int                @default(0)
+  balancePaise      Int                @default(0)
+  paidPaise         Int                @default(0)
+  termsTemplateId   String?
+  termsSnapshot     String?
+  termsVersion      String?
+  whyChooseEnabled  Boolean            @default(true)
+  showTrust         Boolean            @default(true)
+  createdById       String?
+  sentAt            DateTime?
+  firstViewedAt     DateTime?
+  lastViewedAt      DateTime?
+  viewCount         Int                @default(0)
+  acceptedAt        DateTime?
+  expiredAt         DateTime?
+  cancelledAt       DateTime?
+  pdfDownloadedAt   DateTime?
+  isImmutable       Boolean            @default(false)
+  metadata          Json?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  items             QuotationItem[]
+  versions          QuotationVersion[]
+  acceptances       QuotationAcceptance[]
+  milestones        QuoteMilestone[]
+  payments          QuotePayment[]
+  invoices          QuoteInvoice[]
+  receipts          QuoteReceipt[]
+  subscriptions     QuoteSubscription[]
+  events            QuotationEvent[]
+
+  @@index([clientId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([createdAt])
+  @@index([validUntil])
+  @@index([organizationId])
+}
+
+model QuotationItem {
+  id              String     @id @default(cuid())
+  quotationId     String
+  quotation       Quotation  @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  sortOrder       Int        @default(0)
+  serviceName     String
+  category        String?
+  description     String?
+  quantity        Float      @default(1)
+  unitPricePaise  Int        @default(0)
+  discountPercent Float      @default(0)
+  discountPaise   Int        @default(0)
+  gstPercent      Float      @default(18)
+  taxablePaise    Int        @default(0)
+  gstPaise        Int        @default(0)
+  totalPaise      Int        @default(0)
+  billingType     String     @default("one_time")
+  catalogServiceId String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([quotationId, sortOrder])
+}
+
+model QuotationVersion {
+  id            String   @id @default(cuid())
+  quotationId   String
+  quotation     Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  version       Int
+  snapshot      Json
+  createdById   String?
+  changeNote    String?
+  createdAt     DateTime @default(now())
+
+  @@unique([quotationId, version])
+}
+
+model QuotationAcceptance {
+  id              String   @id @default(cuid())
+  quotationId     String
+  quotation       Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  quotationVersion Int
+  acceptedName    String?
+  acceptedEmail   String?
+  termsVersion    String?
+  ipAddress       String?
+  userAgent       String?
+  acceptedAt      DateTime @default(now())
+
+  @@index([quotationId])
+}
+
+model QuoteMilestone {
+  id            String   @id @default(cuid())
+  quotationId   String
+  quotation     Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  name          String
+  percent       Float
+  amountPaise   Int
+  dueDate       DateTime?
+  status        String   @default("pending")
+  sortOrder     Int      @default(0)
+  paidAt        DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([quotationId])
+}
+
+model QuotePayment {
+  id                 String   @id @default(cuid())
+  quotationId        String
+  quotation          Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  clientId           String
+  client             QuoteClient @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  organizationId     String?
+  organization       Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  invoiceId          String?
+  amountPaise        Int
+  gstPaise           Int      @default(0)
+  currency           String   @default("INR")
+  purpose            String   @default("advance") // advance | balance | full | milestone | subscription
+  milestoneId        String?
+  method             String?
+  status             String   @default("CREATED")
+  razorpayOrderId    String?  @unique
+  razorpayPaymentId  String?
+  razorpaySignature  String?
+  failureReason      String?
+  paidAt             DateTime?
+  metadata           Json?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  receipts           QuoteReceipt[]
+
+  @@index([quotationId, status])
+  @@index([clientId])
+  @@index([organizationId])
+}
+
+model QuoteInvoice {
+  id              String            @id @default(cuid())
+  quotationId     String
+  quotation       Quotation         @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  clientId        String
+  client          QuoteClient       @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  organizationId  String?
+  organization    Organization?     @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  invoiceNumber   String            @unique
+  status          QuoteInvoiceStatus @default(DRAFT)
+  amountPaise     Int
+  gstPaise        Int               @default(0)
+  taxablePaise    Int               @default(0)
+  issuedAt        DateTime?
+  dueAt           DateTime?
+  paidAt          DateTime?
+  lineItems       Json?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  receipts        QuoteReceipt[]
+
+  @@index([quotationId])
+  @@index([clientId])
+  @@index([status])
+}
+
+model QuoteReceipt {
+  id              String   @id @default(cuid())
+  receiptNumber   String   @unique
+  quotationId     String
+  quotation       Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  paymentId       String
+  payment         QuotePayment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  invoiceId       String?
+  invoice         QuoteInvoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+  clientId        String
+  client          QuoteClient @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  organizationId  String?
+  organization    Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  amountPaise     Int
+  gstPaise        Int      @default(0)
+  balancePaise    Int      @default(0)
+  paidAt          DateTime @default(now())
+  method          String?
+  transactionId   String?
+  createdAt       DateTime @default(now())
+
+  @@index([quotationId])
+  @@index([paymentId])
+  @@index([clientId])
+}
+
+model QuoteSubscription {
+  id                     String         @id @default(cuid())
+  quotationId            String
+  quotation              Quotation      @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  clientId               String
+  client                 QuoteClient    @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  organizationId         String?
+  organization           Organization?  @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  planName               String
+  amountPaise            Int
+  gstPaise               Int            @default(0)
+  frequency              String         @default("monthly") // monthly | quarterly | semi_annual | annual | custom
+  status                 QuoteSubStatus @default(DRAFT)
+  razorpayPlanId         String?
+  razorpaySubscriptionId String?        @unique
+  startDate              DateTime?
+  nextBillingDate        DateTime?
+  cancelledAt            DateTime?
+  pausedAt               DateTime?
+  metadata               Json?
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+
+  @@index([quotationId])
+  @@index([clientId])
+  @@index([status])
+}
+
+model QuotationEvent {
+  id          String   @id @default(cuid())
+  quotationId String
+  quotation   Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  type        String
+  message     String?
+  meta        Json?
+  actorUserId String?
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  @@index([quotationId, createdAt])
+}
+
+model RazorpayWebhookEvent {
+  id          String   @id @default(cuid())
+  eventId     String   @unique
+  eventType   String
+  payload     Json
+  processedAt DateTime?
+  createdAt   DateTime @default(now())
 }

@@ -110,6 +110,97 @@ async function main() {
     console.log("  Growth360 catalog:", catalog);
   }
 
+  // Quotation platform: company profile, service catalog, demo draft quote
+  const { getCompanyProfile, nextQuotationNumber, createSecureToken, nextClientCode } =
+    await import("../src/lib/quotations/numbering");
+  const { seedQuotationCatalog } = await import("../src/lib/quotations/seedCatalog");
+  const { inrToPaise, persistQuotationTotals, defaultTermsText } =
+    await import("../src/lib/quotations/engine");
+
+  const company = await getCompanyProfile();
+  const quoteCatalog = await seedQuotationCatalog(prisma);
+  console.log("  Company profile:", company.brandName, company.gstin);
+  console.log("  Quotation catalog:", quoteCatalog);
+
+  const existingClients = await prisma.quoteClient.count();
+  if (existingClients === 0) {
+    const clientCode = await nextClientCode();
+    const demoClient = await prisma.quoteClient.create({
+      data: {
+        clientCode,
+        organizationId: org.id,
+        companyName: "Demo Manufacturing Pvt Ltd",
+        contactPerson: "Rahul Sharma",
+        email: "rahul@demo-mfg.example",
+        mobile: "9876543210",
+        whatsapp: "9876543210",
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "India",
+      },
+    });
+
+    const services = await prisma.quoteCatalogService.findMany({
+      take: 3,
+      orderBy: { name: "asc" },
+      include: { category: true },
+    });
+
+    if (services.length >= 3) {
+      const quotationNumber = await nextQuotationNumber(
+        company.quotationPrefix,
+        company.quotationDigits,
+      );
+      const validUntil = new Date(
+        Date.now() + (company.defaultValidityDays || 15) * 24 * 60 * 60 * 1000,
+      );
+
+      const draft = await prisma.quotation.create({
+        data: {
+          organizationId: org.id,
+          clientId: demoClient.id,
+          quotationNumber,
+          secureToken: createSecureToken(),
+          status: "DRAFT",
+          paymentStatus: "UNPAID",
+          validUntil,
+          title: "Digital growth package",
+          companyState: company.state,
+          clientState: demoClient.state,
+          advancePercent: company.defaultAdvancePct,
+          termsSnapshot: defaultTermsText(),
+          createdById: user.id,
+          items: {
+            create: services.slice(0, 3).map((svc, i) => ({
+              sortOrder: i,
+              serviceName: svc.name,
+              category: svc.category?.name || null,
+              description: svc.description,
+              quantity: 1,
+              unitPricePaise: inrToPaise(svc.defaultPriceInr),
+              gstPercent: svc.gstPercent,
+              billingType: svc.billingType,
+              catalogServiceId: svc.id,
+            })),
+          },
+        },
+      });
+
+      await persistQuotationTotals(draft.id);
+      await prisma.quotationEvent.create({
+        data: {
+          quotationId: draft.id,
+          type: "quotation.created",
+          message: `Seed draft quotation ${quotationNumber}`,
+          actorUserId: user.id,
+        },
+      });
+      console.log(`  Demo quotation: ${quotationNumber} (${demoClient.companyName})`);
+    } else {
+      console.log("  Demo quotation skipped (catalog services missing)");
+    }
+  }
+
   console.log("DisplayAvenue OS seed complete");
   console.log(`  Org: ${org.slug}`);
   console.log(`  Super admin: ${email}`);
