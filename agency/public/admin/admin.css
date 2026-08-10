@@ -894,3 +894,38 @@ body.quote-workspace #save-btn {
   color: var(--wp-text);
 }
 
+/* Final mobile overrides (must follow base quote styles) */
+@media (max-width: 900px) {
+  .live-preview { display: none !important; }
+  .quote-hub { max-width: none; gap: 12px; }
+  .quote-tabs {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px;
+  }
+  .quote-tabs .btn {
+    min-height: 42px;
+    width: 100%;
+    justify-content: center;
+  }
+  .quote-metrics { grid-template-columns: 1fr 1fr; }
+  .quote-metric strong { font-size: 16px; }
+  .quote-table { font-size: 12px; min-width: 560px; }
+  .quote-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quote-row-actions { flex-direction: column; align-items: stretch; }
+  .quote-row-actions .btn { min-height: 40px; width: 100%; }
+  .quote-item-row { grid-template-columns: 1fr !important; }
+  .quote-hub input,
+  .quote-hub select,
+  .quote-hub textarea {
+    min-height: 44px;
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+  .quote-hub .btn { min-height: 44px; }
+  body.quote-workspace .editor-wrap { padding: 12px; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+}
