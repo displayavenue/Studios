@@ -37,6 +37,7 @@ DIRECT_URL="postgresql://USER:PASS@ep-xxxx.region.aws.neon.tech/neondb?sslmode=r
 | `SUPER_ADMIN_EMAIL` | yes | your login email |
 | `SUPER_ADMIN_PASSWORD` | yes | strong password |
 | `SUPER_ADMIN_NAME` | no | defaults OK |
+| `SEED_ON_BUILD` | first deploy only | set `true` once to seed admin + Growth360 catalog, then remove |
 | `AI_ENABLED` | no | `true` |
 | `AI_MODEL` | no | `gpt-4o-mini` |
 | `OPENAI_API_KEY` | no | needed for AI narratives |
@@ -46,11 +47,11 @@ DIRECT_URL="postgresql://USER:PASS@ep-xxxx.region.aws.neon.tech/neondb?sslmode=r
 | `BOOKING_FEE_INR` | no | `99` |
 | `GST_PERCENT` | no | `18` |
 
-5. Deploy.
+5. Deploy (build runs `prisma migrate deploy`; optional seed when `SEED_ON_BUILD=true`).
 
-## 3. Seed admin + catalog (one-time)
+## 3. Seed admin + catalog (if you skipped SEED_ON_BUILD)
 
-After first successful deploy, from your laptop:
+From your laptop:
 
 ```bash
 cd os
@@ -91,3 +92,4 @@ SEED_GROWTH360_CATALOG=true npx tsx prisma/seed.ts
 - Hostinger shared hosting stays for `displayavenue.com` marketing site only.
 - PDFs write to `/tmp` on Vercel (ephemeral). For long-term storage later, use S3/R2.
 - Free Vercel hobby is fine to start; watch serverless limits.
+- If a Neon password was shared in chat, rotate it in Neon and update Vercel env vars.
