@@ -547,6 +547,12 @@ body.quote-workspace .editor-wrap {
   max-height: none;
   padding: 16px 20px 24px;
 }
+body.quote-workspace .shortcut-hint,
+body.quote-workspace #preview-btn,
+body.quote-workspace #reload-btn,
+body.quote-workspace #save-btn {
+  display: none !important;
+}
 .quote-hub {
   display: grid;
   gap: 14px;
