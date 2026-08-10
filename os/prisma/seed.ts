@@ -102,6 +102,14 @@ async function main() {
     },
   });
 
+  // Optional Growth360 catalog (industries/competitors/rules). Call separately if preferred:
+  // import { seedGrowth360Catalog } from "../src/lib/growth360/seedCatalog";
+  if (process.env.SEED_GROWTH360_CATALOG === "true") {
+    const { seedGrowth360Catalog } = await import("../src/lib/growth360/seedCatalog");
+    const catalog = await seedGrowth360Catalog(prisma);
+    console.log("  Growth360 catalog:", catalog);
+  }
+
   console.log("DisplayAvenue OS seed complete");
   console.log(`  Org: ${org.slug}`);
   console.log(`  Super admin: ${email}`);

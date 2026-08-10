@@ -100,6 +100,7 @@ model Organization {
   integrations   PlatformIntegration[]
   onboarding     OnboardingChecklist?
   settings       OrganizationSetting[]
+  assessments    Assessment[]
 
   @@index([type, status])
 }
@@ -205,21 +206,32 @@ model Lead {
 }
 
 model Assessment {
-  id             String   @id @default(cuid())
-  organizationId String?
-  leadId         String?
-  lead           Lead?    @relation(fields: [leadId], references: [id])
-  publicId       String   @unique @default(cuid())
-  status         String   @default("started")
-  answers        Json?
-  growthScore    Float?
-  scoreBreakdown Json?
-  unlocked       Boolean  @default(false)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id                    String        @id @default(cuid())
+  organizationId        String?
+  organization          Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  leadId                String?
+  lead                  Lead?         @relation(fields: [leadId], references: [id])
+  publicId              String        @unique @default(cuid())
+  status                String        @default("started")
+  answers               Json?
+  growthScore           Float?
+  scoreBreakdown        Json?
+  biggestOpportunity    String?
+  recommendedChannels   String[]      @default([])
+  selectedCompetitorIds String[]      @default([])
+  pricingResult         Json?
+  roiResult             Json?
+  plan90Day             Json?
+  analysis              Json?
+  unlocked              Boolean       @default(false)
+  completedAt           DateTime?
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  aiGenerations         AiGeneration[]
 
   @@index([leadId])
   @@index([publicId])
+  @@index([organizationId, status])
 }
 
 model Deal {
@@ -406,22 +418,171 @@ model OnboardingChecklist {
 }
 
 model AiGeneration {
-  id               String   @id @default(cuid())
+  id               String         @id @default(cuid())
   organizationId   String?
-  organization     Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  organization     Organization?  @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  assessmentId     String?
+  assessment       Assessment?    @relation(fields: [assessmentId], references: [id], onDelete: SetNull)
   feature          String
+  promptVersionId  String?
+  promptVersion    AiPromptVersion? @relation(fields: [promptVersionId], references: [id])
   model            String
   status           String
-  inputTokens      Int      @default(0)
-  outputTokens     Int      @default(0)
-  estimatedCostUsd Float    @default(0)
+  inputTokens      Int            @default(0)
+  outputTokens     Int            @default(0)
+  estimatedCostUsd Float          @default(0)
   requestPayload   Json?
   responsePayload  Json?
   errorMessage     String?
-  createdAt        DateTime @default(now())
+  createdAt        DateTime       @default(now())
 
   @@index([organizationId, feature])
+  @@index([assessmentId, feature])
   @@index([createdAt])
+}
+
+model AiPromptVersion {
+  id          String         @id @default(cuid())
+  key         String
+  name        String
+  version     Int
+  content     String
+  isActive    Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  generations AiGeneration[]
+
+  @@unique([key, version])
+  @@index([key, isActive])
+}
+
+/// Global industry catalog for Growth360 competitor matching and strategy rules.
+model Industry {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  name        String
+  description String?
+  isActive    Boolean      @default(true)
+  sortOrder   Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  competitors Competitor[]
+}
+
+/// Location catalog for competitor matching (India-first).
+model Location {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  name        String
+  state       String?
+  country     String       @default("India")
+  isActive    Boolean      @default(true)
+  sortOrder   Int          @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  competitors Competitor[]
+}
+
+model MarketingChannel {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  icon        String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+/// Factual competitor records only — never invent peers in production paths.
+model Competitor {
+  id           String           @id @default(cuid())
+  name         String
+  website      String?
+  industryId   String?
+  industry     Industry?        @relation(fields: [industryId], references: [id])
+  locationId   String?
+  location     Location?        @relation(fields: [locationId], references: [id])
+  city         String?
+  description  String?
+  businessType String?
+  isActive     Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  scores       CompetitorScore?
+
+  @@index([industryId, locationId])
+  @@index([name])
+}
+
+model CompetitorScore {
+  id             String     @id @default(cuid())
+  competitorId   String     @unique
+  competitor     Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  digitalScore   Float      @default(0)
+  marketingScore Float      @default(0)
+  seoScore       Float      @default(0)
+  socialScore    Float      @default(0)
+  overallScore   Float      @default(0)
+  notes          String?
+  updatedAt      DateTime   @updatedAt
+  createdAt      DateTime   @default(now())
+}
+
+model PricingRule {
+  id           String   @id @default(cuid())
+  name         String
+  industrySlug String?
+  budgetMin    Float?
+  budgetMax    Float?
+  adSpendPct   Float?
+  mgmtFeePct   Float?
+  setupFeeInr  Float?
+  minAdSpend   Float?
+  maxAdSpend   Float?
+  priority     Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model StrategyRule {
+  id           String   @id @default(cuid())
+  name         String
+  industrySlug String?
+  growthGoal   String?
+  budgetMin    Float?
+  budgetMax    Float?
+  channels     String[]
+  priority     Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model RoiAssumption {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  value       Float
+  unit        String?
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PlanTemplate {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  phase1Tasks Json
+  phase2Tasks Json
+  phase3Tasks Json
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Job {

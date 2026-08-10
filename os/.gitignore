@@ -40,6 +40,9 @@ yarn-error.log*
 /public/uploads/*
 !/public/uploads/.gitkeep
 
+# generated reports
+/storage/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
