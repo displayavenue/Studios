@@ -134,6 +134,7 @@ export async function GET(req: Request, { params }: Params) {
         advancePaise: quotation.advancePaise,
         balancePaise: quotation.balancePaise,
         paidPaise: quotation.paidPaise,
+        payNowPaise: Math.max(0, quotation.advancePaise - quotation.paidPaise) || Math.max(0, quotation.grandTotalPaise - quotation.paidPaise),
         termsSnapshot: quotation.termsSnapshot,
         whyChooseEnabled: quotation.whyChooseEnabled,
         showTrust: quotation.showTrust,
