@@ -1,5 +1,10 @@
 const API = "./api.php";
 const TOKEN_KEY = "da_agency_admin_token";
+/** Quotation / payment platform (DisplayAvenue OS). Kept off the JSON CMS ledger. */
+const OS_BASE = "https://os.displayavenue.com";
+const QUOTE_NAV = {
+  quotations: "Quotations & Payments",
+};
 
 const state = {
   authed: false,
@@ -8,6 +13,7 @@ const state = {
   current: null,
   data: null,
   dirty: false,
+  quoteMode: false,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -181,19 +187,116 @@ function bindFields(root = $("#editor-wrap")) {
   });
 }
 
+function allNavEntries() {
+  return {
+    ...QUOTE_NAV,
+    ...state.collections,
+  };
+}
+
+function setQuoteWorkspace(on) {
+  state.quoteMode = !!on;
+  document.body.classList.toggle("quote-workspace", state.quoteMode);
+  const saveBtn = $("#save-btn");
+  const reloadBtn = $("#reload-btn");
+  const previewBtn = $("#preview-btn");
+  const hint = document.querySelector(".shortcut-hint");
+  if (saveBtn) saveBtn.hidden = state.quoteMode;
+  if (reloadBtn) reloadBtn.hidden = state.quoteMode;
+  if (previewBtn) previewBtn.hidden = state.quoteMode;
+  if (hint) hint.hidden = state.quoteMode;
+}
+
 function renderNav() {
   const nav = $("#nav");
-  nav.innerHTML = Object.entries(state.collections)
+  const entries = allNavEntries();
+  nav.innerHTML = Object.entries(entries)
     .map(
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }">${escapeHtml(label)}</button>`,
+        }${key === "quotations" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
-    btn.onclick = () => openCollection(btn.dataset.key);
+    btn.onclick = () => {
+      if (btn.dataset.key === "quotations") openQuotations();
+      else openCollection(btn.dataset.key);
+    };
   });
+}
+
+function openQuotations() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "quotations";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.quotations;
+  $("#panel-sub").textContent =
+    "Create quotations, collect Razorpay payments, invoices & subscriptions — powered by DisplayAvenue OS.";
+  renderNav();
+  renderQuotationsHub();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+function renderQuotationsHub() {
+  const wrap = $("#editor-wrap");
+  const links = [
+    { href: `${OS_BASE}/app/quotations`, label: "Quotations dashboard", desc: "Pipeline, status, advances due", primary: true },
+    { href: `${OS_BASE}/app/quotations/create`, label: "New quotation", desc: "GST-ready builder with line items" },
+    { href: `${OS_BASE}/app/quote-clients`, label: "Clients", desc: "GSTIN, state, billing contacts" },
+    { href: `${OS_BASE}/app/quote-services`, label: "Service catalog", desc: "Reusable priced line items" },
+    { href: `${OS_BASE}/app/quote-settings`, label: "Company & GST settings", desc: "Mediashouter / DisplayAvenue profile" },
+  ];
+  wrap.innerHTML = `
+    <div class="quote-hub">
+      <div class="help-banner">
+        <strong>Quotations &amp; Payments</strong> live inside DisplayAvenue OS
+        (secure Postgres ledger + Razorpay webhooks). Use these shortcuts from your
+        site admin — payment links you send clients stay on
+        <code>${OS_BASE}/q/…</code>.
+      </div>
+      <div class="quote-hero">
+        <div>
+          <h3>Launch quotation workspace</h3>
+          <p>
+            Create quotes, send WhatsApp / email links, collect advances, and issue
+            tax invoices. Sign in with your DisplayAvenue OS admin account
+            (same team login as the OS app).
+          </p>
+        </div>
+        <div class="quote-hero-actions">
+          <a class="btn btn-gold" href="${OS_BASE}/app/quotations" target="_blank" rel="noreferrer">Open quotations ↗</a>
+          <a class="btn btn-ghost" href="${OS_BASE}/app/quotations/create" target="_blank" rel="noreferrer">New quotation ↗</a>
+          <a class="btn btn-ghost" href="${OS_BASE}/login" target="_blank" rel="noreferrer">OS sign in ↗</a>
+        </div>
+      </div>
+      <div class="quote-actions">
+        ${links
+          .map(
+            (l) => `
+          <a class="quote-action${l.primary ? " quote-action--primary" : ""}" href="${escapeHtml(l.href)}" target="_blank" rel="noreferrer">
+            <strong>${escapeHtml(l.label)}</strong>
+            <span>${escapeHtml(l.desc)}</span>
+          </a>`,
+          )
+          .join("")}
+      </div>
+      <div class="card">
+        <h3>How it connects to this admin</h3>
+        <ul class="quote-notes">
+          <li>This Live Editor still manages website content (pages, SEO, reviews).</li>
+          <li>Money, GST invoices, receipts, and subscriptions stay on OS so webhooks and ledgers are durable.</li>
+          <li>After you send a quote, share the secure client link — they accept &amp; pay without logging into admin.</li>
+          <li>Company profile defaults: Mediashouter (legal) / DisplayAvenue (brand), GSTIN 27ALJPY9454C1ZJ, phone 9222122333 — edit under Quote settings.</li>
+        </ul>
+      </div>
+    </div>`;
 }
 
 async function openCollection(key) {
@@ -222,6 +325,7 @@ async function openCollection(key) {
     state.current = key;
     state.data = json.data;
     setDirty(false);
+    setQuoteWorkspace(false);
     $("#panel-title").textContent = state.collections[key] || key;
     $("#panel-sub").textContent = `Editing ${key}.json - Update publishes live. Preview refreshes automatically.`;
     renderNav();
@@ -1161,6 +1265,10 @@ async function enterApp(collections) {
   state.collections = collections || {};
   showLogin(false);
   renderNav();
+  if (state.current === "quotations") {
+    openQuotations();
+    return;
+  }
   const first = state.current || Object.keys(state.collections)[0];
   if (first) await openCollection(first);
   else setPreview("/");
@@ -1198,7 +1306,10 @@ async function init() {
   };
 
   $("#save-btn").onclick = save;
-  $("#reload-btn").onclick = () => state.current && openCollection(state.current);
+  $("#reload-btn").onclick = () => {
+    if (state.current === "quotations") openQuotations();
+    else if (state.current) openCollection(state.current);
+  };
   const previewBtn = $("#preview-btn");
   if (previewBtn) previewBtn.onclick = refreshPreview;
 

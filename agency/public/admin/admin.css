@@ -526,3 +526,98 @@ section.card {
     border-right: 0;
   }
 }
+
+/* Quotations & Payments hub (OS embed) */
+.sidebar nav button.nav-quote {
+  color: #f0c14b;
+  font-weight: 600;
+}
+.sidebar nav button.nav-quote.active {
+  border-left-color: #f0c14b;
+  color: #fff;
+}
+body.quote-workspace .live-preview {
+  display: none;
+}
+body.quote-workspace .workspace {
+  grid-template-columns: 1fr;
+}
+body.quote-workspace .editor-wrap {
+  border-right: 0;
+  max-height: none;
+  padding: 16px 20px 24px;
+}
+.quote-hub {
+  display: grid;
+  gap: 14px;
+  max-width: 960px;
+}
+.quote-hero {
+  display: grid;
+  gap: 14px;
+  padding: 18px 18px 16px;
+  background: #fff;
+  border: 1px solid var(--wp-border);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--wp-blue);
+}
+.quote-hero h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.quote-hero p {
+  margin: 0;
+  color: var(--wp-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  max-width: 54rem;
+}
+.quote-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.quote-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.quote-action {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid var(--wp-border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--wp-text);
+  min-height: 72px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.quote-action:hover,
+.quote-action--primary {
+  border-color: var(--wp-blue);
+}
+.quote-action:hover {
+  box-shadow: 0 0 0 1px var(--wp-blue);
+}
+.quote-action strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--wp-blue-dark);
+}
+.quote-action span {
+  font-size: 12px;
+  color: var(--wp-muted);
+  line-height: 1.4;
+}
+.quote-notes {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--wp-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  display: grid;
+  gap: 0.45rem;
+}
