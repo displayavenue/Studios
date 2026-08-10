@@ -26,8 +26,10 @@ export async function POST(req: Request) {
     const orgId = body.organizationId || (await getDisplayAvenueOrg()).id;
 
     if (body.purpose === "strategy_call") {
-      if (!body.name || !body.email || !body.whatsapp) {
-        return jsonError("name, email, and whatsapp are required for strategy_call", 400);
+      const sessionName = body.name;
+      const sessionEmail = body.email;
+      if (!sessionName || !sessionEmail) {
+        return jsonError("name and email are required for strategy_call", 400);
       }
       let assessmentId = body.assessmentId;
       if (!assessmentId && body.publicId) {
@@ -37,14 +39,15 @@ export async function POST(req: Request) {
       const order = await createStrategyCallOrder({
         organizationId: orgId,
         assessmentId,
-        name: body.name,
-        email: body.email,
-        whatsapp: body.whatsapp,
+        name: sessionName,
+        email: sessionEmail,
+        whatsapp: body.whatsapp || "",
       });
       return jsonOk({
         ...order,
         purpose: "strategy_call",
         bookingFeeInr: getBookingFeeInr(),
+        razorpayConfigured: Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET),
       });
     }
 

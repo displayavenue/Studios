@@ -7,12 +7,15 @@ import { completeAssessmentAnalysis } from "@/lib/engines/analysisOrchestrator";
 import { calculateLeadScore } from "@/lib/engines/leadScoreEngine";
 import { profileFromAnswers } from "@/lib/engines/scoreEngine";
 import { triggerWorkflow } from "@/lib/workflows/engine";
+import { readSessionFromRequest } from "@/lib/auth";
+
+export const maxDuration = 60;
 
 const schema = z.object({
   assessmentId: z.string().min(1).optional(),
   publicId: z.string().min(1).optional(),
-  name: z.string().min(2),
-  email: z.string().email(),
+  name: z.string().min(2).optional(),
+  email: z.string().email().optional(),
   phone: z.string().optional(),
   company: z.string().optional(),
   website: z.string().optional(),
@@ -29,6 +32,12 @@ const schema = z.object({
 export async function POST(req: Request) {
   try {
     const body = schema.parse(await req.json());
+    const session = await readSessionFromRequest(req);
+    const name = body.name || session?.name;
+    const email = body.email || session?.email;
+    if (!name || !email) {
+      return jsonError("Sign in with Google is required before completing Growth360", 401);
+    }
     if (!body.assessmentId && !body.publicId) {
       return jsonError("assessmentId or publicId required", 400);
     }
@@ -46,8 +55,8 @@ export async function POST(req: Request) {
       ...(assessment.answers && typeof assessment.answers === "object"
         ? (assessment.answers as Record<string, unknown>)
         : {}),
-      name: body.name,
-      email: body.email,
+      name,
+      email,
       phone: body.phone,
       company: body.company || profile.company,
       website: body.website,
@@ -63,8 +72,8 @@ export async function POST(req: Request) {
       const lead = await prisma.lead.create({
         data: {
           organizationId: da.id,
-          name: body.name,
-          email: body.email,
+          name,
+          email,
           phone: body.phone,
           company: body.company || profile.company || null,
           website: body.website || null,
@@ -97,8 +106,8 @@ export async function POST(req: Request) {
       await prisma.lead.update({
         where: { id: leadId },
         data: {
-          name: body.name,
-          email: body.email,
+          name,
+          email,
           phone: body.phone ?? undefined,
           company: body.company || profile.company || undefined,
           website: body.website ?? undefined,

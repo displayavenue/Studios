@@ -77,7 +77,9 @@ export default function Growth360ReportPage() {
   const [notReady, setNotReady] = useState(false);
   const [bookingMsg, setBookingMsg] = useState("");
   const [paying, setPaying] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", whatsapp: "", preferredAt: "" });
+  const [user, setUser] = useState<{ name: string; email: string; phone?: string | null } | null>(null);
+  const [bookingFeeInr, setBookingFeeInr] = useState(99);
+  const [razorpayConfigured, setRazorpayConfigured] = useState(false);
 
   async function loadReport() {
     const res = await apiFetch<ReportPayload>(`/api/growth360/${params.publicId}`);
@@ -87,8 +89,6 @@ export default function Growth360ReportPage() {
       return;
     }
     setData(res.data);
-    if (res.data.lead?.name) setForm((f) => ({ ...f, name: res.data.lead?.name || f.name }));
-    if (res.data.lead?.email) setForm((f) => ({ ...f, email: res.data.lead?.email || f.email }));
   }
 
   useEffect(() => {
@@ -97,12 +97,27 @@ export default function Growth360ReportPage() {
     } catch {
       setAssessmentId(null);
     }
-    loadReport();
+    (async () => {
+      const me = await apiFetch<{ user: { name: string; email: string; phone?: string | null } }>("/api/auth/me");
+      if (me.ok) setUser(me.data.user);
+      const status = await apiFetch<{ bookingFeeInr?: number; razorpayConfigured?: boolean }>("/api/auth/google/status");
+      if (status.ok) {
+        if (typeof status.data.bookingFeeInr === "number") setBookingFeeInr(status.data.bookingFeeInr);
+        setRazorpayConfigured(Boolean(status.data.razorpayConfigured));
+      }
+      await loadReport();
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.publicId]);
 
   async function startPayment() {
     if (!data) return;
+    const name = user?.name || data.lead?.name;
+    const email = user?.email || data.lead?.email;
+    if (!name || !email) {
+      setBookingMsg("Sign in with Google is required to pay.");
+      return;
+    }
     setPaying(true);
     setBookingMsg("");
     try {
@@ -112,6 +127,8 @@ export default function Growth360ReportPage() {
         amountPaise: number;
         keyId: string;
         mock?: boolean;
+        bookingFeeInr?: number;
+        razorpayConfigured?: boolean;
       }>("/api/payments/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -119,9 +136,9 @@ export default function Growth360ReportPage() {
           purpose: "strategy_call",
           assessmentId: assessmentId || undefined,
           publicId: params.publicId,
-          name: form.name,
-          email: form.email,
-          whatsapp: form.whatsapp,
+          name,
+          email,
+          whatsapp: user?.phone || "",
         }),
       });
       if (!createRes.ok) {
@@ -129,6 +146,8 @@ export default function Growth360ReportPage() {
         throw new Error(createRes.error || "Payment create failed");
       }
       const order = createRes.data;
+      if (typeof order.bookingFeeInr === "number") setBookingFeeInr(order.bookingFeeInr);
+      if (typeof order.razorpayConfigured === "boolean") setRazorpayConfigured(order.razorpayConfigured);
 
       async function afterPaid(paymentId: string) {
         await apiFetch(`/api/growth360/${params.publicId}/unlock`, {
@@ -137,10 +156,7 @@ export default function Growth360ReportPage() {
           body: JSON.stringify({ paymentId, unlocked: true }),
         });
 
-        const slotStart = form.preferredAt
-          ? new Date(form.preferredAt).toISOString()
-          : new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-
+        const slotStart = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
         const bookRes = await apiFetch<{ id?: string }>("/api/bookings/create", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -148,9 +164,9 @@ export default function Growth360ReportPage() {
             paymentId,
             assessmentId: assessmentId || undefined,
             leadId: data!.lead?.id,
-            name: form.name,
-            email: form.email,
-            phone: form.whatsapp,
+            name,
+            email,
+            phone: user?.phone || undefined,
             slotStart,
           }),
         });
@@ -183,8 +199,9 @@ export default function Growth360ReportPage() {
         amount: order.amountPaise,
         currency: "INR",
         name: "DisplayAvenue Growth360",
-        description: "₹99 Strategy Call",
+        description: `₹${bookingFeeInr} Strategy Call`,
         order_id: order.orderId,
+        prefill: { name, email, contact: user?.phone || "" },
         handler: async (response: {
           razorpay_order_id: string;
           razorpay_payment_id: string;
@@ -332,22 +349,36 @@ export default function Growth360ReportPage() {
       )}
 
       <section className="panel" style={{ padding: "1.4rem", marginTop: "1rem", background: "linear-gradient(145deg,#071833,#123968)", color: "white" }}>
-        <h2 className="display" style={{ marginTop: 0 }}>Book a 30-Minute Growth Strategy Call</h2>
-        <p style={{ fontSize: "1.4rem", fontWeight: 800, marginTop: 0 }}>₹99 only</p>
-        <div style={{ display: "grid", gap: "0.6rem", marginTop: "1rem" }}>
-          <input className="input" placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-          <input className="input" placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-          <input className="input" placeholder="WhatsApp" value={form.whatsapp} onChange={(e) => setForm({ ...form, whatsapp: e.target.value })} />
-          <input className="input" type="datetime-local" value={form.preferredAt} onChange={(e) => setForm({ ...form, preferredAt: e.target.value })} />
-        </div>
-        <button
-          className="btn"
-          style={{ marginTop: "1rem", background: "white", color: "var(--navy)", fontWeight: 800, width: "100%", minHeight: 44 }}
-          onClick={startPayment}
-          disabled={paying || !form.name || !form.email || form.whatsapp.length < 10}
-        >
-          {paying ? "Processing…" : "RESERVE MY ₹99 STRATEGY CALL →"}
-        </button>
+        <h2 className="display" style={{ marginTop: 0 }}>Unlock with Razorpay</h2>
+        <p style={{ fontSize: "1.4rem", fontWeight: 800, marginTop: 0 }}>₹{bookingFeeInr} strategy call</p>
+        <p style={{ opacity: 0.9, marginTop: 0 }}>
+          {user
+            ? `Paying as ${user.name} (${user.email}) — no form needed.`
+            : "Sign in with Google first, then pay in one tap."}
+        </p>
+        {!razorpayConfigured && (
+          <p style={{ fontSize: ".9rem", opacity: 0.85 }}>
+            Razorpay keys not live yet — checkout will use secure mock mode until keys are added.
+          </p>
+        )}
+        {!user ? (
+          <a
+            className="btn"
+            href={`/api/auth/google?returnTo=/growth360/report/${params.publicId}`}
+            style={{ marginTop: "1rem", background: "white", color: "var(--navy)", fontWeight: 800, width: "100%", minHeight: 44, display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}
+          >
+            Continue with Google to Pay →
+          </a>
+        ) : (
+          <button
+            className="btn"
+            style={{ marginTop: "1rem", background: "white", color: "var(--navy)", fontWeight: 800, width: "100%", minHeight: 44 }}
+            onClick={startPayment}
+            disabled={paying}
+          >
+            {paying ? "Processing…" : `PAY ₹${bookingFeeInr} WITH RAZORPAY →`}
+          </button>
+        )}
         {bookingMsg && <p style={{ marginTop: "0.8rem" }}>{bookingMsg}</p>}
       </section>
     </main>

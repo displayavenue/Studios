@@ -49,103 +49,101 @@ export async function completeAssessmentAnalysis(assessmentId: string) {
   const coldCallFallback = buildColdCallFallback(profile, competitors);
   const channelFallback = channelFallbackExplanations(channels);
 
-  const businessAi = await runAiStructured<z.infer<typeof businessAnalysisSchema>>({
-    organizationId,
-    assessmentId,
-    feature: "business_analysis",
-    userPayload: {
-      company: profile.company,
-      industry: profile.industry,
-      businessType: profile.businessType,
-      product: profile.product,
-      location: profile.location,
-      targetCustomer: profile.targetCustomer,
-      averageCustomerValue: profile.avgCustomerValue,
-      marketingBudget: profile.marketingBudget,
-      currentMarketingChannels: profile.currentChannels,
-      growthGoal: profile.growthGoal,
-      growthScore: scoreBreakdown.total,
-      scoreBreakdown,
-      biggestOpportunity: opportunity,
-    },
-    schemaDescription:
-      '{ "executiveSummary": string, "businessOpportunity": string, "keyChallenges": string[], "keyOpportunities": string[], "strategicPriorities": string[] }',
-    validate: (d) => businessAnalysisSchema.parse(d),
-  });
-
-  const strategyAi = await runAiStructured<z.infer<typeof strategySchema>>({
-    organizationId,
-    assessmentId,
-    feature: "strategy",
-    userPayload: {
-      selectedChannels: channels,
-      industry: profile.industry,
-      businessGoals: profile.growthGoal,
-      customerProfile: profile.targetCustomer,
-      location: profile.location,
-      budget: profile.marketingBudget,
-      growthScore: scoreBreakdown.total,
-    },
-    schemaDescription:
-      '{ "channels": [{ "channel": string, "explanation": string, "role": string, "priority": string, "guidance": string }] }',
-    validate: (d) => strategySchema.parse(d),
-  });
-
-  const competitorAi = await runAiStructured<z.infer<typeof competitorAnalysisSchema>>({
-    organizationId,
-    assessmentId,
-    feature: "competitor_analysis",
-    userPayload: {
-      client: {
+  const [businessAi, strategyAi, competitorAi, coldAi, planAi] = await Promise.all([
+    runAiStructured<z.infer<typeof businessAnalysisSchema>>({
+      organizationId,
+      assessmentId,
+      feature: "business_analysis",
+      userPayload: {
         company: profile.company,
         industry: profile.industry,
+        businessType: profile.businessType,
+        product: profile.product,
         location: profile.location,
+        targetCustomer: profile.targetCustomer,
+        averageCustomerValue: profile.avgCustomerValue,
+        marketingBudget: profile.marketingBudget,
+        currentMarketingChannels: profile.currentChannels,
+        growthGoal: profile.growthGoal,
+        growthScore: scoreBreakdown.total,
+        scoreBreakdown,
+        biggestOpportunity: opportunity,
+      },
+      schemaDescription:
+        '{ "executiveSummary": string, "businessOpportunity": string, "keyChallenges": string[], "keyOpportunities": string[], "strategicPriorities": string[] }',
+      validate: (d) => businessAnalysisSchema.parse(d),
+    }),
+    runAiStructured<z.infer<typeof strategySchema>>({
+      organizationId,
+      assessmentId,
+      feature: "strategy",
+      userPayload: {
+        selectedChannels: channels,
+        industry: profile.industry,
+        businessGoals: profile.growthGoal,
+        customerProfile: profile.targetCustomer,
+        location: profile.location,
+        budget: profile.marketingBudget,
         growthScore: scoreBreakdown.total,
       },
-      competitors,
-      gaps,
-    },
-    schemaDescription:
-      '{ "competitiveSummary": string, "competitiveAdvantages": string[], "competitiveWeaknesses": string[], "opportunities": string[], "recommendedActions": string[] }',
-    validate: (d) => competitorAnalysisSchema.parse(d),
-  });
-
-  const coldAi = await runAiStructured<z.infer<typeof coldCallSchema>>({
-    organizationId,
-    assessmentId,
-    feature: "cold_call",
-    userPayload: {
-      industry: profile.industry,
-      product: profile.product,
-      company: profile.company,
-      targetDecisionMaker: "Owner / Marketing Head",
-      businessObjective: profile.growthGoal,
-      competitorContext: competitors.map((c) => ({
-        name: c.name,
-        overallScore: c.scores.overallScore,
-        city: c.city,
-      })),
-      recommendedService: "DisplayAvenue Growth360 Strategy Call",
-    },
-    schemaDescription:
-      '{ "opening": string, "discoveryQuestions": string[], "qualificationQuestions": string[], "objectionHandling": [{ "objection": string, "response": string }], "meetingBooking": string }',
-    validate: (d) => coldCallSchema.parse(d),
-  });
-
-  const planAi = await runAiStructured<z.infer<typeof planNarrativeSchema>>({
-    organizationId,
-    assessmentId,
-    feature: "plan_90_day",
-    userPayload: {
-      company: profile.company,
-      industry: profile.industry,
-      recommendedChannels: channels,
-      plan,
-    },
-    schemaDescription:
-      '{ "overview": string, "phase1Narrative": string, "phase2Narrative": string, "phase3Narrative": string }',
-    validate: (d) => planNarrativeSchema.parse(d),
-  });
+      schemaDescription:
+        '{ "channels": [{ "channel": string, "explanation": string, "role": string, "priority": string, "guidance": string }] }',
+      validate: (d) => strategySchema.parse(d),
+    }),
+    runAiStructured<z.infer<typeof competitorAnalysisSchema>>({
+      organizationId,
+      assessmentId,
+      feature: "competitor_analysis",
+      userPayload: {
+        client: {
+          company: profile.company,
+          industry: profile.industry,
+          location: profile.location,
+          growthScore: scoreBreakdown.total,
+        },
+        competitors,
+        gaps,
+      },
+      schemaDescription:
+        '{ "competitiveSummary": string, "competitiveAdvantages": string[], "competitiveWeaknesses": string[], "opportunities": string[], "recommendedActions": string[] }',
+      validate: (d) => competitorAnalysisSchema.parse(d),
+    }),
+    runAiStructured<z.infer<typeof coldCallSchema>>({
+      organizationId,
+      assessmentId,
+      feature: "cold_call",
+      userPayload: {
+        industry: profile.industry,
+        product: profile.product,
+        company: profile.company,
+        targetDecisionMaker: "Owner / Marketing Head",
+        businessObjective: profile.growthGoal,
+        competitorContext: competitors.map((c) => ({
+          name: c.name,
+          overallScore: c.scores.overallScore,
+          city: c.city,
+        })),
+        recommendedService: "DisplayAvenue Growth360 Strategy Call",
+      },
+      schemaDescription:
+        '{ "opening": string, "discoveryQuestions": string[], "qualificationQuestions": string[], "objectionHandling": [{ "objection": string, "response": string }], "meetingBooking": string }',
+      validate: (d) => coldCallSchema.parse(d),
+    }),
+    runAiStructured<z.infer<typeof planNarrativeSchema>>({
+      organizationId,
+      assessmentId,
+      feature: "plan_90_day",
+      userPayload: {
+        company: profile.company,
+        industry: profile.industry,
+        recommendedChannels: channels,
+        plan,
+      },
+      schemaDescription:
+        '{ "overview": string, "phase1Narrative": string, "phase2Narrative": string, "phase3Narrative": string }',
+      validate: (d) => planNarrativeSchema.parse(d),
+    }),
+  ]);
 
   const aiPartial =
     !businessAi.data ||
