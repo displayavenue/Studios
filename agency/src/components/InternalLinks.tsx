@@ -259,7 +259,7 @@ function contextForPath(pathname: string): { title: string; lead: string } {
   if (p.startsWith("/awards") || p.startsWith("/certifications")) {
     return {
       title: "More ways to explore DisplayAvenue",
-      lead: "You are looking at credentials and recognition. Next, open Services, Packages, or Case studies — or Contact us for a plain plan.",
+      lead: "You are looking at credentials and recognition. Next, open Services, Packages, or Case studies - or Contact us for a plain plan.",
     };
   }
   if (p.startsWith("/contact") || p.startsWith("/why-displayavenue")) {
@@ -414,7 +414,7 @@ export function InternalLinks({
           <div>
             <h3>Still unsure?</h3>
             <p>
-              Tell us your business and city. We will point you to the 2–3 pages that
+              Tell us your business and city. We will point you to the 2-3 pages that
               matter most  -  or build a simple plan on a free call.
             </p>
           </div>

@@ -45,7 +45,7 @@ export function SiteSearch({
       { title: "Industries", href: "/industries", kind: "Page", blurb: "Solutions for healthcare, real estate, ecommerce, and more." },
       { title: "Packages", href: "/packages", kind: "Page", blurb: "Clear monthly plans for growing businesses." },
       { title: "AI Platform", href: "/ai-platform", kind: "Page", blurb: "Practical AI tools for marketing and operations." },
-      { title: "Free Tools", href: "/free-tools", kind: "Page", blurb: "Free SEO and marketing tools — no signup." },
+      { title: "Free Tools", href: "/free-tools", kind: "Page", blurb: "Free SEO and marketing tools - no signup." },
       { title: "Case Studies", href: "/case-studies", kind: "Page", blurb: "Real results from Indian businesses." },
       { title: "Portfolio", href: "/portfolio", kind: "Page", blurb: "Selected projects and brand work." },
       { title: "Resources", href: "/resources", kind: "Page", blurb: "Guides and tips in plain English." },

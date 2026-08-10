@@ -24,7 +24,7 @@ export function WhyDisplayAvenue() {
                 Why Choose DisplayAvenue?
               </h1>
               <p>
-                Measurable ROI and sustainable growth are our mission — not just
+                Measurable ROI and sustainable growth are our mission - not just
                 deliverables.
               </p>
               <ul className="feature-list">

@@ -14,7 +14,7 @@ import "../styles/pages.css";
 export function CaseStudies() {
   return (
     <div className="page-shell">
-      <SEO title="Case Studies | DisplayAvenue" description="Real results from DisplayAvenue clients — SEO, ads, ecommerce, and full-funnel growth." path="/case-studies" />
+      <SEO title="Case Studies | DisplayAvenue" description="Real results from DisplayAvenue clients - SEO, ads, ecommerce, and full-funnel growth." path="/case-studies" />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

@@ -1,6 +1,6 @@
 <?php
 /**
- * DisplayAvenue Agency — CMS config
+ * DisplayAvenue Agency - CMS config
  * Change admin_password after first login.
  */
 return [
@@ -16,6 +16,7 @@ return [
     'google-reviews' => 'Google Reviews (GMB)',
     'awards' => 'Awards',
     'certifications' => 'Certifications',
+    'contact' => 'Contact Form',
     'services' => 'Services (all pages)',
     'industries' => 'Industries',
     'packages' => 'Packages',

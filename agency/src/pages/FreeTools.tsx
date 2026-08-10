@@ -23,7 +23,7 @@ export function FreeTools() {
               </h1>
               <p>
                 Professional-grade SEO, marketing, content, and developer tools
-                — free forever.
+                - free forever.
               </p>
               <ul className="feature-list">
                 {[

@@ -13,7 +13,7 @@ export const company = {
   address: {
     city: "Mumbai",
     lines: ["Mumbai, Maharashtra, India"],
-    hours: "Mon–Sat · 10:00 AM – 7:00 PM IST",
+    hours: "Mon-Sat · 10:00 AM - 7:00 PM IST",
   },
   googleMaps: {
     name: "Display Avenue",

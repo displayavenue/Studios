@@ -19,6 +19,7 @@ function previewRouteFor(collection) {
     "google-reviews": "/",
     awards: "/awards",
     certifications: "/certifications",
+    contact: "/contact",
     content: "/",
     services: "/services",
     industries: "/industries",
@@ -213,7 +214,7 @@ async function openCollection(key) {
       state.token = "";
       localStorage.removeItem(TOKEN_KEY);
       showLogin(true);
-      toast("Session expired — log in once to continue", "err");
+      toast("Session expired - log in once to continue", "err");
       return;
     }
     if (!r.ok || json.ok === false) throw new Error(json.error || "Load failed");
@@ -221,12 +222,13 @@ async function openCollection(key) {
     state.data = json.data;
     setDirty(false);
     $("#panel-title").textContent = state.collections[key] || key;
-    $("#panel-sub").textContent = `Editing ${key}.json — Update publishes live. Preview refreshes automatically.`;
+    $("#panel-sub").textContent = `Editing ${key}.json - Update publishes live. Preview refreshes automatically.`;
     renderNav();
     renderEditor();
     setPreview(previewRouteFor(key));
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+    if (key === "contact") loadContactLeads();
   } catch (e) {
     toast(e.message, "err");
   }
@@ -256,6 +258,7 @@ function renderEditor() {
     "google-reviews": renderGoogleReviews,
     awards: renderAwards,
     certifications: renderCertifications,
+    contact: renderContactForm,
     tracking: renderTracking,
     settings: renderSettings,
   };
@@ -544,7 +547,7 @@ function renderGoogleReviews(d) {
       <div class="list-item-head">
         <h3>Reviews on homepage</h3>
       </div>
-      ${reviews || "<p class='empty'>No reviews yet — sync from Google or add manually.</p>"}
+      ${reviews || "<p class='empty'>No reviews yet - sync from Google or add manually.</p>"}
     </section>
   `;
 }
@@ -650,6 +653,54 @@ function renderCertifications(d) {
   `;
 }
 
+function renderContactForm(d) {
+  const f = d.fields || {};
+  return `
+    ${card(
+      "Contact page & form",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Form submissions are saved under <code>admin/.leads/</code> and emailed to the notify address when the server mailer works.
+        Edit copy, labels, and notification email here.
+      </p>
+      ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Badge / title", "title", d.title || "")}
+      ${field("Headline", "headline", d.headline || "")}
+      ${field("Lead paragraph", "lead", d.lead || "", "textarea")}
+      ${field("Notify email (inbox for leads)", "notifyEmail", d.notifyEmail || "")}
+      ${field("Submit button label", "submitLabel", d.submitLabel || "")}
+      ${field("WhatsApp fallback if send fails", "whatsappFallback", d.whatsappFallback !== false, "checkbox")}
+      ${field("Success title", "successTitle", d.successTitle || "")}
+      ${field("Success message", "successMessage", d.successMessage || "", "textarea")}
+      ${field("SEO title", "seo.title", d.seo?.title || "")}
+      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+    `,
+    )}
+    ${card(
+      "Form field labels",
+      `
+      ${field("Name label", "fields.nameLabel", f.nameLabel || "")}
+      ${field("Name placeholder", "fields.namePlaceholder", f.namePlaceholder || "")}
+      ${field("Phone label", "fields.phoneLabel", f.phoneLabel || "")}
+      ${field("Phone placeholder", "fields.phonePlaceholder", f.phonePlaceholder || "")}
+      ${field("Email label", "fields.emailLabel", f.emailLabel || "")}
+      ${field("Email placeholder", "fields.emailPlaceholder", f.emailPlaceholder || "")}
+      ${field("Business label", "fields.businessLabel", f.businessLabel || "")}
+      ${field("Business placeholder", "fields.businessPlaceholder", f.businessPlaceholder || "")}
+      ${field("Message label", "fields.messageLabel", f.messageLabel || "")}
+      ${field("Message placeholder", "fields.messagePlaceholder", f.messagePlaceholder || "", "textarea")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Recent leads</h3>
+        <button type="button" class="btn btn-ghost" data-action="refresh-leads">Refresh leads</button>
+      </div>
+      <div id="contact-leads-panel"><p class="hint">Click Refresh leads to load submissions.</p></div>
+    </section>
+  `;
+}
+
 function renderContent(d) {
   const testimonials = (d.testimonials || [])
     .map(
@@ -696,7 +747,7 @@ function renderTracking(d) {
     <h3>Tracking &amp; ad pixels</h3>
     <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
       Google Tag Manager, Google Analytics, Google Ads, Meta (Facebook) Pixel, and custom scripts from any ad or AI platform.
-      Leave IDs blank until you have them — then <strong>Save changes</strong> and refresh the website (no rebuild needed).
+      Leave IDs blank until you have them - then <strong>Save changes</strong> and refresh the website (no rebuild needed).
     </p>
     <div class="grid">
       ${field("Enable all tracking", "enabled", d.enabled !== false, "checkbox")}
@@ -809,6 +860,9 @@ function handleAction(action, index) {
   } else if (action === "del-cert") {
     if (!confirm("Delete this certificate?")) return;
     d.items.splice(Number(index), 1);
+  } else if (action === "refresh-leads") {
+    loadContactLeads();
+    return;
   } else if (action === "sync-google-reviews") {
     syncGoogleReviews();
     return;
@@ -849,6 +903,38 @@ async function syncGoogleReviews() {
   }
 }
 
+async function loadContactLeads() {
+  const panel = document.getElementById("contact-leads-panel");
+  if (!panel) return;
+  panel.innerHTML = `<p class="hint">Loading leads…</p>`;
+  try {
+    const res = await api("list-leads");
+    const leads = res.leads || [];
+    if (!leads.length) {
+      panel.innerHTML = `<p class="empty">No leads yet. Submit the contact form on the website to test.</p>`;
+      return;
+    }
+    panel.innerHTML = leads
+      .slice(0, 40)
+      .map(
+        (l) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(l.name || "Lead")}</strong>
+          <span class="hint" style="margin:0">${escapeHtml(l.createdAt || "")}</span>
+        </div>
+        <p style="margin:.35rem 0;font-size:.9rem">
+          ${escapeHtml(l.phone || "")}${l.email ? " · " + escapeHtml(l.email) : ""}${l.business ? " · " + escapeHtml(l.business) : ""}
+        </p>
+        ${l.message ? `<p style="margin:0;color:var(--muted);font-size:.88rem">${escapeHtml(l.message)}</p>` : ""}
+      </div>`,
+      )
+      .join("");
+  } catch (e) {
+    panel.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load leads")}</p>`;
+  }
+}
+
 async function save() {
   if (!state.current || !state.data) return;
   if (state.data.navItems) {
@@ -860,7 +946,7 @@ async function save() {
     await api("save", { collection: state.current, data: state.data });
     setDirty(false);
     refreshPreview();
-    toast("Live on the website — preview refreshed");
+    toast("Live on the website - preview refreshed");
   } catch (e) {
     toast(e.message, "err");
   }

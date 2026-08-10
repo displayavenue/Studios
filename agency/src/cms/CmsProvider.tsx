@@ -28,6 +28,7 @@ import {
   type AwardsCms,
   type CertificationsCms,
 } from "../data/awardsCerts";
+import { fallbackContact, type ContactCms } from "../data/contactForm";
 import type { DetailPageContent } from "../data/catalogTypes";
 import {
   defaultTracking,
@@ -79,6 +80,7 @@ export type AgencyCms = {
   googleReviews: GoogleReviewsCms;
   awards: AwardsCms;
   certifications: CertificationsCms;
+  contact: ContactCms;
   tracking: typeof defaultTracking;
   ready: boolean;
 };
@@ -92,7 +94,7 @@ const fallbackHome: HomeCms = {
     primaryCta: "Book a free call",
     secondaryCta: "See our work",
     image: "/images/hero-agency-india.jpg",
-    imageAlt: "Indian digital agency team collaborating in a modern office — DisplayAvenue",
+    imageAlt: "Indian digital agency team collaborating in a modern office - DisplayAvenue",
   },
   trustLabel: "Trusted by growing businesses across India",
   servicesTitle: "What we help you with",
@@ -122,6 +124,7 @@ const defaults: AgencyCms = {
   googleReviews: fallbackGoogleReviews,
   awards: fallbackAwards,
   certifications: fallbackCertifications,
+  contact: fallbackContact,
   tracking: defaultTracking,
   ready: false,
 };
@@ -167,6 +170,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         googleReviews,
         awardsJson,
         certificationsJson,
+        contactJson,
       ] = await Promise.all([
         fetchJson<Partial<CompanyCms>>("company"),
         fetchJson<Partial<HomeCms>>("home"),
@@ -184,6 +188,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         fetchJson<GoogleReviewsCms>("google-reviews"),
         fetchJson<AwardsCms>("awards"),
         fetchJson<CertificationsCms>("certifications"),
+        fetchJson<ContactCms>("contact"),
       ]);
 
       if (cancelled) return;
@@ -257,6 +262,18 @@ export function CmsProvider({ children }: { children: ReactNode }) {
           items: certificationsJson?.items?.length
             ? certificationsJson.items
             : fallbackCertifications.items,
+        },
+        contact: {
+          ...fallbackContact,
+          ...(contactJson || {}),
+          fields: {
+            ...fallbackContact.fields,
+            ...(contactJson?.fields || {}),
+          },
+          seo: {
+            ...fallbackContact.seo,
+            ...(contactJson?.seo || {}),
+          },
         },
         tracking: mergeTracking(trackingJson),
         ready: true,

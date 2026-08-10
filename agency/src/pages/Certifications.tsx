@@ -85,7 +85,7 @@ export function Certifications() {
         <div className="acred__footer-cta">
           <div>
             <h3>Work with a certified team</h3>
-            <p>Google, Meta, HubSpot, and more — applied to your growth plan.</p>
+            <p>Google, Meta, HubSpot, and more - applied to your growth plan.</p>
           </div>
           <Link to="/contact" className="btn btn-primary">
             Book a free call

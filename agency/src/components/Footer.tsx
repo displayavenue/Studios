@@ -5,14 +5,13 @@ import { Icon } from "./Icon";
 import "./Footer.css";
 
 export function Footer() {
-  const { company, content, services, industries, packages, tools, resources, solutions, cases } =
-    useCms();
+  const { company, content, services, industries, packages, solutions, cases } = useCms();
 
-  const serviceLinks = services.slice(0, 24).map((s) => ({
+  const serviceLinks = services.slice(0, 10).map((s) => ({
     label: s.title,
     href: `/services/${s.slug}`,
   }));
-  const industryLinks = industries.map((s) => ({
+  const industryLinks = industries.slice(0, 10).map((s) => ({
     label: s.title,
     href: `/industries/${s.slug}`,
   }));
@@ -20,19 +19,11 @@ export function Footer() {
     label: s.title,
     href: `/packages/${s.slug}`,
   }));
-  const toolLinks = tools.map((s) => ({
-    label: s.title,
-    href: `/free-tools/${s.slug}`,
-  }));
-  const resourceLinks = resources.slice(0, 12).map((s) => ({
-    label: s.title,
-    href: `/resources/${s.slug}`,
-  }));
-  const solutionLinks = solutions.slice(0, 12).map((s) => ({
+  const solutionLinks = solutions.slice(0, 6).map((s) => ({
     label: s.title,
     href: `/solutions/${s.slug}`,
   }));
-  const caseLinks = cases.map((s) => ({
+  const caseLinks = cases.slice(0, 4).map((s) => ({
     label: s.title,
     href: `/case-studies/${s.slug}`,
   }));
@@ -40,47 +31,31 @@ export function Footer() {
   const footerCols = [
     {
       title: "Popular services",
-      links: [
-        ...serviceLinks.slice(0, 10),
-        { label: "All services →", href: "/services" },
-      ],
+      links: [...serviceLinks, { label: "All services →", href: "/services" }],
     },
     {
       title: "Industries",
-      links: [
-        ...industryLinks.slice(0, 10),
-        { label: "All industries →", href: "/industries" },
-      ],
+      links: [...industryLinks, { label: "All industries →", href: "/industries" }],
     },
     {
       title: "Packages & solutions",
       links: [
         ...packageLinks,
-        ...solutionLinks.slice(0, 6),
+        ...solutionLinks,
         { label: "All solutions →", href: "/solutions" },
-      ],
-    },
-    {
-      title: "Tools & resources",
-      links: [
-        ...toolLinks.slice(0, 8),
-        ...resourceLinks.slice(0, 6),
-        { label: "Free tools →", href: "/free-tools" },
-        { label: "All resources →", href: "/resources" },
-        { label: "Case studies →", href: "/case-studies" },
-        ...caseLinks,
       ],
     },
     {
       title: "Company",
       links: [
         { label: "Why DisplayAvenue", href: "/why-displayavenue" },
+        { label: "Case studies", href: "/case-studies" },
+        ...caseLinks,
         { label: "Awards", href: "/awards" },
         { label: "Certifications", href: "/certifications" },
         { label: "AI Platform", href: "/ai-platform" },
         { label: "Portfolio", href: "/portfolio" },
         { label: "Contact", href: "/contact" },
-        { label: "Get Free Proposal", href: "/contact" },
         { label: "Client Login", href: company.clientLogin },
         { label: "Privacy Policy", href: "/privacy" },
         { label: "Terms & Conditions", href: "/terms" },
@@ -111,13 +86,13 @@ export function Footer() {
       </div>
 
       <div className="footer-main">
-        <div className="container footer-grid footer-grid--dense">
+        <div className="container footer-grid footer-grid--lean">
           <div className="footer-brand">
             <Logo light />
             <p>
               DisplayAvenue helps Indian business owners get found on Google and
               Instagram, turn website visitors into enquiries, and grow with clear
-              marketing plans  -  in plain English.
+              marketing plans - in plain English.
             </p>
             <div className="footer-socials">
               <a href={company.socials.facebook} aria-label="Facebook">
@@ -186,18 +161,16 @@ export function Footer() {
           <div className="footer-guide__copy">
             <h4>Need a page, not a phone call?</h4>
             <p>
-              Use Services for what we do, Industries for your business type, Packages
-              for monthly plans, and Free tools for a quick check  -  all explained in
-              plain English on each page.
+              Use Services for what we do, Industries for your business type, and
+              Packages for monthly plans - all explained in plain English on each
+              page.
             </p>
           </div>
           <div className="footer-guide__links">
             <Link to="/services">Services</Link>
             <Link to="/industries">Industries</Link>
             <Link to="/packages">Packages</Link>
-            <Link to="/free-tools">Free tools</Link>
             <Link to="/case-studies">Case studies</Link>
-            <Link to="/resources">Guides</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </div>

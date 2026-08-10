@@ -132,7 +132,7 @@ function writeJson(string $path, $data): void {
   if ($json === false) respond(500, ['ok' => false, 'error' => 'Encode failed']);
   $tmp = $path . '.tmp';
   if (file_put_contents($tmp, $json . "\n") === false) {
-    respond(500, ['ok' => false, 'error' => 'Write failed — check folder permissions on /content']);
+    respond(500, ['ok' => false, 'error' => 'Write failed - check folder permissions on /content']);
   }
   rename($tmp, $path);
 }
@@ -238,6 +238,30 @@ switch ($action) {
       'data' => $result['data'],
       'hasPlacesKey' => true,
     ]);
+
+  case 'list-leads':
+    requireAuth($config);
+    $leadsDir = __DIR__ . '/.leads';
+    $indexPath = $leadsDir . '/index.json';
+    $leads = [];
+    if (is_file($indexPath)) {
+      $leads = json_decode((string)file_get_contents($indexPath), true) ?: [];
+    }
+    if (!is_array($leads)) $leads = [];
+    // Enrich with message from individual files when present
+    foreach ($leads as &$row) {
+      if (!is_array($row) || empty($row['id'])) continue;
+      $file = $leadsDir . '/' . $row['id'] . '.json';
+      if (!is_file($file)) continue;
+      $full = json_decode((string)file_get_contents($file), true);
+      if (is_array($full)) {
+        $row['message'] = (string)($full['message'] ?? '');
+        $row['email'] = (string)($full['email'] ?? ($row['email'] ?? ''));
+        $row['business'] = (string)($full['business'] ?? ($row['business'] ?? ''));
+      }
+    }
+    unset($row);
+    respond(200, ['ok' => true, 'leads' => $leads]);
 
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);

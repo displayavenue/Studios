@@ -25,7 +25,7 @@ export function AwardsCertsHome() {
           <h2 id="achome-title">{awards.homeTitle || "Certifications & awards"}</h2>
           <p className="achome__sub">
             {awards.homeSub ||
-              "Credentials our team earned from Google, Meta, HubSpot, and more — plus awards for real client results."}
+              "Credentials our team earned from Google, Meta, HubSpot, and more - plus awards for real client results."}
           </p>
           <div className="achome__cta">
             <Link to="/awards" className="btn btn-primary btn-sm">

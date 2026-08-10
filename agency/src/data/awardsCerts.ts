@@ -44,7 +44,7 @@ export type CertificationsCms = {
 export const fallbackAwards: AwardsCms = {
   enabled: true,
   title: "Awards we've won",
-  sub: "Recognition for results, delivery, and partner excellence — earned by the DisplayAvenue team.",
+  sub: "Recognition for results, delivery, and partner excellence - earned by the DisplayAvenue team.",
   seo: {
     title: "Awards | DisplayAvenue",
     description:
@@ -52,7 +52,7 @@ export const fallbackAwards: AwardsCms = {
   },
   homeTitle: "Certifications & awards",
   homeSub:
-    "Credentials our team earned from Google, Meta, HubSpot, and more — plus awards for real client results.",
+    "Credentials our team earned from Google, Meta, HubSpot, and more - plus awards for real client results.",
   homeAwardsLimit: 6,
   homeCertsLimit: 8,
   items: [],

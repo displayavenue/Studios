@@ -19,7 +19,7 @@ export function SolutionsMenu({ compact = false }: { compact?: boolean }) {
             End-to-End Digital Solutions to Grow Your Business
           </h3>
           <p className="section-sub" style={{ fontSize: "0.82rem" }}>
-            AI-driven strategies across marketing, product, and operations —
+            AI-driven strategies across marketing, product, and operations -
             tailored to your goals, size, and industry.
           </p>
           <ul className="value-list">
@@ -78,7 +78,7 @@ export function SolutionsMenu({ compact = false }: { compact?: boolean }) {
         <aside>
           <div className="mega-side-card">
             <h4>Need a Custom Solution Just for Your Business?</h4>
-            <p>Tell us your goals — we’ll design a roadmap around them.</p>
+            <p>Tell us your goals - we’ll design a roadmap around them.</p>
             <Link to="/contact" className="btn btn-primary btn-sm">
               Request Custom Solution
             </Link>

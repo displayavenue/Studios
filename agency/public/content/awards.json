@@ -1,19 +1,19 @@
 {
   "enabled": true,
   "title": "Awards we've won",
-  "sub": "Recognition for results, delivery, and partner excellence \u2014 earned by the DisplayAvenue team.",
+  "sub": "Recognition for results, delivery, and partner excellence - earned by the DisplayAvenue team.",
   "seo": {
     "title": "Awards | DisplayAvenue",
     "description": "19 awards won by the DisplayAvenue team for digital marketing, SEO, ads, AI, and client results."
   },
   "homeTitle": "Certifications & awards",
-  "homeSub": "Credentials our team earned from Google, Meta, HubSpot, and more \u2014 plus awards for real client results.",
+  "homeSub": "Credentials our team earned from Google, Meta, HubSpot, and more - plus awards for real client results.",
   "homeAwardsLimit": 6,
   "homeCertsLimit": 8,
   "items": [
     {
       "id": "award-01",
-      "title": "Best Digital Marketing Agency \u2014 West India",
+      "title": "Best Digital Marketing Agency - West India",
       "issuer": "Clutch Global",
       "year": "2025",
       "summary": "Recognized for client results across SEO, ads, and web growth.",
@@ -43,7 +43,7 @@
     },
     {
       "id": "award-04",
-      "title": "Fastest Growing Agency \u2014 Mumbai",
+      "title": "Fastest Growing Agency - Mumbai",
       "issuer": "Startup India Media",
       "year": "2024",
       "summary": "Rapid growth in client outcomes and team capability.",
@@ -83,7 +83,7 @@
     },
     {
       "id": "award-08",
-      "title": "Best Website Redesign \u2014 SMB",
+      "title": "Best Website Redesign - SMB",
       "issuer": "WebCraft India",
       "year": "2023",
       "summary": "Conversion-focused redesigns for growing businesses.",
@@ -173,7 +173,7 @@
     },
     {
       "id": "award-17",
-      "title": "Regional Partner of the Year \u2014 West",
+      "title": "Regional Partner of the Year - West",
       "issuer": "Partner Network India",
       "year": "2025",
       "summary": "Trusted delivery across Maharashtra & Gujarat.",
