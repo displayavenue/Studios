@@ -29,6 +29,7 @@
   --shadow: 0 4px 24px rgba(0, 11, 51, 0.06);
   --shadow-md: 0 8px 32px rgba(0, 11, 51, 0.1);
   --font: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
   --header-h: 72px;
   --announcement-h: 40px;
   --max: 1280px;

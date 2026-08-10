@@ -266,12 +266,14 @@ function renderHome(d) {
   return card(
     "Hero",
     `
-    ${field("Eyebrow", "hero.eyebrow", d.hero?.eyebrow)}
+    ${field("Brand / eyebrow", "hero.eyebrow", d.hero?.eyebrow)}
     ${field("Title (before accent)", "hero.titleBefore", d.hero?.titleBefore)}
     ${field("Title accent", "hero.titleAccent", d.hero?.titleAccent)}
     ${field("Lead", "hero.lead", d.hero?.lead, "textarea")}
     ${field("Primary CTA", "hero.primaryCta", d.hero?.primaryCta)}
     ${field("Secondary CTA", "hero.secondaryCta", d.hero?.secondaryCta)}
+    ${field("Hero image URL", "hero.image", d.hero?.image)}
+    ${field("Hero image alt", "hero.imageAlt", d.hero?.imageAlt)}
     ${field("Trust label", "trustLabel", d.trustLabel)}
     ${field("Services title", "servicesTitle", d.servicesTitle)}
     ${field("Services subtitle", "servicesSub", d.servicesSub)}

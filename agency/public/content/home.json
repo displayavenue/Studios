@@ -1,17 +1,19 @@
 {
   "seo": {
-    "title": "DisplayAvenue | AI-Powered Digital Growth Partner",
-    "description": "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, ecommerce, branding, and AI automation — under one roof."
+    "title": "DisplayAvenue | Get more customers online",
+    "description": "DisplayAvenue helps business owners get found on Google and Instagram, turn website visitors into enquiries, and grow with clear marketing plans  -  in plain English."
   },
   "hero": {
-    "eyebrow": "AI-POWERED DIGITAL GROWTH PARTNER",
-    "titleBefore": "Transform Your Business with",
-    "titleAccent": "AI-Powered Digital Growth.",
-    "lead": "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, and AI automation — under one roof.",
-    "primaryCta": "Book Free Consultation →",
-    "secondaryCta": "Get Free Proposal"
+    "eyebrow": "DisplayAvenue",
+    "titleBefore": "Get more customers from",
+    "titleAccent": "Google, Instagram & your website",
+    "lead": "We help business owners get found online and turn interest into real enquiries. Clear plans. Plain English. No jargon.",
+    "primaryCta": "Book a free call",
+    "secondaryCta": "See our work",
+    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=80",
+    "imageAlt": "Business owners reviewing growth results on a laptop"
   },
-  "trustLabel": "Trusted by 500+ businesses",
-  "servicesTitle": "End-to-End Digital Solutions Under One Roof.",
-  "servicesSub": "Marketing, product, creative, and AI — built to compound growth."
+  "trustLabel": "Trusted by growing businesses across India",
+  "servicesTitle": "What we help you with",
+  "servicesSub": "Simple services that bring more people to your business  -  and help them become customers."
 }

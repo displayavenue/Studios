@@ -70,20 +70,20 @@ export type AgencyCms = {
 
 const fallbackHome: HomeCms = {
   hero: {
-    eyebrow: "AI-POWERED DIGITAL GROWTH PARTNER",
-    titleBefore: "Transform Your Business with",
-    titleAccent: "AI-Powered Digital Growth.",
-    lead: "DisplayAvenue helps brands generate leads, build brands, and scale with digital marketing, web development, and AI automation — under one roof.",
-    primaryCta: "Book Free Consultation →",
-    secondaryCta: "Get Free Proposal",
+    eyebrow: "DisplayAvenue",
+    titleBefore: "Get more customers from",
+    titleAccent: "Google, Instagram & your website",
+    lead: "We help business owners get found online and turn interest into real enquiries. Clear plans. Plain English. No jargon.",
+    primaryCta: "Book a free call",
+    secondaryCta: "See our work",
   },
-  trustLabel: "Trusted by 500+ businesses",
-  servicesTitle: "End-to-End Digital Solutions Under One Roof.",
-  servicesSub: "Marketing, product, creative, and AI — built to compound growth.",
+  trustLabel: "Trusted by growing businesses across India",
+  servicesTitle: "What we help you with",
+  servicesSub: "Simple services that bring more people to your business  -  and help them become customers.",
 };
 
 const defaults: AgencyCms = {
-  company: { ...fallbackCompany, announcement: "New! AI-Powered Marketing Solutions are now available.", navItems: fallbackNav },
+  company: { ...fallbackCompany, announcement: "Free growth call for business owners  -  book in 2 minutes.", navItems: fallbackNav },
   home: fallbackHome,
   services: fallbackServices,
   industries: fallbackIndustries,
@@ -98,8 +98,8 @@ const defaults: AgencyCms = {
     testimonials: fallbackTestimonials,
     clientLogos: fallbackLogos,
     footerCta: {
-      title: "Ready to Transform Your Business?",
-      sub: "Book a free consultation or request a custom proposal today.",
+      title: "Ready for more customers?",
+      sub: "Book a free call. We’ll map a simple plan for your business.",
     },
   },
   tracking: defaultTracking,
