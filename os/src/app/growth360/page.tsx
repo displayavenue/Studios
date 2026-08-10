@@ -27,7 +27,11 @@ export default function Growth360WizardPage() {
 
   useEffect(() => {
     (async () => {
-      const res = await apiFetch<{ id: string; publicId: string }>("/api/growth360/start", { method: "POST" });
+      const res = await apiFetch<{ id: string; publicId: string }>("/api/growth360/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+      });
       if (res.ok) {
         setAssessmentId(res.data.id);
         setPublicId(res.data.publicId);
@@ -49,14 +53,15 @@ export default function Growth360WizardPage() {
     return val != null && val !== "";
   }, [answers, contact, isContact, multi, question]);
 
-  async function saveAnswer(key: string, value: unknown, nextStep: number) {
+  async function saveAnswers(patch: Record<string, unknown>) {
     if (!assessmentId) return;
     const res = await apiFetch("/api/growth360/answer", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ assessmentId, questionKey: key, answerValue: value, step: nextStep }),
+      body: JSON.stringify({ assessmentId, answers: patch, merge: true }),
     });
     if (!res.ok && res.notReady) setNotReady(true);
+    if (!res.ok && !res.notReady) throw new Error(res.error || "Failed to save answer");
   }
 
   async function onSelect(value: string) {
@@ -67,9 +72,12 @@ export default function Growth360WizardPage() {
     }
     setAnswers((a) => ({ ...a, [question.key]: value }));
     setLoading(true);
+    setError("");
     try {
-      await saveAnswer(question.key, value, step + 1);
+      await saveAnswers({ [question.key]: value });
       setStep((s) => s + 1);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to save");
     } finally {
       setLoading(false);
     }
@@ -82,7 +90,9 @@ export default function Growth360WizardPage() {
     try {
       if (!isContact && question) {
         const value = question.type === "multi" ? multi : answers[question.key];
-        await saveAnswer(question.key, value, step + 1);
+        const patch = { [question.key]: value };
+        setAnswers((a) => ({ ...a, ...patch }));
+        await saveAnswers(patch);
         setStep((s) => s + 1);
         return;
       }
@@ -92,7 +102,9 @@ export default function Growth360WizardPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           assessmentId,
-          ...contact,
+          name: contact.contactName,
+          email: contact.contactEmail,
+          phone: contact.contactWhatsapp,
           company: answers.company,
         }),
       });
@@ -100,7 +112,15 @@ export default function Growth360WizardPage() {
         if (res.notReady) setNotReady(true);
         throw new Error(res.error || "Failed to complete assessment");
       }
-      router.push(`/growth360/results/${res.data.publicId || publicId}`);
+      const pid = res.data.publicId || publicId;
+      if (pid && assessmentId) {
+        try {
+          sessionStorage.setItem(`g360:${pid}`, assessmentId);
+        } catch {
+          /* ignore */
+        }
+      }
+      router.push(`/growth360/results/${pid}`);
     } catch (e) {
       setAnalyzing(false);
       setError(e instanceof Error ? e.message : "Something went wrong");

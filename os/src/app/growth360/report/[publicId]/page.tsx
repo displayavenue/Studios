@@ -19,50 +19,37 @@ type Competitor = {
 };
 
 type ReportPayload = {
-  free: {
-    publicId: string;
-    assessmentId: string;
-    company?: string | null;
-    growthScore?: number | null;
-    biggestOpportunity?: string | null;
-    recommendedChannels?: string[];
-    competitors?: Competitor[];
-    contactName?: string | null;
-  };
-  full: {
-    analysis?: {
-      executiveSummary?: string;
-      businessOpportunity?: string;
-      keyChallenges?: string[];
-      keyOpportunities?: string[];
-      strategicPriorities?: string[];
-      channelExplanations?: { channel: string; explanation: string; role: string; priority: string; guidance: string }[];
-      competitorSummary?: {
-        competitiveSummary?: string;
-        opportunities?: string[];
-      };
-      coldCallScript?: {
-        opening?: string;
-        discoveryQuestions?: string[];
-        meetingBooking?: string;
-      };
-      planNarrative?: { overview?: string };
-    };
-    pricing?: {
-      adSpendInr?: number;
-      managementFeeInr?: number;
-      setupFeeInr?: number;
-      gstInr?: number;
-      totalInvestmentInr?: number;
-      managementFeePct?: number;
-    };
-    roi?: { scenarios?: { name: string; leads: number; customers: number; revenueInr: number; roiMultiple: number }[] };
-    plan90Day?: {
-      phase1?: { title: string; days: string; tasks: string[] };
-      phase2?: { title: string; days: string; tasks: string[] };
-      phase3?: { title: string; days: string; tasks: string[] };
-    };
+  publicId: string;
+  tier?: "free" | "full";
+  unlocked?: boolean;
+  growthScore?: number | null;
+  biggestOpportunity?: string | null;
+  recommendedChannels?: string[];
+  lead?: { id?: string; name?: string | null; email?: string | null; company?: string | null } | null;
+  pricingResult?: {
+    adSpendInr?: number;
+    managementFeeInr?: number;
+    setupFeeInr?: number;
+    gstInr?: number;
+    totalInvestmentInr?: number;
+    managementFeePct?: number;
   } | null;
+  roiResult?: { scenarios?: { name: string; leads: number; customers: number; revenueInr: number; roiMultiple: number }[] } | null;
+  plan90Day?: {
+    phase1?: { title: string; days: string; tasks: string[] };
+    phase2?: { title: string; days: string; tasks: string[] };
+    phase3?: { title: string; days: string; tasks: string[] };
+  } | null;
+  analysis?: {
+    executiveSummary?: string;
+    businessOpportunity?: string;
+    channelExplanations?: { channel: string; explanation: string; role: string; priority: string; guidance: string }[];
+    competitorSummary?: { competitiveSummary?: string; opportunities?: string[] };
+    coldCallScript?: { opening?: string; discoveryQuestions?: string[]; meetingBooking?: string };
+    planNarrative?: { overview?: string };
+  } | null;
+  competitors?: Competitor[];
+  assessmentId?: string;
 };
 
 declare global {
@@ -85,54 +72,37 @@ function loadRazorpay() {
 export default function Growth360ReportPage() {
   const params = useParams<{ publicId: string }>();
   const [data, setData] = useState<ReportPayload | null>(null);
+  const [assessmentId, setAssessmentId] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [notReady, setNotReady] = useState(false);
   const [bookingMsg, setBookingMsg] = useState("");
   const [paying, setPaying] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", whatsapp: "", preferredAt: "" });
 
+  async function loadReport() {
+    const res = await apiFetch<ReportPayload>(`/api/growth360/${params.publicId}`);
+    if (!res.ok) {
+      if (res.notReady) setNotReady(true);
+      else setError(res.error || "Not found");
+      return;
+    }
+    setData(res.data);
+    if (res.data.lead?.name) setForm((f) => ({ ...f, name: res.data.lead?.name || f.name }));
+    if (res.data.lead?.email) setForm((f) => ({ ...f, email: res.data.lead?.email || f.email }));
+  }
+
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const id = params.publicId;
-      let res = await apiFetch<ReportPayload>(`/api/growth360/report/${id}`);
-      if (!res.ok && res.notReady) {
-        res = await apiFetch<ReportPayload>(`/api/growth360/results/${id}`);
-      }
-      if (!res.ok && res.notReady) {
-        res = await apiFetch<ReportPayload>(`/api/growth360/${id}`);
-      }
-      if (cancelled) return;
-      if (!res.ok) {
-        if (res.notReady) setNotReady(true);
-        else setError(res.error || "Not found");
-        return;
-      }
-      const payload = res.data;
-      if (!payload.full && payload.free?.assessmentId) {
-        await apiFetch("/api/growth360/unlock", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ assessmentId: payload.free.assessmentId, unlock: true }),
-        });
-        const again = await apiFetch<ReportPayload>(`/api/growth360/report/${id}`);
-        if (!cancelled && again.ok) {
-          setData(again.data);
-          return;
-        }
-      }
-      setData(payload);
-      if (payload.free?.contactName) {
-        setForm((f) => ({ ...f, name: payload.free.contactName || f.name }));
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
+    try {
+      setAssessmentId(sessionStorage.getItem(`g360:${params.publicId}`));
+    } catch {
+      setAssessmentId(null);
+    }
+    loadReport();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.publicId]);
 
   async function startPayment() {
-    if (!data?.free?.assessmentId) return;
+    if (!data) return;
     setPaying(true);
     setBookingMsg("");
     try {
@@ -146,7 +116,9 @@ export default function Growth360ReportPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          assessmentId: data.free.assessmentId,
+          purpose: "strategy_call",
+          assessmentId: assessmentId || undefined,
+          publicId: params.publicId,
           name: form.name,
           email: form.email,
           whatsapp: form.whatsapp,
@@ -158,39 +130,50 @@ export default function Growth360ReportPage() {
       }
       const order = createRes.data;
 
-      async function book(paymentId: string) {
-        const bookRes = await apiFetch<{ message?: string }>("/api/payments/book", {
+      async function afterPaid(paymentId: string) {
+        await apiFetch(`/api/growth360/${params.publicId}/unlock`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ paymentId, unlocked: true }),
+        });
+
+        const slotStart = form.preferredAt
+          ? new Date(form.preferredAt).toISOString()
+          : new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+
+        const bookRes = await apiFetch<{ id?: string }>("/api/bookings/create", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            assessmentId: data!.free.assessmentId,
             paymentId,
+            assessmentId: assessmentId || undefined,
+            leadId: data!.lead?.id,
             name: form.name,
             email: form.email,
-            whatsapp: form.whatsapp,
-            preferredAt: form.preferredAt ? new Date(form.preferredAt).toISOString() : undefined,
+            phone: form.whatsapp,
+            slotStart,
           }),
         });
         if (!bookRes.ok) {
           if (bookRes.notReady) throw new Error("Module API not ready");
           throw new Error(bookRes.error || "Booking failed");
         }
-        setBookingMsg(bookRes.data.message || "Strategy call reserved.");
+        setBookingMsg("Strategy call reserved. We’ll confirm your slot shortly.");
+        await loadReport();
       }
 
       if (order.mock) {
-        const verifyRes = await apiFetch("/api/payments/verify", {
+        const verifyRes = await apiFetch<{ paymentId: string }>("/api/payments/verify", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            paymentId: order.paymentId,
             razorpay_order_id: order.orderId,
             razorpay_payment_id: `pay_mock_${Date.now()}`,
             razorpay_signature: "mock",
           }),
         });
         if (!verifyRes.ok) throw new Error(verifyRes.error || "Verify failed");
-        await book(order.paymentId);
+        await afterPaid(verifyRes.data.paymentId || order.paymentId);
         return;
       }
 
@@ -207,17 +190,17 @@ export default function Growth360ReportPage() {
           razorpay_payment_id: string;
           razorpay_signature: string;
         }) => {
-          const verifyRes = await apiFetch("/api/payments/verify", {
+          const verifyRes = await apiFetch<{ paymentId: string }>("/api/payments/verify", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...response, paymentId: order.paymentId }),
+            body: JSON.stringify(response),
           });
           if (!verifyRes.ok) {
             setBookingMsg("Payment verification failed. Please contact support.");
             return;
           }
           try {
-            await book(order.paymentId);
+            await afterPaid(verifyRes.data.paymentId || order.paymentId);
           } catch (e) {
             setBookingMsg(e instanceof Error ? e.message : "Booking failed");
           }
@@ -247,10 +230,10 @@ export default function Growth360ReportPage() {
   }
   if (!data) return <LoadingBlock label="Loading report…" />;
 
-  const { free, full } = data;
-  const competitors = asArray<Competitor>(free.competitors);
-  const pricing = full?.pricing;
-  const analysis = full?.analysis;
+  const unlocked = Boolean(data.unlocked || data.tier === "full");
+  const competitors = asArray<Competitor>(data.competitors);
+  const pricing = data.pricingResult;
+  const analysis = data.analysis;
 
   return (
     <main className="container" style={{ padding: "1.25rem 0 4rem" }}>
@@ -258,17 +241,17 @@ export default function Growth360ReportPage() {
         DisplayAvenue Growth360 Report
       </div>
 
-      {!full ? (
+      {!unlocked ? (
         <EmptyState
-          title="Full report not unlocked yet"
-          detail="Free results are ready. Unlock analysis will appear here once the report API returns full data."
+          title="Full report locked"
+          detail="Book the ₹99 strategy call below to unlock competitors, pricing, ROI, and the 90-day plan."
         />
       ) : (
         <>
           {analysis?.executiveSummary && <Section title="Executive Summary" body={analysis.executiveSummary} />}
           <Section
             title="Growth Score"
-            body={`Overall score: ${typeof free.growthScore === "number" ? free.growthScore : "—"}. Opportunity: ${free.biggestOpportunity || "—"}`}
+            body={`Overall score: ${typeof data.growthScore === "number" ? data.growthScore : "—"}. Opportunity: ${data.biggestOpportunity || "—"}`}
           />
           {analysis?.businessOpportunity && <Section title="Business Opportunity" body={analysis.businessOpportunity} />}
 
@@ -322,10 +305,10 @@ export default function Growth360ReportPage() {
             </section>
           )}
 
-          {asArray(full.roi?.scenarios).length > 0 && (
+          {asArray(data.roiResult?.scenarios).length > 0 && (
             <section className="panel" style={{ padding: "1.2rem", marginBottom: "1rem" }}>
               <h2 className="display" style={{ marginTop: 0, color: "var(--navy)" }}>ROI Scenarios</h2>
-              {full.roi!.scenarios!.map((s) => (
+              {data.roiResult!.scenarios!.map((s) => (
                 <p key={s.name}>
                   {s.name}: {s.leads} leads · {s.customers} customers · ₹{s.revenueInr.toLocaleString("en-IN")} · {s.roiMultiple}x
                 </p>
@@ -333,11 +316,11 @@ export default function Growth360ReportPage() {
             </section>
           )}
 
-          {full.plan90Day && (
+          {data.plan90Day && (
             <section className="panel" style={{ padding: "1.2rem", marginBottom: "1rem" }}>
               <h2 className="display" style={{ marginTop: 0, color: "var(--navy)" }}>90-Day Growth Plan</h2>
               {analysis?.planNarrative?.overview && <p>{analysis.planNarrative.overview}</p>}
-              {[full.plan90Day.phase1, full.plan90Day.phase2, full.plan90Day.phase3].filter(Boolean).map((phase) => (
+              {[data.plan90Day.phase1, data.plan90Day.phase2, data.plan90Day.phase3].filter(Boolean).map((phase) => (
                 <div key={phase!.days} style={{ marginTop: "0.8rem" }}>
                   <strong>{phase!.title} · {phase!.days}</strong>
                   <ul>{asArray<string>(phase!.tasks).map((t) => <li key={t}>{t}</li>)}</ul>
@@ -361,7 +344,7 @@ export default function Growth360ReportPage() {
           className="btn"
           style={{ marginTop: "1rem", background: "white", color: "var(--navy)", fontWeight: 800, width: "100%", minHeight: 44 }}
           onClick={startPayment}
-          disabled={paying || !form.name || !form.email || form.whatsapp.length < 10 || !data.free?.assessmentId}
+          disabled={paying || !form.name || !form.email || form.whatsapp.length < 10}
         >
           {paying ? "Processing…" : "RESERVE MY ₹99 STRATEGY CALL →"}
         </button>

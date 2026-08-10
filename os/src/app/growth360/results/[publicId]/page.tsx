@@ -13,17 +13,20 @@ type Competitor = {
   scores?: { overallScore?: number | null } | null;
 };
 
-type FreeResults = {
+type ResultsPayload = {
   publicId: string;
-  assessmentId?: string;
-  company?: string | null;
+  tier?: "free" | "full";
+  unlocked?: boolean;
   growthScore?: number | null;
   biggestOpportunity?: string | null;
   recommendedChannels?: string[];
+  lead?: { name?: string | null; company?: string | null } | null;
+  teaser?: { competitorCount?: number; hasPricing?: boolean; hasRoi?: boolean; hasPlan?: boolean };
   competitors?: Competitor[];
-  competitorSummary?: { competitiveSummary?: string; opportunities?: string[] } | null;
-  unlocked?: boolean;
-  aiStatusMessage?: string | null;
+  analysis?: {
+    competitorSummary?: { opportunities?: string[] };
+    keyOpportunities?: string[];
+  } | null;
 };
 
 const channelLabel: Record<string, string> = {
@@ -38,31 +41,19 @@ const channelLabel: Record<string, string> = {
 
 export default function Growth360ResultsPage() {
   const params = useParams<{ publicId: string }>();
-  const [data, setData] = useState<FreeResults | null>(null);
+  const [data, setData] = useState<ResultsPayload | null>(null);
   const [error, setError] = useState("");
   const [notReady, setNotReady] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const id = params.publicId;
-      const primary = await apiFetch<{ free?: FreeResults } | FreeResults>(`/api/growth360/results/${id}`);
-      if (primary.ok) {
-        const payload = primary.data as { free?: FreeResults } & FreeResults;
-        setData(payload.free || payload);
+      const res = await apiFetch<ResultsPayload>(`/api/growth360/${params.publicId}`);
+      if (res.ok) {
+        setData(res.data);
         return;
       }
-      if (primary.notReady) {
-        const fallback = await apiFetch<{ free?: FreeResults } | FreeResults>(`/api/growth360/${id}`);
-        if (fallback.ok) {
-          const payload = fallback.data as { free?: FreeResults } & FreeResults;
-          setData(payload.free || payload);
-          return;
-        }
-        if (fallback.notReady) setNotReady(true);
-        else setError(fallback.error || "Not found");
-        return;
-      }
-      setError(primary.error || "Not found");
+      if (res.notReady) setNotReady(true);
+      else setError(res.error || "Not found");
     })();
   }, [params.publicId]);
 
@@ -84,8 +75,17 @@ export default function Growth360ResultsPage() {
 
   const channels = asArray<string>(data.recommendedChannels);
   const competitors = asArray<Competitor>(data.competitors).slice(0, 5);
-  const gaps = asArray<string>(data.competitorSummary?.opportunities);
+  const gaps = asArray<string>(
+    data.analysis?.competitorSummary?.opportunities || data.analysis?.keyOpportunities,
+  );
   const score = typeof data.growthScore === "number" ? data.growthScore : null;
+  const company = data.lead?.company || data.lead?.name || "Your business";
+  const competitorCount =
+    competitors.length > 0
+      ? competitors.length
+      : typeof data.teaser?.competitorCount === "number"
+        ? data.teaser.competitorCount
+        : 0;
 
   return (
     <main className="container" style={{ padding: "1.25rem 0 3.5rem" }}>
@@ -93,14 +93,8 @@ export default function Growth360ResultsPage() {
         DisplayAvenue Growth360
       </div>
 
-      {data.aiStatusMessage && (
-        <div className="panel fade-up" style={{ padding: "0.9rem 1rem", marginBottom: "1rem", color: "var(--navy-2)" }}>
-          {data.aiStatusMessage}
-        </div>
-      )}
-
       <section className="panel fade-up" style={{ padding: "1.4rem", marginBottom: "1rem" }}>
-        <p style={{ margin: 0, color: "var(--muted)", fontWeight: 600 }}>{data.company || "Your business"}</p>
+        <p style={{ margin: 0, color: "var(--muted)", fontWeight: 600 }}>{company}</p>
         <h1 className="display" style={{ margin: "0.35rem 0 1rem", color: "var(--navy)", fontSize: "2rem" }}>
           Your Growth Score
         </h1>
@@ -143,8 +137,12 @@ export default function Growth360ResultsPage() {
 
       <section className="panel fade-up" style={{ padding: "1.4rem", marginBottom: "1rem" }}>
         <h2 className="display" style={{ margin: "0 0 0.35rem", color: "var(--navy)" }}>Competitive landscape</h2>
-        {competitors.length === 0 ? (
+        {competitorCount === 0 ? (
           <p style={{ margin: 0, color: "var(--muted)" }}>No competitors matched yet.</p>
+        ) : competitors.length === 0 ? (
+          <p style={{ margin: 0, color: "var(--muted)" }}>
+            We identified {competitorCount} competitor{competitorCount === 1 ? "" : "s"} in the catalog. Unlock the full report to see names and scores.
+          </p>
         ) : (
           <>
             <p style={{ margin: "0 0 1rem", color: "var(--muted)" }}>
@@ -170,7 +168,7 @@ export default function Growth360ResultsPage() {
       <section className="panel fade-up" style={{ padding: "1.4rem", marginBottom: "1rem" }}>
         <h2 className="display" style={{ margin: "0 0 0.5rem", color: "var(--navy)" }}>Gaps to close</h2>
         {gaps.length === 0 ? (
-          <p style={{ margin: 0, color: "var(--muted)" }}>No gap analysis yet.</p>
+          <p style={{ margin: 0, color: "var(--muted)" }}>No gap analysis in free results yet.</p>
         ) : (
           <ul style={{ margin: 0, paddingLeft: "1.1rem", display: "grid", gap: "0.45rem" }}>
             {gaps.slice(0, 5).map((g) => (

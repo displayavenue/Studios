@@ -15,23 +15,49 @@ type Lead = {
 
 export default function SalesPage() {
   const [leads, setLeads] = useState<Lead[] | null>(null);
+  const [pipelineCounts, setPipelineCounts] = useState<Record<string, number> | null>(null);
   const [notReady, setNotReady] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     (async () => {
-      const res = await apiFetch<Lead[] | { leads: Lead[] }>("/api/crm/leads");
-      if (!res.ok) {
-        if (res.notReady) setNotReady(true);
-        else setError(res.error || "Failed to load sales data");
+      const [pipe, leadsRes] = await Promise.all([
+        apiFetch<{ counts: Record<string, number>; total: number }>("/api/crm/pipeline"),
+        apiFetch<{ leads: Lead[] } | Lead[]>("/api/crm/leads"),
+      ]);
+
+      if ((!pipe.ok && pipe.notReady) && (!leadsRes.ok && leadsRes.notReady)) {
+        setNotReady(true);
         setLeads([]);
         return;
       }
-      setLeads(Array.isArray(res.data) ? res.data : asArray<Lead>(res.data.leads));
+      if (!pipe.ok && !leadsRes.ok) {
+        setError(pipe.error || leadsRes.error || "Failed to load sales data");
+        setLeads([]);
+        return;
+      }
+      if (pipe.ok) setPipelineCounts(pipe.data.counts);
+      if (leadsRes.ok) {
+        setLeads(Array.isArray(leadsRes.data) ? leadsRes.data : asArray<Lead>(leadsRes.data.leads));
+      } else {
+        setLeads([]);
+      }
     })();
   }, []);
 
   const stats = useMemo(() => {
+    if (pipelineCounts) {
+      return {
+        total: Object.values(pipelineCounts).reduce((a, b) => a + b, 0),
+        qualified:
+          (pipelineCounts.QUALIFIED || 0) +
+          (pipelineCounts.STRATEGY_CALL || 0) +
+          (pipelineCounts.PROPOSAL || 0) +
+          (pipelineCounts.NEGOTIATION || 0),
+        won: pipelineCounts.WON || 0,
+        lost: pipelineCounts.LOST || 0,
+      };
+    }
     const list = leads || [];
     return {
       total: list.length,
@@ -41,7 +67,7 @@ export default function SalesPage() {
       won: list.filter((l) => l.pipelineStatus === "WON").length,
       lost: list.filter((l) => l.pipelineStatus === "LOST").length,
     };
-  }, [leads]);
+  }, [leads, pipelineCounts]);
 
   return (
     <main className="container" style={{ padding: "1.25rem 0 3rem" }}>
@@ -72,7 +98,12 @@ export default function SalesPage() {
                       <div style={{ fontWeight: 800 }}>{lead.name}</div>
                       <div style={{ color: "var(--muted)", fontSize: ".9rem" }}>{lead.company || "—"}</div>
                     </div>
-                    <div style={{ fontWeight: 700 }}>{lead.pipelineStatus || "NEW"}</div>
+                    <div style={{ display: "flex", gap: ".5rem", alignItems: "center", flexWrap: "wrap" }}>
+                      <div style={{ fontWeight: 700 }}>{lead.pipelineStatus || "NEW"}</div>
+                      <Link href={`/app/crm`} className="btn btn-secondary" style={{ padding: ".45rem .8rem", minHeight: 44 }}>
+                        Open CRM
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </div>

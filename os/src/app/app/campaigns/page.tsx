@@ -16,6 +16,7 @@ type Campaign = {
 
 export default function CampaignsPage() {
   const [campaigns, setCampaigns] = useState<Campaign[] | null>(null);
+  const [orgId, setOrgId] = useState<string>("");
   const [notReady, setNotReady] = useState(false);
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
@@ -23,7 +24,7 @@ export default function CampaignsPage() {
   const [form, setForm] = useState({ name: "", objective: "", platform: "meta", dailyBudgetInr: "" });
 
   async function load() {
-    const res = await apiFetch<Campaign[] | { campaigns: Campaign[] }>("/api/campaigns");
+    const res = await apiFetch<{ campaigns: Campaign[] } | Campaign[]>("/api/campaigns");
     if (!res.ok) {
       if (res.notReady) setNotReady(true);
       else setError(res.error || "Failed to load campaigns");
@@ -35,11 +36,29 @@ export default function CampaignsPage() {
   }
 
   useEffect(() => {
-    load();
+    (async () => {
+      const me = await apiFetch<{
+        organizationId?: string | null;
+        memberships?: { organizationId: string; organization?: { type?: string } }[];
+      }>("/api/auth/me");
+      if (me.ok) {
+        const internal =
+          me.data.memberships?.find((m) => m.organization?.type === "INTERNAL")?.organizationId ||
+          me.data.organizationId ||
+          me.data.memberships?.[0]?.organizationId ||
+          "";
+        setOrgId(internal || "");
+      }
+      await load();
+    })();
   }, []);
 
   async function onCreate(e: FormEvent) {
     e.preventDefault();
+    if (!orgId) {
+      setError("No organization available for campaign create.");
+      return;
+    }
     setSaving(true);
     setMsg("");
     setError("");
@@ -47,6 +66,7 @@ export default function CampaignsPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        organizationId: orgId,
         name: form.name,
         objective: form.objective || undefined,
         platform: form.platform,
@@ -99,13 +119,13 @@ export default function CampaignsPage() {
                 <input className="input" inputMode="numeric" value={form.dailyBudgetInr} onChange={(e) => setForm({ ...form, dailyBudgetInr: e.target.value })} placeholder="Optional" />
               </label>
             </div>
-            <button className="btn btn-primary" disabled={saving || !form.name.trim()} style={{ justifySelf: "start", minHeight: 44 }}>
+            <button className="btn btn-primary" disabled={saving || !form.name.trim() || !orgId} style={{ justifySelf: "start", minHeight: 44 }}>
               {saving ? "Saving…" : "Create draft"}
             </button>
           </form>
 
           {campaigns && campaigns.length === 0 ? (
-            <EmptyState title="No campaigns yet" detail="Create a draft above once the campaigns API is live." />
+            <EmptyState title="No campaigns yet" detail="Create a draft above once you’re ready." />
           ) : (
             <section className="panel" style={{ padding: "1.1rem" }}>
               <h2 className="display" style={{ marginTop: 0, color: "var(--navy)", fontSize: "1.2rem" }}>All campaigns</h2>

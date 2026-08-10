@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { apiFetch, asArray } from "@/lib/clientApi";
+import { apiFetch } from "@/lib/clientApi";
 import { EmptyState, ModuleNotReady } from "@/components/ModuleState";
 
 type Report = {
@@ -9,27 +9,58 @@ type Report = {
   title: string;
   type?: string;
   status?: string;
-  periodStart?: string | null;
-  periodEnd?: string | null;
 };
 
 export default function ReportsPage() {
   const [reports, setReports] = useState<Report[] | null>(null);
+  const [orgId, setOrgId] = useState("");
   const [notReady, setNotReady] = useState(false);
   const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const res = await apiFetch<Report[] | { reports: Report[] }>("/api/reports");
-      if (!res.ok) {
-        if (res.notReady) setNotReady(true);
-        else setError(res.error || "Failed to load reports");
-        setReports([]);
-        return;
+      const me = await apiFetch<{
+        organizationId?: string | null;
+        memberships?: { organizationId: string }[];
+      }>("/api/auth/me");
+      if (me.ok) {
+        setOrgId(me.data.organizationId || me.data.memberships?.[0]?.organizationId || "");
       }
-      setReports(Array.isArray(res.data) ? res.data : asArray<Report>(res.data.reports));
+
+      // No dedicated list route yet — keep honest empty unless generate returns one
+      setReports([]);
     })();
   }, []);
+
+  async function generate() {
+    if (!orgId) {
+      setError("No organization available.");
+      return;
+    }
+    setBusy(true);
+    setMsg("");
+    setError("");
+    const res = await apiFetch<{ report?: Report; id?: string; title?: string }>("/api/reports/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ organizationId: orgId }),
+    });
+    setBusy(false);
+    if (!res.ok) {
+      if (res.notReady) setNotReady(true);
+      else setError(res.error || "Generate failed");
+      return;
+    }
+    const report = res.data.report || (res.data.id ? (res.data as Report) : null);
+    if (report?.id) {
+      setReports((prev) => [report, ...(prev || [])]);
+      setMsg("Monthly report generated.");
+    } else {
+      setMsg("Report generate completed.");
+    }
+  }
 
   return (
     <main className="container" style={{ padding: "1.25rem 0 3rem" }}>
@@ -38,15 +69,25 @@ export default function ReportsPage() {
 
       {notReady && <ModuleNotReady moduleName="Reports" />}
       {error && !notReady && <p style={{ color: "var(--danger)" }}>{error}</p>}
+      {msg && <p style={{ color: "var(--ok)", fontWeight: 700 }}>{msg}</p>}
+
+      {!notReady && (
+        <div style={{ marginBottom: "1rem" }}>
+          <button className="btn btn-primary" style={{ minHeight: 44 }} disabled={busy || !orgId} onClick={generate}>
+            {busy ? "Generating…" : "Generate monthly report"}
+          </button>
+        </div>
+      )}
+
       {!notReady && reports && reports.length === 0 && !error && (
-        <EmptyState title="No reports yet" detail="Generated PDFs and monthly packs will list here." />
+        <EmptyState title="No reports yet" detail="Generated PDFs and monthly packs will list here after you generate one." />
       )}
       {!notReady && reports && reports.length > 0 && (
         <section className="panel" style={{ padding: "1.1rem" }}>
           {reports.map((r) => (
             <div key={r.id} style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", borderTop: "1px solid var(--line)", paddingTop: ".7rem" }}>
               <div>
-                <div style={{ fontWeight: 800 }}>{r.title}</div>
+                <div style={{ fontWeight: 800 }}>{r.title || r.id}</div>
                 <div style={{ color: "var(--muted)", fontSize: ".9rem" }}>{r.type || "report"}</div>
               </div>
               <div style={{ fontWeight: 700 }}>{r.status || "draft"}</div>

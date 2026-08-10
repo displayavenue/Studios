@@ -12,6 +12,7 @@ const schema = z.object({
   purpose: z.enum(["strategy_call", "proposal"]),
   organizationId: z.string().optional(),
   assessmentId: z.string().optional(),
+  publicId: z.string().optional(),
   proposalId: z.string().optional(),
   name: z.string().min(2).optional(),
   email: z.string().email().optional(),
@@ -28,9 +29,14 @@ export async function POST(req: Request) {
       if (!body.name || !body.email || !body.whatsapp) {
         return jsonError("name, email, and whatsapp are required for strategy_call", 400);
       }
+      let assessmentId = body.assessmentId;
+      if (!assessmentId && body.publicId) {
+        const assessment = await prisma.assessment.findUnique({ where: { publicId: body.publicId } });
+        assessmentId = assessment?.id;
+      }
       const order = await createStrategyCallOrder({
         organizationId: orgId,
-        assessmentId: body.assessmentId,
+        assessmentId,
         name: body.name,
         email: body.email,
         whatsapp: body.whatsapp,

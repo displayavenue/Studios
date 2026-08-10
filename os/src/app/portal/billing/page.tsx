@@ -19,16 +19,10 @@ export default function PortalBillingPage() {
 
   useEffect(() => {
     (async () => {
-      const res = await apiFetch<{ invoices?: Invoice[] } | Invoice[]>("/api/portal/billing");
+      const res = await apiFetch<{ invoices?: Invoice[] } | Invoice[]>("/api/billing/invoices");
       if (!res.ok) {
-        if (res.notReady) {
-          const fallback = await apiFetch<{ invoices?: Invoice[] } | Invoice[]>("/api/billing");
-          if (fallback.ok) {
-            setInvoices(Array.isArray(fallback.data) ? fallback.data : asArray<Invoice>(fallback.data.invoices));
-            return;
-          }
-          setNotReady(true);
-        } else setError(res.error || "Failed to load billing");
+        if (res.notReady) setNotReady(true);
+        else setError(res.error || "Failed to load billing");
         setInvoices([]);
         return;
       }

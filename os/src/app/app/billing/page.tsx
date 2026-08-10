@@ -12,38 +12,55 @@ type Invoice = {
   dueAt?: string | null;
 };
 
-type Payment = {
-  id: string;
-  amountInr?: number;
-  purpose?: string;
-  status?: string;
-  createdAt?: string;
+type Summary = {
+  payments?: {
+    paidInr?: number;
+    paidCount?: number;
+    pendingInr?: number;
+    pendingCount?: number;
+  };
+  invoices?: {
+    totalCount?: number;
+    totalAmountInr?: number;
+  };
 };
 
 export default function BillingPage() {
+  const [summary, setSummary] = useState<Summary | null>(null);
   const [invoices, setInvoices] = useState<Invoice[] | null>(null);
-  const [payments, setPayments] = useState<Payment[]>([]);
   const [notReady, setNotReady] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     (async () => {
-      const res = await apiFetch<{ invoices?: Invoice[]; payments?: Payment[] } | Invoice[]>("/api/billing");
-      if (!res.ok) {
-        if (res.notReady) setNotReady(true);
-        else setError(res.error || "Failed to load billing");
+      const sum = await apiFetch<Summary>("/api/billing/summary");
+      const inv = await apiFetch<{ invoices: Invoice[] } | Invoice[]>("/api/billing/invoices");
+
+      if ((!sum.ok && sum.notReady) && (!inv.ok && inv.notReady)) {
+        setNotReady(true);
         setInvoices([]);
         return;
       }
-      if (Array.isArray(res.data)) {
-        setInvoices(res.data);
-        setPayments([]);
+      if (!sum.ok && !inv.ok) {
+        setError(sum.error || inv.error || "Failed to load billing");
+        setInvoices([]);
+        return;
+      }
+      if (sum.ok) setSummary(sum.data);
+      if (inv.ok) {
+        setInvoices(Array.isArray(inv.data) ? inv.data : asArray<Invoice>(inv.data.invoices));
       } else {
-        setInvoices(asArray<Invoice>(res.data.invoices));
-        setPayments(asArray<Payment>(res.data.payments));
+        setInvoices([]);
       }
     })();
   }, []);
+
+  const invoiceCount = invoices?.length ?? 0;
+  const hasSummaryNumbers =
+    summary &&
+    ((summary.payments?.paidCount || 0) > 0 ||
+      (summary.payments?.pendingCount || 0) > 0 ||
+      (summary.invoices?.totalCount || 0) > 0);
 
   return (
     <main className="container" style={{ padding: "1.25rem 0 3rem" }}>
@@ -53,12 +70,20 @@ export default function BillingPage() {
       {notReady && <ModuleNotReady moduleName="Billing" />}
       {error && !notReady && <p style={{ color: "var(--danger)" }}>{error}</p>}
 
-      {!notReady && invoices && invoices.length === 0 && payments.length === 0 && !error && (
+      {!notReady && summary && (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(150px,1fr))", gap: ".75rem", marginBottom: "1.25rem" }}>
+          <Stat label="Paid" value={`₹${Math.round(summary.payments?.paidInr || 0).toLocaleString("en-IN")}`} sub={`${summary.payments?.paidCount || 0} payments`} />
+          <Stat label="Pending" value={`₹${Math.round(summary.payments?.pendingInr || 0).toLocaleString("en-IN")}`} sub={`${summary.payments?.pendingCount || 0} payments`} />
+          <Stat label="Invoices" value={String(summary.invoices?.totalCount || 0)} sub={`₹${Math.round(summary.invoices?.totalAmountInr || 0).toLocaleString("en-IN")}`} />
+        </div>
+      )}
+
+      {!notReady && invoices && invoiceCount === 0 && !hasSummaryNumbers && !error && (
         <EmptyState title="No invoices yet" detail="Client invoices and strategy-call payments will appear here." />
       )}
 
-      {!notReady && invoices && invoices.length > 0 && (
-        <section className="panel" style={{ padding: "1.1rem", marginBottom: "1rem" }}>
+      {!notReady && invoices && invoiceCount > 0 && (
+        <section className="panel" style={{ padding: "1.1rem" }}>
           <h2 className="display" style={{ marginTop: 0, color: "var(--navy)", fontSize: "1.2rem" }}>Invoices</h2>
           {invoices.map((inv) => (
             <div key={inv.id} style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", borderTop: "1px solid var(--line)", paddingTop: ".7rem" }}>
@@ -76,26 +101,16 @@ export default function BillingPage() {
           ))}
         </section>
       )}
-
-      {!notReady && payments.length > 0 && (
-        <section className="panel" style={{ padding: "1.1rem" }}>
-          <h2 className="display" style={{ marginTop: 0, color: "var(--navy)", fontSize: "1.2rem" }}>Payments</h2>
-          {payments.map((p) => (
-            <div key={p.id} style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", borderTop: "1px solid var(--line)", paddingTop: ".7rem" }}>
-              <div>
-                <div style={{ fontWeight: 800 }}>{p.purpose || "Payment"}</div>
-                <div style={{ color: "var(--muted)", fontSize: ".9rem" }}>{p.createdAt ? new Date(p.createdAt).toLocaleString("en-IN") : "—"}</div>
-              </div>
-              <div style={{ textAlign: "right" }}>
-                <div style={{ fontWeight: 800 }}>
-                  {typeof p.amountInr === "number" ? `₹${p.amountInr.toLocaleString("en-IN")}` : "—"}
-                </div>
-                <div style={{ color: "var(--muted)", fontSize: ".85rem" }}>{p.status || "—"}</div>
-              </div>
-            </div>
-          ))}
-        </section>
-      )}
     </main>
+  );
+}
+
+function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
+  return (
+    <div className="panel" style={{ padding: "1rem" }}>
+      <div style={{ color: "var(--muted)", fontSize: ".82rem" }}>{label}</div>
+      <div style={{ fontWeight: 800, fontSize: "1.25rem", color: "var(--navy)" }}>{value}</div>
+      {sub && <div style={{ color: "var(--muted)", fontSize: ".8rem" }}>{sub}</div>}
+    </div>
   );
 }
