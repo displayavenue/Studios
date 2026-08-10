@@ -48,7 +48,7 @@ const plainServices = [
   },
 ];
 
-const HERO_IMAGE_FALLBACK = "/images/hero-india.jpg";
+const HERO_IMAGE_FALLBACK = "/images/hero-agency-india.jpg";
 
 export function Home() {
   const { company, home, content } = useCms();

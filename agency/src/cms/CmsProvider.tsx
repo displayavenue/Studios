@@ -83,7 +83,7 @@ const fallbackHome: HomeCms = {
     lead: "We help business owners get found online and turn interest into real enquiries. Clear plans. Plain English. No jargon.",
     primaryCta: "Book a free call",
     secondaryCta: "See our work",
-    image: "/images/hero-india.jpg",
+    image: "/images/hero-agency-india.jpg",
     imageAlt: "Indian digital agency team collaborating in a modern office — DisplayAvenue",
   },
   trustLabel: "Trusted by growing businesses across India",
