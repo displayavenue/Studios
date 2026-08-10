@@ -190,7 +190,9 @@ export function Header() {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="mobile-link"
+                  className={`mobile-link${
+                    item.href === "/why-displayavenue" ? " mobile-link--why" : ""
+                  }`}
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
@@ -222,6 +224,21 @@ export function Header() {
             );
           })}
           <div className="mobile-cta">
+            <Link
+              to="/why-displayavenue"
+              className="btn btn-outline"
+              onClick={() => setOpen(false)}
+            >
+              Why DisplayAvenue
+            </Link>
+            <a
+              className="btn btn-primary"
+              href="/catalogue/DisplayAvenue-Catalogue.pdf"
+              download="DisplayAvenue-Catalogue.pdf"
+              onClick={() => setOpen(false)}
+            >
+              Download Catalogue
+            </a>
             <Link
               to="/contact"
               className="btn btn-primary"

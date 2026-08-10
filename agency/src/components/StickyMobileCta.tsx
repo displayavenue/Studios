@@ -1,26 +1,22 @@
-import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import "./StickyMobileCta.css";
 
-/** Mobile sticky conversion bar: Call | WhatsApp | Strategy */
+const CATALOGUE_HREF = "/catalogue/DisplayAvenue-Catalogue.pdf";
+
+/** Mobile sticky bar: single Catalogue download CTA */
 export function StickyMobileCta() {
-  const { company } = useCms();
+  useCms();
   return (
-    <nav className="sticky-mcta" aria-label="Quick contact">
-      <a className="sticky-mcta__btn sticky-mcta__btn--call" href={company.phoneHref}>
-        Call
-      </a>
+    <nav className="sticky-mcta" aria-label="Catalogue download">
       <a
-        className="sticky-mcta__btn sticky-mcta__btn--wa"
-        href={company.whatsappHref}
+        className="sticky-mcta__btn sticky-mcta__btn--catalogue"
+        href={CATALOGUE_HREF}
+        download="DisplayAvenue-Catalogue.pdf"
         target="_blank"
         rel="noreferrer"
       >
-        WhatsApp
+        Catalogue
       </a>
-      <Link className="sticky-mcta__btn sticky-mcta__btn--cta" to="/contact">
-        Get Strategy
-      </Link>
     </nav>
   );
 }

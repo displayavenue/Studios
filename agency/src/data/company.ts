@@ -55,6 +55,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { label: "Home", href: "/", mega: false },
+  { label: "Why DisplayAvenue", href: "/why-displayavenue", mega: false },
   { label: "What We Do", href: "/services", mega: "whatWeDo" },
   { label: "Industries", href: "/industries", mega: "industries" },
   { label: "Industry Solutions", href: "/industry-solutions", mega: false },
@@ -65,5 +66,4 @@ export const navItems: NavItem[] = [
   { label: "Case Studies", href: "/case-studies", mega: false },
   { label: "Portfolio", href: "/portfolio", mega: false },
   { label: "Resources", href: "/resources", mega: false },
-  { label: "Why DisplayAvenue", href: "/why-displayavenue", mega: false },
 ];

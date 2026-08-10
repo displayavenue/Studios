@@ -52,6 +52,11 @@
       "mega": false
     },
     {
+      "label": "Why DisplayAvenue",
+      "href": "/why-displayavenue",
+      "mega": false
+    },
+    {
       "label": "What We Do",
       "href": "/services",
       "mega": "whatWeDo"
@@ -99,11 +104,6 @@
     {
       "label": "Resources",
       "href": "/resources",
-      "mega": false
-    },
-    {
-      "label": "Why DisplayAvenue",
-      "href": "/why-displayavenue",
       "mega": false
     }
   ]

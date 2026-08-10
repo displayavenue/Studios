@@ -5,15 +5,15 @@
 @media (max-width: 768px) {
   .sticky-mcta {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.35fr;
-    gap: 0.4rem;
+    grid-template-columns: 1fr;
+    gap: 0;
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 85;
-    padding: 0.55rem 0.65rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
-    background: rgba(5, 10, 31, 0.94);
+    padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(5, 10, 31, 0.96);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -21,32 +21,24 @@
   .sticky-mcta__btn {
     display: grid;
     place-items: center;
-    min-height: 44px;
-    border-radius: 10px;
-    font-size: 0.82rem;
-    font-weight: 700;
+    min-height: 48px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
     text-align: center;
+    text-decoration: none;
   }
 
-  .sticky-mcta__btn--call {
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-  }
-
-  .sticky-mcta__btn--wa {
-    background: #25d366;
-    color: #fff;
-  }
-
-  .sticky-mcta__btn--cta {
+  .sticky-mcta__btn--catalogue {
     background: var(--blue);
     color: #fff;
+    box-shadow: 0 8px 20px rgba(31, 111, 235, 0.35);
   }
 
-  /* Keep WhatsApp float above the sticky bar */
+  /* Hide floating WhatsApp on mobile (sticky catalogue replaces clutter) */
   .wa-float {
-    bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px));
+    display: none !important;
   }
 
   .app-shell {
