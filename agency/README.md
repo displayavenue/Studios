@@ -42,6 +42,18 @@ bash scripts/deploy-ssh-demo.sh
 
 Remote `/demo/content/` edits are preserved across deploys.
 
+## Live cutover (displayavenue.com root)
+
+```bash
+cd agency
+export SSH_PASS='...'
+bash scripts/deploy-ssh-live.sh
+```
+
+- Website: https://displayavenue.com/
+- CMS: https://displayavenue.com/admin/
+- Keeps `/demo` and `/os` folders; backs up previous root under `~/backups/`
+
 
 ## Pages
 

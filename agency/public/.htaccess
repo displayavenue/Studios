@@ -1,13 +1,13 @@
-# SPA + SEO for DisplayAvenue agency demo (https://displayavenue.com/demo/)
+# SPA + SEO for DisplayAvenue (https://displayavenue.com/)
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /demo/
+  RewriteBase /
 
-  # Live sitemap
+  # Dynamic sitemap
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /demo/index.html [L]
+  RewriteRule . /index.html [L]
 </IfModule>

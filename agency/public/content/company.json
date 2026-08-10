@@ -1,7 +1,7 @@
 {
   "name": "DisplayAvenue",
   "shortName": "DA",
-  "tagline": "Digital Growth. AI Powered.",
+  "tagline": "Get more customers online",
   "website": "https://displayavenue.com",
   "phone": "+91 9222 122333",
   "phoneHref": "tel:+919222122333",
@@ -15,7 +15,7 @@
     "lines": [
       "Mumbai, Maharashtra, India"
     ],
-    "hours": "Mon–Sat · 10:00 AM – 7:00 PM IST"
+    "hours": "Mon\u2013Sat \u00b7 10:00 AM \u2013 7:00 PM IST"
   },
   "socials": {
     "facebook": "https://www.facebook.com/displayavenue",
@@ -35,7 +35,7 @@
     "experts": "50+",
     "avgRoi": "320%"
   },
-  "announcement": "New! AI-Powered Marketing Solutions are now available.",
+  "announcement": "Free growth call for business owners  -  book in 2 minutes.",
   "navItems": [
     {
       "label": "Home",
