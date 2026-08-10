@@ -114,7 +114,7 @@ export function WhyDisplayAvenue() {
               <div style={{ marginTop: "1.25rem" }}>
                 <h4 style={{ fontSize: "0.9rem", color: "var(--navy)" }}>Loved by Our Clients</h4>
                 <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", margin: "0.35rem 0" }}>
-                  ★★★★★ 4.9/5 from 150+ reviews
+                  ★★★★★ 170+ Reviews on Google
                 </p>
                 <p style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
                   Google · Clutch · GoodFirms

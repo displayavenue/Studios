@@ -101,7 +101,7 @@ export function Packages() {
                   ))}
                 </div>
                 <p style={{ marginTop: "0.75rem", fontSize: "0.8rem", color: "var(--text-muted)" }}>
-                  ★★★★★ 4.9/5 from 150+ reviews · Google · Clutch · GoodFirms
+                  ★★★★★ 170+ Reviews on Google · Clutch · GoodFirms
                 </p>
               </div>
             </aside>

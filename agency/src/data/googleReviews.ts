@@ -30,7 +30,7 @@ export const fallbackGoogleReviews: GoogleReviewsCms = {
   placeId: "",
   placeQuery: "Display Avenue Mira Road Mumbai",
   rating: 5,
-  reviewCount: 4,
+  reviewCount: 170,
   profileUrl: "https://www.google.com/search?kgmid=/g/11l59jbzkb&q=Display+Avenue",
   writeReviewUrl: "https://share.google/OC1gFqDqJCDFjdL50",
   mapsUrl: "https://share.google/OC1gFqDqJCDFjdL50",

@@ -175,7 +175,7 @@ export function WhatWeDoMenu({ compact = false }: { compact?: boolean }) {
               ))}
             </ul>
             <div style={{ fontSize: "0.75rem", opacity: 0.8, marginTop: "0.5rem" }}>
-              ★★★★★ Rated on Google · Clutch · GoodFirms
+              ★★★★★ 170+ Reviews on Google
             </div>
           </div>
         </div>

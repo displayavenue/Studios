@@ -50,7 +50,7 @@ export function GoogleReviews() {
               <strong>{Number(data.rating).toFixed(1)}</strong>
               <Stars value={data.rating} />
               <span>
-                {data.reviewCount}+ reviews on Google
+                {data.reviewCount}+ Reviews on Google
                 {data.lastSyncedAt
                   ? ` · synced ${new Date(data.lastSyncedAt).toLocaleDateString("en-IN")}`
                   : ""}
