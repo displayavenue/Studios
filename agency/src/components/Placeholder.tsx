@@ -2,9 +2,22 @@ import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
 import "./Placeholder.css";
 import { useCms } from "../cms/CmsProvider";
+import { useEffect, useState } from "react";
 
 export function WhatsAppFloat() {
   const { company } = useCms();
+  const [hideOnMobile, setHideOnMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const sync = () => setHideOnMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  if (hideOnMobile) return null;
+
   return (
     <a
       className="wa-float"
