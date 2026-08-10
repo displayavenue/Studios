@@ -44,15 +44,35 @@
 
 html {
   scroll-behavior: smooth;
+  /* Match footer so mobile overscroll below the page stays dark, not white */
+  background: var(--navy-deep);
 }
 
 body {
   margin: 0;
   font-family: var(--font);
   color: var(--text);
-  background: var(--bg-soft);
+  background: var(--navy-deep);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+  overflow-x: clip;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-soft);
+}
+
+.app-shell > main {
+  flex: 1 0 auto;
+}
+
+.app-shell > .site-footer {
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 body.menu-open {

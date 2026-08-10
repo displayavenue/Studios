@@ -156,24 +156,6 @@ export function Footer() {
             </a>
           </div>
         </div>
-
-        <div className="container footer-guide">
-          <div className="footer-guide__copy">
-            <h4>Need a page, not a phone call?</h4>
-            <p>
-              Use Services for what we do, Industries for your business type, and
-              Packages for monthly plans - all explained in plain English on each
-              page.
-            </p>
-          </div>
-          <div className="footer-guide__links">
-            <Link to="/services">Services</Link>
-            <Link to="/industries">Industries</Link>
-            <Link to="/packages">Packages</Link>
-            <Link to="/case-studies">Case studies</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-        </div>
       </div>
 
       <div className="footer-bottom">

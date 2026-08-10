@@ -10,7 +10,7 @@ import "./Placeholder.css";
 
 export function Layout() {
   return (
-    <>
+    <div className="app-shell">
       <ScrollToTop />
       <TrackingScripts />
       <LocalBusinessSchema />
@@ -22,6 +22,6 @@ export function Layout() {
       </main>
       <Footer />
       <WhatsAppFloat />
-    </>
+    </div>
   );
 }
