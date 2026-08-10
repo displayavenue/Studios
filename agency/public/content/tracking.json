@@ -1,10 +1,11 @@
 {
   "enabled": true,
-  "googleTagManagerId": "",
-  "googleAnalyticsId": "",
+  "googleTagManagerId": "GTM-WDC2ZZBG",
+  "googleAnalyticsId": "G-WQD9K577DF",
   "googleAdsId": "",
   "metaPixelId": "",
-  "googleSiteVerification": "",
+  "googleSiteVerification": "80ZVa9R1VjKZnfedwtUgfAYvfs1WsncTMsAwiSeSTBM",
   "headScripts": "",
-  "bodyStartHtml": ""
+  "bodyStartHtml": "",
+  "updatedAt": "2026-08-10T08:20:00.000Z"
 }

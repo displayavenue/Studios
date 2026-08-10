@@ -28,11 +28,11 @@ export const defaultTracking: Required<
   >
 > = {
   enabled: true,
-  googleTagManagerId: "",
-  googleAnalyticsId: "",
+  googleTagManagerId: "GTM-WDC2ZZBG",
+  googleAnalyticsId: "G-WQD9K577DF",
   googleAdsId: "",
   metaPixelId: "",
-  googleSiteVerification: "",
+  googleSiteVerification: "80ZVa9R1VjKZnfedwtUgfAYvfs1WsncTMsAwiSeSTBM",
   headScripts: "",
   bodyStartHtml: "",
 };

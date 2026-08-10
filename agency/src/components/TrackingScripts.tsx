@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 
 function injectHtmlFragment(html: string, target: HTMLElement, markerId: string) {
@@ -62,7 +63,7 @@ function injectGoogleAnalytics(markerId: string, measurementId: string, adsId?: 
   const config = document.createElement("script");
   config.setAttribute("data-cms-tracking", markerId);
   const adsLine = adsId ? `gtag('config', '${adsId}');` : "";
-  config.textContent = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${measurementId}');${adsLine}`;
+  config.textContent = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${measurementId}',{send_page_view:true});${adsLine}`;
   document.head.appendChild(config);
 }
 
@@ -96,8 +97,35 @@ function ensureSiteVerification(content: string) {
   meta.setAttribute("content", value);
 }
 
+function trackSpaPageView(path: string) {
+  const pagePath = path || "/";
+  const pageLocation = window.location.href;
+  const pageTitle = document.title;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "virtualPageview",
+    pagePath,
+    pageLocation,
+    pageTitle,
+  });
+
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "page_view", {
+      page_path: pagePath,
+      page_location: pageLocation,
+      page_title: pageTitle,
+    });
+  }
+
+  if (typeof window.fbq === "function") {
+    window.fbq("track", "PageView");
+  }
+}
+
 export function TrackingScripts() {
   const { tracking, ready } = useCms();
+  const { pathname, search, hash } = useLocation();
 
   useEffect(() => {
     if (!ready) return;
@@ -126,12 +154,18 @@ export function TrackingScripts() {
     injectHtmlFragment(tracking.bodyStartHtml || "", document.body, "cms-body-custom");
   }, [ready, tracking]);
 
+  useEffect(() => {
+    if (!ready || tracking.enabled === false) return;
+    trackSpaPageView(`${pathname}${search}${hash}`);
+  }, [ready, tracking.enabled, pathname, search, hash]);
+
   return null;
 }
 
 declare global {
   interface Window {
     dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
     fbq?: (...args: unknown[]) => void;
     _fbq?: unknown;
   }
