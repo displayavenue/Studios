@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 type Metrics = {
   revenueInr: number;
@@ -33,7 +32,6 @@ function inr(n: number) {
 export default function CommandCenterPage() {
   const router = useRouter();
   const [metrics, setMetrics] = useState<Metrics | null>(null);
-  const [name, setName] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -44,18 +42,12 @@ export default function CommandCenterPage() {
         router.push("/login");
         return;
       }
-      setName(meJson.data.user.name);
       const dash = await fetch("/api/admin/dashboard");
       const dashJson = await dash.json();
       if (!dashJson.ok) setError(dashJson.error || "Failed to load dashboard");
       else setMetrics(dashJson.data);
     })().catch(() => router.push("/login"));
   }, [router]);
-
-  async function logout() {
-    await fetch("/api/auth/logout", { method: "POST" });
-    router.push("/login");
-  }
 
   if (!metrics && !error) {
     return <main className="container" style={{ padding: "3rem 0" }}>Loading command center…</main>;
@@ -68,15 +60,9 @@ export default function CommandCenterPage() {
 
   return (
     <main className="container" style={{ padding: "1.25rem 0 3rem" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", marginBottom: "1.25rem" }}>
-        <div>
-          <div className="display" style={{ fontWeight: 700, color: "var(--navy)", fontSize: "1.5rem" }}>DisplayAvenue Command Center</div>
-          <div style={{ color: "var(--muted)" }}>Signed in as {name}</div>
-        </div>
-        <div style={{ display: "flex", gap: ".5rem", flexWrap: "wrap" }}>
-          <Link href="/" className="btn btn-secondary" style={{ padding: ".55rem .9rem" }}>Site</Link>
-          <button className="btn btn-secondary" style={{ padding: ".55rem .9rem" }} onClick={logout}>Logout</button>
-        </div>
+      <div style={{ marginBottom: "1.25rem" }}>
+        <h1 className="display" style={{ margin: 0, color: "var(--navy)", fontSize: "1.6rem" }}>Command Center</h1>
+        <p style={{ margin: ".35rem 0 0", color: "var(--muted)" }}>Live aggregates from your database — zeros mean no records yet.</p>
       </div>
 
       {error && <p style={{ color: "var(--danger)" }}>{error}</p>}
@@ -109,11 +95,11 @@ export default function CommandCenterPage() {
               <p style={{ margin: 0, color: "var(--ok)", fontWeight: 700 }}>Everything else is running normally.</p>
             ) : (
               <ul style={{ margin: 0, paddingLeft: "1.1rem", display: "grid", gap: ".4rem" }}>
-                {a!.paymentIssues > 0 && <li>🔴 {a!.paymentIssues} payment issue{a!.paymentIssues > 1 ? "s" : ""}</li>}
-                {a!.campaignsNeedReview > 0 && <li>🟠 {a!.campaignsNeedReview} campaign{a!.campaignsNeedReview > 1 ? "s" : ""} need review</li>}
-                {a!.clientApprovals > 0 && <li>🟡 {a!.clientApprovals} client approval{a!.clientApprovals > 1 ? "s" : ""} pending</li>}
-                {a!.clientHealthDeclining > 0 && <li>🟠 {a!.clientHealthDeclining} client health declining</li>}
-                {a!.highPriorityTasks > 0 && <li>🟡 {a!.highPriorityTasks} high-priority task{a!.highPriorityTasks > 1 ? "s" : ""}</li>}
+                {a!.paymentIssues > 0 && <li>{a!.paymentIssues} payment issue{a!.paymentIssues > 1 ? "s" : ""}</li>}
+                {a!.campaignsNeedReview > 0 && <li>{a!.campaignsNeedReview} campaign{a!.campaignsNeedReview > 1 ? "s" : ""} need review</li>}
+                {a!.clientApprovals > 0 && <li>{a!.clientApprovals} client approval{a!.clientApprovals > 1 ? "s" : ""} pending</li>}
+                {a!.clientHealthDeclining > 0 && <li>{a!.clientHealthDeclining} client health declining</li>}
+                {a!.highPriorityTasks > 0 && <li>{a!.highPriorityTasks} high-priority task{a!.highPriorityTasks > 1 ? "s" : ""}</li>}
               </ul>
             )}
           </section>
