@@ -2,9 +2,20 @@
 declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: ' . (isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '*'));
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$host = ($_SERVER['HTTP_HOST'] ?? '');
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$self = $scheme . '://' . $host;
+// Only echo known same-site origins (never "*") when credentials are used
+if ($origin && (str_starts_with($origin, 'https://displayavenue.com') || str_starts_with($origin, 'https://www.displayavenue.com') || $origin === $self)) {
+  header('Access-Control-Allow-Origin: ' . $origin);
+  header('Vary: Origin');
+} else {
+  header('Access-Control-Allow-Origin: ' . $self);
+}
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-DA-Admin-Token');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -13,11 +24,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 $config = require __DIR__ . '/config.php';
+
+$secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+  || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https')
+  || (($_SERVER['SERVER_PORT'] ?? '') === '443');
+
 session_name((string)($config['session_name'] ?? 'da_agency_admin'));
-session_start([
-  'cookie_httponly' => true,
-  'cookie_samesite' => 'Lax',
+session_set_cookie_params([
+  'lifetime' => (int)($config['session_ttl'] ?? 28800),
+  'path' => '/',
+  'secure' => $secure,
+  'httponly' => true,
+  'samesite' => 'Lax',
 ]);
+session_start();
 
 function respond(int $code, array $payload): void {
   http_response_code($code);
@@ -25,14 +45,67 @@ function respond(int $code, array $payload): void {
   exit;
 }
 
+function bearerToken(): string {
+  $hdr = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '';
+  if (preg_match('/Bearer\s+(\S+)/i', $hdr, $m)) return trim($m[1]);
+  $alt = $_SERVER['HTTP_X_DA_ADMIN_TOKEN'] ?? '';
+  return is_string($alt) ? trim($alt) : '';
+}
+
+function issueToken(): string {
+  return bin2hex(random_bytes(32));
+}
+
 function isAuthed(array $config): bool {
-  if (empty($_SESSION['da_auth'])) return false;
   $ttl = (int)($config['session_ttl'] ?? 28800);
-  if (empty($_SESSION['da_auth_at']) || (time() - (int)$_SESSION['da_auth_at']) > $ttl) {
-    $_SESSION = [];
-    return false;
+  $now = time();
+
+  // Cookie/session auth
+  if (!empty($_SESSION['da_auth'])) {
+    $at = (int)($_SESSION['da_auth_at'] ?? 0);
+    if ($at && ($now - $at) <= $ttl) {
+      $_SESSION['da_auth_at'] = $now; // sliding expiry
+      return true;
+    }
   }
-  return true;
+
+  // Token auth (survives flaky cookies on some hosts)
+  $token = bearerToken();
+  if ($token !== '' && !empty($_SESSION['da_token']) && hash_equals((string)$_SESSION['da_token'], $token)) {
+    $at = (int)($_SESSION['da_auth_at'] ?? 0);
+    if ($at && ($now - $at) <= $ttl) {
+      $_SESSION['da_auth'] = true;
+      $_SESSION['da_auth_at'] = $now;
+      return true;
+    }
+  }
+
+  // Persistent token file fallback (shared across PHP workers if sessions differ)
+  $tokenDir = __DIR__ . '/.sessions';
+  $tokenFile = $tokenDir . '/token.json';
+  if ($token !== '' && is_file($tokenFile)) {
+    $raw = file_get_contents($tokenFile);
+    $data = json_decode($raw ?: 'null', true);
+    if (is_array($data) && !empty($data['token']) && hash_equals((string)$data['token'], $token)) {
+      $at = (int)($data['at'] ?? 0);
+      if ($at && ($now - $at) <= $ttl) {
+        $_SESSION['da_auth'] = true;
+        $_SESSION['da_auth_at'] = $now;
+        $_SESSION['da_token'] = $token;
+        // refresh file timestamp
+        @file_put_contents($tokenFile, json_encode(['token' => $token, 'at' => $now], JSON_UNESCAPED_SLASHES));
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+function requireAuth(array $config): void {
+  if (!isAuthed($config)) {
+    respond(401, ['ok' => false, 'error' => 'Login required', 'code' => 'auth']);
+  }
 }
 
 function contentPath(array $config, string $collection): string {
@@ -84,32 +157,48 @@ switch ($action) {
   case 'login':
     $password = (string)($body['password'] ?? '');
     if ($password === '' || !hash_equals((string)$config['admin_password'], $password)) {
-      respond(401, ['ok' => false, 'error' => 'Incorrect password']);
+      respond(401, ['ok' => false, 'error' => 'Incorrect password', 'code' => 'bad_password']);
     }
+    session_regenerate_id(true);
+    $token = issueToken();
     $_SESSION['da_auth'] = true;
     $_SESSION['da_auth_at'] = time();
-    respond(200, ['ok' => true, 'authenticated' => true]);
+    $_SESSION['da_token'] = $token;
+    $tokenDir = __DIR__ . '/.sessions';
+    if (!is_dir($tokenDir)) @mkdir($tokenDir, 0750, true);
+    @file_put_contents($tokenDir . '/token.json', json_encode(['token' => $token, 'at' => time()], JSON_UNESCAPED_SLASHES));
+    @file_put_contents($tokenDir . '/.htaccess', "Require all denied\nDeny from all\n");
+    respond(200, [
+      'ok' => true,
+      'authenticated' => true,
+      'token' => $token,
+      'expiresIn' => (int)($config['session_ttl'] ?? 28800),
+    ]);
 
   case 'logout':
+    $tokenFile = __DIR__ . '/.sessions/token.json';
+    if (is_file($tokenFile)) @unlink($tokenFile);
     $_SESSION = [];
     if (ini_get('session.use_cookies')) {
       $p = session_get_cookie_params();
-      setcookie(session_name(), '', time() - 42000, $p['path'], $p['domain'], $p['secure'], $p['httponly']);
+      setcookie(session_name(), '', time() - 42000, $p['path'] ?: '/', $p['domain'] ?? '', (bool)$p['secure'], (bool)$p['httponly']);
     }
     session_destroy();
     respond(200, ['ok' => true, 'authenticated' => false]);
 
   case 'list':
-    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    requireAuth($config);
     respond(200, ['ok' => true, 'collections' => $config['collections']]);
 
   case 'get':
+    // Reading content for the editor should stay logged-in (prevents open edits + auth confusion)
+    requireAuth($config);
     $collection = (string)($_GET['collection'] ?? ($body['collection'] ?? ''));
     $path = contentPath($config, $collection);
     respond(200, ['ok' => true, 'collection' => $collection, 'data' => readJson($path)]);
 
   case 'save':
-    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    requireAuth($config);
     $collection = (string)($body['collection'] ?? '');
     if (!array_key_exists('data', $body)) respond(400, ['ok' => false, 'error' => 'Missing data']);
     $path = contentPath($config, $collection);
@@ -119,17 +208,16 @@ switch ($action) {
     respond(200, ['ok' => true, 'collection' => $collection, 'saved' => true, 'seo' => $seo]);
 
   case 'sync-seo':
-    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    requireAuth($config);
     require_once __DIR__ . '/seo-sync.php';
     $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
     respond(200, ['ok' => true, 'seo' => $seo]);
 
   case 'sync-google-reviews':
-    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    requireAuth($config);
     require_once __DIR__ . '/gmb-sync.php';
     $path = contentPath($config, 'google-reviews');
     $current = is_file($path) ? readJson($path) : [];
-    // Allow overriding placeId / placeQuery from request body
     if (!empty($body['placeId'])) $current['placeId'] = (string)$body['placeId'];
     if (!empty($body['placeQuery'])) $current['placeQuery'] = (string)$body['placeQuery'];
     $result = da_sync_google_reviews($config, $current);

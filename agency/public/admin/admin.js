@@ -1,7 +1,9 @@
 const API = "./api.php";
+const TOKEN_KEY = "da_agency_admin_token";
 
 const state = {
   authed: false,
+  token: localStorage.getItem(TOKEN_KEY) || "",
   collections: {},
   current: null,
   data: null,
@@ -10,11 +12,54 @@ const state = {
 
 const $ = (sel) => document.querySelector(sel);
 
+function previewRouteFor(collection) {
+  const map = {
+    home: "/",
+    company: "/",
+    "google-reviews": "/",
+    content: "/",
+    services: "/services",
+    industries: "/industries",
+    packages: "/packages",
+    solutions: "/solutions",
+    ai: "/ai-platform",
+    tools: "/free-tools",
+    cases: "/case-studies",
+    projects: "/portfolio",
+    resources: "/resources",
+    tracking: "/",
+    settings: "/",
+  };
+  return map[collection] || "/";
+}
+
+function setPreview(path) {
+  const frame = $("#preview-frame");
+  const label = $("#preview-path");
+  const open = $("#preview-open");
+  if (!frame) return;
+  const clean = path || "/";
+  const url = `..${clean === "/" ? "/" : clean}?cms_preview=${Date.now()}`;
+  frame.src = url;
+  if (label) label.textContent = clean;
+  if (open) open.href = `..${clean === "/" ? "/" : clean}`;
+}
+
+function refreshPreview() {
+  setPreview(previewRouteFor(state.current || "home"));
+}
+
 async function api(action, payload = null) {
+  const headers = {};
+  if (payload) headers["Content-Type"] = "application/json";
+  if (state.token) {
+    headers.Authorization = `Bearer ${state.token}`;
+    headers["X-DA-Admin-Token"] = state.token;
+  }
   const opts = {
     method: payload ? "POST" : "GET",
     credentials: "include",
-    headers: payload ? { "Content-Type": "application/json" } : undefined,
+    headers,
     body: payload ? JSON.stringify({ action, ...payload }) : undefined,
   };
   const url = payload
@@ -26,6 +71,15 @@ async function api(action, payload = null) {
       }`;
   const res = await fetch(url, opts);
   const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+  if (res.status === 401 || json.code === "auth") {
+    state.authed = false;
+    state.token = "";
+    localStorage.removeItem(TOKEN_KEY);
+    showLogin(true);
+    const err = new Error(json.error || "Please log in again");
+    err.status = 401;
+    throw err;
+  }
   if (!res.ok || json.ok === false) {
     const err = new Error(json.error || "Request failed");
     err.status = res.status;
@@ -49,7 +103,7 @@ function setDirty(v) {
   state.dirty = v;
   const btn = $("#save-btn");
   btn.disabled = !v;
-  btn.textContent = v ? "Update *" : "Update";
+  btn.textContent = v ? "Update & preview *" : "Update & preview";
   document.body.classList.toggle("is-dirty", !!v);
 }
 
@@ -139,19 +193,36 @@ function renderNav() {
 }
 
 async function openCollection(key) {
-  if (state.dirty && !confirm("Discard unsaved changes?")) return;
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
   try {
+    const headers = {};
+    if (state.token) {
+      headers.Authorization = `Bearer ${state.token}`;
+      headers["X-DA-Admin-Token"] = state.token;
+    }
     const url = `${API}?action=get&collection=${encodeURIComponent(key)}`;
-    const r = await fetch(url, { credentials: "include" });
-    const json = await r.json();
+    const r = await fetch(url, { credentials: "include", headers });
+    const json = await r.json().catch(() => ({ ok: false, error: "Load failed" }));
+    if (r.status === 401 || json.code === "auth") {
+      state.authed = false;
+      state.token = "";
+      localStorage.removeItem(TOKEN_KEY);
+      showLogin(true);
+      toast("Session expired — log in once to continue", "err");
+      return;
+    }
     if (!r.ok || json.ok === false) throw new Error(json.error || "Load failed");
     state.current = key;
     state.data = json.data;
     setDirty(false);
     $("#panel-title").textContent = state.collections[key] || key;
-    $("#panel-sub").textContent = `Editing ${key}.json — click Update to publish (classic editor).`;
+    $("#panel-sub").textContent = `Editing ${key}.json — Update publishes live. Preview refreshes automatically.`;
     renderNav();
     renderEditor();
+    setPreview(previewRouteFor(key));
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
   } catch (e) {
@@ -642,7 +713,6 @@ async function syncGoogleReviews() {
 
 async function save() {
   if (!state.current || !state.data) return;
-  // Coerce nav mega strings
   if (state.data.navItems) {
     state.data.navItems.forEach((n) => {
       if (n.mega === "false" || n.mega === "") n.mega = false;
@@ -651,10 +721,21 @@ async function save() {
   try {
     await api("save", { collection: state.current, data: state.data });
     setDirty(false);
-    toast("Updated — refresh the website to see changes");
+    refreshPreview();
+    toast("Live on the website — preview refreshed");
   } catch (e) {
     toast(e.message, "err");
   }
+}
+
+async function enterApp(collections) {
+  state.authed = true;
+  state.collections = collections || {};
+  showLogin(false);
+  renderNav();
+  const first = state.current || Object.keys(state.collections)[0];
+  if (first) await openCollection(first);
+  else setPreview("/");
 }
 
 async function init() {
@@ -662,14 +743,13 @@ async function init() {
     e.preventDefault();
     $("#login-error").hidden = true;
     try {
-      await api("login", { password: $("#password").value });
-      state.authed = true;
+      const res = await api("login", { password: $("#password").value });
+      if (res.token) {
+        state.token = res.token;
+        localStorage.setItem(TOKEN_KEY, res.token);
+      }
       const status = await api("status");
-      state.collections = status.collections || {};
-      showLogin(false);
-      renderNav();
-      const first = Object.keys(state.collections)[0];
-      if (first) openCollection(first);
+      await enterApp(status.collections || {});
     } catch (err) {
       $("#login-error").hidden = false;
       $("#login-error").textContent = err.message;
@@ -677,8 +757,12 @@ async function init() {
   };
 
   $("#logout-btn").onclick = async () => {
-    await api("logout", {});
+    try {
+      await api("logout", {});
+    } catch (_) {}
     state.authed = false;
+    state.token = "";
+    localStorage.removeItem(TOKEN_KEY);
     state.current = null;
     state.data = null;
     setDirty(false);
@@ -687,6 +771,8 @@ async function init() {
 
   $("#save-btn").onclick = save;
   $("#reload-btn").onclick = () => state.current && openCollection(state.current);
+  const previewBtn = $("#preview-btn");
+  if (previewBtn) previewBtn.onclick = refreshPreview;
 
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
@@ -697,13 +783,17 @@ async function init() {
 
   try {
     const status = await api("status");
-    state.collections = status.collections || {};
     if (status.authenticated) {
-      state.authed = true;
-      showLogin(false);
-      renderNav();
-      const first = Object.keys(state.collections)[0];
-      if (first) openCollection(first);
+      await enterApp(status.collections || {});
+    } else if (state.token) {
+      // Token may still be valid even if cookie session is cold
+      try {
+        const again = await api("status");
+        if (again.authenticated) await enterApp(again.collections || {});
+        else showLogin(true);
+      } catch {
+        showLogin(true);
+      }
     } else showLogin(true);
   } catch {
     showLogin(true);

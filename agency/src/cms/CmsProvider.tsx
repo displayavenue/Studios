@@ -84,7 +84,7 @@ const fallbackHome: HomeCms = {
     primaryCta: "Book a free call",
     secondaryCta: "See our work",
     image: "/images/hero-india.jpg",
-    imageAlt: "Taj Mahal in Agra — DisplayAvenue helps Indian businesses grow online",
+    imageAlt: "Indian digital agency team collaborating in a modern office — DisplayAvenue",
   },
   trustLabel: "Trusted by growing businesses across India",
   servicesTitle: "What we help you with",
