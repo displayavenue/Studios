@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex,nofollow" />
   <title>DisplayAvenue - Live Content Editor</title>
-  <link rel="stylesheet" href="admin.css?v=quotes1" />
+  <link rel="stylesheet" href="admin.css?v=mobileadmin1" />
 </head>
 <body class="wp-admin">
   <div id="app">
@@ -25,13 +25,15 @@
     </section>
 
     <section id="cms-view" class="cms-view" hidden>
-      <aside class="sidebar">
+      <button type="button" id="nav-backdrop" class="nav-backdrop" aria-label="Close menu" hidden></button>
+      <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-          <span class="logo">W</span>
+          <span class="logo">DA</span>
           <div>
             <strong>Live Editor</strong>
             <small>Elementor-style</small>
           </div>
+          <button type="button" id="nav-close" class="nav-close" aria-label="Close menu">✕</button>
         </div>
         <nav id="nav"></nav>
         <div class="sidebar-foot">
@@ -42,9 +44,14 @@
 
       <main class="main">
         <header class="topbar">
-          <div>
-            <h2 id="panel-title">Dashboard</h2>
-            <p id="panel-sub">Edit on the left. Live preview on the right updates after Update.</p>
+          <div class="topbar-lead">
+            <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+              <span></span><span></span><span></span>
+            </button>
+            <div>
+              <h2 id="panel-title">Dashboard</h2>
+              <p id="panel-sub">Edit on the left. Live preview on the right updates after Update.</p>
+            </div>
           </div>
           <div class="topbar-actions">
             <span class="shortcut-hint">Ctrl/Cmd + S</span>
@@ -70,6 +77,6 @@
       </main>
     </section>
   </div>
-  <script src="admin.js?v=quotes1"></script>
+  <script src="admin.js?v=mobileadmin1"></script>
 </body>
 </html>

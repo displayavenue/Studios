@@ -120,6 +120,15 @@ function setDirty(v) {
 function showLogin(show) {
   $("#login-view").hidden = !show;
   $("#cms-view").hidden = show;
+  if (show) setMobileNav(false);
+}
+
+function setMobileNav(open) {
+  document.body.classList.toggle("nav-open", !!open);
+  const backdrop = $("#nav-backdrop");
+  const toggle = $("#nav-toggle");
+  if (backdrop) backdrop.hidden = !open;
+  if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
 }
 
 function escapeHtml(s) {
@@ -220,6 +229,7 @@ function renderNav() {
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
     btn.onclick = () => {
+      setMobileNav(false);
       if (btn.dataset.key === "quotations") openQuotations();
       else openCollection(btn.dataset.key);
     };
@@ -1612,7 +1622,18 @@ async function init() {
   const previewBtn = $("#preview-btn");
   if (previewBtn) previewBtn.onclick = refreshPreview;
 
+  const navToggle = $("#nav-toggle");
+  const navClose = $("#nav-close");
+  const navBackdrop = $("#nav-backdrop");
+  if (navToggle) navToggle.onclick = () => setMobileNav(!document.body.classList.contains("nav-open"));
+  if (navClose) navClose.onclick = () => setMobileNav(false);
+  if (navBackdrop) navBackdrop.onclick = () => setMobileNav(false);
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) setMobileNav(false);
+  });
+
   document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMobileNav(false);
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
       e.preventDefault();
       if (state.dirty) save();
