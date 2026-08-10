@@ -3,6 +3,7 @@ import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
+import { InternalLinks } from "../components/InternalLinks";
 import "./Home.css";
 
 const promises = [
@@ -47,8 +48,7 @@ const plainServices = [
   },
 ];
 
-const HERO_IMAGE_FALLBACK =
-  "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=80";
+const HERO_IMAGE_FALLBACK = "/images/hero-india.jpg";
 
 export function Home() {
   const { company, home, content } = useCms();
@@ -176,6 +176,8 @@ export function Home() {
           </Link>
         </div>
       </section>
+
+      <InternalLinks title="Popular pages across DisplayAvenue" limit={120} columns={4} />
     </div>
   );
 }

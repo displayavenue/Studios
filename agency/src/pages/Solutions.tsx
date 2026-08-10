@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { InternalLinks } from "../components/InternalLinks";
 import { solutionCategories } from "../data/solutions";
 import "../styles/pages.css";
 
@@ -69,6 +70,7 @@ export function Solutions() {
           </div>
         </div>
       </div>
+      <InternalLinks title="Explore more DisplayAvenue pages" limit={120} columns={4} />
     </div>
   );
 }

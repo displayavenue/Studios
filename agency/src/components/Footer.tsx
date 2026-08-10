@@ -5,47 +5,105 @@ import { Icon } from "./Icon";
 import "./Footer.css";
 
 export function Footer() {
-  const { company, content } = useCms();
+  const { company, content, services, industries, packages, tools, resources, solutions, cases } =
+    useCms();
+
+  const serviceLinks = services.slice(0, 24).map((s) => ({
+    label: s.title,
+    href: `/services/${s.slug}`,
+  }));
+  const industryLinks = industries.map((s) => ({
+    label: s.title,
+    href: `/industries/${s.slug}`,
+  }));
+  const packageLinks = packages.map((s) => ({
+    label: s.title,
+    href: `/packages/${s.slug}`,
+  }));
+  const toolLinks = tools.map((s) => ({
+    label: s.title,
+    href: `/free-tools/${s.slug}`,
+  }));
+  const resourceLinks = resources.slice(0, 12).map((s) => ({
+    label: s.title,
+    href: `/resources/${s.slug}`,
+  }));
+  const solutionLinks = solutions.slice(0, 12).map((s) => ({
+    label: s.title,
+    href: `/solutions/${s.slug}`,
+  }));
+  const caseLinks = cases.map((s) => ({
+    label: s.title,
+    href: `/case-studies/${s.slug}`,
+  }));
+
   const footerCols = [
     {
-      title: "Services",
+      title: "Popular services",
       links: [
-        { label: "Digital Marketing", href: "/services/digital-marketing" },
-        { label: "Web Development", href: "/services/web-development" },
-        { label: "AI Solutions", href: "/ai-platform" },
-        { label: "Branding", href: "/services/branding" },
-        { label: "E-commerce", href: "/services/ecommerce" },
+        ...serviceLinks.slice(0, 10),
+        { label: "All services →", href: "/services" },
       ],
     },
     {
       title: "Industries",
       links: [
-        { label: "Healthcare", href: "/industries/healthcare" },
-        { label: "Real Estate", href: "/industries/real-estate" },
-        { label: "E-commerce", href: "/industries/ecommerce" },
-        { label: "SaaS", href: "/industries/saas" },
-        { label: "Education", href: "/industries/education" },
+        ...industryLinks.slice(0, 10),
+        { label: "All industries →", href: "/industries" },
       ],
     },
     {
-      title: "Resources",
+      title: "Packages & solutions",
       links: [
-        { label: "Blog", href: "/resources/blog" },
-        { label: "Case Studies", href: "/case-studies" },
-        { label: "Free Tools", href: "/free-tools" },
-        { label: "Packages", href: "/packages" },
-        { label: "Portfolio", href: "/portfolio" },
+        ...packageLinks,
+        ...solutionLinks.slice(0, 6),
+        { label: "All solutions →", href: "/solutions" },
+      ],
+    },
+    {
+      title: "Tools & resources",
+      links: [
+        ...toolLinks.slice(0, 8),
+        ...resourceLinks.slice(0, 6),
+        { label: "Free tools →", href: "/free-tools" },
+        { label: "All resources →", href: "/resources" },
+        { label: "Case studies →", href: "/case-studies" },
+        ...caseLinks,
       ],
     },
     {
       title: "Company",
       links: [
         { label: "Why DisplayAvenue", href: "/why-displayavenue" },
+        { label: "AI Platform", href: "/ai-platform" },
+        { label: "Portfolio", href: "/portfolio" },
         { label: "Contact", href: "/contact" },
         { label: "Get Free Proposal", href: "/contact" },
         { label: "Client Login", href: company.clientLogin },
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Terms & Conditions", href: "/terms" },
       ],
     },
+  ];
+
+  const megaLinks = [
+    ...serviceLinks,
+    ...industryLinks,
+    ...packageLinks,
+    ...toolLinks,
+    ...resourceLinks,
+    ...solutionLinks,
+    ...caseLinks,
+    { label: "Services hub", href: "/services" },
+    { label: "Industries hub", href: "/industries" },
+    { label: "Packages hub", href: "/packages" },
+    { label: "Solutions hub", href: "/solutions" },
+    { label: "AI Platform", href: "/ai-platform" },
+    { label: "Free tools", href: "/free-tools" },
+    { label: "Resources", href: "/resources" },
+    { label: "Case studies", href: "/case-studies" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -60,8 +118,8 @@ export function Footer() {
             <Link to="/contact" className="btn btn-primary">
               Book Free Consultation →
             </Link>
-            <Link to="/contact" className="btn btn-ghost">
-              Get Free Proposal →
+            <Link to="/services" className="btn btn-ghost">
+              Browse services →
             </Link>
             <a href={company.phoneHref} className="footer-phone">
               Call Us Now {company.phone}
@@ -71,12 +129,13 @@ export function Footer() {
       </div>
 
       <div className="footer-main">
-        <div className="container footer-grid">
+        <div className="container footer-grid footer-grid--dense">
           <div className="footer-brand">
             <Logo light />
             <p>
-              AI-powered digital growth partner helping brands generate leads,
-              build brands, and scale with measurable ROI.
+              DisplayAvenue helps Indian business owners get found on Google and
+              Instagram, turn website visitors into enquiries, and grow with clear
+              marketing plans  -  in plain English.
             </p>
             <div className="footer-socials">
               <a href={company.socials.facebook} aria-label="Facebook">
@@ -99,7 +158,7 @@ export function Footer() {
               <h4>{col.title}</h4>
               <ul>
                 {col.links.map((link) => (
-                  <li key={link.label}>
+                  <li key={col.title + link.label}>
                     {link.href.startsWith("http") ? (
                       <a href={link.href}>{link.label}</a>
                     ) : (
@@ -140,6 +199,17 @@ export function Footer() {
             </a>
           </div>
         </div>
+
+        <div className="container footer-sitemap">
+          <h4>Full site map ({megaLinks.length}+ pages)</h4>
+          <ul>
+            {megaLinks.map((link) => (
+              <li key={`map-${link.href}-${link.label}`}>
+                <Link to={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className="footer-bottom">
@@ -150,6 +220,7 @@ export function Footer() {
           <div className="footer-legal">
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/terms">Terms & Conditions</Link>
+            <Link to="/contact">Contact</Link>
           </div>
         </div>
       </div>

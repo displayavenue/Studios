@@ -56,6 +56,34 @@
   gap: 1.5rem;
 }
 
+.footer-grid--dense {
+  grid-template-columns: 1.3fr repeat(3, 1fr) 1.15fr 1fr;
+  gap: 1.25rem;
+}
+
+.footer-sitemap {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-sitemap h4 {
+  margin-bottom: 0.85rem;
+}
+
+.footer-sitemap ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.35rem 0.85rem;
+}
+
+.footer-sitemap a {
+  font-size: 0.78rem;
+}
+
 .footer-brand p {
   margin: 0.85rem 0 1rem;
   font-size: 0.85rem;

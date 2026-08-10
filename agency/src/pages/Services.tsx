@@ -2,31 +2,52 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { InternalLinks } from "../components/InternalLinks";
 import "../styles/pages.css";
 
 export function Services() {
-  const { services } = useCms();
+  const { services, industries, packages } = useCms();
   const categories = Array.from(new Set(services.map((p) => p.category)));
   return (
     <div className="page-shell">
-      <SEO title="Services | DisplayAvenue" description="Explore 70+ digital marketing, web, AI, branding, and creative services from DisplayAvenue." path="/services" />
+      <SEO
+        title="Services | DisplayAvenue"
+        description="Practical marketing, website, ads, and branding services for Indian business owners who want more customers from Google and Instagram."
+        path="/services"
+      />
       <div className="container">
         <div className="page-frame" style={{ padding: "1.75rem" }}>
           <p className="badge">What We Do</p>
           <h1 className="section-title" style={{ marginTop: "0.65rem" }}>
-            {services.length}+ Services Across Marketing, Product, AI & Creative
+            {services.length}+ services to help you get more customers
           </h1>
           <p className="section-sub">
-            Explore every DisplayAvenue service. Open any card for a full page
-            with deliverables, process, FAQs, and next steps. Edit these in the
-            CMS anytime.
+            Plain-English help for Google, ads, websites, branding, and AI tools.
+            Pick a service below, or tell us your goal and we will recommend what
+            fits your budget.
           </p>
+          <div className="page-intro-extra">
+            <p>
+              Most owners start with{" "}
+              <Link to="/services/seo">SEO</Link>,{" "}
+              <Link to="/services/google-ads">Google Ads</Link>,{" "}
+              <Link to="/services/social-media-marketing">Social Media</Link>, or{" "}
+              <Link to="/services/web-development">Web Development</Link>. You can
+              also browse{" "}
+              <Link to="/packages">monthly packages</Link>,{" "}
+              <Link to="/industries">industry plans</Link>, and{" "}
+              <Link to="/free-tools">free tools</Link>.
+            </p>
+          </div>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}>
             <Link to="/contact" className="btn btn-primary">
               Request Custom Solution →
             </Link>
             <Link to="/packages" className="btn btn-outline">
               View Packages
+            </Link>
+            <Link to="/case-studies" className="btn btn-ghost">
+              See results
             </Link>
           </div>
 
@@ -51,7 +72,7 @@ export function Services() {
                         <Icon name={item.icon} color={item.color} />
                       </span>
                       <h3>{item.title}</h3>
-                      <p>{item.summary.slice(0, 90)}…</p>
+                      <p>{item.summary.slice(0, 110)}…</p>
                       <span className="arrow">
                         <Icon name="arrow" size={14} />
                       </span>
@@ -61,8 +82,30 @@ export function Services() {
               </section>
             );
           })}
+
+          <section style={{ marginTop: "2.5rem" }}>
+            <h2 className="section-title">Also explore</h2>
+            <p className="section-sub">
+              Match services with your industry, package, or a free checker.
+            </p>
+            <div className="category-grid" style={{ marginTop: "1rem" }}>
+              {industries.slice(0, 6).map((item) => (
+                <Link key={item.slug} to={`/industries/${item.slug}`} className="category-card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary.slice(0, 90)}…</p>
+                </Link>
+              ))}
+              {packages.slice(0, 4).map((item) => (
+                <Link key={item.slug} to={`/packages/${item.slug}`} className="category-card">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary.slice(0, 90)}…</p>
+                </Link>
+              ))}
+            </div>
+          </section>
         </div>
       </div>
+      <InternalLinks title="All DisplayAvenue pages" limit={120} columns={4} />
     </div>
   );
 }

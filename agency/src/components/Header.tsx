@@ -4,6 +4,7 @@ import { type MegaKey } from "../data/company";
 import { useCms } from "../cms/CmsProvider";
 import { Logo } from "./Logo";
 import { Icon } from "./Icon";
+import { SiteSearch } from "./SiteSearch";
 import { WhatWeDoMenu } from "./menus/WhatWeDoMenu";
 import { SolutionsMenu } from "./menus/SolutionsMenu";
 import { AiPlatformMenu } from "./menus/AiPlatformMenu";
@@ -15,6 +16,7 @@ export function Header() {
   const navItems = company.navItems;
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey | null>(null);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const closeTimer = useRef<number | null>(null);
@@ -24,12 +26,25 @@ export function Header() {
     setOpen(false);
     setMega(null);
     setMobileSection(null);
+    setSearchOpen(false);
   }, [pathname]);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
     return () => document.body.classList.remove("menu-open");
   }, [open]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const isMod = e.metaKey || e.ctrlKey;
+      if (isMod && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const openMega = (key: MegaKey) => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
@@ -53,11 +68,12 @@ export function Header() {
 
   return (
     <header className="site-header">
+      <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
       <div className="announcement">
         <div className="container-wide announcement-inner">
           <span>
             {company.announcement ||
-              "New! AI-Powered Marketing Solutions are now available."}
+              "Free growth call for business owners - book in 2 minutes."}
           </span>
           <div className="announcement-actions">
             <Link to="/contact">Book Free Audit</Link>
@@ -70,7 +86,12 @@ export function Header() {
         <div className="container-wide header-top-inner">
           <Logo light />
           <div className="header-actions">
-            <button className="icon-btn" aria-label="Search" type="button">
+            <button
+              className="icon-btn"
+              aria-label="Search"
+              type="button"
+              onClick={() => setSearchOpen(true)}
+            >
               <Icon name="search" size={18} color="#fff" />
             </button>
             <a

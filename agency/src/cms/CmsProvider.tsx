@@ -39,6 +39,8 @@ type HomeCms = {
     lead: string;
     primaryCta: string;
     secondaryCta: string;
+    image?: string;
+    imageAlt?: string;
   };
   trustLabel: string;
   servicesTitle: string;
@@ -76,6 +78,8 @@ const fallbackHome: HomeCms = {
     lead: "We help business owners get found online and turn interest into real enquiries. Clear plans. Plain English. No jargon.",
     primaryCta: "Book a free call",
     secondaryCta: "See our work",
+    image: "/images/hero-india.jpg",
+    imageAlt: "India Gate in New Delhi — DisplayAvenue helps Indian businesses grow online",
   },
   trustLabel: "Trusted by growing businesses across India",
   servicesTitle: "What we help you with",

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { InternalLinks } from "../components/InternalLinks";
 import {
   resourceTypes,
   resourceCategories,
@@ -154,6 +155,7 @@ export function Resources() {
           </div>
         </div>
       </div>
+      <InternalLinks title="Guides, services & tools" limit={120} columns={4} />
     </div>
   );
 }

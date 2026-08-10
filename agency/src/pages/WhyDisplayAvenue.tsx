@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { InternalLinks } from "../components/InternalLinks";
 import {
   whyPillars,
   whyTrustCards,
@@ -158,6 +159,7 @@ export function WhyDisplayAvenue() {
           </div>
         </div>
       </div>
+      <InternalLinks title="Explore more DisplayAvenue pages" limit={120} columns={4} />
     </div>
   );
 }

@@ -1,31 +1,37 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { useCms } from "../cms/CmsProvider";
+import { InternalLinks } from "../components/InternalLinks";
 import {
-  industries,
   industryStats,
   popularIndustrySolutions,
 } from "../data/industries";
 import "../styles/pages.css";
 
 export function Industries() {
+  const { industries, services } = useCms();
   return (
     <div className="page-shell">
-      <SEO title="Industries We Serve | DisplayAvenue" description="Industry-specific digital growth strategies for healthcare, real estate, ecommerce, SaaS, and more." path="/industries" />
+      <SEO
+        title="Industries We Serve | DisplayAvenue"
+        description="Industry-specific digital growth for healthcare, real estate, ecommerce, education, and more Indian businesses."
+        path="/industries"
+      />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">
             <aside className="page-left">
-              <h1 className="section-title">Industries We Serve</h1>
+              <h1 className="section-title">Industries we help grow</h1>
               <p>
-                Tailored digital services for every vertical — from lead
-                generation to full digital transformation.
+                Practical Google, ads, website, and social plans for businesses
+                like yours  -  explained in plain English for owners across India.
               </p>
               <div className="cta-box">
                 <span className="icon-box" style={{ background: "#e8f0ff", marginBottom: "0.5rem" }}>
                   <Icon name="target" color="#0056ff" />
                 </span>
-                <h4>Not Sure Which Solution Fits Your Industry?</h4>
+                <h4>Not sure where to start?</h4>
                 <Link to="/contact" className="link-arrow">
                   Get Free Consultation →
                 </Link>
@@ -34,25 +40,38 @@ export function Industries() {
                 <li>
                   <Icon name="shield" color="#0056ff" />
                   <div>
-                    <strong>Industry Experts</strong>
-                    <span>Specialists who understand your market</span>
+                    <strong>Industry experts</strong>
+                    <span>Plans that fit how your customers search and buy</span>
                   </div>
                 </li>
                 <li>
                   <Icon name="chart" color="#0056ff" />
                   <div>
-                    <strong>Proven Results</strong>
+                    <strong>Proven results</strong>
                     <span>Playbooks refined across 25+ industries</span>
                   </div>
                 </li>
                 <li>
                   <Icon name="handshake" color="#0056ff" />
                   <div>
-                    <strong>ROI Driven Approach</strong>
-                    <span>Growth measured against business KPIs</span>
+                    <strong>ROI-first</strong>
+                    <span>We focus on calls, leads, and sales  -  not vanity metrics</span>
                   </div>
                 </li>
               </ul>
+              <div style={{ marginTop: "1.25rem" }}>
+                <h4 style={{ color: "var(--navy)", marginBottom: "0.5rem" }}>Popular services</h4>
+                <ul style={{ display: "grid", gap: "0.35rem" }}>
+                  {services.slice(0, 8).map((s) => (
+                    <li key={s.slug}>
+                      <Link to={`/services/${s.slug}`}>{s.title}</Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link to="/services">All services →</Link>
+                  </li>
+                </ul>
+              </div>
             </aside>
 
             <div>
@@ -63,25 +82,24 @@ export function Industries() {
                     to={`/industries/${item.slug}`}
                     className="category-card"
                   >
-                    <Icon name={item.icon} color="#0056ff" />
+                    <Icon name={item.icon} color={item.color || "#0056ff"} />
                     <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
+                    <p>{item.summary.slice(0, 100)}…</p>
                     <span className="arrow">
                       <Icon name="arrow" size={14} />
                     </span>
                   </Link>
                 ))}
               </div>
-              <div className="center-footer">
-                <Link to="/industries" className="btn btn-outline">
-                  View All Industries →
-                </Link>
-              </div>
             </div>
 
             <aside>
               <div className="side-stat-card">
-                <h3>Industry-Specific Digital Growth Strategies</h3>
+                <h3>Industry-specific digital growth</h3>
+                <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.75)", marginBottom: "0.85rem" }}>
+                  Tell us your city and offer. We will show a simple plan for Google,
+                  Maps, ads, and your website.
+                </p>
                 <Link to="/contact" className="btn btn-primary btn-sm" style={{ marginBottom: "1rem" }}>
                   Get Free Industry Analysis →
                 </Link>
@@ -102,18 +120,25 @@ export function Industries() {
 
           <div className="bottom-bar">
             <div>
-              <strong style={{ color: "var(--navy)" }}>Popular Industry Solutions</strong>
+              <strong style={{ color: "var(--navy)" }}>Popular industry solutions</strong>
               <div className="pill-row" style={{ marginTop: "0.65rem" }}>
                 {popularIndustrySolutions.map((item) => (
                   <Link key={item.href} to={item.href} className="pill">
                     {item.label} →
                   </Link>
                 ))}
+                <Link to="/packages" className="pill">
+                  Packages →
+                </Link>
+                <Link to="/free-tools" className="pill">
+                  Free tools →
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <InternalLinks title="Explore related DisplayAvenue pages" limit={120} columns={4} />
     </div>
   );
 }

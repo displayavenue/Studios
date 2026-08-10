@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "./Icon";
 import type { DetailPageContent } from "../data/catalogTypes";
+import { useCms } from "../cms/CmsProvider";
 import {
   SEO,
   FAQPageSchema,
@@ -8,6 +9,7 @@ import {
   BreadcrumbSchema,
   ArticleSchema,
 } from "./SEO";
+import { InternalLinks } from "./InternalLinks";
 import "./DetailPage.css";
 
 function pathFor(page: DetailPageContent): string {
@@ -26,18 +28,34 @@ function pathFor(page: DetailPageContent): string {
 }
 
 export function DetailPage({ page }: { page: DetailPageContent }) {
+  const cms = useCms();
   const path = pathFor(page);
   const title = `${page.title} | DisplayAvenue`;
   const description = page.summary;
+  const listPath = path.split("/").slice(0, 2).join("/") || "/";
   const crumbs = [
     { name: "Home", path: "/" },
-    { name: page.category, path: path.split("/").slice(0, 2).join("/") || "/" },
+    { name: page.category, path: listPath },
     { name: page.title, path },
   ];
   const faqs = (page.faqs || []).map((f) => ({
     question: f.q,
     answer: f.a,
   }));
+  const sameKind = (
+    {
+      service: cms.services,
+      industry: cms.industries,
+      package: cms.packages,
+      solution: cms.solutions,
+      ai: cms.ai,
+      tool: cms.tools,
+      "case-study": cms.cases,
+      project: cms.projects,
+      resource: cms.resources,
+    } as Record<string, DetailPageContent[]>
+  )[page.kind] || [];
+  const siblings = sameKind.filter((p) => p.slug !== page.slug).slice(0, 16);
 
   return (
     <div className="detail-page">
@@ -67,15 +85,27 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
       <section className="detail-hero" style={{ ["--accent" as string]: page.color }}>
         <div className="container detail-hero-grid">
           <div>
+            <p className="detail-crumbs">
+              <Link to="/">Home</Link>
+              {" / "}
+              <Link to={listPath}>{page.category}</Link>
+            </p>
             <p className="badge">{page.eyebrow || page.category}</p>
             <h1>{page.headline}</h1>
             <p className="detail-summary">{page.summary}</p>
+            <p className="detail-plain">
+              Built for Indian business owners who want clear marketing that brings calls,
+              walk-ins, and online sales  -  without confusing jargon.
+            </p>
             <div className="detail-hero-actions">
               <Link to="/contact" className="btn btn-primary">
                 {page.ctaLabel ?? "Get Free Proposal"} →
               </Link>
               <Link to="/packages" className="btn btn-outline">
                 View Packages
+              </Link>
+              <Link to="/free-tools" className="btn btn-ghost">
+                Try free tools
               </Link>
             </div>
             {page.metrics && (
@@ -110,6 +140,11 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
       <section className="section">
         <div className="container">
           <h2 className="section-title">Why DisplayAvenue for {page.title}</h2>
+          <p className="section-sub" style={{ marginBottom: "1.25rem" }}>
+            We explain every step in plain English, share weekly updates, and focus on
+            results you can see  -  more enquiries, better Google visibility, and a website
+            that turns visitors into customers.
+          </p>
           <div className="detail-benefits">
             {page.benefits.map((b) => (
               <div key={b.title} className="detail-benefit card">
@@ -133,6 +168,21 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
                 </li>
               ))}
             </ul>
+            <div className="detail-extra">
+              <h3>Who this helps</h3>
+              <p>
+                Local shops, clinics, salons, restaurants, real estate teams, education
+                brands, and growing online businesses across India that want more customers
+                from Google, Instagram, and their website.
+              </p>
+              <h3>How we usually start</h3>
+              <ol>
+                <li>Quick call about your business and goals</li>
+                <li>We review your Google listing, ads, and website</li>
+                <li>You get a plain plan with clear next steps</li>
+                <li>We start work and share simple weekly updates</li>
+              </ol>
+            </div>
           </div>
           <div>
             <h2 className="section-title">How we deliver</h2>
@@ -147,6 +197,21 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
                 </li>
               ))}
             </ol>
+            {siblings.length > 0 && (
+              <div className="detail-siblings">
+                <h3>More in {page.category}</h3>
+                <ul>
+                  {siblings.map((sib) => (
+                    <li key={sib.slug}>
+                      <Link to={pathFor(sib)}>{sib.title}</Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link to={listPath}>Browse all →</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -175,6 +240,22 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
                 <span className="link-arrow">Continue →</span>
               </Link>
             ))}
+            <Link to="/services" className="category-card">
+              <h3>All services</h3>
+              <span className="link-arrow">Continue →</span>
+            </Link>
+            <Link to="/industries" className="category-card">
+              <h3>Industries we help</h3>
+              <span className="link-arrow">Continue →</span>
+            </Link>
+            <Link to="/case-studies" className="category-card">
+              <h3>Case studies</h3>
+              <span className="link-arrow">Continue →</span>
+            </Link>
+            <Link to="/resources" className="category-card">
+              <h3>Guides & resources</h3>
+              <span className="link-arrow">Continue →</span>
+            </Link>
           </div>
           <div className="detail-bottom-cta">
             <div>
@@ -187,6 +268,13 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
           </div>
         </div>
       </section>
+
+      <InternalLinks
+        title={`Explore more after ${page.title}`}
+        excludeHref={path}
+        limit={120}
+        columns={4}
+      />
     </div>
   );
 }
