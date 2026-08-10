@@ -115,19 +115,22 @@ export class MetaAdsAdapter implements AdvertisingPlatformAdapter {
     };
   }
 
-  async pauseCampaign(_externalId: string): Promise<void> {
+  async pauseCampaign(externalId: string): Promise<void> {
+    void externalId;
     throw new MetaNotConfiguredError(
       "Meta API pause unavailable — Meta approval / credentials required",
     );
   }
 
-  async resumeCampaign(_externalId: string): Promise<void> {
+  async resumeCampaign(externalId: string): Promise<void> {
+    void externalId;
     throw new MetaNotConfiguredError(
       "Meta API resume unavailable — Meta approval / credentials required",
     );
   }
 
-  async fetchMetrics(_externalId: string): Promise<StoredCampaignMetric[]> {
+  async fetchMetrics(externalId: string): Promise<StoredCampaignMetric[]> {
+    void externalId;
     // Never fabricate. Callers should return stored DB metrics instead.
     throw new MetaNotConfiguredError(
       "Meta metrics sync unavailable — Meta approval / credentials required. Use stored metrics only.",

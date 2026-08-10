@@ -42,7 +42,7 @@ export async function PATCH(req: Request, { params }: Params) {
     if (body.action === "pause") status = "paused";
     if (body.action === "resume") status = "active";
 
-    let metaRemote: { attempted: boolean; ok: boolean; error?: string } = {
+    const metaRemote: { attempted: boolean; ok: boolean; error?: string } = {
       attempted: false,
       ok: false,
     };

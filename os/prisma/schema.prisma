@@ -102,6 +102,10 @@ model Organization {
   settings       OrganizationSetting[]
   assessments    Assessment[]
   bookings       Booking[]
+  creatives      Creative[]
+  campaignMetrics CampaignMetric[]
+  aiRecommendations AiRecommendation[]
+  referrals      Referral[]
 
   @@index([type, status])
 }
@@ -377,6 +381,9 @@ model Campaign {
   meta           Json?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  creatives      Creative[]
+  metrics        CampaignMetric[]
+  recommendations AiRecommendation[]
 
   @@index([organizationId, status])
   @@index([platform, externalId])
@@ -682,4 +689,107 @@ model OrganizationSetting {
   updatedAt      DateTime @updatedAt
 
   @@unique([organizationId, key])
+}
+
+model Creative {
+  id             String   @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  campaignId     String?
+  campaign       Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  name           String
+  type           String   @default("image")
+  assetUrl       String?
+  headline       String?
+  primaryText    String?
+  cta            String?
+  status         String   @default("draft")
+  version        Int      @default(1)
+  meta           Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([organizationId, status])
+}
+
+model CampaignMetric {
+  id             String   @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  campaignId     String
+  campaign       Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  date           DateTime @db.Date
+  spendInr       Float    @default(0)
+  impressions    Int      @default(0)
+  reach          Int      @default(0)
+  clicks         Int      @default(0)
+  leads          Int      @default(0)
+  conversions    Int      @default(0)
+  ctr            Float?
+  cpc            Float?
+  cpl            Float?
+  raw            Json?
+  createdAt      DateTime @default(now())
+
+  @@unique([campaignId, date])
+  @@index([organizationId, date])
+}
+
+model AiRecommendation {
+  id             String   @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  campaignId     String?
+  campaign       Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  type           String
+  title          String
+  rationale      String
+  currentValue   Json?
+  proposedValue  Json?
+  status         String   @default("pending")
+  decidedById    String?
+  decidedAt      DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([organizationId, status])
+}
+
+model Referral {
+  id             String   @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  code           String   @unique
+  referredEmail  String?
+  referredName   String?
+  status         String   @default("created")
+  rewardInr      Float?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([organizationId])
+}
+
+model MessageTemplate {
+  id        String   @id @default(cuid())
+  channel   String
+  key       String
+  name      String
+  body      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([channel, key])
+}
+
+model WorkflowDefinition {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  name      String
+  trigger   String
+  steps     Json
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -99,19 +99,19 @@ Production requires Node host (VPS/Railway/Render/Fly) + managed Postgres — no
 
 | Phase | Scope | Status |
 |-------|-------|--------|
-| **1** | Architecture, DB multi-tenancy, auth, RBAC, audit, jobs skeleton, Command Center shell (real empty metrics) | **IN PROGRESS** |
-| **2** | Landing, Growth360 port, lead capture, CRM pipeline | Pending |
-| **3** | Lead scoring, growth score rules, competitors, AI analysis | Pending |
-| **4** | Email/WhatsApp workflows, ₹99 Razorpay + webhook, calendar, sales | Pending |
-| **5** | Proposal, payment, onboarding, client portal | Pending |
-| **6** | Meta OAuth + adapter + campaign builder + creatives | Pending |
-| **7** | Monitoring, lead sync, health, alerts | Pending |
-| **8** | AI performance + optimization approvals | Pending |
-| **9** | Reporting, PDF, invoices, fee engine, reminders | Pending |
-| **10** | Client health, retention, upsell, referral | Pending |
-| **11** | CEO exception center, profitability | Pending |
-| **12** | Security hardening, tests, observability | Pending |
-| **13** | Google Ads adapter (later) | Deferred |
+| **1** | Architecture, DB multi-tenancy, auth, RBAC, audit, jobs skeleton, Command Center | **DONE** |
+| **2** | Landing, Growth360, lead capture, CRM | **DONE** |
+| **3** | Lead scoring, growth score, competitors, AI analysis | **DONE** |
+| **4** | Workflows, ₹99 Razorpay + webhook, calendar booking, sales brief | **DONE** |
+| **5** | Proposal, payment, onboarding, client portal | **DONE** |
+| **6** | Meta OAuth adapter, campaign CRUD, creatives | **DONE** (Meta live calls require app credentials) |
+| **7** | Monitoring worker, health scores, metrics storage | **DONE** (metrics from sync only — never fabricated) |
+| **8** | AI recommendations + human approval | **DONE** |
+| **9** | Reporting, PDF, invoices, billing summary | **DONE** |
+| **10** | Client health, upsell, referral | **DONE** |
+| **11** | CEO Command Center exception view | **DONE** (Phase 1+) |
+| **12** | Security patterns, tests, build | **IN PROGRESS** |
+| **13** | Google Ads adapter | Deferred (interface ready) |
 
 ---
 
