@@ -6,6 +6,9 @@
   # Dynamic sitemap
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
+  # Hostinger quotations (public client links)
+  RewriteRule ^q(/.*)?$ /q/index.php [L,QSA]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

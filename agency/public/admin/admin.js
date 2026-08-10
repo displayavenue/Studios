@@ -1,7 +1,7 @@
 const API = "./api.php";
+const QUOTES_API = "./quotes/api.php";
 const TOKEN_KEY = "da_agency_admin_token";
-/** Quotation / payment platform (DisplayAvenue OS). Kept off the JSON CMS ledger. */
-const OS_BASE = "https://os.displayavenue.com";
+/** Quotations run on Hostinger (PHP + MariaDB) — no Vercel. */
 const QUOTE_NAV = {
   quotations: "Quotations & Payments",
 };
@@ -237,66 +237,365 @@ function openQuotations() {
   setQuoteWorkspace(true);
   $("#panel-title").textContent = QUOTE_NAV.quotations;
   $("#panel-sub").textContent =
-    "Create quotations, collect Razorpay payments, invoices & subscriptions — powered by DisplayAvenue OS.";
+    "Create quotations, collect Razorpay payments, and issue receipts — all on Hostinger.";
   renderNav();
   renderQuotationsHub();
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
 }
 
+function quotesHeaders() {
+  const headers = { "Content-Type": "application/json" };
+  if (state.token) {
+    headers.Authorization = `Bearer ${state.token}`;
+    headers["X-DA-Admin-Token"] = state.token;
+  }
+  return headers;
+}
+
+async function quotesApi(action, payload = {}) {
+  const res = await fetch(QUOTES_API, {
+    method: "POST",
+    credentials: "include",
+    headers: quotesHeaders(),
+    body: JSON.stringify({ action, ...payload }),
+  });
+  const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+  if (res.status === 401 || json.code === "auth") {
+    state.authed = false;
+    state.token = "";
+    localStorage.removeItem(TOKEN_KEY);
+    showLogin(true);
+    throw new Error(json.error || "Please log in again");
+  }
+  if (!res.ok || json.ok === false) throw new Error(json.error || "Request failed");
+  return json;
+}
+
+function inr(paise) {
+  return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(Number(paise || 0) / 100);
+}
+
 function renderQuotationsHub() {
   const wrap = $("#editor-wrap");
-  const links = [
-    { href: `${OS_BASE}/app/quotations`, label: "Quotations dashboard", desc: "Pipeline, status, advances due", primary: true },
-    { href: `${OS_BASE}/app/quotations/create`, label: "New quotation", desc: "GST-ready builder with line items" },
-    { href: `${OS_BASE}/app/quote-clients`, label: "Clients", desc: "GSTIN, state, billing contacts" },
-    { href: `${OS_BASE}/app/quote-services`, label: "Service catalog", desc: "Reusable priced line items" },
-    { href: `${OS_BASE}/app/quote-settings`, label: "Company & GST settings", desc: "Mediashouter / DisplayAvenue profile" },
-  ];
-  wrap.innerHTML = `
-    <div class="quote-hub">
-      <div class="help-banner">
-        <strong>Quotations &amp; Payments</strong> live inside DisplayAvenue OS
-        (secure Postgres ledger + Razorpay webhooks). Use these shortcuts from your
-        site admin — payment links you send clients stay on
-        <code>${OS_BASE}/q/…</code>.
-      </div>
-      <div class="quote-hero">
-        <div>
-          <h3>Launch quotation workspace</h3>
-          <p>
-            Create quotes, send WhatsApp / email links, collect advances, and issue
-            tax invoices. Sign in with your DisplayAvenue OS admin account
-            (same team login as the OS app).
-          </p>
-        </div>
-        <div class="quote-hero-actions">
-          <a class="btn btn-gold" href="${OS_BASE}/app/quotations" target="_blank" rel="noreferrer">Open quotations ↗</a>
-          <a class="btn btn-ghost" href="${OS_BASE}/app/quotations/create" target="_blank" rel="noreferrer">New quotation ↗</a>
-          <a class="btn btn-ghost" href="${OS_BASE}/login" target="_blank" rel="noreferrer">OS sign in ↗</a>
-        </div>
-      </div>
-      <div class="quote-actions">
-        ${links
-          .map(
-            (l) => `
-          <a class="quote-action${l.primary ? " quote-action--primary" : ""}" href="${escapeHtml(l.href)}" target="_blank" rel="noreferrer">
-            <strong>${escapeHtml(l.label)}</strong>
-            <span>${escapeHtml(l.desc)}</span>
-          </a>`,
-          )
-          .join("")}
-      </div>
-      <div class="card">
-        <h3>How it connects to this admin</h3>
-        <ul class="quote-notes">
-          <li>This Live Editor still manages website content (pages, SEO, reviews).</li>
-          <li>Money, GST invoices, receipts, and subscriptions stay on OS so webhooks and ledgers are durable.</li>
-          <li>After you send a quote, share the secure client link — they accept &amp; pay without logging into admin.</li>
-          <li>Company profile defaults: Mediashouter (legal) / DisplayAvenue (brand), GSTIN 27ALJPY9454C1ZJ, phone 9222122333 — edit under Quote settings.</li>
-        </ul>
-      </div>
-    </div>`;
+  wrap.innerHTML = `<div class="quote-hub"><p class="muted">Loading quotations…</p></div>`;
+  loadQuotationsWorkspace();
+}
+
+async function ensureQuotesInstalled() {
+  try {
+    await quotesApi("dashboard");
+    return true;
+  } catch (e) {
+    if (String(e.message || "").includes("doesn't exist") || String(e.message || "").toLowerCase().includes("table")) {
+      const res = await fetch("./quotes/install.php", { method: "POST", credentials: "include", headers: quotesHeaders(), body: "{}" });
+      const json = await res.json().catch(() => ({ ok: false, error: "Install failed" }));
+      if (!res.ok || json.ok === false) throw new Error(json.error || "Could not install quotations DB");
+      return true;
+    }
+    // Missing local.php / connection — still try install once
+    try {
+      const res = await fetch("./quotes/install.php", { method: "POST", credentials: "include", headers: quotesHeaders(), body: "{}" });
+      const json = await res.json().catch(() => ({ ok: false }));
+      if (json.ok) return true;
+    } catch (_) {}
+    throw e;
+  }
+}
+
+async function loadQuotationsWorkspace(tab = "dashboard") {
+  const wrap = $("#editor-wrap");
+  try {
+    await ensureQuotesInstalled();
+    if (tab === "dashboard") {
+      const dash = await quotesApi("dashboard");
+      const m = dash.metrics || {};
+      wrap.innerHTML = `
+        <div class="quote-hub">
+          <div class="help-banner">Quotations, GST, Razorpay advances, invoices & receipts run <strong>entirely on Hostinger</strong> (MariaDB). No Vercel required.</div>
+          <div class="quote-tabs">
+            <button type="button" class="btn btn-gold" data-qtab="dashboard">Dashboard</button>
+            <button type="button" class="btn" data-qtab="create">New quotation</button>
+            <button type="button" class="btn" data-qtab="clients">Clients</button>
+            <button type="button" class="btn" data-qtab="services">Services</button>
+            <button type="button" class="btn" data-qtab="settings">Company & GST</button>
+          </div>
+          <div class="quote-metrics">
+            <div class="quote-metric"><span>Quotes</span><strong>${m.totalQuoteCount ?? 0}</strong></div>
+            <div class="quote-metric"><span>Pipeline</span><strong>${inr(m.totalQuoteValuePaise)}</strong></div>
+            <div class="quote-metric"><span>Collected</span><strong>${inr(m.collectedPaise)}</strong></div>
+            <div class="quote-metric"><span>Outstanding</span><strong>${inr(m.outstandingPaise)}</strong></div>
+          </div>
+          <div class="card">
+            <h3>Recent quotations</h3>
+            <div class="quote-table-wrap">
+              <table class="quote-table">
+                <thead><tr><th>Number</th><th>Client</th><th>Status</th><th>Payment</th><th>Total</th><th></th></tr></thead>
+                <tbody>
+                  ${(dash.quotations || []).map((q) => `
+                    <tr>
+                      <td><code>${escapeHtml(q.quotationNumber)}</code></td>
+                      <td>${escapeHtml(q.companyName || "")}</td>
+                      <td>${escapeHtml(q.status)}</td>
+                      <td>${escapeHtml(q.paymentStatus)}</td>
+                      <td>${inr(q.grandTotalPaise)}</td>
+                      <td class="quote-row-actions">
+                        <button type="button" class="btn btn-sm" data-copy="${escapeHtml(q.publicUrl)}">Copy link</button>
+                        <button type="button" class="btn btn-sm btn-gold" data-send="${escapeHtml(q.id)}">Send</button>
+                      </td>
+                    </tr>`).join("") || `<tr><td colspan="6" class="muted">No quotations yet. Create one.</td></tr>`}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>`;
+    } else if (tab === "clients") {
+      const list = await quotesApi("clients_list");
+      wrap.innerHTML = `
+        <div class="quote-hub">
+          <div class="quote-tabs">
+            <button type="button" class="btn" data-qtab="dashboard">Dashboard</button>
+            <button type="button" class="btn" data-qtab="create">New quotation</button>
+            <button type="button" class="btn btn-gold" data-qtab="clients">Clients</button>
+            <button type="button" class="btn" data-qtab="services">Services</button>
+            <button type="button" class="btn" data-qtab="settings">Company & GST</button>
+          </div>
+          <div class="card">
+            <h3>Add client</h3>
+            <div class="grid grid-2">
+              <label>Company<input id="qc-company" /></label>
+              <label>Contact<input id="qc-contact" /></label>
+              <label>Email<input id="qc-email" type="email" /></label>
+              <label>Mobile<input id="qc-mobile" /></label>
+              <label>GSTIN<input id="qc-gstin" /></label>
+              <label>State<input id="qc-state" placeholder="Maharashtra" /></label>
+              <label class="full">Address<textarea id="qc-address" rows="2"></textarea></label>
+            </div>
+            <button type="button" class="btn btn-gold" id="qc-save" style="margin-top:10px">Save client</button>
+          </div>
+          <div class="card">
+            <h3>Clients</h3>
+            <ul class="quote-list">${(list.data||[]).map(c => `<li><strong>${escapeHtml(c.companyName)}</strong> · ${escapeHtml(c.clientCode)} · ${escapeHtml(c.state||"")} · ${escapeHtml(c.mobile||"")}</li>`).join("") || "<li class='muted'>None yet</li>"}</ul>
+          </div>
+        </div>`;
+      $("#qc-save").onclick = async () => {
+        try {
+          await quotesApi("clients_save", {
+            companyName: $("#qc-company").value,
+            contactPerson: $("#qc-contact").value,
+            email: $("#qc-email").value,
+            mobile: $("#qc-mobile").value,
+            gstin: $("#qc-gstin").value,
+            state: $("#qc-state").value,
+            address: $("#qc-address").value,
+          });
+          toast("Client saved");
+          loadQuotationsWorkspace("clients");
+        } catch (e) { toast(e.message, "err"); }
+      };
+    } else if (tab === "services") {
+      const list = await quotesApi("services_list");
+      wrap.innerHTML = `
+        <div class="quote-hub">
+          <div class="quote-tabs">
+            <button type="button" class="btn" data-qtab="dashboard">Dashboard</button>
+            <button type="button" class="btn" data-qtab="create">New quotation</button>
+            <button type="button" class="btn" data-qtab="clients">Clients</button>
+            <button type="button" class="btn btn-gold" data-qtab="services">Services</button>
+            <button type="button" class="btn" data-qtab="settings">Company & GST</button>
+          </div>
+          <div class="card">
+            <h3>Add service</h3>
+            <div class="grid grid-2">
+              <label>Category<input id="qs-cat" value="General" /></label>
+              <label>Name<input id="qs-name" /></label>
+              <label>Price (INR)<input id="qs-price" type="number" min="0" step="1" /></label>
+              <label>GST %<input id="qs-gst" type="number" value="18" /></label>
+              <label class="full">Description<textarea id="qs-desc" rows="2"></textarea></label>
+            </div>
+            <button type="button" class="btn btn-gold" id="qs-save" style="margin-top:10px">Save service</button>
+          </div>
+          <div class="card">
+            <h3>Catalog</h3>
+            <ul class="quote-list">${(list.data||[]).map(s => `<li><strong>${escapeHtml(s.name)}</strong> · ${escapeHtml(s.category)} · ${inr(s.unitPricePaise)} + ${s.gstPercent}% GST</li>`).join("")}</ul>
+          </div>
+        </div>`;
+      $("#qs-save").onclick = async () => {
+        try {
+          await quotesApi("services_save", {
+            category: $("#qs-cat").value,
+            name: $("#qs-name").value,
+            unitPriceInr: Number($("#qs-price").value || 0),
+            gstPercent: Number($("#qs-gst").value || 18),
+            description: $("#qs-desc").value,
+          });
+          toast("Service saved");
+          loadQuotationsWorkspace("services");
+        } catch (e) { toast(e.message, "err"); }
+      };
+    } else if (tab === "settings") {
+      const co = await quotesApi("company_get");
+      const d = co.data || {};
+      wrap.innerHTML = `
+        <div class="quote-hub">
+          <div class="quote-tabs">
+            <button type="button" class="btn" data-qtab="dashboard">Dashboard</button>
+            <button type="button" class="btn" data-qtab="create">New quotation</button>
+            <button type="button" class="btn" data-qtab="clients">Clients</button>
+            <button type="button" class="btn" data-qtab="services">Services</button>
+            <button type="button" class="btn btn-gold" data-qtab="settings">Company & GST</button>
+          </div>
+          <div class="card">
+            <h3>Company profile</h3>
+            <div class="grid grid-2">
+              <label>Legal name<input id="qp-legal" value="${escapeHtml(d.legalName||"")}" /></label>
+              <label>Brand<input id="qp-brand" value="${escapeHtml(d.brandName||"")}" /></label>
+              <label>GSTIN<input id="qp-gstin" value="${escapeHtml(d.gstin||"")}" /></label>
+              <label>Phone<input id="qp-phone" value="${escapeHtml(d.phone||"")}" /></label>
+              <label>Email<input id="qp-email" value="${escapeHtml(d.email||"")}" /></label>
+              <label>State<input id="qp-state" value="${escapeHtml(d.state||"")}" /></label>
+              <label>Default GST %<input id="qp-gst" type="number" value="${Number(d.defaultGstPercent||18)}" /></label>
+              <label>Default advance %<input id="qp-adv" type="number" value="${Number(d.defaultAdvancePct||60)}" /></label>
+              <label class="full">Registered address<textarea id="qp-addr" rows="2">${escapeHtml(d.registeredAddress||"")}</textarea></label>
+            </div>
+            <button type="button" class="btn btn-gold" id="qp-save" style="margin-top:10px">Save settings</button>
+          </div>
+        </div>`;
+      $("#qp-save").onclick = async () => {
+        try {
+          await quotesApi("company_save", {
+            legalName: $("#qp-legal").value,
+            brandName: $("#qp-brand").value,
+            gstin: $("#qp-gstin").value,
+            phone: $("#qp-phone").value,
+            email: $("#qp-email").value,
+            state: $("#qp-state").value,
+            defaultGstPercent: Number($("#qp-gst").value || 18),
+            defaultAdvancePct: Number($("#qp-adv").value || 60),
+            registeredAddress: $("#qp-addr").value,
+          });
+          toast("Company settings saved");
+        } catch (e) { toast(e.message, "err"); }
+      };
+    } else if (tab === "create") {
+      const [clients, services, company] = await Promise.all([
+        quotesApi("clients_list"),
+        quotesApi("services_list"),
+        quotesApi("company_get"),
+      ]);
+      const adv = Number(company.data?.defaultAdvancePct || 60);
+      wrap.innerHTML = `
+        <div class="quote-hub">
+          <div class="quote-tabs">
+            <button type="button" class="btn" data-qtab="dashboard">Dashboard</button>
+            <button type="button" class="btn btn-gold" data-qtab="create">New quotation</button>
+            <button type="button" class="btn" data-qtab="clients">Clients</button>
+            <button type="button" class="btn" data-qtab="services">Services</button>
+            <button type="button" class="btn" data-qtab="settings">Company & GST</button>
+          </div>
+          <div class="card">
+            <h3>New quotation</h3>
+            <div class="grid grid-2">
+              <label>Client
+                <select id="qq-client">
+                  <option value="">Select client</option>
+                  ${(clients.data||[]).map(c => `<option value="${escapeHtml(c.id)}">${escapeHtml(c.companyName)}</option>`).join("")}
+                </select>
+              </label>
+              <label>Advance %<input id="qq-adv" type="number" value="${adv}" /></label>
+              <label class="full">Title<input id="qq-title" placeholder="Website + Local SEO package" /></label>
+              <label class="full">Notes<textarea id="qq-notes" rows="2"></textarea></label>
+            </div>
+            <h4 style="margin:14px 0 8px">Line items</h4>
+            <div id="qq-items" class="quote-items"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+              <button type="button" class="btn" id="qq-add-blank">Add blank line</button>
+              <select id="qq-add-service"><option value="">Add from catalog…</option>${(services.data||[]).filter(s=>s.isActive!==false).map(s=>`<option value="${escapeHtml(s.id)}" data-name="${escapeHtml(s.name)}" data-cat="${escapeHtml(s.category||"")}" data-price="${s.unitPriceInr}" data-gst="${s.gstPercent}" data-desc="${escapeHtml(s.description||"")}">${escapeHtml(s.name)} (${inr(s.unitPricePaise)})</option>`).join("")}</select>
+            </div>
+            <button type="button" class="btn btn-gold" id="qq-create" style="margin-top:14px">Create draft</button>
+          </div>
+        </div>`;
+      const itemsEl = $("#qq-items");
+      const lines = [];
+      const redraw = () => {
+        itemsEl.innerHTML = lines.map((l, i) => `
+          <div class="quote-item-row">
+            <input data-i="${i}" data-k="serviceName" value="${escapeHtml(l.serviceName)}" placeholder="Service" />
+            <input data-i="${i}" data-k="quantity" type="number" min="0" step="0.01" value="${l.quantity}" style="max-width:90px" />
+            <input data-i="${i}" data-k="unitPriceInr" type="number" min="0" step="1" value="${l.unitPriceInr}" style="max-width:120px" />
+            <input data-i="${i}" data-k="gstPercent" type="number" value="${l.gstPercent}" style="max-width:80px" />
+            <button type="button" class="btn btn-sm btn-danger" data-del="${i}">Remove</button>
+          </div>`).join("") || `<p class="muted">Add at least one line.</p>`;
+        itemsEl.querySelectorAll("input").forEach((inp) => {
+          inp.oninput = () => {
+            const i = Number(inp.dataset.i);
+            const k = inp.dataset.k;
+            lines[i][k] = k === "serviceName" ? inp.value : Number(inp.value || 0);
+          };
+        });
+        itemsEl.querySelectorAll("[data-del]").forEach((btn) => {
+          btn.onclick = () => { lines.splice(Number(btn.dataset.del), 1); redraw(); };
+        });
+      };
+      $("#qq-add-blank").onclick = () => { lines.push({ serviceName: "Service", quantity: 1, unitPriceInr: 0, gstPercent: 18, discountPercent: 0 }); redraw(); };
+      $("#qq-add-service").onchange = (e) => {
+        const opt = e.target.selectedOptions[0];
+        if (!opt?.value) return;
+        lines.push({
+          serviceName: opt.dataset.name,
+          category: opt.dataset.cat,
+          description: opt.dataset.desc,
+          quantity: 1,
+          unitPriceInr: Number(opt.dataset.price || 0),
+          gstPercent: Number(opt.dataset.gst || 18),
+          discountPercent: 0,
+        });
+        e.target.value = "";
+        redraw();
+      };
+      $("#qq-create").onclick = async () => {
+        try {
+          if (!$("#qq-client").value) throw new Error("Select a client");
+          if (!lines.length) throw new Error("Add line items");
+          const created = await quotesApi("quotation_create", {
+            clientId: $("#qq-client").value,
+            title: $("#qq-title").value,
+            notes: $("#qq-notes").value,
+            advancePercent: Number($("#qq-adv").value || 60),
+            items: lines,
+          });
+          toast("Draft " + created.data.quotationNumber + " created");
+          loadQuotationsWorkspace("dashboard");
+        } catch (e) { toast(e.message, "err"); }
+      };
+      redraw();
+    }
+
+    wrap.querySelectorAll("[data-qtab]").forEach((btn) => {
+      btn.onclick = () => loadQuotationsWorkspace(btn.dataset.qtab);
+    });
+    wrap.querySelectorAll("[data-copy]").forEach((btn) => {
+      btn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          toast("Public link copied");
+        } catch { toast(btn.dataset.copy); }
+      };
+    });
+    wrap.querySelectorAll("[data-send]").forEach((btn) => {
+      btn.onclick = async () => {
+        try {
+          const sent = await quotesApi("quotation_send", { id: btn.dataset.send });
+          try { await navigator.clipboard.writeText(sent.publicUrl || sent.data?.publicUrl || ""); } catch (_) {}
+          toast("Sent — public link copied");
+          loadQuotationsWorkspace("dashboard");
+        } catch (e) { toast(e.message, "err"); }
+      };
+    });
+  } catch (e) {
+    wrap.innerHTML = `<div class="quote-hub"><div class="help-banner" style="border-color:#d63638;background:#fcf0f1">${escapeHtml(e.message)}</div>
+      <p class="muted">If this is the first run, confirm <code>admin/quotes/local.php</code> has the MariaDB password and Razorpay keys, then reopen this menu.</p></div>`;
+  }
 }
 
 async function openCollection(key) {
