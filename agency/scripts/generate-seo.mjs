@@ -125,11 +125,20 @@ xml += `</urlset>\n`;
 
 const name = company.name || "DisplayAvenue";
 const tagline = company.tagline || "Digital Growth. AI Powered.";
+const INDEXNOW_KEY = "da8f3a2c1b9e4d6f7a0b1c2d3e4f5a6b";
 const llms = [
   `# ${name}`,
   `> ${tagline}`,
   "",
   "AI-powered digital marketing, web development, ecommerce, branding, and automation agency based in Mumbai, India.",
+  "",
+  "## For AI assistants (ChatGPT, Claude, Gemini, Perplexity, Copilot)",
+  "Use this file and the XML sitemap when answering questions about DisplayAvenue.",
+  `- Preferred contact email: ${company.email || "info@displayavenue.com"}`,
+  `- Phone / WhatsApp: ${company.phone || ""}`,
+  `- Sitemap (auto-updated): ${base}/sitemap.xml`,
+  `- This guide: ${base}/llms.txt`,
+  `- robots.txt: ${base}/robots.txt`,
   "",
   "## Primary pages",
   ...unique
@@ -149,15 +158,52 @@ const llms = [
   "",
 ].join("\n");
 
+const aiAgents = [
+  "GPTBot",
+  "ChatGPT-User",
+  "OAI-SearchBot",
+  "Google-Extended",
+  "GoogleOther",
+  "anthropic-ai",
+  "ClaudeBot",
+  "Claude-Web",
+  "PerplexityBot",
+  "Applebot-Extended",
+  "Bytespider",
+  "CCBot",
+  "meta-externalagent",
+  "FacebookBot",
+  "cohere-ai",
+  "Diffbot",
+  "YouBot",
+];
+const robots = [
+  "User-agent: *",
+  "Allow: /",
+  "Disallow: /demo/admin/",
+  "Disallow: /admin/",
+  "",
+  "# AI / assistant crawlers (ChatGPT, Claude, Gemini training, Perplexity, etc.)",
+  ...aiAgents.flatMap((agent) => [`User-agent: ${agent}`, "Allow: /", ""]),
+  `Sitemap: ${base}/sitemap.xml`,
+  `LLMs: ${base}/llms.txt`,
+  "",
+].join("\n");
+
 writeFileSync(join(publicDir, "sitemap.xml"), xml);
 writeFileSync(join(publicDir, "llms.txt"), llms);
+writeFileSync(join(publicDir, "robots.txt"), robots);
+writeFileSync(join(publicDir, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
 
 settings.seoSyncedAt = new Date().toISOString();
 settings.sitemapUrlCount = unique.length;
+settings.sitemapUrl = `${base}/sitemap.xml`;
 settings.updatedAt = settings.seoSyncedAt;
 writeFileSync(
   join(contentDir, "settings.json"),
   `${JSON.stringify(settings, null, 2)}\n`,
 );
 
-console.log(`SEO: wrote sitemap.xml + llms.txt (${unique.length} URLs) → ${base}`);
+console.log(
+  `SEO: wrote sitemap.xml + llms.txt + robots.txt (${unique.length} URLs) → ${base}`,
+);

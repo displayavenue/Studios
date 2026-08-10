@@ -81,14 +81,26 @@
 }
 
 .footer-socials a {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: grid;
   place-items: center;
-  font-size: 0.7rem;
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.footer-socials a:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-socials__wa:hover {
+  background: #25d366 !important;
+  border-color: #25d366 !important;
+  color: #fff !important;
 }
 
 .footer-main h4 {

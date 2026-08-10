@@ -28,7 +28,7 @@ export const fallbackContact: ContactCms = {
   title: "Get Free Proposal",
   headline: "Let's grow your business",
   lead: "Tell us about your goals. We will reply with a clear plan in plain English - what to fix first, what it may cost, and what results to expect.",
-  notifyEmail: "hello@displayavenue.com",
+  notifyEmail: "info@displayavenue.com",
   successTitle: "Thanks - we got your message",
   successMessage:
     "Our team will reply within 24 hours on weekdays. You can also WhatsApp us anytime.",

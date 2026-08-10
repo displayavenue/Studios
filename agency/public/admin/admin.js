@@ -772,6 +772,15 @@ function renderTracking(d) {
 }
 
 function renderSettings(d) {
+  const pingEngines = d.seoPings?.engines || {};
+  const pingRows = Object.keys(pingEngines)
+    .map((name) => {
+      const eng = pingEngines[name] || {};
+      const ok = eng.ok ? "OK" : "fail";
+      const status = eng.status ? ` HTTP ${eng.status}` : "";
+      return `<li><code>${escapeHtml(name)}</code>: ${ok}${status}</li>`;
+    })
+    .join("");
   return `
   ${card(
     "Settings",
@@ -782,6 +791,26 @@ function renderSettings(d) {
     ${field("Notes", "notes", d.notes, "textarea")}
   `,
   )}
+  <div class="card">
+    <h3>Auto sitemap &amp; AI discovery</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
+      Every CMS save rebuilds <code>sitemap.xml</code>, <code>llms.txt</code>, and <code>robots.txt</code>,
+      then pings Google, Bing, and IndexNow so Search Console and AI tools (ChatGPT, Claude, Perplexity, etc.)
+      can discover fresh URLs. Submit <code>https://displayavenue.com/sitemap.xml</code> once in
+      Google Search Console → Sitemaps if you have not already.
+    </p>
+    <p style="margin:0 0 .75rem;font-size:.9rem">
+      <strong>Last sync:</strong> ${escapeHtml(d.seoSyncedAt || "not yet")}<br />
+      <strong>URLs in sitemap:</strong> ${escapeHtml(String(d.sitemapUrlCount ?? "—"))}<br />
+      <strong>Sitemap:</strong> <a href="${escapeHtml(d.sitemapUrl || "https://displayavenue.com/sitemap.xml")}" target="_blank" rel="noreferrer">${escapeHtml(d.sitemapUrl || "https://displayavenue.com/sitemap.xml")}</a>
+    </p>
+    ${
+      pingRows
+        ? `<ul style="margin:0 0 1rem;padding-left:1.2rem;font-size:.88rem;color:var(--muted)">${pingRows}</ul>`
+        : ""
+    }
+    <button type="button" class="btn" data-action="sync-seo">Rebuild sitemap &amp; ping engines now</button>
+  </div>
   <div class="card">
     <h3>Marketing tags</h3>
     <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0">
@@ -868,6 +897,9 @@ function handleAction(action, index) {
   } else if (action === "sync-google-reviews") {
     syncGoogleReviews();
     return;
+  } else if (action === "sync-seo") {
+    syncSeoArtifacts();
+    return;
   } else return;
 
   // Normalize mega fields on nav when typed as "false"
@@ -902,6 +934,20 @@ async function syncGoogleReviews() {
         await openCollection("google-reviews");
       } catch (_) {}
     }
+  }
+}
+
+async function syncSeoArtifacts() {
+  try {
+    toast("Rebuilding sitemap and pinging Google / Bing / IndexNow…");
+    const res = await api("sync-seo", {});
+    if (state.current === "settings") {
+      await openCollection("settings");
+    }
+    const count = res.seo?.urlCount ?? "—";
+    toast(`Sitemap synced (${count} URLs) and search engines notified`);
+  } catch (e) {
+    toast(e.message, "err");
   }
 }
 

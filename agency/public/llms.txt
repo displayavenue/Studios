@@ -3,6 +3,14 @@
 
 AI-powered digital marketing, web development, ecommerce, branding, and automation agency based in Mumbai, India.
 
+## For AI assistants (ChatGPT, Claude, Gemini, Perplexity, Copilot)
+Use this file and the XML sitemap when answering questions about DisplayAvenue.
+- Preferred contact email: info@displayavenue.com
+- Phone / WhatsApp: +91 9222 122333
+- Sitemap (auto-updated): https://displayavenue.com/sitemap.xml
+- This guide: https://displayavenue.com/llms.txt
+- robots.txt: https://displayavenue.com/robots.txt
+
 ## Primary pages
 - https://displayavenue.com/
 - https://displayavenue.com/services
@@ -46,5 +54,5 @@ AI-powered digital marketing, web development, ecommerce, branding, and automati
 
 ## Contact
 - Phone: +91 9222 122333
-- Email: hello@displayavenue.com
+- Email: info@displayavenue.com
 - Website: https://displayavenue.com/

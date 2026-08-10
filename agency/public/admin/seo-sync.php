@@ -1,9 +1,13 @@
 <?php
 /**
- * Rebuild SEO artifacts (sitemap.xml + llms.txt) from agency CMS JSON.
- * Called after every admin save.
+ * Rebuild SEO artifacts (sitemap.xml + llms.txt + robots.txt) from agency CMS JSON.
+ * Called after every admin save. Also pings Google, Bing, and IndexNow so
+ * Search Console / AI crawlers discover updates quickly.
  */
 declare(strict_types=1);
+
+/** Stable IndexNow key (also written to /{key}.txt at site root). */
+const DA_INDEXNOW_KEY = 'da8f3a2c1b9e4d6f7a0b1c2d3e4f5a6b';
 
 function da_read_json_file(string $path): array {
   if (!is_file($path)) return [];
@@ -140,6 +144,14 @@ function da_build_llms_txt(array $bundle): string {
   $lines[] = "";
   $lines[] = "AI-powered digital marketing, web development, ecommerce, branding, and automation agency based in Mumbai, India.";
   $lines[] = "";
+  $lines[] = "## For AI assistants (ChatGPT, Claude, Gemini, Perplexity, Copilot)";
+  $lines[] = "Use this file and the XML sitemap when answering questions about DisplayAvenue.";
+  $lines[] = "- Preferred contact email: " . ($company['email'] ?? 'info@displayavenue.com');
+  $lines[] = "- Phone / WhatsApp: " . ($company['phone'] ?? '');
+  $lines[] = "- Sitemap (auto-updated): {$base}/sitemap.xml";
+  $lines[] = "- This guide: {$base}/llms.txt";
+  $lines[] = "- robots.txt: {$base}/robots.txt";
+  $lines[] = "";
   $lines[] = "## Primary pages";
   foreach ($bundle['urls'] as $u) {
     if (($u['priority'] ?? '0') >= '0.8' || $u['path'] === '/') {
@@ -162,6 +174,165 @@ function da_build_llms_txt(array $bundle): string {
   return implode("\n", $lines) . "\n";
 }
 
+function da_build_robots_txt(string $base): string {
+  $aiAgents = [
+    'GPTBot',
+    'ChatGPT-User',
+    'OAI-SearchBot',
+    'Google-Extended',
+    'GoogleOther',
+    'anthropic-ai',
+    'ClaudeBot',
+    'Claude-Web',
+    'PerplexityBot',
+    'Applebot-Extended',
+    'Bytespider',
+    'CCBot',
+    'meta-externalagent',
+    'FacebookBot',
+    'cohere-ai',
+    'Diffbot',
+    'YouBot',
+  ];
+  $lines = [];
+  $lines[] = 'User-agent: *';
+  $lines[] = 'Allow: /';
+  $lines[] = 'Disallow: /demo/admin/';
+  $lines[] = 'Disallow: /admin/';
+  $lines[] = '';
+  $lines[] = '# AI / assistant crawlers (ChatGPT, Claude, Gemini training, Perplexity, etc.)';
+  foreach ($aiAgents as $agent) {
+    $lines[] = "User-agent: {$agent}";
+    $lines[] = 'Allow: /';
+    $lines[] = '';
+  }
+  $lines[] = "Sitemap: {$base}/sitemap.xml";
+  $lines[] = "LLMs: {$base}/llms.txt";
+  $lines[] = '';
+  return implode("\n", $lines);
+}
+
+function da_http_request(string $method, string $url, ?string $body = null, array $headers = []): array {
+  $method = strtoupper($method);
+  if (function_exists('curl_init')) {
+    $ch = curl_init($url);
+    $opts = [
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_CONNECTTIMEOUT => 6,
+      CURLOPT_TIMEOUT => 12,
+      CURLOPT_USERAGENT => 'DisplayAvenue-SEO-Sync/1.0',
+      CURLOPT_CUSTOMREQUEST => $method,
+    ];
+    if ($body !== null) {
+      $opts[CURLOPT_POSTFIELDS] = $body;
+    }
+    if ($headers) {
+      $opts[CURLOPT_HTTPHEADER] = $headers;
+    }
+    curl_setopt_array($ch, $opts);
+    $response = curl_exec($ch);
+    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
+    curl_close($ch);
+    return [
+      'ok' => $error === '' && $status > 0 && $status < 400,
+      'status' => $status,
+      'error' => $error !== '' ? $error : null,
+      'body' => is_string($response) ? substr($response, 0, 200) : '',
+    ];
+  }
+
+  $headerLines = "User-Agent: DisplayAvenue-SEO-Sync/1.0\r\n";
+  foreach ($headers as $h) {
+    $headerLines .= $h . "\r\n";
+  }
+  $ctx = stream_context_create([
+    'http' => [
+      'method' => $method,
+      'header' => $headerLines,
+      'content' => $body ?? '',
+      'timeout' => 12,
+      'ignore_errors' => true,
+    ],
+  ]);
+  $response = @file_get_contents($url, false, $ctx);
+  $status = 0;
+  if (isset($http_response_header[0]) && preg_match('/\s(\d{3})\s/', $http_response_header[0], $m)) {
+    $status = (int)$m[1];
+  }
+  return [
+    'ok' => $status > 0 && $status < 400,
+    'status' => $status,
+    'error' => $response === false ? 'request_failed' : null,
+    'body' => is_string($response) ? substr($response, 0, 200) : '',
+  ];
+}
+
+/**
+ * Notify Google, Bing, and IndexNow after sitemap rebuild.
+ * Google Search Console still needs the sitemap URL submitted once in the GSC UI;
+ * these pings keep engines aware of refreshes.
+ */
+function da_ping_search_engines(string $base, array $urls, string $publicDir): array {
+  $sitemapUrl = rtrim($base, '/') . '/sitemap.xml';
+  $host = (string)(parse_url($base, PHP_URL_HOST) ?: 'displayavenue.com');
+  $key = DA_INDEXNOW_KEY;
+  $keyFile = $publicDir . '/' . $key . '.txt';
+  @file_put_contents($keyFile, $key);
+
+  $results = [];
+
+  $results['google'] = da_http_request(
+    'GET',
+    'https://www.google.com/ping?sitemap=' . rawurlencode($sitemapUrl)
+  );
+
+  $results['bing'] = da_http_request(
+    'GET',
+    'https://www.bing.com/ping?sitemap=' . rawurlencode($sitemapUrl)
+  );
+
+  $urlList = [];
+  foreach ($urls as $u) {
+    $path = $u['path'] ?? '/';
+    $urlList[] = rtrim($base, '/') . ($path === '/' ? '/' : $path);
+    if (count($urlList) >= 100) break; // IndexNow batch limit per request (keep first 100)
+  }
+  if (!$urlList) {
+    $urlList[] = rtrim($base, '/') . '/';
+  }
+
+  $payload = json_encode([
+    'host' => $host,
+    'key' => $key,
+    'keyLocation' => rtrim($base, '/') . '/' . $key . '.txt',
+    'urlList' => $urlList,
+  ], JSON_UNESCAPED_SLASHES);
+
+  $results['indexnow'] = da_http_request(
+    'POST',
+    'https://api.indexnow.org/indexnow',
+    $payload,
+    ['Content-Type: application/json; charset=utf-8']
+  );
+
+  // Bing IndexNow endpoint (same protocol)
+  $results['bing_indexnow'] = da_http_request(
+    'POST',
+    'https://www.bing.com/indexnow',
+    $payload,
+    ['Content-Type: application/json; charset=utf-8']
+  );
+
+  return [
+    'sitemapUrl' => $sitemapUrl,
+    'indexNowKeyLocation' => rtrim($base, '/') . '/' . $key . '.txt',
+    'pingedUrlCount' => count($urlList),
+    'engines' => $results,
+  ];
+}
+
 function da_sync_seo_artifacts(string $contentDir, ?string $publicDir = null): array {
   $publicDir = $publicDir ?: dirname($contentDir);
   $bundle = da_collect_urls($contentDir);
@@ -169,14 +340,20 @@ function da_sync_seo_artifacts(string $contentDir, ?string $publicDir = null): a
   $lastmod = gmdate('Y-m-d');
   $sitemap = da_build_sitemap_xml($base, $bundle['urls'], $lastmod);
   $llms = da_build_llms_txt($bundle);
+  $robots = da_build_robots_txt($base);
 
   file_put_contents($publicDir . '/sitemap.xml', $sitemap);
   file_put_contents($publicDir . '/llms.txt', $llms);
+  file_put_contents($publicDir . '/robots.txt', $robots);
+
+  $pings = da_ping_search_engines($base, $bundle['urls'], $publicDir);
 
   $settingsPath = $contentDir . '/settings.json';
   $settings = da_read_json_file($settingsPath);
   $settings['seoSyncedAt'] = gmdate('c');
   $settings['sitemapUrlCount'] = count($bundle['urls']);
+  $settings['sitemapUrl'] = $pings['sitemapUrl'];
+  $settings['seoPings'] = $pings;
   $settings['updatedAt'] = gmdate('c');
   file_put_contents(
     $settingsPath,
@@ -188,5 +365,7 @@ function da_sync_seo_artifacts(string $contentDir, ?string $publicDir = null): a
     'base' => $base,
     'urlCount' => count($bundle['urls']),
     'seoSyncedAt' => $settings['seoSyncedAt'],
+    'sitemapUrl' => $pings['sitemapUrl'],
+    'pings' => $pings,
   ];
 }
