@@ -1,0 +1,117 @@
+.quote-public {
+  --quote-max: 880px;
+  background:
+    radial-gradient(900px 420px at 10% -20%, rgba(31, 111, 235, 0.14), transparent 55%),
+    linear-gradient(180deg, #f8fafc 0%, #eef3f8 45%, #f7f9fc 100%);
+  min-height: 100vh;
+  padding-bottom: 6.5rem;
+}
+
+.quote-public .qp-wrap {
+  width: min(var(--quote-max), calc(100% - 1.5rem));
+  margin-inline: auto;
+  padding: 1.25rem 0 2rem;
+}
+
+.quote-public .qp-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(7, 24, 51, 0.08);
+  padding: 1.15rem 1.2rem;
+}
+
+.quote-public .qp-brand {
+  font-family: Fraunces, Georgia, serif;
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.55rem, 4vw, 2rem);
+  margin: 0;
+}
+
+.quote-public .qp-legal {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0;
+}
+
+.quote-public .qp-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  padding: 0.75rem 0.85rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.92);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -10px 30px rgba(7, 24, 51, 0.08);
+}
+
+.quote-public .qp-sticky-inner {
+  width: min(var(--quote-max), calc(100% - 0.25rem));
+  margin-inline: auto;
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.quote-public .qp-service-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.quote-public .qp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.quote-public .qp-table th,
+.quote-public .qp-table td {
+  text-align: left;
+  padding: 0.75rem 0.4rem;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.quote-public .qp-table th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-top: 0;
+}
+
+.quote-public .qp-desktop-only { display: none; }
+.quote-public .qp-mobile-only { display: grid; gap: 0.75rem; }
+
+@media (min-width: 768px) {
+  .quote-public {
+    padding-bottom: 3rem;
+  }
+  .quote-public .qp-sticky {
+    display: none;
+  }
+  .quote-public .qp-desktop-only { display: block; }
+  .quote-public .qp-mobile-only { display: none; }
+}
+
+@media print {
+  .quote-public {
+    background: #fff !important;
+    padding-bottom: 0 !important;
+  }
+  .quote-public .qp-sticky,
+  .quote-public .qp-no-print {
+    display: none !important;
+  }
+  .quote-public .qp-card,
+  .quote-public .qp-service-card {
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .quote-public .qp-mobile-only { display: none !important; }
+  .quote-public .qp-desktop-only { display: block !important; }
+}

@@ -102,13 +102,23 @@ export default function QuotationDetailPage() {
     if (!quote) return;
     setBusy("send");
     setError("");
-    const res = await apiFetch<QuoteDetail>(`/api/quotations/${quote.id}/send`, { method: "POST" });
+    const res = await apiFetch<{
+      quotation?: QuoteDetail;
+      publicUrl?: string;
+      publicPath?: string;
+    } & QuoteDetail>(`/api/quotations/${quote.id}/send`, { method: "POST" });
     setBusy("");
     if (!res.ok) {
       setError(res.error || "Failed to send");
       return;
     }
-    setQuote(res.data);
+    const next = res.data.quotation ? { ...quote, ...res.data.quotation } : res.data.id ? res.data : quote;
+    setQuote({
+      ...next,
+      publicUrl: res.data.publicUrl || next.publicUrl,
+      publicPath: res.data.publicPath || next.publicPath,
+    });
+    await load();
   }
 
   async function copyLink() {
@@ -141,7 +151,7 @@ export default function QuotationDetailPage() {
     setBusy("note");
     setError("");
     const res = await apiFetch<QuoteDetail>(`/api/quotations/${quote.id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ notes: noteDraft }),
     });
@@ -150,7 +160,7 @@ export default function QuotationDetailPage() {
       setError(res.error || "Failed to save note");
       return;
     }
-    setQuote(res.data);
+    setQuote({ ...quote, ...res.data, events: quote.events });
     setEditingNote(false);
   }
 
@@ -211,7 +221,7 @@ export default function QuotationDetailPage() {
 
       {error && <p style={{ color: "var(--danger)" }}>{error}</p>}
 
-      <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "minmax(0,1.4fr) minmax(260px,.8fr)" }}>
+      <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
         <div style={{ display: "grid", gap: "1rem" }}>
           <section className="panel" style={{ padding: "1.1rem" }}>
             <h2 className="display" style={{ marginTop: 0, fontSize: "1.15rem", color: "var(--navy)" }}>Line items</h2>
