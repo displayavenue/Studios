@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { AiPlatformMenu } from "../components/menus/AiPlatformMenu";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
-import { InternalLinks } from "../components/InternalLinks";
 import { Icon } from "../components/Icon";
 import "../styles/pages.css";
 
@@ -35,7 +34,6 @@ export function AiPlatform() {
           </div>
         </div>
       </div>
-      <InternalLinks title="Explore more DisplayAvenue pages" limit={120} columns={4} />
     </div>
   );
 }

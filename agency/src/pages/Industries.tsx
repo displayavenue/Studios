@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
 import { useCms } from "../cms/CmsProvider";
-import { InternalLinks } from "../components/InternalLinks";
 import {
   industryStats,
   popularIndustrySolutions,
@@ -59,18 +58,23 @@ export function Industries() {
                   </div>
                 </li>
               </ul>
-              <div style={{ marginTop: "1.25rem" }}>
-                <h4 style={{ color: "var(--navy)", marginBottom: "0.5rem" }}>Popular services</h4>
-                <ul style={{ display: "grid", gap: "0.35rem" }}>
+              <div className="start-points" style={{ marginTop: "1.25rem" }}>
+                <h4 style={{ color: "var(--navy)", marginBottom: "0.35rem" }}>Popular services</h4>
+                <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginBottom: "0.65rem" }}>
+                  Pair your industry with the work that usually brings the fastest results.
+                </p>
+                <div className="start-points__grid start-points__grid--stack">
                   {services.slice(0, 8).map((s) => (
-                    <li key={s.slug}>
-                      <Link to={`/services/${s.slug}`}>{s.title}</Link>
-                    </li>
+                    <Link key={s.slug} to={`/services/${s.slug}`} className="start-point">
+                      <strong>{s.title}</strong>
+                      <span>{(s.summary || "").slice(0, 70)}…</span>
+                    </Link>
                   ))}
-                  <li>
-                    <Link to="/services">All services →</Link>
-                  </li>
-                </ul>
+                  <Link to="/services" className="start-point">
+                    <strong>All services</strong>
+                    <span>Browse the full list of marketing, web, and creative help</span>
+                  </Link>
+                </div>
               </div>
             </aside>
 
@@ -138,7 +142,6 @@ export function Industries() {
           </div>
         </div>
       </div>
-      <InternalLinks title="Explore related DisplayAvenue pages" limit={120} columns={4} />
     </div>
   );
 }

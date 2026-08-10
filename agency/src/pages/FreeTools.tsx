@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
-import { InternalLinks } from "../components/InternalLinks";
 import {
   toolCategories,
   popularTools,
@@ -141,7 +140,6 @@ export function FreeTools() {
           .tools-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
-      <InternalLinks title="More helpful pages" limit={120} columns={4} />
     </div>
   );
 }

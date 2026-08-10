@@ -9,7 +9,6 @@ import {
   BreadcrumbSchema,
   ArticleSchema,
 } from "./SEO";
-import { InternalLinks } from "./InternalLinks";
 import "./DetailPage.css";
 
 function pathFor(page: DetailPageContent): string {
@@ -268,13 +267,6 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
           </div>
         </div>
       </section>
-
-      <InternalLinks
-        title={`Explore more after ${page.title}`}
-        excludeHref={path}
-        limit={120}
-        columns={4}
-      />
     </div>
   );
 }

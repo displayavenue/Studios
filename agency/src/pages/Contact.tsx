@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
-import { InternalLinks } from "../components/InternalLinks";
 import "../styles/pages.css";
 
 export function Contact() {
@@ -67,26 +66,35 @@ export function Contact() {
                   </div>
                 </li>
               </ul>
-              <div style={{ marginTop: "1.25rem" }}>
-                <h3 style={{ fontSize: "0.95rem", color: "var(--navy)" }}>Popular starting points</h3>
-                <ul style={{ marginTop: "0.5rem", display: "grid", gap: "0.35rem" }}>
+              <div className="start-points" style={{ marginTop: "1.25rem" }}>
+                <h3 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.35rem" }}>
+                  Popular starting points
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginBottom: "0.75rem" }}>
+                  Not sure what to ask for? These are the pages most Indian business owners open first.
+                </p>
+                <div className="start-points__grid">
                   {services.slice(0, 6).map((s) => (
-                    <li key={s.slug}>
-                      <Link to={`/services/${s.slug}`}>{s.title}</Link>
-                    </li>
+                    <Link key={s.slug} to={`/services/${s.slug}`} className="start-point">
+                      <strong>{s.title}</strong>
+                      <span>{(s.summary || "").slice(0, 72)}…</span>
+                    </Link>
                   ))}
                   {industries.slice(0, 4).map((s) => (
-                    <li key={s.slug}>
-                      <Link to={`/industries/${s.slug}`}>{s.title} industry</Link>
-                    </li>
+                    <Link key={s.slug} to={`/industries/${s.slug}`} className="start-point">
+                      <strong>{s.title}</strong>
+                      <span>Industry plan for businesses like yours</span>
+                    </Link>
                   ))}
-                  <li>
-                    <Link to="/packages">Monthly packages</Link>
-                  </li>
-                  <li>
-                    <Link to="/free-tools">Free marketing tools</Link>
-                  </li>
-                </ul>
+                  <Link to="/packages" className="start-point">
+                    <strong>Monthly packages</strong>
+                    <span>Bundled SEO, ads, and content with clear pricing</span>
+                  </Link>
+                  <Link to="/free-tools" className="start-point">
+                    <strong>Free marketing tools</strong>
+                    <span>Quick checks before you hire an agency</span>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -146,7 +154,6 @@ export function Contact() {
           .contact-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
-      <InternalLinks title="Explore while you decide" limit={120} columns={4} />
     </div>
   );
 }

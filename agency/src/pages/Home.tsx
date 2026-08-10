@@ -3,7 +3,6 @@ import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
-import { InternalLinks } from "../components/InternalLinks";
 import "./Home.css";
 
 const promises = [
@@ -176,8 +175,6 @@ export function Home() {
           </Link>
         </div>
       </section>
-
-      <InternalLinks title="Popular pages across DisplayAvenue" limit={120} columns={4} />
     </div>
   );
 }

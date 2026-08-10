@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import type { DetailPageContent } from "../data/catalogTypes";
 import { Icon } from "./Icon";
@@ -182,10 +182,7 @@ function buildGroups(cms: ReturnType<typeof useCms>, excludeHref?: string): Grou
       hubHref: "/case-studies",
       icon: "chart",
       accent: "#0284c7",
-      items: [
-        ...toLinks(cms.cases, excludeHref),
-        ...toLinks(cms.projects, excludeHref),
-      ],
+      items: [...toLinks(cms.cases, excludeHref), ...toLinks(cms.projects, excludeHref)],
     },
     {
       id: "resources",
@@ -200,8 +197,76 @@ function buildGroups(cms: ReturnType<typeof useCms>, excludeHref?: string): Grou
   ].filter((g) => g.items.length > 0);
 }
 
+function contextForPath(pathname: string): { title: string; lead: string } {
+  const p = pathname.replace(/\/$/, "") || "/";
+  if (p === "/") {
+    return {
+      title: "Find the right page for your business",
+      lead: "New here? Start with Services or your Industry. Want a monthly plan? Open Packages. Prefer to check first? Try Free tools. Each group below explains what it is for, then links to the pages inside.",
+    };
+  }
+  if (p.startsWith("/services")) {
+    return {
+      title: "More ways DisplayAvenue can help",
+      lead: "You are in Services. Use Industries if you want a plan for your business type, Packages for monthly bundles, or Free tools for a quick check before you hire.",
+    };
+  }
+  if (p.startsWith("/industries")) {
+    return {
+      title: "Next steps for your industry",
+      lead: "You are browsing Industries. Pair this with Services (SEO, ads, websites) or Packages if you want a clear monthly plan for growth.",
+    };
+  }
+  if (p.startsWith("/packages")) {
+    return {
+      title: "Explore beyond packages",
+      lead: "Packages bundle the work. If you want a single service, open Services. If you want proof first, open Case studies. Free tools help you check your current setup.",
+    };
+  }
+  if (p.startsWith("/free-tools")) {
+    return {
+      title: "After you try a free tool",
+      lead: "Tools show what to fix. Services and Packages are how we help you fix it. Case studies show what similar businesses achieved.",
+    };
+  }
+  if (p.startsWith("/case-studies") || p.startsWith("/portfolio")) {
+    return {
+      title: "Ready to get similar results?",
+      lead: "You are looking at proof. Next, pick a Service, match your Industry, or choose a Package  -  then talk to us for a plain plan.",
+    };
+  }
+  if (p.startsWith("/resources")) {
+    return {
+      title: "Put these guides into action",
+      lead: "Guides explain the ideas. Services and Packages turn them into weekly work for your business.",
+    };
+  }
+  if (p.startsWith("/solutions") || p.startsWith("/ai-platform")) {
+    return {
+      title: "Related services and plans",
+      lead: "Solutions and AI suites work best when matched with the right Service or Package for your budget and goals.",
+    };
+  }
+  if (p.startsWith("/contact") || p.startsWith("/why-displayavenue")) {
+    return {
+      title: "Browse while you decide",
+      lead: "Not ready to talk yet? Explore Services, Industries, Packages, and Free tools  -  each page explains what you get in plain English.",
+    };
+  }
+  if (p.startsWith("/privacy") || p.startsWith("/terms")) {
+    return {
+      title: "Back to growing your business",
+      lead: "When you are done with the legal pages, jump into Services, Packages, or Contact to continue.",
+    };
+  }
+  return {
+    title: "Explore DisplayAvenue",
+    lead: "Business owners often ask “where do I start?” Each group explains what it is for, then links to the pages inside  -  so you can jump to SEO, ads, your industry, packages, or free tools without hunting.",
+  };
+}
+
 export function InternalLinks({
-  title = "Find the right page for your business",
+  title,
   links,
   columns: _columns = 3,
   limit = 140,
@@ -214,9 +279,14 @@ export function InternalLinks({
   excludeHref?: string;
 }) {
   const cms = useCms();
+  const { pathname } = useLocation();
   void _columns;
 
-  // Custom flat list (rare) — still render as a tidy directory block
+  const ctx = contextForPath(pathname);
+  const heading = title || ctx.title;
+  const currentPath = pathname.replace(/\/$/, "") || "/";
+  const autoExclude = excludeHref || (currentPath !== "/" ? currentPath : undefined);
+
   if (links?.length) {
     const resolved = links.slice(0, limit);
     return (
@@ -225,11 +295,9 @@ export function InternalLinks({
           <header className="explore-dir__header">
             <p className="explore-dir__kicker">Site directory</p>
             <h2 id="explore-dir-title" className="explore-dir__title">
-              {title}
+              {heading}
             </h2>
-            <p className="explore-dir__lead">
-              Short links to related pages so you can keep exploring without getting lost.
-            </p>
+            <p className="explore-dir__lead">{ctx.lead}</p>
           </header>
           <div className="explore-dir__panel">
             <div className="explore-dir__tiles">
@@ -246,7 +314,7 @@ export function InternalLinks({
     );
   }
 
-  const groups = buildGroups(cms, excludeHref);
+  const groups = buildGroups(cms, autoExclude);
   let remaining = limit;
   const clipped = groups
     .map((group) => {
@@ -257,8 +325,7 @@ export function InternalLinks({
     })
     .filter((g) => g.items.length > 0);
 
-  const totalLinks =
-    clipped.reduce((n, g) => n + g.items.length, 0) + START_HERE.length;
+  const totalLinks = clipped.reduce((n, g) => n + g.items.length, 0) + START_HERE.length;
 
   return (
     <section className="explore-dir" aria-labelledby="explore-dir-title">
@@ -266,13 +333,9 @@ export function InternalLinks({
         <header className="explore-dir__header">
           <p className="explore-dir__kicker">Why this section</p>
           <h2 id="explore-dir-title" className="explore-dir__title">
-            {title}
+            {heading}
           </h2>
-          <p className="explore-dir__lead">
-            Business owners often ask “where do I start?” This directory answers that.
-            Each group explains what it is for, then links to the pages inside  -  so you
-            can jump to SEO, ads, your industry, packages, or free tools without hunting.
-          </p>
+          <p className="explore-dir__lead">{ctx.lead}</p>
           <p className="explore-dir__meta">{totalLinks}+ pages organised by goal</p>
         </header>
 

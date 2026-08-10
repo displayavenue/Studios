@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
-import { InternalLinks } from "../components/InternalLinks";
 import "../styles/pages.css";
 
 export function Services() {
@@ -105,7 +104,6 @@ export function Services() {
           </section>
         </div>
       </div>
-      <InternalLinks title="All DisplayAvenue pages" limit={120} columns={4} />
     </div>
   );
 }
