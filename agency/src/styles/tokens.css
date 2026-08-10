@@ -29,8 +29,16 @@
   --shadow: 0 4px 24px rgba(0, 11, 51, 0.06);
   --shadow-md: 0 8px 32px rgba(0, 11, 51, 0.1);
   --font: "Plus Jakarta Sans", system-ui, sans-serif;
-  --header-h: 72px;
-  --announcement-h: 40px;
+  --font-display: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
+  /* Match real sticky chrome: announcement + navy bar (desktop also has white nav) */
+  --announcement-h: 36px;
+  --header-top-h: 64px;
+  --header-nav-h: 48px;
+  --header-h: var(--header-top-h);
+  --sticky-header-mobile: calc(var(--announcement-h) + var(--header-top-h));
+  --sticky-header-desktop: calc(
+    var(--announcement-h) + var(--header-top-h) + var(--header-nav-h)
+  );
   --max: 1280px;
   --max-wide: 1480px;
 }
@@ -43,20 +51,50 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--sticky-header-mobile) + 12px);
+  background: var(--navy-deep);
 }
 
 body {
   margin: 0;
   font-family: var(--font);
   color: var(--text);
-  background: var(--bg-soft);
+  background: var(--navy-deep);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  min-height: 100%;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg-soft);
+}
+
+.app-shell > main {
+  flex: 1 0 auto;
+  min-width: 0;
+}
+
+.app-shell > .site-footer {
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 body.menu-open {
   overflow: hidden;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+@media (min-width: 1100px) {
+  html {
+    scroll-padding-top: calc(var(--sticky-header-desktop) + 12px);
+  }
 }
 
 a {

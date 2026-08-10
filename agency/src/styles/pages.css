@@ -54,11 +54,12 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   overflow: hidden;
+  min-width: 0;
 }
 
 .page-grid-3 {
   display: grid;
-  grid-template-columns: 240px 1fr 240px;
+  grid-template-columns: 240px minmax(0, 1fr) 240px;
   gap: 1.25rem;
   padding: 1.5rem;
 }
@@ -178,6 +179,24 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
+}
+
+.category-grid--services {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.category-card {
+  min-width: 0;
+}
+
+.category-card h3,
+.category-card p,
+.category-card .meta {
+  overflow-wrap: anywhere;
+}
+
+.mini-grid-4--featured {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .category-card {
@@ -807,6 +826,7 @@
 
   .hero-grid,
   .category-grid,
+  .category-grid--services,
   .mini-grid-4,
   .pricing-cards,
   .testimonial-grid,
@@ -844,7 +864,9 @@
 
   .hero-grid,
   .category-grid,
+  .category-grid--services,
   .mini-grid-4,
+  .mini-grid-4--featured,
   .mini-grid-2,
   .pricing-cards,
   .testimonial-grid,

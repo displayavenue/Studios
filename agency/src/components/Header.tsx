@@ -31,8 +31,21 @@ export function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.classList.toggle("menu-open", open);
-    return () => document.body.classList.remove("menu-open");
+    if (!open) {
+      document.body.classList.remove("menu-open");
+      document.body.style.removeProperty("top");
+      return;
+    }
+
+    const scrollY = window.scrollY;
+    document.body.classList.add("menu-open");
+    document.body.style.top = `-${scrollY}px`;
+
+    return () => {
+      document.body.classList.remove("menu-open");
+      document.body.style.removeProperty("top");
+      window.scrollTo(0, scrollY);
+    };
   }, [open]);
 
   useEffect(() => {
@@ -78,10 +91,10 @@ export function Header() {
   };
 
   return (
-    <header className="site-header">
+    <header className={`site-header${open ? " is-menu-open" : ""}`}>
       <div className="announcement">
         <div className="container-wide announcement-inner">
-          <span>
+          <span className="announcement-text">
             {company.announcement ||
               "New! AI-Powered Marketing Solutions are now available."}
           </span>
@@ -188,12 +201,33 @@ export function Header() {
         )}
       </div>
 
+      {open && (
+        <button
+          type="button"
+          className="mobile-drawer-backdrop"
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
       <div
         id={navId}
         className={`mobile-drawer ${open ? "open" : ""}`}
         hidden={!open}
       >
         <div className="mobile-drawer-inner">
+          <div className="mobile-drawer__top">
+            <p className="mobile-drawer__label">Menu</p>
+            <button
+              type="button"
+              className="mobile-drawer__close"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+            >
+              <Icon name="close" size={18} color="#000b33" />
+              Close
+            </button>
+          </div>
           <button
             type="button"
             className="mobile-link search-mobile-btn"
@@ -251,6 +285,15 @@ export function Header() {
             >
               Get Free Proposal
             </Link>
+            <a
+              className="btn btn-outline"
+              href={company.whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+            >
+              WhatsApp us
+            </a>
             <Link
               className="btn btn-outline"
               to="/catalogue"
