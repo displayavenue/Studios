@@ -262,14 +262,24 @@
   font-weight: 650;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .da-chat {
     left: 0.75rem;
     right: auto;
-    bottom: 5.25rem;
+    bottom: calc(5.6rem + env(safe-area-inset-bottom, 0px));
   }
 
   .da-chat-panel {
-    height: min(70vh, 560px);
+    height: min(62vh, 520px);
+  }
+
+  body.menu-open .da-chat {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .da-chat-panel {
+    height: min(60vh, 500px);
   }
 }

@@ -1,7 +1,7 @@
 .wa-float {
   position: fixed;
-  left: 1.25rem;
-  right: auto;
+  right: 1.25rem;
+  left: auto;
   bottom: 1.25rem;
   width: 56px;
   height: 56px;
@@ -16,6 +16,10 @@
 
 .wa-float:hover {
   transform: scale(1.06);
+}
+
+body.menu-open .wa-float {
+  display: none;
 }
 
 .placeholder-page {

@@ -274,11 +274,35 @@ a.mega-col-title:hover {
 
   .solutions-grid,
   .ai-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .industries-mega-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1099px) {
+  /* Mobile drawer: keep mega content single-column and wrap safely */
+  .mobile-mega .what-we-do-grid,
+  .mobile-mega .solutions-layout,
+  .mobile-mega .ai-layout,
+  .mobile-mega .solutions-grid,
+  .mobile-mega .ai-grid,
+  .mobile-mega .industries-mega-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-mega .mega-side-card,
+  .mobile-mega .mega-side-dark,
+  .mobile-mega .mega-col,
+  .mobile-mega .industries-mega-grid a {
+    min-width: 0;
+  }
+
+  .mobile-mega .industries-mega-grid a span {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 }
 

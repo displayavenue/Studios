@@ -25,6 +25,19 @@
   font-weight: 500;
   white-space: nowrap;
   margin-top: 0.12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+@media (max-width: 380px) {
+  .logo-text small {
+    display: none;
+  }
+
+  .logo-text strong {
+    font-size: 1.05rem;
+  }
 }
 
 .logo-mark {

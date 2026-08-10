@@ -53,13 +53,12 @@ export function CaseStudies() {
               <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
                 Explore Case Studies by Service
               </h2>
-              <div className="category-grid" style={{ gridTemplateColumns: "repeat(5, 1fr)" }}>
+              <div className="category-grid category-grid--services">
                 {caseStudyServices.map((item) => (
                   <Link
                     key={item.title}
                     to="/case-studies"
                     className="category-card"
-                    style={{ minHeight: "110px" }}
                   >
                     <span className="icon-box" style={{ background: `${item.color}18` }}>
                       <Icon name={item.icon} color={item.color} size={16} />
@@ -76,7 +75,7 @@ export function CaseStudies() {
               <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", margin: "1.5rem 0 0.75rem" }}>
                 Featured Case Studies
               </h2>
-              <div className="mini-grid-4" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
+              <div className="mini-grid-4 mini-grid-4--featured">
                 {featuredCaseStudies.map((item) => (
                   <Link key={item.href} to={item.href} className="featured-card">
                     <div className="featured-media" style={{ background: item.gradient, height: "140px" }}>
