@@ -115,7 +115,22 @@
 
 .mega-side-dark h4 {
   font-size: 0.95rem;
+  color: #fff;
   margin-bottom: 0.75rem;
+}
+
+.mega-side-dark .mega-check-list li {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.mega-side-dark .mega-stat-list li,
+.mega-side-dark .mega-stat-list strong {
+  color: #fff;
+}
+
+.mega-side-dark .mega-stat-list span {
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 1;
 }
 
 .mega-stat-list {
@@ -151,7 +166,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.8rem;
-  color: var(--text);
+  color: inherit;
 }
 
 .mega-compact .mega-col {
