@@ -44,6 +44,7 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
     ['path' => '/services', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/industries', 'priority' => '0.9', 'changefreq' => 'weekly'],
+    ['path' => '/industry-solutions', 'priority' => '0.85', 'changefreq' => 'weekly'],
     ['path' => '/solutions', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/ai-platform', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/packages', 'priority' => '0.9', 'changefreq' => 'weekly'],

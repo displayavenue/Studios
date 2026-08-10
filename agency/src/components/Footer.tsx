@@ -35,7 +35,11 @@ export function Footer() {
     },
     {
       title: "Industries",
-      links: [...industryLinks, { label: "All industries →", href: "/industries" }],
+      links: [
+        ...industryLinks,
+        { label: "All industries →", href: "/industries" },
+        { label: "Industry solutions →", href: "/industry-solutions" },
+      ],
     },
     {
       title: "Packages & solutions",

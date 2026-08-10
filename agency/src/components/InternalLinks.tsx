@@ -11,6 +11,9 @@ export type InternalLink = {
 };
 
 function pathFor(page: DetailPageContent): string {
+  if (page.kind === "combo" && page.industrySlug && page.serviceSlug) {
+    return `/industries/${page.industrySlug}/${page.serviceSlug}`;
+  }
   const map: Record<string, string> = {
     service: "/services/",
     industry: "/industries/",
@@ -21,6 +24,7 @@ function pathFor(page: DetailPageContent): string {
     "case-study": "/case-studies/",
     project: "/portfolio/",
     resource: "/resources/",
+    combo: "/industry-solutions/",
   };
   return `${map[page.kind] || "/services/"}${page.slug}`;
 }
@@ -56,6 +60,13 @@ const START_HERE = [
     href: "/industries",
     icon: "briefcase",
     accent: "#0d9488",
+  },
+  {
+    title: "Industry solutions",
+    why: "Industry + service pages with unique funnels and CTAs.",
+    href: "/industry-solutions",
+    icon: "target",
+    accent: "#0284c7",
   },
   {
     title: "Packages",
@@ -133,6 +144,16 @@ function buildGroups(cms: ReturnType<typeof useCms>, excludeHref?: string): Grou
       icon: "briefcase",
       accent: "#0d9488",
       items: toLinks(cms.industries, excludeHref),
+    },
+    {
+      id: "industry-solutions",
+      title: "Industry solutions",
+      why: "Dedicated industry × service pages with unique funnels - not generic templates.",
+      hubLabel: "Browse industry solutions",
+      hubHref: "/industry-solutions",
+      icon: "target",
+      accent: "#0284c7",
+      items: toLinks(cms.combos || [], excludeHref),
     },
     {
       id: "packages",
@@ -220,10 +241,10 @@ function contextForPath(pathname: string): { title: string; lead: string } {
       lead: "You are in Services. Use Industries if you want a plan for your business type, Packages for monthly bundles, or Free tools for a quick check before you hire.",
     };
   }
-  if (p.startsWith("/industries")) {
+  if (p.startsWith("/industries") || p.startsWith("/industry-solutions")) {
     return {
       title: "Next steps for your industry",
-      lead: "You are browsing Industries. Pair this with Services (SEO, ads, websites) or Packages if you want a clear monthly plan for growth.",
+      lead: "You are browsing Industries or Industry solutions. Pair this with Services (SEO, ads, websites) or Packages if you want a clear monthly plan for growth.",
     };
   }
   if (p.startsWith("/packages")) {

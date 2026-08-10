@@ -30,7 +30,7 @@ function previewRouteFor(collection) {
     cases: "/case-studies",
     projects: "/portfolio",
     resources: "/resources",
-    combos: "/industries",
+    combos: "/industry-solutions",
     tracking: "/",
     settings: "/",
   };

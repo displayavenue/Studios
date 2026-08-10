@@ -57,6 +57,7 @@ export const navItems: NavItem[] = [
   { label: "Home", href: "/", mega: false },
   { label: "What We Do", href: "/services", mega: "whatWeDo" },
   { label: "Industries", href: "/industries", mega: "industries" },
+  { label: "Industry Solutions", href: "/industry-solutions", mega: false },
   { label: "Solutions", href: "/solutions", mega: "solutions" },
   { label: "AI Platform", href: "/ai-platform", mega: "aiPlatform" },
   { label: "Packages", href: "/packages", mega: false },

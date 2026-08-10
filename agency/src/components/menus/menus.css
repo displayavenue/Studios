@@ -205,6 +205,43 @@
   background: var(--blue-tint);
 }
 
+.mega-two-col {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.mega-cat-label {
+  margin: 0 0 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.industries-mega-grid--solutions {
+  grid-template-columns: 1fr;
+  padding-bottom: 0;
+}
+
+.industries-mega-grid--solutions a {
+  font-size: 0.8rem;
+}
+
+.mega-view-all {
+  justify-content: center !important;
+  color: var(--blue) !important;
+  border-style: dashed !important;
+}
+
+@media (max-width: 1200px) {
+  .mega-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
 .value-list {
   display: grid;
   gap: 0.65rem;

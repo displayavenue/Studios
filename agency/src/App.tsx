@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { Industries } from "./pages/Industries";
+import { IndustrySolutions } from "./pages/IndustrySolutions";
 import { Packages } from "./pages/Packages";
 import { FreeTools } from "./pages/FreeTools";
 import { CaseStudies } from "./pages/CaseStudies";
@@ -36,6 +37,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="industries" element={<Industries />} />
+          <Route path="industry-solutions" element={<IndustrySolutions />} />
           <Route path="industries/:industry/:service" element={<IndustryServiceCombo />} />
           <Route path="industries/:slug" element={<IndustryDetail />} />
           <Route path="packages" element={<Packages />} />

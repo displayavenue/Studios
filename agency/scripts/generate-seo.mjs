@@ -47,6 +47,7 @@ const staticPages = [
   ["/", "1.0", "weekly"],
   ["/services", "0.9", "weekly"],
   ["/industries", "0.9", "weekly"],
+  ["/industry-solutions", "0.85", "weekly"],
   ["/solutions", "0.9", "weekly"],
   ["/ai-platform", "0.9", "weekly"],
   ["/packages", "0.9", "weekly"],
