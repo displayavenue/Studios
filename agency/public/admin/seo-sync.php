@@ -287,11 +287,22 @@ function da_ping_search_engines(string $base, array $urls, string $publicDir): a
     'GET',
     'https://www.google.com/ping?sitemap=' . rawurlencode($sitemapUrl)
   );
+  // Google retired the public sitemap ping endpoint (often HTTP 404). GSC still
+  // reads sitemap.xml after a one-time submit; treat 404 as expected.
+  if (($results['google']['status'] ?? 0) === 404) {
+    $results['google']['ok'] = true;
+    $results['google']['note'] = 'legacy_ping_retired_use_gsc_sitemap';
+  }
 
   $results['bing'] = da_http_request(
     'GET',
     'https://www.bing.com/ping?sitemap=' . rawurlencode($sitemapUrl)
   );
+  // Bing retired /ping (HTTP 410). IndexNow is the supported path.
+  if (($results['bing']['status'] ?? 0) === 410) {
+    $results['bing']['ok'] = true;
+    $results['bing']['note'] = 'legacy_ping_retired_use_indexnow';
+  }
 
   $urlList = [];
   foreach ($urls as $u) {

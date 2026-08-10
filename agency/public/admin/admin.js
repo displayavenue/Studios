@@ -795,9 +795,10 @@ function renderSettings(d) {
     <h3>Auto sitemap &amp; AI discovery</h3>
     <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
       Every CMS save rebuilds <code>sitemap.xml</code>, <code>llms.txt</code>, and <code>robots.txt</code>,
-      then pings Google, Bing, and IndexNow so Search Console and AI tools (ChatGPT, Claude, Perplexity, etc.)
-      can discover fresh URLs. Submit <code>https://displayavenue.com/sitemap.xml</code> once in
-      Google Search Console → Sitemaps if you have not already.
+      then notifies engines via <strong>IndexNow</strong> (Bing + partners) so Search Console and AI tools
+      (ChatGPT, Claude, Perplexity, etc.) can discover fresh URLs. Submit
+      <code>https://displayavenue.com/sitemap.xml</code> once in Google Search Console → Sitemaps if you have not already
+      (Google no longer supports the old public ping URL).
     </p>
     <p style="margin:0 0 .75rem;font-size:.9rem">
       <strong>Last sync:</strong> ${escapeHtml(d.seoSyncedAt || "not yet")}<br />
