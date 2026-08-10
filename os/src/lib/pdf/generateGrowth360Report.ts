@@ -1,5 +1,6 @@
 import PDFDocument from "pdfkit";
 import { prisma } from "../db";
+import { reportsDir } from "../storage";
 import fs from "fs";
 import path from "path";
 import { profileFromAnswers } from "../engines/scoreEngine";
@@ -32,8 +33,7 @@ export async function generateGrowth360ReportPdf(assessmentId: string) {
     coldCallScript?: { opening?: string };
   };
 
-  const outDir = path.join(process.cwd(), "storage", "reports");
-  fs.mkdirSync(outDir, { recursive: true });
+  const outDir = reportsDir();
   const filePath = path.join(outDir, `growth360-${assessment.publicId}.pdf`);
 
   await new Promise<void>((resolve, reject) => {

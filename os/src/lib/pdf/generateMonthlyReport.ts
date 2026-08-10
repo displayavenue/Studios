@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "../db";
 import fs from "fs";
 import path from "path";
+import { reportsDir } from "../storage";
 import { calculateCampaignHealth } from "../engines/campaignHealthEngine";
 import { calculateClientHealth } from "../engines/clientHealthEngine";
 import { runAiStructured, monthlyNarrativeSchema } from "../ai/aiService";
@@ -142,8 +143,7 @@ export async function generateMonthlyReportPdf(params: {
     nextMonthFocus: ["Review at-risk campaigns", "Clear pending approvals", "Confirm billing"],
   };
 
-  const outDir = path.join(process.cwd(), "storage", "reports");
-  fs.mkdirSync(outDir, { recursive: true });
+  const outDir = reportsDir();
   const stamp = params.periodEnd.toISOString().slice(0, 10);
   const filePath = path.join(outDir, `monthly-${org.slug}-${stamp}.pdf`);
 
