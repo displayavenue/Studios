@@ -86,26 +86,6 @@ export function Footer() {
     },
   ];
 
-  const megaLinks = [
-    ...serviceLinks,
-    ...industryLinks,
-    ...packageLinks,
-    ...toolLinks,
-    ...resourceLinks,
-    ...solutionLinks,
-    ...caseLinks,
-    { label: "Services hub", href: "/services" },
-    { label: "Industries hub", href: "/industries" },
-    { label: "Packages hub", href: "/packages" },
-    { label: "Solutions hub", href: "/solutions" },
-    { label: "AI Platform", href: "/ai-platform" },
-    { label: "Free tools", href: "/free-tools" },
-    { label: "Resources", href: "/resources" },
-    { label: "Case studies", href: "/case-studies" },
-    { label: "Portfolio", href: "/portfolio" },
-    { label: "Contact", href: "/contact" },
-  ];
-
   return (
     <footer className="site-footer">
       <div className="footer-cta">
@@ -200,15 +180,24 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="container footer-sitemap">
-          <h4>Full site map ({megaLinks.length}+ pages)</h4>
-          <ul>
-            {megaLinks.map((link) => (
-              <li key={`map-${link.href}-${link.label}`}>
-                <Link to={link.href}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
+        <div className="container footer-guide">
+          <div className="footer-guide__copy">
+            <h4>Need a page, not a phone call?</h4>
+            <p>
+              Use Services for what we do, Industries for your business type, Packages
+              for monthly plans, and Free tools for a quick check  -  all explained in
+              plain English on each page.
+            </p>
+          </div>
+          <div className="footer-guide__links">
+            <Link to="/services">Services</Link>
+            <Link to="/industries">Industries</Link>
+            <Link to="/packages">Packages</Link>
+            <Link to="/free-tools">Free tools</Link>
+            <Link to="/case-studies">Case studies</Link>
+            <Link to="/resources">Guides</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
         </div>
       </div>
 
