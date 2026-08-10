@@ -101,6 +101,7 @@ model Organization {
   onboarding     OnboardingChecklist?
   settings       OrganizationSetting[]
   assessments    Assessment[]
+  bookings       Booking[]
 
   @@index([type, status])
 }
@@ -278,8 +279,34 @@ model Payment {
   metadata          Json?
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
+  bookings          Booking[]
 
   @@index([organizationId, status])
+}
+
+model Booking {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  paymentId      String?
+  payment        Payment?     @relation(fields: [paymentId], references: [id], onDelete: SetNull)
+  leadId         String?
+  assessmentId   String?
+  name           String
+  email          String
+  phone          String?
+  slotStart      DateTime
+  slotEnd        DateTime
+  timezone       String       @default("Asia/Kolkata")
+  status         String       @default("scheduled")
+  notes          String?
+  metadata       Json?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([organizationId, slotStart])
+  @@index([paymentId])
+  @@index([email])
 }
 
 model Invoice {
