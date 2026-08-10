@@ -177,12 +177,21 @@ function buildGroups(cms: ReturnType<typeof useCms>, excludeHref?: string): Grou
     {
       id: "proof",
       title: "Results & work",
-      why: "Proof before you hire  -  case studies and selected projects.",
+      why: "Proof before you hire  -  case studies, awards, certifications, and selected projects.",
       hubLabel: "View case studies",
       hubHref: "/case-studies",
       icon: "chart",
       accent: "#0284c7",
-      items: [...toLinks(cms.cases, excludeHref), ...toLinks(cms.projects, excludeHref)],
+      items: [
+        ...toLinks(cms.cases, excludeHref),
+        ...toLinks(cms.projects, excludeHref),
+        { label: "Awards", href: "/awards", blurb: "19 awards the team has won" },
+        {
+          label: "Certifications",
+          href: "/certifications",
+          blurb: "40 team certificates from Google, Meta, HubSpot & more",
+        },
+      ].filter((l) => !excludeHref || l.href !== excludeHref),
     },
     {
       id: "resources",
@@ -245,6 +254,12 @@ function contextForPath(pathname: string): { title: string; lead: string } {
     return {
       title: "Related services and plans",
       lead: "Solutions and AI suites work best when matched with the right Service or Package for your budget and goals.",
+    };
+  }
+  if (p.startsWith("/awards") || p.startsWith("/certifications")) {
+    return {
+      title: "More ways to explore DisplayAvenue",
+      lead: "You are looking at credentials and recognition. Next, open Services, Packages, or Case studies — or Contact us for a plain plan.",
     };
   }
   if (p.startsWith("/contact") || p.startsWith("/why-displayavenue")) {

@@ -17,6 +17,8 @@ function previewRouteFor(collection) {
     home: "/",
     company: "/",
     "google-reviews": "/",
+    awards: "/awards",
+    certifications: "/certifications",
     content: "/",
     services: "/services",
     industries: "/industries",
@@ -252,6 +254,8 @@ function renderEditor() {
     resources: () => renderCatalog(d, "Resource"),
     content: renderContent,
     "google-reviews": renderGoogleReviews,
+    awards: renderAwards,
+    certifications: renderCertifications,
     tracking: renderTracking,
     settings: renderSettings,
   };
@@ -545,6 +549,107 @@ function renderGoogleReviews(d) {
   `;
 }
 
+function renderAwards(d) {
+  const items = (d.items || [])
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.title || `Award ${i + 1}`)}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-award" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("ID", `items.${i}.id`, item.id || "")}
+          ${field("Title", `items.${i}.title`, item.title || "")}
+          ${field("Issuer", `items.${i}.issuer`, item.issuer || "")}
+          ${field("Year", `items.${i}.year`, item.year || "")}
+          ${field("Category", `items.${i}.category`, item.category || "")}
+          ${field("Image URL", `items.${i}.image`, item.image || "")}
+          ${field("Featured on homepage", `items.${i}.featured`, item.featured !== false, "checkbox")}
+          ${field("Summary", `items.${i}.summary`, item.summary || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    ${card(
+      "Awards page & homepage section",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Homepage shows featured awards <strong>before the explore directory</strong>.
+        Upload images to <code>/images/awards/</code> or paste any image URL.
+      </p>
+      ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Page title", "title", d.title || "")}
+      ${field("Page subtitle", "sub", d.sub || "", "textarea")}
+      ${field("SEO title", "seo.title", d.seo?.title || "")}
+      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+      ${field("Homepage section title", "homeTitle", d.homeTitle || "")}
+      ${field("Homepage section subtitle", "homeSub", d.homeSub || "", "textarea")}
+      ${field("Homepage awards limit", "homeAwardsLimit", d.homeAwardsLimit ?? 6, "number")}
+      ${field("Homepage certs limit", "homeCertsLimit", d.homeCertsLimit ?? 8, "number")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Awards (${(d.items || []).length})</h3>
+        <button type="button" class="btn btn-gold" data-action="add-award">Add award</button>
+      </div>
+      ${items || "<p class='empty'>No awards yet</p>"}
+    </section>
+  `;
+}
+
+function renderCertifications(d) {
+  const items = (d.items || [])
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.title || `Certificate ${i + 1}`)}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-cert" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("ID", `items.${i}.id`, item.id || "")}
+          ${field("Title", `items.${i}.title`, item.title || "")}
+          ${field("Issuer", `items.${i}.issuer`, item.issuer || "")}
+          ${field("Brand (Google, Meta…)", `items.${i}.brand`, item.brand || "")}
+          ${field("Category", `items.${i}.category`, item.category || "")}
+          ${field("Year", `items.${i}.year`, item.year || "")}
+          ${field("Image URL", `items.${i}.image`, item.image || "")}
+          ${field("Featured on homepage", `items.${i}.featured`, item.featured !== false, "checkbox")}
+          ${field("Credential / summary", `items.${i}.credential`, item.credential || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    ${card(
+      "Certifications page",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Edit certificates here. Images live in <code>/images/certs/</code> (or any URL).
+        Featured items appear on the homepage awards &amp; certifications section.
+      </p>
+      ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Page title", "title", d.title || "")}
+      ${field("Page subtitle", "sub", d.sub || "", "textarea")}
+      ${field("SEO title", "seo.title", d.seo?.title || "")}
+      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Certificates (${(d.items || []).length})</h3>
+        <button type="button" class="btn btn-gold" data-action="add-cert">Add certificate</button>
+      </div>
+      ${items || "<p class='empty'>No certificates yet</p>"}
+    </section>
+  `;
+}
+
 function renderContent(d) {
   const testimonials = (d.testimonials || [])
     .map(
@@ -671,6 +776,39 @@ function handleAction(action, index) {
     });
   } else if (action === "del-google-review") {
     d.reviews.splice(Number(index), 1);
+  } else if (action === "add-award") {
+    d.items = d.items || [];
+    const n = d.items.length + 1;
+    d.items.unshift({
+      id: `award-${String(n).padStart(2, "0")}`,
+      title: "New award",
+      issuer: "",
+      year: String(new Date().getFullYear()),
+      summary: "",
+      category: "",
+      image: "/images/awards/award-01.jpg",
+      featured: true,
+    });
+  } else if (action === "del-award") {
+    if (!confirm("Delete this award?")) return;
+    d.items.splice(Number(index), 1);
+  } else if (action === "add-cert") {
+    d.items = d.items || [];
+    const n = d.items.length + 1;
+    d.items.unshift({
+      id: `cert-${String(n).padStart(2, "0")}`,
+      title: "New certificate",
+      issuer: "",
+      credential: "",
+      year: String(new Date().getFullYear()),
+      brand: "Google",
+      category: "",
+      image: "/images/certs/cert-01.jpg",
+      featured: true,
+    });
+  } else if (action === "del-cert") {
+    if (!confirm("Delete this certificate?")) return;
+    d.items.splice(Number(index), 1);
   } else if (action === "sync-google-reviews") {
     syncGoogleReviews();
     return;

@@ -75,6 +75,8 @@ export function Footer() {
       title: "Company",
       links: [
         { label: "Why DisplayAvenue", href: "/why-displayavenue" },
+        { label: "Awards", href: "/awards" },
+        { label: "Certifications", href: "/certifications" },
         { label: "AI Platform", href: "/ai-platform" },
         { label: "Portfolio", href: "/portfolio" },
         { label: "Contact", href: "/contact" },

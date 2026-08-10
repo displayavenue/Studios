@@ -22,6 +22,12 @@ import {
   fallbackGoogleReviews,
   type GoogleReviewsCms,
 } from "../data/googleReviews";
+import {
+  fallbackAwards,
+  fallbackCertifications,
+  type AwardsCms,
+  type CertificationsCms,
+} from "../data/awardsCerts";
 import type { DetailPageContent } from "../data/catalogTypes";
 import {
   defaultTracking,
@@ -71,6 +77,8 @@ export type AgencyCms = {
   resources: DetailPageContent[];
   content: ContentCms;
   googleReviews: GoogleReviewsCms;
+  awards: AwardsCms;
+  certifications: CertificationsCms;
   tracking: typeof defaultTracking;
   ready: boolean;
 };
@@ -112,6 +120,8 @@ const defaults: AgencyCms = {
     },
   },
   googleReviews: fallbackGoogleReviews,
+  awards: fallbackAwards,
+  certifications: fallbackCertifications,
   tracking: defaultTracking,
   ready: false,
 };
@@ -155,6 +165,8 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         content,
         trackingJson,
         googleReviews,
+        awardsJson,
+        certificationsJson,
       ] = await Promise.all([
         fetchJson<Partial<CompanyCms>>("company"),
         fetchJson<Partial<HomeCms>>("home"),
@@ -170,6 +182,8 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         fetchJson<Partial<ContentCms>>("content"),
         fetchJson<TrackingSettings>("tracking"),
         fetchJson<GoogleReviewsCms>("google-reviews"),
+        fetchJson<AwardsCms>("awards"),
+        fetchJson<CertificationsCms>("certifications"),
       ]);
 
       if (cancelled) return;
@@ -231,6 +245,18 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             googleReviews?.reviews?.length
               ? googleReviews.reviews
               : fallbackGoogleReviews.reviews,
+        },
+        awards: {
+          ...fallbackAwards,
+          ...(awardsJson || {}),
+          items: awardsJson?.items?.length ? awardsJson.items : fallbackAwards.items,
+        },
+        certifications: {
+          ...fallbackCertifications,
+          ...(certificationsJson || {}),
+          items: certificationsJson?.items?.length
+            ? certificationsJson.items
+            : fallbackCertifications.items,
         },
         tracking: mergeTracking(trackingJson),
         ready: true,

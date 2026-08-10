@@ -50,6 +50,8 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/case-studies', 'priority' => '0.8', 'changefreq' => 'weekly'],
     ['path' => '/portfolio', 'priority' => '0.8', 'changefreq' => 'weekly'],
     ['path' => '/resources', 'priority' => '0.8', 'changefreq' => 'weekly'],
+    ['path' => '/awards', 'priority' => '0.75', 'changefreq' => 'monthly'],
+    ['path' => '/certifications', 'priority' => '0.75', 'changefreq' => 'monthly'],
     ['path' => '/why-displayavenue', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['path' => '/contact', 'priority' => '0.8', 'changefreq' => 'monthly'],
     ['path' => '/privacy', 'priority' => '0.3', 'changefreq' => 'yearly'],

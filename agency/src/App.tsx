@@ -13,6 +13,8 @@ import { Solutions } from "./pages/Solutions";
 import { Services } from "./pages/Services";
 import { Contact } from "./pages/Contact";
 import { LegalPage } from "./pages/LegalPage";
+import { Awards } from "./pages/Awards";
+import { Certifications } from "./pages/Certifications";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -52,6 +54,8 @@ export default function App() {
           <Route path="services" element={<Services />} />
           <Route path="services/:slug" element={<ServiceDetail />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="awards" element={<Awards />} />
+          <Route path="certifications" element={<Certifications />} />
           <Route path="privacy" element={<LegalPage type="privacy" />} />
           <Route path="terms" element={<LegalPage type="terms" />} />
           <Route path="*" element={<Navigate to="/" replace />} />

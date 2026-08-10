@@ -4,6 +4,7 @@ import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
 import { GoogleReviews } from "../components/GoogleReviews";
+import { AwardsCertsHome } from "../components/AwardsCertsHome";
 import "./Home.css";
 
 const promises = [
@@ -178,6 +179,7 @@ export function Home() {
       </section>
 
       <GoogleReviews />
+      <AwardsCertsHome />
     </div>
   );
 }

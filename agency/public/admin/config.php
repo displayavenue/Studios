@@ -14,6 +14,8 @@ return [
     'company' => 'Header, Footer & Company',
     'home' => 'Homepage',
     'google-reviews' => 'Google Reviews (GMB)',
+    'awards' => 'Awards',
+    'certifications' => 'Certifications',
     'services' => 'Services (all pages)',
     'industries' => 'Industries',
     'packages' => 'Packages',
