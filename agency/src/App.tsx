@@ -25,6 +25,7 @@ import {
   CaseStudyDetail,
   ProjectDetail,
   ResourceDetail,
+  IndustryServiceCombo,
 } from "./pages/CatalogDetails";
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="industries" element={<Industries />} />
+          <Route path="industries/:industry/:service" element={<IndustryServiceCombo />} />
           <Route path="industries/:slug" element={<IndustryDetail />} />
           <Route path="packages" element={<Packages />} />
           <Route path="packages/:slug" element={<PackageDetail />} />

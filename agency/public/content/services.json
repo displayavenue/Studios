@@ -182,6 +182,34 @@
         {
           "label": "Free Consultation",
           "href": "/contact"
+        },
+        {
+          "label": "Real Estate SEO",
+          "href": "/industries/real-estate/seo"
+        },
+        {
+          "label": "Manufacturing SEO",
+          "href": "/industries/manufacturing/seo"
+        },
+        {
+          "label": "Healthcare SEO",
+          "href": "/industries/healthcare/seo"
+        },
+        {
+          "label": "Ecommerce SEO",
+          "href": "/industries/ecommerce/seo"
+        },
+        {
+          "label": "Hospitality SEO",
+          "href": "/industries/hospitality/seo"
+        },
+        {
+          "label": "Finance SEO",
+          "href": "/industries/finance/seo"
+        },
+        {
+          "label": "B2B SEO",
+          "href": "/industries/b2b/seo"
         }
       ],
       "metrics": [
@@ -198,11 +226,28 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get My SEO Audit",
       "slug": "seo",
       "kind": "service",
       "title": "SEO",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "architecture": "seo",
+      "quickAnswer": "SEO improves how buyers find you on Google through technical health, content and authority. DisplayAvenue ties SEO to enquiries - not only rankings.",
+      "seoTitle": "SEO Services | Technical, Content & Local | DisplayAvenue",
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      }
     },
     {
       "icon": "brain",
@@ -274,15 +319,15 @@
       ],
       "related": [
         {
-          "label": "View Packages",
-          "href": "/packages"
+          "label": "AEO Services",
+          "href": "/services/aeo"
         },
         {
-          "label": "Case Studies",
-          "href": "/case-studies"
+          "label": "SEO Services",
+          "href": "/services/seo"
         },
         {
-          "label": "Free Consultation",
+          "label": "Contact",
           "href": "/contact"
         }
       ],
@@ -300,11 +345,13 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get AI SEO Plan",
       "slug": "ai-seo",
       "kind": "service",
       "title": "AI SEO (GEO)",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "architecture": "aeo",
+      "quickAnswer": "AI SEO / GEO work strengthens how your brand is represented in AI-assisted search - alongside classic SEO foundations."
     },
     {
       "icon": "globe",
@@ -386,6 +433,10 @@
         {
           "label": "Free Consultation",
           "href": "/contact"
+        },
+        {
+          "label": "Healthcare Local SEO",
+          "href": "/industries/healthcare/local-seo"
         }
       ],
       "metrics": [
@@ -402,11 +453,13 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get Local SEO Plan",
       "slug": "local-seo",
       "kind": "service",
       "title": "Local SEO",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "architecture": "seo",
+      "quickAnswer": "Local SEO helps nearby customers find you on Google Search and Maps via Google Business Profile, local pages and reviews."
     },
     {
       "icon": "ads",
@@ -488,6 +541,14 @@
         {
           "label": "Free Consultation",
           "href": "/contact"
+        },
+        {
+          "label": "Real Estate Google Ads",
+          "href": "/industries/real-estate/google-ads"
+        },
+        {
+          "label": "Manufacturing Google Ads",
+          "href": "/industries/manufacturing/google-ads"
         }
       ],
       "metrics": [
@@ -504,11 +565,13 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get My Google Ads Plan",
       "slug": "google-ads",
       "kind": "service",
       "title": "Google Ads",
-      "category": "Paid Media"
+      "category": "Paid Media",
+      "architecture": "ads",
+      "quickAnswer": "Google Ads captures high-intent searches. We connect campaigns to landing pages, tracking and follow-up so spend maps to qualified conversations."
     },
     {
       "icon": "share",
@@ -590,6 +653,18 @@
         {
           "label": "Free Consultation",
           "href": "/contact"
+        },
+        {
+          "label": "Real Estate Meta Ads",
+          "href": "/industries/real-estate/meta-ads"
+        },
+        {
+          "label": "Education Meta Ads",
+          "href": "/industries/education/meta-ads"
+        },
+        {
+          "label": "Ecommerce Meta Ads",
+          "href": "/industries/ecommerce/meta-ads"
         }
       ],
       "metrics": [
@@ -606,11 +681,13 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get My Meta Ads Plan",
       "slug": "meta-ads",
       "kind": "service",
       "title": "Meta Ads",
-      "category": "Paid Media"
+      "category": "Paid Media",
+      "architecture": "ads",
+      "quickAnswer": "Meta Ads create demand and retarget interest. We pair creative testing with conversion assets and WhatsApp/CRM routing."
     },
     {
       "icon": "briefcase",
@@ -1202,6 +1279,10 @@
         {
           "label": "Free Consultation",
           "href": "/contact"
+        },
+        {
+          "label": "Real Estate Marketing Automation",
+          "href": "/industries/real-estate/marketing-automation"
         }
       ],
       "metrics": [
@@ -1218,11 +1299,13 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Build My Marketing Automation",
       "slug": "marketing-automation",
       "kind": "service",
       "title": "Marketing Automation",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "architecture": "automation",
+      "quickAnswer": "Marketing automation connects forms, email, WhatsApp and CRM so leads get timely follow-up without manual chaos."
     },
     {
       "icon": "growth",
@@ -1304,6 +1387,10 @@
         {
           "label": "Free Consultation",
           "href": "/contact"
+        },
+        {
+          "label": "Ecommerce CRO & Landing Pages",
+          "href": "/industries/ecommerce/cro"
         }
       ],
       "metrics": [
@@ -1320,11 +1407,13 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get a CRO Plan",
       "slug": "cro",
       "kind": "service",
       "title": "CRO & Landing Pages",
-      "category": "Conversion"
+      "category": "Conversion",
+      "architecture": "web",
+      "quickAnswer": "CRO improves the percentage of visitors who enquire or buy - through page structure, offers, forms and experiments."
     },
     {
       "icon": "chart",
@@ -3038,6 +3127,10 @@
         {
           "label": "Free Consultation",
           "href": "/contact"
+        },
+        {
+          "label": "Manufacturing CRM Systems",
+          "href": "/industries/manufacturing/crm"
         }
       ],
       "metrics": [
@@ -5298,11 +5391,13 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Build My Automation System",
       "slug": "ai-automation",
       "kind": "service",
       "title": "AI Automation",
-      "category": "AI Solutions"
+      "category": "AI Solutions",
+      "architecture": "automation",
+      "quickAnswer": "AI automation removes repetitive marketing and sales busywork - lead routing, follow-ups, content assists - while humans keep judgement calls."
     },
     {
       "icon": "nodes",
@@ -7241,6 +7336,769 @@
       "kind": "service",
       "title": "Brand Films",
       "category": "Creative Studio"
+    },
+    {
+      "slug": "aeo",
+      "kind": "service",
+      "title": "AEO Services",
+      "category": "Search",
+      "icon": "search",
+      "color": "#0056ff",
+      "eyebrow": "Answer Engine Optimisation",
+      "architecture": "aeo",
+      "primaryKeyword": "AEO services",
+      "searchIntent": "commercial",
+      "targetAudience": "Brands that want clear answers cited in AI search and answer engines",
+      "decisionMaker": "CMO, Head of Digital, Founder",
+      "headline": "Make your expertise easy for answer engines to understand and cite",
+      "summary": "DisplayAvenue AEO programmes structure your services, entities, FAQs and proof so AI search and answer engines can surface accurate explanations of what you offer - without fake ranking promises.",
+      "quickAnswer": "AEO (Answer Engine Optimisation) improves how clearly your business answers appear in AI-assisted search. We clarify entities, write direct answers, strengthen structured data, and connect proof - so buyers get accurate explanations of your offer.",
+      "keyFacts": [
+        "Focuses on clarity and citability - not guaranteed AI placements",
+        "Works alongside technical SEO and content systems",
+        "Best for high-consideration B2B and service brands"
+      ],
+      "painPoints": [
+        "Buyers ask ChatGPT/Gemini/Google AI about your category - and competitors get mentioned",
+        "Website content is vague, so answer engines cannot summarise you accurately",
+        "Schema and entity signals are incomplete or inconsistent"
+      ],
+      "whenYouNeedThis": [
+        "You sell complex services that need clear explanations",
+        "You already invest in SEO and want AI-search readiness",
+        "Your category has rising AI-assisted discovery"
+      ],
+      "uniqueAngle": "We treat AEO as an answer and entity system - not keyword stuffing for AI tools.",
+      "ctaLabel": "Get My AEO Plan",
+      "secondaryCtaLabel": "Call DisplayAvenue",
+      "seoTitle": "AEO Services | Answer Engine Optimisation | DisplayAvenue",
+      "seoDescription": "AEO services from DisplayAvenue: entity clarity, answer blocks, schema strategy and AI-search visibility - without fake guarantees.",
+      "benefits": [
+        {
+          "title": "Direct answers",
+          "desc": "40-80 word answer blocks for the questions buyers actually ask."
+        },
+        {
+          "title": "Entity clarity",
+          "desc": "Consistent naming of services, industries, locations and proof."
+        },
+        {
+          "title": "Structured data",
+          "desc": "Valid schema where it helps machines understand the page."
+        },
+        {
+          "title": "SEO + AEO together",
+          "desc": "Technical SEO foundations support durable discoverability."
+        }
+      ],
+      "deliverables": [
+        "AEO opportunity map for your category",
+        "Answer blocks for priority buyer questions",
+        "Entity and internal-linking plan",
+        "Schema recommendations",
+        "Content refresh backlog",
+        "Monthly visibility review"
+      ],
+      "funnelSteps": [
+        {
+          "title": "Map questions",
+          "desc": "List commercial questions buyers ask humans and AI tools."
+        },
+        {
+          "title": "Clarify entities",
+          "desc": "Align service names, industries, locations and proof points."
+        },
+        {
+          "title": "Write answers",
+          "desc": "Publish concise, accurate answer sections and FAQs."
+        },
+        {
+          "title": "Structure & measure",
+          "desc": "Add schema, strengthen links, review citations and search shifts."
+        }
+      ],
+      "process": [
+        {
+          "title": "Audit",
+          "desc": "Review how AI tools and search currently describe your category."
+        },
+        {
+          "title": "Blueprint",
+          "desc": "Prioritise questions, pages and entity fixes."
+        },
+        {
+          "title": "Implement",
+          "desc": "Ship answer blocks, FAQs, schema and internal links."
+        },
+        {
+          "title": "Iterate",
+          "desc": "Improve based on query trends and content gaps."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "What is AEO?",
+          "a": "Answer Engine Optimisation improves how clearly your business answers can be extracted and cited by AI-assisted search. It is not a guarantee of inclusion in any AI product."
+        },
+        {
+          "q": "How is AEO different from SEO?",
+          "a": "SEO targets classic search rankings and technical discoverability. AEO emphasises clear answers, entities and structured explanations that answer engines can reuse."
+        },
+        {
+          "q": "Do you guarantee ChatGPT mentions?",
+          "a": "No. AI systems change often. We improve clarity and authority signals - we do not sell guaranteed placements."
+        },
+        {
+          "q": "Who should invest in AEO first?",
+          "a": "Service brands, B2B manufacturers, healthcare providers and education brands with complex offers benefit most."
+        }
+      ],
+      "objections": [
+        {
+          "q": "Is this just renaming SEO?",
+          "a": "No. Classic SEO still matters. AEO adds answer structure, entity consistency and question coverage on top of it."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "SEO Services",
+          "href": "/services/seo"
+        },
+        {
+          "label": "AI SEO",
+          "href": "/services/ai-seo"
+        },
+        {
+          "label": "Content Marketing",
+          "href": "/services/content-marketing"
+        },
+        {
+          "label": "Book consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Q&A",
+          "label": "Answer-first pages"
+        },
+        {
+          "value": "Schema",
+          "label": "Valid structured data"
+        },
+        {
+          "value": "SEO+",
+          "label": "Works with search"
+        }
+      ]
+    },
+    {
+      "slug": "performance-marketing",
+      "kind": "service",
+      "title": "Performance Marketing",
+      "category": "Digital Marketing",
+      "icon": "target",
+      "color": "#db2777",
+      "eyebrow": "Paid acquisition",
+      "architecture": "ads",
+      "primaryKeyword": "performance marketing agency",
+      "headline": "Buy attention that becomes pipeline - not just clicks",
+      "summary": "Performance marketing from DisplayAvenue connects Google, Meta and other paid channels to landing pages, CRM and follow-up so spend maps to qualified leads and revenue conversations.",
+      "quickAnswer": "Performance marketing is paid acquisition managed against pipeline outcomes. We run ads, improve conversion assets, and connect leads to WhatsApp/CRM follow-up so you see cost per qualified conversation - not only CTR.",
+      "ctaLabel": "Get My Performance Plan",
+      "seoTitle": "Performance Marketing Agency | DisplayAvenue",
+      "seoDescription": "Performance marketing for Indian businesses: Google & Meta ads, landing pages, tracking and CRM follow-up focused on qualified leads.",
+      "targetAudience": "Businesses ready to invest in paid acquisition with clear offers",
+      "decisionMaker": "Founder, Marketing Head, Growth Lead",
+      "painPoints": [
+        "Ad spend rises but sales calls stay flat",
+        "Leads are unqualified or slow to follow up",
+        "Creative and landing pages are not tested systematically"
+      ],
+      "whenYouNeedThis": [
+        "You have a clear offer and can handle enquiries",
+        "Organic channels alone are too slow",
+        "You need measurable CAC and lead quality"
+      ],
+      "uniqueAngle": "We manage ads as a system with conversion assets and follow-up - not a disconnected media buy.",
+      "benefits": [
+        {
+          "title": "Offer-led campaigns",
+          "desc": "Ads start from a specific promise buyers can act on."
+        },
+        {
+          "title": "Conversion assets",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Lead routing",
+          "desc": "WhatsApp, CRM and SLAs so leads do not die in inboxes."
+        },
+        {
+          "title": "Transparent reporting",
+          "desc": "Spend, CPL, qualified rate and next experiments."
+        }
+      ],
+      "deliverables": [
+        "Channel and offer plan",
+        "Campaign build + tracking",
+        "Landing page recommendations",
+        "Creative testing backlog",
+        "Weekly optimisation notes",
+        "Monthly pipeline review"
+      ],
+      "funnelSteps": [
+        {
+          "title": "Offer & audience",
+          "desc": "Define who should convert and what they get."
+        },
+        {
+          "title": "Launch",
+          "desc": "Ship campaigns with clean tracking."
+        },
+        {
+          "title": "Convert",
+          "desc": "Improve pages, forms and creative."
+        },
+        {
+          "title": "Qualify & handoff",
+          "desc": "Route leads into CRM/WhatsApp with clear ownership."
+        }
+      ],
+      "process": [
+        {
+          "title": "Audit",
+          "desc": "Review accounts, offers, tracking and sales capacity."
+        },
+        {
+          "title": "Rebuild",
+          "desc": "Structure campaigns for learning speed."
+        },
+        {
+          "title": "Scale winners",
+          "desc": "Increase budget only where quality holds."
+        },
+        {
+          "title": "Systemise",
+          "desc": "Document playbooks and reporting cadence."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "What channels do you run?",
+          "a": "Primarily Google Ads and Meta Ads, with LinkedIn or YouTube when the audience justifies it."
+        },
+        {
+          "q": "Do you guarantee leads?",
+          "a": "No. We target efficient qualified conversations and improve continuously. Guarantees that ignore market conditions are marketing fiction."
+        },
+        {
+          "q": "Is ad spend included?",
+          "a": "Management fees and media spend are separate. We recommend budgets based on your offer and capacity."
+        },
+        {
+          "q": "How fast can we learn?",
+          "a": "Most accounts produce directional learning within 2-4 weeks if tracking and offer clarity are in place."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Google Ads",
+          "href": "/services/google-ads"
+        },
+        {
+          "label": "Meta Ads",
+          "href": "/services/meta-ads"
+        },
+        {
+          "label": "CRO",
+          "href": "/services/cro"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "CPL",
+          "label": "Cost per lead focus"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up connected"
+        },
+        {
+          "value": "A/B",
+          "label": "Creative testing"
+        }
+      ]
+    },
+    {
+      "slug": "lead-generation",
+      "kind": "service",
+      "title": "Lead Generation",
+      "category": "Digital Marketing",
+      "icon": "target",
+      "color": "#0284c7",
+      "eyebrow": "Pipeline systems",
+      "architecture": "lead-gen",
+      "primaryKeyword": "lead generation agency",
+      "headline": "Generate enquiries - then qualify and follow up like a sales team",
+      "summary": "DisplayAvenue lead generation systems combine ads, SEO, landing pages, WhatsApp and CRM so you get fewer wasted leads and more sales conversations.",
+      "quickAnswer": "Lead generation here means a full path: attract demand, capture enquiries, qualify them, and route follow-up. We do not stop at form fills.",
+      "ctaLabel": "Get My Lead Generation Plan",
+      "seoTitle": "Lead Generation Agency | Ads, SEO & CRM Follow-up | DisplayAvenue",
+      "seoDescription": "Lead generation systems for Indian businesses: acquisition channels, qualification, WhatsApp and CRM follow-up focused on sales conversations.",
+      "targetAudience": "Businesses that need a steady flow of sales conversations",
+      "decisionMaker": "Founder, Sales Head, Marketing Head",
+      "painPoints": [
+        "Leads arrive but nobody follows up in time",
+        "Forms collect junk or incomplete data",
+        "No shared view of pipeline between marketing and sales"
+      ],
+      "whenYouNeedThis": [
+        "Sales depends on inbound enquiries",
+        "You run ads or SEO but conversion is weak",
+        "You need qualification before expensive sales time"
+      ],
+      "uniqueAngle": "We design the handoff to sales - not just the ad click.",
+      "benefits": [
+        {
+          "title": "Channel mix",
+          "desc": "SEO, ads and content matched to your buyer journey."
+        },
+        {
+          "title": "Qualification",
+          "desc": "Forms and scripts that filter tyre-kickers."
+        },
+        {
+          "title": "Speed-to-lead",
+          "desc": "WhatsApp/CRM alerts so response time stays short."
+        },
+        {
+          "title": "Reporting",
+          "desc": "From spend to qualified conversation."
+        }
+      ],
+      "deliverables": [
+        "Lead system blueprint",
+        "Landing page & form plan",
+        "Channel launch plan",
+        "CRM/WhatsApp routing",
+        "Qualification rules",
+        "Weekly pipeline review"
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach buyers searching or scrolling with intent."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert interest into an enquiry on mobile-first pages."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Score and route based on fit and urgency."
+        },
+        {
+          "title": "Follow up",
+          "desc": "Automate reminders and sales ownership."
+        }
+      ],
+      "process": [
+        {
+          "title": "Map demand",
+          "desc": "Identify where buyers already look for you."
+        },
+        {
+          "title": "Build capture",
+          "desc": "Pages, forms, tracking and routing."
+        },
+        {
+          "title": "Launch channels",
+          "desc": "SEO and/or paid with clear KPIs."
+        },
+        {
+          "title": "Tighten loop",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Can you guarantee a lead volume?",
+          "a": "We set targets and optimise toward them, but markets, offers and capacity affect volume. We avoid hard guarantees."
+        },
+        {
+          "q": "Do you only run ads?",
+          "a": "No. Lead systems can include SEO, content, WhatsApp and CRM - ads are one acquisition lever."
+        },
+        {
+          "q": "Will this work for B2B?",
+          "a": "Yes. B2B needs longer nurture, clearer qualification and CRM discipline - we design for that."
+        },
+        {
+          "q": "What budget do I need?",
+          "a": "It depends on ticket size and channel. We recommend ranges after reviewing your offer and sales capacity."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Performance Marketing",
+          "href": "/services/performance-marketing"
+        },
+        {
+          "label": "Marketing Automation",
+          "href": "/services/marketing-automation"
+        },
+        {
+          "label": "CRM",
+          "href": "/services/crm"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        },
+        {
+          "label": "Real Estate Lead Generation",
+          "href": "/industries/real-estate/lead-generation"
+        },
+        {
+          "label": "Manufacturing Lead Generation",
+          "href": "/industries/manufacturing/lead-generation"
+        },
+        {
+          "label": "Healthcare Lead Generation",
+          "href": "/industries/healthcare/lead-generation"
+        },
+        {
+          "label": "Education Lead Generation",
+          "href": "/industries/education/lead-generation"
+        },
+        {
+          "label": "Automotive Lead Generation",
+          "href": "/industries/automotive/lead-generation"
+        },
+        {
+          "label": "Construction Lead Generation",
+          "href": "/industries/construction/lead-generation"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "SQL",
+          "label": "Sales-qualified focus"
+        },
+        {
+          "value": "<5m",
+          "label": "Speed-to-lead goal"
+        },
+        {
+          "value": "CRM",
+          "label": "Pipeline visibility"
+        }
+      ]
+    },
+    {
+      "slug": "technical-seo",
+      "kind": "service",
+      "title": "Technical SEO",
+      "category": "Search",
+      "icon": "gear",
+      "color": "#0d9488",
+      "eyebrow": "Crawl & index health",
+      "architecture": "seo",
+      "headline": "Fix the foundations Google needs to crawl, index and trust",
+      "summary": "Technical SEO for sites that leak growth through slow pages, broken indexation, weak internal links or messy templates - especially multi-location and ecommerce properties.",
+      "quickAnswer": "Technical SEO improves how search engines crawl and understand your site: speed, indexation, structure, redirects, schema and templates. Content still matters - but technical debt can block it.",
+      "ctaLabel": "Get My Technical SEO Audit",
+      "seoTitle": "Technical SEO Services | DisplayAvenue",
+      "seoDescription": "Technical SEO audits and implementation: crawlability, Core Web Vitals, indexation, schema and template fixes.",
+      "painPoints": [
+        "Important pages are not indexed",
+        "Site is slow on mobile",
+        "Duplicate or thin template URLs confuse crawlers"
+      ],
+      "whenYouNeedThis": [
+        "You have content but rankings stall",
+        "You run ecommerce or large service catalogs",
+        "You recently migrated CMS or domains"
+      ],
+      "benefits": [
+        {
+          "title": "Crawl clarity",
+          "desc": "Clean paths for bots to discover money pages."
+        },
+        {
+          "title": "Index control",
+          "desc": "Noindex thin pages; protect canonicals."
+        },
+        {
+          "title": "Performance",
+          "desc": "Core Web Vitals improvements that help UX and SEO."
+        },
+        {
+          "title": "Schema hygiene",
+          "desc": "Valid structured data where it earns its place."
+        }
+      ],
+      "deliverables": [
+        "Technical SEO audit",
+        "Priority fix backlog",
+        "Robots/sitemap review",
+        "Template recommendations",
+        "CWV action list",
+        "Re-crawl validation"
+      ],
+      "process": [
+        {
+          "title": "Crawl",
+          "desc": "Map indexation, errors and templates."
+        },
+        {
+          "title": "Prioritise",
+          "desc": "Rank fixes by business impact."
+        },
+        {
+          "title": "Implement",
+          "desc": "Ship with developers or CMS changes."
+        },
+        {
+          "title": "Validate",
+          "desc": "Confirm indexation and performance shifts."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is technical SEO enough alone?",
+          "a": "Rarely. It unlocks content and authority work. Thin sites still need better pages."
+        },
+        {
+          "q": "How long do fixes take?",
+          "a": "Quick wins can ship in days; template and CWV work may take weeks with your engineering capacity."
+        },
+        {
+          "q": "Do you work with developers?",
+          "a": "Yes. We provide tickets, acceptance criteria and validation."
+        },
+        {
+          "q": "Will this improve rankings immediately?",
+          "a": "Technical fixes remove blockers. Rankings still depend on relevance, content and competition."
+        }
+      ],
+      "related": [
+        {
+          "label": "SEO Services",
+          "href": "/services/seo"
+        },
+        {
+          "label": "AEO Services",
+          "href": "/services/aeo"
+        },
+        {
+          "label": "Web Development",
+          "href": "/services/web-development"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "CWV",
+          "label": "Performance focus"
+        },
+        {
+          "value": "Index",
+          "label": "Coverage control"
+        },
+        {
+          "value": "Schema",
+          "label": "Valid markup"
+        }
+      ]
+    },
+    {
+      "slug": "whatsapp-marketing",
+      "kind": "service",
+      "title": "WhatsApp Marketing",
+      "category": "Digital Marketing",
+      "icon": "chat",
+      "color": "#16a34a",
+      "eyebrow": "Conversation commerce",
+      "architecture": "automation",
+      "headline": "Turn WhatsApp into a follow-up and booking channel - not inbox chaos",
+      "summary": "WhatsApp marketing and automation for Indian businesses: enquiry routing, templates, reminders and CRM sync so conversations become appointments and sales.",
+      "quickAnswer": "WhatsApp marketing here means structured conversations: capture enquiries, auto-acknowledge, qualify, remind and hand off to humans. It is not spam blasting.",
+      "ctaLabel": "Build My WhatsApp System",
+      "seoTitle": "WhatsApp Marketing & Automation | DisplayAvenue",
+      "seoDescription": "WhatsApp marketing systems: lead routing, templates, reminders and CRM sync for Indian businesses.",
+      "painPoints": [
+        "Leads message WhatsApp and wait hours",
+        "No templates or ownership rules",
+        "Conversations never enter CRM"
+      ],
+      "whenYouNeedThis": [
+        "Most enquiries already arrive on WhatsApp",
+        "You need appointment or site-visit reminders",
+        "Sales misses follow-ups"
+      ],
+      "benefits": [
+        {
+          "title": "Speed-to-lead",
+          "desc": "Instant acknowledgement and routing."
+        },
+        {
+          "title": "Templates",
+          "desc": "Compliant message flows for common journeys."
+        },
+        {
+          "title": "CRM sync",
+          "desc": "Conversations become pipeline records."
+        },
+        {
+          "title": "Handoff",
+          "desc": "Humans take over when intent is high."
+        }
+      ],
+      "deliverables": [
+        "WhatsApp journey map",
+        "Template set",
+        "Routing rules",
+        "CRM/API integration plan",
+        "Training for sales team",
+        "Monthly conversation review"
+      ],
+      "funnelSteps": [
+        {
+          "title": "Capture",
+          "desc": "Ads, website and Google push to WhatsApp."
+        },
+        {
+          "title": "Acknowledge",
+          "desc": "Auto-reply with next step."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Ask fit questions or book a slot."
+        },
+        {
+          "title": "Close loop",
+          "desc": "Reminders + CRM notes for humans."
+        }
+      ],
+      "process": [
+        {
+          "title": "Audit chats",
+          "desc": "See where conversations die today."
+        },
+        {
+          "title": "Design flows",
+          "desc": "Map templates and ownership."
+        },
+        {
+          "title": "Integrate",
+          "desc": "Connect API/CRM tools."
+        },
+        {
+          "title": "Train & improve",
+          "desc": "Coach team and tighten scripts."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is bulk spam allowed?",
+          "a": "We design opt-in, useful journeys. Spam harms trust and can violate platform rules."
+        },
+        {
+          "q": "Do you set up WhatsApp Business API?",
+          "a": "Yes - when volume and use cases justify API vs Business App."
+        },
+        {
+          "q": "Can this work with Meta Ads?",
+          "a": "Yes. Click-to-WhatsApp ads pair well with routing and CRM."
+        },
+        {
+          "q": "Will this replace my sales team?",
+          "a": "No. Automation handles speed and reminders; humans close."
+        }
+      ],
+      "related": [
+        {
+          "label": "Marketing Automation",
+          "href": "/services/marketing-automation"
+        },
+        {
+          "label": "Meta Ads",
+          "href": "/services/meta-ads"
+        },
+        {
+          "label": "CRM",
+          "href": "/services/crm"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "API",
+          "label": "When volume needs it"
+        },
+        {
+          "value": "CRM",
+          "label": "Conversation logging"
+        },
+        {
+          "value": "SLA",
+          "label": "Response targets"
+        }
+      ]
     }
   ]
 }

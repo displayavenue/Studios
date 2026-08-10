@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { DetailPage, NotFoundDetail } from "../components/DetailPage";
-import { useCatalogPage } from "../cms/CmsProvider";
+import { useCatalogPage, useCms } from "../cms/CmsProvider";
 import "../styles/pages.css";
 
 function useSlug() {
@@ -55,4 +55,19 @@ export function ProjectDetail() {
 }
 export function ResourceDetail() {
   return <CatalogRoute kind="resources" label="Resource" />;
+}
+
+/** Industry × service combination landing page */
+export function IndustryServiceCombo() {
+  const { industry = "", service = "" } = useParams();
+  const { combos } = useCms();
+  const page = combos.find(
+    (c) => c.industrySlug === industry && c.serviceSlug === service,
+  );
+  if (!page) {
+    return (
+      <NotFoundDetail kind="Industry service page" slug={`${industry}/${service}`} />
+    );
+  }
+  return <DetailPage page={page} />;
 }

@@ -30,6 +30,7 @@ function previewRouteFor(collection) {
     cases: "/case-studies",
     projects: "/portfolio",
     resources: "/resources",
+    combos: "/industries",
     tracking: "/",
     settings: "/",
   };
@@ -254,6 +255,7 @@ function renderEditor() {
     cases: () => renderCatalog(d, "Case study"),
     projects: () => renderCatalog(d, "Project"),
     resources: () => renderCatalog(d, "Resource"),
+    combos: () => renderCatalog(d, "Industry × Service page"),
     content: renderContent,
     "google-reviews": renderGoogleReviews,
     awards: renderAwards,

@@ -81,6 +81,7 @@ export type AgencyCms = {
   awards: AwardsCms;
   certifications: CertificationsCms;
   contact: ContactCms;
+  combos: DetailPageContent[];
   tracking: typeof defaultTracking;
   ready: boolean;
 };
@@ -125,6 +126,7 @@ const defaults: AgencyCms = {
   awards: fallbackAwards,
   certifications: fallbackCertifications,
   contact: fallbackContact,
+  combos: [],
   tracking: defaultTracking,
   ready: false,
 };
@@ -171,6 +173,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         awardsJson,
         certificationsJson,
         contactJson,
+        combosJson,
       ] = await Promise.all([
         fetchJson<Partial<CompanyCms>>("company"),
         fetchJson<Partial<HomeCms>>("home"),
@@ -189,6 +192,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         fetchJson<AwardsCms>("awards"),
         fetchJson<CertificationsCms>("certifications"),
         fetchJson<ContactCms>("contact"),
+        fetchJson<{ items: DetailPageContent[] }>("combos"),
       ]);
 
       if (cancelled) return;
@@ -275,6 +279,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             ...(contactJson?.seo || {}),
           },
         },
+        combos: itemsOf(combosJson, []),
         tracking: mergeTracking(trackingJson),
         ready: true,
       });
@@ -301,7 +306,8 @@ export function useCatalogPage(
     | "tools"
     | "cases"
     | "projects"
-    | "resources",
+    | "resources"
+    | "combos",
   slug: string,
 ) {
   const cms = useCms();

@@ -38,6 +38,7 @@ function da_collect_urls(string $contentDir): array {
   $cases = da_read_json_file($contentDir . '/cases.json');
   $projects = da_read_json_file($contentDir . '/projects.json');
   $resources = da_read_json_file($contentDir . '/resources.json');
+  $combos = da_read_json_file($contentDir . '/combos.json');
 
   $static = [
     ['path' => '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
@@ -81,6 +82,16 @@ function da_collect_urls(string $contentDir): array {
           'changefreq' => 'monthly',
         ];
       }
+    }
+  }
+
+  foreach (da_items($combos) as $item) {
+    if (!empty($item['industrySlug']) && !empty($item['serviceSlug']) && ($item['indexable'] ?? true)) {
+      $urls[] = [
+        'path' => '/industries/' . $item['industrySlug'] . '/' . $item['serviceSlug'],
+        'priority' => '0.7',
+        'changefreq' => 'monthly',
+      ];
     }
   }
 

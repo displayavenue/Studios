@@ -41,6 +41,7 @@ const tools = readJson("tools.json");
 const cases = readJson("cases.json");
 const projects = readJson("projects.json");
 const resources = readJson("resources.json");
+const combos = readJson("combos.json");
 
 const staticPages = [
   ["/", "1.0", "weekly"],
@@ -84,6 +85,16 @@ for (const [list, prefix, priority] of maps) {
     if (item?.slug) {
       urls.push({ path: `${prefix}${item.slug}`, priority, changefreq: "monthly" });
     }
+  }
+}
+
+for (const item of items(combos)) {
+  if (item?.industrySlug && item?.serviceSlug && item?.indexable !== false) {
+    urls.push({
+      path: `/industries/${item.industrySlug}/${item.serviceSlug}`,
+      priority: "0.7",
+      changefreq: "monthly",
+    });
   }
 }
 

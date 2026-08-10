@@ -17,6 +17,7 @@ return [
     'awards' => 'Awards',
     'certifications' => 'Certifications',
     'contact' => 'Contact Form',
+    'combos' => 'Industry × Service Pages',
     'services' => 'Services (all pages)',
     'industries' => 'Industries',
     'packages' => 'Packages',

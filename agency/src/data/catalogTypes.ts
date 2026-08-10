@@ -2,9 +2,36 @@ export type Faq = { q: string; a: string };
 export type Benefit = { title: string; desc: string };
 export type ProcessStep = { title: string; desc: string };
 
+/** Page information architecture / conversion layout */
+export type PageArchitecture =
+  | "default"
+  | "lead-gen"
+  | "seo"
+  | "aeo"
+  | "automation"
+  | "ads"
+  | "web"
+  | "industry"
+  | "manufacturing"
+  | "healthcare"
+  | "education"
+  | "real-estate"
+  | "ecommerce"
+  | "combo";
+
 export type DetailPageContent = {
   slug: string;
-  kind: "service" | "industry" | "package" | "solution" | "ai" | "tool" | "case-study" | "project" | "resource";
+  kind:
+    | "service"
+    | "industry"
+    | "package"
+    | "solution"
+    | "ai"
+    | "tool"
+    | "case-study"
+    | "project"
+    | "resource"
+    | "combo";
   title: string;
   category: string;
   icon: string;
@@ -19,18 +46,43 @@ export type DetailPageContent = {
   related: { label: string; href: string }[];
   metrics?: { value: string; label: string }[];
   ctaLabel?: string;
+  /** SEO + AEO extensions (optional — existing pages keep working) */
+  architecture?: PageArchitecture;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  searchIntent?: string;
+  targetAudience?: string;
+  decisionMaker?: string;
+  painPoints?: string[];
+  uniqueAngle?: string;
+  quickAnswer?: string;
+  keyFacts?: string[];
+  whenYouNeedThis?: string[];
+  objections?: { q: string; a: string }[];
+  funnelSteps?: ProcessStep[];
+  comparison?: { traditional: string[]; ours: string[] };
+  seoTitle?: string;
+  seoDescription?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  industrySlug?: string;
+  serviceSlug?: string;
+  indexable?: boolean;
 };
 
 export function titleFromSlug(slug: string): string {
   return slug
     .split("-")
-    .map((w) => w.toUpperCase() === "AI" || w.toUpperCase() === "SEO" || w.toUpperCase() === "CRO" || w.toUpperCase() === "PWA" || w.toUpperCase() === "CRM" || w.toUpperCase() === "ERP" || w.toUpperCase() === "POS" || w.toUpperCase() === "HRMS" || w.toUpperCase() === "AWS" || w.toUpperCase() === "GCP" || w.toUpperCase() === "UI" || w.toUpperCase() === "UX"
-      ? w.toUpperCase()
-      : w.charAt(0).toUpperCase() + w.slice(1))
+    .map((w) =>
+      ["AI", "SEO", "AEO", "GEO", "CRO", "PWA", "CRM", "ERP", "POS", "HRMS", "AWS", "GCP", "UI", "UX", "B2B", "IVF", "EV", "PPC"].includes(
+        w.toUpperCase(),
+      )
+        ? w.toUpperCase()
+        : w.charAt(0).toUpperCase() + w.slice(1),
+    )
     .join(" ")
     .replace("Ui Ux", "UI/UX")
-    .replace("Ai Seo", "AI SEO")
-    .replace("Geo", "GEO");
+    .replace("Ai Seo", "AI SEO");
 }
 
 export function buildDetailPage(
@@ -60,7 +112,7 @@ export function buildDetailPage(
       },
       {
         title: "Transparent ROI",
-        desc: "Dashboards, attribution, and monthly reviews so you always know what’s working.",
+        desc: "Dashboards, attribution, and monthly reviews so you always know what's working.",
       },
     ],
     deliverables: [
@@ -118,6 +170,8 @@ export function buildDetailPage(
       { value: "320%", label: "Avg ROI lift" },
     ],
     ctaLabel: "Get Free Proposal",
+    architecture: "default",
+    indexable: true,
     ...partial,
   };
 }

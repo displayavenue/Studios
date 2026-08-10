@@ -4,8 +4,8 @@
       "icon": "factory",
       "color": "#0056ff",
       "eyebrow": "Industries",
-      "headline": "Digital growth strategies for Manufacturing",
-      "summary": "Industry-specific marketing, websites, and AI systems for manufacturing brands - built around your buyers, compliance needs, and growth goals.",
+      "headline": "Generate qualified RFQs for manufacturers - then follow them through CRM",
+      "summary": "DisplayAvenue helps manufacturers attract procurement searches, capture RFQs, and run sales follow-up systems across India and export markets.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -52,20 +52,20 @@
       ],
       "faqs": [
         {
-          "q": "How fast can we start Manufacturing?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "Can SEO generate B2B manufacturing leads?",
+          "a": "Yes, when product pages, technical content and local/export intent are structured properly. It is slower than ads but compounds."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Do you work with IndiaMART?",
+          "a": "We can complement marketplace leads with Google/SEO systems that own your brand funnel."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+          "q": "What about export enquiries?",
+          "a": "We plan English product pages, enquiry forms and follow-up for international buyers when relevant."
         },
         {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "How do you measure success?",
+          "a": "Qualified RFQs, sales-accepted leads, quotation volume and revenue influenced - not just sessions."
         }
       ],
       "related": [
@@ -80,6 +80,22 @@
         {
           "label": "Get Industry Analysis",
           "href": "/contact"
+        },
+        {
+          "label": "Manufacturing Lead Generation",
+          "href": "/industries/manufacturing/lead-generation"
+        },
+        {
+          "label": "Manufacturing Seo",
+          "href": "/industries/manufacturing/seo"
+        },
+        {
+          "label": "Manufacturing Google Ads",
+          "href": "/industries/manufacturing/google-ads"
+        },
+        {
+          "label": "Manufacturing Crm",
+          "href": "/industries/manufacturing/crm"
         }
       ],
       "metrics": [
@@ -96,18 +112,72 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Build My Manufacturing Lead System",
       "slug": "manufacturing",
       "kind": "industry",
       "title": "Manufacturing",
-      "category": "Industries"
+      "category": "Industries",
+      "architecture": "manufacturing",
+      "quickAnswer": "Manufacturing marketing here focuses on qualified enquiries from engineers, dealers and purchase teams - via SEO, Google Ads, websites and CRM - not consumer-style vanity campaigns.",
+      "seoTitle": "Manufacturing Digital Marketing | RFQs & B2B Leads | DisplayAvenue",
+      "seoDescription": "Digital marketing for manufacturers: industrial SEO, Google Ads, RFQ landing pages and CRM follow-up for qualified B2B enquiries.",
+      "targetAudience": "OEMs, machine builders, component makers and industrial brands",
+      "decisionMaker": "Owner, Sales Director, Marketing Manager",
+      "painPoints": [
+        "Website gets traffic but few RFQs",
+        "IndiaMART leads are noisy; Google is underused",
+        "Quotations stall without CRM follow-up"
+      ],
+      "whenYouNeedThis": [
+        "You sell machinery, components or industrial services",
+        "Sales cycles are long and multi-stakeholder",
+        "You need domestic and/or export enquiries"
+      ],
+      "uniqueAngle": "We design for procurement journeys and RFQ quality - not salon-style lead gen.",
+      "keyFacts": [
+        "Buyer: procurement managers, engineers, dealers",
+        "Channels: Google, SEO, catalogs, LinkedIn when fit",
+        "Success metric: qualified RFQs and quotation pipeline"
+      ],
+      "funnelSteps": [
+        {
+          "title": "Discover",
+          "desc": "Buyers search for machines, specs and suppliers."
+        },
+        {
+          "title": "Enquire",
+          "desc": "RFQ forms capture capacity, specs and location."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Sales filters fit and urgency."
+        },
+        {
+          "title": "Quote & follow",
+          "desc": "CRM reminders keep long cycles alive."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      }
     },
     {
       "icon": "heart",
       "color": "#0056ff",
       "eyebrow": "Industries",
-      "headline": "Digital growth strategies for Healthcare",
-      "summary": "Industry-specific marketing, websites, and AI systems for healthcare brands - built around your buyers, compliance needs, and growth goals.",
+      "headline": "Help patients find you - then turn discovery into appointments",
+      "summary": "Responsible healthcare marketing for clinics and hospitals: local SEO, Google visibility, appointment funnels and reminder automation - without medical outcome promises.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -154,20 +224,20 @@
       ],
       "faqs": [
         {
-          "q": "How fast can we start Healthcare?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "Do you promise patient outcomes?",
+          "a": "No. We market discovery and appointments responsibly. Clinical claims belong to licensed practitioners."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Is Meta Ads allowed for healthcare?",
+          "a": "Some categories have ad policy limits. We design compliant campaigns and prefer search/local when safer."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+          "q": "Can you help multi-location clinics?",
+          "a": "Yes - location pages, GBP optimisation and call tracking per branch."
         },
         {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "What about appointment automation?",
+          "a": "Reminders and WhatsApp confirmations reduce no-shows when integrated carefully."
         }
       ],
       "related": [
@@ -182,6 +252,18 @@
         {
           "label": "Get Industry Analysis",
           "href": "/contact"
+        },
+        {
+          "label": "Healthcare Seo",
+          "href": "/industries/healthcare/seo"
+        },
+        {
+          "label": "Healthcare Lead Generation",
+          "href": "/industries/healthcare/lead-generation"
+        },
+        {
+          "label": "Healthcare Local Seo",
+          "href": "/industries/healthcare/local-seo"
         }
       ],
       "metrics": [
@@ -198,18 +280,47 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get a Healthcare Growth Plan",
       "slug": "healthcare",
       "kind": "industry",
       "title": "Healthcare",
-      "category": "Industries"
+      "category": "Industries",
+      "architecture": "healthcare",
+      "quickAnswer": "Healthcare marketing should improve discovery and appointment conversion while staying compliant. We focus on local search, trust content and booking follow-up - never treatment guarantees.",
+      "seoTitle": "Healthcare Digital Marketing | Clinics & Hospitals | DisplayAvenue",
+      "seoDescription": "Healthcare digital marketing: local SEO, Google Business Profile, appointment funnels and reminders for clinics and hospitals.",
+      "targetAudience": "Clinics, specialty practices and hospitals",
+      "decisionMaker": "Clinic owner, Hospital marketing manager",
+      "painPoints": [
+        "Patients cannot find you on Google Maps",
+        "Phone enquiries are missed after hours",
+        "Reviews and trust signals are weak"
+      ],
+      "funnelSteps": [
+        {
+          "title": "Discover",
+          "desc": "Local search and Maps visibility."
+        },
+        {
+          "title": "Trust",
+          "desc": "Clear service pages and reputation."
+        },
+        {
+          "title": "Book",
+          "desc": "Call, form or WhatsApp appointment paths."
+        },
+        {
+          "title": "Remind",
+          "desc": "Reduce no-shows with follow-up."
+        }
+      ]
     },
     {
       "icon": "book",
       "color": "#0056ff",
       "eyebrow": "Industries",
-      "headline": "Digital growth strategies for Education",
-      "summary": "Industry-specific marketing, websites, and AI systems for education brands - built around your buyers, compliance needs, and growth goals.",
+      "headline": "Fill seats with an admission funnel - not random form fills",
+      "summary": "Education marketing for schools, coaching institutes and study-abroad brands: Meta/Google acquisition, counselling qualification and admission follow-up.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -256,20 +367,20 @@
       ],
       "faqs": [
         {
-          "q": "How fast can we start Education?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "How do you reduce lead leakage?",
+          "a": "Faster response, CRM stages, counsellor SLAs and reminder automation."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Which channel works for coaching?",
+          "a": "Often Meta for demand and Google for high-intent course searches - mix depends on city and course."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+          "q": "Can you support multiple centres?",
+          "a": "Yes, with location-level creatives and call routing."
         },
         {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "Do you guarantee admissions?",
+          "a": "No. We improve qualified counselling volume and funnel conversion."
         }
       ],
       "related": [
@@ -284,6 +395,14 @@
         {
           "label": "Get Industry Analysis",
           "href": "/contact"
+        },
+        {
+          "label": "Education Meta Ads",
+          "href": "/industries/education/meta-ads"
+        },
+        {
+          "label": "Education Lead Generation",
+          "href": "/industries/education/lead-generation"
         }
       ],
       "metrics": [
@@ -300,18 +419,41 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get an Education Lead Plan",
       "slug": "education",
       "kind": "industry",
       "title": "Education",
-      "category": "Industries"
+      "category": "Industries",
+      "architecture": "education",
+      "quickAnswer": "Education lead gen should follow Ad → Lead → Qualification → Counselling → Demo → Application → Admission. We build that funnel with tracking and CRM discipline.",
+      "seoTitle": "Education Digital Marketing & Admission Funnels | DisplayAvenue",
+      "seoDescription": "Digital marketing for schools and coaching brands: admission funnels, Meta Ads, SEO and counselling follow-up.",
+      "targetAudience": "Schools, coaching institutes, EdTech and study-abroad consultants",
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach parents and students with clear offers."
+        },
+        {
+          "title": "Capture",
+          "desc": "Mobile forms and WhatsApp enquiries."
+        },
+        {
+          "title": "Counsel",
+          "desc": "Qualify and book counselling/demo."
+        },
+        {
+          "title": "Admit",
+          "desc": "Nurture until application and fee."
+        }
+      ]
     },
     {
       "icon": "building",
       "color": "#0056ff",
       "eyebrow": "Industries",
-      "headline": "Digital growth strategies for Real Estate",
-      "summary": "Industry-specific marketing, websites, and AI systems for real estate brands - built around your buyers, compliance needs, and growth goals.",
+      "headline": "Generate qualified real estate enquiries - then automate what happens next",
+      "summary": "Acquisition and automation systems for builders, developers and brokers: Meta/Google demand, landing pages, qualification, WhatsApp and CRM for site visits.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -358,20 +500,20 @@
       ],
       "faqs": [
         {
-          "q": "How fast can we start Real Estate?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "Meta or Google for real estate?",
+          "a": "Often both: Meta for demand creation, Google for high-intent project and locality searches."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "How do you improve site-visit rates?",
+          "a": "Faster WhatsApp response, clearer qualification, reminders and sales SLAs."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+          "q": "Can you handle multiple projects?",
+          "a": "Yes - with project-specific creatives, landing pages and CRM pipelines."
         },
         {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "Do you guarantee bookings?",
+          "a": "No. We optimise for qualified visits and sales-ready conversations."
         }
       ],
       "related": [
@@ -386,6 +528,26 @@
         {
           "label": "Get Industry Analysis",
           "href": "/contact"
+        },
+        {
+          "label": "Real Estate Lead Generation",
+          "href": "/industries/real-estate/lead-generation"
+        },
+        {
+          "label": "Real Estate Meta Ads",
+          "href": "/industries/real-estate/meta-ads"
+        },
+        {
+          "label": "Real Estate Seo",
+          "href": "/industries/real-estate/seo"
+        },
+        {
+          "label": "Real Estate Marketing Automation",
+          "href": "/industries/real-estate/marketing-automation"
+        },
+        {
+          "label": "Real Estate Google Ads",
+          "href": "/industries/real-estate/google-ads"
         }
       ],
       "metrics": [
@@ -402,11 +564,54 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get a Real Estate Lead Plan",
       "slug": "real-estate",
       "kind": "industry",
       "title": "Real Estate",
-      "category": "Industries"
+      "category": "Industries",
+      "architecture": "real-estate",
+      "quickAnswer": "Real estate digital marketing should connect ads to qualification and site-visit follow-up. DisplayAvenue builds that full path - not just lead dumps.",
+      "seoTitle": "Real Estate Digital Marketing & Lead Generation | DisplayAvenue",
+      "seoDescription": "Real estate marketing systems: Meta Ads, Google Ads, landing pages, WhatsApp qualification and CRM for site visits.",
+      "targetAudience": "Builders, developers, channel partners and premium brokers",
+      "decisionMaker": "Marketing Head, Sales Head, Developer partner",
+      "painPoints": [
+        "High CPL with low site-visit show rates",
+        "Leads shared across agents with no ownership",
+        "Retargeting and nurture are inconsistent"
+      ],
+      "funnelSteps": [
+        {
+          "title": "Demand",
+          "desc": "Reach buyers researching projects and locations."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Budget, timeline and intent filters."
+        },
+        {
+          "title": "Visit",
+          "desc": "Schedule and remind for site visits."
+        },
+        {
+          "title": "Retarget",
+          "desc": "Stay present until booking decisions."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      }
     },
     {
       "icon": "hotel",
@@ -616,8 +821,8 @@
       "icon": "cart",
       "color": "#0056ff",
       "eyebrow": "Industries",
-      "headline": "Digital growth strategies for E-commerce",
-      "summary": "Industry-specific marketing, websites, and AI systems for e-commerce brands - built around your buyers, compliance needs, and growth goals.",
+      "headline": "Grow ecommerce revenue across traffic, conversion and retention",
+      "summary": "Ecommerce marketing systems for D2C and online stores: SEO, paid social/search, CRO, cart recovery and retention automation.",
       "benefits": [
         {
           "title": "Strategy first",
@@ -664,20 +869,20 @@
       ],
       "faqs": [
         {
-          "q": "How fast can we start E-commerce?",
-          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+          "q": "Shopify or custom - can you help?",
+          "a": "Yes. We work with Shopify, WooCommerce and custom stacks."
         },
         {
-          "q": "Do you work with startups and enterprises?",
-          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+          "q": "Do you run Google Shopping?",
+          "a": "Yes, when product feeds and margins support it."
         },
         {
-          "q": "Can this integrate with our existing stack?",
-          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+          "q": "How do you handle low AOV?",
+          "a": "We focus on efficiency, bundles and retention - not blind spend."
         },
         {
-          "q": "Is pricing fixed or custom?",
-          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+          "q": "Can you integrate WhatsApp commerce?",
+          "a": "Yes for support, recovery and order updates where appropriate."
         }
       ],
       "related": [
@@ -692,6 +897,18 @@
         {
           "label": "Get Industry Analysis",
           "href": "/contact"
+        },
+        {
+          "label": "E-commerce Seo",
+          "href": "/industries/ecommerce/seo"
+        },
+        {
+          "label": "E-commerce Meta Ads",
+          "href": "/industries/ecommerce/meta-ads"
+        },
+        {
+          "label": "E-commerce Cro",
+          "href": "/industries/ecommerce/cro"
         }
       ],
       "metrics": [
@@ -708,11 +925,33 @@
           "label": "Avg ROI lift"
         }
       ],
-      "ctaLabel": "Get Free Proposal",
+      "ctaLabel": "Get My Ecommerce Growth Plan",
       "slug": "ecommerce",
       "kind": "industry",
       "title": "E-commerce",
-      "category": "Industries"
+      "category": "Industries",
+      "architecture": "ecommerce",
+      "quickAnswer": "Ecommerce growth needs more than ads. We connect product discovery, conversion rate, abandoned-cart recovery and retention so revenue compounds.",
+      "seoTitle": "Ecommerce Marketing Agency | SEO, Ads & CRO | DisplayAvenue",
+      "seoDescription": "Ecommerce marketing: Shopify/store growth via SEO, Meta Ads, Google Shopping, CRO and retention automation.",
+      "funnelSteps": [
+        {
+          "title": "Traffic",
+          "desc": "SEO + paid product discovery."
+        },
+        {
+          "title": "Convert",
+          "desc": "CRO on PDP and checkout."
+        },
+        {
+          "title": "Recover",
+          "desc": "Abandoned cart and WhatsApp nudges."
+        },
+        {
+          "title": "Retain",
+          "desc": "Repeat purchase and LTV flows."
+        }
+      ]
     },
     {
       "icon": "chip",

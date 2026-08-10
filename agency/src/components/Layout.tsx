@@ -6,6 +6,7 @@ import { WhatsAppFloat } from "./Placeholder";
 import { TrackingScripts } from "./TrackingScripts";
 import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
 import { ScrollToTop } from "./ScrollToTop";
+import { StickyMobileCta } from "./StickyMobileCta";
 import "./Placeholder.css";
 
 export function Layout() {
@@ -22,6 +23,7 @@ export function Layout() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <StickyMobileCta />
     </div>
   );
 }
