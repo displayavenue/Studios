@@ -79,7 +79,7 @@ const fallbackHome: HomeCms = {
     primaryCta: "Book a free call",
     secondaryCta: "See our work",
     image: "/images/hero-india.jpg",
-    imageAlt: "India Gate in New Delhi — DisplayAvenue helps Indian businesses grow online",
+    imageAlt: "Taj Mahal in Agra — DisplayAvenue helps Indian businesses grow online",
   },
   trustLabel: "Trusted by growing businesses across India",
   servicesTitle: "What we help you with",
