@@ -5,11 +5,13 @@ import { InternalLinks } from "./InternalLinks";
 import { WhatsAppFloat } from "./Placeholder";
 import { TrackingScripts } from "./TrackingScripts";
 import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
+import { ScrollToTop } from "./ScrollToTop";
 import "./Placeholder.css";
 
 export function Layout() {
   return (
     <>
+      <ScrollToTop />
       <TrackingScripts />
       <LocalBusinessSchema />
       <WebSiteSchema />

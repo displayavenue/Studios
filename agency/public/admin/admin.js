@@ -49,7 +49,7 @@ function setDirty(v) {
   state.dirty = v;
   const btn = $("#save-btn");
   btn.disabled = !v;
-  btn.textContent = v ? "Save changes *" : "Save changes";
+  btn.textContent = v ? "Update *" : "Update";
   document.body.classList.toggle("is-dirty", !!v);
 }
 
@@ -149,9 +149,11 @@ async function openCollection(key) {
     state.data = json.data;
     setDirty(false);
     $("#panel-title").textContent = state.collections[key] || key;
-    $("#panel-sub").textContent = `Editing ${key}.json — Save to publish.`;
+    $("#panel-sub").textContent = `Editing ${key}.json — click Update to publish (classic editor).`;
     renderNav();
     renderEditor();
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
   } catch (e) {
     toast(e.message, "err");
   }
@@ -649,7 +651,7 @@ async function save() {
   try {
     await api("save", { collection: state.current, data: state.data });
     setDirty(false);
-    toast("Saved — refresh the website to see changes");
+    toast("Updated — refresh the website to see changes");
   } catch (e) {
     toast(e.message, "err");
   }
