@@ -178,6 +178,7 @@ function renderEditor() {
     projects: () => renderCatalog(d, "Project"),
     resources: () => renderCatalog(d, "Resource"),
     content: renderContent,
+    "google-reviews": renderGoogleReviews,
     tracking: renderTracking,
     settings: renderSettings,
   };
@@ -249,6 +250,19 @@ function renderCompany(d) {
       ${field("Instagram", "socials.instagram", d.socials?.instagram)}
       ${field("LinkedIn", "socials.linkedin", d.socials?.linkedin)}
       ${field("YouTube", "socials.youtube", d.socials?.youtube)}
+    `,
+    )}
+    ${card(
+      "Google Maps / GMB",
+      `
+      ${field("Business name on Google", "googleMaps.name", d.googleMaps?.name || "")}
+      ${field("Share / GMB link", "googleMaps.shareUrl", d.googleMaps?.shareUrl || "")}
+      ${field("Google profile / search URL", "googleMaps.profileUrl", d.googleMaps?.profileUrl || "")}
+      ${field("Maps embed URL", "googleMaps.embedUrl", d.googleMaps?.embedUrl || "", "textarea")}
+      ${field("Knowledge Graph ID (kgmid)", "googleMaps.kgmid", d.googleMaps?.kgmid || "")}
+      ${field("Place ID (from Sync)", "googleMaps.placeId", d.googleMaps?.placeId || "")}
+      ${field("Place search query", "googleMaps.placeQuery", d.googleMaps?.placeQuery || "")}
+      <p class="hint">Use Google Reviews (GMB) in the sidebar to sync live reviews onto the homepage.</p>
     `,
     )}
     ${card("Stats (header / trust)", stats)}
@@ -399,6 +413,65 @@ function renderCatalog(d, kindLabel) {
   `;
 }
 
+function renderGoogleReviews(d) {
+  const reviews = (d.reviews || [])
+    .map(
+      (r, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>Review ${i + 1}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-google-review" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Author", `reviews.${i}.author`, r.author)}
+          ${field("Rating", `reviews.${i}.rating`, r.rating, "number")}
+          ${field("When", `reviews.${i}.relativeTime`, r.relativeTime)}
+          ${field("Photo URL", `reviews.${i}.profilePhotoUrl`, r.profilePhotoUrl || "")}
+          ${field("Author URL", `reviews.${i}.authorUrl`, r.authorUrl || "")}
+          ${field("Review text", `reviews.${i}.text`, r.text, "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    ${card(
+      "Google Business Profile sync",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Homepage shows these reviews <strong>above the explore directory</strong>.
+        Click <strong>Sync from Google</strong> to pull live rating + reviews via Places API
+        (needs <code>places_api_key</code> in <code>admin/config.php</code>).
+      </p>
+      ${field("Enabled (show on homepage)", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Section title", "title", d.title)}
+      ${field("Section subtitle", "sub", d.sub, "textarea")}
+      ${field("Business name", "businessName", d.businessName)}
+      ${field("Place ID", "placeId", d.placeId || "")}
+      ${field("Place search query", "placeQuery", d.placeQuery || "")}
+      ${field("Rating", "rating", d.rating, "number")}
+      ${field("Review count", "reviewCount", d.reviewCount, "number")}
+      ${field("Profile URL", "profileUrl", d.profileUrl || "")}
+      ${field("Write review URL", "writeReviewUrl", d.writeReviewUrl || "")}
+      ${field("Maps URL", "mapsUrl", d.mapsUrl || "")}
+      ${field("Last synced", "lastSyncedAt", d.lastSyncedAt || "")}
+      ${field("Sync source", "syncSource", d.syncSource || "")}
+      <div class="field full" style="display:flex;gap:.65rem;flex-wrap:wrap;align-items:center">
+        <button type="button" class="btn btn-gold" data-action="sync-google-reviews">Sync from Google</button>
+        <button type="button" class="btn btn-ghost" data-action="add-google-review">Add review manually</button>
+        <span class="hint" style="margin:0">Save after sync if you edit fields by hand.</span>
+      </div>
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Reviews on homepage</h3>
+      </div>
+      ${reviews || "<p class='empty'>No reviews yet — sync from Google or add manually.</p>"}
+    </section>
+  `;
+}
+
 function renderContent(d) {
   const testimonials = (d.testimonials || [])
     .map(
@@ -513,6 +586,21 @@ function handleAction(action, index) {
     d.testimonials.push({ quote: "", name: "", title: "", rating: 5 });
   } else if (action === "del-testimonial") {
     d.testimonials.splice(Number(index), 1);
+  } else if (action === "add-google-review") {
+    d.reviews = d.reviews || [];
+    d.reviews.unshift({
+      author: "",
+      rating: 5,
+      relativeTime: "Recently",
+      text: "",
+      profilePhotoUrl: "",
+      authorUrl: "",
+    });
+  } else if (action === "del-google-review") {
+    d.reviews.splice(Number(index), 1);
+  } else if (action === "sync-google-reviews") {
+    syncGoogleReviews();
+    return;
   } else return;
 
   // Normalize mega fields on nav when typed as "false"
@@ -524,6 +612,30 @@ function handleAction(action, index) {
 
   setDirty(true);
   renderEditor();
+}
+
+async function syncGoogleReviews() {
+  try {
+    toast("Syncing Google reviews…");
+    const res = await api("sync-google-reviews", {
+      placeId: state.data?.placeId || "",
+      placeQuery: state.data?.placeQuery || "",
+    });
+    if (res.data) {
+      state.data = res.data;
+      setDirty(false);
+      renderEditor();
+    }
+    toast(res.message || "Google reviews synced");
+  } catch (e) {
+    toast(e.message, "err");
+    // If sync wrote placeId but no reviews, reload collection
+    if (state.current === "google-reviews") {
+      try {
+        await openCollection("google-reviews");
+      } catch (_) {}
+    }
+  }
 }
 
 async function save() {

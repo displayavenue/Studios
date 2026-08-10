@@ -18,6 +18,10 @@ import { projectPages as fallbackProjects } from "../data/projectCatalog";
 import { resourcePages as fallbackResources } from "../data/resourceCatalog";
 import { testimonials as fallbackTestimonials } from "../data/content";
 import { clientLogos as fallbackLogos } from "../data/work";
+import {
+  fallbackGoogleReviews,
+  type GoogleReviewsCms,
+} from "../data/googleReviews";
 import type { DetailPageContent } from "../data/catalogTypes";
 import {
   defaultTracking,
@@ -66,6 +70,7 @@ export type AgencyCms = {
   projects: DetailPageContent[];
   resources: DetailPageContent[];
   content: ContentCms;
+  googleReviews: GoogleReviewsCms;
   tracking: typeof defaultTracking;
   ready: boolean;
 };
@@ -106,6 +111,7 @@ const defaults: AgencyCms = {
       sub: "Book a free call. We’ll map a simple plan for your business.",
     },
   },
+  googleReviews: fallbackGoogleReviews,
   tracking: defaultTracking,
   ready: false,
 };
@@ -148,6 +154,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         resources,
         content,
         trackingJson,
+        googleReviews,
       ] = await Promise.all([
         fetchJson<Partial<CompanyCms>>("company"),
         fetchJson<Partial<HomeCms>>("home"),
@@ -162,6 +169,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         fetchJson<{ items: DetailPageContent[] }>("resources"),
         fetchJson<Partial<ContentCms>>("content"),
         fetchJson<TrackingSettings>("tracking"),
+        fetchJson<GoogleReviewsCms>("google-reviews"),
       ]);
 
       if (cancelled) return;
@@ -181,6 +189,10 @@ export function CmsProvider({ children }: { children: ReactNode }) {
           address: { ...fallbackCompany.address, ...(company?.address || {}) },
           socials: { ...fallbackCompany.socials, ...(company?.socials || {}) },
           stats: { ...fallbackCompany.stats, ...(company?.stats || {}) },
+          googleMaps: {
+            ...fallbackCompany.googleMaps,
+            ...(company?.googleMaps || {}),
+          },
           announcement:
             company?.announcement ||
             "New! AI-Powered Marketing Solutions are now available.",
@@ -211,6 +223,14 @@ export function CmsProvider({ children }: { children: ReactNode }) {
             ...defaults.content.footerCta,
             ...(content?.footerCta || {}),
           },
+        },
+        googleReviews: {
+          ...fallbackGoogleReviews,
+          ...(googleReviews || {}),
+          reviews:
+            googleReviews?.reviews?.length
+              ? googleReviews.reviews
+              : fallbackGoogleReviews.reviews,
         },
         tracking: mergeTracking(trackingJson),
         ready: true,

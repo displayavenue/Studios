@@ -124,6 +124,33 @@ switch ($action) {
     $seo = da_sync_seo_artifacts($config['content_dir'], dirname($config['content_dir']));
     respond(200, ['ok' => true, 'seo' => $seo]);
 
+  case 'sync-google-reviews':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    require_once __DIR__ . '/gmb-sync.php';
+    $path = contentPath($config, 'google-reviews');
+    $current = is_file($path) ? readJson($path) : [];
+    // Allow overriding placeId / placeQuery from request body
+    if (!empty($body['placeId'])) $current['placeId'] = (string)$body['placeId'];
+    if (!empty($body['placeQuery'])) $current['placeQuery'] = (string)$body['placeQuery'];
+    $result = da_sync_google_reviews($config, $current);
+    if (!empty($result['data']) && is_array($result['data'])) {
+      writeJson($path, $result['data']);
+    }
+    if (!$result['ok']) {
+      respond(400, [
+        'ok' => false,
+        'error' => $result['error'] ?? 'Sync failed',
+        'data' => $result['data'] ?? null,
+        'hasPlacesKey' => trim((string)($config['places_api_key'] ?? '')) !== '',
+      ]);
+    }
+    respond(200, [
+      'ok' => true,
+      'message' => $result['message'] ?? 'Synced',
+      'data' => $result['data'],
+      'hasPlacesKey' => true,
+    ]);
+
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);
 }

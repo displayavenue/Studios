@@ -15,6 +15,16 @@ export const company = {
     lines: ["Mumbai, Maharashtra, India"],
     hours: "Mon–Sat · 10:00 AM – 7:00 PM IST",
   },
+  googleMaps: {
+    name: "Display Avenue",
+    shareUrl: "https://share.google/OC1gFqDqJCDFjdL50",
+    profileUrl: "https://www.google.com/search?kgmid=/g/11l59jbzkb&q=Display+Avenue",
+    embedUrl:
+      "https://maps.google.com/maps?q=Display+Avenue+Mumbai&hl=en&z=15&output=embed",
+    kgmid: "/g/11l59jbzkb",
+    placeId: "",
+    placeQuery: "Display Avenue Mira Road Mumbai",
+  },
   socials: {
     facebook: "https://www.facebook.com/displayavenue",
     instagram: "https://www.instagram.com/displayavenue",

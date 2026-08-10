@@ -3,6 +3,7 @@ import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
+import { GoogleReviews } from "../components/GoogleReviews";
 import "./Home.css";
 
 const promises = [
@@ -175,6 +176,8 @@ export function Home() {
           </Link>
         </div>
       </section>
+
+      <GoogleReviews />
     </div>
   );
 }
