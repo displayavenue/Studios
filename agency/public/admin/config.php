@@ -28,6 +28,8 @@ return [
     'projects' => 'Portfolio Projects',
     'resources' => 'Resources',
     'content' => 'Testimonials & Extras',
+    'citations' => 'Citation Directory & Outreach',
+    'backlinks' => 'Backlink & Outreach Tracker',
     'tracking' => 'Tracking & Pixels',
     'settings' => 'Settings',
   ],

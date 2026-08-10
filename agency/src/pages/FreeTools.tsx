@@ -7,12 +7,28 @@ import {
   toolStats,
   toolTrustBar,
 } from "../data/tools";
+import { linkableTools, industryReport } from "../data/linkableTools";
 import "../styles/pages.css";
+import "./tools/tools.css";
+
+function liveHref(toolName: string, fallback: string) {
+  if (toolName === "ROI Calculator") return "/free-tools/roi-calculator";
+  if (toolName === "Website SEO Audit") return "/free-tools/seo-checklist";
+  if (toolName === "Backlink Checker") return "/free-tools/citation-directory";
+  const hit = linkableTools.find(
+    (t) => t.shortTitle === toolName || t.title === toolName,
+  );
+  return hit?.href || fallback;
+}
 
 export function FreeTools() {
   return (
     <div className="page-shell">
-      <SEO title="Free Marketing Tools | DisplayAvenue" description="50+ free SEO, marketing, content, and AI tools. No signup required." path="/free-tools" />
+      <SEO
+        title="Free Marketing Tools | DisplayAvenue"
+        description="Free ROI calculator, SEO checklist, local SEO scorecard, citation directory, and more. No signup required."
+        path="/free-tools"
+      />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">
@@ -47,30 +63,55 @@ export function FreeTools() {
               </div>
             </aside>
 
-            <div className="mini-grid-4 tools-grid">
-              {toolCategories.map((cat) => (
-                <div key={cat.title} className="tool-card">
-                  <h3>
-                    <span className="icon-box" style={{ background: `${cat.color}18` }}>
-                      <Icon name={cat.icon} color={cat.color} size={16} />
-                    </span>
-                    {cat.title}
-                  </h3>
-                  <ul className="mega-links">
-                    {cat.tools.map((tool) => (
-                      <li key={tool}>
-                        <Link to={cat.href}>
-                          {tool}
-                          <Icon name="chevron" size={12} />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to={cat.href} className="link-arrow" style={{ marginTop: "0.55rem" }}>
-                    View all {cat.title} →
-                  </Link>
+            <div>
+              <div className="live-tools-banner">
+                <div>
+                  <h2>Live linkable tools</h2>
+                  <p>
+                    Interactive calculators and checklists you can use today - and that other sites
+                    can link to. Share the URL freely.
+                  </p>
+                  <p style={{ marginTop: "0.65rem" }}>
+                    <Link to={industryReport.href} className="link-arrow">
+                      {industryReport.title} →
+                    </Link>
+                  </p>
                 </div>
-              ))}
+                <div className="live-tools-list">
+                  {linkableTools.map((tool) => (
+                    <Link key={tool.slug} to={tool.href}>
+                      {tool.shortTitle}
+                      <span>{tool.badge}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mini-grid-4 tools-grid">
+                {toolCategories.map((cat) => (
+                  <div key={cat.title} className="tool-card">
+                    <h3>
+                      <span className="icon-box" style={{ background: `${cat.color}18` }}>
+                        <Icon name={cat.icon} color={cat.color} size={16} />
+                      </span>
+                      {cat.title}
+                    </h3>
+                    <ul className="mega-links">
+                      {cat.tools.map((tool) => (
+                        <li key={tool}>
+                          <Link to={liveHref(tool, cat.href)}>
+                            {tool}
+                            <Icon name="chevron" size={12} />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to={cat.href} className="link-arrow" style={{ marginTop: "0.55rem" }}>
+                      View all {cat.title} →
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <aside>
@@ -82,9 +123,17 @@ export function FreeTools() {
                 Popular Tools
               </h3>
               <ul className="mega-links">
-                {popularTools.map((tool) => (
+                {linkableTools.map((tool) => (
+                  <li key={tool.slug}>
+                    <Link to={tool.href}>
+                      {tool.shortTitle}
+                      <Icon name="chevron" size={12} />
+                    </Link>
+                  </li>
+                ))}
+                {popularTools.slice(0, 4).map((tool) => (
                   <li key={tool}>
-                    <Link to="/free-tools">
+                    <Link to={liveHref(tool, "/free-tools")}>
                       {tool}
                       <Icon name="chevron" size={12} />
                     </Link>
@@ -110,10 +159,14 @@ export function FreeTools() {
                   Loved by Marketers Worldwide
                 </p>
                 <p style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
-                  ★★★★★ 4.9/5 · Google · Capterra · Trustpilot
+                  ★★★★★ 170+ Reviews on Google
                 </p>
-                <Link to="/free-tools" className="btn btn-outline btn-sm" style={{ marginTop: "0.65rem" }}>
-                  Explore All Tools
+                <Link
+                  to="/free-tools/citation-directory"
+                  className="btn btn-outline btn-sm"
+                  style={{ marginTop: "0.65rem" }}
+                >
+                  Citation & outreach kit
                 </Link>
               </div>
             </aside>

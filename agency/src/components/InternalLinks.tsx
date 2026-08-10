@@ -193,7 +193,34 @@ function buildGroups(cms: ReturnType<typeof useCms>, excludeHref?: string): Grou
       hubHref: "/free-tools",
       icon: "gear",
       accent: "#7c3aed",
-      items: toLinks(cms.tools, excludeHref),
+      items: [
+        {
+          label: "ROI Calculator",
+          href: "/free-tools/roi-calculator",
+          blurb: "Estimate leads, revenue, and marketing ROI",
+        },
+        {
+          label: "SEO Checklist",
+          href: "/free-tools/seo-checklist",
+          blurb: "Score your site against 20 SEO checks",
+        },
+        {
+          label: "Local SEO Score",
+          href: "/free-tools/local-seo-score",
+          blurb: "GMB and citation readiness scorecard",
+        },
+        {
+          label: "Citation Directory",
+          href: "/free-tools/citation-directory",
+          blurb: "India directories + outreach templates",
+        },
+        {
+          label: "SME Digital Growth Report",
+          href: "/resources/india-sme-digital-growth-report",
+          blurb: "Cite-ready industry benchmarks for 2026",
+        },
+        ...toLinks(cms.tools, excludeHref),
+      ].filter((l) => !excludeHref || l.href !== excludeHref),
     },
     {
       id: "proof",

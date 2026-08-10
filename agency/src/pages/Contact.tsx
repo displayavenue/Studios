@@ -164,6 +164,18 @@ export function Contact() {
               <Link to="/packages">Packages</Link>, or{" "}
               <Link to="/case-studies">Case studies</Link>.
             </p>
+
+            {company.googleMaps?.embedUrl ? (
+              <div className="contact-map" aria-label="DisplayAvenue on Google Maps">
+                <iframe
+                  title="DisplayAvenue location map"
+                  src={company.googleMaps.embedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+            ) : null}
           </aside>
 
           <div className="contact-form-panel">

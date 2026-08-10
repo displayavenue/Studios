@@ -261,6 +261,8 @@ function renderEditor() {
     awards: renderAwards,
     certifications: renderCertifications,
     contact: renderContactForm,
+    citations: renderCitations,
+    backlinks: renderBacklinks,
     tracking: renderTracking,
     settings: renderSettings,
   };
@@ -771,6 +773,114 @@ function renderTracking(d) {
   </div>`;
 }
 
+function renderCitations(d) {
+  const dirs = (d.directories || [])
+    .map(
+      (row, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(row.name || "Directory")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-citation" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Name", `directories.${i}.name`, row.name)}
+          ${field("URL", `directories.${i}.url`, row.url)}
+          ${field("Category", `directories.${i}.category`, row.category)}
+          ${field("Priority", `directories.${i}.priority`, row.priority)}
+          ${field("Authority hint", `directories.${i}.daHint`, row.daHint)}
+          ${field("NAP / fields", `directories.${i}.napFields`, row.napFields)}
+          ${field("Notes", `directories.${i}.notes`, row.notes, "textarea")}
+          ${field("ID", `directories.${i}.id`, row.id)}
+        </div>
+      </div>`,
+    )
+    .join("");
+  const templates = (d.templates || [])
+    .map(
+      (row, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(row.name || "Template")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-outreach-template" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Name", `templates.${i}.name`, row.name)}
+          ${field("Subject", `templates.${i}.subject`, row.subject)}
+          ${field("Body", `templates.${i}.body`, row.body, "textarea")}
+          ${field("ID", `templates.${i}.id`, row.id)}
+        </div>
+      </div>`,
+    )
+    .join("");
+  return `
+  ${card(
+    "Citation kit settings",
+    `
+    ${field("Title", "title", d.title)}
+    ${field("Lead", "lead", d.lead, "textarea")}
+    ${field("Optional Google Sheet URL", "sheetUrl", d.sheetUrl || "")}
+  `,
+  )}
+  <div class="card">
+    <h3>Directories</h3>
+    <p class="hint">Public page: /free-tools/citation-directory</p>
+    ${dirs || `<p class="empty">No directories yet.</p>`}
+    <button type="button" class="btn btn-gold" data-action="add-citation">Add directory</button>
+  </div>
+  <div class="card">
+    <h3>Outreach templates</h3>
+    ${templates || `<p class="empty">No templates yet.</p>`}
+    <button type="button" class="btn btn-gold" data-action="add-outreach-template">Add template</button>
+  </div>`;
+}
+
+function renderBacklinks(d) {
+  const workflow = (d.workflow || []).join("\n");
+  const items = (d.items || [])
+    .map(
+      (row, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(row.domain || "Prospect")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-backlink" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Domain", `items.${i}.domain`, row.domain)}
+          ${field("Live URL (when published)", `items.${i}.url`, row.url)}
+          ${field("Target URL on our site", `items.${i}.targetUrl`, row.targetUrl)}
+          ${field("Type", `items.${i}.type`, row.type)}
+          ${field("Status (prospect/outreach-sent/in-progress/live/lost/rejected)", `items.${i}.status`, row.status)}
+          ${field("Contact email", `items.${i}.contactEmail`, row.contactEmail)}
+          ${field("DA estimate", `items.${i}.daEstimate`, row.daEstimate)}
+          ${field("Anchor", `items.${i}.anchor`, row.anchor)}
+          ${field("Next action", `items.${i}.nextAction`, row.nextAction)}
+          ${field("Last touched (YYYY-MM-DD)", `items.${i}.lastTouched`, row.lastTouched)}
+          ${field("Notes", `items.${i}.notes`, row.notes, "textarea")}
+          ${field("ID", `items.${i}.id`, row.id)}
+        </div>
+      </div>`,
+    )
+    .join("");
+  return `
+  ${card(
+    "Backlink tracker",
+    `
+    ${field("Title", "title", d.title)}
+    ${field("Notes", "notes", d.notes, "textarea")}
+    ${field("Optional Google Sheet URL", "sheetUrl", d.sheetUrl || "")}
+    <div class="field full"><label>Workflow (one step per line)</label>
+      <textarea data-path="workflow" data-array="true">${escapeHtml(workflow)}</textarea>
+    </div>
+  `,
+  )}
+  <div class="card">
+    <h3>Outreach pipeline</h3>
+    <p class="hint">Admin-only tracker. Prefer citations, partners, and resource mentions over bought links.</p>
+    ${items || `<p class="empty">No prospects yet.</p>`}
+    <button type="button" class="btn btn-gold" data-action="add-backlink">Add prospect</button>
+  </div>`;
+}
+
 function renderSettings(d) {
   const pingEngines = d.seoPings?.engines || {};
   const pingRows = Object.keys(pingEngines)
@@ -901,6 +1011,51 @@ function handleAction(action, index) {
   } else if (action === "sync-seo") {
     syncSeoArtifacts();
     return;
+  } else if (action === "add-citation") {
+    d.directories = d.directories || [];
+    d.directories.unshift({
+      id: `dir-${Date.now()}`,
+      name: "New directory",
+      url: "https://",
+      category: "General",
+      daHint: "Medium",
+      napFields: "Name, address, phone, website",
+      notes: "",
+      priority: "Medium",
+    });
+  } else if (action === "del-citation") {
+    if (!confirm("Delete this directory?")) return;
+    d.directories.splice(Number(index), 1);
+  } else if (action === "add-outreach-template") {
+    d.templates = d.templates || [];
+    d.templates.unshift({
+      id: `tpl-${Date.now()}`,
+      name: "New outreach template",
+      subject: "Quick note about {{business_name}}",
+      body: "Hi {{name}},\n\n",
+    });
+  } else if (action === "del-outreach-template") {
+    if (!confirm("Delete this template?")) return;
+    d.templates.splice(Number(index), 1);
+  } else if (action === "add-backlink") {
+    d.items = d.items || [];
+    d.items.unshift({
+      id: `bl-${Date.now()}`,
+      domain: "example.com",
+      url: "",
+      targetUrl: "https://displayavenue.com/",
+      type: "Directory",
+      status: "prospect",
+      contactEmail: "",
+      daEstimate: "",
+      anchor: "DisplayAvenue",
+      notes: "",
+      nextAction: "Send outreach",
+      lastTouched: new Date().toISOString().slice(0, 10),
+    });
+  } else if (action === "del-backlink") {
+    if (!confirm("Delete this prospect?")) return;
+    d.items.splice(Number(index), 1);
   } else return;
 
   // Normalize mega fields on nav when typed as "false"

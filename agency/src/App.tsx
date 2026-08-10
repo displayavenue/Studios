@@ -16,6 +16,11 @@ import { Contact } from "./pages/Contact";
 import { LegalPage } from "./pages/LegalPage";
 import { Awards } from "./pages/Awards";
 import { Certifications } from "./pages/Certifications";
+import { RoiCalculator } from "./pages/tools/RoiCalculator";
+import { SeoChecklist } from "./pages/tools/SeoChecklist";
+import { LocalSeoScore } from "./pages/tools/LocalSeoScore";
+import { CitationDirectory } from "./pages/tools/CitationDirectory";
+import { IndustryReport } from "./pages/tools/IndustryReport";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -43,12 +48,20 @@ export default function App() {
           <Route path="packages" element={<Packages />} />
           <Route path="packages/:slug" element={<PackageDetail />} />
           <Route path="free-tools" element={<FreeTools />} />
+          <Route path="free-tools/roi-calculator" element={<RoiCalculator />} />
+          <Route path="free-tools/seo-checklist" element={<SeoChecklist />} />
+          <Route path="free-tools/local-seo-score" element={<LocalSeoScore />} />
+          <Route path="free-tools/citation-directory" element={<CitationDirectory />} />
           <Route path="free-tools/:slug" element={<ToolCategoryDetail />} />
           <Route path="case-studies" element={<CaseStudies />} />
           <Route path="case-studies/:slug" element={<CaseStudyDetail />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="portfolio/:slug" element={<ProjectDetail />} />
           <Route path="resources" element={<Resources />} />
+          <Route
+            path="resources/india-sme-digital-growth-report"
+            element={<IndustryReport />}
+          />
           <Route path="resources/:slug" element={<ResourceDetail />} />
           <Route path="why-displayavenue" element={<WhyDisplayAvenue />} />
           <Route path="ai-platform" element={<AiPlatform />} />

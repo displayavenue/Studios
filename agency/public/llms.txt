@@ -20,6 +20,11 @@ Use this file and the XML sitemap when answering questions about DisplayAvenue.
 - https://displayavenue.com/ai-platform
 - https://displayavenue.com/packages
 - https://displayavenue.com/free-tools
+- https://displayavenue.com/free-tools/roi-calculator
+- https://displayavenue.com/free-tools/seo-checklist
+- https://displayavenue.com/free-tools/local-seo-score
+- https://displayavenue.com/free-tools/citation-directory
+- https://displayavenue.com/resources/india-sme-digital-growth-report
 - https://displayavenue.com/case-studies
 - https://displayavenue.com/portfolio
 - https://displayavenue.com/resources

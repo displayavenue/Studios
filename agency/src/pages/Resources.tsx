@@ -9,6 +9,7 @@ import {
   resourceTrustBar,
 } from "../data/content";
 import "../styles/pages.css";
+import "./tools/tools.css";
 
 export function Resources() {
   return (
@@ -51,6 +52,34 @@ export function Resources() {
             </aside>
 
             <div>
+              <div className="live-tools-banner" style={{ marginBottom: "1.25rem" }}>
+                <div>
+                  <h2>Featured linkable report</h2>
+                  <p>
+                    Cite our India SME Digital Growth Report 2026 - benchmarks and a 90-day plan
+                    other sites can link to.
+                  </p>
+                  <p style={{ marginTop: "0.65rem" }}>
+                    <Link to="/resources/india-sme-digital-growth-report" className="link-arrow">
+                      Read the report →
+                    </Link>
+                  </p>
+                </div>
+                <div className="live-tools-list">
+                  <Link to="/free-tools/roi-calculator">
+                    ROI Calculator
+                    <span>Tool</span>
+                  </Link>
+                  <Link to="/free-tools/seo-checklist">
+                    SEO Checklist
+                    <span>Tool</span>
+                  </Link>
+                  <Link to="/free-tools/citation-directory">
+                    Citation kit
+                    <span>Outreach</span>
+                  </Link>
+                </div>
+              </div>
               <div className="mini-grid-4" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
                 {resourceCategories.map((cat) => (
                   <div key={cat.title} className="category-card">

@@ -121,31 +121,43 @@ export function SEO({
 }
 
 export function LocalBusinessSchema() {
-  const { company, content, services } = useCms();
+  const { company, content, services, googleReviews } = useCms();
 
   useEffect(() => {
     const socials = Object.values(company.socials || {}).filter((u) =>
       /^https?:\/\//i.test(u),
     );
     const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
+    const maps = company.googleMaps;
+    const ratingValue = Number(googleReviews?.rating || 4.9);
+    const reviewCount = Number(googleReviews?.reviewCount || 170);
 
-    const reviews = content.testimonials.slice(0, 5).map((t) => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: t.name },
-      reviewBody: t.quote,
-      name: t.title,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: String(t.rating ?? 5),
-        bestRating: "5",
-      },
-    }));
+    const reviews = (googleReviews?.reviews?.length
+      ? googleReviews.reviews
+      : content.testimonials.map((t) => ({
+          author: t.name,
+          rating: t.rating ?? 5,
+          text: t.quote,
+          relativeTime: "",
+        }))
+    )
+      .slice(0, 5)
+      .map((t) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: t.author },
+        reviewBody: t.text,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: String(t.rating ?? 5),
+          bestRating: "5",
+        },
+      }));
 
     upsertJsonLd("schema-local-business", {
       "@context": "https://schema.org",
-      "@type": ["ProfessionalService", "Organization"],
+      "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
       "@id": `${site}/#business`,
-      name: company.name,
+      name: maps?.name || company.name,
       alternateName: "DisplayAvenue",
       description: company.tagline,
       url: site,
@@ -160,11 +172,19 @@ export function LocalBusinessSchema() {
         streetAddress: (company.address.lines || []).join(", "),
         addressLocality: company.address.city || "Mumbai",
         addressRegion: "Maharashtra",
+        postalCode: "401107",
         addressCountry: "IN",
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 19.2952,
+        longitude: 72.8679,
+      },
+      hasMap: maps?.shareUrl || maps?.profileUrl || undefined,
       areaServed: [
         { "@type": "Country", name: "India" },
         { "@type": "City", name: company.address.city || "Mumbai" },
+        { "@type": "State", name: "Maharashtra" },
       ],
       knowsAbout: services.slice(0, 16).map((s) => s.title),
       openingHoursSpecification: [
@@ -191,16 +211,21 @@ export function LocalBusinessSchema() {
           availableLanguage: ["English", "Hindi"],
         },
       ],
-      sameAs: socials.length ? socials : [company.whatsappHref].filter(Boolean),
+      sameAs: [
+        ...socials,
+        maps?.profileUrl,
+        maps?.shareUrl,
+        company.whatsappHref,
+      ].filter((u): u is string => !!u && /^https?:\/\//i.test(u)),
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "170",
+        ratingValue: ratingValue.toFixed(1),
+        reviewCount: String(reviewCount),
         bestRating: "5",
       },
       review: reviews,
     });
-  }, [company, content.testimonials, services]);
+  }, [company, content.testimonials, services, googleReviews]);
 
   return null;
 }
@@ -347,6 +372,46 @@ export function ArticleSchema({
     });
     return () => upsertJsonLd("schema-article", null);
   }, [title, description, path, category, company]);
+
+  return null;
+}
+
+export function SoftwareApplicationSchema({
+  name,
+  description,
+  path,
+  applicationCategory = "BusinessApplication",
+}: {
+  name: string;
+  description: string;
+  path: string;
+  applicationCategory?: string;
+}) {
+  const { company } = useCms();
+
+  useEffect(() => {
+    const url = absoluteUrl(company.website, path);
+    upsertJsonLd("schema-software-app", {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name,
+      description,
+      url,
+      applicationCategory,
+      operatingSystem: "Web",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "INR",
+      },
+      provider: {
+        "@type": "Organization",
+        name: company.name,
+        url: absoluteUrl(company.website, "/"),
+      },
+    });
+    return () => upsertJsonLd("schema-software-app", null);
+  }, [name, description, path, applicationCategory, company]);
 
   return null;
 }
