@@ -17,6 +17,12 @@
   transform: scale(1.06);
 }
 
+@media (max-width: 768px) {
+  .wa-float {
+    display: none !important;
+  }
+}
+
 .placeholder-page {
   padding: 4rem 0 5rem;
 }
