@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { apiFetch, asArray } from "@/lib/clientApi";
 import { formatInrFromPaise } from "@/lib/quotations/format";
-import "../../quotations.css";
+import "../../../quotations.css";
 
 type PublicItem = {
   id?: string;
