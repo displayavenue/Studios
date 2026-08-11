@@ -14,6 +14,10 @@ import "./Header.css";
 export function Header() {
   const { company } = useCms();
   const navItems = company.navItems;
+  const catalogueHref =
+    company.catalogueUrl || "/catalogue/DisplayAvenue-Catalogue.pdf";
+  const catalogueName =
+    company.catalogueFileName || "DisplayAvenue-Catalogue.pdf";
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -233,8 +237,8 @@ export function Header() {
             </Link>
             <a
               className="btn btn-primary"
-              href="/catalogue/DisplayAvenue-Catalogue.pdf"
-              download="DisplayAvenue-Catalogue.pdf"
+              href={catalogueHref}
+              download={catalogueName}
               onClick={() => setOpen(false)}
             >
               Download Catalogue

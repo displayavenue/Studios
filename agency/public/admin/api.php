@@ -138,10 +138,14 @@ function writeJson(string $path, $data): void {
 }
 
 $body = [];
-$raw = file_get_contents('php://input');
-if ($raw) {
-  $decoded = json_decode($raw, true);
-  if (is_array($decoded)) $body = $decoded;
+$contentType = (string)($_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? '');
+// Do not read php://input for multipart uploads (keeps $_FILES intact)
+if (stripos($contentType, 'multipart/form-data') === false) {
+  $raw = file_get_contents('php://input');
+  if ($raw) {
+    $decoded = json_decode($raw, true);
+    if (is_array($decoded)) $body = $decoded;
+  }
 }
 
 $action = $_GET['action'] ?? ($body['action'] ?? '');
@@ -262,6 +266,68 @@ switch ($action) {
     }
     unset($row);
     respond(200, ['ok' => true, 'leads' => $leads]);
+
+  case 'upload-catalogue':
+    requireAuth($config);
+    if (empty($_FILES['file']) || !is_array($_FILES['file'])) {
+      respond(400, ['ok' => false, 'error' => 'Choose a PDF file to upload']);
+    }
+    $file = $_FILES['file'];
+    $err = (int)($file['error'] ?? UPLOAD_ERR_NO_FILE);
+    if ($err !== UPLOAD_ERR_OK) {
+      respond(400, ['ok' => false, 'error' => 'Upload failed (code ' . $err . ')']);
+    }
+    $tmp = (string)($file['tmp_name'] ?? '');
+    $origName = (string)($file['name'] ?? 'catalogue.pdf');
+    $size = (int)($file['size'] ?? 0);
+    if ($tmp === '' || !is_uploaded_file($tmp)) {
+      respond(400, ['ok' => false, 'error' => 'Invalid upload']);
+    }
+    if ($size <= 0 || $size > 20 * 1024 * 1024) {
+      respond(400, ['ok' => false, 'error' => 'PDF must be under 20 MB']);
+    }
+    $ext = strtolower(pathinfo($origName, PATHINFO_EXTENSION));
+    if ($ext !== 'pdf') {
+      respond(400, ['ok' => false, 'error' => 'Only PDF files are allowed']);
+    }
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $mime = (string)$finfo->file($tmp);
+    if (!in_array($mime, ['application/pdf', 'application/x-pdf', 'application/octet-stream'], true)) {
+      respond(400, ['ok' => false, 'error' => 'File does not look like a PDF (' . $mime . ')']);
+    }
+
+    $publicDir = dirname(rtrim($config['content_dir'], '/\\'));
+    $catDir = $publicDir . '/catalogue';
+    if (!is_dir($catDir) && !mkdir($catDir, 0755, true)) {
+      respond(500, ['ok' => false, 'error' => 'Could not create /catalogue folder']);
+    }
+    $destName = 'DisplayAvenue-Catalogue.pdf';
+    $destPath = $catDir . '/' . $destName;
+    if (!move_uploaded_file($tmp, $destPath)) {
+      // Fallback for hosts where move_uploaded_file is restricted
+      if (!@copy($tmp, $destPath)) {
+        respond(500, ['ok' => false, 'error' => 'Could not save PDF - check /catalogue permissions']);
+      }
+      @unlink($tmp);
+    }
+    @chmod($destPath, 0644);
+
+    $url = '/catalogue/' . $destName . '?v=' . time();
+    $companyPath = contentPath($config, 'company');
+    $company = is_file($companyPath) ? readJson($companyPath) : [];
+    $company['catalogueUrl'] = $url;
+    $company['catalogueFileName'] = $destName;
+    $company['catalogueUpdatedAt'] = gmdate('c');
+    writeJson($companyPath, $company);
+
+    respond(200, [
+      'ok' => true,
+      'url' => $url,
+      'fileName' => $destName,
+      'bytes' => $size,
+      'data' => $company,
+      'message' => 'Catalogue uploaded - sticky bar will use this PDF',
+    ]);
 
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);

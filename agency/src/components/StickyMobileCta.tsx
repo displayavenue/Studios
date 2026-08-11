@@ -1,17 +1,29 @@
 import { useCms } from "../cms/CmsProvider";
 import "./StickyMobileCta.css";
 
-const CATALOGUE_HREF = "/catalogue/DisplayAvenue-Catalogue.pdf";
+const DEFAULT_CATALOGUE = "/catalogue/DisplayAvenue-Catalogue.pdf";
 
-/** Mobile sticky bar: single Catalogue download CTA */
+/** Mobile sticky bar: WhatsApp + Catalogue download */
 export function StickyMobileCta() {
-  useCms();
+  const { company } = useCms();
+  const catalogueHref = company.catalogueUrl || DEFAULT_CATALOGUE;
+  const catalogueName =
+    company.catalogueFileName || "DisplayAvenue-Catalogue.pdf";
+
   return (
-    <nav className="sticky-mcta" aria-label="Catalogue download">
+    <nav className="sticky-mcta" aria-label="Quick actions">
+      <a
+        className="sticky-mcta__btn sticky-mcta__btn--whatsapp"
+        href={company.whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+      >
+        WhatsApp
+      </a>
       <a
         className="sticky-mcta__btn sticky-mcta__btn--catalogue"
-        href={CATALOGUE_HREF}
-        download="DisplayAvenue-Catalogue.pdf"
+        href={catalogueHref}
+        download={catalogueName}
         target="_blank"
         rel="noreferrer"
       >

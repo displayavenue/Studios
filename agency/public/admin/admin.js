@@ -684,6 +684,67 @@ function renderEditor() {
   wrap.querySelectorAll("[data-action]").forEach((btn) => {
     btn.onclick = () => handleAction(btn.dataset.action, btn.dataset.index);
   });
+  if (key === "company") bindCatalogueUpload();
+}
+
+function bindCatalogueUpload() {
+  const btn = $("#catalogue-upload-btn");
+  const input = $("#catalogue-file");
+  if (!btn || !input) return;
+  btn.onclick = async () => {
+    const file = input.files && input.files[0];
+    if (!file) {
+      toast("Choose a PDF first", "err");
+      return;
+    }
+    if (!/\.pdf$/i.test(file.name) && file.type !== "application/pdf") {
+      toast("Only PDF files are allowed", "err");
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = "Uploading…";
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const headers = {};
+      if (state.token) {
+        headers.Authorization = `Bearer ${state.token}`;
+        headers["X-DA-Admin-Token"] = state.token;
+      }
+      const res = await fetch(`${API}?action=upload-catalogue`, {
+        method: "POST",
+        credentials: "include",
+        headers,
+        body: fd,
+      });
+      const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+      if (res.status === 401 || json.code === "auth") {
+        state.authed = false;
+        state.token = "";
+        localStorage.removeItem(TOKEN_KEY);
+        showLogin(true);
+        throw new Error(json.error || "Please log in again");
+      }
+      if (!res.ok || json.ok === false) {
+        throw new Error(json.error || "Upload failed");
+      }
+      if (json.data && typeof json.data === "object") {
+        state.data = json.data;
+      } else {
+        state.data.catalogueUrl = json.url;
+        state.data.catalogueFileName = json.fileName || "DisplayAvenue-Catalogue.pdf";
+        state.data.catalogueUpdatedAt = new Date().toISOString();
+      }
+      setDirty(false);
+      renderEditor();
+      refreshPreview();
+      toast(json.message || "Catalogue uploaded");
+    } catch (e) {
+      toast(e.message || "Upload failed", "err");
+      btn.disabled = false;
+      btn.textContent = "Upload catalogue";
+    }
+  };
 }
 
 function card(title, body) {
@@ -730,6 +791,32 @@ function renderCompany(d) {
       ${field("Announcement bar", "announcement", d.announcement, "textarea")}
     `,
     )}
+    <section class="card" id="catalogue-card">
+      <h3>Mobile sticky · Catalogue PDF</h3>
+      <p class="hint" style="margin-top:0">
+        Upload a PDF here. The mobile sticky bar uses <strong>WhatsApp + Catalogue</strong>.
+        Replacing the file updates the live download link automatically.
+      </p>
+      <div class="grid">
+        ${field("Catalogue URL", "catalogueUrl", d.catalogueUrl || "/catalogue/DisplayAvenue-Catalogue.pdf")}
+        ${field("Download filename", "catalogueFileName", d.catalogueFileName || "DisplayAvenue-Catalogue.pdf")}
+        <div class="field full">
+          <label>Upload new catalogue (PDF, max 20 MB)</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input type="file" id="catalogue-file" accept="application/pdf,.pdf" />
+            <button type="button" class="btn btn-gold" id="catalogue-upload-btn">Upload catalogue</button>
+            ${
+              d.catalogueUrl
+                ? `<a class="btn btn-ghost" href="${escapeAttr(d.catalogueUrl)}" target="_blank" rel="noreferrer">Open current PDF</a>`
+                : ""
+            }
+          </div>
+          <p class="hint" style="margin:.5rem 0 0">
+            Last upload: ${escapeHtml(d.catalogueUpdatedAt || "not uploaded yet")}
+          </p>
+        </div>
+      </div>
+    </section>
     ${card(
       "Address",
       `

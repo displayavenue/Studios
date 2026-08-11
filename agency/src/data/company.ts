@@ -43,6 +43,9 @@ export const company = {
     experts: "50+",
     avgRoi: "320%",
   },
+  catalogueUrl: "/catalogue/DisplayAvenue-Catalogue.pdf",
+  catalogueFileName: "DisplayAvenue-Catalogue.pdf",
+  catalogueUpdatedAt: "",
 };
 
 export type MegaKey = "whatWeDo" | "industries" | "solutions" | "aiPlatform";
