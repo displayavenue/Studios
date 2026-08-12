@@ -65,6 +65,7 @@ function writeJson(string $path, $data): void {
 }
 
 require_once __DIR__ . '/seo-sync.php';
+require_once __DIR__ . '/image-upload.php';
 
 $body = [];
 $raw = file_get_contents('php://input');
@@ -146,12 +147,13 @@ switch ($action) {
     }
 
     $file = $_FILES['file'];
-    if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
-      respond(400, ['ok' => false, 'error' => 'Upload failed — try a smaller image (max 5 MB)']);
+    $uploadErr = (int)($file['error'] ?? UPLOAD_ERR_NO_FILE);
+    if ($uploadErr !== UPLOAD_ERR_OK) {
+      respond(400, ['ok' => false, 'error' => da_upload_error_message($uploadErr)]);
     }
 
     $uploadCfg = $config['uploads'] ?? [];
-    $maxBytes = (int)($uploadCfg['max_bytes'] ?? 5 * 1024 * 1024);
+    $maxBytes = (int)($uploadCfg['max_bytes'] ?? 0);
     $allowed = $uploadCfg['allowed_mimes'] ?? [
       'image/jpeg' => 'jpg',
       'image/png' => 'png',
@@ -159,8 +161,9 @@ switch ($action) {
       'image/gif' => 'gif',
     ];
 
-    if (($file['size'] ?? 0) > $maxBytes) {
-      respond(400, ['ok' => false, 'error' => 'Image too large — maximum 5 MB']);
+    if ($maxBytes > 0 && ($file['size'] ?? 0) > $maxBytes) {
+      $mb = max(1, (int)round($maxBytes / (1024 * 1024)));
+      respond(400, ['ok' => false, 'error' => "Image too large — maximum {$mb} MB"]);
     }
 
     $finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -175,23 +178,24 @@ switch ($action) {
       respond(500, ['ok' => false, 'error' => 'Could not create uploads folder — check /content permissions']);
     }
 
-    $ext = $allowed[$mime];
     $base = preg_replace('/[^a-z0-9-]+/i', '-', pathinfo((string)($file['name'] ?? 'image'), PATHINFO_FILENAME));
     $base = trim(substr(strtolower($base), 0, 40), '-') ?: 'image';
-    $filename = gmdate('Ymd-His') . '-' . $base . '-' . bin2hex(random_bytes(3)) . '.' . $ext;
+    $filename = gmdate('Ymd-His') . '-' . $base . '-' . bin2hex(random_bytes(3)) . '.webp';
     $dest = $uploadsDir . '/' . $filename;
 
-    if (!move_uploaded_file($file['tmp_name'], $dest)) {
-      respond(500, ['ok' => false, 'error' => 'Could not save image — check /content/uploads permissions']);
+    $result = da_process_image_upload((string)$file['tmp_name'], $mime, $dest, $uploadCfg);
+    if (empty($result['ok'])) {
+      respond(500, ['ok' => false, 'error' => $result['error'] ?? 'Image conversion failed']);
     }
 
-    @chmod($dest, 0644);
     $url = '/content/uploads/' . $filename;
     respond(200, [
       'ok' => true,
       'url' => $url,
       'filename' => $filename,
-      'bytes' => (int)($file['size'] ?? 0),
+      'format' => 'webp',
+      'bytes' => (int)($result['bytes'] ?? 0),
+      'original_bytes' => (int)($file['size'] ?? 0),
     ]);
 
   default:
