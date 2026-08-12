@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { CredentialImage } from "../components/CredentialImage";
 import { useCms } from "../cms/CmsProvider";
 import "./AwardsCerts.css";
 
@@ -67,7 +68,13 @@ export function Certifications() {
             {visible.map((item) => (
               <article key={item.id} className="acred__card">
                 <div className="acred__media">
-                  <img src={item.image} alt={item.title} width={1200} height={850} loading="lazy" />
+                  <CredentialImage
+                    src={item.image}
+                    alt={item.title}
+                    width={560}
+                    height={397}
+                    loading="lazy"
+                  />
                 </div>
                 <div className="acred__body">
                   <span className="acred__brand">{item.brand}</span>

@@ -135,9 +135,12 @@ const CmsContext = createContext<AgencyCms>(defaults);
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 
-async function fetchJson<T>(name: string): Promise<T | null> {
+async function fetchJson<T>(
+  name: string,
+  cache: RequestCache = "no-store",
+): Promise<T | null> {
   try {
-    const res = await fetch(`${base}content/${name}.json`, { cache: "no-store" });
+    const res = await fetch(`${base}content/${name}.json`, { cache });
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
@@ -155,6 +158,13 @@ export function CmsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      // Kick off awards/certs immediately; merge after first paint is ready
+      const awardsPromise = fetchJson<AwardsCms>("awards", "force-cache");
+      const certificationsPromise = fetchJson<CertificationsCms>(
+        "certifications",
+        "force-cache",
+      );
+
       const [
         company,
         home,
@@ -170,8 +180,6 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         content,
         trackingJson,
         googleReviews,
-        awardsJson,
-        certificationsJson,
         contactJson,
         combosJson,
       ] = await Promise.all([
@@ -189,8 +197,6 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         fetchJson<Partial<ContentCms>>("content"),
         fetchJson<TrackingSettings>("tracking"),
         fetchJson<GoogleReviewsCms>("google-reviews"),
-        fetchJson<AwardsCms>("awards"),
-        fetchJson<CertificationsCms>("certifications"),
         fetchJson<ContactCms>("contact"),
         fetchJson<{ items: DetailPageContent[] }>("combos"),
       ]);
@@ -255,18 +261,8 @@ export function CmsProvider({ children }: { children: ReactNode }) {
               ? googleReviews.reviews
               : fallbackGoogleReviews.reviews,
         },
-        awards: {
-          ...fallbackAwards,
-          ...(awardsJson || {}),
-          items: awardsJson?.items?.length ? awardsJson.items : fallbackAwards.items,
-        },
-        certifications: {
-          ...fallbackCertifications,
-          ...(certificationsJson || {}),
-          items: certificationsJson?.items?.length
-            ? certificationsJson.items
-            : fallbackCertifications.items,
-        },
+        awards: fallbackAwards,
+        certifications: fallbackCertifications,
         contact: {
           ...fallbackContact,
           ...(contactJson || {}),
@@ -283,6 +279,28 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         tracking: mergeTracking(trackingJson),
         ready: true,
       });
+
+      // Awards / certs are below the fold - merge when ready so open feels fast
+      const [awardsJson, certificationsJson] = await Promise.all([
+        awardsPromise,
+        certificationsPromise,
+      ]);
+      if (cancelled) return;
+      setState((prev) => ({
+        ...prev,
+        awards: {
+          ...fallbackAwards,
+          ...(awardsJson || {}),
+          items: awardsJson?.items?.length ? awardsJson.items : fallbackAwards.items,
+        },
+        certifications: {
+          ...fallbackCertifications,
+          ...(certificationsJson || {}),
+          items: certificationsJson?.items?.length
+            ? certificationsJson.items
+            : fallbackCertifications.items,
+        },
+      }));
     })();
     return () => {
       cancelled = true;

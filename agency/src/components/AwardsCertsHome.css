@@ -67,10 +67,18 @@
   gap: 1rem;
 }
 
-.achome__award {
+.achome__award,
+.achome__cert {
   background: transparent;
   border: 0;
   padding: 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 280px;
+}
+
+.achome__award-media picture,
+.achome__cert-media picture {
+  display: contents;
 }
 
 .achome__award-media {

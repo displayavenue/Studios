@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
+import { CredentialImage } from "./CredentialImage";
 import "./AwardsCertsHome.css";
 
 export function AwardsCertsHome() {
@@ -52,7 +53,13 @@ export function AwardsCertsHome() {
                   className={`achome__award reveal reveal-delay-${(i % 3) + 1}`}
                 >
                   <div className="achome__award-media">
-                    <img src={item.image} alt="" width={1000} height={700} loading="lazy" />
+                    <CredentialImage
+                      src={item.image}
+                      alt=""
+                      width={560}
+                      height={392}
+                      loading={i < 3 ? "eager" : "lazy"}
+                    />
                   </div>
                   <div className="achome__award-body">
                     <span>{item.year}</span>
@@ -80,7 +87,13 @@ export function AwardsCertsHome() {
                   className={`achome__cert reveal reveal-delay-${(i % 4) + 1}`}
                 >
                   <div className="achome__cert-media">
-                    <img src={item.image} alt="" width={1200} height={850} loading="lazy" />
+                    <CredentialImage
+                      src={item.image}
+                      alt=""
+                      width={560}
+                      height={397}
+                      loading="lazy"
+                    />
                   </div>
                   <div className="achome__cert-body">
                     <span className="achome__brand">{item.brand}</span>
