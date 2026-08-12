@@ -801,7 +801,7 @@ function renderCompany(d) {
         ${field("Catalogue URL", "catalogueUrl", d.catalogueUrl || "/catalogue/DisplayAvenue-Catalogue.pdf")}
         ${field("Download filename", "catalogueFileName", d.catalogueFileName || "DisplayAvenue-Catalogue.pdf")}
         <div class="field full">
-          <label>Upload new catalogue (PDF, max 20 MB)</label>
+          <label>Upload new catalogue (PDF)</label>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
             <input type="file" id="catalogue-file" accept="application/pdf,.pdf" />
             <button type="button" class="btn btn-gold" id="catalogue-upload-btn">Upload catalogue</button>

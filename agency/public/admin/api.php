@@ -283,8 +283,8 @@ switch ($action) {
     if ($tmp === '' || !is_uploaded_file($tmp)) {
       respond(400, ['ok' => false, 'error' => 'Invalid upload']);
     }
-    if ($size <= 0 || $size > 20 * 1024 * 1024) {
-      respond(400, ['ok' => false, 'error' => 'PDF must be under 20 MB']);
+    if ($size <= 0) {
+      respond(400, ['ok' => false, 'error' => 'Empty file']);
     }
     $ext = strtolower(pathinfo($origName, PATHINFO_EXTENSION));
     if ($ext !== 'pdf') {
