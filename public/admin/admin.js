@@ -78,7 +78,7 @@ function imageField(label, path, value = "") {
         </label>
       </div>
       ${preview}
-      <p class="image-field__hint">JPG, PNG, WebP or GIF · max 5 MB. You can still paste an external image URL.</p>
+      <p class="image-field__hint">JPG, PNG, WebP or GIF · any size · auto-converted to WebP. You can still paste an external image URL.</p>
       <p class="image-field__status" data-status-for="${id}" hidden></p>
     </div>`;
 }

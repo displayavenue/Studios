@@ -13,9 +13,13 @@ return [
   // Content directory (relative to this file's parent: /admin -> /content)
   'content_dir' => dirname(__DIR__) . '/content',
 
-  // Uploaded images (stored under /content/uploads, served at /content/uploads/…)
+  // Uploaded images (stored under /content/uploads, always saved as WebP)
   'uploads' => [
-    'max_bytes' => 5 * 1024 * 1024,
+    // 0 = no app-level size limit (still subject to PHP upload_max_filesize on the server)
+    'max_bytes' => 0,
+    'webp_quality' => 82,
+    // 0 = keep original dimensions; set e.g. 6000 to cap longest edge for very large files
+    'max_edge_px' => 0,
     'allowed_mimes' => [
       'image/jpeg' => 'jpg',
       'image/png' => 'png',

@@ -64,8 +64,9 @@ Paste a full YouTube link (watch / youtu.be / shorts). If set, the service page 
 
 Every image field in the CMS (homepage hero, services, portfolio, blog, team, etc.) has an **Upload image** button.
 
-- Supported formats: JPG, PNG, WebP, GIF (max **5 MB**)
-- Files are saved to `/content/uploads/` and served at `/content/uploads/your-file.jpg`
+- Supported formats: JPG, PNG, WebP, GIF — **any size** (no CMS limit)
+- All uploads are **auto-converted to WebP** and saved under `/content/uploads/`
+- Files are served at `/content/uploads/your-file.webp`
 - You can still paste an external image URL instead of uploading
 - Portfolio galleries support **Upload to gallery** — each upload adds a new line to the gallery list
 
