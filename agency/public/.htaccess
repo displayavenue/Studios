@@ -11,6 +11,7 @@
 
   # Tax invoice demo / future invoice pages
   RewriteRule ^invoice/demo/?$ /invoice/demo/index.html [L]
+  RewriteRule ^invoice/([A-Za-z0-9._-]+)/([A-Za-z0-9_-]+)/?$ /invoice/view.php?number=$1&token=$2 [L,QSA]
 
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f

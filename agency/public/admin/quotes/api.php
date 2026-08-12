@@ -8,6 +8,7 @@ require_once __DIR__ . '/lib/numbering.php';
 require_once __DIR__ . '/lib/company.php';
 require_once __DIR__ . '/lib/auth.php';
 require_once __DIR__ . '/lib/razorpay.php';
+require_once __DIR__ . '/lib/invoice.php';
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $host = $_SERVER['HTTP_HOST'] ?? '';
@@ -157,8 +158,18 @@ try {
     da_json_out(200, ['ok' => true, 'data' => da_public_payload($db, $quote)]);
   }
 
+  if ($action === 'public_invoice_get') {
+    da_ensure_invoice_tables($db);
+    $number = (string) ($_GET['number'] ?? $body['number'] ?? '');
+    $token = (string) ($_GET['token'] ?? $body['token'] ?? '');
+    $inv = da_fetch_tax_invoice_public($db, $number, $token);
+    if (!$inv) da_json_out(404, ['ok' => false, 'error' => 'Invoice not found']);
+    da_json_out(200, ['ok' => true, 'data' => da_tax_invoice_payload($db, $inv)]);
+  }
+
   // Staff endpoints
   da_quotes_require_admin();
+  da_ensure_invoice_tables($db);
 
   if ($action === 'dashboard') {
     $metrics = [
@@ -420,6 +431,198 @@ try {
     $quote = da_fetch_quote($db, $id);
     $payload = da_staff_payload($db, $quote);
     da_json_out(200, ['ok' => true, 'data' => $payload, 'publicUrl' => $payload['publicUrl']]);
+  }
+
+  if ($action === 'invoice_list') {
+    $rows = [];
+    $res = $db->query('SELECT * FROM tax_invoices ORDER BY CAST(invoice_number AS UNSIGNED) DESC, created_at DESC LIMIT 100');
+    while ($r = $res->fetch_assoc()) {
+      $rows[] = [
+        'id' => $r['id'],
+        'invoiceNumber' => $r['invoice_number'],
+        'invoiceDate' => $r['invoice_date'],
+        'buyerName' => $r['buyer_name'],
+        'status' => $r['status'],
+        'grandTotalPaise' => (int) $r['grand_total_paise'],
+        'publicUrl' => da_tax_invoice_public_url($r),
+      ];
+    }
+    da_json_out(200, ['ok' => true, 'data' => $rows]);
+  }
+
+  if ($action === 'invoice_get') {
+    $id = (string) ($body['id'] ?? $_GET['id'] ?? '');
+    $inv = da_fetch_tax_invoice($db, $id);
+    if (!$inv) da_json_out(404, ['ok' => false, 'error' => 'Invoice not found']);
+    da_json_out(200, ['ok' => true, 'data' => da_tax_invoice_payload($db, $inv)]);
+  }
+
+  if ($action === 'invoice_create') {
+    $company = da_invoice_company_defaults($db);
+    $itemsIn = $body['items'] ?? [];
+    if (!is_array($itemsIn) || !$itemsIn) {
+      da_json_out(400, ['ok' => false, 'error' => 'Add at least one line item']);
+    }
+    $buyerName = trim((string) ($body['buyerName'] ?? ''));
+    if ($buyerName === '') da_json_out(400, ['ok' => false, 'error' => 'Buyer name required']);
+
+    $buyerState = (string) ($body['buyerState'] ?? 'Maharashtra');
+    $buyerStateCode = (string) ($body['buyerStateCode'] ?? '27');
+    $buyerAddress = (string) ($body['buyerAddress'] ?? '');
+    $buyerGstin = (string) ($body['buyerGstin'] ?? '');
+    $shipName = (string) ($body['shipName'] ?? $buyerName);
+    $shipAddress = (string) ($body['shipAddress'] ?? $buyerAddress);
+    $shipGstin = (string) ($body['shipGstin'] ?? $buyerGstin);
+    $shipState = (string) ($body['shipState'] ?? $buyerState);
+    $shipStateCode = (string) ($body['shipStateCode'] ?? $buyerStateCode);
+    $invoiceDate = (string) ($body['invoiceDate'] ?? date('Y-m-d'));
+    $clientId = (string) ($body['clientId'] ?? '');
+    if ($clientId === '') $clientId = null;
+
+    $storeLines = [];
+    $taxable = 0;
+    foreach ($itemsIn as $i => $it) {
+      $amountInr = (float) ($it['amountInr'] ?? $it['rateInr'] ?? 0);
+      $amountPaise = da_inr_to_paise($amountInr);
+      $qty = isset($it['quantity']) && $it['quantity'] !== '' && $it['quantity'] !== null
+        ? (float) $it['quantity']
+        : null;
+      $rateInr = (float) ($it['rateInr'] ?? $amountInr);
+      $storeLines[] = [
+        'particulars' => (string) ($it['particulars'] ?? 'Service'),
+        'description' => (string) ($it['description'] ?? ''),
+        'hsn_sac' => (string) ($it['hsnSac'] ?? '998314'),
+        'quantity' => $qty,
+        'rate_paise' => da_inr_to_paise($rateInr),
+        'unit_label' => (string) ($it['unitLabel'] ?? ''),
+        'amount_paise' => $amountPaise,
+        'sort_order' => (int) $i,
+      ];
+      $taxable += $amountPaise;
+    }
+
+    $gstPercent = (float) ($body['gstPercent'] ?? 18);
+    $gstPaise = (int) round(($taxable * $gstPercent) / 100);
+    $intra = da_same_state($company['state'], $buyerState);
+    $mode = $gstPaise === 0 ? 'NONE' : ($intra ? 'CGST_SGST' : 'IGST');
+    $cgst = 0;
+    $sgst = 0;
+    $igst = 0;
+    if ($mode === 'CGST_SGST') {
+      $cgst = (int) ceil($gstPaise / 2);
+      $sgst = $gstPaise - $cgst;
+    } elseif ($mode === 'IGST') {
+      $igst = $gstPaise;
+    }
+    $grand = $taxable + $gstPaise;
+    $amountWords = da_amount_in_words($grand);
+    $taxWords = da_amount_in_words($gstPaise);
+
+    $id = da_id();
+    $number = da_next_tax_invoice_number($db);
+    $token = da_token();
+    $status = (string) ($body['status'] ?? 'ISSUED');
+
+    $esc = static function (mysqli $db, ?string $v): string {
+      if ($v === null) return 'NULL';
+      return "'" . $db->real_escape_string($v) . "'";
+    };
+
+    $db->begin_transaction();
+    try {
+      $sql = sprintf(
+        "INSERT INTO tax_invoices (
+          id, client_id, invoice_number, secure_token, status, invoice_date,
+          company_legal_name, company_address, company_gstin, company_state, company_state_code, company_email,
+          buyer_name, buyer_address, buyer_gstin, buyer_state, buyer_state_code,
+          ship_name, ship_address, ship_gstin, ship_state, ship_state_code,
+          delivery_note, mode_of_payment, reference_no, other_references,
+          buyer_order_no, buyer_order_date, dispatch_doc_no, delivery_note_date,
+          dispatched_through, destination, terms_of_delivery,
+          gst_mode, taxable_paise, cgst_paise, sgst_paise, igst_paise, total_gst_paise, grand_total_paise,
+          amount_in_words, tax_in_words, notes
+        ) VALUES (
+          %s,%s,%s,%s,%s,%s,
+          %s,%s,%s,%s,%s,%s,
+          %s,%s,%s,%s,%s,
+          %s,%s,%s,%s,%s,
+          %s,%s,%s,%s,
+          %s,%s,%s,%s,
+          %s,%s,%s,
+          %s,%d,%d,%d,%d,%d,%d,
+          %s,%s,%s
+        )",
+        $esc($db, $id),
+        $clientId ? $esc($db, $clientId) : 'NULL',
+        $esc($db, $number),
+        $esc($db, $token),
+        $esc($db, $status),
+        $esc($db, $invoiceDate),
+        $esc($db, $company['legal_name']),
+        $esc($db, $company['address']),
+        $esc($db, $company['gstin']),
+        $esc($db, $company['state']),
+        $esc($db, $company['state_code']),
+        $esc($db, $company['email']),
+        $esc($db, $buyerName),
+        $esc($db, $buyerAddress),
+        $esc($db, $buyerGstin),
+        $esc($db, $buyerState),
+        $esc($db, $buyerStateCode),
+        $esc($db, $shipName),
+        $esc($db, $shipAddress),
+        $esc($db, $shipGstin),
+        $esc($db, $shipState),
+        $esc($db, $shipStateCode),
+        $esc($db, (string) ($body['deliveryNote'] ?? '')),
+        $esc($db, (string) ($body['modeOfPayment'] ?? '')),
+        $esc($db, (string) ($body['referenceNo'] ?? '')),
+        $esc($db, (string) ($body['otherReferences'] ?? '')),
+        $esc($db, (string) ($body['buyerOrderNo'] ?? '')),
+        !empty($body['buyerOrderDate']) ? $esc($db, (string) $body['buyerOrderDate']) : 'NULL',
+        $esc($db, (string) ($body['dispatchDocNo'] ?? '')),
+        !empty($body['deliveryNoteDate']) ? $esc($db, (string) $body['deliveryNoteDate']) : 'NULL',
+        $esc($db, (string) ($body['dispatchedThrough'] ?? '')),
+        $esc($db, (string) ($body['destination'] ?? '')),
+        $esc($db, (string) ($body['termsOfDelivery'] ?? '')),
+        $esc($db, $mode),
+        $taxable, $cgst, $sgst, $igst, $gstPaise, $grand,
+        $esc($db, $amountWords),
+        $esc($db, $taxWords),
+        $esc($db, (string) ($body['notes'] ?? ''))
+      );
+      if (!$db->query($sql)) throw new RuntimeException($db->error);
+
+      foreach ($storeLines as $line) {
+        $itemId = da_id();
+        $qtySql = $line['quantity'] === null ? 'NULL' : (string) (float) $line['quantity'];
+        $isql = sprintf(
+          "INSERT INTO tax_invoice_items (id, invoice_id, sort_order, particulars, description, hsn_sac, quantity, rate_paise, unit_label, amount_paise, is_tax_row) VALUES (%s,%s,%d,%s,%s,%s,%s,%d,%s,%d,0)",
+          $esc($db, $itemId),
+          $esc($db, $id),
+          $line['sort_order'],
+          $esc($db, $line['particulars']),
+          $esc($db, $line['description']),
+          $esc($db, $line['hsn_sac']),
+          $qtySql,
+          $line['rate_paise'],
+          $esc($db, $line['unit_label']),
+          $line['amount_paise']
+        );
+        if (!$db->query($isql)) throw new RuntimeException($db->error);
+      }
+      $db->commit();
+    } catch (Throwable $e) {
+      $db->rollback();
+      throw $e;
+    }
+
+    $inv = da_fetch_tax_invoice($db, $id);
+    da_json_out(200, [
+      'ok' => true,
+      'data' => da_tax_invoice_payload($db, $inv),
+      'message' => 'Invoice #' . $number . ' created',
+    ]);
   }
 
   da_json_out(400, ['ok' => false, 'error' => 'Unknown action']);

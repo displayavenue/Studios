@@ -4,6 +4,7 @@ const TOKEN_KEY = "da_agency_admin_token";
 /** Quotations run on Hostinger (PHP + MariaDB) — no Vercel. */
 const QUOTE_NAV = {
   quotations: "Quotations & Payments",
+  invoices: "Create Invoice",
 };
 
 const state = {
@@ -314,13 +315,14 @@ function renderNav() {
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }${key === "quotations" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+        }${key === "quotations" || key === "invoices" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
     btn.onclick = () => {
       setMobileNav(false);
       if (btn.dataset.key === "quotations") openQuotations();
+      else if (btn.dataset.key === "invoices") openInvoices();
       else openCollection(btn.dataset.key);
     };
   });
@@ -342,6 +344,217 @@ function openQuotations() {
   renderQuotationsHub();
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+function openInvoices() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "invoices";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = "Create Invoice";
+  $("#panel-sub").textContent =
+    "MediaShouter tax invoices with HSN/SAC, CGST/SGST — same layout as your sample PDF.";
+  renderNav();
+  renderInvoicesHub();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+function renderInvoicesHub(tab = "create") {
+  const wrap = $("#editor-wrap");
+  wrap.innerHTML = `<div class="quote-hub"><p class="muted">Loading invoices…</p></div>`;
+  loadInvoicesWorkspace(tab);
+}
+
+async function loadInvoicesWorkspace(tab = "create") {
+  const wrap = $("#editor-wrap");
+  try {
+    await ensureQuotesInstalled();
+    const listRes = await quotesApi("invoice_list");
+    const invoices = listRes.data || [];
+    const tabs = `
+      <div class="quote-tabs">
+        <button type="button" class="btn ${tab === "create" ? "btn-gold" : ""}" data-itab="create">Create Invoice</button>
+        <button type="button" class="btn ${tab === "list" ? "btn-gold" : ""}" data-itab="list">All invoices</button>
+        <a class="btn" href="../invoice/demo/" target="_blank" rel="noreferrer">Open layout demo</a>
+      </div>`;
+
+    if (tab === "list") {
+      wrap.innerHTML = `
+        <div class="quote-hub">
+          <div class="help-banner"><strong>Create Invoice</strong> is in the left menu. Generated invoices open in the MediaShouter tax-invoice layout.</div>
+          ${tabs}
+          <div class="card">
+            <h3>Tax invoices</h3>
+            <div class="quote-table-wrap">
+              <table class="quote-table">
+                <thead><tr><th>No.</th><th>Date</th><th>Buyer</th><th>Total</th><th>Status</th><th></th></tr></thead>
+                <tbody>
+                  ${invoices.map((inv) => `
+                    <tr>
+                      <td><code>${escapeHtml(inv.invoiceNumber)}</code></td>
+                      <td>${escapeHtml(inv.invoiceDate || "")}</td>
+                      <td>${escapeHtml(inv.buyerName || "")}</td>
+                      <td>${inr(inv.grandTotalPaise)}</td>
+                      <td>${escapeHtml(inv.status || "")}</td>
+                      <td class="quote-row-actions">
+                        <a class="btn btn-sm btn-gold" href="${escapeAttr(inv.publicUrl)}" target="_blank" rel="noreferrer">Open</a>
+                        <button type="button" class="btn btn-sm" data-copy="${escapeAttr(inv.publicUrl)}">Copy link</button>
+                      </td>
+                    </tr>`).join("") || `<tr><td colspan="6" class="muted">No invoices yet. Create one.</td></tr>`}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>`;
+      wrap.querySelectorAll("[data-itab]").forEach((btn) => {
+        btn.onclick = () => loadInvoicesWorkspace(btn.dataset.itab);
+      });
+      wrap.querySelectorAll("[data-copy]").forEach((btn) => {
+        btn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(btn.dataset.copy);
+            toast("Invoice link copied");
+          } catch {
+            toast(btn.dataset.copy);
+          }
+        };
+      });
+      return;
+    }
+
+    // Create form
+    wrap.innerHTML = `
+      <div class="quote-hub">
+        <div class="help-banner">
+          Fill buyer + line items (HSN default <code>998314</code>). Company block uses <strong>MediaShouter</strong> from Company &amp; GST settings.
+        </div>
+        ${tabs}
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center">
+            <h3 style="margin:0">New tax invoice</h3>
+            <button type="button" class="btn" id="inv-load-sample">Load sample (Flag Company)</button>
+          </div>
+          <div class="grid grid-2" style="margin-top:12px">
+            <label>Invoice date<input id="inv-date" type="date" value="${new Date().toISOString().slice(0, 10)}" /></label>
+            <label>GST %<input id="inv-gst" type="number" value="18" /></label>
+            <label class="full">Buyer (Bill to) name<input id="inv-buyer" placeholder="Client company name" /></label>
+            <label class="full">Buyer address<textarea id="inv-buyer-addr" rows="3" placeholder="Full billing address"></textarea></label>
+            <label>Buyer GSTIN<input id="inv-buyer-gstin" placeholder="27XXXXXXXXXX1Z1" /></label>
+            <label>Buyer state<input id="inv-buyer-state" value="Maharashtra" /></label>
+            <label>State code<input id="inv-buyer-code" value="27" /></label>
+            <label class="full">Ship to (leave blank = same as buyer)<input id="inv-ship" placeholder="Optional different ship-to name" /></label>
+          </div>
+          <h4 style="margin:16px 0 8px">Line items</h4>
+          <div id="inv-items" class="quote-items"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <button type="button" class="btn" id="inv-add-line">Add line</button>
+          </div>
+          <p class="hint" id="inv-preview-total" style="margin-top:12px">Taxable + GST will calculate on create.</p>
+          <button type="button" class="btn btn-gold" id="inv-create" style="margin-top:14px">Create invoice</button>
+        </div>
+      </div>`;
+
+    const itemsEl = $("#inv-items");
+    const lines = [];
+    const redraw = () => {
+      itemsEl.innerHTML =
+        lines
+          .map(
+            (l, i) => `
+        <div class="quote-item-row" style="grid-template-columns:2fr 1.2fr 90px 110px auto">
+          <input data-i="${i}" data-k="particulars" value="${escapeAttr(l.particulars)}" placeholder="Particulars" />
+          <input data-i="${i}" data-k="description" value="${escapeAttr(l.description)}" placeholder="Description / place" />
+          <input data-i="${i}" data-k="hsnSac" value="${escapeAttr(l.hsnSac)}" placeholder="HSN" />
+          <input data-i="${i}" data-k="amountInr" type="number" min="0" step="1" value="${l.amountInr}" placeholder="Amount" />
+          <button type="button" class="btn btn-sm btn-danger" data-del="${i}">Remove</button>
+        </div>`,
+          )
+          .join("") || `<p class="muted">Add at least one line.</p>`;
+      itemsEl.querySelectorAll("input").forEach((inp) => {
+        inp.oninput = () => {
+          const i = Number(inp.dataset.i);
+          const k = inp.dataset.k;
+          lines[i][k] = k === "amountInr" ? Number(inp.value || 0) : inp.value;
+          updateInvPreview();
+        };
+      });
+      itemsEl.querySelectorAll("[data-del]").forEach((btn) => {
+        btn.onclick = () => {
+          lines.splice(Number(btn.dataset.del), 1);
+          redraw();
+        };
+      });
+      updateInvPreview();
+    };
+    const updateInvPreview = () => {
+      const taxable = lines.reduce((s, l) => s + Number(l.amountInr || 0), 0);
+      const gstPct = Number($("#inv-gst").value || 18);
+      const gst = Math.round((taxable * gstPct) / 100);
+      $("#inv-preview-total").textContent = `Taxable ₹${taxable.toLocaleString("en-IN")} + GST ₹${gst.toLocaleString("en-IN")} = ₹${(taxable + gst).toLocaleString("en-IN")}`;
+    };
+    $("#inv-gst").oninput = updateInvPreview;
+    $("#inv-add-line").onclick = () => {
+      lines.push({ particulars: "", description: "", hsnSac: "998314", amountInr: 0 });
+      redraw();
+    };
+    $("#inv-load-sample").onclick = () => {
+      $("#inv-buyer").value = "The Flag Company";
+      $("#inv-buyer-addr").value =
+        "Survey No.140/3\nVillage Juchandra, Near Lodha Dham Temple,\nNaigaon East, Taluka Vasai\nPalghar";
+      $("#inv-buyer-gstin").value = "27AAEFT4915F1Z7";
+      $("#inv-buyer-state").value = "Maharashtra";
+      $("#inv-buyer-code").value = "27";
+      $("#inv-date").value = "2026-08-10";
+      lines.splice(0, lines.length,
+        { particulars: "Search Engine Optimisation (S.E.O)", description: "India", hsnSac: "998314", amountInr: 10000 },
+        { particulars: "Search Engine Marketing (S.E.M)", description: "India", hsnSac: "998314", amountInr: 10000 },
+        { particulars: "Search Engine Optimisation (S.E.O)", description: "U.A.E", hsnSac: "998314", amountInr: 10000 },
+        { particulars: "Search Engine Marketing (S.E.M)", description: "U.A.E", hsnSac: "998314", amountInr: 10000 },
+        { particulars: "SherFlags", description: "Maintenance", hsnSac: "998314", amountInr: 12000 },
+        { particulars: "The flag company Maintenance", description: "", hsnSac: "998314", amountInr: 15000 },
+      );
+      redraw();
+      toast("Sample loaded — click Create invoice");
+    };
+    $("#inv-create").onclick = async () => {
+      try {
+        if (!lines.length) throw new Error("Add at least one line");
+        const created = await quotesApi("invoice_create", {
+          buyerName: $("#inv-buyer").value.trim(),
+          buyerAddress: $("#inv-buyer-addr").value,
+          buyerGstin: $("#inv-buyer-gstin").value.trim(),
+          buyerState: $("#inv-buyer-state").value.trim() || "Maharashtra",
+          buyerStateCode: $("#inv-buyer-code").value.trim() || "27",
+          shipName: $("#inv-ship").value.trim() || undefined,
+          invoiceDate: $("#inv-date").value,
+          gstPercent: Number($("#inv-gst").value || 18),
+          items: lines,
+          status: "ISSUED",
+        });
+        toast(created.message || "Invoice created");
+        if (created.data?.publicUrl) {
+          window.open(created.data.publicUrl, "_blank", "noopener");
+        }
+        loadInvoicesWorkspace("list");
+      } catch (e) {
+        toast(e.message, "err");
+      }
+    };
+    wrap.querySelectorAll("[data-itab]").forEach((btn) => {
+      btn.onclick = () => loadInvoicesWorkspace(btn.dataset.itab);
+    });
+    lines.push({ particulars: "", description: "", hsnSac: "998314", amountInr: 0 });
+    redraw();
+  } catch (e) {
+    wrap.innerHTML = `<div class="quote-hub"><div class="card"><p class="muted">${escapeHtml(e.message)}</p>
+      <button type="button" class="btn btn-gold" id="inv-retry">Retry</button></div></div>`;
+    $("#inv-retry").onclick = () => loadInvoicesWorkspace(tab);
+  }
 }
 
 function quotesHeaders() {
@@ -1756,6 +1969,10 @@ async function enterApp(collections) {
     openQuotations();
     return;
   }
+  if (state.current === "invoices") {
+    openInvoices();
+    return;
+  }
   const first = state.current || Object.keys(state.collections)[0];
   if (first) await openCollection(first);
   else setPreview("/");
@@ -1795,6 +2012,7 @@ async function init() {
   $("#save-btn").onclick = save;
   $("#reload-btn").onclick = () => {
     if (state.current === "quotations") openQuotations();
+    else if (state.current === "invoices") openInvoices();
     else if (state.current) openCollection(state.current);
   };
   const previewBtn = $("#preview-btn");
