@@ -15,7 +15,7 @@
       "year": "2025",
       "brand": "Google",
       "category": "Ads",
-      "image": "/images/certs/cert-photo-google.jpg",
+      "image": "/images/certs/cert-photo-google.webp",
       "featured": true
     },
     {
@@ -26,7 +26,7 @@
       "year": "2025",
       "brand": "Google",
       "category": "Ads",
-      "image": "/images/certs/cert-02.jpg",
+      "image": "/images/certs/cert-02.webp",
       "featured": true
     },
     {
@@ -37,7 +37,7 @@
       "year": "2024",
       "brand": "Google",
       "category": "Ads",
-      "image": "/images/certs/cert-03.jpg",
+      "image": "/images/certs/cert-03.webp",
       "featured": true
     },
     {
@@ -48,7 +48,7 @@
       "year": "2024",
       "brand": "Google",
       "category": "Ads",
-      "image": "/images/certs/cert-04.jpg",
+      "image": "/images/certs/cert-04.webp",
       "featured": true
     },
     {
@@ -59,7 +59,7 @@
       "year": "2025",
       "brand": "Google",
       "category": "Analytics",
-      "image": "/images/certs/cert-05.jpg",
+      "image": "/images/certs/cert-05.webp",
       "featured": true
     },
     {
@@ -70,7 +70,7 @@
       "year": "2025",
       "brand": "Google",
       "category": "Analytics",
-      "image": "/images/certs/cert-photo-ga4.jpg",
+      "image": "/images/certs/cert-photo-ga4.webp",
       "featured": true
     },
     {
@@ -81,7 +81,7 @@
       "year": "2024",
       "brand": "Google",
       "category": "Analytics",
-      "image": "/images/certs/cert-07.jpg",
+      "image": "/images/certs/cert-07.webp",
       "featured": true
     },
     {
@@ -92,7 +92,7 @@
       "year": "2023",
       "brand": "Google",
       "category": "Marketing",
-      "image": "/images/certs/cert-08.jpg",
+      "image": "/images/certs/cert-08.webp",
       "featured": true
     },
     {
@@ -103,7 +103,7 @@
       "year": "2025",
       "brand": "Google",
       "category": "Local",
-      "image": "/images/certs/cert-09.jpg",
+      "image": "/images/certs/cert-09.webp",
       "featured": false
     },
     {
@@ -114,7 +114,7 @@
       "year": "2024",
       "brand": "Google",
       "category": "Video",
-      "image": "/images/certs/cert-10.jpg",
+      "image": "/images/certs/cert-10.webp",
       "featured": false
     },
     {
@@ -125,7 +125,7 @@
       "year": "2025",
       "brand": "Meta",
       "category": "Ads",
-      "image": "/images/certs/cert-photo-meta2.jpg",
+      "image": "/images/certs/cert-photo-meta2.webp",
       "featured": false
     },
     {
@@ -136,7 +136,7 @@
       "year": "2025",
       "brand": "Meta",
       "category": "Ads",
-      "image": "/images/certs/cert-photo-meta.jpg",
+      "image": "/images/certs/cert-photo-meta.webp",
       "featured": false
     },
     {
@@ -147,7 +147,7 @@
       "year": "2024",
       "brand": "Meta",
       "category": "Creative",
-      "image": "/images/certs/cert-13.jpg",
+      "image": "/images/certs/cert-13.webp",
       "featured": false
     },
     {
@@ -158,7 +158,7 @@
       "year": "2024",
       "brand": "Meta",
       "category": "Measurement",
-      "image": "/images/certs/cert-14.jpg",
+      "image": "/images/certs/cert-14.webp",
       "featured": false
     },
     {
@@ -169,7 +169,7 @@
       "year": "2025",
       "brand": "Meta",
       "category": "Tracking",
-      "image": "/images/certs/cert-15.jpg",
+      "image": "/images/certs/cert-15.webp",
       "featured": false
     },
     {
@@ -180,7 +180,7 @@
       "year": "2023",
       "brand": "Meta",
       "category": "Social",
-      "image": "/images/certs/cert-16.jpg",
+      "image": "/images/certs/cert-16.webp",
       "featured": false
     },
     {
@@ -191,7 +191,7 @@
       "year": "2025",
       "brand": "HubSpot",
       "category": "Inbound",
-      "image": "/images/certs/cert-photo-hubspot.jpg",
+      "image": "/images/certs/cert-photo-hubspot.webp",
       "featured": false
     },
     {
@@ -202,7 +202,7 @@
       "year": "2025",
       "brand": "HubSpot",
       "category": "Content",
-      "image": "/images/certs/cert-18.jpg",
+      "image": "/images/certs/cert-18.webp",
       "featured": false
     },
     {
@@ -213,7 +213,7 @@
       "year": "2024",
       "brand": "HubSpot",
       "category": "Email",
-      "image": "/images/certs/cert-19.jpg",
+      "image": "/images/certs/cert-19.webp",
       "featured": false
     },
     {
@@ -224,7 +224,7 @@
       "year": "2024",
       "brand": "HubSpot",
       "category": "Social",
-      "image": "/images/certs/cert-20.jpg",
+      "image": "/images/certs/cert-20.webp",
       "featured": false
     },
     {
@@ -235,7 +235,7 @@
       "year": "2025",
       "brand": "HubSpot",
       "category": "SEO",
-      "image": "/images/certs/cert-21.jpg",
+      "image": "/images/certs/cert-21.webp",
       "featured": false
     },
     {
@@ -246,7 +246,7 @@
       "year": "2023",
       "brand": "HubSpot",
       "category": "CMS",
-      "image": "/images/certs/cert-22.jpg",
+      "image": "/images/certs/cert-22.webp",
       "featured": false
     },
     {
@@ -257,7 +257,7 @@
       "year": "2025",
       "brand": "HubSpot",
       "category": "CRM",
-      "image": "/images/certs/cert-23.jpg",
+      "image": "/images/certs/cert-23.webp",
       "featured": false
     },
     {
@@ -268,7 +268,7 @@
       "year": "2025",
       "brand": "Microsoft",
       "category": "Ads",
-      "image": "/images/certs/cert-24.jpg",
+      "image": "/images/certs/cert-24.webp",
       "featured": false
     },
     {
@@ -279,7 +279,7 @@
       "year": "2024",
       "brand": "Microsoft",
       "category": "Analytics",
-      "image": "/images/certs/cert-25.jpg",
+      "image": "/images/certs/cert-25.webp",
       "featured": false
     },
     {
@@ -290,7 +290,7 @@
       "year": "2025",
       "brand": "LinkedIn",
       "category": "Ads",
-      "image": "/images/certs/cert-26.jpg",
+      "image": "/images/certs/cert-26.webp",
       "featured": false
     },
     {
@@ -301,7 +301,7 @@
       "year": "2024",
       "brand": "LinkedIn",
       "category": "Social",
-      "image": "/images/certs/cert-27.jpg",
+      "image": "/images/certs/cert-27.webp",
       "featured": false
     },
     {
@@ -312,7 +312,7 @@
       "year": "2025",
       "brand": "Semrush",
       "category": "SEO",
-      "image": "/images/certs/cert-28.jpg",
+      "image": "/images/certs/cert-28.webp",
       "featured": false
     },
     {
@@ -323,7 +323,7 @@
       "year": "2024",
       "brand": "Semrush",
       "category": "Content",
-      "image": "/images/certs/cert-29.jpg",
+      "image": "/images/certs/cert-29.webp",
       "featured": false
     },
     {
@@ -334,7 +334,7 @@
       "year": "2023",
       "brand": "Semrush",
       "category": "PPC",
-      "image": "/images/certs/cert-30.jpg",
+      "image": "/images/certs/cert-30.webp",
       "featured": false
     },
     {
@@ -345,7 +345,7 @@
       "year": "2024",
       "brand": "Moz",
       "category": "SEO",
-      "image": "/images/certs/cert-31.jpg",
+      "image": "/images/certs/cert-31.webp",
       "featured": false
     },
     {
@@ -356,7 +356,7 @@
       "year": "2025",
       "brand": "Shopify",
       "category": "Ecommerce",
-      "image": "/images/certs/cert-32.jpg",
+      "image": "/images/certs/cert-32.webp",
       "featured": false
     },
     {
@@ -367,7 +367,7 @@
       "year": "2024",
       "brand": "Shopify",
       "category": "Ecommerce",
-      "image": "/images/certs/cert-33.jpg",
+      "image": "/images/certs/cert-33.webp",
       "featured": false
     },
     {
@@ -378,7 +378,7 @@
       "year": "2024",
       "brand": "Hootsuite",
       "category": "Social",
-      "image": "/images/certs/cert-34.jpg",
+      "image": "/images/certs/cert-34.webp",
       "featured": false
     },
     {
@@ -389,7 +389,7 @@
       "year": "2025",
       "brand": "Amazon",
       "category": "Ads",
-      "image": "/images/certs/cert-35.jpg",
+      "image": "/images/certs/cert-35.webp",
       "featured": false
     },
     {
@@ -400,7 +400,7 @@
       "year": "2023",
       "brand": "Google",
       "category": "Data",
-      "image": "/images/certs/cert-36.jpg",
+      "image": "/images/certs/cert-36.webp",
       "featured": false
     },
     {
@@ -411,7 +411,7 @@
       "year": "2024",
       "brand": "Google",
       "category": "UX",
-      "image": "/images/certs/cert-37.jpg",
+      "image": "/images/certs/cert-37.webp",
       "featured": false
     },
     {
@@ -422,7 +422,7 @@
       "year": "2023",
       "brand": "Meta",
       "category": "Creative",
-      "image": "/images/certs/cert-38.jpg",
+      "image": "/images/certs/cert-38.webp",
       "featured": false
     },
     {
@@ -433,7 +433,7 @@
       "year": "2024",
       "brand": "HubSpot",
       "category": "Service",
-      "image": "/images/certs/cert-39.jpg",
+      "image": "/images/certs/cert-39.webp",
       "featured": false
     },
     {
@@ -444,7 +444,7 @@
       "year": "2025",
       "brand": "Google",
       "category": "AI",
-      "image": "/images/certs/cert-40.jpg",
+      "image": "/images/certs/cert-40.webp",
       "featured": false
     }
   ]

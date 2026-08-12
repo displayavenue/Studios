@@ -137,6 +137,61 @@ function writeJson(string $path, $data): void {
   rename($tmp, $path);
 }
 
+/** Load image resource from upload (JPEG/PNG/GIF/WebP). */
+function da_image_from_file(string $path, string $mime) {
+  return match (true) {
+    str_contains($mime, 'jpeg'), str_contains($mime, 'jpg') => @imagecreatefromjpeg($path),
+    str_contains($mime, 'png') => @imagecreatefrompng($path),
+    str_contains($mime, 'gif') => @imagecreatefromgif($path),
+    str_contains($mime, 'webp') => function_exists('imagecreatefromwebp') ? @imagecreatefromwebp($path) : false,
+    default => false,
+  };
+}
+
+/** Resize keeping aspect ratio; max edge = $maxEdge. */
+function da_image_fit($im, int $maxEdge) {
+  $w = imagesx($im);
+  $h = imagesy($im);
+  if ($w <= 0 || $h <= 0) return $im;
+  $edge = max($w, $h);
+  if ($edge <= $maxEdge) return $im;
+  $scale = $maxEdge / $edge;
+  $nw = max(1, (int)round($w * $scale));
+  $nh = max(1, (int)round($h * $scale));
+  $out = imagecreatetruecolor($nw, $nh);
+  if ($out === false) return $im;
+  imagealphablending($out, true);
+  imagesavealpha($out, true);
+  $transparent = imagecolorallocatealpha($out, 0, 0, 0, 127);
+  imagefill($out, 0, 0, $transparent);
+  imagecopyresampled($out, $im, 0, 0, 0, 0, $nw, $nh, $w, $h);
+  imagedestroy($im);
+  return $out;
+}
+
+/** Save GD image as WebP (quality 0-100). */
+function da_save_webp($im, string $dest, int $quality = 78): bool {
+  if (!function_exists('imagewebp')) return false;
+  imagealphablending($im, true);
+  imagesavealpha($im, true);
+  return imagewebp($im, $dest, $quality);
+}
+
+/** Allowed upload folders under /images */
+function da_image_folder(string $folder): string {
+  $map = [
+    'uploads' => 'uploads',
+    'awards' => 'awards',
+    'certs' => 'certs',
+    'heroes' => 'heroes',
+    'reviews' => 'reviews',
+    'root' => '',
+  ];
+  $key = strtolower(trim($folder));
+  if (!isset($map[$key])) $key = 'uploads';
+  return $map[$key];
+}
+
 $body = [];
 $contentType = (string)($_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? '');
 // Do not read php://input for multipart uploads (keeps $_FILES intact)
@@ -327,6 +382,111 @@ switch ($action) {
       'bytes' => $size,
       'data' => $company,
       'message' => 'Catalogue uploaded - sticky bar will use this PDF',
+    ]);
+
+  case 'upload-image':
+    requireAuth($config);
+    if (!function_exists('imagewebp') || !function_exists('imagecreatefromjpeg')) {
+      respond(500, ['ok' => false, 'error' => 'Server GD WebP support is required']);
+    }
+    if (empty($_FILES['file']) || !is_array($_FILES['file'])) {
+      respond(400, ['ok' => false, 'error' => 'Choose an image to upload']);
+    }
+    $file = $_FILES['file'];
+    $err = (int)($file['error'] ?? UPLOAD_ERR_NO_FILE);
+    if ($err !== UPLOAD_ERR_OK) {
+      respond(400, ['ok' => false, 'error' => 'Upload failed (code ' . $err . ')']);
+    }
+    $tmp = (string)($file['tmp_name'] ?? '');
+    $origName = (string)($file['name'] ?? 'image.jpg');
+    $size = (int)($file['size'] ?? 0);
+    if ($tmp === '' || !is_uploaded_file($tmp)) {
+      respond(400, ['ok' => false, 'error' => 'Invalid upload']);
+    }
+    if ($size <= 0) {
+      respond(400, ['ok' => false, 'error' => 'Empty file']);
+    }
+
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $mime = strtolower((string)$finfo->file($tmp));
+    $allowed = ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (!in_array($mime, $allowed, true)) {
+      respond(400, ['ok' => false, 'error' => 'Only JPG, PNG, GIF, or WebP images are allowed']);
+    }
+
+    $im = da_image_from_file($tmp, $mime);
+    if ($im === false) {
+      respond(400, ['ok' => false, 'error' => 'Could not read image']);
+    }
+
+    $folderKey = (string)($_POST['folder'] ?? $_GET['folder'] ?? 'uploads');
+    $relFolder = da_image_folder($folderKey);
+    $publicDir = dirname(rtrim($config['content_dir'], '/\\'));
+    $imgDir = $publicDir . '/images' . ($relFolder !== '' ? '/' . $relFolder : '');
+    if (!is_dir($imgDir) && !mkdir($imgDir, 0755, true)) {
+      imagedestroy($im);
+      respond(500, ['ok' => false, 'error' => 'Could not create images folder']);
+    }
+
+    $stem = pathinfo($origName, PATHINFO_FILENAME);
+    $stem = preg_replace('/[^a-zA-Z0-9_-]+/', '-', (string)$stem) ?: 'image';
+    $stem = trim($stem, '-');
+    if ($stem === '') $stem = 'image';
+    $stem = strtolower(substr($stem, 0, 60));
+    $maxEdge = in_array($folderKey, ['awards', 'certs'], true) ? 1400 : 1920;
+
+    $thumbIm = null;
+    if (in_array($folderKey, ['awards', 'certs'], true)) {
+      $thumbDir = $imgDir . '/thumbs';
+      if (!is_dir($thumbDir)) @mkdir($thumbDir, 0755, true);
+      $w = imagesx($im);
+      $h = imagesy($im);
+      $clone = imagecreatetruecolor(max(1, $w), max(1, $h));
+      if ($clone !== false) {
+        imagealphablending($clone, false);
+        imagesavealpha($clone, true);
+        imagecopy($clone, $im, 0, 0, 0, 0, $w, $h);
+        $thumbIm = da_image_fit($clone, 560);
+      }
+    }
+
+    $im = da_image_fit($im, $maxEdge);
+    $destName = $stem . '-' . substr(bin2hex(random_bytes(4)), 0, 8) . '.webp';
+    $destPath = $imgDir . '/' . $destName;
+    if (!da_save_webp($im, $destPath, 78)) {
+      if ($thumbIm) imagedestroy($thumbIm);
+      imagedestroy($im);
+      respond(500, ['ok' => false, 'error' => 'Could not save WebP - check /images permissions']);
+    }
+    @chmod($destPath, 0644);
+
+    $thumbUrl = null;
+    if ($thumbIm) {
+      $thumbStem = pathinfo($destName, PATHINFO_FILENAME);
+      $thumbWebp = $imgDir . '/thumbs/' . $thumbStem . '.webp';
+      $thumbJpg = $imgDir . '/thumbs/' . $thumbStem . '.jpg';
+      da_save_webp($thumbIm, $thumbWebp, 68);
+      if (function_exists('imagejpeg')) {
+        imagejpeg($thumbIm, $thumbJpg, 72);
+        @chmod($thumbJpg, 0644);
+      }
+      @chmod($thumbWebp, 0644);
+      imagedestroy($thumbIm);
+      $thumbUrl = '/images/' . $relFolder . '/thumbs/' . $thumbStem . '.webp';
+    }
+
+    imagedestroy($im);
+    @unlink($tmp);
+
+    $url = '/images/' . ($relFolder !== '' ? $relFolder . '/' : '') . $destName;
+    respond(200, [
+      'ok' => true,
+      'url' => $url,
+      'thumbUrl' => $thumbUrl,
+      'fileName' => $destName,
+      'bytes' => is_file($destPath) ? (int)filesize($destPath) : 0,
+      'format' => 'webp',
+      'message' => 'Image uploaded as WebP',
     ]);
 
   default:

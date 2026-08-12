@@ -168,6 +168,96 @@ function field(label, path, value, type = "text") {
   return `<div class="field ${isArea ? "full" : ""}"><label for="${id}">${label}</label>${control}</div>`;
 }
 
+/** Image URL field + WebP upload button (folder: awards|certs|heroes|uploads|reviews|root) */
+function imageField(label, path, value, folder = "uploads") {
+  const id = path.replace(/[^a-z0-9]/gi, "_");
+  const preview = value
+    ? `<img class="img-upload__preview" src="${escapeAttr(value)}" alt="" loading="lazy" />`
+    : `<div class="img-upload__preview img-upload__preview--empty">No image</div>`;
+  return `
+    <div class="field full img-upload" data-image-field="${escapeAttr(path)}" data-folder="${escapeAttr(folder)}">
+      <label for="${id}">${label} <span class="hint" style="display:inline;margin:0">(saved as WebP)</span></label>
+      <div class="img-upload__row">
+        ${preview}
+        <div class="img-upload__controls">
+          <input type="text" data-path="${path}" id="${id}" value="${escapeAttr(value ?? "")}" placeholder="/images/..." />
+          <div class="img-upload__actions">
+            <input type="file" class="img-upload__file" accept="image/jpeg,image/png,image/gif,image/webp,.jpg,.jpeg,.png,.gif,.webp" />
+            <button type="button" class="btn btn-gold img-upload__btn">Upload → WebP</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+async function uploadImageFile(file, folder) {
+  const fd = new FormData();
+  fd.append("file", file);
+  fd.append("folder", folder || "uploads");
+  const headers = {};
+  if (state.token) {
+    headers.Authorization = `Bearer ${state.token}`;
+    headers["X-DA-Admin-Token"] = state.token;
+  }
+  const res = await fetch(
+    `${API}?action=upload-image&folder=${encodeURIComponent(folder || "uploads")}`,
+    { method: "POST", credentials: "include", headers, body: fd },
+  );
+  const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+  if (res.status === 401 || json.code === "auth") {
+    state.authed = false;
+    state.token = "";
+    localStorage.removeItem(TOKEN_KEY);
+    showLogin(true);
+    throw new Error(json.error || "Please log in again");
+  }
+  if (!res.ok || json.ok === false) {
+    throw new Error(json.error || "Upload failed");
+  }
+  return json;
+}
+
+function bindImageUploads(root = $("#editor-wrap")) {
+  root.querySelectorAll("[data-image-field]").forEach((wrap) => {
+    const path = wrap.getAttribute("data-image-field");
+    const folder = wrap.getAttribute("data-folder") || "uploads";
+    const btn = wrap.querySelector(".img-upload__btn");
+    const fileInput = wrap.querySelector(".img-upload__file");
+    const urlInput = wrap.querySelector(`input[data-path="${path}"]`);
+    if (!btn || !fileInput || !urlInput) return;
+    btn.onclick = async () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) {
+        toast("Choose an image first", "err");
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = "Converting…";
+      try {
+        const json = await uploadImageFile(file, folder);
+        urlInput.value = json.url;
+        setByPath(state.data, path, json.url);
+        setDirty(true);
+        const preview = wrap.querySelector(".img-upload__preview");
+        if (preview) {
+          if (preview.tagName === "IMG") {
+            preview.src = json.url;
+          } else {
+            preview.outerHTML = `<img class="img-upload__preview" src="${escapeAttr(json.url)}" alt="" loading="lazy" />`;
+          }
+        }
+        toast(json.message || "Uploaded as WebP");
+        fileInput.value = "";
+      } catch (e) {
+        toast(e.message || "Upload failed", "err");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Upload → WebP";
+      }
+    };
+  });
+}
+
 function bindFields(root = $("#editor-wrap")) {
   root.querySelectorAll("[data-path]").forEach((el) => {
     const handler = () => {
@@ -685,6 +775,7 @@ function renderEditor() {
     btn.onclick = () => handleAction(btn.dataset.action, btn.dataset.index);
   });
   if (key === "company") bindCatalogueUpload();
+  bindImageUploads(wrap);
 }
 
 function bindCatalogueUpload() {
@@ -870,7 +961,7 @@ function renderHome(d) {
     ${field("Lead", "hero.lead", d.hero?.lead, "textarea")}
     ${field("Primary CTA", "hero.primaryCta", d.hero?.primaryCta)}
     ${field("Secondary CTA", "hero.secondaryCta", d.hero?.secondaryCta)}
-    ${field("Hero image URL", "hero.image", d.hero?.image)}
+    ${imageField("Hero image", "hero.image", d.hero?.image, "root")}
     ${field("Hero image alt", "hero.imageAlt", d.hero?.imageAlt)}
     ${field("Trust label", "trustLabel", d.trustLabel)}
     ${field("Services title", "servicesTitle", d.servicesTitle)}
@@ -1010,7 +1101,7 @@ function renderGoogleReviews(d) {
           ${field("Author", `reviews.${i}.author`, r.author)}
           ${field("Rating", `reviews.${i}.rating`, r.rating, "number")}
           ${field("When", `reviews.${i}.relativeTime`, r.relativeTime)}
-          ${field("Photo URL", `reviews.${i}.profilePhotoUrl`, r.profilePhotoUrl || "")}
+          ${imageField("Photo", `reviews.${i}.profilePhotoUrl`, r.profilePhotoUrl || "", "reviews")}
           ${field("Author URL", `reviews.${i}.authorUrl`, r.authorUrl || "")}
           ${field("Review text", `reviews.${i}.text`, r.text, "textarea")}
         </div>
@@ -1071,7 +1162,7 @@ function renderAwards(d) {
           ${field("Issuer", `items.${i}.issuer`, item.issuer || "")}
           ${field("Year", `items.${i}.year`, item.year || "")}
           ${field("Category", `items.${i}.category`, item.category || "")}
-          ${field("Image URL", `items.${i}.image`, item.image || "")}
+          ${imageField("Image", `items.${i}.image`, item.image || "", "awards")}
           ${field("Featured on homepage", `items.${i}.featured`, item.featured !== false, "checkbox")}
           ${field("Summary", `items.${i}.summary`, item.summary || "", "textarea")}
         </div>
@@ -1085,7 +1176,7 @@ function renderAwards(d) {
       `
       <p class="hint" style="grid-column:1/-1">
         Homepage shows featured awards <strong>before the explore directory</strong>.
-        Upload images to <code>/images/awards/</code> or paste any image URL.
+        Upload any JPG/PNG — it is converted to <strong>WebP</strong> automatically.
       </p>
       ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
       ${field("Page title", "title", d.title || "")}
@@ -1124,7 +1215,7 @@ function renderCertifications(d) {
           ${field("Brand (Google, Meta…)", `items.${i}.brand`, item.brand || "")}
           ${field("Category", `items.${i}.category`, item.category || "")}
           ${field("Year", `items.${i}.year`, item.year || "")}
-          ${field("Image URL", `items.${i}.image`, item.image || "")}
+          ${imageField("Image", `items.${i}.image`, item.image || "", "certs")}
           ${field("Featured on homepage", `items.${i}.featured`, item.featured !== false, "checkbox")}
           ${field("Credential / summary", `items.${i}.credential`, item.credential || "", "textarea")}
         </div>
@@ -1137,7 +1228,7 @@ function renderCertifications(d) {
       "Certifications page",
       `
       <p class="hint" style="grid-column:1/-1">
-        Edit certificates here. Images live in <code>/images/certs/</code> (or any URL).
+        Edit certificates here. Upload any JPG/PNG — saved as <strong>WebP</strong> under <code>/images/certs/</code>.
         Featured items appear on the homepage awards &amp; certifications section.
       </p>
       ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
@@ -1479,7 +1570,7 @@ function handleAction(action, index) {
       year: String(new Date().getFullYear()),
       summary: "",
       category: "",
-      image: "/images/awards/award-01.jpg",
+      image: "/images/awards/award-01.webp",
       featured: true,
     });
   } else if (action === "del-award") {
@@ -1496,7 +1587,7 @@ function handleAction(action, index) {
       year: String(new Date().getFullYear()),
       brand: "Google",
       category: "",
-      image: "/images/certs/cert-01.jpg",
+      image: "/images/certs/cert-01.webp",
       featured: true,
     });
   } else if (action === "del-cert") {
