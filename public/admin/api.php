@@ -136,6 +136,64 @@ switch ($action) {
     if (!$seo['ok']) respond(500, ['ok' => false, 'error' => $seo['error'] ?? 'SEO sync failed']);
     respond(200, ['ok' => true, 'seo' => $seo]);
 
+  case 'upload-image':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+      respond(405, ['ok' => false, 'error' => 'POST required']);
+    }
+    if (empty($_FILES['file']) || !is_array($_FILES['file'])) {
+      respond(400, ['ok' => false, 'error' => 'No file uploaded']);
+    }
+
+    $file = $_FILES['file'];
+    if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+      respond(400, ['ok' => false, 'error' => 'Upload failed — try a smaller image (max 5 MB)']);
+    }
+
+    $uploadCfg = $config['uploads'] ?? [];
+    $maxBytes = (int)($uploadCfg['max_bytes'] ?? 5 * 1024 * 1024);
+    $allowed = $uploadCfg['allowed_mimes'] ?? [
+      'image/jpeg' => 'jpg',
+      'image/png' => 'png',
+      'image/webp' => 'webp',
+      'image/gif' => 'gif',
+    ];
+
+    if (($file['size'] ?? 0) > $maxBytes) {
+      respond(400, ['ok' => false, 'error' => 'Image too large — maximum 5 MB']);
+    }
+
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $mime = $finfo->file($file['tmp_name'] ?: '') ?: '';
+    if (!isset($allowed[$mime])) {
+      respond(400, ['ok' => false, 'error' => 'Only JPG, PNG, WebP and GIF images are allowed']);
+    }
+
+    $contentDir = rtrim($config['content_dir'], '/\\');
+    $uploadsDir = $contentDir . '/uploads';
+    if (!is_dir($uploadsDir) && !mkdir($uploadsDir, 0755, true)) {
+      respond(500, ['ok' => false, 'error' => 'Could not create uploads folder — check /content permissions']);
+    }
+
+    $ext = $allowed[$mime];
+    $base = preg_replace('/[^a-z0-9-]+/i', '-', pathinfo((string)($file['name'] ?? 'image'), PATHINFO_FILENAME));
+    $base = trim(substr(strtolower($base), 0, 40), '-') ?: 'image';
+    $filename = gmdate('Ymd-His') . '-' . $base . '-' . bin2hex(random_bytes(3)) . '.' . $ext;
+    $dest = $uploadsDir . '/' . $filename;
+
+    if (!move_uploaded_file($file['tmp_name'], $dest)) {
+      respond(500, ['ok' => false, 'error' => 'Could not save image — check /content/uploads permissions']);
+    }
+
+    @chmod($dest, 0644);
+    $url = '/content/uploads/' . $filename;
+    respond(200, [
+      'ok' => true,
+      'url' => $url,
+      'filename' => $filename,
+      'bytes' => (int)($file['size'] ?? 0),
+    ]);
+
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);
 }

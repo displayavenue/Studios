@@ -61,6 +61,177 @@ function field(label, path, value, type = "text") {
   return `<div class="field ${isArea ? "full" : ""}"><label for="${id}">${label}</label>${control}</div>`;
 }
 
+function imageField(label, path, value = "") {
+  const id = path.replace(/[^a-z0-9]/gi, "_");
+  const url = value ?? "";
+  const preview = url
+    ? `<img class="image-field__preview" data-preview-for="${id}" src="${escapeAttr(url)}" alt="" />`
+    : `<img class="image-field__preview image-field__preview--empty" data-preview-for="${id}" alt="" hidden />`;
+  return `
+    <div class="field full image-field">
+      <label for="${id}">${label}</label>
+      <div class="image-field__row">
+        <input type="url" data-path="${path}" id="${id}" value="${escapeAttr(url)}" placeholder="/content/uploads/… or https://…" />
+        <label class="btn btn-ghost btn-sm image-field__upload">
+          Upload image
+          <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden data-upload-for="${id}" />
+        </label>
+      </div>
+      ${preview}
+      <p class="image-field__hint">JPG, PNG, WebP or GIF · max 5 MB. You can still paste an external image URL.</p>
+      <p class="image-field__status" data-status-for="${id}" hidden></p>
+    </div>`;
+}
+
+function galleryImagesField(label, path, values = []) {
+  const id = path.replace(/[^a-z0-9]/gi, "_");
+  return `
+    <div class="field full gallery-field">
+      <label for="${id}">${label}</label>
+      <textarea data-path="${path}" data-array="true" id="${id}" rows="4">${escapeHtml((values || []).join("\n"))}</textarea>
+      <div class="image-field__row" style="margin-top:.5rem">
+        <label class="btn btn-ghost btn-sm image-field__upload">
+          Upload to gallery
+          <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden data-gallery-upload-for="${id}" />
+        </label>
+      </div>
+      <p class="image-field__hint">One image URL per line. Upload appends a new line automatically.</p>
+      <p class="image-field__status" data-status-for="${id}" hidden></p>
+    </div>`;
+}
+
+async function uploadImageFile(file) {
+  const fd = new FormData();
+  fd.append("file", file);
+  const res = await fetch(`${API}?action=upload-image`, {
+    method: "POST",
+    credentials: "include",
+    body: fd,
+  });
+  const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+  if (!res.ok || json.ok === false) {
+    throw new Error(json.error || "Upload failed");
+  }
+  return json.url;
+}
+
+function bindImageUploads(root, data) {
+  root.querySelectorAll("[data-upload-for]").forEach((input) => {
+    input.addEventListener("change", async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      const targetId = input.getAttribute("data-upload-for");
+      const urlInput = root.querySelector(`#${CSS.escape(targetId)}`);
+      const status = root.querySelector(`[data-status-for="${targetId}"]`);
+      const preview = root.querySelector(`[data-preview-for="${targetId}"]`);
+      const path = urlInput?.getAttribute("data-path");
+      if (!urlInput || !path) return;
+
+      if (status) {
+        status.hidden = false;
+        status.className = "image-field__status";
+        status.textContent = "Uploading…";
+      }
+
+      try {
+        const url = await uploadImageFile(file);
+        urlInput.value = url;
+        setByPath(data, path, url);
+        setDirty(true);
+        urlInput.dispatchEvent(new Event("input", { bubbles: true }));
+
+        if (preview) {
+          preview.src = url;
+          preview.hidden = false;
+        }
+        const card = urlInput.closest(".item-card");
+        if (card) {
+          let thumb = card.querySelector("summary .preview");
+          if (!thumb) {
+            const wrap = card.querySelector("summary span:last-child");
+            if (wrap) {
+              thumb = document.createElement("img");
+              thumb.className = "preview";
+              thumb.alt = "";
+              wrap.insertBefore(thumb, wrap.firstChild);
+            }
+          }
+          if (thumb) thumb.src = url;
+        }
+        if (status) {
+          status.textContent = "Uploaded successfully";
+          status.classList.add("is-ok");
+        }
+        toast("Image uploaded", "ok");
+      } catch (e) {
+        if (status) {
+          status.textContent = e.message || "Upload failed";
+          status.classList.add("is-err");
+        }
+        toast(e.message || "Upload failed", "err");
+      } finally {
+        input.value = "";
+      }
+    });
+  });
+
+  root.querySelectorAll("[data-gallery-upload-for]").forEach((input) => {
+    input.addEventListener("change", async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      const targetId = input.getAttribute("data-gallery-upload-for");
+      const textarea = root.querySelector(`#${CSS.escape(targetId)}`);
+      const status = root.querySelector(`[data-status-for="${targetId}"]`);
+      if (!textarea) return;
+
+      if (status) {
+        status.hidden = false;
+        status.className = "image-field__status";
+        status.textContent = "Uploading…";
+      }
+
+      try {
+        const url = await uploadImageFile(file);
+        const lines = textarea.value.split("\n").map((s) => s.trim()).filter(Boolean);
+        lines.push(url);
+        textarea.value = lines.join("\n");
+        const path = textarea.getAttribute("data-path");
+        if (path) {
+          setByPath(data, path, lines);
+          setDirty(true);
+        }
+        if (status) {
+          status.textContent = "Added to gallery";
+          status.classList.add("is-ok");
+        }
+        toast("Image added to gallery", "ok");
+      } catch (e) {
+        if (status) {
+          status.textContent = e.message || "Upload failed";
+          status.classList.add("is-err");
+        }
+        toast(e.message || "Upload failed", "err");
+      } finally {
+        input.value = "";
+      }
+    });
+  });
+
+  root.querySelectorAll(".image-field input[data-path]").forEach((input) => {
+    input.addEventListener("input", () => {
+      const preview = root.querySelector(`[data-preview-for="${input.id}"]`);
+      if (!preview) return;
+      const val = input.value.trim();
+      if (val) {
+        preview.src = val;
+        preview.hidden = false;
+      } else {
+        preview.hidden = true;
+      }
+    });
+  });
+}
+
 function escapeHtml(s) {
   return String(s)
     .replaceAll("&", "&amp;")
@@ -156,6 +327,7 @@ function renderEditor() {
   else wrap.innerHTML = `<div class="card"><p>Unknown collection.</p></div>`;
 
   bindFields(wrap, data);
+  bindImageUploads(wrap, data);
 
   wrap.querySelectorAll("[data-action]").forEach((btn) => {
     btn.addEventListener("click", () => handleAction(btn.dataset.action, btn));
@@ -205,10 +377,9 @@ function renderHome(d) {
       ${field("Primary button path", "hero.primaryCtaPath", hero.primaryCtaPath)}
       ${field("Secondary button label", "hero.secondaryCtaLabel", hero.secondaryCtaLabel)}
       ${field("Secondary button path", "hero.secondaryCtaPath", hero.secondaryCtaPath)}
-      ${field("Hero image URL", "hero.image", hero.image)}
+      ${imageField("Hero image", "hero.image", hero.image)}
       ${field("Hero image alt text", "hero.imageAlt", hero.imageAlt, "textarea")}
     </div>
-    ${hero.image ? `<p style="margin-top:1rem"><img class="preview" style="max-width:280px;border-radius:8px" src="${escapeAttr(hero.image)}" alt="" /></p>` : ""}
   </div>
   <div class="card">
     <h3>Brands strip</h3>
@@ -367,7 +538,7 @@ function renderServices(d) {
       <button type="button" class="btn btn-gold btn-sm" data-action="add-service">Add service</button>
     </div>
     <div class="help-banner">
-      Tip: paste a YouTube link on any service to show a video section on its page. Use search below to jump quickly.
+      Tip: use <strong>Upload image</strong> on each service for menu thumbnails and service pages. YouTube links are optional.
     </div>
     <div class="field full">
       <label>Search services</label>
@@ -395,9 +566,9 @@ function renderServices(d) {
         ${field("Slug", `services.${i}.slug`, s.slug)}
         ${field("Title", `services.${i}.title`, s.title)}
         ${field("Category", `services.${i}.category`, s.category)}
+        ${imageField("Service image", `services.${i}.image`, s.image)}
         ${field("Short description", `services.${i}.short`, s.short)}
         ${field("Full description", `services.${i}.description`, s.description, "textarea")}
-        ${field("Image URL", `services.${i}.image`, s.image)}
         ${field("YouTube video URL (optional)", `services.${i}.youtubeUrl`, s.youtubeUrl || "")}
         <div class="field full">
           <label>Benefits (one per line)</label>
@@ -484,11 +655,8 @@ function renderPortfolio(d) {
         ${field("Category", `portfolio.${i}.category`, p.category)}
         ${field("Location", `portfolio.${i}.location`, p.location)}
         ${field("Description", `portfolio.${i}.description`, p.description, "textarea")}
-        ${field("Cover image URL", `portfolio.${i}.image`, p.image)}
-        <div class="field full">
-          <label>Gallery image URLs (one per line)</label>
-          <textarea data-path="portfolio.${i}.gallery" data-array="true">${escapeHtml((p.gallery || []).join("\n"))}</textarea>
-        </div>
+        ${imageField("Cover image", `portfolio.${i}.image`, p.image)}
+        ${galleryImagesField("Gallery images", `portfolio.${i}.gallery`, p.gallery || [])}
       </div>
     </details>
   `).join("")}`;
@@ -512,6 +680,9 @@ function renderListSection(title, path, items, fields, addAction, delAction) {
             if (f.array) {
               return `<div class="field full"><label>${f.label}</label><textarea data-path="${path}.${i}.${f.key}" data-array="true">${escapeHtml((item[f.key] || []).join("\n"))}</textarea></div>`;
             }
+            if (f.image) {
+              return imageField(f.label, `${path}.${i}.${f.key}`, item[f.key]);
+            }
             return field(f.label, `${path}.${i}.${f.key}`, item[f.key], f.type || "text");
           }).join("")}
         </div>
@@ -534,24 +705,24 @@ function renderContent(d) {
       { label: "Date", key: "date" },
       { label: "Read time", key: "readTime" },
       { label: "Excerpt", key: "excerpt", type: "textarea" },
-      { label: "Image URL", key: "image" },
+      { label: "Image", key: "image", image: true },
     ], "add-blog", "del-blog"),
     renderListSection("Testimonials", "testimonials", d.testimonials || [], [
       { label: "Name", key: "name" },
       { label: "Role", key: "role" },
       { label: "Quote", key: "quote", type: "textarea" },
-      { label: "Photo URL", key: "image" },
+      { label: "Photo", key: "image", image: true },
     ], "add-testimonial", "del-testimonial"),
     renderListSection("Team", "team", d.team || [], [
       { label: "Name", key: "name" },
       { label: "Role", key: "role" },
-      { label: "Photo URL", key: "image" },
+      { label: "Photo", key: "image", image: true },
     ], "add-team", "del-team"),
     renderListSection("Industries", "industries", d.industries || [], [
       { label: "Slug", key: "slug" },
       { label: "Title", key: "title" },
       { label: "Text", key: "text", type: "textarea" },
-      { label: "Image URL", key: "image" },
+      { label: "Image", key: "image", image: true },
     ], "add-industry", "del-industry"),
     renderListSection("Locations", "locations", d.locations || [], [
       { label: "Slug", key: "slug" },
