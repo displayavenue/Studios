@@ -144,6 +144,20 @@ function bindImageUploads(root, data) {
           preview.src = url;
           preview.hidden = false;
         }
+        const card = urlInput.closest(".item-card");
+        if (card) {
+          let thumb = card.querySelector("summary .preview");
+          if (!thumb) {
+            const wrap = card.querySelector("summary span:last-child");
+            if (wrap) {
+              thumb = document.createElement("img");
+              thumb.className = "preview";
+              thumb.alt = "";
+              wrap.insertBefore(thumb, wrap.firstChild);
+            }
+          }
+          if (thumb) thumb.src = url;
+        }
         if (status) {
           status.textContent = "Uploaded successfully";
           status.classList.add("is-ok");
@@ -524,7 +538,7 @@ function renderServices(d) {
       <button type="button" class="btn btn-gold btn-sm" data-action="add-service">Add service</button>
     </div>
     <div class="help-banner">
-      Tip: paste a YouTube link on any service to show a video section on its page. Use search below to jump quickly.
+      Tip: use <strong>Upload image</strong> on each service for menu thumbnails and service pages. YouTube links are optional.
     </div>
     <div class="field full">
       <label>Search services</label>
@@ -552,9 +566,9 @@ function renderServices(d) {
         ${field("Slug", `services.${i}.slug`, s.slug)}
         ${field("Title", `services.${i}.title`, s.title)}
         ${field("Category", `services.${i}.category`, s.category)}
+        ${imageField("Service image", `services.${i}.image`, s.image)}
         ${field("Short description", `services.${i}.short`, s.short)}
         ${field("Full description", `services.${i}.description`, s.description, "textarea")}
-        ${imageField("Image", `services.${i}.image`, s.image)}
         ${field("YouTube video URL (optional)", `services.${i}.youtubeUrl`, s.youtubeUrl || "")}
         <div class="field full">
           <label>Benefits (one per line)</label>
