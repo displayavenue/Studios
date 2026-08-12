@@ -190,6 +190,55 @@ body.is-dirty #save-btn { box-shadow: 0 8px 22px rgba(201,162,39,.35); }
   width: 72px; height: 54px; object-fit: cover; border-radius: 8px;
   background: #ddd; flex-shrink: 0;
 }
+
+.image-field__row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+.image-field__row input[type="url"] {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.image-field__upload {
+  cursor: pointer;
+  margin: 0;
+  white-space: nowrap;
+}
+.image-field__upload input[type="file"] {
+  display: none;
+}
+.image-field__preview {
+  display: block;
+  width: min(100%, 280px);
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 0.65rem;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+}
+.image-field__preview--empty {
+  display: none;
+}
+.image-field__hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.image-field__status {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.image-field__status.is-ok { color: var(--ok); }
+.image-field__status.is-err { color: var(--danger); }
+.gallery-field textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+}
 .toast {
   position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 50;
   background: var(--black); color: #fff; padding: 0.9rem 1.15rem;

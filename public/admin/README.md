@@ -56,12 +56,22 @@ Paste a full YouTube link (watch / youtu.be / shorts). If set, the service page 
 ## Hostinger setup
 
 1. Upload the latest site zip into `public_html` (include `admin/` and `content/`)
-2. In File Manager, set **`content`** folder permissions to **755** or **775** (must be writable)
+2. In File Manager, set **`content`** and **`content/uploads`** folder permissions to **755** or **775** (must be writable for CMS saves and image uploads)
 3. Visit `/admin/` and log in
 4. Change the password in `admin/config.php`
 
+## Image uploads
+
+Every image field in the CMS (homepage hero, services, portfolio, blog, team, etc.) has an **Upload image** button.
+
+- Supported formats: JPG, PNG, WebP, GIF (max **5 MB**)
+- Files are saved to `/content/uploads/` and served at `/content/uploads/your-file.jpg`
+- You can still paste an external image URL instead of uploading
+- Portfolio galleries support **Upload to gallery** — each upload adds a new line to the gallery list
+
+On Hostinger, ensure **`content/uploads`** is writable (chmod **755** or **775**). The deploy script sets this automatically.
+
 ## Notes
 
-- Image fields use image **URLs** (Unsplash or your own hosted images)
 - Keep backups of `/content` before big edits
 - Do not delete `admin/api.php` or the JSON files in `/content`

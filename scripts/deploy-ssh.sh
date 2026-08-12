@@ -32,6 +32,6 @@ sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
 sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" -r /tmp/da-deploy/. "$HOST:$DOC/"
 
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
-  "chmod 755 $DOC/content $DOC/admin; chmod 644 $DOC/content/*.json $DOC/index.html $DOC/.htaccess; test -f $DOC/assets/*.js && echo DEPLOY_OK"
+  "chmod 755 $DOC/content $DOC/content/uploads $DOC/admin; chmod 644 $DOC/content/*.json $DOC/index.html $DOC/.htaccess; test -f $DOC/assets/*.js && echo DEPLOY_OK"
 
 echo "Done."
