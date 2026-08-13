@@ -6,6 +6,7 @@ import { GoogleReviews } from "../components/GoogleReviews";
 import { TrustStats } from "../components/TrustStats";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
+import { img } from "../data/images";
 import "./Page.css";
 
 export function About() {
@@ -64,7 +65,7 @@ export function About() {
           </div>
           <div className="about-story__media reveal">
             <img
-              src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1200&q=80"
+              src={img.indianWeddingCouple}
               alt="DisplayAvenue Studios team capturing an Indian wedding ceremony"
               loading="lazy"
             />

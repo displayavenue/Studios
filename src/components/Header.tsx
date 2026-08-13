@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
+import { img } from "../data/images";
 import "./Header.css";
 
 const serviceCategories = [
@@ -13,8 +14,7 @@ const serviceCategories = [
   { key: "Post", label: "Content & post", anchor: "post" },
 ] as const;
 
-const FALLBACK_SERVICE_IMAGE =
-  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80";
+const FALLBACK_SERVICE_IMAGE = img.indianBrideGroom.replace("w=1200", "w=400");
 
 const siteLanguages = [
   { code: "en", label: "English", native: "English" },
