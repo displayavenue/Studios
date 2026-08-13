@@ -53,7 +53,7 @@ export const portfolio: PortfolioItem[] = [
     gallery: [
       "https://images.unsplash.com/photo-1708963738411-74ab1cd5eafb?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1547154338-ef859bca16ca?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80"
     ],
   },
@@ -64,7 +64,7 @@ export const portfolio: PortfolioItem[] = [
     category: "Wedding",
     location: "Alleppey",
     description: "A serene South Indian celebration on houseboats and coconut groves with documentary photography and a cinematic film.",
-    image: "https://images.unsplash.com/photo-1602216050196-3b31bafaa7a3?auto=format&fit=crop&w=1400&q=80",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1000&q=80",
@@ -81,7 +81,7 @@ export const portfolio: PortfolioItem[] = [
     description: "A founder-led brand story and workplace photography system for a growing fintech scale-up.",
     image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1400&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1573164713714-d95e4367658e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80"
@@ -98,8 +98,8 @@ export const portfolio: PortfolioItem[] = [
     gallery: [
       "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1601057294939-8413bcf0695f?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1610014960297-74ca2baa9860?auto=format&fit=crop&w=1000&q=80"
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=80"
     ],
   },
   {
@@ -142,7 +142,7 @@ export const portfolio: PortfolioItem[] = [
     gallery: [
       "https://images.unsplash.com/photo-1514222709107-a180c68d72b4?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1589304271406-ffaee04a8a4b?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80"
     ],
   },
@@ -155,7 +155,7 @@ export const portfolio: PortfolioItem[] = [
     description: "Factory photography and manufacturing film for a precision engineering company seeking global buyers.",
     image: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1400&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1581094794329-c8112c4e5190?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80"
     ],
@@ -184,10 +184,10 @@ export const portfolio: PortfolioItem[] = [
     description: "Red-carpet and stage coverage for a national awards evening with same-night press delivery.",
     image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1547154338-ef859bca16ca?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1505373877841-9e25de39b948?auto=format&fit=crop&w=1000&q=80"
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80"
     ],
   },
   {
@@ -197,7 +197,7 @@ export const portfolio: PortfolioItem[] = [
     category: "Events",
     location: "Hyderabad",
     description: "Multi-camera conference coverage, keynote films and social selects for a 2,000-delegate technology summit.",
-    image: "https://images.unsplash.com/photo-1505373877841-9e25de39b948?auto=format&fit=crop&w=1400&q=80",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1400&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=1000&q=80",

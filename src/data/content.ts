@@ -241,7 +241,7 @@ export const industries = [
     title: "Manufacturing",
     text: "Plant tours, process films and capability photography for industrial brands winning B2B buyers.",
     image:
-      "https://images.unsplash.com/photo-1581094794329-c8112c4e5190?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80",
   },
   {
     slug: "healthcare",
@@ -269,7 +269,7 @@ export const industries = [
     title: "Education",
     text: "School and college event coverage, campus films and admission campaign visuals.",
     image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927db?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
   },
   {
     slug: "construction",
@@ -399,7 +399,7 @@ export const team = [
     name: "Kabir Khan",
     role: "Cinematographer",
     image:
-      "https://images.unsplash.com/photo-1519081900723-00baa1a4b5de?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
   },
   {
     name: "Sara Pinto",
