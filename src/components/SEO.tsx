@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useCms } from "../cms/CmsProvider";
+import { img } from "../data/images";
 
 type SEOProps = {
   title: string;
@@ -44,7 +45,7 @@ export function SEO({
   description,
   path = "/",
   type = "website",
-  image = "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+  image = img.indianBrideGroom,
   noindex = false,
 }: SEOProps) {
   const { company, tracking } = useCms();
@@ -123,7 +124,7 @@ export function LocalBusinessSchema() {
       telephone: company.phone,
       email: company.email,
       image: [
-        "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+        img.indianBrideGroom,
       ],
       logo: `${company.website}/favicon.svg`,
       priceRange: "₹₹₹",

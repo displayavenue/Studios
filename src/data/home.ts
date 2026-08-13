@@ -63,8 +63,7 @@ export const homeContent: HomeContent = {
     primaryCtaPath: "/book-now",
     secondaryCtaLabel: "View Portfolio",
     secondaryCtaPath: "/portfolio",
-    image:
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80",
     imageAlt:
       "Indian bride and groom at a luxury wedding photographed by DisplayAvenue Studios",
   },
