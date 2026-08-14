@@ -889,3 +889,294 @@ table.planets th {
   font-family: var(--font-display);
   font-size: 1.1rem;
 }
+
+/* Nav desktop */
+.nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.nav-desktop a {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.nav-desktop a.active,
+.nav-desktop a:hover {
+  color: var(--maroon);
+}
+
+@media (min-width: 980px) {
+  .nav-desktop {
+    display: flex;
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.menu-toggle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--maroon);
+}
+
+.mobile-drawer {
+  display: grid;
+  gap: 0.15rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 980px) {
+  .mobile-drawer {
+    display: none;
+  }
+}
+
+.drawer-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.85rem 0.15rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--maroon);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Content pages */
+.container.narrow {
+  max-width: 720px;
+}
+
+.content-hero {
+  margin-bottom: 0.5rem;
+}
+
+.content-block {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.content-block h2 {
+  font-size: 1.35rem;
+  color: var(--maroon);
+  margin-bottom: 0.65rem;
+}
+
+.content-block p {
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.audience {
+  font-size: 0.88rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.include-list {
+  margin: 0.5rem 0 1rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.include-list li {
+  margin: 0.25rem 0;
+}
+
+.service-grid {
+  display: grid;
+  gap: 0;
+}
+
+.service-row {
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.service-row-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+
+.service-row h2 {
+  font-size: 1.35rem;
+  color: var(--maroon);
+}
+
+.service-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.service-price {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--saffron);
+  font-weight: 600;
+}
+
+.pill {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--line);
+}
+
+.pill-live {
+  color: var(--ok);
+  border-color: rgba(47, 107, 58, 0.35);
+}
+
+.pill-soon {
+  color: var(--muted);
+}
+
+.bundle-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .bundle-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.bundle-item {
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.bundle-item h3 {
+  color: var(--maroon);
+  margin-bottom: 0.35rem;
+}
+
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-weight: 600;
+  color: var(--maroon);
+  cursor: pointer;
+  min-height: 48px;
+}
+
+.faq-icon {
+  font-size: 1.25rem;
+  color: var(--saffron);
+}
+
+.faq-a {
+  padding: 0 0 1rem;
+  color: var(--muted);
+}
+
+.legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal-nav a {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.legal-nav a.active {
+  background: var(--maroon);
+  border-color: var(--maroon);
+  color: var(--cream);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 720px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+  .footer-note {
+    grid-column: 1 / -1;
+  }
+}
+
+.footer-links {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.footer-links a {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.footer-links a:hover {
+  color: var(--maroon);
+}
+
+.footer-note {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.price-table td:nth-child(2) {
+  font-weight: 600;
+  white-space: nowrap;
+}

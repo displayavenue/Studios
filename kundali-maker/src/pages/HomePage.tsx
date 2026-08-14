@@ -199,6 +199,9 @@ export function HomePage() {
             <Link className="btn btn-primary" to="/generate">
               {copy.ctaPrimary(lang)}
             </Link>
+            <Link className="btn btn-ghost" to="/services">
+              {lang === 'hi' ? 'सभी सेवाएँ देखें' : 'See all services'}
+            </Link>
           </div>
         </div>
       </section>
