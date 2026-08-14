@@ -4,34 +4,6 @@
   z-index: 100;
 }
 
-.announcement {
-  background: var(--blue);
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-
-.announcement-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 36px;
-  padding-block: 0.35rem;
-}
-
-.announcement-actions {
-  display: flex;
-  gap: 1rem;
-  flex-shrink: 0;
-}
-
-.announcement-actions a {
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
 /* Navy utility bar: logo + actions */
 .header-top {
   background: var(--navy);
@@ -62,8 +34,10 @@
   color: #fff;
 }
 
-.client-login {
+.header-phone {
   display: none;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 .proposal-btn {
@@ -233,7 +207,7 @@
     display: flex;
   }
 
-  .client-login,
+  .header-phone,
   .proposal-btn {
     display: inline-flex;
   }
@@ -248,17 +222,15 @@
 }
 
 @media (max-width: 1099px) {
-  .announcement-actions {
-    display: none;
-  }
-
-  .announcement-inner {
-    justify-content: center;
-    text-align: center;
-  }
-
   .header-nav {
     display: none;
+  }
+
+  /* Show phone in the top bar on mobile where Client Login used to be */
+  .header-phone {
+    display: inline-flex;
+    font-size: 0.85rem;
+    padding-inline: 0.65rem;
   }
 }
 

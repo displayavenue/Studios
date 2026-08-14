@@ -73,18 +73,6 @@ export function Header() {
   return (
     <header className="site-header">
       <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
-      <div className="announcement">
-        <div className="container-wide announcement-inner">
-          <span>
-            {company.announcement ||
-              "Free growth call for business owners - book in 2 minutes."}
-          </span>
-          <div className="announcement-actions">
-            <Link to="/contact">Book Free Audit</Link>
-            <a href={company.phoneHref}>{company.phone}</a>
-          </div>
-        </div>
-      </div>
 
       <div className="header-top">
         <div className="container-wide header-top-inner">
@@ -99,11 +87,11 @@ export function Header() {
               <Icon name="search" size={18} color="#fff" />
             </button>
             <a
-              className="btn btn-ghost btn-sm client-login"
-              href={company.clientLogin}
+              className="btn btn-ghost btn-sm header-phone"
+              href={company.phoneHref || "tel:+919222122333"}
             >
-              <Icon name="user" size={14} color="#fff" />
-              Client Login
+              <Icon name="phone" size={14} color="#fff" />
+              9222 122333
             </a>
             <Link to="/contact" className="btn btn-primary btn-sm proposal-btn">
               Get Free Proposal
@@ -250,8 +238,11 @@ export function Header() {
             >
               Get Free Proposal
             </Link>
-            <a className="btn btn-outline" href={company.clientLogin}>
-              Client Login
+            <a
+              className="btn btn-outline"
+              href={company.phoneHref || "tel:+919222122333"}
+            >
+              Call 9222 122333
             </a>
           </div>
         </div>
