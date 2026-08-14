@@ -1,0 +1,53 @@
+.sticky-mcta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sticky-mcta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 85;
+    padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(5, 10, 31, 0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sticky-mcta__btn {
+    display: grid;
+    place-items: center;
+    min-height: 48px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .sticky-mcta__btn--whatsapp {
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+  }
+
+  .sticky-mcta__btn--catalogue {
+    background: var(--blue);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(31, 111, 235, 0.35);
+  }
+
+  /* Hide floating WhatsApp on mobile (sticky WhatsApp replaces it) */
+  .wa-float {
+    display: none !important;
+  }
+
+  .app-shell {
+    padding-bottom: calc(4.4rem + env(safe-area-inset-bottom, 0px));
+  }
+}

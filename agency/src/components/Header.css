@@ -1,0 +1,246 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Navy utility bar: logo + actions */
+.header-top {
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-top-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 64px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.header-phone {
+  display: none;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.proposal-btn {
+  display: none;
+}
+
+/* White primary nav - full width, single row */
+.header-nav {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.header-nav-inner {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+}
+
+.desktop-nav {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+
+.nav-item {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.85rem 0.35rem;
+  color: var(--navy);
+  font-size: clamp(0.68rem, 0.72vw, 0.8rem);
+  font-weight: 650;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-caret {
+  display: inline-flex;
+  transform: rotate(90deg);
+  opacity: 0.55;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.nav-item.active .nav-link,
+.nav-item:hover .nav-link,
+.nav-link:hover {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.nav-item.active .nav-caret,
+.nav-item:hover .nav-caret {
+  opacity: 1;
+  transform: rotate(-90deg);
+}
+
+.mega-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  border-top: 1px solid var(--border-soft);
+  box-shadow: 0 18px 40px rgba(0, 11, 51, 0.12);
+  padding: 1.1rem 0 0;
+  animation: megaIn 0.16s ease;
+  max-height: min(78vh, 680px);
+  overflow: auto;
+  z-index: 50;
+}
+
+.mega-panel-inner {
+  padding-bottom: 0;
+}
+
+.header-nav.mega-open {
+  box-shadow: 0 1px 0 rgba(0, 11, 51, 0.04);
+}
+
+@keyframes megaIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-drawer {
+  display: none;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  max-height: calc(100dvh - 110px - env(safe-area-inset-bottom, 0px));
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 5rem;
+}
+
+.mobile-drawer.open {
+  display: block;
+}
+
+.mobile-drawer-inner {
+  padding: 0.5rem 1rem 1.25rem;
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.9rem 0.25rem;
+  border-bottom: 1px solid var(--border-soft);
+  font-weight: 650;
+  color: var(--navy);
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.mobile-link--why {
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.accordion-btn svg {
+  transition: transform 0.15s ease;
+}
+
+.accordion-btn[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+
+.mobile-mega {
+  padding: 0.5rem 0 1rem;
+}
+
+.mobile-cta {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.header-top-inner .logo {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.header-actions {
+  flex-shrink: 0;
+}
+
+@media (min-width: 1100px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .header-phone,
+  .proposal-btn {
+    display: inline-flex;
+  }
+
+  .mobile-toggle {
+    display: none;
+  }
+
+  .mobile-drawer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1099px) {
+  .header-nav {
+    display: none;
+  }
+
+  /* Show phone in the top bar on mobile where Client Login used to be */
+  .header-phone {
+    display: inline-flex;
+    font-size: 0.85rem;
+    padding-inline: 0.65rem;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1280px) {
+  .nav-link {
+    padding-inline: 0.22rem;
+    font-size: 0.68rem;
+  }
+
+  .header-top-inner .logo-text small {
+    display: none;
+  }
+}

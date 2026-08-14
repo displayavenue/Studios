@@ -1,0 +1,1738 @@
+{
+  "items": [
+    {
+      "icon": "doc",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Blog",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align blog with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Blog roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Blog?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "blog",
+      "kind": "resource",
+      "title": "Blog",
+      "category": "Resources"
+    },
+    {
+      "icon": "book",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Guides & eBooks",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align guides & ebooks with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Guides & eBooks roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Guides & eBooks?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "guides",
+      "kind": "resource",
+      "title": "Guides & eBooks",
+      "category": "Resources"
+    },
+    {
+      "icon": "doc",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Whitepapers",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align whitepapers with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Whitepapers roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Whitepapers?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "whitepapers",
+      "kind": "resource",
+      "title": "Whitepapers",
+      "category": "Resources"
+    },
+    {
+      "icon": "layers",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Templates",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align templates with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Templates roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Templates?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "templates",
+      "kind": "resource",
+      "title": "Templates",
+      "category": "Resources"
+    },
+    {
+      "icon": "check",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Checklists",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align checklists with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Checklists roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Checklists?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "checklists",
+      "kind": "resource",
+      "title": "Checklists",
+      "category": "Resources"
+    },
+    {
+      "icon": "users",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Webinars",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align webinars with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Webinars roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Webinars?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "webinars",
+      "kind": "resource",
+      "title": "Webinars",
+      "category": "Resources"
+    },
+    {
+      "icon": "camera",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Videos",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align videos with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Videos roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Videos?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "videos",
+      "kind": "resource",
+      "title": "Videos",
+      "category": "Resources"
+    },
+    {
+      "icon": "chat",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Podcasts",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align podcasts with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Podcasts roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Podcasts?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "podcasts",
+      "kind": "resource",
+      "title": "Podcasts",
+      "category": "Resources"
+    },
+    {
+      "icon": "chart",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Industry Reports",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align industry reports with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Industry Reports roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Industry Reports?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "reports",
+      "kind": "resource",
+      "title": "Industry Reports",
+      "category": "Resources"
+    },
+    {
+      "icon": "book",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Glossary",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align glossary with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Glossary roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Glossary?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "glossary",
+      "kind": "resource",
+      "title": "Glossary",
+      "category": "Resources"
+    },
+    {
+      "icon": "brain",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "AI Marketing: Complete Guide",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai marketing: complete guide with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Marketing: Complete Guide roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Marketing: Complete Guide?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "ai-marketing-guide",
+      "kind": "resource",
+      "title": "AI Marketing: Complete Guide",
+      "category": "Resources"
+    },
+    {
+      "icon": "growth",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "ROI Playbook for Digital Growth",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align roi playbook for digital growth with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated ROI Playbook for Digital Growth roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start ROI Playbook for Digital Growth?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "roi-playbook",
+      "kind": "resource",
+      "title": "ROI Playbook for Digital Growth",
+      "category": "Resources"
+    },
+    {
+      "icon": "doc",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "90-Day Marketing Strategy Template",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align 90-day marketing strategy template with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated 90-Day Marketing Strategy Template roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start 90-Day Marketing Strategy Template?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "90-day-template",
+      "kind": "resource",
+      "title": "90-Day Marketing Strategy Template",
+      "category": "Resources"
+    },
+    {
+      "icon": "search",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "10 Proven SEO Strategies",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align 10 proven seo strategies with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated 10 Proven SEO Strategies roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start 10 Proven SEO Strategies?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "seo-strategies",
+      "kind": "resource",
+      "title": "10 Proven SEO Strategies",
+      "category": "Resources"
+    },
+    {
+      "icon": "robot",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "AI Agents in Marketing Ops",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai agents in marketing ops with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Agents in Marketing Ops roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Agents in Marketing Ops?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "ai-agents-marketing",
+      "kind": "resource",
+      "title": "AI Agents in Marketing Ops",
+      "category": "Resources"
+    },
+    {
+      "icon": "chart",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "Full-Funnel Attribution Guide",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align full-funnel attribution guide with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Full-Funnel Attribution Guide roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Full-Funnel Attribution Guide?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "attribution-guide",
+      "kind": "resource",
+      "title": "Full-Funnel Attribution Guide",
+      "category": "Resources"
+    },
+    {
+      "icon": "doc",
+      "color": "#0056ff",
+      "eyebrow": "Resources",
+      "headline": "High-Converting Landing Pages",
+      "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align high-converting landing pages with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated High-Converting Landing Pages roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start High-Converting Landing Pages?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Resources",
+          "href": "/resources"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        },
+        {
+          "label": "Subscribe / Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "landing-pages",
+      "kind": "resource",
+      "title": "High-Converting Landing Pages",
+      "category": "Resources"
+    }
+  ]
+}

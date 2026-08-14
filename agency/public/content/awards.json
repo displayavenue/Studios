@@ -1,0 +1,205 @@
+{
+  "enabled": true,
+  "title": "Awards we've won",
+  "sub": "Recognition for results, delivery, and partner excellence - earned by the DisplayAvenue team.",
+  "seo": {
+    "title": "Awards | DisplayAvenue",
+    "description": "19 awards won by the DisplayAvenue team for digital marketing, SEO, ads, AI, and client results."
+  },
+  "homeTitle": "Certifications & awards",
+  "homeSub": "Credentials our team earned from Google, Meta, HubSpot, and more - plus awards for real client results.",
+  "homeAwardsLimit": 6,
+  "homeCertsLimit": 8,
+  "items": [
+    {
+      "id": "award-01",
+      "title": "Best Digital Marketing Agency - West India",
+      "issuer": "Clutch Global",
+      "year": "2025",
+      "summary": "Recognized for client results across SEO, ads, and web growth.",
+      "category": "Agency",
+      "image": "/images/awards/award-photo-01.webp",
+      "featured": true
+    },
+    {
+      "id": "award-02",
+      "title": "Top Google Ads Partner Agency",
+      "issuer": "Agency Excellence Awards",
+      "year": "2025",
+      "summary": "Outstanding paid media performance and accountable reporting.",
+      "category": "Paid Media",
+      "image": "/images/awards/award-photo-02.webp",
+      "featured": true
+    },
+    {
+      "id": "award-03",
+      "title": "Meta Marketing Excellence Award",
+      "issuer": "Digital India Summit",
+      "year": "2024",
+      "summary": "Creative and conversion excellence on Instagram & Facebook.",
+      "category": "Social",
+      "image": "/images/awards/award-03.webp",
+      "featured": true
+    },
+    {
+      "id": "award-04",
+      "title": "Fastest Growing Agency - Mumbai",
+      "issuer": "Startup India Media",
+      "year": "2024",
+      "summary": "Rapid growth in client outcomes and team capability.",
+      "category": "Growth",
+      "image": "/images/awards/award-04.webp",
+      "featured": true
+    },
+    {
+      "id": "award-05",
+      "title": "Best SEO Campaign of the Year",
+      "issuer": "Search Marketing India",
+      "year": "2025",
+      "summary": "Organic visibility gains for multi-location brands.",
+      "category": "SEO",
+      "image": "/images/awards/award-05.webp",
+      "featured": true
+    },
+    {
+      "id": "award-06",
+      "title": "AI Innovation in Marketing",
+      "issuer": "MarTech Awards Asia",
+      "year": "2025",
+      "summary": "Practical AI workflows that improve speed and quality.",
+      "category": "AI",
+      "image": "/images/awards/award-06.webp",
+      "featured": true
+    },
+    {
+      "id": "award-07",
+      "title": "Client Retention Champion",
+      "issuer": "Agency Success League",
+      "year": "2024",
+      "summary": "Trusted long-term partnerships with measurable ROI.",
+      "category": "Service",
+      "image": "/images/awards/award-07.webp",
+      "featured": false
+    },
+    {
+      "id": "award-08",
+      "title": "Best Website Redesign - SMB",
+      "issuer": "WebCraft India",
+      "year": "2023",
+      "summary": "Conversion-focused redesigns for growing businesses.",
+      "category": "Web",
+      "image": "/images/awards/award-08.webp",
+      "featured": false
+    },
+    {
+      "id": "award-09",
+      "title": "Local Search Dominance Award",
+      "issuer": "Maps & Local Summit",
+      "year": "2025",
+      "summary": "Google Business Profile and local SEO excellence.",
+      "category": "Local",
+      "image": "/images/awards/award-09.webp",
+      "featured": false
+    },
+    {
+      "id": "award-10",
+      "title": "Ecommerce Growth Partner",
+      "issuer": "Shopify Partner Awards",
+      "year": "2024",
+      "summary": "Revenue growth for online store brands.",
+      "category": "Ecommerce",
+      "image": "/images/awards/award-10.webp",
+      "featured": false
+    },
+    {
+      "id": "award-11",
+      "title": "Content Marketing Excellence",
+      "issuer": "Content India Awards",
+      "year": "2024",
+      "summary": "Strategy and storytelling that drives enquiries.",
+      "category": "Content",
+      "image": "/images/awards/award-11.webp",
+      "featured": false
+    },
+    {
+      "id": "award-12",
+      "title": "Best HubSpot Implementation",
+      "issuer": "Inbound Partners Circle",
+      "year": "2025",
+      "summary": "CRM, automation, and inbound systems that stick.",
+      "category": "CRM",
+      "image": "/images/awards/award-12.webp",
+      "featured": false
+    },
+    {
+      "id": "award-13",
+      "title": "Performance Marketing Agency of the Year",
+      "issuer": "AdWorld India",
+      "year": "2023",
+      "summary": "ROAS-led campaigns across Google and Meta.",
+      "category": "Paid Media",
+      "image": "/images/awards/award-13.webp",
+      "featured": false
+    },
+    {
+      "id": "award-14",
+      "title": "Brand Identity Impact Award",
+      "issuer": "Design & Brand Forum",
+      "year": "2023",
+      "summary": "Clear brands that build trust and recognition.",
+      "category": "Brand",
+      "image": "/images/awards/award-14.webp",
+      "featured": false
+    },
+    {
+      "id": "award-15",
+      "title": "Best Lead Generation System",
+      "issuer": "Growth Ops Awards",
+      "year": "2025",
+      "summary": "End-to-end funnels from click to qualified lead.",
+      "category": "Leads",
+      "image": "/images/awards/award-15.webp",
+      "featured": false
+    },
+    {
+      "id": "award-16",
+      "title": "Outstanding Agency Culture",
+      "issuer": "Great Place to Grow",
+      "year": "2024",
+      "summary": "Learning culture and delivery excellence.",
+      "category": "Culture",
+      "image": "/images/awards/award-16.webp",
+      "featured": false
+    },
+    {
+      "id": "award-17",
+      "title": "Regional Partner of the Year - West",
+      "issuer": "Partner Network India",
+      "year": "2025",
+      "summary": "Trusted delivery across Maharashtra & Gujarat.",
+      "category": "Partner",
+      "image": "/images/awards/award-17.webp",
+      "featured": false
+    },
+    {
+      "id": "award-18",
+      "title": "Analytics & Measurement Excellence",
+      "issuer": "Data Driven Marketing Awards",
+      "year": "2024",
+      "summary": "Tracking clarity and decision-grade reporting.",
+      "category": "Analytics",
+      "image": "/images/awards/award-18.webp",
+      "featured": false
+    },
+    {
+      "id": "award-19",
+      "title": "Customer Experience Agency Award",
+      "issuer": "CX India Awards",
+      "year": "2025",
+      "summary": "Plain-English service and reliable delivery.",
+      "category": "CX",
+      "image": "/images/awards/award-19.webp",
+      "featured": false
+    }
+  ]
+}
