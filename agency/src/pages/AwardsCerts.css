@@ -189,9 +189,31 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .acred__grid,
   .acred__grid--certs {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    padding: 0.15rem 1rem 1rem;
+    margin-inline: -1rem;
+    grid-template-columns: none;
+    scrollbar-width: none;
+  }
+
+  .acred__grid::-webkit-scrollbar,
+  .acred__grid--certs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .acred__card {
+    flex: 0 0 min(82vw, 320px);
+    scroll-snap-align: start;
+    content-visibility: visible;
   }
 }

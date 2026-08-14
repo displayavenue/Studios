@@ -46,7 +46,11 @@ export function AwardsCertsHome() {
                 All {awards.items.length} awards →
               </Link>
             </div>
-            <div className="achome__awards">
+            <div
+              className="achome__awards"
+              role="region"
+              aria-label="Awards carousel"
+            >
               {awardItems.map((item, i) => (
                 <article
                   key={item.id}
@@ -80,7 +84,11 @@ export function AwardsCertsHome() {
                 All {certifications.items.length} certificates →
               </Link>
             </div>
-            <div className="achome__certs">
+            <div
+              className="achome__certs"
+              role="region"
+              aria-label="Certifications carousel"
+            >
               {certItems.map((item, i) => (
                 <article
                   key={item.id}
