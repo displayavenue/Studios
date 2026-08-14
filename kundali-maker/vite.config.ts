@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Deploy under /kundali-maker/ on the same host, or set base: '/' for root hosting.
+// Interim Hostinger path: /kundali-maker/
+// Own domain later: VITE_BASE=/ npm run build  (or deploy script)
 export default defineConfig({
   plugins: [react()],
-  base: '/kundali-maker/',
+  base: process.env.VITE_BASE || '/kundali-maker/',
 })
