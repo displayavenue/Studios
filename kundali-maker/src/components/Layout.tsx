@@ -15,7 +15,7 @@ export function Layout() {
             <span className="brand-mark" aria-hidden>
               ✦
             </span>
-            {copy.brand(lang)}
+            <span className="brand-text">{copy.brand(lang)}</span>
           </Link>
           <div className="nav-actions">
             <div className="lang-toggle" role="group" aria-label="Language">
@@ -34,8 +34,12 @@ export function Layout() {
                 हिं
               </button>
             </div>
-            <button type="button" className="btn btn-primary" onClick={() => navigate('/generate')}>
-              {copy.ctaGenerate(lang)}
+            <button
+              type="button"
+              className="btn btn-primary btn-nav-cta"
+              onClick={() => navigate('/generate')}
+            >
+              <span className="cta-full">{copy.ctaPrimaryShort(lang)}</span>
             </button>
           </div>
         </div>
@@ -49,14 +53,14 @@ export function Layout() {
             <strong>{copy.brand(lang)}</strong>
             <p>
               {lang === 'hi'
-                ? 'वैदिक कुंडली · PDF · वैकल्पिक उपाय'
-                : 'Vedic kundali · PDF · optional remedies'}
+                ? 'प्रामाणिक वैदिक कुंडली · PDF · वैकल्पिक उपाय'
+                : 'Authentic Vedic kundali · PDF · optional remedies'}
             </p>
           </div>
           <p>
             {lang === 'hi'
-              ? 'जन्म विवरण गोपनीय रखा जाता है। चार्ट शैक्षिक/उपभोक्ता उपयोग हेतु हैं।'
-              : 'Birth details stay on your device. Charts are for educational/consumer use.'}
+              ? 'जन्म विवरण आपके उपकरण पर रहते हैं। रिपोर्ट शैक्षिक/व्यक्तिगत मार्गदर्शन हेतु हैं।'
+              : 'Birth details stay on your device. Reports are for personal guidance and education.'}
           </p>
         </div>
       </footer>

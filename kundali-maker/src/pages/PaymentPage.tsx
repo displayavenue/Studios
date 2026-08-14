@@ -64,12 +64,12 @@ export function PaymentPage() {
     <div className="page-wrap">
       <div className="container" style={{ maxWidth: 560 }}>
         <h1 className="page-title">
-          {lang === 'hi' ? 'कुंडली अनलॉक करें' : 'Unlock your kundali'}
+          {lang === 'hi' ? 'अपनी कुंडली सुरक्षित रूप से लें' : 'Receive your kundali securely'}
         </h1>
         <p className="page-sub">
           {lang === 'hi'
-            ? 'भुगतान के बाद चार्ट बनता है और PDF उपलब्ध होता है।'
-            : 'Chart is generated only after payment. PDF unlocks immediately.'}
+            ? 'भुगतान के बाद ही पूरी कुंडली व PDF खुलती है—कोई अधूरी मुफ़्त रिपोर्ट नहीं।'
+            : 'Full chart and PDF unlock only after payment—no incomplete free teaser.'}
         </p>
 
         <div className="mock-badge">

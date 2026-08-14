@@ -80,12 +80,12 @@ export function GeneratePage() {
     <div className="page-wrap">
       <div className="container">
         <h1 className="page-title">
-          {lang === 'hi' ? 'कुंडली के लिए विवरण' : 'Birth details for kundali'}
+          {lang === 'hi' ? 'अपनी वैदिक कुंडली मँगवाएँ' : 'Order your Vedic kundali'}
         </h1>
         <p className="page-sub">
           {lang === 'hi'
-            ? 'सटीक समय और स्थान बेहतर लग्न देते हैं।'
-            : 'Accurate time and place give a better lagna.'}
+            ? 'सटीक जन्म समय और स्थान सही लग्न देते हैं—परिवार की पुरानी डायरी से जाँच लें।'
+            : 'Exact birth time and place give a true lagna—check an old family record if unsure.'}
         </p>
 
         <div className="steps-bar">
@@ -175,7 +175,7 @@ export function GeneratePage() {
             {error && <p className="alert">{error}</p>}
             <div className="form-actions">
               <button type="submit" className="btn btn-primary">
-                {lang === 'hi' ? 'समीक्षा करें' : 'Review details'}
+                {lang === 'hi' ? 'विवरण जाँचें' : 'Review & continue'}
               </button>
             </div>
           </form>
@@ -211,7 +211,7 @@ export function GeneratePage() {
                 {lang === 'hi' ? 'वापस' : 'Back'}
               </button>
               <button type="button" className="btn btn-primary" onClick={confirmAndPay}>
-                {lang === 'hi' ? 'भुगतान पर जाएँ' : 'Continue to payment'}
+                {lang === 'hi' ? 'भुगतान कर कुंडली लें' : 'Pay & get my kundali'}
               </button>
             </div>
           </div>
