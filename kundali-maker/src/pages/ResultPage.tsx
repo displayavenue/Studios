@@ -58,7 +58,7 @@ export function ResultPage() {
 
         <div className="form-actions" style={{ marginTop: 0, marginBottom: '1.5rem' }}>
           <button type="button" className="btn btn-primary" onClick={() => onPdf(false)}>
-            {lang === 'hi' ? 'PDF डाउनलोड' : 'Download PDF'}
+            {lang === 'hi' ? 'पूर्ण ~२० पृष्ठ PDF' : 'Download complete ~20 page PDF'}
           </button>
           {hasRemedies && (
             <button type="button" className="btn btn-gold" onClick={() => onPdf(true)}>

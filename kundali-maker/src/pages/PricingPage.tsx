@@ -25,10 +25,11 @@ export function PricingPage() {
             <h3>{lang === 'hi' ? 'वैदिक कुंडली' : 'Vedic Kundali'}</h3>
             <div className="amount">{formatInr(PRICING.kundaliInr)}</div>
             <p>{lang === 'hi' ? 'अभी उपलब्ध' : 'Available now'}</p>
-            <ul>
-              <li>{lang === 'hi' ? 'पूरा D1 चार्ट + PDF' : 'Full D1 chart + PDF'}</li>
-              <li>{lang === 'hi' ? 'नक्षत्र, महादशा, दोष संकेत' : 'Nakshatra, dasha, dosha flags'}</li>
-            </ul>
+              <ul>
+                <li>{lang === 'hi' ? '~२० पृष्ठ पूर्ण रिपोर्ट PDF' : 'Complete ~20 page report PDF'}</li>
+                <li>{lang === 'hi' ? 'भाव, जीवन अध्याय, D9/D10' : 'Houses, life chapters, D9/D10'}</li>
+                <li>{lang === 'hi' ? 'नक्षत्र, महादशा, योग, दोष' : 'Nakshatra, dasha, yogas, doshas'}</li>
+              </ul>
             <div className="form-actions">
               <Link className="btn btn-primary" to="/generate">
                 {copy.ctaPrimary(lang)}

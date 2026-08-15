@@ -61,6 +61,7 @@ export interface KundaliChart {
   lagnaSignIndex: number
   lagnaEn: string
   lagnaHi: string
+  lagnaLongitude: number
   moonSignIndex: number
   moonSignEn: string
   moonSignHi: string

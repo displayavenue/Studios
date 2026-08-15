@@ -382,6 +382,7 @@ export function generateKundali(details: BirthDetails): KundaliChart {
     lagnaSignIndex: lagnaSign,
     lagnaEn: SIGNS_EN[lagnaSign],
     lagnaHi: SIGNS_HI[lagnaSign],
+    lagnaLongitude: lagnaSid,
     moonSignIndex: moon.signIndex,
     moonSignEn: moon.signEn,
     moonSignHi: moon.signHi,

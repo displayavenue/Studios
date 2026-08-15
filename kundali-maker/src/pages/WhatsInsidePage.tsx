@@ -58,7 +58,18 @@ export function WhatsInsidePage() {
           },
           {
             t: 'Delivery',
-            items: ['On-screen chart', 'PDF download', 'Hindi or English', 'Order ID'],
+            items: ['On-screen chart', 'Complete ~20 page PDF', 'Hindi UI / English PDF print', 'Order ID'],
+          },
+          {
+            t: 'Complete report chapters',
+            items: [
+              'Cover & method',
+              'Houses 1–12 readings',
+              'Personality, mind, career, marriage',
+              'Navamsa (D9) & Dasamsha (D10)',
+              'Yogas, aspects, year-ahead',
+              'Summary & next steps',
+            ],
           },
           {
             t: 'Optional remedies',
@@ -66,7 +77,7 @@ export function WhatsInsidePage() {
           },
           {
             t: 'Coming next',
-            items: ['Navamsa (D9)', 'Dasamsha (D10)', 'Antardasha', 'Kundali Milan', 'Muhurat', 'Varshphal'],
+            items: ['Antardasha detail', 'Kundali Milan', 'Muhurat', 'Varshphal deep-dive'],
           },
         ]
 

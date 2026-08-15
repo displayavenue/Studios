@@ -179,9 +179,9 @@ export function HomePage() {
               <p>{lang === 'hi' ? 'एक बार का भुगतान' : 'One-time'}</p>
               <ul>
                 <li>{lang === 'hi' ? 'लग्न व ग्रह स्थिति' : 'Lagna & planetary positions'}</li>
-                <li>{lang === 'hi' ? 'नक्षत्र व पद' : 'Nakshatra & pada'}</li>
-                <li>{lang === 'hi' ? 'महादशा अवलोकन' : 'Mahadasha overview'}</li>
-                <li>{lang === 'hi' ? 'डाउनलोड योग्य PDF' : 'Downloadable PDF'}</li>
+                <li>{lang === 'hi' ? '~२० पृष्ठ पूर्ण PDF' : 'Complete ~20 page PDF'}</li>
+                <li>{lang === 'hi' ? 'भाव, करियर, विवाह अध्याय' : 'Houses, career, marriage chapters'}</li>
+                <li>{lang === 'hi' ? 'D9/D10, योग व दशा' : 'D9/D10, yogas & dasha'}</li>
               </ul>
             </div>
             <div className="price-block addon">
