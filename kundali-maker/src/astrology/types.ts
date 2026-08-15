@@ -10,6 +10,8 @@ export interface BirthDetails {
   longitude: number
   timezoneOffsetMinutes: number
   language: Language
+  /** Optional WhatsApp for delivery / support (digits with country code preferred) */
+  whatsapp?: string
 }
 
 export interface PlanetPosition {

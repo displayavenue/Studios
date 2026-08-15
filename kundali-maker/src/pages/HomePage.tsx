@@ -32,9 +32,9 @@ export function HomePage() {
             <Link className="btn btn-primary" to="/generate">
               {copy.ctaPrimary(lang)}
             </Link>
-            <a className="btn btn-secondary" href="#stories">
-              {lang === 'hi' ? 'लोगों के अनुभव' : 'Real stories'}
-            </a>
+            <Link className="btn btn-secondary" to="/sample">
+              {lang === 'hi' ? 'मुफ़्त SAMPLE PDF' : 'Free SAMPLE PDF'}
+            </Link>
           </div>
         </div>
       </section>
@@ -114,11 +114,11 @@ export function HomePage() {
               </p>
             </div>
             <div className="flow-step">
-              <h3>{lang === 'hi' ? 'कुंडली + PDF' : 'Chart + PDF'}</h3>
+              <h3>{lang === 'hi' ? 'कुंडली + PDF + WhatsApp' : 'Chart + PDF + WhatsApp'}</h3>
               <p>
                 {lang === 'hi'
-                  ? 'लग्न, ग्रह, नक्षत्र, महादशा—स्क्रीन पर और PDF में।'
-                  : 'Lagna, planets, nakshatras, dasha—on screen and in your PDF.'}
+                  ? 'लग्न, ग्रह, नक्षत्र, महादशा—स्क्रीन, PDF, और WhatsApp पुष्टि।'
+                  : 'Lagna, planets, nakshatras, dasha—on screen, PDF, and WhatsApp confirm.'}
               </p>
             </div>
             <div className="flow-step">
@@ -184,6 +184,17 @@ export function HomePage() {
                 <li>{lang === 'hi' ? 'D9/D10, योग व दशा' : 'D9/D10, yogas & dasha'}</li>
               </ul>
             </div>
+            <div className="price-block">
+              <h3>{lang === 'hi' ? 'कुंडली मिलान' : 'Kundali Milan'}</h3>
+              <div className="amount">{formatInr(PRICING.milanInr)}</div>
+              <p>{lang === 'hi' ? 'शादी / परिवार' : 'Marriage / family'}</p>
+              <ul>
+                <li>{lang === 'hi' ? '३६ अंक अष्टकूट' : '36-point Ashtakoot'}</li>
+                <li>{lang === 'hi' ? 'मंगलिक तुलना' : 'Manglik compare'}</li>
+                <li>{lang === 'hi' ? 'सरल सारांश + PDF' : 'Plain summary + PDF'}</li>
+                <li>{lang === 'hi' ? 'WhatsApp पुष्टि' : 'WhatsApp confirm'}</li>
+              </ul>
+            </div>
             <div className="price-block addon">
               <h3>{lang === 'hi' ? 'उपाय ऐड-ऑन' : 'Remedies add-on'}</h3>
               <div className="amount">+{formatInr(PRICING.remediesInr)}</div>
@@ -199,8 +210,11 @@ export function HomePage() {
             <Link className="btn btn-primary" to="/generate">
               {copy.ctaPrimary(lang)}
             </Link>
-            <Link className="btn btn-ghost" to="/services">
-              {lang === 'hi' ? 'सभी सेवाएँ देखें' : 'See all services'}
+            <Link className="btn btn-secondary" to="/milan">
+              {lang === 'hi' ? 'मिलान करें' : 'Check Milan'}
+            </Link>
+            <Link className="btn btn-ghost" to="/sample">
+              {lang === 'hi' ? 'SAMPLE PDF' : 'SAMPLE PDF'}
             </Link>
           </div>
         </div>

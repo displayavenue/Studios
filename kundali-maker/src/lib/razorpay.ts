@@ -1,6 +1,6 @@
 import { PRICING } from './pricing'
 
-export type RazorpayProduct = 'kundali' | 'remedies'
+export type RazorpayProduct = 'kundali' | 'remedies' | 'milan'
 
 export interface RazorpayStatus {
   configured: boolean
@@ -89,8 +89,13 @@ export async function startRazorpayCheckout(opts: {
   prefillEmail?: string
   prefillContact?: string
 }): Promise<{ razorpayOrderId: string; razorpayPaymentId: string; razorpaySignature: string }> {
-  const amountInr =
-    opts.product === 'kundali' ? opts.amountInr || PRICING.kundaliInr : opts.amountInr || PRICING.remediesInr
+  const amountInr = opts.amountInr || (
+    opts.product === 'kundali'
+      ? PRICING.kundaliInr
+      : opts.product === 'remedies'
+        ? PRICING.remediesInr
+        : PRICING.milanInr
+  )
 
   const created = await parseJson<CreateOrderResponse>(
     await fetch(`${apiBase()}/razorpay-create-order.php`, {

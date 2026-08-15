@@ -14,8 +14,8 @@ export function ServicesPage() {
           title={lang === 'hi' ? 'सेवाएँ' : 'Services'}
           subtitle={
             lang === 'hi'
-              ? 'कुंडली से शुरू करें। मिलान, करियर, मुहूर्त व परामर्श चरणबद्ध आ रहे हैं।'
-              : 'Start with your Vedic kundali. Matching, career, muhurat, and consults roll out next.'
+              ? 'कुंडली व मिलान अभी उपलब्ध। करियर, मुहूर्त व परामर्श चरणबद्ध आ रहे हैं।'
+              : 'Kundali and Milan are live. Career, muhurat, and consults roll out next.'
           }
           cta
         />
@@ -49,7 +49,15 @@ export function ServicesPage() {
               </ul>
               {s.status === 'live' && s.ctaTo ? (
                 <Link className="btn btn-primary" to={s.ctaTo}>
-                  {copy.ctaPrimaryShort(lang)}
+                  {s.id === 'milan'
+                    ? lang === 'hi'
+                      ? 'मिलान करें'
+                      : 'Check Milan'
+                    : s.id === 'remedies'
+                      ? lang === 'hi'
+                        ? 'कुंडली के बाद'
+                        : 'After kundali'
+                      : copy.ctaPrimaryShort(lang)}
                 </Link>
               ) : (
                 <Link className="btn btn-ghost" to="/contact">

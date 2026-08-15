@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
-  "exclude": ["src/astrology/selftest.ts"]
+  "exclude": ["src/astrology/selftest.ts", "src/astrology/milan-selftest.ts"]
 }

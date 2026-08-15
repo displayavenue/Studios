@@ -7,11 +7,15 @@ import { FaqPage } from './pages/FaqPage'
 import { GeneratePage } from './pages/GeneratePage'
 import { HomePage } from './pages/HomePage'
 import { LegalPage } from './pages/LegalPage'
+import { MilanPage } from './pages/MilanPage'
+import { MilanPayPage } from './pages/MilanPayPage'
+import { MilanResultPage } from './pages/MilanResultPage'
 import { OrdersPage } from './pages/OrdersPage'
 import { PaymentPage } from './pages/PaymentPage'
 import { PricingPage } from './pages/PricingPage'
 import { RemediesPage } from './pages/RemediesPage'
 import { ResultPage } from './pages/ResultPage'
+import { SamplePage } from './pages/SamplePage'
 import { ServicesPage } from './pages/ServicesPage'
 import { WhatsInsidePage } from './pages/WhatsInsidePage'
 
@@ -23,6 +27,10 @@ export default function App() {
           <Route element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="generate" element={<GeneratePage />} />
+            <Route path="sample" element={<SamplePage />} />
+            <Route path="milan" element={<MilanPage />} />
+            <Route path="milan/pay/:orderId" element={<MilanPayPage />} />
+            <Route path="milan/result/:orderId" element={<MilanResultPage />} />
             <Route path="pay/:orderId" element={<PaymentPage />} />
             <Route path="result/:orderId" element={<ResultPage />} />
             <Route path="remedies/:orderId" element={<RemediesPage />} />

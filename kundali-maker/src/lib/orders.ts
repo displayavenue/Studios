@@ -26,7 +26,10 @@ export function createDraftOrder(details: BirthDetails): KundaliOrder {
   const order: KundaliOrder = {
     id: uid(),
     createdAt: new Date().toISOString(),
-    details,
+    details: {
+      ...details,
+      whatsapp: details.whatsapp?.trim() || undefined,
+    },
     status: 'draft',
     amountKundali: PRICING.kundaliInr,
     amountRemedies: PRICING.remediesInr,

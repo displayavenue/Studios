@@ -1,6 +1,7 @@
 export const PRICING = {
   kundaliInr: 299,
   remediesInr: 199,
+  milanInr: 399,
   currency: 'INR' as const,
 }
 

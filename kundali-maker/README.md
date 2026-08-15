@@ -35,8 +35,10 @@ The old mirror at `displayavenuestudios.com/kundali-maker/` was removed; that pa
 
 ## Pricing (MVP)
 
-- Kundali PDF: ₹299 (mock pay)
+- Kundali PDF: ₹299
+- Kundali Milan: ₹399
 - Remedies add-on: ₹199 (after kundali, optional)
+- Free SAMPLE PDF at `/sample`
 
 ## Stack
 

@@ -61,9 +61,21 @@ export const FAQS: FaqItem[] = [
     aHi: 'वर्तमान MVP में ऑर्डर आपके ब्राउज़र (डिवाइस) में रहते हैं। हम जन्म डेटा नहीं बेचते। सर्वर अकाउंट आने पर एन्क्रिप्शन व गोपनीयता नीति लागू होगी।',
   },
   {
-    qEn: 'When will Kundali Milan / Muhurat launch?',
-    qHi: 'कुंडली मिलान / मुहूर्त कब?',
-    aEn: 'They are listed as Coming Soon on Services. Join via WhatsApp to get launch offers.',
-    aHi: 'Services पर Coming Soon हैं। लॉन्च ऑफ़र हेतु WhatsApp पर जुड़ें।',
+    qEn: 'Can I see a sample before paying?',
+    qHi: 'पेमेंट से पहले नमूना देख सकते हैं?',
+    aEn: 'Yes. Open Sample from the menu and download the free SAMPLE PDF (watermarked demo birth). Your real chart unlocks after payment.',
+    aHi: 'हाँ। मेनू से Sample खोलकर मुफ़्त SAMPLE PDF डाउनलोड करें (वॉटरमार्क डेमो)। असली कुंडली भुगतान के बाद खुलती है।',
+  },
+  {
+    qEn: 'Do you deliver on WhatsApp?',
+    qHi: 'क्या WhatsApp पर डिलीवरी होती है?',
+    aEn: 'After payment, download your PDF on the result page, then tap WhatsApp to send your Order ID for confirmation help. You can also share your WhatsApp number while ordering.',
+    aHi: 'भुगतान के बाद रिजल्ट पेज से PDF डाउनलोड करें, फिर WhatsApp पर Order ID भेजकर पुष्टि करवाएँ। ऑर्डर करते समय WhatsApp नंबर भी दे सकते हैं।',
+  },
+  {
+    qEn: 'What is Kundali Milan?',
+    qHi: 'कुंडली मिलान क्या है?',
+    aEn: 'Kundali Milan is Ashtakoot (36-point) gun matching plus manglik compare for a couple. It is live for ₹399 with a shareable PDF. Points are traditional guidance—not the only factor for marriage.',
+    aHi: 'कुंडली मिलान अष्टकूट (३६ अंक) गुण मिलान व मंगलिक तुलना है। ₹३९९ में PDF उपलब्ध। अंक पारंपरिक मार्गदर्शन हैं—विवाह का एकमात्र आधार नहीं।',
   },
 ]

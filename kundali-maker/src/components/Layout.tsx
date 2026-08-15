@@ -7,10 +7,10 @@ import { whatsappLink } from '../data/site'
 
 const NAV = [
   { to: '/services', en: 'Services', hi: 'सेवाएँ' },
+  { to: '/milan', en: 'Milan', hi: 'मिलान' },
+  { to: '/sample', en: 'Sample', hi: 'नमूना' },
   { to: '/pricing', en: 'Pricing', hi: 'मूल्य' },
-  { to: '/whats-inside', en: 'Inside', hi: 'अंदर' },
   { to: '/faq', en: 'FAQ', hi: 'FAQ' },
-  { to: '/about', en: 'About', hi: 'परिचय' },
   { to: '/contact', en: 'Contact', hi: 'संपर्क' },
 ] as const
 
@@ -108,6 +108,8 @@ export function Layout() {
           </div>
           <div className="footer-links">
             <Link to="/services">{lang === 'hi' ? 'सेवाएँ' : 'Services'}</Link>
+            <Link to="/milan">{lang === 'hi' ? 'कुंडली मिलान' : 'Kundali Milan'}</Link>
+            <Link to="/sample">{lang === 'hi' ? 'नमूना PDF' : 'Sample PDF'}</Link>
             <Link to="/pricing">{lang === 'hi' ? 'मूल्य' : 'Pricing'}</Link>
             <Link to="/whats-inside">{lang === 'hi' ? 'कुंडली में क्या' : "What's inside"}</Link>
             <Link to="/faq">FAQ</Link>
@@ -128,6 +130,16 @@ export function Layout() {
           </p>
         </div>
       </footer>
+
+      <a
+        className="wa-float"
+        href={whatsappLink('Namaste, I want help ordering from Jyotish Kundali.')}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp"
+      >
+        WhatsApp
+      </a>
     </div>
   )
 }

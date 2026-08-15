@@ -34,6 +34,24 @@ export function PricingPage() {
               <Link className="btn btn-primary" to="/generate">
                 {copy.ctaPrimary(lang)}
               </Link>
+              <Link className="btn btn-ghost" to="/sample">
+                {lang === 'hi' ? 'SAMPLE' : 'SAMPLE'}
+              </Link>
+            </div>
+          </div>
+          <div className="price-block">
+            <h3>{lang === 'hi' ? 'कुंडली मिलान' : 'Kundali Milan'}</h3>
+            <div className="amount">{formatInr(PRICING.milanInr)}</div>
+            <p>{lang === 'hi' ? 'अभी उपलब्ध' : 'Available now'}</p>
+            <ul>
+              <li>{lang === 'hi' ? '३६ अंक अष्टकूट' : '36-point Ashtakoot'}</li>
+              <li>{lang === 'hi' ? 'मंगलिक तुलना' : 'Manglik compare'}</li>
+              <li>{lang === 'hi' ? 'PDF + WhatsApp' : 'PDF + WhatsApp'}</li>
+            </ul>
+            <div className="form-actions">
+              <Link className="btn btn-primary" to="/milan">
+                {lang === 'hi' ? 'मिलान करें' : 'Check Milan'}
+              </Link>
             </div>
           </div>
           <div className="price-block addon">

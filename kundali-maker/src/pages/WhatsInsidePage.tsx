@@ -28,15 +28,19 @@ export function WhatsInsidePage() {
           },
           {
             t: 'डिलीवरी',
-            items: ['स्क्रीन पर चार्ट', 'PDF डाउनलोड', 'हिन्दी या अंग्रेज़ी', 'ऑर्डर ID'],
+            items: ['स्क्रीन पर चार्ट', 'पूर्ण ~२० पृष्ठ PDF', 'WhatsApp पुष्टि', 'ऑर्डर ID'],
           },
           {
             t: 'वैकल्पिक उपाय',
             items: ['मंत्र', 'दान', 'अनुष्ठान सुझाव', 'जीवनशैली—केवल अतिरिक्त भुगतान पर'],
           },
           {
+            t: 'कुंडली मिलान (लाइव)',
+            items: ['अष्टकूट ३६ अंक', 'मंगलिक तुलना', 'मिलान PDF', 'WhatsApp पुष्टि'],
+          },
+          {
             t: 'जल्द जुड़ने वाला',
-            items: ['नवमांश (D9)', 'दशमांश (D10)', 'अन्तर्दशा', 'कुंडली मिलान', 'मुहूर्त', 'वर्षफल'],
+            items: ['अन्तर्दशा विस्तार', 'मुहूर्त', 'वर्षफल गहन', 'लाइव परामर्श'],
           },
         ]
       : [
@@ -58,7 +62,7 @@ export function WhatsInsidePage() {
           },
           {
             t: 'Delivery',
-            items: ['On-screen chart', 'Complete ~20 page PDF', 'Hindi UI / English PDF print', 'Order ID'],
+            items: ['On-screen chart', 'Complete ~20 page PDF', 'WhatsApp confirm', 'Order ID'],
           },
           {
             t: 'Complete report chapters',
@@ -76,8 +80,12 @@ export function WhatsInsidePage() {
             items: ['Mantras', 'Charity', 'Ritual suggestions', 'Lifestyle—only after add-on pay'],
           },
           {
+            t: 'Kundali Milan (live)',
+            items: ['Ashtakoot 36 points', 'Manglik compare', 'Milan PDF', 'WhatsApp confirm'],
+          },
+          {
             t: 'Coming next',
-            items: ['Antardasha detail', 'Kundali Milan', 'Muhurat', 'Varshphal deep-dive'],
+            items: ['Antardasha detail', 'Muhurat', 'Varshphal deep-dive', 'Live consult'],
           },
         ]
 
@@ -108,8 +116,11 @@ export function WhatsInsidePage() {
           <Link className="btn btn-primary" to="/generate">
             {copy.ctaPrimary(lang)}
           </Link>
-          <Link className="btn btn-ghost" to="/services">
-            {lang === 'hi' ? 'सभी सेवाएँ' : 'All services'}
+          <Link className="btn btn-secondary" to="/sample">
+            {lang === 'hi' ? 'SAMPLE PDF' : 'SAMPLE PDF'}
+          </Link>
+          <Link className="btn btn-ghost" to="/milan">
+            {lang === 'hi' ? 'मिलान' : 'Milan'}
           </Link>
         </div>
       </div>
