@@ -89,4 +89,8 @@ export interface KundaliOrder {
   chart?: KundaliChart
   amountKundali: number
   amountRemedies: number
+  kundaliPaymentId?: string
+  kundaliRazorpayOrderId?: string
+  remediesPaymentId?: string
+  remediesRazorpayOrderId?: string
 }

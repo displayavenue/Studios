@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { remediesForChart } from '../astrology/generate'
 import type { KundaliOrder } from '../astrology/types'
@@ -6,6 +6,7 @@ import { useLanguage } from '../hooks/useLanguage'
 import { getOrder, payForRemedies } from '../lib/orders'
 import { downloadKundaliPdf } from '../lib/pdf'
 import { formatInr } from '../lib/pricing'
+import { fetchRazorpayStatus, startRazorpayCheckout, type RazorpayStatus } from '../lib/razorpay'
 
 export function RemediesPage() {
   const { orderId = '' } = useParams()
@@ -14,6 +15,17 @@ export function RemediesPage() {
   const order = useMemo(() => getOrder(orderId), [orderId, tick])
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [status, setStatus] = useState<RazorpayStatus | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetchRazorpayStatus().then((s) => {
+      if (!cancelled) setStatus(s)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   if (!order || !order.chart || order.status === 'draft') {
     return (
@@ -33,20 +45,47 @@ export function RemediesPage() {
   const remedies = remediesForChart(order.chart)
   const unlocked = order.status === 'remedies_paid'
   const reportLang = order.details.language
+  const ready = status?.configured === true
+  const demoOk = status?.allow_demo === true
 
-  function mockPay(current: KundaliOrder) {
+  async function payWithRazorpay(current: KundaliOrder) {
+    setBusy(true)
+    setError('')
+    try {
+      const result = await startRazorpayCheckout({
+        product: 'remedies',
+        localOrderId: `${current.id}-R`,
+        amountInr: current.amountRemedies,
+        customerName: current.details.name,
+        description: lang === 'hi' ? 'उपाय ऐड-ऑन' : 'Remedies add-on',
+      })
+      payForRemedies(current.id, {
+        paymentId: result.razorpayPaymentId,
+        razorpayOrderId: result.razorpayOrderId,
+      })
+      setTick((n) => n + 1)
+      setBusy(false)
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : 'Payment failed'
+      if (msg !== 'Payment cancelled') setError(msg)
+      setBusy(false)
+    }
+  }
+
+  function demoPay(current: KundaliOrder) {
+    if (!status?.allow_demo) return
     setBusy(true)
     setError('')
     window.setTimeout(() => {
       try {
-        payForRemedies(current.id)
+        payForRemedies(current.id, { paymentId: `demo_rem_${Date.now()}` })
         setTick((n) => n + 1)
         setBusy(false)
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Payment failed')
         setBusy(false)
       }
-    }, 700)
+    }, 500)
   }
 
   return (
@@ -63,9 +102,19 @@ export function RemediesPage() {
 
         {!unlocked && (
           <>
-            <div className="mock-badge">
-              {lang === 'hi' ? 'डेमो भुगतान' : 'Demo payment'}
-            </div>
+            {status && (
+              <div className="mock-badge">
+                {ready
+                  ? status.mode === 'live'
+                    ? 'Razorpay live'
+                    : lang === 'hi'
+                      ? 'Razorpay टेस्ट'
+                      : 'Razorpay test'
+                  : lang === 'hi'
+                    ? 'Razorpay सेटअप बाकी'
+                    : 'Razorpay setup pending'}
+              </div>
+            )}
             <div className="kv">
               <div>
                 <span>{lang === 'hi' ? 'ऐड-ऑन राशि' : 'Add-on amount'}</span>
@@ -102,15 +151,36 @@ export function RemediesPage() {
             {lang === 'hi' ? 'कुंडली पर वापस' : 'Back to kundali'}
           </Link>
           {!unlocked ? (
-            <button type="button" className="btn btn-gold" disabled={busy} onClick={() => mockPay(order)}>
-              {busy
-                ? lang === 'hi'
-                  ? 'प्रोसेस…'
-                  : 'Processing…'
-                : lang === 'hi'
-                  ? `उपाय अनलॉक — ${formatInr(order.amountRemedies)}`
-                  : `Unlock remedies — ${formatInr(order.amountRemedies)}`}
-            </button>
+            ready ? (
+              <button
+                type="button"
+                className="btn btn-gold"
+                disabled={busy}
+                onClick={() => payWithRazorpay(order)}
+              >
+                {busy
+                  ? lang === 'hi'
+                    ? 'Razorpay…'
+                    : 'Razorpay…'
+                  : lang === 'hi'
+                    ? `Razorpay से अनलॉक — ${formatInr(order.amountRemedies)}`
+                    : `Unlock with Razorpay — ${formatInr(order.amountRemedies)}`}
+              </button>
+            ) : demoOk ? (
+              <button type="button" className="btn btn-gold" disabled={busy} onClick={() => demoPay(order)}>
+                {busy
+                  ? lang === 'hi'
+                    ? 'प्रोसेस…'
+                    : 'Processing…'
+                  : lang === 'hi'
+                    ? `डेमो अनलॉक — ${formatInr(order.amountRemedies)}`
+                    : `Demo unlock — ${formatInr(order.amountRemedies)}`}
+              </button>
+            ) : (
+              <button type="button" className="btn btn-gold" disabled>
+                {lang === 'hi' ? 'भुगतान जल्द' : 'Payments soon'}
+              </button>
+            )
           ) : (
             <button
               type="button"

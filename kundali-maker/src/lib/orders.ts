@@ -50,27 +50,37 @@ export function updateOrder(order: KundaliOrder): KundaliOrder {
   return order
 }
 
-/** Mock payment: unlocks kundali generation */
-export function payForKundali(orderId: string): KundaliOrder {
+/** Unlocks kundali after successful payment (Razorpay or approved demo) */
+export function payForKundali(
+  orderId: string,
+  payment?: { paymentId?: string; razorpayOrderId?: string },
+): KundaliOrder {
   const order = getOrder(orderId)
   if (!order) throw new Error('Order not found')
   if (order.status === 'draft') {
     order.chart = generateKundali(order.details)
     order.status = 'kundali_paid'
     order.kundaliPaidAt = new Date().toISOString()
+    if (payment?.paymentId) order.kundaliPaymentId = payment.paymentId
+    if (payment?.razorpayOrderId) order.kundaliRazorpayOrderId = payment.razorpayOrderId
     updateOrder(order)
   }
   return order
 }
 
-/** Mock payment: unlocks remedies for an already-paid kundali */
-export function payForRemedies(orderId: string): KundaliOrder {
+/** Unlocks remedies after successful payment */
+export function payForRemedies(
+  orderId: string,
+  payment?: { paymentId?: string; razorpayOrderId?: string },
+): KundaliOrder {
   const order = getOrder(orderId)
   if (!order) throw new Error('Order not found')
   if (order.status === 'draft') throw new Error('Pay for kundali first')
   if (order.status === 'kundali_paid') {
     order.status = 'remedies_paid'
     order.remediesPaidAt = new Date().toISOString()
+    if (payment?.paymentId) order.remediesPaymentId = payment.paymentId
+    if (payment?.razorpayOrderId) order.remediesRazorpayOrderId = payment.razorpayOrderId
     updateOrder(order)
   }
   return order

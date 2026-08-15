@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Secrets
+public/api/config.php
+.env
+.env.*
+!.env.example
+
