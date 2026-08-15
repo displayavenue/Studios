@@ -10,24 +10,25 @@ npm install
 npm run dev
 ```
 
-Open the URL Vite prints (base path `/kundali-maker/`).
+## Hostinger deploy (production)
 
-## Hostinger deploy
-
-**Interim (live now on existing hosting):**
+Domain: **https://jyotishkundali.com/**
 
 ```bash
 cd kundali-maker
 SSH_PASS='…' npm run deploy:hostinger
 ```
 
-Opens at: `https://displayavenuestudios.com/kundali-maker/`
+Deploys to `domains/jyotishkundali.com/public_html` with `base=/`.
 
-**When you have a dedicated domain** (add domain in Hostinger hPanel first):
+**First-time setup:** In Hostinger hPanel, connect `jyotishkundali.com` to this hosting account and enable SSL. Until then DNS may show a parked page.
+
+Legacy subdirectory mirror (optional):
 
 ```bash
-cd kundali-maker
-VITE_BASE=/ SSH_DOC=domains/YOURDOMAIN.com/public_html SSH_PASS='…' npm run deploy:hostinger
+VITE_BASE=/kundali-maker/ \
+SSH_DOC=domains/displayavenuestudios.com/public_html/kundali-maker \
+SSH_PASS='…' npm run deploy:hostinger
 ```
 
 ## Scripts

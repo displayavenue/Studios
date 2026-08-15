@@ -1,9 +1,9 @@
-# Jyotish Kundali — SPA routing for Hostinger/Apache
+# Jyotish Kundali — SPA routing for Hostinger/Apache (root domain)
 DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /kundali-maker/
+  RewriteBase /
 
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
