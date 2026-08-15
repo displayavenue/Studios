@@ -73,7 +73,7 @@ function bullets(doc: Doc, items: string[], y: number, margin: number): number {
  * Long interpretive text is rendered in English for reliable PDF fonts;
  * Hindi UI remains on the website. Cover notes report language.
  */
-export function downloadKundaliPdf(order: KundaliOrder, includeRemedies: boolean): void {
+export function buildKundaliPdfDoc(order: KundaliOrder, includeRemedies: boolean): Doc {
   if (!order.chart) throw new Error('Chart not generated')
   const chart = order.chart
   const lang = order.details.language
@@ -407,8 +407,11 @@ export function downloadKundaliPdf(order: KundaliOrder, includeRemedies: boolean
   y = para(doc, 'Thank you for choosing Jyotish Kundali. https://jyotishkundali.com', y, margin, 9)
   mark('Summary')
 
-  // Extra buffer page if remedies made page 19 long — already structured to ~20
+  return doc
+}
 
+export function downloadKundaliPdf(order: KundaliOrder, includeRemedies: boolean): void {
+  const doc = buildKundaliPdfDoc(order, includeRemedies)
   const suffix = includeRemedies && order.status === 'remedies_paid' ? '-complete-remedies' : '-complete'
   doc.save(`kundali-${order.details.name.replace(/\s+/g, '-').toLowerCase()}${suffix}.pdf`)
 }

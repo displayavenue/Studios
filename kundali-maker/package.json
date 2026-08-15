@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test:astrology": "tsx src/astrology/selftest.ts",
+    "test:pdf": "tsx scripts/pdf-selftest.ts",
     "deploy:hostinger": "bash scripts/deploy-hostinger.sh"
   },
   "dependencies": {
