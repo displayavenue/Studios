@@ -23,13 +23,7 @@ Deploys to `domains/jyotishkundali.com/public_html` with `base=/`.
 
 **First-time setup:** In Hostinger hPanel, connect `jyotishkundali.com` to this hosting account and enable SSL. Until then DNS may show a parked page.
 
-Legacy subdirectory mirror (optional):
-
-```bash
-VITE_BASE=/kundali-maker/ \
-SSH_DOC=domains/displayavenuestudios.com/public_html/kundali-maker \
-SSH_PASS='…' npm run deploy:hostinger
-```
+The old mirror at `displayavenuestudios.com/kundali-maker/` was removed; that path 301-redirects to https://jyotishkundali.com/.
 
 ## Scripts
 

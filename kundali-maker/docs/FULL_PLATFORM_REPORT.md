@@ -3,7 +3,7 @@
 **For:** Jyotish Kundali / Display Avenue  
 **Date:** August 2026  
 **Purpose:** One-document blueprint to grow the current MVP into a full FaithTech / astrology platform  
-**Live MVP today:** https://displayavenuestudios.com/kundali-maker/
+**Live MVP today:** https://jyotishkundali.com/
 
 ---
 
