@@ -14,7 +14,7 @@ export function FeaturesPage() {
     <div className="page-wrap">
       <div className="container">
         <PageHero
-          title={lang === 'hi' ? '५० विशेषताएँ' : '50 features'}
+          title={lang === 'hi' ? '१०० विशेषताएँ' : '100 features'}
           subtitle={
             lang === 'hi'
               ? 'पूरी तरह स्वयं-सेवा—कॉल या पंडित चैट नहीं। मुफ़्त चार्ट साइटों से गहराई में अंतर।'

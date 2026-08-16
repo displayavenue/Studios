@@ -18,6 +18,10 @@ import { RemediesPage } from './pages/RemediesPage'
 import { ResultPage } from './pages/ResultPage'
 import { SamplePage } from './pages/SamplePage'
 import { ServicesPage } from './pages/ServicesPage'
+import { ShaadiPackPage } from './pages/ShaadiPackPage'
+import { ShopPayPage } from './pages/ShopPayPage'
+import { ShopProductPage } from './pages/ShopProductPage'
+import { ShopResultPage } from './pages/ShopResultPage'
 import { WhatsInsidePage } from './pages/WhatsInsidePage'
 
 export default function App() {
@@ -32,6 +36,10 @@ export default function App() {
             <Route path="milan" element={<MilanPage />} />
             <Route path="milan/pay/:orderId" element={<MilanPayPage />} />
             <Route path="milan/result/:orderId" element={<MilanResultPage />} />
+            <Route path="shop/shaadi" element={<ShaadiPackPage />} />
+            <Route path="shop/:productId" element={<ShopProductPage />} />
+            <Route path="shop/:productId/pay/:orderId" element={<ShopPayPage />} />
+            <Route path="shop/:productId/result/:orderId" element={<ShopResultPage />} />
             <Route path="pay/:orderId" element={<PaymentPage />} />
             <Route path="result/:orderId" element={<ResultPage />} />
             <Route path="remedies/:orderId" element={<RemediesPage />} />

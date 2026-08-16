@@ -100,7 +100,7 @@ export function Layout() {
             </p>
           </div>
           <div className="footer-links">
-            <Link to="/features">{lang === 'hi' ? '५० विशेषताएँ' : '50 features'}</Link>
+            <Link to="/features">{lang === 'hi' ? '१०० विशेषताएँ' : '100 features'}</Link>
             <Link to="/services">{lang === 'hi' ? 'सेवाएँ' : 'Services'}</Link>
             <Link to="/milan">{lang === 'hi' ? 'कुंडली मिलान' : 'Kundali Milan'}</Link>
             <Link to="/sample">{lang === 'hi' ? 'नमूना PDF' : 'Sample PDF'}</Link>

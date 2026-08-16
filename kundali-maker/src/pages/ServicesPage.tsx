@@ -4,6 +4,17 @@ import { useLanguage } from '../hooks/useLanguage'
 import { copy } from '../lib/i18n'
 import { PageHero } from '../components/PageHero'
 
+function ctaLabel(id: string, lang: 'en' | 'hi'): string {
+  if (id === 'milan') return lang === 'hi' ? 'मिलान करें' : 'Check Milan'
+  if (id === 'remedies') return lang === 'hi' ? 'कुंडली के बाद' : 'After kundali'
+  if (id === 'shaadi') return lang === 'hi' ? 'शादी पैक' : 'Shaadi pack'
+  if (id === 'manglik') return lang === 'hi' ? 'जाँच करें' : 'Check now'
+  if (id === 'career' || id === 'varshphal' || id === 'muhurat' || id === 'deep' || id === 'business' || id === 'student') {
+    return lang === 'hi' ? 'अभी खरीदें' : 'Buy now'
+  }
+  return copy.ctaPrimaryShort(lang)
+}
+
 export function ServicesPage() {
   const { lang } = useLanguage()
 
@@ -14,28 +25,20 @@ export function ServicesPage() {
           title={lang === 'hi' ? 'सेवाएँ' : 'Services'}
           subtitle={
             lang === 'hi'
-              ? 'कुंडली व मिलान अभी उपलब्ध। करियर, मुहूर्त व परामर्श चरणबद्ध आ रहे हैं।'
-              : 'Kundali and Milan are live. Career, muhurat, and consults roll out next.'
+              ? 'सभी सेवाएँ लाइव—भुगतान के बाद तुरंत PDF। कोई कॉल नहीं।'
+              : 'All services live—instant PDF after pay. No calls.'
           }
           cta
         />
 
         <div className="service-grid">
           {SERVICES.map((s) => (
-            <article className="service-row" key={s.id}>
+            <article className="service-row anim-rise" key={s.id}>
               <div className="service-row-top">
                 <h2>{lang === 'hi' ? s.titleHi : s.titleEn}</h2>
                 <div className="service-meta">
                   <span className="service-price">{servicePriceText(s)}</span>
-                  <span className={`pill ${s.status === 'live' ? 'pill-live' : 'pill-soon'}`}>
-                    {s.status === 'live'
-                      ? lang === 'hi'
-                        ? 'उपलब्ध'
-                        : 'Live'
-                      : lang === 'hi'
-                        ? 'जल्द'
-                        : 'Soon'}
-                  </span>
+                  <span className="pill pill-live">{lang === 'hi' ? 'लाइव' : 'Live'}</span>
                 </div>
               </div>
               <p className="muted">{lang === 'hi' ? s.blurbHi : s.blurbEn}</p>
@@ -47,21 +50,9 @@ export function ServicesPage() {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-              {s.status === 'live' && s.ctaTo ? (
+              {s.ctaTo && (
                 <Link className="btn btn-primary" to={s.ctaTo}>
-                  {s.id === 'milan'
-                    ? lang === 'hi'
-                      ? 'मिलान करें'
-                      : 'Check Milan'
-                    : s.id === 'remedies'
-                      ? lang === 'hi'
-                        ? 'कुंडली के बाद'
-                        : 'After kundali'
-                      : copy.ctaPrimaryShort(lang)}
-                </Link>
-              ) : (
-                <Link className="btn btn-ghost" to="/contact">
-                  {lang === 'hi' ? 'लॉन्च अलर्ट लें' : 'Get launch alert'}
+                  {ctaLabel(s.id, lang)}
                 </Link>
               )}
             </article>

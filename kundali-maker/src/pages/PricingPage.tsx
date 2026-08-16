@@ -90,7 +90,7 @@ export function PricingPage() {
         </section>
 
         <section className="content-block">
-          <h2>{lang === 'hi' ? 'बंडल (जल्द)' : 'Bundles (coming soon)'}</h2>
+          <h2>{lang === 'hi' ? 'बंडल (लाइव)' : 'Bundles (live)'}</h2>
           <div className="bundle-grid">
             {BUNDLES.map((b) => (
               <div className="bundle-item" key={b.id}>
@@ -103,6 +103,11 @@ export function PricingPage() {
                     <li key={i}>{i}</li>
                   ))}
                 </ul>
+                {'ctaTo' in b && b.ctaTo ? (
+                  <Link className="btn btn-primary" to={b.ctaTo}>
+                    {lang === 'hi' ? 'खरीदें' : 'Buy'}
+                  </Link>
+                ) : null}
               </div>
             ))}
           </div>

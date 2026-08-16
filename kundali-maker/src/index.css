@@ -1299,3 +1299,196 @@ table.planets th {
   margin-top: 0.35rem;
   color: var(--muted);
 }
+
+/* Homepage Meta-ad clarity + motion */
+.hero-with-photo .hero-bg {
+  background:
+    linear-gradient(105deg, rgba(42, 16, 14, 0.82) 0%, rgba(92, 26, 26, 0.55) 48%, rgba(42, 21, 16, 0.28) 100%),
+    url('/images/hero_atmosphere.jpg') center/cover no-repeat;
+  animation: heroKen 18s ease-in-out infinite alternate;
+}
+@keyframes heroKen {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+.hero-bg {
+  transform-origin: center;
+}
+.hero-micro {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  color: rgba(247, 240, 228, 0.78);
+}
+.anim-rise {
+  animation: riseIn 0.75s ease both;
+}
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+.delay-5 { animation-delay: 0.4s; }
+
+.btn-pulse {
+  animation: ctaPulse 2.4s ease-in-out infinite;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 197, 71, 0.35); }
+  50% { box-shadow: 0 0 0 10px rgba(232, 197, 71, 0); }
+}
+
+.flow-steps-3 {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .flow-steps-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.step-num {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--maroon);
+  color: var(--cream);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+.center-actions {
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.visual-split {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+@media (min-width: 800px) {
+  .visual-split {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+  }
+}
+.visual-img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  animation: fadeScale 1s ease both;
+}
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.price-block-hero {
+  max-width: 420px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  padding: 1.5rem 1.25rem;
+}
+.price-block-hero .btn {
+  margin-top: 0.75rem;
+}
+.anim-float {
+  animation: softFloat 5s ease-in-out infinite;
+}
+@keyframes softFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.home-more-services {
+  text-align: center;
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.65rem;
+}
+.chip-row a {
+  border: 1px solid var(--line);
+  padding: 0.45rem 0.75rem;
+  font-size: 0.88rem;
+  background: var(--cream);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.chip-row a:hover {
+  border-color: var(--maroon);
+  transform: translateY(-2px);
+}
+
+.shaadi-band {
+  display: grid;
+  gap: 1.25rem;
+  align-items: center;
+}
+@media (min-width: 800px) {
+  .shaadi-band {
+    grid-template-columns: 1fr 1.1fr;
+  }
+}
+.shaadi-band-img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.sticky-buy {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: rgba(42, 21, 16, 0.94);
+  color: var(--cream);
+  backdrop-filter: blur(8px);
+  animation: slideUpBar 0.6s ease both;
+  animation-delay: 1s;
+}
+.sticky-buy .btn {
+  flex-shrink: 0;
+}
+@keyframes slideUpBar {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+@media (min-width: 900px) {
+  .sticky-buy {
+    left: auto;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    width: min(360px, calc(100vw - 2rem));
+    border: 1px solid rgba(232, 197, 71, 0.35);
+    border-radius: 4px;
+  }
+}
+body {
+  padding-bottom: 4.5rem;
+}
+
+.reveal {
+  animation: riseIn 0.8s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-with-photo .hero-bg,
+  .btn-pulse,
+  .anim-float,
+  .anim-rise,
+  .reveal,
+  .sticky-buy,
+  .visual-img {
+    animation: none !important;
+  }
+}
