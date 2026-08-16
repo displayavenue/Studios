@@ -5,7 +5,6 @@ import { useLanguage } from '../hooks/useLanguage'
 import { getOrder } from '../lib/orders'
 import { downloadKundaliPdf } from '../lib/pdf'
 import { formatInr } from '../lib/pricing'
-import { kundaliDeliveryWhatsAppMessage, openWhatsAppDelivery } from '../lib/whatsapp'
 
 export function ResultPage() {
   const { orderId = '' } = useParams()
@@ -47,16 +46,6 @@ export function ResultPage() {
     }
   }
 
-  function onWhatsAppDelivery() {
-    setPdfError('')
-    try {
-      downloadKundaliPdf(order, hasRemedies)
-    } catch (e) {
-      setPdfError(e instanceof Error ? e.message : 'PDF failed')
-    }
-    openWhatsAppDelivery(kundaliDeliveryWhatsAppMessage(order))
-  }
-
   return (
     <div className="page-wrap">
       <div className="container">
@@ -69,16 +58,16 @@ export function ResultPage() {
 
         <div className="delivery-banner">
           <div>
-            <strong>{lang === 'hi' ? 'PDF डिलीवरी' : 'PDF delivery'}</strong>
+            <strong>{lang === 'hi' ? 'तुरंत PDF' : 'Instant PDF'}</strong>
             <p>
               {lang === 'hi'
-                ? 'PDF डाउनलोड करें, फिर WhatsApp पर ऑर्डर ID भेजकर पुष्टि करवाएँ—हम मदद करेंगे।'
-                : 'Download your PDF, then message us on WhatsApp with your Order ID for confirmation help.'}
+                ? `ऑर्डर ${order.id} — PDF अभी डाउनलोड करें। बाद में Order lookup से फिर खोलें। कोई कॉल/चैट आवश्यक नहीं।`
+                : `Order ${order.id} — download your PDF now. Re-open later via Order lookup. No call or chat required.`}
             </p>
           </div>
-          <button type="button" className="btn btn-secondary" onClick={onWhatsAppDelivery}>
-            {lang === 'hi' ? 'WhatsApp पर भेजें' : 'Send on WhatsApp'}
-          </button>
+          <Link className="btn btn-ghost" to="/orders">
+            {lang === 'hi' ? 'ऑर्डर खोजें' : 'Order lookup'}
+          </Link>
         </div>
 
         <div className="form-actions" style={{ marginTop: 0, marginBottom: '1.5rem' }}>

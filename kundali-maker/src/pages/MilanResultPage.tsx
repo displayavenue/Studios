@@ -4,7 +4,6 @@ import { useLanguage } from '../hooks/useLanguage'
 import { getMilanOrder } from '../lib/milanOrders'
 import { downloadMilanPdf } from '../lib/milanPdf'
 import { formatInr } from '../lib/pricing'
-import { milanDeliveryWhatsAppMessage, openWhatsAppDelivery } from '../lib/whatsapp'
 
 export function MilanResultPage() {
   const { orderId = '' } = useParams()
@@ -37,15 +36,6 @@ export function MilanResultPage() {
     }
   }
 
-  function onWhatsApp() {
-    try {
-      downloadMilanPdf(order)
-    } catch {
-      /* still open WA */
-    }
-    openWhatsAppDelivery(milanDeliveryWhatsAppMessage(order))
-  }
-
   return (
     <div className="page-wrap">
       <div className="container">
@@ -68,9 +58,9 @@ export function MilanResultPage() {
           <button type="button" className="btn btn-primary" onClick={onPdf}>
             {lang === 'hi' ? 'मिलान PDF डाउनलोड' : 'Download Milan PDF'}
           </button>
-          <button type="button" className="btn btn-secondary" onClick={onWhatsApp}>
-            {lang === 'hi' ? 'WhatsApp पर भेजें / पुष्टि' : 'WhatsApp delivery / confirm'}
-          </button>
+          <Link className="btn btn-ghost" to="/orders">
+            {lang === 'hi' ? 'ऑर्डर खोजें' : 'Order lookup'}
+          </Link>
           <Link className="btn btn-ghost" to="/generate">
             {lang === 'hi' ? 'व्यक्तिगत कुंडली' : 'Individual kundali'}
           </Link>

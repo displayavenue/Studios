@@ -51,8 +51,8 @@ export function OrdersPage() {
         {searched && !found && (
           <p className="alert">
             {lang === 'hi'
-              ? 'इस डिवाइस पर ऑर्डर नहीं मिला। WhatsApp सपोर्ट से संपर्क करें।'
-              : 'Order not found on this device. Contact WhatsApp support.'}
+              ? 'इस डिवाइस पर ऑर्डर नहीं मिला। Order ID जाँचें या उसी ब्राउज़र से फिर कोशिश करें।'
+              : 'Order not found on this device. Check the Order ID or retry from the same browser.'}
           </p>
         )}
 

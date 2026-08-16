@@ -382,9 +382,9 @@ export function buildKundaliPdfDoc(order: KundaliOrder, includeRemedies: boolean
   y = bullets(
     doc,
     [
-      'Re-download this PDF anytime via Order lookup on jyotishkundali.com',
-      'Consider Kundali Milan / Muhurat when those services launch',
-      'WhatsApp support from the Contact page for order help',
+      'Save Order ID to re-download anytime via Order lookup',
+      'Consider Kundali Milan when matching is needed',
+      'Explore Features page for the full product map',
       includeRemedies && order.status === 'remedies_paid'
         ? 'Practice remedies gently and consistently'
         : 'Unlock remedies add-on only if you want chart-linked suggestions',

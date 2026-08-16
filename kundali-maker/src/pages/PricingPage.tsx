@@ -46,7 +46,7 @@ export function PricingPage() {
             <ul>
               <li>{lang === 'hi' ? '३६ अंक अष्टकूट' : '36-point Ashtakoot'}</li>
               <li>{lang === 'hi' ? 'मंगलिक तुलना' : 'Manglik compare'}</li>
-              <li>{lang === 'hi' ? 'PDF + WhatsApp' : 'PDF + WhatsApp'}</li>
+              <li>{lang === 'hi' ? 'तुरंत PDF' : 'Instant PDF'}</li>
             </ul>
             <div className="form-actions">
               <Link className="btn btn-primary" to="/milan">

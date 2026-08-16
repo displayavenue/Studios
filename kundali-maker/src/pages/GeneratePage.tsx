@@ -14,7 +14,6 @@ const empty = {
   latitude: CITIES[0].latitude,
   longitude: CITIES[0].longitude,
   timezoneOffsetMinutes: CITIES[0].timezoneOffsetMinutes,
-  whatsapp: '',
 }
 
 export function GeneratePage() {
@@ -72,7 +71,6 @@ export function GeneratePage() {
       ...form,
       name: form.name.trim(),
       language: lang,
-      whatsapp: form.whatsapp?.trim() || undefined,
     }
     const order = createDraftOrder(details)
     navigate(`/pay/${order.id}`)
@@ -172,18 +170,6 @@ export function GeneratePage() {
                   <option value="en">English</option>
                   <option value="hi">हिन्दी</option>
                 </select>
-              </div>
-              <div className="field">
-                <label htmlFor="wa">
-                  {lang === 'hi' ? 'WhatsApp (वैकल्पिक—PDF डिलीवरी)' : 'WhatsApp (optional—PDF delivery)'}
-                </label>
-                <input
-                  id="wa"
-                  inputMode="tel"
-                  placeholder="91XXXXXXXXXX"
-                  value={form.whatsapp}
-                  onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
-                />
               </div>
             </div>
             {error && <p className="alert">{error}</p>}

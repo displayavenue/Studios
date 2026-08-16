@@ -23,7 +23,6 @@ export function MilanPage() {
   const navigate = useNavigate()
   const [boy, setBoy] = useState<PersonForm>(emptyPerson)
   const [girl, setGirl] = useState<PersonForm>(emptyPerson)
-  const [whatsapp, setWhatsapp] = useState('')
   const [error, setError] = useState('')
 
   const cityOptions = useMemo(
@@ -63,7 +62,6 @@ export function MilanPage() {
       { ...boy, name: boy.name.trim(), gender: 'male', language: lang },
       { ...girl, name: girl.name.trim(), gender: 'female', language: lang },
       lang,
-      whatsapp || undefined,
     )
     navigate(`/milan/pay/${order.id}`)
   }
@@ -128,19 +126,6 @@ export function MilanPage() {
         <form onSubmit={onSubmit}>
           {personFields('boy', boy, setBoy, lang === 'hi' ? 'वर (पुरुष)' : 'Boy / Groom')}
           {personFields('girl', girl, setGirl, lang === 'hi' ? 'वधू (महिला)' : 'Girl / Bride')}
-
-          <div className="field" style={{ marginTop: '1rem' }}>
-            <label htmlFor="mwa">
-              {lang === 'hi' ? 'आपका WhatsApp (वैकल्पिक—PDF डिलीवरी हेतु)' : 'Your WhatsApp (optional—for PDF delivery)'}
-            </label>
-            <input
-              id="mwa"
-              inputMode="tel"
-              placeholder="91XXXXXXXXXX"
-              value={whatsapp}
-              onChange={(e) => setWhatsapp(e.target.value)}
-            />
-          </div>
 
           {error && <p className="alert">{error}</p>}
 

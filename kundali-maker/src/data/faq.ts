@@ -27,8 +27,8 @@ export const FAQS: FaqItem[] = [
   {
     qEn: 'Can I download the PDF again later?',
     qHi: 'PDF बाद में फिर डाउनलोड कर सकते हैं?',
-    aEn: 'Yes. Use Order lookup with your Order ID, or contact us on WhatsApp with your order details.',
-    aHi: 'हाँ। ऑर्डर ID से Order lookup करें, या WhatsApp पर ऑर्डर विवरण भेजें।',
+    aEn: 'Yes. Use Order lookup with your Order ID on this device to re-open and download again.',
+    aHi: 'हाँ। इस डिवाइस पर Order ID से Order lookup करके फिर खोलें व डाउनलोड करें।',
   },
   {
     qEn: 'Is Hindi supported?',
@@ -51,8 +51,8 @@ export const FAQS: FaqItem[] = [
   {
     qEn: 'Refund policy?',
     qHi: 'रिफंड नीति?',
-    aEn: 'Digital kundali PDFs are generally non-refundable once generated. If payment succeeded but PDF failed to unlock, contact support within 48 hours with Order ID.',
-    aHi: 'बनने के बाद डिजिटल कुंडली PDF सामान्यतः अप्रतिदेय हैं। भुगतान हुआ पर PDF न खुले तो ४८ घंटे में Order ID के साथ सपोर्ट से संपर्क करें।',
+    aEn: 'Digital kundali PDFs are generally non-refundable once generated. If payment succeeded but PDF failed to unlock, email support within 48 hours with Order ID.',
+    aHi: 'बनने के बाद डिजिटल कुंडली PDF सामान्यतः अप्रतिदेय हैं। भुगतान हुआ पर PDF न खुले तो ४८ घंटे में Order ID के साथ ईमेल करें।',
   },
   {
     qEn: 'Is my birth data safe?',
@@ -67,15 +67,21 @@ export const FAQS: FaqItem[] = [
     aHi: 'हाँ। मेनू से Sample खोलकर मुफ़्त SAMPLE PDF डाउनलोड करें (वॉटरमार्क डेमो)। असली कुंडली भुगतान के बाद खुलती है।',
   },
   {
-    qEn: 'Do you deliver on WhatsApp?',
-    qHi: 'क्या WhatsApp पर डिलीवरी होती है?',
-    aEn: 'After payment, download your PDF on the result page, then tap WhatsApp to send your Order ID for confirmation help. You can also share your WhatsApp number while ordering.',
-    aHi: 'भुगतान के बाद रिजल्ट पेज से PDF डाउनलोड करें, फिर WhatsApp पर Order ID भेजकर पुष्टि करवाएँ। ऑर्डर करते समय WhatsApp नंबर भी दे सकते हैं।',
+    qEn: 'Do I need to talk to someone?',
+    qHi: 'क्या किसी से बात करनी होगी?',
+    aEn: 'No. Jyotish Kundali is fully self-serve: pay → instant chart + PDF. There is no pandit call or WhatsApp consult in the product.',
+    aHi: 'नहीं। ज्योतिष कुंडली पूरी तरह स्वयं-सेवा है: पे → तुरंत चार्ट + PDF। उत्पाद में पंडित कॉल या WhatsApp परामर्श नहीं।',
   },
   {
     qEn: 'What is Kundali Milan?',
     qHi: 'कुंडली मिलान क्या है?',
-    aEn: 'Kundali Milan is Ashtakoot (36-point) gun matching plus manglik compare for a couple. It is live for ₹399 with a shareable PDF. Points are traditional guidance—not the only factor for marriage.',
-    aHi: 'कुंडली मिलान अष्टकूट (३६ अंक) गुण मिलान व मंगलिक तुलना है। ₹३९९ में PDF उपलब्ध। अंक पारंपरिक मार्गदर्शन हैं—विवाह का एकमात्र आधार नहीं।',
+    aEn: 'Kundali Milan is Ashtakoot (36-point) gun matching plus manglik compare for a couple. It is live for ₹399 with an instant shareable PDF. Points are traditional guidance—not the only factor for marriage.',
+    aHi: 'कुंडली मिलान अष्टकूट (३६ अंक) गुण मिलान व मंगलिक तुलना है। ₹३९९ में तुरंत PDF। अंक पारंपरिक मार्गदर्शन हैं—विवाह का एकमात्र आधार नहीं।',
+  },
+  {
+    qEn: 'Where can I see all features?',
+    qHi: 'सभी विशेषताएँ कहाँ देखूँ?',
+    aEn: 'Open the Features page for the full list of 50 self-serve capabilities (live and coming soon).',
+    aHi: 'Features पृष्ठ पर ५० स्वयं-सेवा क्षमताओं की पूरी सूची देखें (लाइव व जल्द)।',
   },
 ]

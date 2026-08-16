@@ -155,7 +155,7 @@ export function downloadSampleKundaliPdf(): void {
     'Yogas, dosha flags, aspects, do/don’t',
     '10-point summary — ~20 pages total',
     'Optional remedies add-on after unlock',
-    'WhatsApp help with your Order ID after payment',
+    'Re-download anytime with Order ID (same device)',
   ]
   for (const item of includes) {
     doc.text(`• ${item}`, margin, y)

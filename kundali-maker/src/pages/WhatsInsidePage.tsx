@@ -28,7 +28,7 @@ export function WhatsInsidePage() {
           },
           {
             t: 'डिलीवरी',
-            items: ['स्क्रीन पर चार्ट', 'पूर्ण ~२० पृष्ठ PDF', 'WhatsApp पुष्टि', 'ऑर्डर ID'],
+            items: ['स्क्रीन पर चार्ट', 'पूर्ण ~२० पृष्ठ PDF', 'ऑर्डर ID से पुनः डाउनलोड', 'बिना कॉल/चैट'],
           },
           {
             t: 'वैकल्पिक उपाय',
@@ -36,11 +36,11 @@ export function WhatsInsidePage() {
           },
           {
             t: 'कुंडली मिलान (लाइव)',
-            items: ['अष्टकूट ३६ अंक', 'मंगलिक तुलना', 'मिलान PDF', 'WhatsApp पुष्टि'],
+            items: ['अष्टकूट ३६ अंक', 'मंगलिक तुलना', 'मिलान PDF', 'तुरंत अनलॉक'],
           },
           {
             t: 'जल्द जुड़ने वाला',
-            items: ['अन्तर्दशा विस्तार', 'मुहूर्त', 'वर्षफल गहन', 'लाइव परामर्श'],
+            items: ['अन्तर्दशा विस्तार', 'मुहूर्त', 'वर्षफल गहन', 'शादी पैक'],
           },
         ]
       : [
@@ -62,7 +62,7 @@ export function WhatsInsidePage() {
           },
           {
             t: 'Delivery',
-            items: ['On-screen chart', 'Complete ~20 page PDF', 'WhatsApp confirm', 'Order ID'],
+            items: ['On-screen chart', 'Complete ~20 page PDF', 'Re-download via Order ID', 'No call/chat needed'],
           },
           {
             t: 'Complete report chapters',
@@ -81,11 +81,11 @@ export function WhatsInsidePage() {
           },
           {
             t: 'Kundali Milan (live)',
-            items: ['Ashtakoot 36 points', 'Manglik compare', 'Milan PDF', 'WhatsApp confirm'],
+            items: ['Ashtakoot 36 points', 'Manglik compare', 'Milan PDF', 'Instant unlock'],
           },
           {
             t: 'Coming next',
-            items: ['Antardasha detail', 'Muhurat', 'Varshphal deep-dive', 'Live consult'],
+            items: ['Antardasha detail', 'Muhurat', 'Varshphal deep-dive', 'Shaadi pack'],
           },
         ]
 
@@ -119,8 +119,8 @@ export function WhatsInsidePage() {
           <Link className="btn btn-secondary" to="/sample">
             {lang === 'hi' ? 'SAMPLE PDF' : 'SAMPLE PDF'}
           </Link>
-          <Link className="btn btn-ghost" to="/milan">
-            {lang === 'hi' ? 'मिलान' : 'Milan'}
+          <Link className="btn btn-ghost" to="/features">
+            {lang === 'hi' ? '५० विशेषताएँ' : '50 features'}
           </Link>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { LanguageProvider } from './hooks/useLanguage'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
 import { FaqPage } from './pages/FaqPage'
+import { FeaturesPage } from './pages/FeaturesPage'
 import { GeneratePage } from './pages/GeneratePage'
 import { HomePage } from './pages/HomePage'
 import { LegalPage } from './pages/LegalPage'
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="result/:orderId" element={<ResultPage />} />
             <Route path="remedies/:orderId" element={<RemediesPage />} />
             <Route path="services" element={<ServicesPage />} />
+            <Route path="features" element={<FeaturesPage />} />
             <Route path="pricing" element={<PricingPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="faq" element={<FaqPage />} />

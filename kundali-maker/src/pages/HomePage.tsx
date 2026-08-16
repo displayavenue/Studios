@@ -114,11 +114,11 @@ export function HomePage() {
               </p>
             </div>
             <div className="flow-step">
-              <h3>{lang === 'hi' ? 'कुंडली + PDF + WhatsApp' : 'Chart + PDF + WhatsApp'}</h3>
+              <h3>{lang === 'hi' ? 'कुंडली + PDF' : 'Chart + PDF'}</h3>
               <p>
                 {lang === 'hi'
-                  ? 'लग्न, ग्रह, नक्षत्र, महादशा—स्क्रीन, PDF, और WhatsApp पुष्टि।'
-                  : 'Lagna, planets, nakshatras, dasha—on screen, PDF, and WhatsApp confirm.'}
+                  ? 'लग्न, ग्रह, नक्षत्र, महादशा—स्क्रीन पर और PDF में। तुरंत, बिना कॉल।'
+                  : 'Lagna, planets, nakshatras, dasha—on screen and in your PDF. Instant, no calls.'}
               </p>
             </div>
             <div className="flow-step">
@@ -192,7 +192,7 @@ export function HomePage() {
                 <li>{lang === 'hi' ? '३६ अंक अष्टकूट' : '36-point Ashtakoot'}</li>
                 <li>{lang === 'hi' ? 'मंगलिक तुलना' : 'Manglik compare'}</li>
                 <li>{lang === 'hi' ? 'सरल सारांश + PDF' : 'Plain summary + PDF'}</li>
-                <li>{lang === 'hi' ? 'WhatsApp पुष्टि' : 'WhatsApp confirm'}</li>
+                <li>{lang === 'hi' ? 'तुरंत PDF डाउनलोड' : 'Instant PDF download'}</li>
               </ul>
             </div>
             <div className="price-block addon">
@@ -213,8 +213,8 @@ export function HomePage() {
             <Link className="btn btn-secondary" to="/milan">
               {lang === 'hi' ? 'मिलान करें' : 'Check Milan'}
             </Link>
-            <Link className="btn btn-ghost" to="/sample">
-              {lang === 'hi' ? 'SAMPLE PDF' : 'SAMPLE PDF'}
+            <Link className="btn btn-ghost" to="/features">
+              {lang === 'hi' ? '५० विशेषताएँ' : '50 features'}
             </Link>
           </div>
         </div>

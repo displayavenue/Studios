@@ -1,23 +1,10 @@
-import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { SITE, whatsappLink } from '../data/site'
+import { SITE } from '../data/site'
 import { useLanguage } from '../hooks/useLanguage'
 import { PageHero, ContentSection } from '../components/PageHero'
 
 export function ContactPage() {
   const { lang } = useLanguage()
-  const [name, setName] = useState('')
-  const [orderId, setOrderId] = useState('')
-  const [message, setMessage] = useState('')
-
-  function onSubmit(e: FormEvent) {
-    e.preventDefault()
-    const body =
-      lang === 'hi'
-        ? `नमस्ते, मेरा नाम ${name || '—'} है।\nऑर्डर: ${orderId || '—'}\nसंदेश: ${message || '—'}`
-        : `Namaste, my name is ${name || '—'}.\nOrder: ${orderId || '—'}\nMessage: ${message || '—'}`
-    window.open(whatsappLink(body), '_blank', 'noopener,noreferrer')
-  }
 
   return (
     <div className="page-wrap">
@@ -26,21 +13,13 @@ export function ContactPage() {
           title={lang === 'hi' ? 'संपर्क' : 'Contact'}
           subtitle={
             lang === 'hi'
-              ? 'ऑर्डर सहायता, PDF, या लॉन्च अलर्ट—WhatsApp सबसे तेज़ है।'
-              : 'Order help, PDF issues, or launch alerts—WhatsApp is fastest.'
+              ? 'यह स्वयं-सेवा साइट है—कुंडली/मिलान तुरंत PDF से मिलते हैं। दुर्लभ भुगतान समस्या हेतु ईमेल।'
+              : 'This is a self-serve site—kundali/milan unlock as instant PDFs. Email only for rare payment issues.'
           }
         />
 
         <ContentSection>
           <div className="kv">
-            <div>
-              <span>WhatsApp</span>
-              <span>
-                <a href={whatsappLink()} target="_blank" rel="noreferrer">
-                  {SITE.whatsappDisplay}
-                </a>
-              </span>
-            </div>
             <div>
               <span>Email</span>
               <span>
@@ -53,33 +32,17 @@ export function ContactPage() {
                 <Link to="/orders">{lang === 'hi' ? 'Order lookup' : 'Order lookup'}</Link>
               </span>
             </div>
+            <div>
+              <span>{lang === 'hi' ? 'विशेषताएँ' : 'Features'}</span>
+              <span>
+                <Link to="/features">{lang === 'hi' ? '५० विशेषताएँ देखें' : 'See 50 features'}</Link>
+              </span>
+            </div>
           </div>
-        </ContentSection>
-
-        <ContentSection title={lang === 'hi' ? 'WhatsApp संदेश भेजें' : 'Send a WhatsApp message'}>
-          <form onSubmit={onSubmit} className="form-grid">
-            <div className="field">
-              <label htmlFor="cname">{lang === 'hi' ? 'नाम' : 'Name'}</label>
-              <input id="cname" value={name} onChange={(e) => setName(e.target.value)} />
-            </div>
-            <div className="field">
-              <label htmlFor="oid">{lang === 'hi' ? 'ऑर्डर ID (यदि हो)' : 'Order ID (if any)'}</label>
-              <input id="oid" value={orderId} onChange={(e) => setOrderId(e.target.value)} placeholder="JK-…" />
-            </div>
-            <div className="field">
-              <label htmlFor="msg">{lang === 'hi' ? 'संदेश' : 'Message'}</label>
-              <input id="msg" value={message} onChange={(e) => setMessage(e.target.value)} required />
-            </div>
-            <div className="form-actions">
-              <button type="submit" className="btn btn-primary">
-                {lang === 'hi' ? 'WhatsApp खोलें' : 'Open WhatsApp'}
-              </button>
-            </div>
-          </form>
-          <p className="muted" style={{ marginTop: '0.75rem', fontSize: '0.9rem' }}>
+          <p className="muted" style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
             {lang === 'hi'
-              ? 'नोट: लाइव नंबर अपडेट होने तक डेमो नंबर दिख सकता है—site.ts में बदलें।'
-              : 'Note: Replace the demo WhatsApp number in site settings when ready.'}
+              ? 'कोई फोन/WhatsApp परामर्श या पंडित चैट नहीं—भुगतान के बाद रिपोर्ट अपने आप खुलती है।'
+              : 'No phone/WhatsApp consults or pandit chat—reports unlock automatically after payment.'}
           </p>
         </ContentSection>
       </div>

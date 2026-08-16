@@ -3,15 +3,14 @@ import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { copy } from '../lib/i18n'
 import type { Language } from '../astrology/types'
 import { useLanguage } from '../hooks/useLanguage'
-import { whatsappLink } from '../data/site'
 
 const NAV = [
+  { to: '/features', en: 'Features', hi: 'विशेषताएँ' },
   { to: '/services', en: 'Services', hi: 'सेवाएँ' },
   { to: '/milan', en: 'Milan', hi: 'मिलान' },
   { to: '/sample', en: 'Sample', hi: 'नमूना' },
   { to: '/pricing', en: 'Pricing', hi: 'मूल्य' },
   { to: '/faq', en: 'FAQ', hi: 'FAQ' },
-  { to: '/contact', en: 'Contact', hi: 'संपर्क' },
 ] as const
 
 export function Layout() {
@@ -79,15 +78,9 @@ export function Layout() {
             <button type="button" className="drawer-link" onClick={() => go('/orders')}>
               {lang === 'hi' ? 'ऑर्डर खोजें' : 'Order lookup'}
             </button>
-            <a
-              className="drawer-link"
-              href={whatsappLink()}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setMenuOpen(false)}
-            >
-              WhatsApp
-            </a>
+            <button type="button" className="drawer-link" onClick={() => go('/contact')}>
+              {lang === 'hi' ? 'संपर्क' : 'Contact'}
+            </button>
           </div>
         )}
       </header>
@@ -102,11 +95,12 @@ export function Layout() {
             <strong>{copy.brand(lang)}</strong>
             <p>
               {lang === 'hi'
-                ? 'प्रामाणिक वैदिक कुंडली · PDF · वैकल्पिक उपाय'
-                : 'Authentic Vedic kundali · PDF · optional remedies'}
+                ? 'स्वयं-सेवा वैदिक कुंडली · PDF · कोई कॉल नहीं'
+                : 'Self-serve Vedic kundali · PDF · no calls required'}
             </p>
           </div>
           <div className="footer-links">
+            <Link to="/features">{lang === 'hi' ? '५० विशेषताएँ' : '50 features'}</Link>
             <Link to="/services">{lang === 'hi' ? 'सेवाएँ' : 'Services'}</Link>
             <Link to="/milan">{lang === 'hi' ? 'कुंडली मिलान' : 'Kundali Milan'}</Link>
             <Link to="/sample">{lang === 'hi' ? 'नमूना PDF' : 'Sample PDF'}</Link>
@@ -125,21 +119,11 @@ export function Layout() {
           </div>
           <p className="footer-note">
             {lang === 'hi'
-              ? 'जन्म विवरण गोपनीय। रिपोर्ट मार्गदर्शन हेतु—चिकित्सा/कानूनी सलाह नहीं।'
-              : 'Birth details kept private. Reports are guidance—not medical or legal advice.'}
+              ? 'जन्म विवरण गोपनीय। रिपोर्ट मार्गदर्शन हेतु—चिकित्सा/कानूनी सलाह नहीं। मानव परामर्श आवश्यक नहीं।'
+              : 'Birth details kept private. Reports are guidance—not medical or legal advice. No human consult required.'}
           </p>
         </div>
       </footer>
-
-      <a
-        className="wa-float"
-        href={whatsappLink('Namaste, I want help ordering from Jyotish Kundali.')}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="WhatsApp"
-      >
-        WhatsApp
-      </a>
     </div>
   )
 }
