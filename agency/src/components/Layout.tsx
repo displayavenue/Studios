@@ -7,6 +7,7 @@ import { TrackingScripts } from "./TrackingScripts";
 import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
 import { ScrollToTop } from "./ScrollToTop";
 import { StickyMobileCta } from "./StickyMobileCta";
+import { LiveChat } from "./LiveChat";
 import "./Placeholder.css";
 
 export function Layout() {
@@ -23,6 +24,7 @@ export function Layout() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <LiveChat />
       <StickyMobileCta />
     </div>
   );

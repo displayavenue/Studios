@@ -3,6 +3,7 @@ const QUOTES_API = "./quotes/api.php";
 const TOKEN_KEY = "da_agency_admin_token";
 /** Quotations run on Hostinger (PHP + MariaDB) — no Vercel. */
 const QUOTE_NAV = {
+  livechat: "Live Chat",
   quotations: "Quotations & Payments",
   invoices: "Create Invoice",
 };
@@ -315,17 +316,214 @@ function renderNav() {
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }${key === "quotations" || key === "invoices" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+        }${key === "quotations" || key === "invoices" || key === "livechat" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
     btn.onclick = () => {
       setMobileNav(false);
-      if (btn.dataset.key === "quotations") openQuotations();
+      if (btn.dataset.key === "livechat") openLiveChat();
+      else if (btn.dataset.key === "quotations") openQuotations();
       else if (btn.dataset.key === "invoices") openInvoices();
       else openCollection(btn.dataset.key);
     };
   });
+}
+
+function openLiveChat() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "livechat";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.livechat;
+  $("#panel-sub").textContent =
+    "Reply to website visitors in real time. New chats also email info@displayavenue.com when mail() works.";
+  renderNav();
+  renderLiveChatInbox();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+const CHAT_API = "./chat-api.php";
+
+async function chatApi(action, payload = {}) {
+  const headers = { "Content-Type": "application/json" };
+  if (state.token) {
+    headers.Authorization = `Bearer ${state.token}`;
+    headers["X-DA-Admin-Token"] = state.token;
+  }
+  const res = await fetch(CHAT_API, {
+    method: "POST",
+    credentials: "include",
+    headers,
+    body: JSON.stringify({ action, ...payload }),
+  });
+  const json = await res.json().catch(() => ({ ok: false, error: "Invalid chat response" }));
+  if (res.status === 401 || json.code === "auth") {
+    state.authed = false;
+    state.token = "";
+    localStorage.removeItem(TOKEN_KEY);
+    showLogin(true);
+    throw new Error(json.error || "Please log in again");
+  }
+  if (!res.ok || json.ok === false) throw new Error(json.error || "Chat request failed");
+  return json;
+}
+
+let liveChatSelected = null;
+let liveChatTimer = null;
+
+function stopLiveChatPolling() {
+  if (liveChatTimer) {
+    clearInterval(liveChatTimer);
+    liveChatTimer = null;
+  }
+}
+
+async function renderLiveChatInbox() {
+  stopLiveChatPolling();
+  const wrap = $("#editor-wrap");
+  wrap.innerHTML = `<div class="card"><p class="hint">Loading live chats…</p></div>`;
+  try {
+    const list = await chatApi("list");
+    const chats = list.chats || [];
+    wrap.innerHTML = `
+      <div class="livechat-layout">
+        <section class="card livechat-list">
+          <div class="list-item-head" style="margin-bottom:.75rem">
+            <h3 style="margin:0">Conversations</h3>
+            <button type="button" class="btn btn-ghost" id="livechat-refresh">Refresh</button>
+          </div>
+          <div id="livechat-items">
+            ${
+              chats.length
+                ? chats
+                    .map(
+                      (c) => `
+              <button type="button" class="livechat-item ${liveChatSelected === c.id ? "active" : ""}" data-chat-id="${escapeAttr(c.id)}">
+                <div class="list-item-head">
+                  <strong>${escapeHtml(c.visitor?.name || "Visitor")}${c.unreadAdmin ? ` <span class="livechat-unread">${c.unreadAdmin}</span>` : ""}</strong>
+                  <span class="hint" style="margin:0">${escapeHtml((c.updatedAt || "").replace("T", " ").slice(0, 16))}</span>
+                </div>
+                <p class="livechat-preview">${escapeHtml(c.lastMessage?.text || "No messages")}</p>
+                <p class="hint" style="margin:.25rem 0 0">${escapeHtml(c.status || "open")}${c.visitor?.phone ? " · " + escapeHtml(c.visitor.phone) : ""}</p>
+              </button>`,
+                    )
+                    .join("")
+                : `<p class="empty">No chats yet. Open the website and click Chat.</p>`
+            }
+          </div>
+        </section>
+        <section class="card livechat-thread" id="livechat-thread">
+          <p class="empty">Select a conversation to reply.</p>
+        </section>
+      </div>`;
+    $("#livechat-refresh").onclick = () => renderLiveChatInbox();
+    wrap.querySelectorAll("[data-chat-id]").forEach((btn) => {
+      btn.onclick = () => openLiveChatThread(btn.getAttribute("data-chat-id"));
+    });
+    if (liveChatSelected) openLiveChatThread(liveChatSelected);
+    liveChatTimer = setInterval(() => {
+      if (state.current === "livechat") {
+        if (liveChatSelected) openLiveChatThread(liveChatSelected, true);
+        else refreshLiveChatListSilent();
+      }
+    }, 4000);
+  } catch (e) {
+    wrap.innerHTML = `<div class="card"><p class="empty">${escapeHtml(e.message || "Could not load chats")}</p></div>`;
+  }
+}
+
+async function refreshLiveChatListSilent() {
+  try {
+    const list = await chatApi("list");
+    const box = $("#livechat-items");
+    if (!box) return;
+    const chats = list.chats || [];
+    box.innerHTML = chats.length
+      ? chats
+          .map(
+            (c) => `
+        <button type="button" class="livechat-item ${liveChatSelected === c.id ? "active" : ""}" data-chat-id="${escapeAttr(c.id)}">
+          <div class="list-item-head">
+            <strong>${escapeHtml(c.visitor?.name || "Visitor")}${c.unreadAdmin ? ` <span class="livechat-unread">${c.unreadAdmin}</span>` : ""}</strong>
+            <span class="hint" style="margin:0">${escapeHtml((c.updatedAt || "").replace("T", " ").slice(0, 16))}</span>
+          </div>
+          <p class="livechat-preview">${escapeHtml(c.lastMessage?.text || "No messages")}</p>
+          <p class="hint" style="margin:.25rem 0 0">${escapeHtml(c.status || "open")}${c.visitor?.phone ? " · " + escapeHtml(c.visitor.phone) : ""}</p>
+        </button>`,
+          )
+          .join("")
+      : `<p class="empty">No chats yet.</p>`;
+    box.querySelectorAll("[data-chat-id]").forEach((btn) => {
+      btn.onclick = () => openLiveChatThread(btn.getAttribute("data-chat-id"));
+    });
+  } catch {
+    /* ignore */
+  }
+}
+
+async function openLiveChatThread(id, silent = false) {
+  liveChatSelected = id;
+  const thread = $("#livechat-thread");
+  if (!thread) return;
+  if (!silent) thread.innerHTML = `<p class="hint">Loading…</p>`;
+  try {
+    const res = await chatApi("get", { conversationId: id });
+    const chat = res.chat;
+    const v = chat.visitor || {};
+    thread.innerHTML = `
+      <div class="list-item-head">
+        <div>
+          <h3 style="margin:0">${escapeHtml(v.name || "Visitor")}</h3>
+          <p class="hint" style="margin:.2rem 0 0">${escapeHtml(v.phone || "No phone")} ${v.email ? "· " + escapeHtml(v.email) : ""} · page ${escapeHtml(v.page || "/")}</p>
+        </div>
+        <button type="button" class="btn btn-ghost" id="livechat-close">Close chat</button>
+      </div>
+      <div class="livechat-msgs" id="livechat-msgs">
+        ${(chat.messages || [])
+          .map(
+            (m) => `
+          <div class="livechat-bubble ${m.role === "visitor" ? "is-visitor" : "is-agent"}">
+            <strong>${m.role === "visitor" ? "Visitor" : "You"}</strong>
+            <p>${escapeHtml(m.text || "")}</p>
+            <span>${escapeHtml((m.at || "").replace("T", " ").slice(0, 19))}</span>
+          </div>`,
+          )
+          .join("")}
+      </div>
+      <form id="livechat-reply" class="livechat-reply">
+        <textarea id="livechat-text" rows="3" placeholder="Type a reply…" required></textarea>
+        <button type="submit" class="btn btn-gold">Send reply</button>
+      </form>`;
+    const msgs = $("#livechat-msgs");
+    if (msgs) msgs.scrollTop = msgs.scrollHeight;
+    $("#livechat-close").onclick = async () => {
+      await chatApi("close", { conversationId: id });
+      toast("Chat closed");
+      renderLiveChatInbox();
+    };
+    $("#livechat-reply").onsubmit = async (e) => {
+      e.preventDefault();
+      const text = $("#livechat-text").value.trim();
+      if (!text) return;
+      try {
+        await chatApi("reply", { conversationId: id, text });
+        $("#livechat-text").value = "";
+        openLiveChatThread(id);
+        refreshLiveChatListSilent();
+      } catch (err) {
+        toast(err.message, "err");
+      }
+    };
+    refreshLiveChatListSilent();
+  } catch (e) {
+    if (!silent) thread.innerHTML = `<p class="empty">${escapeHtml(e.message)}</p>`;
+  }
 }
 
 function openQuotations() {
@@ -1965,6 +2163,10 @@ async function enterApp(collections) {
   state.collections = collections || {};
   showLogin(false);
   renderNav();
+  if (state.current === "livechat") {
+    openLiveChat();
+    return;
+  }
   if (state.current === "quotations") {
     openQuotations();
     return;
@@ -2011,7 +2213,8 @@ async function init() {
 
   $("#save-btn").onclick = save;
   $("#reload-btn").onclick = () => {
-    if (state.current === "quotations") openQuotations();
+    if (state.current === "livechat") openLiveChat();
+    else if (state.current === "quotations") openQuotations();
     else if (state.current === "invoices") openInvoices();
     else if (state.current) openCollection(state.current);
   };

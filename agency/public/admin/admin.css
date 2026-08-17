@@ -974,3 +974,94 @@ body.quote-workspace #save-btn {
   .img-upload__preview,
   .img-upload__preview--empty { width: 100%; height: 140px; }
 }
+
+/* Live Chat inbox */
+.livechat-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.4fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+.livechat-list, .livechat-thread {
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+}
+.livechat-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(15, 40, 70, 0.1);
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.75rem 0.85rem;
+  margin-bottom: 0.55rem;
+  cursor: pointer;
+}
+.livechat-item.active,
+.livechat-item:hover {
+  border-color: rgba(31, 111, 235, 0.45);
+  background: #f5f9ff;
+}
+.livechat-preview {
+  margin: 0.35rem 0 0;
+  font-size: 0.86rem;
+  color: #64748b;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.livechat-unread {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: #e11d48;
+  color: #fff;
+  font-size: 0.7rem;
+}
+.livechat-msgs {
+  flex: 1;
+  overflow: auto;
+  margin: 0.85rem 0;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 40, 70, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-height: 420px;
+}
+.livechat-bubble {
+  max-width: 85%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 12px;
+  background: #e8eef7;
+}
+.livechat-bubble.is-visitor {
+  align-self: flex-start;
+}
+.livechat-bubble.is-agent {
+  align-self: flex-end;
+  background: #dbeafe;
+}
+.livechat-bubble p { margin: 0.2rem 0; white-space: pre-wrap; }
+.livechat-bubble span { font-size: 0.72rem; color: #64748b; }
+.livechat-reply {
+  display: grid;
+  gap: 0.55rem;
+}
+.livechat-reply textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 40, 70, 0.14);
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+}
+@media (max-width: 900px) {
+  .livechat-layout { grid-template-columns: 1fr; }
+}
