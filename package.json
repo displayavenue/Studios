@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy:hostinger": "bash scripts/deploy-hostinger.sh"
+    "deploy:hostinger": "bash scripts/deploy-hostinger.sh",
+    "render:slideshow": "node scripts/render-slideshow.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
