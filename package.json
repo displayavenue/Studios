@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy:hostinger": "bash scripts/deploy-hostinger.sh"
+    "deploy:hostinger": "bash scripts/deploy-hostinger.sh",
+    "render:da-film": "node scripts/da-film/render-film.mjs",
+    "generate:da-vo": "python3 scripts/da-film/generate-vo.py"
   },
   "dependencies": {
     "react": "^19.2.8",
