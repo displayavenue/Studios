@@ -34,13 +34,17 @@ export function Services() {
               <Link to="/services/web-development">Web Development</Link>. You can
               also browse{" "}
               <Link to="/packages">monthly packages</Link>,{" "}
-              <Link to="/industries">industry plans</Link>, and{" "}
+              <Link to="/industries">industry plans</Link>,{" "}
+              <Link to="/locations">city pages</Link>, and{" "}
               <Link to="/free-tools">free tools</Link>.
             </p>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "1rem" }}>
             <Link to="/contact" className="btn btn-primary">
               Request Custom Solution →
+            </Link>
+            <Link to="/locations" className="btn btn-outline">
+              Browse by city
             </Link>
             <Link to="/packages" className="btn btn-outline">
               View Packages
@@ -100,6 +104,14 @@ export function Services() {
                   <p>{item.summary.slice(0, 90)}…</p>
                 </Link>
               ))}
+              <Link to="/locations" className="category-card">
+                <h3>Services by city</h3>
+                <p>Google Ads, SEO, Meta Ads and more across 23 Indian cities…</p>
+              </Link>
+              <Link to="/free-tools" className="category-card">
+                <h3>Free growth tools</h3>
+                <p>ROI calculator, SEO checklist, Strategy Maker, Data extractor…</p>
+              </Link>
             </div>
           </section>
         </div>

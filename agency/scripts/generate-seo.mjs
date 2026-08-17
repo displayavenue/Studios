@@ -48,6 +48,7 @@ const staticPages = [
   ["/services", "0.9", "weekly"],
   ["/industries", "0.9", "weekly"],
   ["/industry-solutions", "0.85", "weekly"],
+  ["/locations", "0.9", "weekly"],
   ["/solutions", "0.9", "weekly"],
   ["/ai-platform", "0.9", "weekly"],
   ["/packages", "0.9", "weekly"],
@@ -98,6 +99,28 @@ for (const item of items(combos)) {
   if (item?.industrySlug && item?.serviceSlug && item?.indexable !== false) {
     urls.push({
       path: `/industries/${item.industrySlug}/${item.serviceSlug}`,
+      priority: "0.7",
+      changefreq: "monthly",
+    });
+  }
+}
+
+// City × service SEO pages (free traffic)
+const seoCities = [
+  "mumbai", "delhi-ncr", "bengaluru", "hyderabad", "chennai", "pune", "ahmedabad",
+  "kolkata", "jaipur", "surat", "lucknow", "chandigarh", "indore", "coimbatore",
+  "kochi", "nagpur", "vadodara", "visakhapatnam", "noida", "gurugram", "thane",
+  "navi-mumbai", "mira-road",
+];
+const seoServices = [
+  "google-ads", "meta-ads", "seo", "local-seo", "social-media-marketing",
+  "website-development", "lead-generation",
+];
+for (const city of seoCities) {
+  urls.push({ path: `/locations/${city}`, priority: "0.75", changefreq: "monthly" });
+  for (const service of seoServices) {
+    urls.push({
+      path: `/locations/${city}/${service}`,
       priority: "0.7",
       changefreq: "monthly",
     });

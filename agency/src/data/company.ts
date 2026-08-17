@@ -65,6 +65,7 @@ export const navItems: NavItem[] = [
   { label: "Solutions", href: "/solutions", mega: "solutions" },
   { label: "AI Platform", href: "/ai-platform", mega: "aiPlatform" },
   { label: "Packages", href: "/packages", mega: false },
+  { label: "Locations", href: "/locations", mega: false },
   { label: "Free Tools", href: "/free-tools", mega: false },
   { label: "Case Studies", href: "/case-studies", mega: false },
   { label: "Portfolio", href: "/portfolio", mega: false },

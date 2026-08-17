@@ -49,6 +49,7 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/services', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/industries', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/industry-solutions', 'priority' => '0.85', 'changefreq' => 'weekly'],
+    ['path' => '/locations', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/solutions', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/ai-platform', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/packages', 'priority' => '0.9', 'changefreq' => 'weekly'],
@@ -99,6 +100,27 @@ function da_collect_urls(string $contentDir): array {
     if (!empty($item['industrySlug']) && !empty($item['serviceSlug']) && ($item['indexable'] ?? true)) {
       $urls[] = [
         'path' => '/industries/' . $item['industrySlug'] . '/' . $item['serviceSlug'],
+        'priority' => '0.7',
+        'changefreq' => 'monthly',
+      ];
+    }
+  }
+
+  $seoCities = [
+    'mumbai', 'delhi-ncr', 'bengaluru', 'hyderabad', 'chennai', 'pune', 'ahmedabad',
+    'kolkata', 'jaipur', 'surat', 'lucknow', 'chandigarh', 'indore', 'coimbatore',
+    'kochi', 'nagpur', 'vadodara', 'visakhapatnam', 'noida', 'gurugram', 'thane',
+    'navi-mumbai', 'mira-road',
+  ];
+  $seoServices = [
+    'google-ads', 'meta-ads', 'seo', 'local-seo', 'social-media-marketing',
+    'website-development', 'lead-generation',
+  ];
+  foreach ($seoCities as $city) {
+    $urls[] = ['path' => '/locations/' . $city, 'priority' => '0.75', 'changefreq' => 'monthly'];
+    foreach ($seoServices as $service) {
+      $urls[] = [
+        'path' => '/locations/' . $city . '/' . $service,
         'priority' => '0.7',
         'changefreq' => 'monthly',
       ];

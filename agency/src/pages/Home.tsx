@@ -133,9 +133,12 @@ export function Home() {
               </Link>
             ))}
           </div>
-          <div className="reveal" style={{ marginTop: "1.5rem" }}>
+          <div className="reveal" style={{ marginTop: "1.5rem", display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
             <Link to="/services" className="btn btn-ghost">
               See all services →
+            </Link>
+            <Link to="/locations" className="btn btn-ghost">
+              Find your city →
             </Link>
           </div>
         </div>

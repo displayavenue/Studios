@@ -64,8 +64,8 @@
 }
 
 .footer-grid--lean {
-  grid-template-columns: 1.35fr repeat(4, 1fr) 1.05fr;
-  gap: 1.25rem;
+  grid-template-columns: 1.25fr repeat(5, minmax(0, 1fr));
+  gap: 1.15rem;
 }
 
 .footer-brand p {

@@ -21,6 +21,8 @@ import { SeoChecklist } from "./pages/tools/SeoChecklist";
 import { LocalSeoScore } from "./pages/tools/LocalSeoScore";
 import { CitationDirectory } from "./pages/tools/CitationDirectory";
 import { IndustryReport } from "./pages/tools/IndustryReport";
+import { LocationCityPage, LocationServicePage } from "./pages/LocationService";
+import { LocationsHub } from "./pages/Locations";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -45,6 +47,9 @@ export default function App() {
           <Route path="industry-solutions" element={<IndustrySolutions />} />
           <Route path="industries/:industry/:service" element={<IndustryServiceCombo />} />
           <Route path="industries/:slug" element={<IndustryDetail />} />
+          <Route path="locations" element={<LocationsHub />} />
+          <Route path="locations/:city/:service" element={<LocationServicePage />} />
+          <Route path="locations/:city" element={<LocationCityPage />} />
           <Route path="packages" element={<Packages />} />
           <Route path="packages/:slug" element={<PackageDetail />} />
           <Route path="free-tools" element={<FreeTools />} />

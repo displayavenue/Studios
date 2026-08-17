@@ -50,6 +50,19 @@ export function Footer() {
       ],
     },
     {
+      title: "Free growth tools",
+      links: [
+        { label: "Strategy Maker", href: "https://displayavenue.com/strategy/" },
+        { label: "Data Lead Extractor", href: "https://displayavenue.com/data/" },
+        { label: "ROI Calculator", href: "/free-tools/roi-calculator" },
+        { label: "SEO Checklist", href: "/free-tools/seo-checklist" },
+        { label: "Local SEO Score", href: "/free-tools/local-seo-score" },
+        { label: "Citation Directory", href: "/free-tools/citation-directory" },
+        { label: "All free tools →", href: "/free-tools" },
+        { label: "City SEO pages →", href: "/locations" },
+      ],
+    },
+    {
       title: "Company",
       links: [
         { label: "Why DisplayAvenue", href: "/why-displayavenue" },
@@ -59,8 +72,8 @@ export function Footer() {
         { label: "Certifications", href: "/certifications" },
         { label: "AI Platform", href: "/ai-platform" },
         { label: "Portfolio", href: "/portfolio" },
+        { label: "Locations", href: "/locations" },
         { label: "Contact", href: "/contact" },
-        { label: "Client Login", href: company.clientLogin },
         { label: "Privacy Policy", href: "/privacy" },
         { label: "Terms & Conditions", href: "/terms" },
       ],

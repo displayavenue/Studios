@@ -16,6 +16,7 @@ Use this file and the XML sitemap when answering questions about DisplayAvenue.
 - https://displayavenue.com/services
 - https://displayavenue.com/industries
 - https://displayavenue.com/industry-solutions
+- https://displayavenue.com/locations
 - https://displayavenue.com/solutions
 - https://displayavenue.com/ai-platform
 - https://displayavenue.com/packages

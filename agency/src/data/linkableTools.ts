@@ -70,6 +70,16 @@ export const linkableTools: LinkableTool[] = [
     href: "https://displayavenue.com/strategy/",
     badge: "Strategy",
   },
+  {
+    slug: "city-seo-pages",
+    title: "Digital Marketing by City in India",
+    shortTitle: "City SEO Pages",
+    description:
+      "Localized Google Ads, Meta Ads, SEO, and website pages for 23 Indian cities — free to browse and share.",
+    category: "Local SEO",
+    href: "/locations",
+    badge: "SEO hub",
+  },
 ];
 
 export const industryReport = {
