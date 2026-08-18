@@ -122,8 +122,16 @@ function setDirty(v) {
 }
 
 function showLogin(show) {
-  $("#login-view").hidden = !show;
-  $("#cms-view").hidden = show;
+  const login = $("#login-view");
+  const cms = $("#cms-view");
+  if (login) {
+    login.hidden = !show;
+    login.style.display = show ? "" : "none";
+  }
+  if (cms) {
+    cms.hidden = show;
+    cms.style.display = show ? "none" : "";
+  }
   if (show) setMobileNav(false);
 }
 
