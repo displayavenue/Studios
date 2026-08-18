@@ -5,6 +5,7 @@ const TOKEN_KEY = "da_agency_admin_token";
 const QUOTE_NAV = {
   livechat: "Live Chat",
   automation: "Lead Automation",
+  social: "Social Studio",
   quotations: "Quotations & Payments",
   invoices: "Create Invoice",
 };
@@ -317,7 +318,7 @@ function renderNav() {
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }${key === "quotations" || key === "invoices" || key === "livechat" || key === "automation" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+        }${["quotations", "invoices", "livechat", "automation", "social"].includes(key) ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
@@ -325,6 +326,7 @@ function renderNav() {
       setMobileNav(false);
       if (btn.dataset.key === "livechat") openLiveChat();
       else if (btn.dataset.key === "automation") openAutomation();
+      else if (btn.dataset.key === "social") openSocialStudio();
       else if (btn.dataset.key === "quotations") openQuotations();
       else if (btn.dataset.key === "invoices") openInvoices();
       else openCollection(btn.dataset.key);
@@ -524,6 +526,387 @@ async function renderAutomationPanel() {
   } catch (e) {
     wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load automation")}</p>`;
   }
+}
+
+async function openSocialStudio() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "social";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.social;
+  $("#panel-sub").textContent =
+    "Trend-aware posts + reel scripts. Schedule once — publish to Facebook, Instagram, GMB, LinkedIn and more.";
+  renderNav();
+  await renderSocialStudio();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+let socialDraft = {
+  caption: "",
+  platforms: [],
+  scheduledAtLocal: "",
+  trend: null,
+  reelScript: null,
+  hashtags: [],
+  mediaUrls: [],
+  id: null,
+  status: "draft",
+};
+
+function toLocalInputValue(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "";
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function fromLocalInputValue(local) {
+  if (!local) return null;
+  const d = new Date(local);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toISOString();
+}
+
+async function renderSocialStudio() {
+  const wrap = $("#editor-wrap");
+  wrap.innerHTML = `<p class="hint">Loading Social Studio…</p>`;
+  try {
+    const [statusRes, listRes] = await Promise.all([api("social-status"), api("social-list")]);
+    const st = statusRes.status || {};
+    const settings = statusRes.settings || {};
+    const platforms = statusRes.platforms || [];
+    const trends = statusRes.trends || [];
+    const posts = listRes.posts || [];
+    if (!socialDraft.platforms.length) socialDraft.platforms = [...(settings.defaultPlatforms || [])];
+
+    const badge = (ok, label) =>
+      `<span class="auto-badge ${ok ? "ok" : "warn"}">${escapeHtml(label)}</span>`;
+
+    wrap.innerHTML = `
+      <div class="social-grid">
+        <section class="card">
+          <div class="list-item-head">
+            <h3 style="margin:0">Compose & schedule</h3>
+            <div class="auto-badges">
+              ${badge(st.localFile, st.localFile ? "social-local.php" : "Add social-local.php")}
+              ${badge(st.ayrshare, st.ayrshare ? "Ayrshare connected" : "Ayrshare key missing")}
+              ${badge(st.meta, "Facebook")}
+              ${badge(st.instagram, "Instagram")}
+              ${badge(st.linkedin, "LinkedIn")}
+              ${badge(st.gbp, "GMB")}
+              ${badge(st.ai, st.ai ? "AI on" : "Template AI")}
+            </div>
+          </div>
+          <p class="hint">Organic reach comes from consistency + trend hooks. This studio auto-writes captions/reel scripts and queues publishes. Connect <code>social-local.php</code> (Ayrshare recommended for 10+ networks).</p>
+
+          <h4>This week’s trend scores</h4>
+          <div class="social-trends">
+            ${trends
+              .map(
+                (t, i) => `
+              <button type="button" class="social-trend" data-trend-idx="${i}">
+                <strong>${escapeHtml(t.hook || t.topic)}</strong>
+                <span>Score ${escapeHtml(String(t.score))} · ${escapeHtml(t.format)} · ${escapeHtml(String(t.bestHourIst))}:00 IST</span>
+              </button>`,
+              )
+              .join("")}
+          </div>
+
+          <div class="row-actions" style="margin:0.75rem 0;display:flex;gap:.5rem;flex-wrap:wrap">
+            <button type="button" class="btn btn-gold" id="social-gen">Generate post + reel script</button>
+            <button type="button" class="btn btn-ghost" id="social-autopilot">Autopilot fill week</button>
+            <button type="button" class="btn btn-ghost" id="social-run-due">Publish due now</button>
+          </div>
+
+          <label>Caption<textarea id="social-caption" rows="8">${escapeHtml(socialDraft.caption || "")}</textarea></label>
+          <label>Image / video URLs (one per line, public HTTPS)<textarea id="social-media" rows="2" placeholder="https://displayavenue.com/images/...">${escapeHtml((socialDraft.mediaUrls || []).join("\n"))}</textarea></label>
+          <label>Schedule (your local time)<input id="social-when" type="datetime-local" value="${escapeAttr(socialDraft.scheduledAtLocal || "")}"/></label>
+
+          <h4>Platforms</h4>
+          <div class="social-platforms">
+            ${platforms
+              .map((p) => {
+                const on = socialDraft.platforms.includes(p.id);
+                return `<label class="check-row"><input type="checkbox" data-platform="${escapeAttr(p.id)}" ${on ? "checked" : ""}/> ${escapeHtml(p.name)}</label>`;
+              })
+              .join("")}
+          </div>
+
+          <div id="social-reel" class="social-reel">${
+            socialDraft.reelScript
+              ? `<h4>Reel / Shorts script</h4><pre>${escapeHtml(JSON.stringify(socialDraft.reelScript, null, 2))}</pre>`
+              : `<p class="hint">Generate to get an on-camera reel script (scenes, voiceover, on-screen text).</p>`
+          }</div>
+
+          <div class="row-actions" style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+            <button type="button" class="btn btn-gold" id="social-save-draft">Save draft</button>
+            <button type="button" class="btn btn-ghost" id="social-save-sched">Save & schedule</button>
+            <button type="button" class="btn btn-ghost" id="social-publish-now">Publish now</button>
+          </div>
+
+          <div class="auto-help">
+            <h4>Connect platforms (one key for most)</h4>
+            <ol>
+              <li>Copy <code>social-local.example.php</code> → <code>social-local.php</code> on Hostinger</li>
+              <li>Create an <strong>Ayrshare</strong> account, connect Facebook, Instagram, LinkedIn, Google Business, X, TikTok, Pinterest, YouTube, Threads, Reddit, Telegram, Bluesky…</li>
+              <li>Paste <code>ayrshare_api_key</code> (+ set a random <code>cron_key</code>)</li>
+              <li>Hostinger cron every 15 min:<br/><code>curl -s "https://displayavenue.com/admin/social-cron.php?key=YOUR_CRON_KEY"</code></li>
+            </ol>
+            <p class="hint">Direct Meta / LinkedIn / GMB tokens are also supported. Without keys, Publish still emails/WhatsApp-notifies you the ready pack so nothing is lost.</p>
+          </div>
+
+          <h4>Autopilot settings</h4>
+          <label class="check-row"><input type="checkbox" id="social-ap-on" ${settings.autopilot ? "checked" : ""}/> Autopilot (auto-create trend posts)</label>
+          <label>Posts per week<input id="social-ppw" type="number" min="1" max="14" value="${escapeAttr(String(settings.postsPerWeek || 5))}"/></label>
+          <button type="button" class="btn btn-ghost" id="social-save-settings">Save settings</button>
+        </section>
+
+        <section class="card">
+          <div class="list-item-head"><h3 style="margin:0">Queue</h3></div>
+          <div id="social-queue">
+            ${
+              posts.length
+                ? posts
+                    .slice(0, 40)
+                    .map(
+                      (p) => `
+              <div class="list-item">
+                <div class="list-item-head">
+                  <strong>${escapeHtml(p.title || p.id)}</strong>
+                  <span class="hint" style="margin:0">${escapeHtml(p.status || "")}</span>
+                </div>
+                <p style="margin:.35rem 0;font-size:.82rem;color:var(--muted)">
+                  ${(p.platforms || []).slice(0, 6).map(escapeHtml).join(", ")}
+                  ${p.scheduledAt ? `<br/>Sched: ${escapeHtml(p.scheduledAt)}` : ""}
+                </p>
+                <div class="row-actions" style="display:flex;gap:.35rem;flex-wrap:wrap">
+                  <button type="button" class="btn btn-ghost" data-social-load="${escapeAttr(p.id)}">Edit</button>
+                  <button type="button" class="btn btn-ghost" data-social-pub="${escapeAttr(p.id)}">Publish</button>
+                  <button type="button" class="btn btn-ghost" data-social-del="${escapeAttr(p.id)}">Delete</button>
+                </div>
+              </div>`,
+                    )
+                    .join("")
+                : `<p class="empty">No posts yet. Generate from a trend or run Autopilot.</p>`
+            }
+          </div>
+        </section>
+      </div>`;
+
+    wrap.querySelectorAll("[data-trend-idx]").forEach((btn) => {
+      btn.onclick = async () => {
+        const t = trends[Number(btn.dataset.trendIdx)];
+        try {
+          toast("Generating from trend…");
+          const res = await api("social-generate", { trend: t });
+          applySocialDraft(res.draft);
+          renderSocialStudio();
+        } catch (e) {
+          toast(e.message || "Generate failed", "err");
+        }
+      };
+    });
+
+    const readForm = () => {
+      socialDraft.caption = $("#social-caption").value;
+      socialDraft.mediaUrls = $("#social-media")
+        .value.split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      socialDraft.scheduledAtLocal = $("#social-when").value;
+      socialDraft.platforms = [...wrap.querySelectorAll("[data-platform]:checked")].map((el) => el.dataset.platform);
+    };
+
+    $("#social-gen").onclick = async () => {
+      try {
+        toast("Generating…");
+        const res = await api("social-generate", { trend: socialDraft.trend || trends[0] || null });
+        applySocialDraft(res.draft);
+        renderSocialStudio();
+        toast(`Draft ready (${res.draft.provider})`);
+      } catch (e) {
+        toast(e.message || "Generate failed", "err");
+      }
+    };
+
+    $("#social-save-draft").onclick = async () => {
+      readForm();
+      try {
+        const res = await api("social-save", {
+          post: {
+            id: socialDraft.id,
+            status: "draft",
+            caption: socialDraft.caption,
+            platforms: socialDraft.platforms,
+            mediaUrls: socialDraft.mediaUrls,
+            trend: socialDraft.trend,
+            reelScript: socialDraft.reelScript,
+            hashtags: socialDraft.hashtags,
+          },
+        });
+        socialDraft.id = res.post.id;
+        toast("Draft saved");
+        renderSocialStudio();
+      } catch (e) {
+        toast(e.message || "Save failed", "err");
+      }
+    };
+
+    $("#social-save-sched").onclick = async () => {
+      readForm();
+      const iso = fromLocalInputValue(socialDraft.scheduledAtLocal);
+      if (!iso) {
+        toast("Pick a schedule time", "err");
+        return;
+      }
+      try {
+        const res = await api("social-save", {
+          post: {
+            id: socialDraft.id,
+            status: "scheduled",
+            scheduledAt: iso,
+            caption: socialDraft.caption,
+            platforms: socialDraft.platforms,
+            mediaUrls: socialDraft.mediaUrls,
+            trend: socialDraft.trend,
+            reelScript: socialDraft.reelScript,
+            hashtags: socialDraft.hashtags,
+          },
+        });
+        socialDraft.id = res.post.id;
+        toast("Scheduled");
+        renderSocialStudio();
+      } catch (e) {
+        toast(e.message || "Schedule failed", "err");
+      }
+    };
+
+    $("#social-publish-now").onclick = async () => {
+      readForm();
+      try {
+        const saved = await api("social-save", {
+          post: {
+            id: socialDraft.id,
+            status: "draft",
+            caption: socialDraft.caption,
+            platforms: socialDraft.platforms,
+            mediaUrls: socialDraft.mediaUrls,
+            trend: socialDraft.trend,
+            reelScript: socialDraft.reelScript,
+            hashtags: socialDraft.hashtags,
+          },
+        });
+        socialDraft.id = saved.post.id;
+        toast("Publishing…");
+        const res = await api("social-publish", { id: socialDraft.id, forceNotify: true });
+        toast(res.ok ? "Publish finished" : "Publish finished with issues — check notify/email", res.ok ? undefined : "err");
+        renderSocialStudio();
+      } catch (e) {
+        toast(e.message || "Publish failed", "err");
+      }
+    };
+
+    $("#social-autopilot").onclick = async () => {
+      try {
+        toast("Filling week…");
+        const res = await api("social-autopilot");
+        toast(`Created ${(res.fill?.created || []).length} posts`);
+        renderSocialStudio();
+      } catch (e) {
+        toast(e.message || "Autopilot failed", "err");
+      }
+    };
+
+    $("#social-run-due").onclick = async () => {
+      try {
+        toast("Running due queue…");
+        const res = await api("social-run-due", { autopilot: false });
+        toast(`Published ${res.published || 0}`);
+        renderSocialStudio();
+      } catch (e) {
+        toast(e.message || "Run failed", "err");
+      }
+    };
+
+    $("#social-save-settings").onclick = async () => {
+      try {
+        await api("social-save-settings", {
+          settings: {
+            autopilot: $("#social-ap-on").checked,
+            postsPerWeek: Number($("#social-ppw").value || 5),
+          },
+        });
+        toast("Settings saved");
+      } catch (e) {
+        toast(e.message || "Save failed", "err");
+      }
+    };
+
+    wrap.querySelectorAll("[data-social-load]").forEach((btn) => {
+      btn.onclick = async () => {
+        try {
+          const res = await api("social-get", { id: btn.dataset.socialLoad });
+          const p = res.post;
+          socialDraft = {
+            id: p.id,
+            status: p.status,
+            caption: p.caption || "",
+            platforms: p.platforms || [],
+            mediaUrls: p.mediaUrls || [],
+            trend: p.trend || null,
+            reelScript: p.reelScript || null,
+            hashtags: p.hashtags || [],
+            scheduledAtLocal: toLocalInputValue(p.scheduledAt),
+          };
+          renderSocialStudio();
+        } catch (e) {
+          toast(e.message || "Load failed", "err");
+        }
+      };
+    });
+    wrap.querySelectorAll("[data-social-pub]").forEach((btn) => {
+      btn.onclick = async () => {
+        try {
+          toast("Publishing…");
+          await api("social-publish", { id: btn.dataset.socialPub, forceNotify: true });
+          toast("Done");
+          renderSocialStudio();
+        } catch (e) {
+          toast(e.message || "Publish failed", "err");
+        }
+      };
+    });
+    wrap.querySelectorAll("[data-social-del]").forEach((btn) => {
+      btn.onclick = async () => {
+        if (!confirm("Delete this post?")) return;
+        try {
+          await api("social-delete", { id: btn.dataset.socialDel });
+          if (socialDraft.id === btn.dataset.socialDel) socialDraft.id = null;
+          renderSocialStudio();
+        } catch (e) {
+          toast(e.message || "Delete failed", "err");
+        }
+      };
+    });
+  } catch (e) {
+    wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load Social Studio")}</p>`;
+  }
+}
+
+function applySocialDraft(draft) {
+  socialDraft.caption = draft.caption || "";
+  socialDraft.hashtags = draft.hashtags || [];
+  socialDraft.reelScript = draft.reelScript || null;
+  socialDraft.trend = draft.trend || null;
+  socialDraft.platforms = draft.suggestedPlatforms || socialDraft.platforms;
+  socialDraft.scheduledAtLocal = toLocalInputValue(draft.suggestedAtIst);
+  socialDraft.status = "draft";
 }
 
 const CHAT_API = "./chat-api.php";
@@ -2349,6 +2732,10 @@ async function enterApp(collections) {
   }
   if (state.current === "automation") {
     openAutomation();
+    return;
+  }
+  if (state.current === "social") {
+    openSocialStudio();
     return;
   }
   if (state.current === "quotations") {
