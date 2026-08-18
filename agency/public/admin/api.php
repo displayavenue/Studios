@@ -317,10 +317,98 @@ switch ($action) {
         $row['message'] = (string)($full['message'] ?? '');
         $row['email'] = (string)($full['email'] ?? ($row['email'] ?? ''));
         $row['business'] = (string)($full['business'] ?? ($row['business'] ?? ''));
+        $row['journey'] = (string)($full['journey'] ?? '');
+        $row['visitorId'] = (string)($full['visitorId'] ?? ($row['visitorId'] ?? ''));
+        $row['page'] = (string)($full['page'] ?? ($row['page'] ?? ''));
+        $row['landing'] = (string)($full['landing'] ?? '');
       }
     }
     unset($row);
     respond(200, ['ok' => true, 'leads' => $leads]);
+
+  case 'get-automation':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/automation.php';
+    respond(200, [
+      'ok' => true,
+      'settings' => da_automation_settings(),
+      'status' => da_automation_channel_status(),
+    ]);
+
+  case 'save-automation':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/automation.php';
+    $incoming = $body['settings'] ?? null;
+    if (!is_array($incoming)) {
+      respond(400, ['ok' => false, 'error' => 'settings object required']);
+    }
+    $current = da_automation_settings();
+    $next = array_replace_recursive($current, $incoming);
+    $next['updatedAt'] = gmdate('c');
+    // Keep structure tight
+    $next['enabled'] = !empty($next['enabled']);
+    $next['notifyEmail'] = trim((string)($next['notifyEmail'] ?? ''));
+    $next['ownerName'] = trim((string)($next['ownerName'] ?? 'DisplayAvenue'));
+    $next['messagePrefix'] = trim((string)($next['messagePrefix'] ?? '[DA Lead]'));
+    $next['includeJourney'] = !empty($next['includeJourney']);
+    $next['channels'] = [
+      'email' => !empty($next['channels']['email']),
+      'whatsapp' => !empty($next['channels']['whatsapp']),
+      'sms' => !empty($next['channels']['sms']),
+    ];
+    $next['events'] = [
+      'contactForm' => !empty($next['events']['contactForm']),
+      'chatHotLead' => !empty($next['events']['chatHotLead']),
+      'trackPageviews' => !empty($next['events']['trackPageviews']),
+    ];
+    $path = da_automation_content_path();
+    $written = @file_put_contents(
+      $path,
+      json_encode($next, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
+    );
+    if (!$written) respond(500, ['ok' => false, 'error' => 'Could not write automation.json']);
+    respond(200, ['ok' => true, 'settings' => $next, 'status' => da_automation_channel_status()]);
+
+  case 'test-automation':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/automation.php';
+    $result = da_automation_notify([
+      'event' => 'test',
+      'subject' => '[DA Test] Automation channel check',
+      'text' => "Test alert from DisplayAvenue admin.\nTime: " . gmdate('c') . "\nIf you received this on WhatsApp/SMS/email, automation is working.",
+      'summary' => 'Manual test from admin',
+    ]);
+    respond(200, ['ok' => true, 'result' => $result, 'status' => da_automation_channel_status()]);
+
+  case 'list-automation-log':
+    requireAuth($config);
+    $dir = __DIR__ . '/.automation-log';
+    $indexPath = $dir . '/index.json';
+    $rows = [];
+    if (is_file($indexPath)) {
+      $rows = json_decode((string)file_get_contents($indexPath), true) ?: [];
+    }
+    if (!is_array($rows)) $rows = [];
+    respond(200, ['ok' => true, 'log' => array_slice($rows, 0, 80)]);
+
+  case 'list-visits':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/automation.php';
+    $indexPath = da_visits_dir() . '/index.json';
+    $rows = [];
+    if (is_file($indexPath)) {
+      $rows = json_decode((string)file_get_contents($indexPath), true) ?: [];
+    }
+    if (!is_array($rows)) $rows = [];
+    respond(200, ['ok' => true, 'visits' => array_slice($rows, 0, 100)]);
+
+  case 'get-visit':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/automation.php';
+    $vid = (string)($body['visitorId'] ?? $_GET['visitorId'] ?? '');
+    $visit = da_visit_load($vid);
+    if (!$visit) respond(404, ['ok' => false, 'error' => 'Visit not found']);
+    respond(200, ['ok' => true, 'visit' => $visit]);
 
   case 'upload-catalogue':
     requireAuth($config);

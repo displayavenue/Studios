@@ -1065,3 +1065,17 @@ body.quote-workspace #save-btn {
 @media (max-width: 900px) {
   .livechat-layout { grid-template-columns: 1fr; }
 }
+
+.automation-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem}
+@media(max-width:1100px){.automation-grid{grid-template-columns:1fr}}
+.auto-badges{display:flex;flex-wrap:wrap;gap:.35rem}
+.auto-badge{font-size:.72rem;padding:.2rem .45rem;border-radius:999px;border:1px solid rgba(15,40,70,.14);background:#f4f7fb}
+.auto-badge.ok{background:#e8f7ee;border-color:#9fd4b3;color:#146c36}
+.auto-badge.warn{background:#fff6e8;border-color:#f0c789;color:#8a5a00}
+.auto-badge.muted{color:#667}
+.check-row{display:flex;align-items:center;gap:.55rem;margin:.45rem 0;font-size:.92rem}
+.auto-help{margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(15,40,70,.1)}
+.auto-help ol{margin:.5rem 0 0;padding-left:1.2rem;color:var(--muted);font-size:.9rem;line-height:1.45}
+.auto-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.auto-table th,.auto-table td{border-bottom:1px solid rgba(15,40,70,.08);padding:.45rem .35rem;text-align:left;vertical-align:top}
+.auto-table th{color:var(--muted);font-weight:600}

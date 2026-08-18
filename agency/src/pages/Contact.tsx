@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { getStoredUtm, getVisitorId } from "../components/VisitorTracker";
 import "../styles/pages.css";
 import "./Contact.css";
 
@@ -10,6 +11,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 
 export function Contact() {
   const { company, contact } = useCms();
+  const location = useLocation();
   const fields = contact.fields;
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
   const [error, setError] = useState("");
@@ -27,7 +29,9 @@ export function Contact() {
       business: String(data.get("business") || "").trim(),
       message: String(data.get("message") || "").trim(),
       website: String(data.get("website") || "").trim(),
-      page: "/contact",
+      page: `${location.pathname}${location.search || ""}` || "/contact",
+      visitorId: getVisitorId(),
+      utm: getStoredUtm(),
     };
     if (!payload.name || !payload.phone) {
       setStatus("err");

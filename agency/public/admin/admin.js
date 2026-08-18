@@ -4,6 +4,7 @@ const TOKEN_KEY = "da_agency_admin_token";
 /** Quotations run on Hostinger (PHP + MariaDB) — no Vercel. */
 const QUOTE_NAV = {
   livechat: "Live Chat",
+  automation: "Lead Automation",
   quotations: "Quotations & Payments",
   invoices: "Create Invoice",
 };
@@ -316,13 +317,14 @@ function renderNav() {
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }${key === "quotations" || key === "invoices" || key === "livechat" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+        }${key === "quotations" || key === "invoices" || key === "livechat" || key === "automation" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
     btn.onclick = () => {
       setMobileNav(false);
       if (btn.dataset.key === "livechat") openLiveChat();
+      else if (btn.dataset.key === "automation") openAutomation();
       else if (btn.dataset.key === "quotations") openQuotations();
       else if (btn.dataset.key === "invoices") openInvoices();
       else openCollection(btn.dataset.key);
@@ -346,6 +348,182 @@ function openLiveChat() {
   renderLiveChatInbox();
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+async function openAutomation() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "automation";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.automation;
+  $("#panel-sub").textContent =
+    "When someone fills Contact or becomes a hot chat lead, alert you on WhatsApp / SMS / email. Page journeys are stored automatically.";
+  renderNav();
+  await renderAutomationPanel();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+async function renderAutomationPanel() {
+  const wrap = $("#editor-wrap");
+  wrap.innerHTML = `<p class="hint">Loading automation…</p>`;
+  try {
+    const [cfg, logRes, visitRes] = await Promise.all([
+      api("get-automation"),
+      api("list-automation-log"),
+      api("list-visits"),
+    ]);
+    const s = cfg.settings || {};
+    const st = cfg.status || {};
+    const log = logRes.log || [];
+    const visits = visitRes.visits || [];
+    const waBadge = st.whatsappReady
+      ? `<span class="auto-badge ok">WhatsApp ready (${escapeHtml(st.whatsappProvider || "")})</span>`
+      : `<span class="auto-badge warn">WhatsApp keys missing</span>`;
+    const smsBadge = st.smsReady
+      ? `<span class="auto-badge ok">SMS ready (${escapeHtml(st.smsProvider || "")})</span>`
+      : `<span class="auto-badge muted">SMS off / not configured</span>`;
+    const fileBadge = st.localFile
+      ? `<span class="auto-badge ok">automation-local.php found</span>`
+      : `<span class="auto-badge warn">Copy automation-local.example.php → automation-local.php on server</span>`;
+
+    wrap.innerHTML = `
+      <div class="automation-grid">
+        <section class="card">
+          <div class="list-item-head">
+            <h3 style="margin:0">Alert channels</h3>
+            <div class="auto-badges">${fileBadge}${waBadge}${smsBadge}</div>
+          </div>
+          <p class="hint">Toggles save to <code>content/automation.json</code>. API keys stay in <code>admin/automation-local.php</code> (not in git).</p>
+          <label class="check-row"><input type="checkbox" id="auto-enabled" ${s.enabled ? "checked" : ""}/> Enable automation</label>
+          <label class="check-row"><input type="checkbox" id="auto-email" ${s.channels?.email ? "checked" : ""}/> Email alerts</label>
+          <label class="check-row"><input type="checkbox" id="auto-wa" ${s.channels?.whatsapp ? "checked" : ""}/> WhatsApp alerts</label>
+          <label class="check-row"><input type="checkbox" id="auto-sms" ${s.channels?.sms ? "checked" : ""}/> SMS alerts</label>
+          <label>Notify email<input id="auto-notify-email" type="email" value="${escapeAttr(s.notifyEmail || "")}"/></label>
+          <label>Message prefix<input id="auto-prefix" type="text" value="${escapeAttr(s.messagePrefix || "")}"/></label>
+          <label class="check-row"><input type="checkbox" id="auto-journey" ${s.includeJourney ? "checked" : ""}/> Include page journey in alerts</label>
+          <h4>Trigger events</h4>
+          <label class="check-row"><input type="checkbox" id="auto-ev-contact" ${s.events?.contactForm ? "checked" : ""}/> Contact form submissions</label>
+          <label class="check-row"><input type="checkbox" id="auto-ev-chat" ${s.events?.chatHotLead ? "checked" : ""}/> Hot AI chat leads</label>
+          <label class="check-row"><input type="checkbox" id="auto-ev-track" ${s.events?.trackPageviews ? "checked" : ""}/> Track page journeys sitewide</label>
+          <div class="row-actions" style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+            <button type="button" class="btn btn-gold" id="auto-save">Save settings</button>
+            <button type="button" class="btn btn-ghost" id="auto-test">Send test alert</button>
+            <button type="button" class="btn btn-ghost" id="auto-refresh">Refresh</button>
+          </div>
+          <div class="auto-help">
+            <h4>Connect WhatsApp (fastest)</h4>
+            <ol>
+              <li>On your phone WhatsApp, message <strong>+34 644 66 64 35</strong>: <code>I allow callmebot to send me messages</code></li>
+              <li>Save the apikey the bot sends you</li>
+              <li>On Hostinger, copy <code>automation-local.example.php</code> → <code>automation-local.php</code></li>
+              <li>Set <code>whatsapp_provider</code> = <code>callmebot</code>, your phone (91…), and <code>callmebot_apikey</code></li>
+              <li>Click <strong>Send test alert</strong> here</li>
+            </ol>
+            <p class="hint">For SMS (India), set <code>sms_provider</code> = <code>msg91</code> with authkey. Meta Cloud API and webhooks (Interakt/Wati) are also supported in the example file.</p>
+          </div>
+        </section>
+        <section class="card">
+          <div class="list-item-head">
+            <h3 style="margin:0">Recent alerts</h3>
+          </div>
+          <div id="auto-log">
+            ${
+              log.length
+                ? log
+                    .slice(0, 25)
+                    .map(
+                      (r) => `
+              <div class="list-item">
+                <div class="list-item-head">
+                  <strong>${escapeHtml(r.event || "event")}</strong>
+                  <span class="hint" style="margin:0">${escapeHtml(r.at || "")} · ${r.ok ? "sent" : "failed/skipped"}</span>
+                </div>
+                <p style="margin:.35rem 0;font-size:.88rem;color:var(--muted)">${escapeHtml(r.summary || "")}</p>
+              </div>`,
+                    )
+                    .join("")
+                : `<p class="empty">No alerts yet. Submit the contact form or send a test.</p>`
+            }
+          </div>
+        </section>
+        <section class="card" style="grid-column:1/-1">
+          <div class="list-item-head">
+            <h3 style="margin:0">Recent page journeys</h3>
+          </div>
+          <p class="hint">Every page a visitor opens is linked. When they submit Contact, the journey is attached to the lead and included in your WhatsApp/SMS.</p>
+          <div id="auto-visits">
+            ${
+              visits.length
+                ? `<table class="auto-table"><thead><tr><th>Visitor</th><th>Landing</th><th>Last page</th><th>Pages</th><th>Converted</th><th>Updated</th></tr></thead><tbody>
+                ${visits
+                  .slice(0, 40)
+                  .map(
+                    (v) => `<tr>
+                  <td><code>${escapeHtml((v.id || "").slice(0, 14))}</code></td>
+                  <td>${escapeHtml(v.landing || "/")}</td>
+                  <td>${escapeHtml(v.lastPath || "/")}</td>
+                  <td>${escapeHtml(String(v.pageCount || 0))}</td>
+                  <td>${v.converted ? "Yes" : "—"}</td>
+                  <td>${escapeHtml(v.updatedAt || "")}</td>
+                </tr>`,
+                  )
+                  .join("")}
+              </tbody></table>`
+                : `<p class="empty">No visits tracked yet. Browse the live site, then refresh.</p>`
+            }
+          </div>
+        </section>
+      </div>`;
+
+    $("#auto-save").onclick = async () => {
+      try {
+        await api("save-automation", {
+          settings: {
+            enabled: $("#auto-enabled").checked,
+            notifyEmail: $("#auto-notify-email").value.trim(),
+            messagePrefix: $("#auto-prefix").value.trim(),
+            includeJourney: $("#auto-journey").checked,
+            channels: {
+              email: $("#auto-email").checked,
+              whatsapp: $("#auto-wa").checked,
+              sms: $("#auto-sms").checked,
+            },
+            events: {
+              contactForm: $("#auto-ev-contact").checked,
+              chatHotLead: $("#auto-ev-chat").checked,
+              trackPageviews: $("#auto-ev-track").checked,
+            },
+          },
+        });
+        toast("Automation settings saved");
+        renderAutomationPanel();
+      } catch (e) {
+        toast(e.message || "Save failed", "err");
+      }
+    };
+    $("#auto-test").onclick = async () => {
+      try {
+        toast("Sending test alert…");
+        const res = await api("test-automation");
+        const ch = res.result?.channels || {};
+        const bits = Object.entries(ch)
+          .map(([k, v]) => `${k}:${v.ok ? "ok" : v.skipped ? "skip" : "fail"}`)
+          .join(" · ");
+        toast(res.result?.ok ? `Test sent (${bits})` : `Test finished (${bits}) — check keys`, res.result?.ok ? undefined : "err");
+        renderAutomationPanel();
+      } catch (e) {
+        toast(e.message || "Test failed", "err");
+      }
+    };
+    $("#auto-refresh").onclick = () => renderAutomationPanel();
+  } catch (e) {
+    wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load automation")}</p>`;
+  }
 }
 
 const CHAT_API = "./chat-api.php";
@@ -2132,7 +2310,9 @@ async function loadContactLeads() {
         <p style="margin:.35rem 0;font-size:.9rem">
           ${escapeHtml(l.phone || "")}${l.email ? " · " + escapeHtml(l.email) : ""}${l.business ? " · " + escapeHtml(l.business) : ""}
         </p>
-        ${l.message ? `<p style="margin:0;color:var(--muted);font-size:.88rem">${escapeHtml(l.message)}</p>` : ""}
+        ${l.page ? `<p style="margin:0;font-size:.82rem;color:var(--muted)">Page: ${escapeHtml(l.page)}</p>` : ""}
+        ${l.journey ? `<p style="margin:.25rem 0 0;font-size:.82rem;color:var(--muted)">${escapeHtml(l.journey)}</p>` : ""}
+        ${l.message ? `<p style="margin:.35rem 0 0;color:var(--muted);font-size:.88rem">${escapeHtml(l.message)}</p>` : ""}
       </div>`,
       )
       .join("");
@@ -2165,6 +2345,10 @@ async function enterApp(collections) {
   renderNav();
   if (state.current === "livechat") {
     openLiveChat();
+    return;
+  }
+  if (state.current === "automation") {
+    openAutomation();
     return;
   }
   if (state.current === "quotations") {

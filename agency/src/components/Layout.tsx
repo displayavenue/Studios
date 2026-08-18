@@ -8,12 +8,14 @@ import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
 import { ScrollToTop } from "./ScrollToTop";
 import { StickyMobileCta } from "./StickyMobileCta";
 import { LiveChat } from "./LiveChat";
+import { VisitorTracker } from "./VisitorTracker";
 import "./Placeholder.css";
 
 export function Layout() {
   return (
     <div className="app-shell">
       <ScrollToTop />
+      <VisitorTracker />
       <TrackingScripts />
       <LocalBusinessSchema />
       <WebSiteSchema />

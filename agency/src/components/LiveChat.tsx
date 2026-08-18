@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { useCms } from "../cms/CmsProvider";
+import { getVisitorId } from "./VisitorTracker";
 import "./LiveChat.css";
 
 type ChatCta = { label: string; href: string; kind?: string };
@@ -115,7 +116,8 @@ export function LiveChat() {
           action: "start",
           name: name.trim() || "Visitor",
           phone: phone.trim(),
-          page: window.location.pathname,
+          page: window.location.pathname + window.location.search,
+          visitorId: getVisitorId(),
         }),
       });
       const json = await res.json();
