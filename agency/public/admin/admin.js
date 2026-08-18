@@ -122,8 +122,16 @@ function setDirty(v) {
 }
 
 function showLogin(show) {
-  $("#login-view").hidden = !show;
-  $("#cms-view").hidden = show;
+  const login = $("#login-view");
+  const cms = $("#cms-view");
+  if (login) {
+    login.hidden = !show;
+    login.style.display = show ? "" : "none";
+  }
+  if (cms) {
+    cms.hidden = show;
+    cms.style.display = show ? "none" : "";
+  }
   if (show) setMobileNav(false);
 }
 
@@ -582,6 +590,7 @@ async function renderSocialStudio() {
     const settings = statusRes.settings || {};
     const platforms = statusRes.platforms || [];
     const trends = statusRes.trends || [];
+    const sec = statusRes.secrets || {};
     const posts = listRes.posts || [];
     if (!socialDraft.platforms.length) socialDraft.platforms = [...(settings.defaultPlatforms || [])];
 
@@ -650,15 +659,44 @@ async function renderSocialStudio() {
             <button type="button" class="btn btn-ghost" id="social-publish-now">Publish now</button>
           </div>
 
-          <div class="auto-help">
-            <h4>Connect platforms (one key for most)</h4>
-            <ol>
-              <li>Copy <code>social-local.example.php</code> → <code>social-local.php</code> on Hostinger</li>
-              <li>Create an <strong>Ayrshare</strong> account, connect Facebook, Instagram, LinkedIn, Google Business, X, TikTok, Pinterest, YouTube, Threads, Reddit, Telegram, Bluesky…</li>
-              <li>Paste <code>ayrshare_api_key</code> (+ set a random <code>cron_key</code>)</li>
-              <li>Hostinger cron every 15 min:<br/><code>curl -s "https://displayavenue.com/admin/social-cron.php?key=YOUR_CRON_KEY"</code></li>
-            </ol>
-            <p class="hint">Direct Meta / LinkedIn / GMB tokens are also supported. Without keys, Publish still emails/WhatsApp-notifies you the ready pack so nothing is lost.</p>
+          <div class="auto-help" id="social-keys-box">
+            <h4>API keys (saved on server)</h4>
+            <p class="hint">Paste keys here. Saved to <code>admin/social-local.php</code> (not in git). Leave a field blank to keep the existing key. Masked values like <code>abcd••••wxyz</code> mean a key is already stored.</p>
+
+            <h4 style="margin-top:1rem">Recommended — one key for 10+ platforms</h4>
+            <label>Ayrshare API key<input id="sk-ayrshare" type="password" autocomplete="off" placeholder="${escapeAttr(sec.ayrshare_api_key?.masked || 'Paste Ayrshare API key')}" value=""/></label>
+            <label>Ayrshare profile key (optional)<input id="sk-ayrshare-profile" type="password" autocomplete="off" placeholder="${escapeAttr(sec.ayrshare_profile_key?.masked || 'Optional')}" value=""/></label>
+            <label>Cron secret key<input id="sk-cron" type="text" autocomplete="off" placeholder="${escapeAttr(sec.cron_key?.masked || 'Auto-generated on save if empty')}" value=""/></label>
+            <p class="hint" id="sk-cron-hint">After save, add Hostinger cron:<br/><code>curl -s "https://displayavenue.com/admin/social-cron.php?key=YOUR_CRON_KEY"</code></p>
+
+            <h4 style="margin-top:1rem">Or connect platforms directly</h4>
+            <label>Facebook Page ID<input id="sk-meta-page" type="text" value="${escapeAttr(sec.meta_page_id?.value || '')}" placeholder="Page ID"/></label>
+            <label>Facebook / Instagram Page access token<input id="sk-meta-token" type="password" autocomplete="off" placeholder="${escapeAttr(sec.meta_page_access_token?.masked || 'Page access token')}" value=""/></label>
+            <label>Instagram Business user ID<input id="sk-ig" type="text" value="${escapeAttr(sec.meta_ig_user_id?.value || '')}" placeholder="IG user id"/></label>
+            <label>LinkedIn access token<input id="sk-li-token" type="password" autocomplete="off" placeholder="${escapeAttr(sec.linkedin_access_token?.masked || 'LinkedIn token')}" value=""/></label>
+            <label>LinkedIn author URN<input id="sk-li-urn" type="text" value="${escapeAttr(sec.linkedin_author_urn?.value || '')}" placeholder="urn:li:organization:…"/></label>
+            <label>Google Business access token<input id="sk-gbp-token" type="password" autocomplete="off" placeholder="${escapeAttr(sec.gbp_access_token?.masked || 'GBP OAuth token')}" value=""/></label>
+            <label>GBP account name<input id="sk-gbp-account" type="text" value="${escapeAttr(sec.gbp_account_name?.value || '')}" placeholder="accounts/…"/></label>
+            <label>GBP location name<input id="sk-gbp-loc" type="text" value="${escapeAttr(sec.gbp_location_name?.value || '')}" placeholder="accounts/…/locations/…"/></label>
+
+            <h4 style="margin-top:1rem">AI captions (optional)</h4>
+            <label>AI provider
+              <select id="sk-ai-provider">
+                <option value="gemini" ${sec.ai_provider?.value === 'gemini' ? 'selected' : ''}>Gemini</option>
+                <option value="openai" ${sec.ai_provider?.value === 'openai' ? 'selected' : ''}>OpenAI</option>
+                <option value="groq" ${sec.ai_provider?.value === 'groq' ? 'selected' : ''}>Groq</option>
+                <option value="" ${!sec.ai_provider?.value ? 'selected' : ''}>Template only</option>
+              </select>
+            </label>
+            <label>AI API key<input id="sk-ai-key" type="password" autocomplete="off" placeholder="${escapeAttr(sec.ai_api_key?.masked || 'Gemini / OpenAI / Groq key')}" value=""/></label>
+            <label>AI model<input id="sk-ai-model" type="text" value="${escapeAttr(sec.ai_model?.value || 'gemini-2.0-flash')}"/></label>
+            <label>Publish webhook URL (Make.com / n8n)<input id="sk-webhook" type="url" value="${escapeAttr(sec.publish_webhook_url?.value || '')}" placeholder="https://…"/></label>
+
+            <div class="row-actions" style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+              <button type="button" class="btn btn-gold" id="social-save-keys">Save API keys</button>
+              <button type="button" class="btn btn-ghost" id="social-clear-ayrshare" title="Clear Ayrshare key">Clear Ayrshare</button>
+            </div>
+            <p class="hint">Get Ayrshare at ayrshare.com → connect Facebook, Instagram, LinkedIn, Google Business, X, TikTok, etc. → copy API key into the field above.</p>
           </div>
 
           <h4>Autopilot settings</h4>
@@ -845,6 +883,52 @@ async function renderSocialStudio() {
         toast("Settings saved");
       } catch (e) {
         toast(e.message || "Save failed", "err");
+      }
+    };
+
+    $("#social-save-keys").onclick = async () => {
+      try {
+        toast("Saving API keys…");
+        const res = await api("social-save-keys", {
+          keys: {
+            ayrshare_api_key: $("#sk-ayrshare").value.trim(),
+            ayrshare_profile_key: $("#sk-ayrshare-profile").value.trim(),
+            cron_key: $("#sk-cron").value.trim(),
+            meta_page_id: $("#sk-meta-page").value.trim(),
+            meta_page_access_token: $("#sk-meta-token").value.trim(),
+            meta_ig_user_id: $("#sk-ig").value.trim(),
+            linkedin_access_token: $("#sk-li-token").value.trim(),
+            linkedin_author_urn: $("#sk-li-urn").value.trim(),
+            gbp_access_token: $("#sk-gbp-token").value.trim(),
+            gbp_account_name: $("#sk-gbp-account").value.trim(),
+            gbp_location_name: $("#sk-gbp-loc").value.trim(),
+            ai_provider: $("#sk-ai-provider").value,
+            ai_api_key: $("#sk-ai-key").value.trim(),
+            ai_model: $("#sk-ai-model").value.trim(),
+            publish_webhook_url: $("#sk-webhook").value.trim(),
+          },
+        });
+        toast(res.status?.ayrshare ? "Keys saved — Ayrshare connected" : "Keys saved on server");
+        if (res.cronUrl) {
+          const hint = $("#sk-cron-hint");
+          if (hint) {
+            hint.innerHTML = `Cron command:<br/><code>${escapeHtml(`curl -s "${res.cronUrl}"`)}</code>`;
+          }
+        }
+        renderSocialStudio();
+      } catch (e) {
+        toast(e.message || "Could not save keys", "err");
+      }
+    };
+
+    $("#social-clear-ayrshare").onclick = async () => {
+      if (!confirm("Clear Ayrshare API key?")) return;
+      try {
+        await api("social-save-keys", { keys: { _clear: { ayrshare_api_key: true } } });
+        toast("Ayrshare key cleared");
+        renderSocialStudio();
+      } catch (e) {
+        toast(e.message || "Clear failed", "err");
       }
     };
 

@@ -419,7 +419,19 @@ switch ($action) {
       'status' => da_social_connection_status(),
       'platforms' => da_social_platforms(),
       'trends' => da_social_trends(),
+      'secrets' => da_social_secrets_public(),
     ]);
+
+  case 'social-save-keys':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $incoming = $body['keys'] ?? null;
+    if (!is_array($incoming)) respond(400, ['ok' => false, 'error' => 'keys object required']);
+    $result = da_social_secrets_save($incoming);
+    if (empty($result['ok'])) {
+      respond(500, ['ok' => false, 'error' => $result['error'] ?? 'Save failed']);
+    }
+    respond(200, $result);
 
   case 'social-save-settings':
     requireAuth($config);
