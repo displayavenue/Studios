@@ -25,6 +25,7 @@ dist-ssr
 public/admin/quotes/local.php
 public/admin/chat-local.php
 public/admin/automation-local.php
+public/admin/social-local.php
 public/admin/.chats/*
 !public/admin/.chats/.htaccess
 public/admin/.leads/*
@@ -33,3 +34,5 @@ public/admin/.visits/*
 !public/admin/.visits/.htaccess
 public/admin/.automation-log/*
 !public/admin/.automation-log/.htaccess
+public/admin/.social/*
+!public/admin/.social/.htaccess

@@ -410,6 +410,104 @@ switch ($action) {
     if (!$visit) respond(404, ['ok' => false, 'error' => 'Visit not found']);
     respond(200, ['ok' => true, 'visit' => $visit]);
 
+  case 'social-status':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    respond(200, [
+      'ok' => true,
+      'settings' => da_social_settings(),
+      'status' => da_social_connection_status(),
+      'platforms' => da_social_platforms(),
+      'trends' => da_social_trends(),
+    ]);
+
+  case 'social-save-settings':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $incoming = $body['settings'] ?? null;
+    if (!is_array($incoming)) respond(400, ['ok' => false, 'error' => 'settings required']);
+    $next = array_replace_recursive(da_social_settings(), $incoming);
+    $next['enabled'] = !empty($next['enabled']);
+    $next['autopilot'] = !empty($next['autopilot']);
+    $next['postsPerWeek'] = max(1, min(14, (int)($next['postsPerWeek'] ?? 5)));
+    $next['updatedAt'] = gmdate('c');
+    $path = rtrim((string)$config['content_dir'], '/\\') . '/social.json';
+    if (!@file_put_contents($path, json_encode($next, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT))) {
+      respond(500, ['ok' => false, 'error' => 'Could not write social.json']);
+    }
+    respond(200, ['ok' => true, 'settings' => $next]);
+
+  case 'social-list':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    respond(200, ['ok' => true, 'posts' => da_social_index_load()]);
+
+  case 'social-get':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $id = (string)($body['id'] ?? $_GET['id'] ?? '');
+    $post = da_social_load_post($id);
+    if (!$post) respond(404, ['ok' => false, 'error' => 'Post not found']);
+    respond(200, ['ok' => true, 'post' => $post]);
+
+  case 'social-generate':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $trend = is_array($body['trend'] ?? null) ? $body['trend'] : null;
+    respond(200, ['ok' => true, 'draft' => da_social_generate_draft($trend)]);
+
+  case 'social-save':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $incoming = $body['post'] ?? null;
+    if (!is_array($incoming)) respond(400, ['ok' => false, 'error' => 'post required']);
+    $existing = [];
+    if (!empty($incoming['id'])) {
+      $existing = da_social_load_post((string)$incoming['id']) ?: [];
+    }
+    $post = array_merge($existing, $incoming);
+    if (($post['status'] ?? '') === 'scheduled' && empty($post['scheduledAt'])) {
+      respond(400, ['ok' => false, 'error' => 'scheduledAt required']);
+    }
+    $saved = da_social_save_post($post);
+    respond(200, ['ok' => true, 'post' => $saved]);
+
+  case 'social-delete':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $id = (string)($body['id'] ?? '');
+    if ($id === '') respond(400, ['ok' => false, 'error' => 'id required']);
+    da_social_delete_post($id);
+    respond(200, ['ok' => true]);
+
+  case 'social-publish':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $id = (string)($body['id'] ?? '');
+    $post = da_social_load_post($id);
+    if (!$post) respond(404, ['ok' => false, 'error' => 'Post not found']);
+    $forceNotify = !empty($body['forceNotify']);
+    $result = da_social_publish_post($post, $forceNotify);
+    respond(200, ['ok' => !empty($result['ok']), 'result' => $result]);
+
+  case 'social-run-due':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $fill = !empty($body['autopilot']) ? da_social_autopilot_fill() : ['created' => []];
+    $published = da_social_run_due(15);
+    respond(200, [
+      'ok' => true,
+      'created' => count($fill['created'] ?? []),
+      'published' => count($published),
+      'details' => $published,
+    ]);
+
+  case 'social-autopilot':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/social.php';
+    $fill = da_social_autopilot_fill();
+    respond(200, ['ok' => true, 'fill' => $fill]);
+
   case 'upload-catalogue':
     requireAuth($config);
     if (empty($_FILES['file']) || !is_array($_FILES['file'])) {

@@ -1079,3 +1079,14 @@ body.quote-workspace #save-btn {
 .auto-table{width:100%;border-collapse:collapse;font-size:.86rem}
 .auto-table th,.auto-table td{border-bottom:1px solid rgba(15,40,70,.08);padding:.45rem .35rem;text-align:left;vertical-align:top}
 .auto-table th{color:var(--muted);font-weight:600}
+
+.social-grid{display:grid;grid-template-columns:1.35fr .75fr;gap:1rem}
+@media(max-width:1100px){.social-grid{grid-template-columns:1fr}}
+.social-trends{display:grid;gap:.45rem;margin:.5rem 0 0}
+.social-trend{text-align:left;border:1px solid rgba(15,40,70,.12);background:#f7f9fc;border-radius:10px;padding:.65rem .75rem;cursor:pointer;font:inherit}
+.social-trend:hover{border-color:#0056ff}
+.social-trend strong{display:block;font-size:.92rem;color:var(--navy,#0f2846)}
+.social-trend span{display:block;margin-top:.25rem;font-size:.78rem;color:var(--muted)}
+.social-platforms{display:grid;grid-template-columns:1fr 1fr;gap:.15rem .75rem;margin:.35rem 0 .75rem}
+.social-reel{margin-top:.75rem;background:#0f2846;color:#e8eef8;border-radius:12px;padding:.85rem}
+.social-reel pre{white-space:pre-wrap;font-size:.78rem;margin:.4rem 0 0;max-height:220px;overflow:auto}
