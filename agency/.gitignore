@@ -24,7 +24,12 @@ dist-ssr
 *.sw?
 public/admin/quotes/local.php
 public/admin/chat-local.php
+public/admin/automation-local.php
 public/admin/.chats/*
 !public/admin/.chats/.htaccess
 public/admin/.leads/*
 !public/admin/.leads/.htaccess
+public/admin/.visits/*
+!public/admin/.visits/.htaccess
+public/admin/.automation-log/*
+!public/admin/.automation-log/.htaccess

@@ -68,6 +68,18 @@ if (strlen($name) > 120 || strlen($phone) > 40 || strlen($email) > 120 || strlen
   exit;
 }
 
+require_once __DIR__ . '/lib/automation.php';
+
+$visitorId = preg_replace('/[^a-zA-Z0-9_\-]/', '', (string)($body['visitorId'] ?? '')) ?? '';
+$utm = [];
+if (!empty($body['utm']) && is_array($body['utm'])) {
+  foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'] as $k) {
+    if (!empty($body['utm'][$k])) $utm[$k] = substr(trim((string)$body['utm'][$k]), 0, 120);
+  }
+}
+$visit = $visitorId !== '' ? da_visit_load($visitorId) : null;
+$journey = da_visit_journey_text($visit);
+
 $lead = [
   'id' => 'lead_' . date('Ymd_His') . '_' . bin2hex(random_bytes(3)),
   'createdAt' => gmdate('c'),
@@ -79,6 +91,10 @@ $lead = [
   'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
   'userAgent' => substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 240),
   'page' => (string)($body['page'] ?? '/contact'),
+  'visitorId' => $visitorId,
+  'utm' => $utm,
+  'journey' => $journey,
+  'landing' => is_array($visit) ? (string)($visit['landing'] ?? '') : '',
 ];
 
 $leadsDir = __DIR__ . '/.leads';
@@ -105,37 +121,68 @@ array_unshift($index, [
   'phone' => $lead['phone'],
   'email' => $lead['email'],
   'business' => $lead['business'],
+  'visitorId' => $visitorId,
+  'page' => $lead['page'],
 ]);
 $index = array_slice($index, 0, 500);
 @file_put_contents($indexPath, json_encode($index, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
-$notify = trim((string)($contact['notifyEmail'] ?? ''));
-$mailOk = false;
-if ($notify !== '' && filter_var($notify, FILTER_VALIDATE_EMAIL)) {
-  $subject = 'New DisplayAvenue lead: ' . $name;
-  $lines = [
-    'New contact form submission',
-    '',
-    'Name: ' . $name,
-    'Phone: ' . $phone,
-    'Email: ' . ($email !== '' ? $email : '(not provided)'),
-    'Business: ' . ($business !== '' ? $business : '(not provided)'),
-    'Message:',
-    $message !== '' ? $message : '(empty)',
-    '',
-    'Submitted: ' . $lead['createdAt'],
-    'Page: ' . $lead['page'],
-  ];
+if ($visitorId !== '') {
+  da_visit_mark_converted($visitorId, $lead['id']);
+}
+
+$autoSettings = da_automation_settings();
+$notify = trim((string)($autoSettings['notifyEmail'] ?? ''));
+if ($notify === '') {
+  $notify = trim((string)($contact['notifyEmail'] ?? ''));
+}
+
+$lines = [
+  'New contact form submission on displayavenue.com',
+  '',
+  'Name: ' . $name,
+  'Phone: ' . $phone,
+  'Email: ' . ($email !== '' ? $email : '(not provided)'),
+  'Business: ' . ($business !== '' ? $business : '(not provided)'),
+  'Message:',
+  $message !== '' ? $message : '(empty)',
+  '',
+  'Submitted: ' . $lead['createdAt'],
+  'Page: ' . $lead['page'],
+];
+if ($journey !== '') $lines[] = $journey;
+$lines[] = '';
+$lines[] = 'Admin: https://displayavenue.com/admin/';
+
+$notifyText = implode("\n", $lines);
+$auto = da_automation_notify([
+  'event' => 'contact_form',
+  'subject' => 'New DisplayAvenue lead: ' . $name,
+  'text' => $notifyText,
+  'summary' => $name . ' · ' . $phone,
+  'visitorId' => $visitorId,
+  'leadId' => $lead['id'],
+]);
+
+// Legacy mail fallback if automation email channel off / failed
+$mailOk = !empty($auto['channels']['email']['ok']);
+if (!$mailOk && $notify !== '' && filter_var($notify, FILTER_VALIDATE_EMAIL)) {
   $headers = 'From: noreply@displayavenue.com' . "\r\n" .
     'Reply-To: ' . ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL) ? $email : $notify) . "\r\n" .
     'Content-Type: text/plain; charset=UTF-8';
-  $mailOk = @mail($notify, $subject, implode("\n", $lines), $headers);
+  $mailOk = @mail($notify, 'New DisplayAvenue lead: ' . $name, $notifyText, $headers);
 }
 
 echo json_encode([
   'ok' => true,
   'saved' => (bool)$written,
   'emailed' => $mailOk,
+  'notified' => [
+    'ok' => !empty($auto['ok']),
+    'whatsapp' => !empty($auto['channels']['whatsapp']['ok']),
+    'sms' => !empty($auto['channels']['sms']['ok']),
+    'email' => $mailOk,
+  ],
   'successTitle' => $contact['successTitle'] ?? 'Thanks - we got your message',
   'successMessage' => $contact['successMessage'] ?? 'Our team will reply soon.',
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

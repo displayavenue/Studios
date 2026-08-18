@@ -164,20 +164,23 @@ function chat_add_message(array &$chat, string $role, string $text, array $extra
 }
 
 function chat_notify_admin(array $chat, string $text): void {
-  $to = 'info@displayavenue.com';
-  $companyPath = rtrim((string)(require __DIR__ . '/config.php')['content_dir'], '/\\') . '/company.json';
-  if (is_file($companyPath)) {
-    $co = json_decode((string)file_get_contents($companyPath), true);
-    if (!empty($co['email'])) $to = (string)$co['email'];
-  }
+  require_once __DIR__ . '/lib/automation.php';
   $name = $chat['visitor']['name'] ?? 'Visitor';
   $phone = $chat['visitor']['phone'] ?? '';
-  $subject = '[Live Chat] New message from ' . $name;
-  $body = "New live chat message on displayavenue.com\n\n"
-    . "Name: {$name}\nPhone: {$phone}\nChat: {$chat['id']}\n\n"
+  $visitorId = (string)($chat['visitor']['visitorId'] ?? '');
+  $page = (string)($chat['visitor']['page'] ?? '/');
+  $body = "Hot live-chat lead on displayavenue.com\n\n"
+    . "Name: {$name}\nPhone: {$phone}\nChat: {$chat['id']}\nPage: {$page}\n\n"
     . "Message:\n{$text}\n\n"
     . "Reply in Admin → Live Chat\nhttps://displayavenue.com/admin/\n";
-  @mail($to, $subject, $body, "From: noreply@displayavenue.com\r\nContent-Type: text/plain; charset=UTF-8");
+  da_automation_notify([
+    'event' => 'chat_hot_lead',
+    'subject' => '[Live Chat] Hot lead: ' . $name,
+    'text' => $body,
+    'summary' => $name . ' · chat ' . $chat['id'],
+    'visitorId' => $visitorId,
+    'leadId' => $chat['id'],
+  ]);
 }
 
 $input = chat_input();
@@ -188,6 +191,7 @@ if ($action === 'start') {
   $phone = trim((string)($input['phone'] ?? ''));
   $email = trim((string)($input['email'] ?? ''));
   $page = trim((string)($input['page'] ?? '/'));
+  $visitorId = preg_replace('/[^a-zA-Z0-9_\-]/', '', (string)($input['visitorId'] ?? '')) ?? '';
   if (strlen($name) > 80) $name = substr($name, 0, 80);
   if (strlen($phone) > 40) $phone = substr($phone, 0, 40);
   if (strlen($email) > 120) $email = substr($email, 0, 120);
@@ -210,6 +214,7 @@ if ($action === 'start') {
       'phone' => $phone,
       'email' => $email,
       'page' => $page,
+      'visitorId' => $visitorId,
       'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
       'ua' => substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 200),
     ],
