@@ -70,11 +70,6 @@
       "mega": "industries"
     },
     {
-      "label": "Industry Solutions",
-      "href": "/industry-solutions",
-      "mega": false
-    },
-    {
       "label": "Solutions",
       "href": "/solutions",
       "mega": "solutions"
@@ -90,11 +85,6 @@
       "mega": false
     },
     {
-      "label": "Locations",
-      "href": "/locations",
-      "mega": false
-    },
-    {
       "label": "Free Tools",
       "href": "/free-tools",
       "mega": false
@@ -107,11 +97,6 @@
     {
       "label": "Portfolio",
       "href": "/portfolio",
-      "mega": false
-    },
-    {
-      "label": "Resources",
-      "href": "/resources",
       "mega": false
     }
   ]
