@@ -47,6 +47,114 @@ function da_social_secrets(): array {
   return is_array($data) ? $data : [];
 }
 
+function da_social_secret_defaults(): array {
+  return [
+    'cron_key' => '',
+    'ayrshare_api_key' => '',
+    'ayrshare_profile_key' => '',
+    'meta_page_id' => '',
+    'meta_page_access_token' => '',
+    'meta_ig_user_id' => '',
+    'linkedin_access_token' => '',
+    'linkedin_author_urn' => '',
+    'gbp_access_token' => '',
+    'gbp_account_name' => '',
+    'gbp_location_name' => '',
+    'ai_provider' => 'gemini',
+    'ai_api_key' => '',
+    'ai_model' => 'gemini-2.0-flash',
+    'publish_webhook_url' => '',
+  ];
+}
+
+function da_social_mask_secret(string $value): string {
+  $value = trim($value);
+  if ($value === '') return '';
+  $len = strlen($value);
+  if ($len <= 8) return str_repeat('•', min(8, $len));
+  return substr($value, 0, 4) . str_repeat('•', max(4, min(16, $len - 8))) . substr($value, -4);
+}
+
+/** Public view of secrets for admin forms (values masked). */
+function da_social_secrets_public(): array {
+  $s = array_merge(da_social_secret_defaults(), da_social_secrets());
+  $sensitive = [
+    'cron_key', 'ayrshare_api_key', 'ayrshare_profile_key',
+    'meta_page_access_token', 'linkedin_access_token', 'gbp_access_token', 'ai_api_key',
+  ];
+  $out = [];
+  foreach ($s as $k => $v) {
+    $str = (string)$v;
+    if (in_array($k, $sensitive, true)) {
+      $out[$k] = [
+        'set' => trim($str) !== '',
+        'masked' => da_social_mask_secret($str),
+      ];
+    } else {
+      $out[$k] = ['set' => trim($str) !== '', 'value' => $str];
+    }
+  }
+  return $out;
+}
+
+function da_social_secrets_write(array $secrets): bool {
+  $file = __DIR__ . '/../social-local.php';
+  $defaults = da_social_secret_defaults();
+  $clean = [];
+  foreach ($defaults as $k => $_) {
+    $clean[$k] = (string)($secrets[$k] ?? '');
+  }
+  $export = var_export($clean, true);
+  $php = "<?php\n/**\n * Social Studio secrets — written by Admin → Social Studio.\n * Do not commit this file.\n */\ndeclare(strict_types=1);\n\nreturn " . $export . ";\n";
+  $ok = @file_put_contents($file, $php);
+  if ($ok === false) return false;
+  @chmod($file, 0600);
+  return true;
+}
+
+/**
+ * Merge admin form payload into social-local.php.
+ * Empty / unchanged masked values keep the previous secret.
+ */
+function da_social_secrets_save(array $incoming): array {
+  $current = array_merge(da_social_secret_defaults(), da_social_secrets());
+  $sensitive = [
+    'cron_key', 'ayrshare_api_key', 'ayrshare_profile_key',
+    'meta_page_access_token', 'linkedin_access_token', 'gbp_access_token', 'ai_api_key',
+  ];
+  $clearFlags = is_array($incoming['_clear'] ?? null) ? $incoming['_clear'] : [];
+
+  foreach (da_social_secret_defaults() as $key => $_) {
+    if (!empty($clearFlags[$key])) {
+      $current[$key] = '';
+      continue;
+    }
+    if (!array_key_exists($key, $incoming)) continue;
+    $val = trim((string)$incoming[$key]);
+    if ($val === '') continue; // keep existing
+    if (in_array($key, $sensitive, true)) {
+      $masked = da_social_mask_secret((string)($current[$key] ?? ''));
+      if ($val === $masked || str_contains($val, '•')) continue; // user left masked value
+    }
+    $current[$key] = $val;
+  }
+
+  // Auto-generate cron key if still empty
+  if (trim((string)$current['cron_key']) === '') {
+    $current['cron_key'] = bin2hex(random_bytes(16));
+  }
+
+  if (!da_social_secrets_write($current)) {
+    return ['ok' => false, 'error' => 'Could not write social-local.php (check file permissions on admin/)'];
+  }
+  return [
+    'ok' => true,
+    'secrets' => da_social_secrets_public(),
+    'status' => da_social_connection_status(),
+    'cronUrl' => 'https://displayavenue.com/admin/social-cron.php?key=' . rawurlencode((string)$current['cron_key']),
+  ];
+}
+
 function da_social_platforms(): array {
   return [
     ['id' => 'facebook', 'name' => 'Facebook Page', 'group' => 'Meta'],
