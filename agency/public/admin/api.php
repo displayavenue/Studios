@@ -520,6 +520,21 @@ switch ($action) {
     $fill = da_social_autopilot_fill();
     respond(200, ['ok' => true, 'fill' => $fill]);
 
+  case 'blog-publish-today':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/blog.php';
+    $created = da_blog_publish_today();
+    respond(200, [
+      'ok' => true,
+      'created' => $created,
+      'message' => $created ? 'Published' : 'Already published today or autopilot off',
+    ]);
+
+  case 'blog-list':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/blog.php';
+    respond(200, ['ok' => true, 'blog' => da_blog_load()]);
+
   case 'upload-catalogue':
     requireAuth($config);
     if (empty($_FILES['file']) || !is_array($_FILES['file'])) {

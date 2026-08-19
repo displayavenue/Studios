@@ -6,6 +6,7 @@ const QUOTE_NAV = {
   livechat: "Live Chat",
   automation: "Lead Automation",
   social: "Social Studio",
+  blog: "Blog Studio",
   quotations: "Quotations & Payments",
   invoices: "Create Invoice",
 };
@@ -326,7 +327,7 @@ function renderNav() {
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }${["quotations", "invoices", "livechat", "automation", "social"].includes(key) ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+        }${["quotations", "invoices", "livechat", "automation", "social", "blog"].includes(key) ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
@@ -335,6 +336,7 @@ function renderNav() {
       if (btn.dataset.key === "livechat") openLiveChat();
       else if (btn.dataset.key === "automation") openAutomation();
       else if (btn.dataset.key === "social") openSocialStudio();
+      else if (btn.dataset.key === "blog") openBlogStudio();
       else if (btn.dataset.key === "quotations") openQuotations();
       else if (btn.dataset.key === "invoices") openInvoices();
       else openCollection(btn.dataset.key);
@@ -991,6 +993,82 @@ function applySocialDraft(draft) {
   socialDraft.platforms = draft.suggestedPlatforms || socialDraft.platforms;
   socialDraft.scheduledAtLocal = toLocalInputValue(draft.suggestedAtIst);
   socialDraft.status = "draft";
+}
+
+async function openBlogStudio() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "blog";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.blog;
+  $("#panel-sub").textContent =
+    "Trending articles for DisplayAvenue. Autopilot can publish one fresh post every day.";
+  renderNav();
+  await renderBlogStudio();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+async function renderBlogStudio() {
+  const wrap = $("#editor-wrap");
+  wrap.innerHTML = `<p class="hint">Loading blog…</p>`;
+  try {
+    const res = await api("blog-list");
+    const blog = res.blog || {};
+    const posts = blog.posts || [];
+    wrap.innerHTML = `
+      <div class="card">
+        <div class="list-item-head">
+          <h3 style="margin:0">Blog Studio</h3>
+          <a class="btn btn-ghost" href="../blog" target="_blank" rel="noreferrer">Open /blog ↗</a>
+        </div>
+        <p class="hint">Live posts: <strong>${posts.length}</strong>. Daily cron publishes one new article about Google Ads, Meta, SEO, Local SEO, websites, and lead gen.</p>
+        <label class="check-row"><input type="checkbox" id="blog-auto" ${blog.autoPublish !== false ? "checked" : ""}/> Auto-publish daily</label>
+        <div class="row-actions" style="margin:1rem 0;display:flex;gap:.5rem;flex-wrap:wrap">
+          <button type="button" class="btn btn-gold" id="blog-publish-now">Publish today’s post now</button>
+          <button type="button" class="btn btn-ghost" id="blog-refresh">Refresh</button>
+        </div>
+        <p class="hint">Hostinger cron (daily):<br/><code>curl -s "https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY"</code><br/>Uses the same <code>cron_key</code> from Social Studio API keys.</p>
+        <h4>Posts</h4>
+        <div id="blog-posts">
+          ${
+            posts.length
+              ? posts
+                  .slice(0, 30)
+                  .map(
+                    (p) => `
+            <div class="list-item">
+              <div class="list-item-head">
+                <strong>${escapeHtml(p.title || p.slug)}</strong>
+                <span class="hint" style="margin:0">${escapeHtml(p.publishedAt || "")}${p.trending ? " · trending" : ""}</span>
+              </div>
+              <p style="margin:.35rem 0;font-size:.88rem;color:var(--muted)">${escapeHtml(p.excerpt || "")}</p>
+              <a href="../blog/${encodeURIComponent(p.slug)}" target="_blank" rel="noreferrer">View →</a>
+            </div>`,
+                  )
+                  .join("")
+              : `<p class="empty">No posts yet.</p>`
+          }
+        </div>
+      </div>`;
+    $("#blog-publish-now").onclick = async () => {
+      try {
+        toast("Publishing…");
+        const r = await api("blog-publish-today");
+        toast(r.created ? `Published: ${r.created.title}` : r.message || "Done");
+        renderBlogStudio();
+      } catch (e) {
+        toast(e.message || "Publish failed", "err");
+      }
+    };
+    $("#blog-refresh").onclick = () => renderBlogStudio();
+  } catch (e) {
+    wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load blog")}</p>`;
+  }
 }
 
 const CHAT_API = "./chat-api.php";
@@ -2820,6 +2898,10 @@ async function enterApp(collections) {
   }
   if (state.current === "social") {
     openSocialStudio();
+    return;
+  }
+  if (state.current === "blog") {
+    openBlogStudio();
     return;
   }
   if (state.current === "quotations") {

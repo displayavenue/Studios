@@ -74,6 +74,7 @@ export function Footer() {
         { label: "Portfolio", href: "/portfolio" },
         { label: "Locations", href: "/locations" },
         { label: "Digital business card", href: "/card" },
+        { label: "Blog", href: "/blog" },
         { label: "Contact", href: "/contact" },
         { label: "Privacy Policy", href: "/privacy" },
         { label: "Terms & Conditions", href: "/terms" },

@@ -67,6 +67,7 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/why-displayavenue', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['path' => '/contact', 'priority' => '0.8', 'changefreq' => 'monthly'],
     ['path' => '/card', 'priority' => '0.7', 'changefreq' => 'monthly'],
+    ['path' => '/blog', 'priority' => '0.85', 'changefreq' => 'daily'],
     ['path' => '/privacy', 'priority' => '0.3', 'changefreq' => 'yearly'],
     ['path' => '/terms', 'priority' => '0.3', 'changefreq' => 'yearly'],
   ];
@@ -125,6 +126,21 @@ function da_collect_urls(string $contentDir): array {
         'priority' => '0.7',
         'changefreq' => 'monthly',
       ];
+    }
+  }
+
+  $blogFile = $contentDir . '/blog.json';
+  if (is_file($blogFile)) {
+    $blog = json_decode((string)file_get_contents($blogFile), true);
+    if (is_array($blog['posts'] ?? null)) {
+      foreach ($blog['posts'] as $post) {
+        if (empty($post['slug'])) continue;
+        $urls[] = [
+          'path' => '/blog/' . $post['slug'],
+          'priority' => '0.7',
+          'changefreq' => 'weekly',
+        ];
+      }
     }
   }
 

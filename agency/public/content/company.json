@@ -90,6 +90,11 @@
       "mega": false
     },
     {
+      "label": "Blog",
+      "href": "/blog",
+      "mega": false
+    },
+    {
       "label": "Case Studies",
       "href": "/case-studies",
       "mega": false

@@ -133,6 +133,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://displayavenue.com/blog</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://displayavenue.com/privacy</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>yearly</changefreq>
@@ -143,6 +149,24 @@
     <lastmod>2026-08-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://displayavenue.com/blog/google-ads-cost-per-lead-india-clinics-2026</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenue.com/blog/local-seo-google-business-profile-mumbai-sme</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenue.com/blog/whatsapp-meta-ads-lead-funnel-india</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenue.com/services/digital-marketing</loc>
