@@ -73,6 +73,7 @@ export function Footer() {
         { label: "AI Platform", href: "/ai-platform" },
         { label: "Portfolio", href: "/portfolio" },
         { label: "Locations", href: "/locations" },
+        { label: "Digital business card", href: "/card" },
         { label: "Contact", href: "/contact" },
         { label: "Privacy Policy", href: "/privacy" },
         { label: "Terms & Conditions", href: "/terms" },
