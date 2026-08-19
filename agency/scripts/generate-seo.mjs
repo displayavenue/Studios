@@ -66,6 +66,7 @@ const staticPages = [
   ["/why-displayavenue", "0.7", "monthly"],
   ["/contact", "0.8", "monthly"],
   ["/card", "0.7", "monthly"],
+  ["/blog", "0.85", "daily"],
   ["/privacy", "0.3", "yearly"],
   ["/terms", "0.3", "yearly"],
 ];
@@ -75,6 +76,12 @@ const urls = staticPages.map(([path, priority, changefreq]) => ({
   priority,
   changefreq,
 }));
+
+const blog = readJson("blog.json");
+for (const post of blog.posts || []) {
+  if (!post?.slug) continue;
+  urls.push({ path: `/blog/${post.slug}`, priority: "0.7", changefreq: "weekly" });
+}
 
 const maps = [
   [items(services), "/services/", "0.7"],
