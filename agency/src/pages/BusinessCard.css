@@ -1,76 +1,61 @@
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap");
 
 .bc-page {
-  --bc-ink: #111;
-  --bc-muted: #5a5a5a;
-  --bc-line: #1a1a1a;
-  --bc-paper: #faf9f7;
+  --bc-ink: #07111f;
+  --bc-muted: #5c6570;
+  --bc-paper: #f3f1ec;
   --bc-card: #fff;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 0, 0, 0.04), transparent),
-    var(--bc-paper);
+  background: var(--bc-paper);
   color: var(--bc-ink);
-  font-family: "Source Sans 3", "Segoe UI", sans-serif;
-  padding: 1.25rem 1rem 4rem;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  padding: 1.25rem 1rem 3rem;
 }
 
-.bc-hero,
-.bc-schematic,
-.bc-cards-print,
-.bc-block {
-  max-width: 720px;
-  margin: 0 auto 1.75rem;
+.bc-print-sheet,
+.bc-hub {
+  max-width: 920px;
+  margin: 0 auto 2rem;
 }
 
-.bc-kicker {
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bc-muted);
-  margin: 0 0 0.5rem;
-}
-
+.bc-print-sheet h1,
 .bc-name {
   font-family: "Libre Baskerville", Georgia, serif;
-  font-size: clamp(2.2rem, 6vw, 3.2rem);
-  font-weight: 700;
-  margin: 0;
-  line-height: 1.1;
+  margin: 0 0 0.4rem;
 }
 
-.bc-title {
-  margin: 0.35rem 0 0;
-  font-size: 1.05rem;
+.bc-print-sheet h1 {
+  font-size: 1.6rem;
+}
+
+.bc-print-sheet p {
   color: var(--bc-muted);
+  line-height: 1.45;
+  margin: 0 0 1rem;
 }
 
-.bc-tag {
-  margin: 0.65rem 0 0;
-  font-family: "Libre Baskerville", Georgia, serif;
-  font-style: italic;
-  font-size: 1.05rem;
+.bc-hint {
+  font-size: 0.9rem !important;
 }
 
 .bc-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 1.15rem;
+  gap: 0.5rem;
+  margin: 0.85rem 0 1.25rem;
 }
 
 .bc-btn {
   appearance: none;
-  border: 1px solid var(--bc-line);
+  border: 1px solid var(--bc-ink);
   background: transparent;
   color: var(--bc-ink);
-  padding: 0.55rem 0.95rem;
+  padding: 0.55rem 0.9rem;
   font: inherit;
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 2px;
 }
 
 .bc-btn--primary {
@@ -78,258 +63,128 @@
   color: #fff;
 }
 
-.bc-schematic {
-  background: var(--bc-card);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 2rem 1rem 1.5rem;
-  text-align: center;
-}
-
-.bc-schematic__email-wrap {
-  position: relative;
-  max-width: 34rem;
-  margin: 0 auto 1.75rem;
-  padding: 1.75rem 0.5rem 2.4rem;
-}
-
-.bc-schematic__email {
-  font-family: "Libre Baskerville", Georgia, serif;
-  font-size: clamp(1.15rem, 3.8vw, 1.65rem);
-  margin: 0;
-  letter-spacing: 0.01em;
-}
-
-.bc-bracket {
-  position: absolute;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-}
-
-.bc-bracket span {
-  display: inline-block;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: var(--bc-card);
-  padding: 0 0.4rem;
-  color: var(--bc-muted);
-}
-
-.bc-bracket--top {
-  top: 0.15rem;
-  border-top: 1.5px solid var(--bc-line);
-  border-left: 1.5px solid var(--bc-line);
-  border-right: 1.5px solid var(--bc-line);
-  height: 0.85rem;
-  text-align: center;
-  line-height: 0;
-}
-
-.bc-bracket--top span {
-  transform: translateY(-0.55rem);
-}
-
-.bc-bracket--self {
-  left: 8%;
-  right: 58%;
-}
-
-.bc-bracket--company {
-  left: 42%;
-  right: 6%;
-}
-
-.bc-bracket--bottom {
-  bottom: 0.2rem;
-  border-bottom: 1.5px solid var(--bc-line);
-  border-left: 1.5px solid var(--bc-line);
-  border-right: 1.5px solid var(--bc-line);
-  height: 0.85rem;
-  text-align: center;
-}
-
-.bc-bracket--bottom span {
-  transform: translateY(0.55rem);
-}
-
-.bc-bracket--handle {
-  left: 38%;
-  right: 18%;
-  bottom: 1.15rem;
-}
-
-.bc-bracket--email {
-  left: 6%;
-  right: 6%;
-}
-
-.bc-phone {
-  font-family: "Libre Baskerville", Georgia, serif;
-  font-size: clamp(1.8rem, 5vw, 2.4rem);
-  margin: 0;
-  letter-spacing: 0.04em;
-}
-
-.bc-phone-label {
-  margin: 0.25rem 0 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--bc-muted);
-}
-
-.bc-cards-print h2,
-.bc-block h2 {
-  font-family: "Libre Baskerville", Georgia, serif;
-  font-size: 1.35rem;
-  margin: 0 0 0.45rem;
-}
-
-.bc-lead {
-  margin: 0 0 1rem;
-  color: var(--bc-muted);
-  line-height: 1.45;
-}
-
-.bc-print-row {
+.bc-phys-row {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
-@media (min-width: 720px) {
-  .bc-print-row {
+@media (min-width: 800px) {
+  .bc-phys-row {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.bc-print-card {
-  margin: 0;
+/* Exact physical card preview (3.5 × 2 in) */
+.bc-phys {
+  width: 3.5in;
+  max-width: 100%;
+  aspect-ratio: 3.5 / 2;
+  margin: 0 auto;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 0.65rem;
-  position: relative;
-}
-
-.bc-print-card img.bc-print-card__art,
-.bc-print-card > img:first-child {
-  width: 100%;
-  height: auto;
-  display: block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  background: #fff;
-}
-
-.bc-print-card--back {
+  box-shadow: 0 10px 28px rgba(7, 17, 31, 0.12);
   overflow: hidden;
 }
 
-.bc-print-card__qr {
-  position: absolute;
-  right: 11%;
-  top: 28%;
-  width: 28% !important;
-  height: auto !important;
-  aspect-ratio: 1;
-  object-fit: contain;
-  background: #fff;
-  border: 1px solid #111;
-  padding: 2%;
-  box-sizing: border-box;
+.bc-phys img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.bc-print-card figcaption {
-  margin-top: 0.45rem;
-  font-size: 0.8rem;
+.bc-hub {
+  border-top: 1px solid rgba(7, 17, 31, 0.12);
+  padding-top: 1.75rem;
+}
+
+.bc-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--bc-muted);
+  margin: 0 0 0.4rem;
+}
+
+.bc-name {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+}
+
+.bc-title {
+  margin: 0.25rem 0 0;
+  color: var(--bc-muted);
+}
+
+.bc-tag {
+  margin: 0.55rem 0 0;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-style: italic;
+}
+
+.bc-block {
+  margin-top: 1.5rem;
+}
+
+.bc-block h3 {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 1.2rem;
+  margin: 0 0 0.55rem;
+}
+
+.bc-lead {
+  color: var(--bc-muted);
+  margin: 0 0 0.75rem;
 }
 
 .bc-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(7, 17, 31, 0.1);
 }
 
 .bc-list li {
   display: grid;
-  grid-template-columns: 7.5rem 1fr;
-  gap: 0.75rem;
-  padding: 0.7rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  font-size: 0.95rem;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.6rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(7, 17, 31, 0.08);
 }
 
 .bc-list span {
   color: var(--bc-muted);
-  font-size: 0.82rem;
-  text-transform: uppercase;
+  font-size: 0.78rem;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .bc-list a,
 .bc-list em {
   color: var(--bc-ink);
-  text-decoration: none;
   font-style: normal;
   font-weight: 600;
-}
-
-.bc-list a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .bc-chip-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 .bc-chip {
-  border: 1px solid rgba(0, 0, 0, 0.18);
-  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(7, 17, 31, 0.18);
+  padding: 0.4rem 0.7rem;
   text-decoration: none;
   color: var(--bc-ink);
-  font-size: 0.9rem;
   font-weight: 600;
+  font-size: 0.88rem;
   background: #fff;
-}
-
-.bc-chip:hover {
-  background: var(--bc-ink);
-  color: #fff;
 }
 
 .bc-block--cta {
-  padding: 1.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.14);
   background: #fff;
-}
-
-.bc-qr-sticky {
-  position: fixed;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  padding: 0.45rem;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  z-index: 20;
-}
-
-.bc-qr-sticky img {
-  display: block;
-  width: 88px;
-  height: 88px;
-}
-
-.bc-qr-sticky p {
-  margin: 0.25rem 0 0;
-  font-size: 0.65rem;
-  color: var(--bc-muted);
+  border: 1px solid rgba(7, 17, 31, 0.12);
+  padding: 1.1rem;
 }
 
 @media (max-width: 640px) {
@@ -337,54 +192,69 @@
     grid-template-columns: 1fr;
     gap: 0.15rem;
   }
-  .bc-qr-sticky {
-    display: none;
-  }
 }
 
+/* —— Stationery print: two pages, exact card size —— */
 @media print {
+  @page {
+    size: 3.5in 2in;
+    margin: 0;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .bc-print-sheet,
+  .bc-print-sheet * {
+    visibility: visible !important;
+  }
+
   .bc-page {
     background: #fff;
     padding: 0;
-  }
-  .bc-hero,
-  .bc-schematic,
-  .bc-block,
-  .bc-qr-sticky,
-  .bc-actions {
-    display: none !important;
-  }
-  .bc-cards-print {
-    max-width: none;
     margin: 0;
   }
-  .bc-cards-print h2,
-  .bc-cards-print .bc-lead,
-  .bc-print-card figcaption {
-    display: none;
+
+  .bc-print-screen-only,
+  .bc-hub,
+  .bc-actions,
+  header,
+  footer,
+  .sticky-mcta,
+  .da-chat,
+  .wa-float,
+  nav {
+    display: none !important;
   }
-  .bc-print-row {
-    grid-template-columns: 1fr;
-    gap: 0.5in;
-  }
-  .bc-print-card {
-    border: none;
+
+  .bc-print-sheet {
+    max-width: none;
+    margin: 0;
     padding: 0;
-    width: 3.5in;
-    height: 2in;
-    overflow: hidden;
-    page-break-inside: avoid;
   }
-  .bc-print-card img.bc-print-card__art,
-  .bc-print-card > img:first-child {
+
+  .bc-phys-row {
+    display: block;
+  }
+
+  .bc-phys {
     width: 3.5in;
     height: 2in;
     aspect-ratio: auto;
-    object-fit: cover;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+    margin: 0;
   }
-  .bc-print-card__qr {
-    right: 0.28in;
-    top: 0.45in;
-    width: 0.95in !important;
+
+  .bc-phys--back {
+    page-break-after: auto;
+  }
+
+  .bc-phys img {
+    width: 3.5in;
+    height: 2in;
+    object-fit: fill;
   }
 }
