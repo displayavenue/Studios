@@ -1,8 +1,8 @@
 export const cardProfile = {
   personName: "Akash",
-  title: "Founder · DisplayAvenue",
+  title: "Founder",
   company: "DisplayAvenue",
-  email: "Akash@DisplayAvenue.com",
+  email: "info@displayavenue.com",
   phoneDisplay: "9222 122333",
   phoneE164: "+919222122333",
   phoneHref: "tel:+919222122333",
@@ -13,6 +13,8 @@ export const cardProfile = {
   tagline: "Get more customers online",
   city: "Mumbai, Maharashtra, India",
   hours: "Mon–Sat · 10:00 AM – 7:00 PM IST",
+  /** Standard India / US stationery size */
+  printSize: "3.5in × 2in (88.9mm × 50.8mm)",
   services: [
     { label: "Google Ads", href: "/services/google-ads" },
     { label: "Meta Ads", href: "/services/meta-ads" },
