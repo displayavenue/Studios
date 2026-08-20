@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Flag Company — Homepage Redesign Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0b1c33;
+      --ink-soft: #24364f;
+      --paper: #f7f4ef;
+      --saffron: #ff5501;
+      --saffron-deep: #e04500;
+      --sky: #1d6fb8;
+      --mist: rgba(11, 28, 51, 0.08);
+      --white: #ffffff;
+      --max: 1120px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Figtree", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+
+    /* Demo banner */
+    .demo-note {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--ink);
+      color: #dce7f5;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 0.55rem 1rem;
+    }
+    .demo-note strong { color: #fff; }
+
+    /* Header */
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      padding: 1.25rem 0;
+    }
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #fff;
+    }
+    .brand img {
+      width: 48px;
+      height: auto;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,.35));
+    }
+    .brand-name {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .brand-name span {
+      display: block;
+      font-size: 0.68em;
+      font-weight: 500;
+      opacity: 0.78;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .header-phone {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      color: #fff;
+      line-height: 1.15;
+      padding: 0.35rem 0.2rem;
+    }
+    .header-phone small {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.72;
+      font-weight: 600;
+    }
+    .header-phone strong {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(0.98rem, 2.2vw, 1.15rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .header-phone:hover strong { color: #ffb48a; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #fff;
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+    }
+    .nav-cta:hover { background: rgba(255,255,255,0.22); transform: translateY(-1px); }
+    @media (max-width: 560px) {
+      .nav-cta { display: none; }
+      .header-phone { align-items: flex-end; }
+    }
+
+    /* Hero — one composition, full-bleed */
+    .hero {
+      position: relative;
+      min-height: min(100svh, 860px);
+      display: grid;
+      align-items: end;
+      color: #fff;
+      isolation: isolate;
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.06);
+      animation: kenburns 18s var(--ease) infinite alternate;
+    }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(8,18,34,0.55) 0%, rgba(8,18,34,0.35) 42%, rgba(8,18,34,0.88) 100%),
+        radial-gradient(120% 80% at 85% 15%, rgba(255,85,1,0.32), transparent 52%);
+    }
+    .hero-fabric {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.18;
+      background-image:
+        repeating-linear-gradient(90deg, transparent 0 2px, rgba(255,255,255,0.05) 2px 3px),
+        repeating-linear-gradient(0deg, transparent 0 8px, rgba(255,255,255,0.03) 8px 9px);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+    .hero-content {
+      padding: 7.5rem 0 4.5rem;
+      max-width: 38rem;
+    }
+    .hero-brand {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 8vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      text-wrap: balance;
+      animation: rise 0.9s var(--ease) both;
+    }
+    .hero-brand em {
+      font-style: normal;
+      color: #ffb48a;
+    }
+    .hero h1 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 3.2vw, 1.85rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.85rem;
+      animation: rise 0.9s 0.08s var(--ease) both;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      color: rgba(255,255,255,0.86);
+      max-width: 32rem;
+      margin-bottom: 1.6rem;
+      animation: rise 0.9s 0.16s var(--ease) both;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      animation: rise 0.9s 0.24s var(--ease) both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.9rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--saffron);
+      color: #fff;
+      box-shadow: 0 10px 28px rgba(255,85,1,0.35);
+    }
+    .btn-primary:hover { background: var(--saffron-deep); }
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.45);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+    /* Section rhythm */
+    section { padding: 4.5rem 0; }
+    .section-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--saffron);
+      font-weight: 600;
+      margin-bottom: 0.55rem;
+    }
+    .section-title {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.65rem;
+      text-wrap: balance;
+    }
+    .section-lead {
+      color: var(--ink-soft);
+      max-width: 36rem;
+      margin-bottom: 2rem;
+    }
+    .section-head {
+      margin-bottom: 2rem;
+    }
+
+    /* Featured — editorial, not card clutter */
+    .featured {
+      background:
+        radial-gradient(80% 60% at 0% 0%, rgba(255,85,1,0.08), transparent 55%),
+        var(--paper);
+    }
+    .featured-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 800px) {
+      .featured-grid { grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr 1fr; min-height: 520px; }
+      .featured-grid .feature:first-child { grid-row: 1 / span 2; }
+    }
+    .feature {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.25rem;
+      min-height: 220px;
+      color: #fff;
+      isolation: isolate;
+    }
+    .feature img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      transition: transform 0.7s var(--ease);
+    }
+    .feature:hover img { transform: scale(1.05); }
+    .feature::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, transparent 30%, rgba(8,18,34,0.85) 100%);
+    }
+    .feature-body {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 1.35rem 1.4rem 1.5rem;
+    }
+    .feature h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .feature p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.82);
+      max-width: 28ch;
+    }
+
+    /* Trust strip — simple text rhythm, no icon cards overload */
+    .trust {
+      padding: 2.25rem 0;
+      border-block: 1px solid var(--mist);
+      background: #fff;
+    }
+    .trust-row {
+      display: grid;
+      gap: 1.25rem;
+      text-align: center;
+    }
+    @media (min-width: 720px) {
+      .trust-row { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    }
+    .trust-item strong {
+      display: block;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+    .trust-item span { color: var(--ink-soft); font-size: 0.95rem; }
+
+    /* Products — clean mosaic without heavy card chrome */
+    .products { background: #fff; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+    }
+    @media (min-width: 900px) {
+      .product-grid { grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+    }
+    .product {
+      display: block;
+      group: product;
+    }
+    .product-media {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 1rem;
+      background: #ece7df;
+      margin-bottom: 0.7rem;
+    }
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s var(--ease);
+    }
+    .product:hover .product-media img { transform: scale(1.06); }
+    .product h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* Events — full-bleed gallery strip */
+    .events {
+      background: var(--ink);
+      color: #fff;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+    .events .section-lead { color: rgba(255,255,255,0.72); }
+    .event-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(240px, 28vw);
+      gap: 0.85rem;
+      padding: 0 1rem 3rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .event-rail figure {
+      scroll-snap-align: start;
+      border-radius: 1rem;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .event-rail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+    .event-rail figure:hover img { transform: scale(1.04); }
+
+    /* Clients */
+    .clients {
+      background: var(--paper);
+      text-align: center;
+    }
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.25rem;
+      align-items: center;
+      opacity: 0.85;
+    }
+    .logo-row img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(1) contrast(0.9);
+      opacity: 0.75;
+      transition: filter 0.3s, opacity 0.3s;
+    }
+    .logo-row img:hover {
+      filter: none;
+      opacity: 1;
+    }
+
+    /* Testimonials — editorial quotes, not boxed cards */
+    .quotes {
+      background:
+        linear-gradient(180deg, #fff 0%, #f3efe8 100%);
+    }
+    .quote-grid {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 800px) {
+      .quote-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 3rem; }
+    }
+    .quote blockquote {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      margin-bottom: 0.9rem;
+    }
+    .quote cite {
+      font-style: normal;
+      color: var(--saffron);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    /* About + CTA */
+    .about {
+      position: relative;
+      color: #fff;
+      overflow: hidden;
+    }
+    .about-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+    .about-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(8,18,34,0.92) 0%, rgba(8,18,34,0.72) 48%, rgba(8,18,34,0.45) 100%);
+    }
+    .about .wrap { max-width: 40rem; padding-block: 1rem; }
+    .about .section-lead { color: rgba(255,255,255,0.8); }
+
+    footer {
+      background: #071320;
+      color: rgba(255,255,255,0.65);
+      padding: 1.5rem 0;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    footer a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes kenburns {
+      from { transform: scale(1.06) translate3d(0,0,0); }
+      to { transform: scale(1.14) translate3d(-1.5%, -1%, 0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-note">
+    <strong>Homepage redesign demo</strong> for theflagcompany.in — visual concept only (not live Magento yet)
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="https://theflagcompany.in/" target="_blank" rel="noopener">
+        <img src="https://theflagcompany.in/pub/media/logo/stores/1/logo_flag_company-1.png" alt="" />
+        <div class="brand-name">
+          The Flag Company
+          <span>Since 2006</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+918433827530" aria-label="Call The Flag Company">
+          <small>Call us now</small>
+          <strong>+91 84338 27530</strong>
+        </a>
+        <a class="nav-cta" href="https://theflagcompany.in/pub/media/TheFlagCompanyDalvirSinghNagi.pdf" target="_blank" rel="noopener">
+          Download catalogue
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img src="https://theflagcompany.in/pub/media/wysiwyg/Fifa_World_cup_2022.jpg" alt="" />
+    </div>
+    <div class="hero-fabric" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <p class="hero-brand">The Flag <em>Company</em></p>
+      <h1>Flags &amp; fabric branding that own the skyline</h1>
+      <p>India’s manufacturer for institutional, advertising, and event flags — crafted for G20, IPL, FIFA, and brands that need to be seen.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://theflagcompany.in/feather-flag.html" target="_blank" rel="noopener">Shop flags</a>
+        <a class="btn btn-ghost" href="https://theflagcompany.in/about-us" target="_blank" rel="noopener">Our story</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-kicker">Featured</p>
+        <h2 class="section-title">Built to stop traffic</h2>
+        <p class="section-lead">Outdoor and indoor display systems designed for attention — from feather flags to tension backdrops.</p>
+      </div>
+      <div class="featured-grid">
+        <a class="feature reveal" href="https://theflagcompany.in/feather-flag.html" target="_blank" rel="noopener">
+          <img src="https://theflagcompany.in/pub/media/wysiwyg/Capture1_2.PNG" alt="Feather Flag" />
+          <div class="feature-body">
+            <h3>Feather Flag</h3>
+            <p>Outdoor and indoor banners that draw eyes to your brand.</p>
+          </div>
+        </a>
+        <a class="feature reveal" href="https://theflagcompany.in/teardrop-flag.html" target="_blank" rel="noopener">
+          <img src="https://theflagcompany.in/pub/media/wysiwyg/Capture.PNG" alt="Teardrop Flag" />
+          <div class="feature-body">
+            <h3>Teardrop Flag</h3>
+            <p>High-visibility shape for events and storefronts.</p>
+          </div>
+        </a>
+        <a class="feature reveal" href="https://theflagcompany.in/advertising-flag.html" target="_blank" rel="noopener">
+          <img src="https://theflagcompany.in/pub/media/wysiwyg/main_1_1600_x_1600.jpg" alt="Advertising Flag" />
+          <div class="feature-body">
+            <h3>Advertising Flag</h3>
+            <p>Export-ready manufacturing for campaigns at scale.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="wrap trust-row reveal">
+      <div class="trust-item">
+        <strong>Fast shipping</strong>
+        <span>Reliable dispatch on every order</span>
+      </div>
+      <div class="trust-item">
+        <strong>Sustainable branding</strong>
+        <span>Eco-friendly fabrics and inks</span>
+      </div>
+      <div class="trust-item">
+        <strong>Support 24/7</strong>
+        <span>Mumbai · Delhi · Bengaluru · Hyderabad</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="products">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-kicker">Catalogue</p>
+        <h2 class="section-title">Our products</h2>
+        <p class="section-lead">From country flags to canopy tents — one manufacturer for every fabric touchpoint.</p>
+      </div>
+      <div class="product-grid">
+        <a class="product reveal" href="https://theflagcompany.in/catalog/product/flags-banners/country1-flags.html.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/catalog/product/f/l/flags-different-countries-flagpoles-sunlight_390319-296.jpg" alt="" /></div>
+          <h3>Country flags</h3>
+        </a>
+        <a class="product reveal" href="https://theflagcompany.in/sashes.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/catalog/product/m/a/main_1_1600_x_1600_7_1.jpg" alt="" /></div>
+          <h3>Sashes</h3>
+        </a>
+        <a class="product reveal" href="https://theflagcompany.in/custom-table-cloths.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/catalog/product/m/a/main_1_1600_x_1600_2.jpg" alt="" /></div>
+          <h3>Tradeshow table cloth</h3>
+        </a>
+        <a class="product reveal" href="https://theflagcompany.in/foldable-banners.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/catalog/product/w/h/whatsapp_image_2021-03-19_at_1.56.20_am_1_.jpeg" alt="" /></div>
+          <h3>Foldable banner</h3>
+        </a>
+        <a class="product reveal" href="https://theflagcompany.in/canopy-tents.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/catalog/product/t/o/top_branding_1.jpg" alt="" /></div>
+          <h3>Canopy tents</h3>
+        </a>
+        <a class="product reveal" href="https://theflagcompany.in/garden%20umbrella.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/catalog/product/u/n/untitled_design_-_2025-04-07t162019.355.png" alt="" /></div>
+          <h3>Garden umbrella</h3>
+        </a>
+        <a class="product reveal" href="https://theflagcompany.in/fabric-pillars.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/catalog/product/f/a/fabric_stands_1.5112.jpg" alt="" /></div>
+          <h3>Fabric pillar</h3>
+        </a>
+        <a class="product reveal" href="https://theflagcompany.in/shops/indian-national-flag.html" target="_blank" rel="noopener">
+          <div class="product-media"><img src="https://theflagcompany.in/pub/media/indianflagreplace.jpg" alt="" /></div>
+          <h3>Giant Indian flag</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="events">
+    <div class="wrap section-head reveal">
+      <p class="section-kicker">Events</p>
+      <h2 class="section-title">We’ve brought alive memorable stages</h2>
+      <p class="section-lead">KKR, G20, IPL, FIFA World Cup, and national stadium branding — fabric that performs under lights.</p>
+    </div>
+    <div class="event-rail" aria-label="Event gallery">
+      <figure><img src="https://theflagcompany.in/pub/media/wysiwyg/kkr_500x500px.jpg" alt="KKR" /></figure>
+      <figure><img src="https://theflagcompany.in/pub/media/wysiwyg/G20_500x500px.jpg" alt="G20" /></figure>
+      <figure><img src="https://theflagcompany.in/pub/media/wysiwyg/15_years_ipl__500x690px.jpg" alt="IPL" /></figure>
+      <figure><img src="https://theflagcompany.in/pub/media/wysiwyg/Fifa_World_cup_2022.jpg" alt="FIFA" /></figure>
+      <figure><img src="https://theflagcompany.in/pub/media/banner/tmp/img/Stadium_Branding.png" alt="Stadium branding" /></figure>
+      <figure><img src="https://theflagcompany.in/pub/media/banner/tmp/img/Portable_Exhibition.png" alt="Exhibition" /></figure>
+    </div>
+  </section>
+
+  <section class="clients">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-kicker">Trusted by</p>
+        <h2 class="section-title">Our clients</h2>
+      </div>
+      <div class="logo-row reveal">
+        <img src="https://theflagcompany.in/pub/media/clients/client-1.png" alt="Client" />
+        <img src="https://theflagcompany.in/pub/media/clients/client-2.png" alt="Client" />
+        <img src="https://theflagcompany.in/pub/media/clients/client-3.png" alt="Client" />
+        <img src="https://theflagcompany.in/pub/media/clients/client-4.png" alt="Client" />
+        <img src="https://theflagcompany.in/pub/media/clients/client-5.png" alt="Client" />
+        <img src="https://theflagcompany.in/pub/media/clients/client-6.png" alt="Client" />
+        <img src="https://theflagcompany.in/pub/media/clients/client-7.png" alt="Client" />
+        <img src="https://theflagcompany.in/pub/media/clients/client-8.png" alt="Client" />
+      </div>
+    </div>
+  </section>
+
+  <section class="quotes">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="section-kicker">Testimonials</p>
+        <h2 class="section-title">What partners say</h2>
+      </div>
+      <div class="quote-grid">
+        <article class="quote reveal">
+          <blockquote>“Excellent eye-catching flags that increase traffic. An investment we’ll repeat.”</blockquote>
+          <cite>Reliance Industries</cite>
+        </article>
+        <article class="quote reveal">
+          <blockquote>“Sometimes you get more than you pay for. Top place for custom event flags.”</blockquote>
+          <cite>Wizcraft</cite>
+        </article>
+        <article class="quote reveal">
+          <blockquote>“Arrived sooner than expected. Soft, durable print that holds up outdoors.”</blockquote>
+          <cite>HDFC Bank</cite>
+        </article>
+        <article class="quote reveal">
+          <blockquote>“Sharp image quality end to end. Flags packed individually — a nice touch.”</blockquote>
+          <cite>Yamaha India</cite>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-bg" aria-hidden="true">
+      <img src="https://theflagcompany.in/pub/media/banner/tmp/img/Modular_Fabric_Signage.png" alt="" />
+    </div>
+    <div class="wrap reveal">
+      <p class="section-kicker">Behind the scenes</p>
+      <h2 class="section-title">From Mumbai workshop to global stages</h2>
+      <p class="section-lead">Since 2006, The Flag Company has grown from a local manufacturer into India’s leading producer of institutional and advertising flags — with presence in the UAE and USA.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:+918433827530">Call +91 84338 27530</a>
+        <a class="btn btn-ghost" href="https://theflagcompany.in/customer/account/create/" target="_blank" rel="noopener">Create account</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Demo concept for <a href="https://theflagcompany.in/" target="_blank" rel="noopener">theflagcompany.in</a> · Compare with the live Magento homepage
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
