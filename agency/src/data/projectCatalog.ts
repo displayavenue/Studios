@@ -1,0 +1,12 @@
+import { buildDetailPage, type DetailPageContent } from "./catalogTypes";
+
+const defs: Array<Partial<DetailPageContent> & Pick<DetailPageContent, "slug" | "kind" | "title" | "category">> = [
+  {"slug":"vaidraj","kind":"project","title":"Vaidraj Ayurvedic Store","category":"E-commerce","icon":"bag","color":"#065f46","headline":"Vaidraj Ayurvedic Store","summary":"A featured DisplayAvenue project spanning strategy, design, and growth for Vaidraj Ayurvedic Store.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
+  {"slug":"bpg","kind":"project","title":"Bhaskar Patil Group Website","category":"Web Development","icon":"code","color":"#1e3a8a","headline":"Bhaskar Patil Group Website","summary":"A featured DisplayAvenue project spanning strategy, design, and growth for Bhaskar Patil Group Website.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
+  {"slug":"rak","kind":"project","title":"RAK Ceramics Brand System","category":"Branding","icon":"brand","color":"#4c1d95","headline":"RAK Ceramics Brand System","summary":"A featured DisplayAvenue project spanning strategy, design, and growth for RAK Ceramics Brand System.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
+  {"slug":"royal","kind":"project","title":"Royal Mouth Fresheners Growth","category":"Digital Marketing","icon":"megaphone","color":"#9a3412","headline":"Royal Mouth Fresheners Growth","summary":"A featured DisplayAvenue project spanning strategy, design, and growth for Royal Mouth Fresheners Growth.","related":[{"label":"All Portfolio","href":"/portfolio"},{"label":"Case Studies","href":"/case-studies"},{"label":"Start Your Project","href":"/contact"}]},
+];
+
+export const projectPages: DetailPageContent[] = defs.map((d) => buildDetailPage(d));
+export const projectBySlug = Object.fromEntries(projectPages.map((p) => [p.slug, p])) as Record<string, DetailPageContent>;
+export function getProjectPage(slug: string): DetailPageContent | undefined { return projectBySlug[slug]; }
