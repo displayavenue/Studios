@@ -18,6 +18,7 @@ import { BookNow } from "./pages/BookNow";
 import { Contact } from "./pages/Contact";
 import { AllPages } from "./pages/AllPages";
 import { PrivacyPolicy, TermsOfService, BookingPolicy } from "./pages/Legal";
+import { AcademyCourse } from "./pages/AcademyCourse";
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="faqs" element={<FAQs />} />
           <Route path="book-now" element={<BookNow />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="academy/courses/computer-fundamentals" element={<AcademyCourse />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<TermsOfService />} />
           <Route path="booking-policy" element={<BookingPolicy />} />
