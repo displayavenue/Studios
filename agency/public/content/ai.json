@@ -1,0 +1,820 @@
+{
+  "items": [
+    {
+      "icon": "megaphone",
+      "color": "#7c3aed",
+      "eyebrow": "AI Platform",
+      "headline": "AI Marketing Suite for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai marketing suite.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai marketing suite with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Marketing Suite roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Marketing Suite?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "marketing",
+      "kind": "ai",
+      "title": "AI Marketing Suite",
+      "category": "AI Platform"
+    },
+    {
+      "icon": "growth",
+      "color": "#16a34a",
+      "eyebrow": "AI Platform",
+      "headline": "AI Sales & Lead Generation for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai sales & lead generation.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai sales & lead generation with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Sales & Lead Generation roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Sales & Lead Generation?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "sales",
+      "kind": "ai",
+      "title": "AI Sales & Lead Generation",
+      "category": "AI Platform"
+    },
+    {
+      "icon": "doc",
+      "color": "#0891b2",
+      "eyebrow": "AI Platform",
+      "headline": "AI Content & Creative for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai content & creative.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai content & creative with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Content & Creative roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Content & Creative?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "content",
+      "kind": "ai",
+      "title": "AI Content & Creative",
+      "category": "AI Platform"
+    },
+    {
+      "icon": "chat",
+      "color": "#e11d8c",
+      "eyebrow": "AI Platform",
+      "headline": "AI Chat & Customer Experience for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai chat & customer experience.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai chat & customer experience with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Chat & Customer Experience roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Chat & Customer Experience?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "cx",
+      "kind": "ai",
+      "title": "AI Chat & Customer Experience",
+      "category": "AI Platform"
+    },
+    {
+      "icon": "bolt",
+      "color": "#f97316",
+      "eyebrow": "AI Platform",
+      "headline": "AI Automation Suite for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai automation suite.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai automation suite with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Automation Suite roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Automation Suite?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "automation",
+      "kind": "ai",
+      "title": "AI Automation Suite",
+      "category": "AI Platform"
+    },
+    {
+      "icon": "chart",
+      "color": "#0056ff",
+      "eyebrow": "AI Platform",
+      "headline": "AI Analytics & Insights for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai analytics & insights.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai analytics & insights with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Analytics & Insights roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Analytics & Insights?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "analytics",
+      "kind": "ai",
+      "title": "AI Analytics & Insights",
+      "category": "AI Platform"
+    },
+    {
+      "icon": "globe",
+      "color": "#0d9488",
+      "eyebrow": "AI Platform",
+      "headline": "AI Website & SEO for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai website & seo.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai website & seo with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Website & SEO roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Website & SEO?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "seo",
+      "kind": "ai",
+      "title": "AI Website & SEO",
+      "category": "AI Platform"
+    },
+    {
+      "icon": "code",
+      "color": "#1e3a8a",
+      "eyebrow": "AI Platform",
+      "headline": "AI Developer Tools for real business workflows",
+      "summary": "Explore AI tools inside the DisplayAvenue platform — built to automate work, accelerate teams, and improve ROI across ai developer tools.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ai developer tools with your business goals, audience, and funnel — not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated AI Developer Tools roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data — improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start AI Developer Tools?",
+          "a": "Most engagements kick off within 5–7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "AI Platform",
+          "href": "/ai-platform"
+        },
+        {
+          "label": "Book AI Consultation",
+          "href": "/contact"
+        },
+        {
+          "label": "Free Tools",
+          "href": "/free-tools"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "developer",
+      "kind": "ai",
+      "title": "AI Developer Tools",
+      "category": "AI Platform"
+    }
+  ]
+}
