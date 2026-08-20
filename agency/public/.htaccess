@@ -1,0 +1,16 @@
+# SPA + SEO for DisplayAvenue (https://displayavenue.com/)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Dynamic sitemap
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+  # Hostinger quotations (public client links)
+  RewriteRule ^q(/.*)?$ /q/index.php [L,QSA]
+
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
