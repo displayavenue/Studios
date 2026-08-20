@@ -1,0 +1,2910 @@
+// HomeopathyPharma.com — PostgreSQL schema (Prisma)
+// Backend is source of truth. Soft-delete via deletedAt where appropriate.
+// Money ledgers, order snapshots, approvals, and publish histories are immutable.
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────
+
+enum UserAccountStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  LOCKED
+  DELETED
+}
+
+enum IdentityProvider {
+  GOOGLE
+  EMAIL_OTP
+  PHONE_OTP
+  PASSWORD
+}
+
+enum PublishStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  PUBLISHED
+  UNPUBLISHED
+  ARCHIVED
+  REJECTED
+}
+
+enum MedicalReviewStatus {
+  NOT_REQUIRED
+  PENDING
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  NEEDS_UPDATE
+}
+
+enum DoctorVerificationStatus {
+  DRAFT
+  SUBMITTED
+  IN_REVIEW
+  NEEDS_MORE_INFO
+  APPROVED
+  REJECTED
+  SUSPENDED
+}
+
+enum AppointmentMode {
+  ONLINE
+  OFFLINE
+}
+
+enum AppointmentStatus {
+  DRAFT
+  PENDING_PAYMENT
+  CONFIRMED
+  WAITING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+  RESCHEDULED
+}
+
+enum OrderStatus {
+  DRAFT
+  PENDING_PAYMENT
+  PAID
+  PAYMENT_FAILED
+  CONFIRMED
+  PROCESSING
+  PACKED
+  SHIPPED
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+  RETURN_REQUESTED
+  RETURNED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  CREATED
+  PENDING
+  AUTHORIZED
+  CAPTURED
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+  DISPUTED
+}
+
+enum PaymentProvider {
+  RAZORPAY
+  WALLET
+  MANUAL
+}
+
+enum ShipmentStatus {
+  PENDING
+  READY_TO_SHIP
+  PICKUP_SCHEDULED
+  PICKED_UP
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  NDR
+  RTO
+  CANCELLED
+  RETURNED
+}
+
+enum InventoryMovementType {
+  RECEIPT
+  SALE
+  RESERVATION
+  RELEASE
+  ADJUSTMENT
+  RETURN
+  EXPIRE
+  TRANSFER
+}
+
+enum ReviewModerationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  FLAGGED
+  REMOVED
+}
+
+enum ReviewQueueType {
+  PRODUCT
+  DOCTOR
+}
+
+enum ReviewQueueItemStatus {
+  PENDING
+  IN_REVIEW
+  RESOLVED
+}
+
+enum CouponType {
+  PERCENT
+  FIXED
+  FREE_SHIPPING
+  REFERRAL
+  BUNDLE
+}
+
+enum ReferralLedgerEntryType {
+  ACCRUAL
+  REVERSAL
+  PAYOUT
+  ADJUSTMENT
+}
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+  SMS
+  WHATSAPP
+}
+
+enum SupportTicketStatus {
+  OPEN
+  IN_PROGRESS
+  WAITING_ON_CUSTOMER
+  RESOLVED
+  CLOSED
+}
+
+enum PageKind {
+  COMMERCE
+  CONTENT
+  LEGAL
+  LANDING
+  SYSTEM
+}
+
+enum SitemapSegment {
+  PRODUCTS
+  CATEGORIES
+  CONDITIONS
+  BODY_SYSTEMS
+  ORGANS
+  DOCTORS
+  CITIES
+  PETS
+  ARTICLES
+  STATIC
+  LEGAL
+}
+
+enum ConsentType {
+  TERMS
+  PRIVACY
+  MARKETING
+  MEDICAL_TELECONSULT
+  COOKIES
+}
+
+// ─── Identity & Access ───────────────────────────────────────
+
+model User {
+  id                String            @id @default(cuid())
+  email             String?           @unique
+  emailVerifiedAt   DateTime?
+  phone             String?           @unique
+  phoneVerifiedAt   DateTime?
+  displayName       String?
+  avatarUrl         String?
+  status            UserAccountStatus @default(PENDING)
+  preferredLocale   String            @default("en-IN")
+  preferredCountry  String            @default("IN")
+  preferredCurrency String            @default("INR")
+  lastLoginAt       DateTime?
+  lockedUntil       DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  createdById       String?
+  updatedById       String?
+  deletedAt         DateTime?
+
+  identities      UserIdentity[]
+  sessions        Session[]
+  roles           UserRole[]
+  mfaDevices      MfaDevice[]
+  loginAttempts   LoginAttempt[]
+  auditLogs       AuditLog[]       @relation("AuditActor")
+  customerProfile CustomerProfile?
+  doctorProfile   DoctorProfile?
+  consents        Consent[]
+  privacyEvents   PrivacyEvent[]
+  supportTickets  SupportTicket[]  @relation("TicketRequester")
+  notifications   Notification[]
+  savedItems      SavedItem[]
+
+  @@index([status])
+  @@index([deletedAt])
+  @@map("users")
+}
+
+model UserIdentity {
+  id             String           @id @default(cuid())
+  userId         String
+  provider       IdentityProvider
+  providerUserId String
+  email          String?
+  rawProfile     Json?
+  verifiedAt     DateTime?
+  status         String           @default("ACTIVE")
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  createdById    String?
+  updatedById    String?
+  deletedAt      DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([provider, providerUserId])
+  @@index([userId])
+  @@map("user_identities")
+}
+
+model Session {
+  id             String    @id @default(cuid())
+  userId         String
+  tokenHash      String    @unique
+  deviceId       String?
+  deviceLabel    String?
+  ipAddress      String?
+  userAgent      String?
+  status         String    @default("ACTIVE")
+  expiresAt      DateTime
+  revokedAt      DateTime?
+  lastSeenAt     DateTime?
+  forcedLogoutAt DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model Role {
+  id          String    @id @default(cuid())
+  code        String    @unique
+  name        String
+  description String?
+  status      String    @default("ACTIVE")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  permissions RolePermission[]
+  users       UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  roles RolePermission[]
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  createdAt    DateTime @default(now())
+  createdById  String?
+
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  id          String    @id @default(cuid())
+  userId      String
+  roleId      String
+  status      String    @default("ACTIVE")
+  assignedAt  DateTime  @default(now())
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@unique([userId, roleId])
+  @@index([roleId])
+  @@map("user_roles")
+}
+
+model MfaDevice {
+  id          String    @id @default(cuid())
+  userId      String
+  type        String
+  label       String?
+  secretEnc   String?
+  status      String    @default("PENDING")
+  verifiedAt  DateTime?
+  lastUsedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+  @@map("mfa_devices")
+}
+
+model LoginAttempt {
+  id            String            @id @default(cuid())
+  userId        String?
+  emailOrPhone  String?
+  ipAddress     String?
+  userAgent     String?
+  provider      IdentityProvider?
+  success       Boolean
+  failureReason String?
+  createdAt     DateTime          @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([emailOrPhone, createdAt])
+  @@index([ipAddress, createdAt])
+  @@index([userId, createdAt])
+  @@map("login_attempts")
+}
+
+model AuditLog {
+  id            String   @id @default(cuid())
+  actorUserId   String?
+  action        String
+  entityType    String
+  entityId      String?
+  beforeJson    Json?
+  afterJson     Json?
+  ipAddress     String?
+  userAgent     String?
+  correlationId String?
+  immutable     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+
+  actor User? @relation("AuditActor", fields: [actorUserId], references: [id])
+
+  @@index([entityType, entityId, createdAt])
+  @@index([actorUserId, createdAt])
+  @@index([action, createdAt])
+  @@map("audit_logs")
+}
+
+// ─── Customer ────────────────────────────────────────────────
+
+model CustomerProfile {
+  id             String    @id @default(cuid())
+  userId         String    @unique
+  firstName      String?
+  lastName       String?
+  dateOfBirth    DateTime?
+  gender         String?
+  status         String    @default("ACTIVE")
+  referredByCode String?
+  ownerUserId    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  createdById    String?
+  updatedById    String?
+  deletedAt      DateTime?
+
+  user            User                   @relation(fields: [userId], references: [id])
+  addresses       CustomerAddress[]
+  preferences     CustomerPreference?
+  wallet          CustomerWallet?
+  referrals       CustomerReferral[]     @relation("ReferredCustomer")
+  notifications   CustomerNotification[]
+  carts           Cart[]
+  orders          Order[]
+  appointments    DoctorAppointment[]
+  productReviews  ProductReview[]
+  doctorReviews   DoctorReview[]
+  customerCoupons CustomerCoupon[]
+
+  @@index([status])
+  @@map("customer_profiles")
+}
+
+model CustomerAddress {
+  id          String    @id @default(cuid())
+  customerId  String
+  label       String?
+  name        String
+  phone       String?
+  line1       String
+  line2       String?
+  city        String
+  state       String?
+  postalCode  String
+  countryCode String    @default("IN")
+  latitude    Decimal?  @db.Decimal(10, 7)
+  longitude   Decimal?  @db.Decimal(10, 7)
+  isDefault   Boolean   @default(false)
+  status      String    @default("ACTIVE")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  customer CustomerProfile @relation(fields: [customerId], references: [id])
+
+  @@index([customerId, status])
+  @@map("customer_addresses")
+}
+
+model CustomerPreference {
+  id                  String   @id @default(cuid())
+  customerId          String   @unique
+  marketingEmailOptIn Boolean  @default(false)
+  marketingSmsOptIn   Boolean  @default(false)
+  whatsappOptIn       Boolean  @default(false)
+  petInterest         Boolean  @default(false)
+  locale              String   @default("en-IN")
+  currency            String   @default("INR")
+  status              String   @default("ACTIVE")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  createdById         String?
+  updatedById         String?
+
+  customer CustomerProfile @relation(fields: [customerId], references: [id])
+
+  @@map("customer_preferences")
+}
+
+model CustomerWallet {
+  id           String   @id @default(cuid())
+  customerId   String   @unique
+  currency     String   @default("INR")
+  balanceMinor Int      @default(0)
+  status       String   @default("ACTIVE")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  customer CustomerProfile @relation(fields: [customerId], references: [id])
+
+  @@map("customer_wallets")
+}
+
+model CustomerReferral {
+  id                String   @id @default(cuid())
+  customerId        String
+  referralCodeId    String
+  referringDoctorId String?
+  orderId           String?
+  status            String   @default("ATTRIBUTED")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  createdById       String?
+  updatedById       String?
+
+  customer     CustomerProfile    @relation("ReferredCustomer", fields: [customerId], references: [id])
+  referralCode DoctorReferralCode @relation(fields: [referralCodeId], references: [id])
+
+  @@index([customerId])
+  @@index([referralCodeId])
+  @@map("customer_referrals")
+}
+
+model CustomerNotification {
+  id          String              @id @default(cuid())
+  customerId  String
+  channel     NotificationChannel
+  title       String
+  body        String
+  payload     Json?
+  status      String              @default("PENDING")
+  readAt      DateTime?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  createdById String?
+  updatedById String?
+
+  customer CustomerProfile @relation(fields: [customerId], references: [id])
+
+  @@index([customerId, status])
+  @@map("customer_notifications")
+}
+
+model SavedItem {
+  id          String    @id @default(cuid())
+  userId      String
+  productId   String?
+  variantId   String?
+  bundleId    String?
+  status      String    @default("ACTIVE")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+  @@map("saved_items")
+}
+
+// ─── Doctor ──────────────────────────────────────────────────
+
+model DoctorProfile {
+  id                   String                   @id @default(cuid())
+  userId               String                   @unique
+  slug                 String                   @unique
+  title                String?
+  fullName             String
+  bio                  String?
+  consultationFeeMinor Int                      @default(0)
+  currency             String                   @default("INR")
+  yearsExperience      Int?
+  verificationStatus   DoctorVerificationStatus @default(DRAFT)
+  verifiedBadge        Boolean                  @default(false)
+  vacationMode         Boolean                  @default(false)
+  status               PublishStatus            @default(DRAFT)
+  ownerUserId          String?
+  publishedAt          DateTime?
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  createdById          String?
+  updatedById          String?
+  deletedAt            DateTime?
+
+  user           User                     @relation(fields: [userId], references: [id])
+  verifications  DoctorVerification[]
+  documents      DoctorDocument[]
+  licenses       DoctorLicense[]
+  specialties    DoctorSpecialty[]
+  languages      DoctorLanguage[]
+  clinics        DoctorClinic[]
+  availability   DoctorAvailabilitySlot[]
+  appointments   DoctorAppointment[]
+  consultations  DoctorConsultation[]
+  reviews        DoctorReview[]
+  referralCodes  DoctorReferralCode[]
+  payouts        DoctorPayout[]
+  earningsLedger DoctorEarningsLedger[]
+
+  @@index([verificationStatus, status])
+  @@index([slug])
+  @@map("doctor_profiles")
+}
+
+model DoctorVerification {
+  id          String                   @id @default(cuid())
+  doctorId    String
+  status      DoctorVerificationStatus @default(SUBMITTED)
+  notes       String?
+  reviewerId  String?
+  reviewedAt  DateTime?
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  createdById String?
+  updatedById String?
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id])
+
+  @@index([doctorId, status])
+  @@map("doctor_verifications")
+}
+
+model DoctorDocument {
+  id           String    @id @default(cuid())
+  doctorId     String
+  documentType String
+  storageKey   String
+  mimeType     String
+  fileName     String
+  status       String    @default("UPLOADED")
+  scannedAt    DateTime?
+  scanResult   String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  createdById  String?
+  updatedById  String?
+  deletedAt    DateTime?
+
+  doctor     DoctorProfile       @relation(fields: [doctorId], references: [id])
+  accessLogs DocumentAccessLog[]
+
+  @@index([doctorId, status])
+  @@map("doctor_documents")
+}
+
+model DoctorLicense {
+  id            String    @id @default(cuid())
+  doctorId      String
+  licenseNumber String
+  issuingBody   String
+  countryCode   String    @default("IN")
+  state         String?
+  issuedAt      DateTime?
+  expiresAt     DateTime?
+  status        String    @default("PENDING")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  createdById   String?
+  updatedById   String?
+  deletedAt     DateTime?
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id])
+
+  @@unique([doctorId, licenseNumber, issuingBody])
+  @@map("doctor_licenses")
+}
+
+model DoctorSpecialty {
+  id          String   @id @default(cuid())
+  doctorId    String
+  specialty   String
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id])
+
+  @@unique([doctorId, specialty])
+  @@map("doctor_specialties")
+}
+
+model DoctorLanguage {
+  id           String   @id @default(cuid())
+  doctorId     String
+  languageCode String
+  status       String   @default("ACTIVE")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id])
+
+  @@unique([doctorId, languageCode])
+  @@map("doctor_languages")
+}
+
+model DoctorClinic {
+  id          String    @id @default(cuid())
+  doctorId    String
+  name        String
+  line1       String
+  line2       String?
+  city        String
+  state       String?
+  postalCode  String?
+  countryCode String    @default("IN")
+  latitude    Decimal?  @db.Decimal(10, 7)
+  longitude   Decimal?  @db.Decimal(10, 7)
+  phone       String?
+  status      String    @default("ACTIVE")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  doctor       DoctorProfile       @relation(fields: [doctorId], references: [id])
+  appointments DoctorAppointment[]
+
+  @@index([doctorId, city])
+  @@map("doctor_clinics")
+}
+
+model DoctorAvailabilitySlot {
+  id          String          @id @default(cuid())
+  doctorId    String
+  clinicId    String?
+  mode        AppointmentMode
+  startsAt    DateTime
+  endsAt      DateTime
+  capacity    Int             @default(1)
+  bookedCount Int             @default(0)
+  status      String          @default("OPEN")
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  doctor       DoctorProfile       @relation(fields: [doctorId], references: [id])
+  appointments DoctorAppointment[]
+
+  @@index([doctorId, startsAt, status])
+  @@index([mode, startsAt])
+  @@map("doctor_availability_slots")
+}
+
+model DoctorAppointment {
+  id                 String            @id @default(cuid())
+  doctorId           String
+  customerId         String
+  slotId             String?
+  clinicId           String?
+  mode               AppointmentMode
+  status             AppointmentStatus @default(DRAFT)
+  scheduledStart     DateTime
+  scheduledEnd       DateTime
+  feeMinor           Int               @default(0)
+  currency           String            @default("INR")
+  paymentId          String?
+  idempotencyKey     String?           @unique
+  cancellationReason String?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  createdById        String?
+  updatedById        String?
+
+  doctor        DoctorProfile           @relation(fields: [doctorId], references: [id])
+  customer      CustomerProfile         @relation(fields: [customerId], references: [id])
+  slot          DoctorAvailabilitySlot? @relation(fields: [slotId], references: [id])
+  clinic        DoctorClinic?           @relation(fields: [clinicId], references: [id])
+  consultation  DoctorConsultation?
+  doctorReviews DoctorReview[]
+
+  @@index([doctorId, scheduledStart])
+  @@index([customerId, status])
+  @@index([status, scheduledStart])
+  @@map("doctor_appointments")
+}
+
+model DoctorConsultation {
+  id                  String    @id @default(cuid())
+  appointmentId       String    @unique
+  doctorId            String
+  roomId              String?
+  waitingRoomJoinedAt DateTime?
+  startedAt           DateTime?
+  endedAt             DateTime?
+  status              String    @default("SCHEDULED")
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  createdById         String?
+  updatedById         String?
+
+  appointment   DoctorAppointment    @relation(fields: [appointmentId], references: [id])
+  doctor        DoctorProfile        @relation(fields: [doctorId], references: [id])
+  notes         ConsultationNote[]
+  prescriptions DoctorPrescription[]
+
+  @@index([doctorId, status])
+  @@map("doctor_consultations")
+}
+
+model ConsultationNote {
+  id             String   @id @default(cuid())
+  consultationId String
+  authorUserId   String
+  noteBody       String
+  isPrivate      Boolean  @default(true)
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  consultation DoctorConsultation @relation(fields: [consultationId], references: [id])
+
+  @@index([consultationId])
+  @@map("consultation_notes")
+}
+
+model DoctorPrescription {
+  id             String   @id @default(cuid())
+  consultationId String
+  storageKey     String?
+  body           String?
+  status         String   @default("DRAFT")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  consultation DoctorConsultation @relation(fields: [consultationId], references: [id])
+
+  @@index([consultationId])
+  @@map("doctor_prescriptions")
+}
+
+model DoctorReview {
+  id               String                 @id @default(cuid())
+  doctorId         String
+  customerId       String
+  appointmentId    String
+  rating           Int
+  title            String?
+  body             String?
+  verifiedConsult  Boolean                @default(true)
+  moderationStatus ReviewModerationStatus @default(PENDING)
+  status           String                 @default("ACTIVE")
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  createdById      String?
+  updatedById      String?
+  deletedAt        DateTime?
+
+  doctor      DoctorProfile     @relation(fields: [doctorId], references: [id])
+  customer    CustomerProfile   @relation(fields: [customerId], references: [id])
+  appointment DoctorAppointment @relation(fields: [appointmentId], references: [id])
+
+  @@unique([appointmentId, customerId])
+  @@index([doctorId, moderationStatus])
+  @@map("doctor_reviews")
+}
+
+model DoctorReferralCode {
+  id                 String    @id @default(cuid())
+  doctorId           String
+  code               String    @unique
+  discountPercent    Decimal?  @db.Decimal(5, 2)
+  discountFixedMinor Int?
+  commissionPercent  Decimal   @db.Decimal(5, 2)
+  maxRedemptions     Int?
+  perCustomerLimit   Int       @default(1)
+  status             String    @default("ACTIVE")
+  startsAt           DateTime?
+  endsAt             DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  createdById        String?
+  updatedById        String?
+  deletedAt          DateTime?
+
+  doctor              DoctorProfile        @relation(fields: [doctorId], references: [id])
+  referrals           CustomerReferral[]
+  rules               ReferralRule[]
+  doctorReferralRules DoctorReferralRule[]
+
+  @@index([doctorId, status])
+  @@map("doctor_referral_codes")
+}
+
+model DoctorPayout {
+  id          String    @id @default(cuid())
+  doctorId    String
+  amountMinor Int
+  currency    String    @default("INR")
+  status      String    @default("PENDING")
+  periodStart DateTime?
+  periodEnd   DateTime?
+  paidAt      DateTime?
+  reference   String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id])
+
+  @@index([doctorId, status])
+  @@map("doctor_payouts")
+}
+
+/// Immutable earnings ledger — no soft deletes
+model DoctorEarningsLedger {
+  id             String                  @id @default(cuid())
+  doctorId       String
+  entryType      ReferralLedgerEntryType
+  amountMinor    Int
+  currency       String                  @default("INR")
+  orderId        String?
+  appointmentId  String?
+  referralCodeId String?
+  description    String?
+  createdAt      DateTime                @default(now())
+  createdById    String?
+
+  doctor DoctorProfile @relation(fields: [doctorId], references: [id])
+
+  @@index([doctorId, createdAt])
+  @@index([orderId])
+  @@map("doctor_earnings_ledger")
+}
+
+// ─── Catalog ─────────────────────────────────────────────────
+
+model Brand {
+  id                 String        @id @default(cuid())
+  name               String
+  slug               String        @unique
+  description        String?
+  logoStorageKey     String?
+  countryCode        String?
+  officialWebsiteUrl String?
+  regulatoryNotes    String?
+  seoTitle           String?
+  seoDescription     String?
+  status             PublishStatus @default(DRAFT)
+  ownerUserId        String?
+  publishedAt        DateTime?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  createdById        String?
+  updatedById        String?
+  deletedAt          DateTime?
+
+  products      Product[]
+  manufacturers BrandManufacturerMap[]
+  documents     BrandDocument[]
+
+  @@index([status])
+  @@map("brands")
+}
+
+model Manufacturer {
+  id           String        @id @default(cuid())
+  name         String
+  slug         String        @unique
+  legalName    String?
+  countryCode  String?
+  addressLine1 String?
+  city         String?
+  state        String?
+  postalCode   String?
+  licenseInfo  String?
+  gmpNotes     String?
+  contactEmail String?
+  contactPhone String?
+  status       PublishStatus @default(DRAFT)
+  ownerUserId  String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  createdById  String?
+  updatedById  String?
+  deletedAt    DateTime?
+
+  products Product[]
+  brands   BrandManufacturerMap[]
+
+  @@index([status])
+  @@map("manufacturers")
+}
+
+model Category {
+  id          String        @id @default(cuid())
+  parentId    String?
+  /// Store taxonomy root kind: MEDICINES | WELLNESS | PET_CARE | BUNDLES | BOOKS | OFFERS
+  /// Body systems/conditions/symptoms/remedies stay in their own entity tables.
+  treeKind    String        @default("MEDICINES")
+  name        String
+  slug        String        @unique
+  description String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  parent      Category?            @relation("CategoryTree", fields: [parentId], references: [id])
+  children    Category[]           @relation("CategoryTree")
+  products    Product[]
+  productMaps ProductCategoryMap[]
+
+  @@index([parentId])
+  @@index([treeKind, status])
+  @@map("categories")
+}
+
+model ProductGroup {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  description String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  products Product[]
+
+  @@map("product_groups")
+}
+
+model Product {
+  id                  String              @id @default(cuid())
+  brandId             String?
+  manufacturerId      String?
+  categoryId          String?
+  productGroupId      String?
+  name                String
+  slug                String              @unique
+  subtitle            String?
+  description         String?
+  directions          String?
+  warnings            String?
+  returnPolicy        String?
+  status              PublishStatus       @default(DRAFT)
+  medicalReviewStatus MedicalReviewStatus @default(NOT_REQUIRED)
+  ownerUserId         String?
+  publishedAt         DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  createdById         String?
+  updatedById         String?
+  deletedAt           DateTime?
+
+  brand           Brand?                 @relation(fields: [brandId], references: [id])
+  manufacturer    Manufacturer?          @relation(fields: [manufacturerId], references: [id])
+  category        Category?              @relation(fields: [categoryId], references: [id])
+  productGroup    ProductGroup?          @relation(fields: [productGroupId], references: [id])
+  variants        ProductVariant[]
+  images          ProductImage[]
+  tags            ProductTag[]
+  contentBlocks   ProductContentBlock[]
+  ingredients     ProductIngredient[]
+  relationships   ProductRelationship[]  @relation("ProductFrom")
+  relatedFrom     ProductRelationship[]  @relation("ProductTo")
+  faqs            ProductFaq[]
+  reviews         ProductReview[]
+  bundleItems     BundleItem[]
+  categoryMaps    ProductCategoryMap[]
+  remedyMaps      ProductRemedyMap[]
+  healthAreaMaps  ProductHealthAreaMap[]
+  badgeMaps       ProductBadgeMap[]
+  conditionMaps   ConditionProductMap[]
+  storageNotes    String?
+  countryOfOrigin String?                @default("IN")
+
+  @@index([status, publishedAt])
+  @@index([brandId])
+  @@index([categoryId])
+  @@map("products")
+}
+
+/// Variant is the sellable SKU truth for price/stock identity
+model ProductVariant {
+  id                   String    @id @default(cuid())
+  productId            String
+  sku                  String    @unique
+  barcode              String?
+  gtin                 String?
+  /// Legacy free-text snapshots — prefer FKs below for truth
+  potency              String?
+  packSize             String?
+  form                 String?
+  dosageFormId         String?
+  potencyId            String?
+  packQuantity         Decimal?  @db.Decimal(12, 3)
+  packUnit             String?
+  netQuantityLabel     String?
+  title                String
+  currency             String    @default("INR")
+  mrpMinor             Int?
+  priceMinor           Int
+  compareAtMinor       Int?
+  taxCode              String?
+  weightGrams          Int?
+  prescriptionRequired Boolean   @default(false)
+  ageRestrictionNote   String?
+  countryOfOrigin      String?   @default("IN")
+  status               String    @default("ACTIVE")
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  createdById          String?
+  updatedById          String?
+  deletedAt            DateTime?
+
+  product           Product            @relation(fields: [productId], references: [id])
+  dosageForm        DosageForm?        @relation(fields: [dosageFormId], references: [id])
+  potencyRef        Potency?           @relation(fields: [potencyId], references: [id])
+  inventoryBatches  InventoryBatch[]
+  stockReservations StockReservation[]
+  cartItems         CartItem[]
+  orderItems        OrderItem[]
+  bundleItems       BundleItem[]
+
+  @@index([productId, status])
+  @@index([dosageFormId])
+  @@index([potencyId])
+  @@map("product_variants")
+}
+
+model ProductImage {
+  id          String    @id @default(cuid())
+  productId   String
+  storageKey  String
+  altText     String?
+  sortOrder   Int       @default(0)
+  status      String    @default("ACTIVE")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([productId, sortOrder])
+  @@map("product_images")
+}
+
+model ProductTag {
+  id          String   @id @default(cuid())
+  productId   String
+  tag         String
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([productId, tag])
+  @@map("product_tags")
+}
+
+model ProductContentBlock {
+  id          String   @id @default(cuid())
+  productId   String
+  blockType   String
+  title       String?
+  body        String
+  sortOrder   Int      @default(0)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([productId, sortOrder])
+  @@map("product_content_blocks")
+}
+
+model ProductIngredient {
+  id          String   @id @default(cuid())
+  productId   String
+  name        String
+  potency     String?
+  quantity    String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([productId])
+  @@map("product_ingredients")
+}
+
+model ProductRelationship {
+  id               String   @id @default(cuid())
+  productId        String
+  relatedProductId String
+  relationType     String
+  status           String   @default("ACTIVE")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  product        Product @relation("ProductFrom", fields: [productId], references: [id])
+  relatedProduct Product @relation("ProductTo", fields: [relatedProductId], references: [id])
+
+  @@unique([productId, relatedProductId, relationType])
+  @@map("product_relationships")
+}
+
+model ProductFaq {
+  id          String   @id @default(cuid())
+  productId   String
+  question    String
+  answer      String
+  sortOrder   Int      @default(0)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([productId, sortOrder])
+  @@map("product_faqs")
+}
+
+/// Standalone ingredient catalog — normalized names for search, SEO, and cross-product linking
+model Ingredient {
+  id             String        @id @default(cuid())
+  name           String
+  slug           String        @unique
+  scientificName String?
+  description    String?
+  status         PublishStatus @default(DRAFT)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  createdById    String?
+  updatedById    String?
+  deletedAt      DateTime?
+
+  remedies Remedy[]
+
+  @@index([status])
+  @@map("ingredients")
+}
+
+/// Many-to-many product ↔ category with primary category flag
+model ProductCategoryMap {
+  id          String   @id @default(cuid())
+  productId   String
+  categoryId  String
+  isPrimary   Boolean  @default(false)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  product  Product  @relation(fields: [productId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@unique([productId, categoryId])
+  @@index([categoryId, status])
+  @@map("product_category_map")
+}
+
+model ProductReview {
+  id               String                 @id @default(cuid())
+  productId        String
+  customerId       String
+  orderItemId      String?
+  rating           Int
+  title            String?
+  body             String?
+  verifiedPurchase Boolean                @default(false)
+  moderationStatus ReviewModerationStatus @default(PENDING)
+  status           String                 @default("ACTIVE")
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  createdById      String?
+  updatedById      String?
+  deletedAt        DateTime?
+
+  product  Product         @relation(fields: [productId], references: [id])
+  customer CustomerProfile @relation(fields: [customerId], references: [id])
+
+  @@index([productId, moderationStatus])
+  @@index([customerId])
+  @@map("product_reviews")
+}
+
+// ─── Knowledge / Content Graph ───────────────────────────────
+
+model BodySystem {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  summary     String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  organs     Organ[]
+  conditions Condition[]
+  articles   KnowledgeArticle[]
+
+  @@map("body_systems")
+}
+
+model Organ {
+  id           String        @id @default(cuid())
+  bodySystemId String?
+  name         String
+  slug         String        @unique
+  summary      String?
+  status       PublishStatus @default(DRAFT)
+  ownerUserId  String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  createdById  String?
+  updatedById  String?
+  deletedAt    DateTime?
+
+  bodySystem BodySystem?        @relation(fields: [bodySystemId], references: [id])
+  conditions Condition[]
+  articles   KnowledgeArticle[]
+
+  @@index([bodySystemId])
+  @@map("organs")
+}
+
+model Condition {
+  id                  String              @id @default(cuid())
+  bodySystemId        String?
+  organId             String?
+  name                String
+  slug                String              @unique
+  summary             String?
+  status              PublishStatus       @default(DRAFT)
+  medicalReviewStatus MedicalReviewStatus @default(PENDING)
+  ownerUserId         String?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  createdById         String?
+  updatedById         String?
+  deletedAt           DateTime?
+
+  bodySystem  BodySystem?           @relation(fields: [bodySystemId], references: [id])
+  organ       Organ?                @relation(fields: [organId], references: [id])
+  symptoms    ConditionSymptom[]
+  articles    KnowledgeArticle[]
+  productMaps ConditionProductMap[]
+  remedyMaps  ConditionRemedyMap[]
+
+  @@index([bodySystemId])
+  @@index([organId])
+  @@map("conditions")
+}
+
+model Symptom {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  summary     String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  conditions ConditionSymptom[]
+
+  @@map("symptoms")
+}
+
+model ConditionSymptom {
+  conditionId String
+  symptomId   String
+  createdAt   DateTime @default(now())
+
+  condition Condition @relation(fields: [conditionId], references: [id])
+  symptom   Symptom   @relation(fields: [symptomId], references: [id])
+
+  @@id([conditionId, symptomId])
+  @@map("condition_symptoms")
+}
+
+model AgeGroup {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  summary     String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  articles KnowledgeArticle[]
+
+  @@map("age_groups")
+}
+
+model GenderTopic {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  summary     String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  articles KnowledgeArticle[]
+
+  @@map("gender_topics")
+}
+
+model PetSpecies {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  summary     String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  conditions PetCondition[]
+  articles   KnowledgeArticle[]
+
+  @@map("pet_species")
+}
+
+model PetCondition {
+  id                  String              @id @default(cuid())
+  petSpeciesId        String
+  name                String
+  slug                String              @unique
+  summary             String?
+  status              PublishStatus       @default(DRAFT)
+  medicalReviewStatus MedicalReviewStatus @default(PENDING)
+  ownerUserId         String?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  createdById         String?
+  updatedById         String?
+  deletedAt           DateTime?
+
+  petSpecies PetSpecies         @relation(fields: [petSpeciesId], references: [id])
+  articles   KnowledgeArticle[]
+
+  @@index([petSpeciesId])
+  @@map("pet_conditions")
+}
+
+model KnowledgeArticle {
+  id                  String              @id @default(cuid())
+  slug                String              @unique
+  title               String
+  excerpt             String?
+  body                String
+  status              PublishStatus       @default(DRAFT)
+  medicalReviewStatus MedicalReviewStatus @default(PENDING)
+  ownerUserId         String?
+  reviewerUserId      String?
+  lastReviewedAt      DateTime?
+  publishedAt         DateTime?
+  bodySystemId        String?
+  organId             String?
+  conditionId         String?
+  ageGroupId          String?
+  genderTopicId       String?
+  petSpeciesId        String?
+  petConditionId      String?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  createdById         String?
+  updatedById         String?
+  deletedAt           DateTime?
+
+  bodySystem     BodySystem?        @relation(fields: [bodySystemId], references: [id])
+  organ          Organ?             @relation(fields: [organId], references: [id])
+  condition      Condition?         @relation(fields: [conditionId], references: [id])
+  ageGroup       AgeGroup?          @relation(fields: [ageGroupId], references: [id])
+  genderTopic    GenderTopic?       @relation(fields: [genderTopicId], references: [id])
+  petSpecies     PetSpecies?        @relation(fields: [petSpeciesId], references: [id])
+  petCondition   PetCondition?      @relation(fields: [petConditionId], references: [id])
+  references     ArticleReference[]
+  medicalReviews MedicalReview[]
+  versions       ContentVersion[]
+
+  @@index([status, publishedAt])
+  @@index([medicalReviewStatus])
+  @@map("knowledge_articles")
+}
+
+model ArticleReference {
+  id          String   @id @default(cuid())
+  articleId   String
+  label       String
+  url         String?
+  citation    String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  article KnowledgeArticle @relation(fields: [articleId], references: [id])
+
+  @@index([articleId])
+  @@map("article_references")
+}
+
+model MedicalReview {
+  id          String              @id @default(cuid())
+  articleId   String?
+  productId   String?
+  reviewerId  String
+  status      MedicalReviewStatus @default(PENDING)
+  notes       String?
+  reviewedAt  DateTime?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  createdById String?
+  updatedById String?
+
+  article KnowledgeArticle? @relation(fields: [articleId], references: [id])
+
+  @@index([articleId, status])
+  @@index([productId, status])
+  @@map("medical_reviews")
+}
+
+model ContentVersion {
+  id          String   @id @default(cuid())
+  articleId   String
+  version     Int
+  title       String
+  body        String
+  changeNote  String?
+  status      String   @default("SNAPSHOT")
+  createdAt   DateTime @default(now())
+  createdById String?
+
+  article KnowledgeArticle @relation(fields: [articleId], references: [id])
+
+  @@unique([articleId, version])
+  @@map("content_versions")
+}
+
+// ─── Commercial ──────────────────────────────────────────────
+
+model Bundle {
+  id             String        @id @default(cuid())
+  name           String
+  slug           String        @unique
+  description    String?
+  bundleType     String
+  currency       String        @default("INR")
+  priceMinor     Int
+  compareAtMinor Int?
+  status         PublishStatus @default(DRAFT)
+  ownerUserId    String?
+  startsAt       DateTime?
+  endsAt         DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  createdById    String?
+  updatedById    String?
+  deletedAt      DateTime?
+
+  items BundleItem[]
+
+  @@map("bundles")
+}
+
+model BundleItem {
+  id          String   @id @default(cuid())
+  bundleId    String
+  productId   String?
+  variantId   String?
+  quantity    Int      @default(1)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  bundle  Bundle          @relation(fields: [bundleId], references: [id])
+  product Product?        @relation(fields: [productId], references: [id])
+  variant ProductVariant? @relation(fields: [variantId], references: [id])
+
+  @@index([bundleId])
+  @@map("bundle_items")
+}
+
+model Campaign {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  status      String    @default("DRAFT")
+  startsAt    DateTime?
+  endsAt      DateTime?
+  ownerUserId String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  coupons Coupon[]
+
+  @@map("campaigns")
+}
+
+model Coupon {
+  id          String     @id @default(cuid())
+  campaignId  String?
+  code        String     @unique
+  couponType  CouponType
+  status      String     @default("DRAFT")
+  startsAt    DateTime?
+  endsAt      DateTime?
+  ownerUserId String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  campaign            Campaign?          @relation(fields: [campaignId], references: [id])
+  rules               CouponRule[]
+  redemptions         CouponRedemption[]
+  customerAssignments CustomerCoupon[]
+
+  @@index([status, startsAt, endsAt])
+  @@map("coupons")
+}
+
+model CouponRule {
+  id          String   @id @default(cuid())
+  couponId    String
+  ruleType    String
+  ruleValue   Json
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  coupon Coupon @relation(fields: [couponId], references: [id])
+
+  @@index([couponId])
+  @@map("coupon_rules")
+}
+
+model CouponRedemption {
+  id          String   @id @default(cuid())
+  couponId    String
+  customerId  String
+  orderId     String?
+  amountMinor Int      @default(0)
+  currency    String   @default("INR")
+  ipAddress   String?
+  deviceId    String?
+  status      String   @default("APPLIED")
+  createdAt   DateTime @default(now())
+  createdById String?
+
+  coupon Coupon @relation(fields: [couponId], references: [id])
+
+  @@index([couponId, customerId])
+  @@index([orderId])
+  @@map("coupon_redemptions")
+}
+
+/// Per-customer coupon assignment (referral rewards, campaigns, support grants)
+model CustomerCoupon {
+  id          String    @id @default(cuid())
+  customerId  String
+  couponId    String
+  source      String
+  status      String    @default("ACTIVE")
+  assignedAt  DateTime  @default(now())
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  customer CustomerProfile @relation(fields: [customerId], references: [id])
+  coupon   Coupon          @relation(fields: [couponId], references: [id])
+
+  @@unique([customerId, couponId, source])
+  @@index([customerId, status])
+  @@index([couponId])
+  @@map("customer_coupons")
+}
+
+model DiscountApplication {
+  id          String   @id @default(cuid())
+  orderId     String
+  sourceType  String
+  sourceId    String?
+  amountMinor Int
+  currency    String   @default("INR")
+  status      String   @default("APPLIED")
+  createdAt   DateTime @default(now())
+  createdById String?
+
+  @@index([orderId])
+  @@map("discount_applications")
+}
+
+/// Legacy referral rule table — prefer DoctorReferralRule for new doctor referral logic.
+model ReferralRule {
+  id             String   @id @default(cuid())
+  referralCodeId String
+  ruleType       String
+  ruleValue      Json
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  referralCode DoctorReferralCode @relation(fields: [referralCodeId], references: [id])
+
+  @@index([referralCodeId])
+  @@map("referral_rules")
+}
+
+/// Doctor-specific referral rules linked to referral codes (preferred over ReferralRule alias).
+model DoctorReferralRule {
+  id             String   @id @default(cuid())
+  referralCodeId String
+  ruleType       String
+  ruleValue      Json
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  referralCode DoctorReferralCode @relation(fields: [referralCodeId], references: [id])
+
+  @@index([referralCodeId])
+  @@map("doctor_referral_rules")
+}
+
+// ─── Commerce ────────────────────────────────────────────────
+
+model Cart {
+  id          String   @id @default(cuid())
+  customerId  String?
+  sessionKey  String?
+  currency    String   @default("INR")
+  status      String   @default("OPEN")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  customer CustomerProfile? @relation(fields: [customerId], references: [id])
+  items    CartItem[]
+  checkout Checkout?
+
+  @@index([customerId, status])
+  @@index([sessionKey])
+  @@map("carts")
+}
+
+model CartItem {
+  id          String   @id @default(cuid())
+  cartId      String
+  variantId   String
+  quantity    Int
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  cart    Cart           @relation(fields: [cartId], references: [id])
+  variant ProductVariant @relation(fields: [variantId], references: [id])
+
+  @@unique([cartId, variantId])
+  @@map("cart_items")
+}
+
+model Checkout {
+  id             String   @id @default(cuid())
+  cartId         String   @unique
+  customerId     String?
+  currency       String   @default("INR")
+  subtotalMinor  Int      @default(0)
+  discountMinor  Int      @default(0)
+  shippingMinor  Int      @default(0)
+  taxMinor       Int      @default(0)
+  totalMinor     Int      @default(0)
+  status         String   @default("OPEN")
+  idempotencyKey String?  @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  cart   Cart            @relation(fields: [cartId], references: [id])
+  events CheckoutEvent[]
+  order  Order?
+
+  @@map("checkouts")
+}
+
+model CheckoutEvent {
+  id         String   @id @default(cuid())
+  checkoutId String
+  eventType  String
+  payload    Json?
+  createdAt  DateTime @default(now())
+
+  checkout Checkout @relation(fields: [checkoutId], references: [id])
+
+  @@index([checkoutId, createdAt])
+  @@map("checkout_events")
+}
+
+model Order {
+  id               String      @id @default(cuid())
+  orderNumber      String      @unique
+  checkoutId       String?     @unique
+  customerId       String
+  currency         String      @default("INR")
+  countryCode      String      @default("IN")
+  locale           String      @default("en-IN")
+  subtotalMinor    Int
+  discountMinor    Int         @default(0)
+  shippingMinor    Int         @default(0)
+  taxMinor         Int         @default(0)
+  totalMinor       Int
+  status           OrderStatus @default(PENDING_PAYMENT)
+  shippingSnapshot Json?
+  billingSnapshot  Json?
+  pricingSnapshot  Json
+  idempotencyKey   String?     @unique
+  placedAt         DateTime?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  customer      CustomerProfile      @relation(fields: [customerId], references: [id])
+  checkout      Checkout?            @relation(fields: [checkoutId], references: [id])
+  items         OrderItem[]
+  statusHistory OrderStatusHistory[]
+  payments      Payment[]
+  shipments     Shipment[]
+
+  @@index([customerId, createdAt])
+  @@index([status, createdAt])
+  @@map("orders")
+}
+
+/// Immutable line snapshots once order is placed
+model OrderItem {
+  id               String   @id @default(cuid())
+  orderId          String
+  variantId        String?
+  skuSnapshot      String
+  titleSnapshot    String
+  potencySnapshot  String?
+  packSizeSnapshot String?
+  unitPriceMinor   Int
+  quantity         Int
+  lineTotalMinor   Int
+  currency         String   @default("INR")
+  createdAt        DateTime @default(now())
+
+  order   Order           @relation(fields: [orderId], references: [id])
+  variant ProductVariant? @relation(fields: [variantId], references: [id])
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+model OrderStatusHistory {
+  id          String       @id @default(cuid())
+  orderId     String
+  fromStatus  OrderStatus?
+  toStatus    OrderStatus
+  note        String?
+  createdAt   DateTime     @default(now())
+  createdById String?
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@index([orderId, createdAt])
+  @@map("order_status_history")
+}
+
+model Payment {
+  id                String          @id @default(cuid())
+  orderId           String?
+  appointmentId     String?
+  provider          PaymentProvider
+  providerOrderId   String?
+  providerPaymentId String?
+  amountMinor       Int
+  currency          String          @default("INR")
+  status            PaymentStatus   @default(CREATED)
+  idempotencyKey    String?         @unique
+  rawPayload        Json?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  createdById       String?
+  updatedById       String?
+
+  order    Order?           @relation(fields: [orderId], references: [id])
+  attempts PaymentAttempt[]
+  refunds  Refund[]
+
+  @@index([orderId])
+  @@index([providerOrderId])
+  @@index([status])
+  @@map("payments")
+}
+
+model PaymentAttempt {
+  id              String        @id @default(cuid())
+  paymentId       String
+  status          PaymentStatus
+  providerPayload Json?
+  errorCode       String?
+  createdAt       DateTime      @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id])
+
+  @@index([paymentId, createdAt])
+  @@map("payment_attempts")
+}
+
+model Refund {
+  id               String   @id @default(cuid())
+  paymentId        String
+  amountMinor      Int
+  currency         String   @default("INR")
+  reason           String?
+  status           String   @default("PENDING")
+  providerRefundId String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  payment Payment @relation(fields: [paymentId], references: [id])
+
+  @@index([paymentId, status])
+  @@map("refunds")
+}
+
+// ─── Inventory / Shipping ────────────────────────────────────
+
+model Warehouse {
+  id          String    @id @default(cuid())
+  code        String    @unique
+  name        String
+  line1       String
+  city        String
+  state       String?
+  postalCode  String?
+  countryCode String    @default("IN")
+  status      String    @default("ACTIVE")
+  ownerUserId String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  batches   InventoryBatch[]
+  shipments Shipment[]
+
+  @@map("warehouses")
+}
+
+model InventoryBatch {
+  id               String    @id @default(cuid())
+  warehouseId      String
+  variantId        String
+  batchNumber      String
+  quantityOnHand   Int       @default(0)
+  quantityReserved Int       @default(0)
+  manufacturedAt   DateTime?
+  expiresAt        DateTime?
+  status           String    @default("ACTIVE")
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  warehouse    Warehouse           @relation(fields: [warehouseId], references: [id])
+  variant      ProductVariant      @relation(fields: [variantId], references: [id])
+  movements    InventoryMovement[]
+  reservations StockReservation[]
+
+  @@unique([warehouseId, variantId, batchNumber])
+  @@index([variantId, expiresAt])
+  @@map("inventory_batches")
+}
+
+model InventoryMovement {
+  id            String                @id @default(cuid())
+  batchId       String
+  movementType  InventoryMovementType
+  quantity      Int
+  referenceType String?
+  referenceId   String?
+  note          String?
+  createdAt     DateTime              @default(now())
+  createdById   String?
+
+  batch InventoryBatch @relation(fields: [batchId], references: [id])
+
+  @@index([batchId, createdAt])
+  @@map("inventory_movements")
+}
+
+model StockReservation {
+  id          String    @id @default(cuid())
+  batchId     String
+  variantId   String
+  orderId     String?
+  quantity    Int
+  status      String    @default("RESERVED")
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  batch   InventoryBatch @relation(fields: [batchId], references: [id])
+  variant ProductVariant @relation(fields: [variantId], references: [id])
+
+  @@index([orderId])
+  @@index([variantId, status])
+  @@map("stock_reservations")
+}
+
+model Shipment {
+  id                 String         @id @default(cuid())
+  orderId            String
+  warehouseId        String?
+  provider           String         @default("SHIPROCKET")
+  providerShipmentId String?
+  awb                String?
+  status             ShipmentStatus @default(PENDING)
+  idempotencyKey     String?        @unique
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  createdById        String?
+  updatedById        String?
+
+  order     Order           @relation(fields: [orderId], references: [id])
+  warehouse Warehouse?      @relation(fields: [warehouseId], references: [id])
+  events    ShipmentEvent[]
+  labels    ShippingLabel[]
+
+  @@index([orderId])
+  @@index([status])
+  @@index([awb])
+  @@map("shipments")
+}
+
+model ShipmentEvent {
+  id         String         @id @default(cuid())
+  shipmentId String
+  status     ShipmentStatus
+  payload    Json?
+  occurredAt DateTime       @default(now())
+  createdAt  DateTime       @default(now())
+
+  shipment Shipment @relation(fields: [shipmentId], references: [id])
+
+  @@index([shipmentId, occurredAt])
+  @@map("shipment_events")
+}
+
+model ShippingLabel {
+  id          String   @id @default(cuid())
+  shipmentId  String
+  storageKey  String
+  labelType   String   @default("LABEL")
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  createdById String?
+
+  shipment Shipment @relation(fields: [shipmentId], references: [id])
+
+  @@index([shipmentId])
+  @@map("shipping_labels")
+}
+
+model ServiceabilityRule {
+  id             String   @id @default(cuid())
+  postalCodeFrom String?
+  postalCodeTo   String?
+  city           String?
+  countryCode    String   @default("IN")
+  warehouseId    String?
+  isServiceable  Boolean  @default(true)
+  etaDaysMin     Int?
+  etaDaysMax     Int?
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  @@index([postalCodeFrom, postalCodeTo])
+  @@map("serviceability_rules")
+}
+
+// ─── Support / Communication ─────────────────────────────────
+
+model SupportTicket {
+  id            String              @id @default(cuid())
+  requesterId   String
+  subject       String
+  status        SupportTicketStatus @default(OPEN)
+  priority      String              @default("NORMAL")
+  orderId       String?
+  appointmentId String?
+  ownerUserId   String?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  createdById   String?
+  updatedById   String?
+
+  requester User            @relation("TicketRequester", fields: [requesterId], references: [id])
+  messages  TicketMessage[]
+
+  @@index([status, createdAt])
+  @@index([requesterId])
+  @@map("support_tickets")
+}
+
+model TicketMessage {
+  id           String   @id @default(cuid())
+  ticketId     String
+  authorUserId String
+  body         String
+  status       String   @default("ACTIVE")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  ticket SupportTicket @relation(fields: [ticketId], references: [id])
+
+  @@index([ticketId, createdAt])
+  @@map("ticket_messages")
+}
+
+model Notification {
+  id          String              @id @default(cuid())
+  userId      String
+  channel     NotificationChannel
+  title       String
+  body        String
+  payload     Json?
+  status      String              @default("PENDING")
+  sentAt      DateTime?
+  readAt      DateTime?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  createdById String?
+  updatedById String?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+  @@map("notifications")
+}
+
+model EmailLog {
+  id          String   @id @default(cuid())
+  toAddress   String
+  subject     String
+  templateKey String?
+  providerId  String?
+  status      String
+  payload     Json?
+  createdAt   DateTime @default(now())
+
+  @@index([toAddress, createdAt])
+  @@map("email_logs")
+}
+
+model SmsLog {
+  id         String   @id @default(cuid())
+  toPhone    String
+  body       String
+  providerId String?
+  status     String
+  payload    Json?
+  createdAt  DateTime @default(now())
+
+  @@index([toPhone, createdAt])
+  @@map("sms_logs")
+}
+
+model WhatsappLog {
+  id         String   @id @default(cuid())
+  toPhone    String
+  body       String
+  providerId String?
+  status     String
+  payload    Json?
+  createdAt  DateTime @default(now())
+
+  @@index([toPhone, createdAt])
+  @@map("whatsapp_logs")
+}
+
+// ─── SEO / Content Ops ───────────────────────────────────────
+
+model Page {
+  id          String        @id @default(cuid())
+  kind        PageKind
+  title       String
+  slugId      String?       @unique
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  slug      Slug?          @relation(fields: [slugId], references: [id])
+  versions  PageVersion[]
+  seo       SeoMetadata?
+  redirects PageRedirect[] @relation("RedirectFrom")
+
+  @@index([kind, status])
+  @@map("pages")
+}
+
+model PageVersion {
+  id          String   @id @default(cuid())
+  pageId      String
+  version     Int
+  title       String
+  body        String
+  changeNote  String?
+  status      String   @default("SNAPSHOT")
+  createdAt   DateTime @default(now())
+  createdById String?
+
+  page Page @relation(fields: [pageId], references: [id])
+
+  @@unique([pageId, version])
+  @@map("page_versions")
+}
+
+model PageRedirect {
+  id          String   @id @default(cuid())
+  fromPageId  String?
+  fromPath    String   @unique
+  toPath      String
+  statusCode  Int      @default(301)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  fromPage Page? @relation("RedirectFrom", fields: [fromPageId], references: [id])
+
+  @@map("page_redirects")
+}
+
+model Slug {
+  id          String   @id @default(cuid())
+  entityType  String
+  entityId    String
+  slug        String
+  locale      String   @default("en-IN")
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  page    Page?
+  history SlugHistory[]
+
+  @@unique([slug, locale])
+  @@unique([entityType, entityId, locale])
+  @@map("slugs")
+}
+
+model SlugHistory {
+  id          String   @id @default(cuid())
+  slugId      String
+  oldSlug     String
+  newSlug     String
+  locale      String   @default("en-IN")
+  createdAt   DateTime @default(now())
+  createdById String?
+
+  slug Slug @relation(fields: [slugId], references: [id])
+
+  @@index([oldSlug, locale])
+  @@map("slug_history")
+}
+
+model SeoMetadata {
+  id              String   @id @default(cuid())
+  pageId          String   @unique
+  metaTitle       String?
+  metaDescription String?
+  ogImageKey      String?
+  robotsDirective String?  @default("index,follow")
+  canonicalUrl    String?
+  schemaJson      Json?
+  status          String   @default("ACTIVE")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  createdById     String?
+  updatedById     String?
+
+  page Page @relation(fields: [pageId], references: [id])
+
+  @@map("seo_metadata")
+}
+
+model CanonicalRule {
+  id          String   @id @default(cuid())
+  pattern     String
+  canonicalTo String
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  @@map("canonical_rules")
+}
+
+model Sitemap {
+  id          String         @id @default(cuid())
+  segment     SitemapSegment
+  locale      String         @default("en-IN")
+  fileKey     String?
+  status      String         @default("ACTIVE")
+  lastBuiltAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  createdById String?
+  updatedById String?
+
+  entries SitemapEntry[]
+
+  @@unique([segment, locale])
+  @@map("sitemaps")
+}
+
+model SitemapEntry {
+  id         String    @id @default(cuid())
+  sitemapId  String
+  loc        String
+  lastmod    DateTime?
+  changefreq String?
+  priority   Decimal?  @db.Decimal(2, 1)
+  status     String    @default("ACTIVE")
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  sitemap Sitemap @relation(fields: [sitemapId], references: [id])
+
+  @@unique([sitemapId, loc])
+  @@index([sitemapId])
+  @@map("sitemap_entries")
+}
+
+model InternalLink {
+  id             String   @id @default(cuid())
+  fromEntityType String
+  fromEntityId   String
+  toEntityType   String
+  toEntityId     String
+  anchorText     String?
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  @@index([fromEntityType, fromEntityId])
+  @@index([toEntityType, toEntityId])
+  @@map("internal_links")
+}
+
+model SearchQuery {
+  id          String   @id @default(cuid())
+  query       String
+  locale      String   @default("en-IN")
+  resultCount Int      @default(0)
+  userId      String?
+  ipHash      String?
+  createdAt   DateTime @default(now())
+
+  @@index([query, createdAt])
+  @@map("search_queries")
+}
+
+// ─── Compliance ──────────────────────────────────────────────
+
+model Consent {
+  id          String      @id @default(cuid())
+  userId      String
+  consentType ConsentType
+  version     String
+  granted     Boolean
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime    @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, consentType, createdAt])
+  @@map("consents")
+}
+
+model PrivacyEvent {
+  id        String   @id @default(cuid())
+  userId    String?
+  eventType String
+  payload   Json?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@map("privacy_events")
+}
+
+model DocumentAccessLog {
+  id               String   @id @default(cuid())
+  doctorDocumentId String?
+  accessorUserId   String
+  action           String
+  ipAddress        String?
+  createdAt        DateTime @default(now())
+
+  doctorDocument DoctorDocument? @relation(fields: [doctorDocumentId], references: [id])
+
+  @@index([doctorDocumentId, createdAt])
+  @@index([accessorUserId, createdAt])
+  @@map("document_access_logs")
+}
+
+model DataRetentionJob {
+  id           String    @id @default(cuid())
+  jobType      String
+  status       String    @default("PENDING")
+  payload      Json?
+  scheduledFor DateTime?
+  startedAt    DateTime?
+  finishedAt   DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  @@index([status, scheduledFor])
+  @@map("data_retention_jobs")
+}
+
+model LegalHoldFlag {
+  id          String   @id @default(cuid())
+  entityType  String
+  entityId    String
+  reason      String
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  @@unique([entityType, entityId])
+  @@map("legal_hold_flags")
+}
+
+/// Maps commerce entities to content knowledge entities without merging page types
+model EntityContentMap {
+  id               String   @id @default(cuid())
+  commerceType     String
+  commerceId       String
+  contentType      String
+  contentId        String
+  relationshipType String   @default("RELATED")
+  status           String   @default("ACTIVE")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  @@unique([commerceType, commerceId, contentType, contentId, relationshipType])
+  @@index([contentType, contentId])
+  @@map("entity_content_maps")
+}
+
+/// Admin moderation queue for product and doctor reviews
+model ReviewModerationQueue {
+  id             String                @id @default(cuid())
+  reviewType     ReviewQueueType
+  reviewId       String
+  status         ReviewQueueItemStatus @default(PENDING)
+  priority       Int                   @default(0)
+  assigneeUserId String?
+  notes          String?
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  @@index([status, priority])
+  @@index([reviewType, reviewId])
+  @@index([assigneeUserId, status])
+  @@map("review_moderation_queue")
+}
+
+// ─── Multidimensional Catalogue Graph ────────────────────────
+// Categories ≠ body systems ≠ conditions ≠ remedies.
+// Connect via relationship tables. Brands stay first-class.
+
+model BrandManufacturerMap {
+  id             String   @id @default(cuid())
+  brandId        String
+  manufacturerId String
+  isPrimary      Boolean  @default(false)
+  status         String   @default("ACTIVE")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdById    String?
+  updatedById    String?
+
+  brand        Brand        @relation(fields: [brandId], references: [id])
+  manufacturer Manufacturer @relation(fields: [manufacturerId], references: [id])
+
+  @@unique([brandId, manufacturerId])
+  @@map("brand_manufacturer_map")
+}
+
+model BrandDocument {
+  id           String    @id @default(cuid())
+  brandId      String
+  title        String
+  storageKey   String
+  documentType String
+  status       String    @default("ACTIVE")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  createdById  String?
+  updatedById  String?
+  deletedAt    DateTime?
+
+  brand Brand @relation(fields: [brandId], references: [id])
+
+  @@index([brandId])
+  @@map("brand_documents")
+}
+
+/// Controlled source classification (plant, mineral, chemical, animal, nosode, etc.)
+model RemedySourceType {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  remedies Remedy[]
+
+  @@map("remedy_source_types")
+}
+
+/// Master homeopathic remedy entity — NOT the sellable SKU
+model Remedy {
+  id                  String              @id @default(cuid())
+  name                String
+  slug                String              @unique
+  commonNames         String?
+  scientificName      String?
+  sourceTypeId        String?
+  ingredientId        String?
+  pharmacopoeialRefs  String?
+  educationalSummary  String?
+  status              PublishStatus       @default(DRAFT)
+  medicalReviewStatus MedicalReviewStatus @default(PENDING)
+  ownerUserId         String?
+  publishedAt         DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  createdById         String?
+  updatedById         String?
+  deletedAt           DateTime?
+
+  sourceType    RemedySourceType?    @relation(fields: [sourceTypeId], references: [id])
+  ingredient    Ingredient?          @relation(fields: [ingredientId], references: [id])
+  productMaps   ProductRemedyMap[]
+  conditionMaps ConditionRemedyMap[]
+
+  @@index([status, publishedAt])
+  @@index([sourceTypeId])
+  @@map("remedies")
+}
+
+model ProductRemedyMap {
+  id          String   @id @default(cuid())
+  productId   String
+  remedyId    String
+  isPrimary   Boolean  @default(true)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product @relation(fields: [productId], references: [id])
+  remedy  Remedy  @relation(fields: [remedyId], references: [id])
+
+  @@unique([productId, remedyId])
+  @@index([remedyId])
+  @@map("product_remedy_map")
+}
+
+/// Decimal / Centesimal / LM — potencies are attributes, not categories
+model PotencySystem {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  potencies Potency[]
+
+  @@map("potency_systems")
+}
+
+/// Only potencies actually offered should be linked to variants — do not auto-fill all possible values
+model Potency {
+  id          String   @id @default(cuid())
+  systemId    String
+  code        String
+  label       String
+  sortOrder   Int      @default(0)
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  system   PotencySystem    @relation(fields: [systemId], references: [id])
+  variants ProductVariant[]
+
+  @@unique([systemId, code])
+  @@map("potencies")
+}
+
+/// Admin-extensible dosage forms (no code deploy to add forms)
+model DosageForm {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  variants ProductVariant[]
+
+  @@map("dosage_forms")
+}
+
+/// Shop-by health area discovery — NOT disease/treatment claim categories
+model HealthArea {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  description String?
+  status      PublishStatus @default(DRAFT)
+  ownerUserId String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  createdById String?
+  updatedById String?
+  deletedAt   DateTime?
+
+  products ProductHealthAreaMap[]
+
+  @@index([status])
+  @@map("health_areas")
+}
+
+model ProductHealthAreaMap {
+  id           String   @id @default(cuid())
+  productId    String
+  healthAreaId String
+  status       String   @default("ACTIVE")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  product    Product    @relation(fields: [productId], references: [id])
+  healthArea HealthArea @relation(fields: [healthAreaId], references: [id])
+
+  @@unique([productId, healthAreaId])
+  @@index([healthAreaId])
+  @@map("product_health_area_map")
+}
+
+/// Admin-controlled badges — never auto "doctor recommended" without auditable link
+model ProductBadge {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  name        String
+  description String?
+  status      String   @default("ACTIVE")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String?
+  updatedById String?
+
+  products ProductBadgeMap[]
+
+  @@map("product_badges")
+}
+
+model ProductBadgeMap {
+  id          String    @id @default(cuid())
+  productId   String
+  badgeId     String
+  status      String    @default("ACTIVE")
+  startsAt    DateTime?
+  endsAt      DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  product Product      @relation(fields: [productId], references: [id])
+  badge   ProductBadge @relation(fields: [badgeId], references: [id])
+
+  @@unique([productId, badgeId])
+  @@map("product_badge_map")
+}
+
+/// Educational link only — does NOT assert that a product treats a condition
+model ConditionProductMap {
+  id               String   @id @default(cuid())
+  conditionId      String
+  productId        String
+  relationshipNote String?
+  status           String   @default("ACTIVE")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  condition Condition @relation(fields: [conditionId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
+
+  @@unique([conditionId, productId])
+  @@map("condition_product_map")
+}
+
+model ConditionRemedyMap {
+  id               String   @id @default(cuid())
+  conditionId      String
+  remedyId         String
+  relationshipNote String?
+  status           String   @default("ACTIVE")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  condition Condition @relation(fields: [conditionId], references: [id])
+  remedy    Remedy    @relation(fields: [remedyId], references: [id])
+
+  @@unique([conditionId, remedyId])
+  @@map("condition_remedy_map")
+}
+
+/// Future-ready recurring purchase — enable only where legal/product rules allow
+model SubscriptionPlan {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  intervalDays Int
+  status       String   @default("DRAFT")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  createdById  String?
+  updatedById  String?
+
+  subscriptions CustomerSubscription[]
+
+  @@map("subscription_plans")
+}
+
+model CustomerSubscription {
+  id          String    @id @default(cuid())
+  customerId  String
+  planId      String
+  variantId   String?
+  status      String    @default("PENDING")
+  nextOrderAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdById String?
+  updatedById String?
+
+  plan SubscriptionPlan @relation(fields: [planId], references: [id])
+
+  @@index([customerId, status])
+  @@map("customer_subscriptions")
+}

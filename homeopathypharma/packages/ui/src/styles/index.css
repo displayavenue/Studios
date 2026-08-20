@@ -1,0 +1,18 @@
+@import "./tokens.css";
+@import "./focus-ring.css";
+
+/* Base resets for hp components — apps may override */
+.hp-root {
+  font-family: var(--hp-font-body);
+  font-size: var(--hp-text-base);
+  line-height: var(--hp-leading-normal);
+  color: var(--hp-color-text);
+  background: var(--hp-gradient-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hp-root *,
+.hp-root *::before,
+.hp-root *::after {
+  box-sizing: border-box;
+}

@@ -1,0 +1,104 @@
+@import "@homeopathypharma/ui/styles.css";
+
+:root {
+  --app-font-display: var(--font-display, var(--hp-font-display));
+  --app-font-body: var(--font-body, var(--hp-font-body));
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--app-font-body);
+  color: var(--hp-color-text);
+  background: var(--hp-gradient-surface);
+}
+
+.font-display {
+  font-family: var(--app-font-display);
+}
+
+.font-body {
+  font-family: var(--app-font-body);
+}
+
+.hp-doctor-shell .hp-root {
+  background: linear-gradient(180deg, var(--hp-color-ivory-50) 0%, var(--hp-color-sage-100) 100%);
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: var(--hp-space-6);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.dashboard-panel {
+  background: var(--hp-color-surface-elevated);
+  border: 1px solid var(--hp-color-border);
+  border-radius: var(--hp-radius-lg);
+  padding: var(--hp-space-6);
+  box-shadow: var(--hp-shadow-sm);
+}
+
+.dashboard-panel h2 {
+  margin: 0 0 var(--hp-space-4);
+  font-family: var(--app-font-display);
+  font-size: var(--hp-text-lg);
+  color: var(--hp-color-teal-900);
+}
+
+.dashboard-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hp-space-2);
+  padding-block: var(--hp-space-3);
+}
+
+.dashboard-nav a {
+  padding: var(--hp-space-2) var(--hp-space-4);
+  border-radius: var(--hp-radius-full);
+  text-decoration: none;
+  color: var(--hp-color-sage-100);
+  font-size: var(--hp-text-sm);
+  border: 1px solid transparent;
+}
+
+.dashboard-nav a:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+.dashboard-nav a[aria-current="page"] {
+  background: rgb(255 255 255 / 12%);
+  border-color: rgb(255 255 255 / 20%);
+}
+
+.login-card {
+  max-width: 24rem;
+  margin: var(--hp-space-16) auto;
+  padding: var(--hp-space-8);
+  background: var(--hp-color-surface-elevated);
+  border: 1px solid var(--hp-color-border);
+  border-radius: var(--hp-radius-lg);
+  box-shadow: var(--hp-shadow-md);
+}
+
+.stub-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--hp-text-sm);
+}
+
+.stub-table th,
+.stub-table td {
+  text-align: left;
+  padding: var(--hp-space-3);
+  border-bottom: 1px solid var(--hp-color-border);
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--hp-radius-full);
+  font-size: var(--hp-text-xs);
+  background: var(--hp-color-sage-100);
+  color: var(--hp-color-teal-900);
+}

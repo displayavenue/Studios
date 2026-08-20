@@ -1,0 +1,104 @@
+import { PRODUCTS } from "./products";
+
+export type Brand = {
+  slug: string;
+  name: string;
+  tagline: string;
+  summary: string;
+  manufacturer: string;
+  productCount: number;
+  featured?: boolean;
+};
+
+const brandMeta: Record<
+  string,
+  { name: string; tagline: string; summary: string; manufacturer: string; featured?: boolean }
+> = {
+  sbl: {
+    name: "SBL",
+    tagline: "India’s most widely stocked homeopathy brand",
+    summary:
+      "Browse SBL single-remedy dilutions and globules, mother tinctures, and biochemic tissue salts with clear potency and pack sizes. Educational retail listings only — follow pack labels and practitioner guidance.",
+    manufacturer: "SBL Pvt. Ltd. · India",
+    featured: true,
+  },
+  "dr-reckeweg": {
+    name: "Dr. Reckeweg",
+    tagline: "German R-series specialities and dilutions",
+    summary:
+      "Shop the complete Dr. Reckeweg World Famous Specialities R1–R89 line plus popular single dilutions. Product titles reflect retail trade names; listings are for discovery and do not make treatment or cure claims.",
+    manufacturer: "Dr. Reckeweg & Co. GmbH · Germany (imported / distributed in India)",
+    featured: true,
+  },
+  schwabe: {
+    name: "Schwabe",
+    tagline: "Schwabe dilutions, mother tinctures & Alpha range",
+    summary:
+      "Explore Schwabe single-remedy dilutions, mother tinctures, and Alpha specialty packs. Compare forms and pack sizes, then open a product page for label directions and warnings.",
+    manufacturer: "Dr. Willmar Schwabe India Pvt. Ltd.",
+    featured: true,
+  },
+  "homeopathypharma-essentials": {
+    name: "HomeopathyPharma Essentials",
+    tagline: "Core dilutions, globules, and everyday packs",
+    summary:
+      "HomeopathyPharma Essentials covers widely stocked single remedies in clear potency and pack sizes. Use this brand hub to compare dilutions, globules, and related forms without treatment promises.",
+    manufacturer: "Licensed contract manufacturer · Maharashtra",
+  },
+  "harbour-leaf-remedies": {
+    name: "Harbour Leaf Remedies",
+    tagline: "Plant-forward single remedy range",
+    summary:
+      "Harbour Leaf Remedies focuses on classic materia medica entries with transparent labelling. Browse by remedy or potency, then open a product page for pack details, directions, and warnings.",
+    manufacturer: "Licensed contract manufacturer · Maharashtra",
+  },
+  "coastal-biochemic": {
+    name: "Coastal Biochemic",
+    tagline: "Tissue salts and biochemic combinations",
+    summary:
+      "Coastal Biochemic lists tissue-salt and biochemic formats commonly browsed alongside single remedies. Educational retail listings only — follow pack labels and practitioner guidance.",
+    manufacturer: "Licensed contract manufacturer · Maharashtra",
+  },
+  "saffron-grove-care": {
+    name: "Saffron Grove Care",
+    tagline: "Specialty kits and pet-care packs",
+    summary:
+      "Saffron Grove Care covers curated kits and specialty packs, including pet-care assortments. Always use animal products under qualified veterinary guidance.",
+    manufacturer: "Licensed contract manufacturer · Maharashtra",
+  },
+};
+
+const FEATURED_ORDER = ["sbl", "dr-reckeweg", "schwabe"];
+
+export const brands: Brand[] = (Object.entries(brandMeta) as [string, (typeof brandMeta)[string]][])
+  .map(([slug, meta]) => ({
+    slug,
+    name: meta.name,
+    tagline: meta.tagline,
+    summary: meta.summary,
+    manufacturer: meta.manufacturer,
+    featured: meta.featured,
+    productCount: PRODUCTS.filter((p) => p.brandSlug === slug).length,
+  }))
+  .sort((a, b) => {
+    const ai = FEATURED_ORDER.indexOf(a.slug);
+    const bi = FEATURED_ORDER.indexOf(b.slug);
+    if (ai !== -1 || bi !== -1) {
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    }
+    return a.name.localeCompare(b.name);
+  });
+
+export function getBrand(slug: string) {
+  return brands.find((b) => b.slug === slug);
+}
+
+export function listBrandSlugs() {
+  return brands.map((b) => b.slug);
+}
+
+export function featuredBrands() {
+  return brands.filter((b) => b.featured);
+}

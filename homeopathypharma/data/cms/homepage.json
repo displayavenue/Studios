@@ -1,0 +1,35 @@
+{
+  "searchPlaceholder": "Search medicines, brands & doctors",
+  "banners": [
+    {
+      "id": "banner-hero",
+      "eyebrow": "",
+      "title": "Homeopathy, labelled clearly.",
+      "subtitle": "Shop SBL, Dr. Reckeweg, and Schwabe — then book a listed BHMS doctor when you need guidance.",
+      "ctaLabel": "Shop medicines",
+      "ctaHref": "/shop/",
+      "tone": "teal"
+    }
+  ],
+  "categories": [
+    { "label": "Head & Hair", "href": "/shop/categories/head-and-hair/", "seed": "hair" },
+    { "label": "Face & Skin", "href": "/shop/categories/face-and-skin/", "seed": "skin" },
+    { "label": "Digestive", "href": "/shop/categories/digestive-health/", "seed": "digestive" },
+    { "label": "Respiratory", "href": "/shop/categories/respiratory-health/", "seed": "respiratory" },
+    { "label": "Women's Health", "href": "/shop/categories/womens-health/", "seed": "women" },
+    { "label": "Men's Health", "href": "/shop/categories/mens-health/", "seed": "men" },
+    { "label": "Children", "href": "/shop/categories/childrens-health/", "seed": "child" },
+    { "label": "Senior Health", "href": "/shop/categories/senior-health/", "seed": "senior" },
+    { "label": "Sleep", "href": "/shop/categories/sleep-health/", "seed": "sleep" },
+    { "label": "Immunity", "href": "/shop/categories/immunity-and-general-wellness/", "seed": "immunity" },
+    { "label": "Joints", "href": "/shop/categories/bone-joint-and-muscle-care/", "seed": "joints" },
+    { "label": "All categories", "href": "/shop/categories/", "seed": "all" }
+  ],
+  "rails": {
+    "bestsellersTitle": "Popular from SBL, Reckeweg & Schwabe",
+    "consultTitle": "Consult a listed BHMS doctor",
+    "consultBody": "Online video or clinic visits with practitioners listed for Mumbai — no fake verified badges.",
+    "brandsTitle": "Trusted brands in stock",
+    "doctorsTitle": "Doctors in Mumbai"
+  }
+}
