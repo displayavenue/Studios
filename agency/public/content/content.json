@@ -1,0 +1,41 @@
+{
+  "testimonials": [
+    {
+      "quote": "DisplayAvenue rebuilt our entire digital engine. Leads quality improved and revenue followed within one quarter.",
+      "name": "Rahul Sharma",
+      "title": "CEO, Vaidraj Ayurvedic",
+      "rating": 5
+    },
+    {
+      "quote": "Transparent reporting, sharp strategy, and an AI toolkit that actually saves our team hours every week.",
+      "name": "Anita Desai",
+      "title": "Marketing Head, RAK Ceramics",
+      "rating": 5
+    },
+    {
+      "quote": "From website to paid media, they operate like an extension of our team - fast, accountable, and ROI-focused.",
+      "name": "Karan Mehta",
+      "title": "Director, Bhaskar Patil Group",
+      "rating": 5
+    },
+    {
+      "quote": "The best agency partnership we’ve had. Clear process, creative excellence, and measurable growth.",
+      "name": "Neha Kapoor",
+      "title": "Founder, Island360 Adventure",
+      "rating": 5
+    }
+  ],
+  "clientLogos": [
+    "TATA",
+    "Jio",
+    "RAK Ceramics",
+    "Vaidraj Ayurvedic",
+    "Island360",
+    "Bhaskar Patil Group",
+    "Royal Mouth Fresheners"
+  ],
+  "footerCta": {
+    "title": "Ready to Transform Your Business?",
+    "sub": "Book a free consultation or request a custom proposal today."
+  }
+}

@@ -1,0 +1,36 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.logo-text strong {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.logo-text small {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+  margin-top: 0.12rem;
+}
+
+.logo-light .logo-text strong {
+  color: #fff;
+}
+
+.logo-light .logo-text small {
+  color: rgba(255, 255, 255, 0.7);
+}
