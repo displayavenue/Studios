@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SEO } from "../components/SEO";
+import { SEO, BreadcrumbSchema } from "../components/SEO";
 import { fallbackBlog, sortBlogPosts, type BlogCms, type BlogPost } from "../data/blog";
 import "../styles/pages.css";
 import "./Blog.css";
@@ -44,8 +44,19 @@ export function Blog() {
     <div className="page-shell blog-page">
       <SEO
         title="Blog | DisplayAvenue Digital Marketing Insights"
-        description={blog.lead}
+        description={
+          blog.lead ||
+          "Practical digital marketing updates for Indian business owners — Google Ads, Meta Ads, SEO, websites, and WhatsApp growth."
+        }
         path="/blog"
+        type="website"
+        noindex={false}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ]}
       />
       <div className="container">
         <div className="page-frame blog-frame">

@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { SEO } from "../components/SEO";
+import { SEO, ArticleSchema, BreadcrumbSchema } from "../components/SEO";
 import { sortBlogPosts } from "../data/blog";
 import { useBlog } from "./Blog";
 import "../styles/pages.css";
@@ -37,6 +37,21 @@ export function BlogPost() {
         title={`${post.title} | DisplayAvenue Blog`}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
+        type="article"
+        noindex={false}
+      />
+      <ArticleSchema
+        title={post.title}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        category={post.category}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
       />
       <div className="container">
         <article className="page-frame blog-article">

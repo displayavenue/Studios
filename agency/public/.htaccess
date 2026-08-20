@@ -13,6 +13,10 @@
   RewriteRule ^invoice/demo/?$ /invoice/demo/index.html [L]
   RewriteRule ^invoice/([A-Za-z0-9._-]+)/([A-Za-z0-9_-]+)/?$ /invoice/view.php?number=$1&token=$2 [L,QSA]
 
+  # Blog indexable SEO shells (correct canonical/meta for crawlers)
+  RewriteRule ^blog/?$ /blog-seo.php [L,QSA]
+  RewriteRule ^blog/([A-Za-z0-9._-]+)/?$ /blog-seo.php?slug=$1 [L,QSA]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
