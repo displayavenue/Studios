@@ -1,0 +1,91 @@
+export type LinkableTool = {
+  slug: string;
+  title: string;
+  shortTitle: string;
+  description: string;
+  category: string;
+  href: string;
+  badge: string;
+};
+
+/** Live interactive tools that can earn real backlinks. */
+export const linkableTools: LinkableTool[] = [
+  {
+    slug: "roi-calculator",
+    title: "Marketing ROI Calculator",
+    shortTitle: "ROI Calculator",
+    description:
+      "Estimate monthly leads, revenue, and return on ad spend from your marketing budget. Free, no signup.",
+    category: "Marketing",
+    href: "/free-tools/roi-calculator",
+    badge: "Calculator",
+  },
+  {
+    slug: "seo-checklist",
+    title: "Website SEO Score Checklist",
+    shortTitle: "SEO Checklist",
+    description:
+      "Score your website against 20 on-page and technical SEO checks used by Indian growth teams.",
+    category: "SEO",
+    href: "/free-tools/seo-checklist",
+    badge: "Checklist",
+  },
+  {
+    slug: "local-seo-score",
+    title: "Local SEO & GMB Scorecard",
+    shortTitle: "Local SEO Score",
+    description:
+      "Check Google Business Profile and local citation readiness for Mumbai and India businesses.",
+    category: "Local SEO",
+    href: "/free-tools/local-seo-score",
+    badge: "Scorecard",
+  },
+  {
+    slug: "citation-directory",
+    title: "India Citation & Directory List",
+    shortTitle: "Citation Directory",
+    description:
+      "Curated legitimate Indian and global directories for citations, plus copy-ready outreach templates.",
+    category: "Link Building",
+    href: "/free-tools/citation-directory",
+    badge: "Outreach kit",
+  },
+  {
+    slug: "displayavenue-data",
+    title: "DisplayAvenue Data — Industry Lead Extractor",
+    shortTitle: "Data Lead Extractor",
+    description:
+      "Extract Indian businesses by industry and city, score digital gaps, and export client target lists.",
+    category: "Sales intelligence",
+    href: "https://displayavenue.com/data/",
+    badge: "Data",
+  },
+  {
+    slug: "displayavenue-strategy",
+    title: "DisplayAvenue Strategy — Growth Plan Builder",
+    shortTitle: "Strategy Maker",
+    description:
+      "Build digital marketing, lead-gen and sales strategies for Google Ads, Meta Ads, and all DA services.",
+    category: "Strategy",
+    href: "https://displayavenue.com/strategy/",
+    badge: "Strategy",
+  },
+  {
+    slug: "city-seo-pages",
+    title: "Digital Marketing by City in India",
+    shortTitle: "City SEO Pages",
+    description:
+      "Localized Google Ads, Meta Ads, SEO, and website pages for 23 Indian cities — free to browse and share.",
+    category: "Local SEO",
+    href: "/locations",
+    badge: "SEO hub",
+  },
+];
+
+export const industryReport = {
+  slug: "india-sme-digital-growth-report",
+  title: "India SME Digital Growth Report 2026",
+  description:
+    "How Indian SMEs win enquiries from Google, Instagram, and WhatsApp - benchmarks, channel mix, and a 90-day plan.",
+  href: "/resources/india-sme-digital-growth-report",
+};
