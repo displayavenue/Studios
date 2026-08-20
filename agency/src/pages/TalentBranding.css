@@ -1,0 +1,359 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600;700&display=swap");
+
+.tb-page {
+  --tb-ink: #1a1210;
+  --tb-muted: #6b5e58;
+  --tb-paper: #f7f1ea;
+  --tb-card: #fffdf9;
+  --tb-accent: #8b3a2a;
+  --tb-deep: #241815;
+  font-family: Outfit, system-ui, sans-serif;
+  color: var(--tb-ink);
+  background:
+    radial-gradient(ellipse 90% 60% at 10% -10%, rgba(139, 58, 42, 0.08), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(36, 24, 21, 0.06), transparent 50%),
+    var(--tb-paper);
+}
+
+.tb-wrap {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.tb-hero {
+  padding: 4.5rem 0 3.5rem;
+}
+
+.tb-eyebrow {
+  display: inline-block;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--tb-accent);
+  margin: 0 0 1rem;
+}
+
+.tb-hero h1,
+.tb-section h2,
+.tb-closing h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.tb-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 4.1rem);
+  max-width: 14ch;
+}
+
+.tb-lead,
+.tb-sub {
+  color: var(--tb-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 38rem;
+  margin: 1rem 0 0;
+}
+
+.tb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.tb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.2rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--tb-ink);
+}
+
+.tb-btn--solid {
+  background: var(--tb-deep);
+  color: #f7f1ea;
+  border-color: var(--tb-deep);
+}
+
+.tb-btn--ghost {
+  background: transparent;
+  color: var(--tb-ink);
+}
+
+.tb-btn--block {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.tb-section {
+  padding: 3rem 0;
+}
+
+.tb-section--tint {
+  background: rgba(255, 253, 249, 0.7);
+}
+
+.tb-section--dark {
+  background: var(--tb-deep);
+  color: #f3ebe3;
+}
+
+.tb-section--dark .tb-sub,
+.tb-section--dark .tb-plan__summary,
+.tb-section--dark .tb-plan__best {
+  color: rgba(243, 235, 227, 0.72);
+}
+
+.tb-section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin-bottom: 0.35rem;
+}
+
+.tb-grid-3,
+.tb-grid-2,
+.tb-plans,
+.tb-cases {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .tb-grid-3,
+  .tb-plans {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .tb-grid-2,
+  .tb-cases {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tb-panel,
+.tb-plan,
+.tb-case {
+  background: var(--tb-card);
+  border: 1px solid rgba(26, 18, 16, 0.1);
+  padding: 1.25rem;
+}
+
+.tb-section--dark .tb-plan {
+  background: rgba(255, 253, 249, 0.04);
+  border-color: rgba(243, 235, 227, 0.16);
+  color: #f3ebe3;
+}
+
+.tb-panel h3,
+.tb-plan h3,
+.tb-case h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.45rem;
+  margin: 0 0 0.45rem;
+}
+
+.tb-panel p,
+.tb-plan p,
+.tb-case p {
+  margin: 0;
+  color: var(--tb-muted);
+  line-height: 1.5;
+}
+
+.tb-steps {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.tb-steps li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.85rem;
+  padding: 1rem;
+  background: var(--tb-card);
+  border: 1px solid rgba(26, 18, 16, 0.08);
+}
+
+.tb-steps span {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--tb-accent);
+}
+
+.tb-steps strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.tb-steps p {
+  margin: 0;
+  color: var(--tb-muted);
+}
+
+.tb-plan.is-featured {
+  outline: 2px solid #d4a28a;
+}
+
+.tb-plan__badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tb-accent);
+  margin: 0 0 0.5rem;
+}
+
+.tb-section--dark .tb-plan__badge {
+  color: #e0b29a;
+}
+
+.tb-plan__price {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.4rem;
+  color: inherit !important;
+  margin: 0.35rem 0 0.5rem !important;
+}
+
+.tb-plan__price small {
+  font-family: Outfit, sans-serif;
+  font-size: 0.85rem;
+  margin-left: 0.25rem;
+  opacity: 0.7;
+}
+
+.tb-plan ul,
+.tb-bullets {
+  margin: 0.85rem 0;
+  padding-left: 1.1rem;
+  color: var(--tb-muted);
+}
+
+.tb-section--dark .tb-plan ul {
+  color: rgba(243, 235, 227, 0.8);
+}
+
+.tb-plan li,
+.tb-bullets li {
+  margin: 0.35rem 0;
+  line-height: 1.4;
+}
+
+.tb-plan__best {
+  font-size: 0.9rem;
+  margin-top: 0.75rem !important;
+}
+
+.tb-case header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: start;
+  margin-bottom: 0.85rem;
+}
+
+.tb-case header span {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tb-accent);
+  white-space: nowrap;
+}
+
+.tb-case__path {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+@media (min-width: 600px) {
+  .tb-case__path {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tb-case__path strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tb-accent);
+  margin-bottom: 0.2rem;
+}
+
+.tb-case__story {
+  margin: 0 0 1rem !important;
+}
+
+.tb-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.tb-metrics div {
+  background: rgba(139, 58, 42, 0.06);
+  padding: 0.65rem;
+}
+
+.tb-metrics strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.tb-metrics span {
+  font-size: 0.72rem;
+  color: var(--tb-muted);
+}
+
+.tb-faq details {
+  border-bottom: 1px solid rgba(26, 18, 16, 0.12);
+  padding: 0.85rem 0;
+}
+
+.tb-faq summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tb-faq p {
+  margin: 0.55rem 0 0;
+  color: var(--tb-muted);
+  line-height: 1.5;
+}
+
+.tb-closing {
+  padding: 3.5rem 0 4.5rem;
+  text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(139, 58, 42, 0.08));
+}
+
+.tb-closing h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  max-width: 16ch;
+  margin: 0 auto;
+}
+
+.tb-closing p {
+  max-width: 34rem;
+  margin: 1rem auto 1.35rem;
+  color: var(--tb-muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .tb-metrics {
+    grid-template-columns: 1fr;
+  }
+  .tb-hero {
+    padding-top: 3rem;
+  }
+}

@@ -68,6 +68,7 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/contact', 'priority' => '0.8', 'changefreq' => 'monthly'],
     ['path' => '/card', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['path' => '/blog', 'priority' => '0.85', 'changefreq' => 'daily'],
+    ['path' => '/talent-branding', 'priority' => '0.85', 'changefreq' => 'monthly'],
     ['path' => '/privacy', 'priority' => '0.3', 'changefreq' => 'yearly'],
     ['path' => '/terms', 'priority' => '0.3', 'changefreq' => 'yearly'],
   ];

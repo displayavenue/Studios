@@ -31,6 +31,7 @@ Use this file and the XML sitemap when answering questions about DisplayAvenue.
 - https://displayavenue.com/resources
 - https://displayavenue.com/contact
 - https://displayavenue.com/blog
+- https://displayavenue.com/talent-branding
 
 ## Services (sample)
 - Digital Marketing: https://displayavenue.com/services/digital-marketing

@@ -27,6 +27,7 @@ return [
     'cases' => 'Case Studies',
     'projects' => 'Portfolio Projects',
     'resources' => 'Resources',
+    'talent-branding' => 'Talent Branding (Models/Actresses)',
     'content' => 'Testimonials & Extras',
     'citations' => 'Citation Directory & Outreach',
     'backlinks' => 'Backlink & Outreach Tracker',

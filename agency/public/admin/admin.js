@@ -1901,6 +1901,7 @@ function renderEditor() {
     citations: renderCitations,
     backlinks: renderBacklinks,
     tracking: renderTracking,
+    "talent-branding": renderTalentBranding,
     settings: renderSettings,
   };
   wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
@@ -2606,6 +2607,249 @@ function renderBacklinks(d) {
   </div>`;
 }
 
+function renderTalentBranding(d) {
+  if (!Array.isArray(d.whoFor)) d.whoFor = [];
+  if (!Array.isArray(d.howWeWork)) d.howWeWork = [];
+  if (!Array.isArray(d.resultsPromise)) d.resultsPromise = [];
+  if (!Array.isArray(d.plans)) d.plans = [];
+  if (!Array.isArray(d.caseStudies)) d.caseStudies = [];
+  if (!Array.isArray(d.examples)) d.examples = [];
+  if (!Array.isArray(d.faq)) d.faq = [];
+  if (!d.hero) d.hero = {};
+  if (!d.closing) d.closing = {};
+  if (!d.seo) d.seo = {};
+
+  const whoFor = d.whoFor
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.title || "Audience")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-del-who" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Title", `whoFor.${i}.title`, item.title || "")}
+          ${field("Text", `whoFor.${i}.text`, item.text || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  const steps = d.howWeWork
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>Step ${escapeHtml(item.step || String(i + 1))}</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-del-step" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Step #", `howWeWork.${i}.step`, item.step || "")}
+          ${field("Title", `howWeWork.${i}.title`, item.title || "")}
+          ${field("Text", `howWeWork.${i}.text`, item.text || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  const results = d.resultsPromise
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.label || "Result")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-del-result" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Label", `resultsPromise.${i}.label`, item.label || "")}
+          ${field("Text", `resultsPromise.${i}.text`, item.text || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  const plans = d.plans
+    .map((plan, i) => {
+      const includes = (plan.includes || []).join("\n");
+      return `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(plan.name || "Plan")} · ${escapeHtml(plan.price || "")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-del-plan" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("ID (organic / ads / ads-pr)", `plans.${i}.id`, plan.id || "")}
+          ${field("Name", `plans.${i}.name`, plan.name || "")}
+          ${field("Price", `plans.${i}.price`, plan.price || "")}
+          ${field("Period", `plans.${i}.period`, plan.period || "/ month")}
+          ${field("Badge", `plans.${i}.badge`, plan.badge || "")}
+          ${field("Summary", `plans.${i}.summary`, plan.summary || "", "textarea")}
+          <div class="field full"><label>Includes (one per line)</label>
+            <textarea data-path="plans.${i}.includes" data-array="true">${escapeHtml(includes)}</textarea>
+          </div>
+          ${field("Best for", `plans.${i}.bestFor`, plan.bestFor || "", "textarea")}
+        </div>
+      </div>`;
+    })
+    .join("");
+
+  const cases = d.caseStudies
+    .map((cs, i) => {
+      const metrics = (cs.metrics || [])
+        .map(
+          (m, mi) => `
+          <div class="grid">
+            ${field("Metric label", `caseStudies.${i}.metrics.${mi}.label`, m.label || "")}
+            ${field("Metric value", `caseStudies.${i}.metrics.${mi}.value`, m.value || "")}
+          </div>`,
+        )
+        .join("");
+      return `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(cs.name || "Case")} · ${escapeHtml(cs.role || "")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-del-case" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("ID", `caseStudies.${i}.id`, cs.id || "")}
+          ${field("Name", `caseStudies.${i}.name`, cs.name || "")}
+          ${field("Role / city", `caseStudies.${i}.role`, cs.role || "")}
+          ${field("From", `caseStudies.${i}.from`, cs.from || "", "textarea")}
+          ${field("To", `caseStudies.${i}.to`, cs.to || "", "textarea")}
+          ${field("Focus / plan", `caseStudies.${i}.focus`, cs.focus || "")}
+          ${field("Story", `caseStudies.${i}.story`, cs.story || "", "textarea")}
+        </div>
+        <div class="list-item-head" style="margin-top:.75rem">
+          <strong>Metrics</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-add-metric" data-index="${i}">Add metric</button>
+        </div>
+        ${metrics || `<p class="hint">No metrics yet.</p>`}
+      </div>`;
+    })
+    .join("");
+
+  const examples = d.examples
+    .map((ex, i) => {
+      const points = (ex.points || []).join("\n");
+      return `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(ex.title || "Example")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-del-example" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Title", `examples.${i}.title`, ex.title || "")}
+          <div class="field full"><label>Points (one per line)</label>
+            <textarea data-path="examples.${i}.points" data-array="true">${escapeHtml(points)}</textarea>
+          </div>
+        </div>
+      </div>`;
+    })
+    .join("");
+
+  const faq = d.faq
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.q || "FAQ")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="tb-del-faq" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Question", `faq.${i}.q`, item.q || "")}
+          ${field("Answer", `faq.${i}.a`, item.a || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    <p class="hint" style="margin:0 0 1rem">
+      Client portfolio page for models, actresses &amp; female self-branding.
+      Live URL: <a href="../talent-branding" target="_blank" rel="noreferrer">/talent-branding ↗</a>
+      · Plans default: Organic ₹18,000 · Ads ₹35,000 · Ads + PR ₹50,000
+    </p>
+    ${card(
+      "Page & SEO",
+      `
+      ${field("Page enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("SEO title", "seo.title", d.seo.title || "")}
+      ${field("SEO description", "seo.description", d.seo.description || "", "textarea")}
+    `,
+    )}
+    ${card(
+      "Hero",
+      `
+      ${field("Badge / eyebrow", "hero.badge", d.hero.badge || "")}
+      ${field("Title", "hero.title", d.hero.title || "", "textarea")}
+      ${field("Lead", "hero.lead", d.hero.lead || "", "textarea")}
+      ${field("Primary CTA", "hero.primaryCta", d.hero.primaryCta || "")}
+      ${field("Primary href", "hero.primaryHref", d.hero.primaryHref || "")}
+      ${field("Secondary CTA", "hero.secondaryCta", d.hero.secondaryCta || "")}
+      ${field("Secondary href", "hero.secondaryHref", d.hero.secondaryHref || "")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Who this is for</h3>
+        <button type="button" class="btn btn-gold" data-action="tb-add-who">Add audience</button>
+      </div>
+      ${whoFor || `<p class="empty">No items yet.</p>`}
+    </section>
+    <section class="card">
+      <div class="list-item-head">
+        <h3>How we work</h3>
+        <button type="button" class="btn btn-gold" data-action="tb-add-step">Add step</button>
+      </div>
+      ${steps || `<p class="empty">No steps yet.</p>`}
+    </section>
+    <section class="card">
+      <div class="list-item-head">
+        <h3>What you get</h3>
+        <button type="button" class="btn btn-gold" data-action="tb-add-result">Add promise</button>
+      </div>
+      ${results || `<p class="empty">No items yet.</p>`}
+    </section>
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Social media plans</h3>
+        <button type="button" class="btn btn-gold" data-action="tb-add-plan">Add plan</button>
+      </div>
+      ${plans || `<p class="empty">No plans yet.</p>`}
+    </section>
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Case studies (0 → good)</h3>
+        <button type="button" class="btn btn-gold" data-action="tb-add-case">Add case study</button>
+      </div>
+      ${cases || `<p class="empty">No case studies yet.</p>`}
+    </section>
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Live examples / growth playbook</h3>
+        <button type="button" class="btn btn-gold" data-action="tb-add-example">Add example block</button>
+      </div>
+      ${examples || `<p class="empty">No examples yet.</p>`}
+    </section>
+    <section class="card">
+      <div class="list-item-head">
+        <h3>FAQ</h3>
+        <button type="button" class="btn btn-gold" data-action="tb-add-faq">Add FAQ</button>
+      </div>
+      ${faq || `<p class="empty">No FAQs yet.</p>`}
+    </section>
+    ${card(
+      "Closing CTA",
+      `
+      ${field("Title", "closing.title", d.closing.title || "")}
+      ${field("Text", "closing.text", d.closing.text || "", "textarea")}
+      ${field("CTA label", "closing.cta", d.closing.cta || "")}
+      ${field("CTA href", "closing.ctaHref", d.closing.ctaHref || "")}
+    `,
+    )}
+  `;
+}
+
 function renderSettings(d) {
   const pingEngines = d.seoPings?.engines || {};
   const pingRows = Object.keys(pingEngines)
@@ -2682,6 +2926,70 @@ function handleAction(action, index) {
     d.testimonials.push({ quote: "", name: "", title: "", rating: 5 });
   } else if (action === "del-testimonial") {
     d.testimonials.splice(Number(index), 1);
+  } else if (action === "tb-add-who") {
+    d.whoFor = d.whoFor || [];
+    d.whoFor.push({ title: "New audience", text: "" });
+  } else if (action === "tb-del-who") {
+    d.whoFor.splice(Number(index), 1);
+  } else if (action === "tb-add-step") {
+    d.howWeWork = d.howWeWork || [];
+    const n = String(d.howWeWork.length + 1).padStart(2, "0");
+    d.howWeWork.push({ step: n, title: "New step", text: "" });
+  } else if (action === "tb-del-step") {
+    d.howWeWork.splice(Number(index), 1);
+  } else if (action === "tb-add-result") {
+    d.resultsPromise = d.resultsPromise || [];
+    d.resultsPromise.push({ label: "New promise", text: "" });
+  } else if (action === "tb-del-result") {
+    d.resultsPromise.splice(Number(index), 1);
+  } else if (action === "tb-add-plan") {
+    d.plans = d.plans || [];
+    d.plans.push({
+      id: `plan-${Date.now().toString(36)}`,
+      name: "New plan",
+      price: "₹18,000",
+      period: "/ month",
+      badge: "",
+      summary: "",
+      includes: ["New deliverable"],
+      bestFor: "",
+    });
+  } else if (action === "tb-del-plan") {
+    if (!confirm("Delete this plan?")) return;
+    d.plans.splice(Number(index), 1);
+  } else if (action === "tb-add-case") {
+    d.caseStudies = d.caseStudies || [];
+    d.caseStudies.push({
+      id: `cs-${Date.now().toString(36)}`,
+      name: "New talent",
+      role: "Model · City",
+      from: "",
+      to: "",
+      focus: "Organic",
+      story: "",
+      metrics: [
+        { label: "Followers", value: "0 → ?" },
+        { label: "DMs", value: "—" },
+      ],
+    });
+  } else if (action === "tb-del-case") {
+    if (!confirm("Delete this case study?")) return;
+    d.caseStudies.splice(Number(index), 1);
+  } else if (action === "tb-add-metric") {
+    const cs = d.caseStudies[Number(index)];
+    if (!cs) return;
+    cs.metrics = cs.metrics || [];
+    cs.metrics.push({ label: "Metric", value: "" });
+  } else if (action === "tb-add-example") {
+    d.examples = d.examples || [];
+    d.examples.push({ title: "New example", points: ["Point 1"] });
+  } else if (action === "tb-del-example") {
+    d.examples.splice(Number(index), 1);
+  } else if (action === "tb-add-faq") {
+    d.faq = d.faq || [];
+    d.faq.push({ q: "New question?", a: "" });
+  } else if (action === "tb-del-faq") {
+    d.faq.splice(Number(index), 1);
   } else if (action === "add-google-review") {
     d.reviews = d.reviews || [];
     d.reviews.unshift({
