@@ -1,0 +1,20 @@
+# SPA + SEO for DisplayAvenue (https://displayavenue.com/)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Dynamic sitemap
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+  # Hostinger quotations (public client links)
+  RewriteRule ^q(/.*)?$ /q/index.php [L,QSA]
+
+  # Tax invoice demo / future invoice pages
+  RewriteRule ^invoice/demo/?$ /invoice/demo/index.html [L]
+  RewriteRule ^invoice/([A-Za-z0-9._-]+)/([A-Za-z0-9_-]+)/?$ /invoice/view.php?number=$1&token=$2 [L,QSA]
+
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

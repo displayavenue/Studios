@@ -1,0 +1,3778 @@
+{
+  "items": [
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Lead Generation",
+      "summary": "A DisplayAvenue growth solution tailored around lead generation - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align lead generation with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Lead Generation roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Lead Generation?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "lead-generation",
+      "kind": "solution",
+      "title": "Lead Generation",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Ecommerce Growth",
+      "summary": "A DisplayAvenue growth solution tailored around ecommerce growth - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align ecommerce growth with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Ecommerce Growth roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Ecommerce Growth?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "ecommerce-growth",
+      "kind": "solution",
+      "title": "Ecommerce Growth",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Brand Awareness",
+      "summary": "A DisplayAvenue growth solution tailored around brand awareness - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align brand awareness with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Brand Awareness roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Brand Awareness?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "brand-awareness",
+      "kind": "solution",
+      "title": "Brand Awareness",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: App Installs",
+      "summary": "A DisplayAvenue growth solution tailored around app installs - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align app installs with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated App Installs roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start App Installs?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "app-installs",
+      "kind": "solution",
+      "title": "App Installs",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Revenue Growth",
+      "summary": "A DisplayAvenue growth solution tailored around revenue growth - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align revenue growth with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Revenue Growth roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Revenue Growth?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "revenue-growth",
+      "kind": "solution",
+      "title": "Revenue Growth",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Startups",
+      "summary": "A DisplayAvenue growth solution tailored around startups - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align startups with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Startups roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Startups?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "startups",
+      "kind": "solution",
+      "title": "Startups",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Smb",
+      "summary": "A DisplayAvenue growth solution tailored around smb - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align smb with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Smb roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Smb?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "smb",
+      "kind": "solution",
+      "title": "Smb",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Medium",
+      "summary": "A DisplayAvenue growth solution tailored around medium - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align medium with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Medium roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Medium?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "medium",
+      "kind": "solution",
+      "title": "Medium",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Enterprise",
+      "summary": "A DisplayAvenue growth solution tailored around enterprise - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align enterprise with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Enterprise roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Enterprise?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "enterprise",
+      "kind": "solution",
+      "title": "Enterprise",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Agencies",
+      "summary": "A DisplayAvenue growth solution tailored around agencies - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align agencies with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Agencies roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Agencies?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "agencies",
+      "kind": "solution",
+      "title": "Agencies",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Google",
+      "summary": "A DisplayAvenue growth solution tailored around google - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align google with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Google roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Google?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "google",
+      "kind": "solution",
+      "title": "Google",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Meta",
+      "summary": "A DisplayAvenue growth solution tailored around meta - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align meta with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Meta roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Meta?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "meta",
+      "kind": "solution",
+      "title": "Meta",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Linkedin",
+      "summary": "A DisplayAvenue growth solution tailored around linkedin - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align linkedin with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Linkedin roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Linkedin?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "linkedin",
+      "kind": "solution",
+      "title": "Linkedin",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Youtube",
+      "summary": "A DisplayAvenue growth solution tailored around youtube - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align youtube with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Youtube roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Youtube?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "youtube",
+      "kind": "solution",
+      "title": "Youtube",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Whatsapp",
+      "summary": "A DisplayAvenue growth solution tailored around whatsapp - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align whatsapp with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Whatsapp roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Whatsapp?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "whatsapp",
+      "kind": "solution",
+      "title": "Whatsapp",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Shopify",
+      "summary": "A DisplayAvenue growth solution tailored around shopify - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align shopify with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Shopify roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Shopify?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "shopify",
+      "kind": "solution",
+      "title": "Shopify",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Wordpress",
+      "summary": "A DisplayAvenue growth solution tailored around wordpress - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align wordpress with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Wordpress roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Wordpress?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "wordpress",
+      "kind": "solution",
+      "title": "Wordpress",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Amazon",
+      "summary": "A DisplayAvenue growth solution tailored around amazon - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align amazon with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Amazon roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Amazon?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "amazon",
+      "kind": "solution",
+      "title": "Amazon",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Apps",
+      "summary": "A DisplayAvenue growth solution tailored around apps - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align apps with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Apps roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Apps?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "apps",
+      "kind": "solution",
+      "title": "Apps",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Cloud",
+      "summary": "A DisplayAvenue growth solution tailored around cloud - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align cloud with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Cloud roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Cloud?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "cloud",
+      "kind": "solution",
+      "title": "Cloud",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Automation",
+      "summary": "A DisplayAvenue growth solution tailored around automation - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align automation with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Automation roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Automation?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "automation",
+      "kind": "solution",
+      "title": "Automation",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Security",
+      "summary": "A DisplayAvenue growth solution tailored around security - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align security with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Security roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Security?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "security",
+      "kind": "solution",
+      "title": "Security",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Seo",
+      "summary": "A DisplayAvenue growth solution tailored around seo - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align seo with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Seo roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Seo?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "seo",
+      "kind": "solution",
+      "title": "Seo",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Google Ads",
+      "summary": "A DisplayAvenue growth solution tailored around google ads - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align google ads with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Google Ads roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Google Ads?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "google-ads",
+      "kind": "solution",
+      "title": "Google Ads",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Social",
+      "summary": "A DisplayAvenue growth solution tailored around social - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align social with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Social roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Social?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "social",
+      "kind": "solution",
+      "title": "Social",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Email",
+      "summary": "A DisplayAvenue growth solution tailored around email - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align email with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Email roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Email?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "email",
+      "kind": "solution",
+      "title": "Email",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Influencer",
+      "summary": "A DisplayAvenue growth solution tailored around influencer - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align influencer with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Influencer roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Influencer?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "influencer",
+      "kind": "solution",
+      "title": "Influencer",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Awareness",
+      "summary": "A DisplayAvenue growth solution tailored around awareness - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align awareness with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Awareness roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Awareness?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "awareness",
+      "kind": "solution",
+      "title": "Awareness",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Consideration",
+      "summary": "A DisplayAvenue growth solution tailored around consideration - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align consideration with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Consideration roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Consideration?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "consideration",
+      "kind": "solution",
+      "title": "Consideration",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Conversion",
+      "summary": "A DisplayAvenue growth solution tailored around conversion - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align conversion with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Conversion roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Conversion?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "conversion",
+      "kind": "solution",
+      "title": "Conversion",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Retention",
+      "summary": "A DisplayAvenue growth solution tailored around retention - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align retention with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Retention roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Retention?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "retention",
+      "kind": "solution",
+      "title": "Retention",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Loyalty",
+      "summary": "A DisplayAvenue growth solution tailored around loyalty - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align loyalty with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Loyalty roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Loyalty?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "loyalty",
+      "kind": "solution",
+      "title": "Loyalty",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Strategy",
+      "summary": "A DisplayAvenue growth solution tailored around strategy - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align strategy with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Strategy roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Strategy?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "strategy",
+      "kind": "solution",
+      "title": "Strategy",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Implementation",
+      "summary": "A DisplayAvenue growth solution tailored around implementation - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align implementation with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Implementation roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Implementation?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "implementation",
+      "kind": "solution",
+      "title": "Implementation",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Creative",
+      "summary": "A DisplayAvenue growth solution tailored around creative - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align creative with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Creative roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Creative?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "creative",
+      "kind": "solution",
+      "title": "Creative",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Development",
+      "summary": "A DisplayAvenue growth solution tailored around development - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align development with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Development roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Development?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "development",
+      "kind": "solution",
+      "title": "Development",
+      "category": "Solutions"
+    },
+    {
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Solutions",
+      "headline": "Solution: Support",
+      "summary": "A DisplayAvenue growth solution tailored around support - combining strategy, channels, creative, and AI execution.",
+      "benefits": [
+        {
+          "title": "Strategy first",
+          "desc": "We align support with your business goals, audience, and funnel - not vanity metrics."
+        },
+        {
+          "title": "Expert execution",
+          "desc": "Specialists who ship weekly, report clearly, and optimize continuously."
+        },
+        {
+          "title": "AI-accelerated delivery",
+          "desc": "Our AI platform speeds research, content, QA, and reporting without losing human judgment."
+        },
+        {
+          "title": "Transparent ROI",
+          "desc": "Dashboards, attribution, and monthly reviews so you always know what’s working."
+        }
+      ],
+      "deliverables": [
+        "Dedicated Support roadmap",
+        "Kickoff workshop & KPI framework",
+        "Creative / technical implementation",
+        "Weekly progress updates",
+        "Monthly performance report",
+        "Optimization sprints"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current state, competitors, and opportunities across channel and funnel."
+        },
+        {
+          "title": "Plan",
+          "desc": "Define goals, messaging, tech stack, timeline, and success metrics."
+        },
+        {
+          "title": "Build & launch",
+          "desc": "Execute with quality checks, tracking, and staged rollouts."
+        },
+        {
+          "title": "Optimize & scale",
+          "desc": "Iterate from data - improve conversion, efficiency, and growth."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "How fast can we start Support?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Do you work with startups and enterprises?",
+          "a": "Yes. We tailor scope, SLAs, and reporting for startups, SMBs, and enterprise teams."
+        },
+        {
+          "q": "Can this integrate with our existing stack?",
+          "a": "We work with Google, Meta, HubSpot, Shopify, WordPress, custom CRMs, and most modern tools."
+        },
+        {
+          "q": "Is pricing fixed or custom?",
+          "a": "We offer package tiers and custom proposals based on goals, complexity, and volume."
+        }
+      ],
+      "related": [
+        {
+          "label": "All Solutions",
+          "href": "/solutions"
+        },
+        {
+          "label": "Packages",
+          "href": "/packages"
+        },
+        {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "850+",
+          "label": "Projects"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        },
+        {
+          "value": "320%",
+          "label": "Avg ROI lift"
+        }
+      ],
+      "ctaLabel": "Get Free Proposal",
+      "slug": "support",
+      "kind": "solution",
+      "title": "Support",
+      "category": "Solutions"
+    }
+  ]
+}
