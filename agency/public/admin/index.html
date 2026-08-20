@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>DisplayAvenue Agency CMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css?v=agency1" />
+  <style>
+    :root {
+      --gold: #0056ff;
+      --gold-dark: #0044cc;
+      --ink: #000b33;
+    }
+    body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+    .btn-gold { background: #0056ff !important; color: #fff !important; }
+    .btn-gold:hover { background: #0044cc !important; }
+    .logo { background: linear-gradient(145deg,#0056ff,#0039b8) !important; color:#fff !important; }
+    .sidebar { background: #000b33 !important; }
+    .nav button.active { background: rgba(0,86,255,.2) !important; color: #fff !important; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <section id="login-view" class="login-view">
+      <div class="login-card">
+        <div class="logo">DA</div>
+        <h1>DisplayAvenue Agency CMS</h1>
+        <p>Edit header, footer, homepage, services, industries, packages, solutions, AI, tools, case studies, portfolio, and more.</p>
+        <form id="login-form">
+          <label for="password">Admin password</label>
+          <input id="password" type="password" autocomplete="current-password" required placeholder="Enter password" />
+          <button type="submit" class="btn btn-gold">Sign in</button>
+          <p id="login-error" class="error" hidden></p>
+        </form>
+        <p class="hint">Default password is in <code>admin/config.php</code> — change it after first login.</p>
+      </div>
+    </section>
+
+    <section id="cms-view" class="cms-view" hidden>
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <span class="logo">DA</span>
+          <div>
+            <strong>Agency CMS</strong>
+            <small>displayavenue.com</small>
+          </div>
+        </div>
+        <nav id="nav"></nav>
+        <div class="sidebar-foot">
+          <a href="../" target="_blank" rel="noreferrer">View website ↗</a>
+          <button type="button" id="logout-btn" class="btn btn-ghost">Log out</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h2 id="panel-title">Dashboard</h2>
+            <p id="panel-sub">Choose a section to edit. Changes go live after Save.</p>
+          </div>
+          <div class="topbar-actions">
+            <span class="shortcut-hint">Ctrl/Cmd + S to save</span>
+            <button type="button" id="reload-btn" class="btn btn-ghost">Reload</button>
+            <button type="button" id="save-btn" class="btn btn-gold" disabled>Save changes</button>
+          </div>
+        </header>
+        <div id="toast" class="toast" hidden></div>
+        <div id="editor-wrap" class="editor-wrap">
+          <p class="empty">Select a collection from the left.</p>
+        </div>
+      </main>
+    </section>
+  </div>
+  <script src="admin.js?v=agency2"></script>
+</body>
+</html>
