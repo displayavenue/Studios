@@ -129,6 +129,52 @@
   border-radius: 18px;
   padding: 1.15rem 1.2rem 1.25rem;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.035);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: exploreRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes exploreRise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.explore-carousel {
+  margin-top: 0.15rem;
+}
+
+.explore-carousel .explore-tile {
+  height: 100%;
+  min-height: 5.4rem;
+  background: #f3f6fb;
+  border: 1px solid rgba(15, 40, 70, 0.08);
+  color: inherit;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.explore-carousel .explore-tile strong {
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+.explore-carousel .explore-tile span {
+  color: #4a5568;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.explore-carousel .explore-tile:hover,
+.explore-carousel .explore-tile:active {
+  background: #fff;
+  border-color: color-mix(in srgb, var(--accent, var(--blue)) 45%, var(--border-soft));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
 }
 
 .explore-group__head {
@@ -281,9 +327,21 @@
   .explore-dir__footer-note {
     padding: 1.1rem;
   }
+
+  .explore-carousel .explore-tile {
+    min-height: 5.8rem;
+  }
+
+  .explore-group.is-visible,
+  .explore-group {
+    animation: exploreRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
-/* Keep old class names harmless if referenced elsewhere */
-.internal-links {
-  display: contents;
+@media (prefers-reduced-motion: reduce) {
+  .explore-group {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

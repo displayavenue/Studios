@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import type { RefObject } from "react";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
@@ -60,7 +61,7 @@ export function Home() {
   const quote = content.testimonials[0];
 
   return (
-    <div className="home-page" ref={revealRef as React.RefObject<HTMLDivElement>}>
+    <div className="home-page" ref={revealRef as RefObject<HTMLDivElement>}>
       <SEO title={seoTitle} description={seoDesc} path="/" />
 
       <section className="home-hero" aria-label="Introduction">
@@ -74,6 +75,8 @@ export function Home() {
           />
         </div>
         <div className="home-hero__shade" aria-hidden />
+        <div className="home-hero__orb home-hero__orb--a" aria-hidden />
+        <div className="home-hero__orb home-hero__orb--b" aria-hidden />
         <div className="home-hero__inner">
           <p className="home-hero__brand">{home.hero.eyebrow || company.name}</p>
           <h1>
@@ -82,7 +85,7 @@ export function Home() {
           </h1>
           <p className="home-hero__lead">{home.hero.lead}</p>
           <div className="home-hero__actions">
-            <Link to="/contact" className="btn btn-primary">
+            <Link to="/contact" className="btn btn-primary home-btn-pulse">
               {home.hero.primaryCta}
             </Link>
             <Link to="/portfolio" className="btn btn-outline-light">
@@ -90,9 +93,12 @@ export function Home() {
             </Link>
           </div>
         </div>
+        <div className="home-hero__scroll" aria-hidden>
+          <span />
+        </div>
       </section>
 
-      <section className="home-block home-block--soft">
+      <section className="home-block home-block--soft home-block--promises">
         <div className="container">
           <p className="home-kicker reveal">{home.trustLabel}</p>
           <h2 className="home-title reveal reveal-delay-1">How we help your business grow</h2>
@@ -102,6 +108,9 @@ export function Home() {
           <div className="home-promises">
             {promises.map((item, i) => (
               <article key={item.title} className={`home-promise reveal reveal-delay-${i + 1}`}>
+                <span className="home-promise__index" aria-hidden>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <strong>{item.title}</strong>
                 <p>{item.text}</p>
               </article>
@@ -110,7 +119,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="home-block home-block--navy">
+      <section className="home-block home-block--navy home-block--services">
         <div className="container">
           <p className="home-kicker reveal">What we do</p>
           <h2 className="home-title reveal reveal-delay-1">{home.servicesTitle}</h2>
@@ -122,7 +131,7 @@ export function Home() {
                 to={service.href}
                 className={`home-service reveal reveal-delay-${(i % 3) + 1}`}
               >
-                <span className="icon-box" style={{ background: "rgba(158,193,255,0.16)" }}>
+                <span className="icon-box home-service__icon" style={{ background: "rgba(158,193,255,0.16)" }}>
                   <Icon name={service.icon} color="#9ec1ff" />
                 </span>
                 <div>
@@ -145,7 +154,7 @@ export function Home() {
       </section>
 
       {quote && (
-        <section className="home-block home-block--soft">
+        <section className="home-block home-block--soft home-block--proof">
           <div className="container">
             <p className="home-kicker reveal">From business owners like you</p>
             <div className="home-proof">
@@ -166,7 +175,7 @@ export function Home() {
         </section>
       )}
 
-      <section className="home-block home-block--navy">
+      <section className="home-block home-block--navy home-block--cta">
         <div className="container home-cta">
           <p className="home-kicker reveal">Next step</p>
           <h2 className="home-title reveal reveal-delay-1">
@@ -175,7 +184,7 @@ export function Home() {
           <p className="home-sub reveal reveal-delay-2">
             Free call. No hard sell. We’ll explain what to fix first  -  in language that makes sense.
           </p>
-          <Link to="/contact" className="btn btn-primary reveal reveal-delay-3">
+          <Link to="/contact" className="btn btn-primary reveal reveal-delay-3 home-btn-pulse">
             Book a free call
           </Link>
         </div>
