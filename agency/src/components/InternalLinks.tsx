@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
+import type { CSSProperties } from "react";
 import { useCms } from "../cms/CmsProvider";
 import type { DetailPageContent } from "../data/catalogTypes";
 import { Icon } from "./Icon";
+import { AutoCarousel } from "./AutoCarousel";
 import "./InternalLinks.css";
 
 export type InternalLink = {
@@ -363,14 +365,14 @@ export function InternalLinks({
             <p className="explore-dir__lead">{ctx.lead}</p>
           </header>
           <div className="explore-dir__panel">
-            <div className="explore-dir__tiles">
+            <AutoCarousel label={heading} mode="marquee" className="explore-carousel">
               {resolved.map((link) => (
                 <Link key={link.href + link.label} to={link.href} className="explore-tile">
                   <strong>{link.label}</strong>
                   {link.blurb ? <span>{link.blurb}</span> : <span>Open page</span>}
                 </Link>
               ))}
-            </div>
+            </AutoCarousel>
           </div>
         </div>
       </section>
@@ -428,11 +430,17 @@ export function InternalLinks({
         </div>
 
         <div className="explore-dir__groups">
-          {clipped.map((group) => (
+          {clipped.map((group, gi) => (
             <article
               key={group.id}
               className="explore-group"
-              style={{ ["--accent" as string]: group.accent }}
+              style={
+                {
+                  ["--accent" as string]: group.accent,
+                  ["--marquee-duration" as string]: `${Math.max(28, Math.min(56, group.items.length * 3.2))}s`,
+                  animationDelay: `${gi * 0.06}s`,
+                } as CSSProperties
+              }
             >
               <header className="explore-group__head">
                 <span className="explore-group__icon" aria-hidden>
@@ -446,14 +454,18 @@ export function InternalLinks({
                   {group.hubLabel} →
                 </Link>
               </header>
-              <div className="explore-dir__tiles">
+              <AutoCarousel
+                label={group.title}
+                mode={group.items.length > 1 ? "marquee" : "slide"}
+                className="explore-carousel"
+              >
                 {group.items.map((link) => (
                   <Link key={link.href} to={link.href} className="explore-tile">
                     <strong>{link.label}</strong>
                     <span>{link.blurb || "Learn what you get and how we start"}</span>
                   </Link>
                 ))}
-              </div>
+              </AutoCarousel>
             </article>
           ))}
         </div>

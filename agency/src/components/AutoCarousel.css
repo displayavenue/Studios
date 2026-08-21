@@ -1,0 +1,186 @@
+.auto-carousel {
+  --ac-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  min-width: 0;
+}
+
+.auto-carousel__viewport {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.auto-carousel__track {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+}
+
+/* ---- Slide mode ---- */
+.auto-carousel--slide .auto-carousel__track {
+  transition: transform 0.7s var(--ac-ease);
+}
+
+.auto-carousel--slide .auto-carousel__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 0.05rem;
+  opacity: 0.55;
+  transform: scale(0.985);
+  transition: opacity 0.55s var(--ac-ease), transform 0.55s var(--ac-ease);
+}
+
+.auto-carousel--slide .auto-carousel__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.auto-carousel__chrome {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+  position: relative;
+}
+
+.auto-carousel__nav {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--navy);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.auto-carousel__nav:hover {
+  border-color: var(--accent, var(--blue));
+  color: var(--accent, var(--blue));
+  background: color-mix(in srgb, var(--accent, var(--blue)) 8%, #fff);
+}
+
+.auto-carousel__dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.auto-carousel__dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  background: rgba(15, 40, 70, 0.18);
+  cursor: pointer;
+  transition: width 0.25s var(--ac-ease), background 0.25s ease;
+}
+
+.auto-carousel__dot.is-active {
+  width: 1.15rem;
+  background: var(--accent, var(--blue));
+}
+
+.auto-carousel__progress {
+  position: absolute;
+  left: 2.6rem;
+  right: 2.6rem;
+  bottom: -0.45rem;
+  height: 2px;
+  background: rgba(15, 40, 70, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.auto-carousel__progress-bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: var(--accent, var(--blue));
+  animation: acProgress linear forwards;
+}
+
+.auto-carousel__progress-bar.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes acProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- Marquee mode (continuous auto-move) ---- */
+.auto-carousel--marquee .auto-carousel__viewport {
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.auto-carousel--marquee .auto-carousel__track {
+  width: max-content;
+  gap: 0.65rem;
+  animation: acMarquee var(--marquee-duration, 38s) linear infinite;
+}
+
+.auto-carousel--marquee .auto-carousel__track.is-paused {
+  animation-play-state: paused;
+}
+
+.auto-carousel--marquee .auto-carousel__slide {
+  flex: 0 0 min(260px, 78vw);
+  opacity: 1;
+  transform: none;
+}
+
+.auto-carousel--marquee .auto-carousel__chrome {
+  display: none;
+}
+
+@keyframes acMarquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (min-width: 900px) {
+  .auto-carousel--marquee .auto-carousel__slide {
+    flex-basis: min(300px, 32vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auto-carousel__track,
+  .auto-carousel--marquee .auto-carousel__track,
+  .auto-carousel__progress-bar,
+  .auto-carousel__slide {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .auto-carousel--marquee .auto-carousel__track {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .auto-carousel--marquee .auto-carousel__slide {
+    flex: 1 1 12rem;
+  }
+
+  .auto-carousel--marquee .auto-carousel__viewport {
+    mask-image: none;
+  }
+}
