@@ -3,53 +3,73 @@ import "./AutoCarousel.css";
 
 type AutoCarouselProps = {
   children: ReactNode[];
-  /** Auto-advance interval in ms (slide mode) */
+  /** Time between advances (ms). Default slow & readable. */
   intervalMs?: number;
-  /** slide = one-at-a-time; marquee = continuous horizontal scroll */
-  mode?: "slide" | "marquee";
   className?: string;
   label?: string;
 };
 
+function usePerView() {
+  const [perView, setPerView] = useState(1);
+  useEffect(() => {
+    const calc = () => {
+      const w = window.innerWidth;
+      if (w >= 980) setPerView(3);
+      else if (w >= 640) setPerView(2);
+      else setPerView(1);
+    };
+    calc();
+    window.addEventListener("resize", calc);
+    return () => window.removeEventListener("resize", calc);
+  }, []);
+  return perView;
+}
+
 /**
- * Auto-moving carousel. Marquee mode loops continuously; slide mode advances
- * one card at a time. Both pause on hover/focus and respect reduced motion.
+ * Crisp multi-card auto carousel. Advances one page at a time (slow),
+ * pauses on hover/touch, respects reduced motion. No continuous marquee
+ * (avoids GPU text blur).
  */
 export function AutoCarousel({
   children,
-  intervalMs = 3800,
-  mode = "marquee",
+  intervalMs = 5200,
   className = "",
   label = "Carousel",
 }: AutoCarouselProps) {
   const items = children.filter(Boolean);
   const count = items.length;
-  const [index, setIndex] = useState(0);
+  const perView = usePerView();
+  const pages = Math.max(1, Math.ceil(count / perView));
+  const [page, setPage] = useState(0);
   const [paused, setPaused] = useState(false);
   const reducedRef = useRef(false);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     reducedRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
+  // Keep page in range when perView changes
   useEffect(() => {
-    if (mode !== "slide" || count <= 1 || paused || reducedRef.current) return;
+    setPage((p) => Math.min(p, Math.max(0, pages - 1)));
+  }, [pages]);
+
+  useEffect(() => {
+    if (pages <= 1 || paused || reducedRef.current) return;
     const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % count);
+      setPage((p) => (p + 1) % pages);
     }, intervalMs);
     return () => window.clearInterval(id);
-  }, [count, paused, intervalMs, mode]);
+  }, [pages, paused, intervalMs]);
 
   if (count === 0) return null;
 
-  const go = (next: number) => setIndex(((next % count) + count) % count);
-
-  // Duplicate set for seamless marquee loop
-  const marqueeItems = mode === "marquee" && count > 1 ? [...items, ...items] : items;
+  const go = (next: number) => setPage(((next % pages) + pages) % pages);
+  const offsetPct = page * 100;
 
   return (
     <div
-      className={`auto-carousel auto-carousel--${mode} ${className}`}
+      className={`auto-carousel ${className}`}
       role="region"
       aria-roledescription="carousel"
       aria-label={label}
@@ -59,43 +79,64 @@ export function AutoCarousel({
       onBlurCapture={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false);
       }}
+      onTouchStart={(e) => {
+        touchStartX.current = e.changedTouches[0]?.clientX ?? null;
+        setPaused(true);
+      }}
+      onTouchEnd={(e) => {
+        const start = touchStartX.current;
+        const end = e.changedTouches[0]?.clientX;
+        touchStartX.current = null;
+        setPaused(false);
+        if (start == null || end == null) return;
+        const dx = end - start;
+        if (Math.abs(dx) < 40) return;
+        go(dx < 0 ? page + 1 : page - 1);
+      }}
     >
       <div className="auto-carousel__viewport">
         <div
-          className={`auto-carousel__track${paused ? " is-paused" : ""}`}
-          style={mode === "slide" ? { transform: `translate3d(-${index * 100}%, 0, 0)` } : undefined}
+          className="auto-carousel__track"
+          style={{
+            transform: `translate3d(-${offsetPct}%, 0, 0)`,
+            ["--per-view" as string]: String(perView),
+          }}
         >
-          {marqueeItems.map((child, i) => (
+          {Array.from({ length: pages }, (_, pageIdx) => (
             <div
-              key={i}
-              className={`auto-carousel__slide${mode === "slide" && i === index ? " is-active" : ""}`}
-              aria-hidden={mode === "slide" ? i !== index : i >= count}
+              key={pageIdx}
+              className={`auto-carousel__page${pageIdx === page ? " is-active" : ""}`}
+              aria-hidden={pageIdx !== page}
             >
-              {child}
+              {items.slice(pageIdx * perView, pageIdx * perView + perView).map((child, i) => (
+                <div key={i} className="auto-carousel__slide">
+                  {child}
+                </div>
+              ))}
             </div>
           ))}
         </div>
       </div>
 
-      {mode === "slide" && count > 1 && (
+      {pages > 1 && (
         <div className="auto-carousel__chrome">
           <button
             type="button"
             className="auto-carousel__nav"
             aria-label="Previous"
-            onClick={() => go(index - 1)}
+            onClick={() => go(page - 1)}
           >
             ‹
           </button>
           <div className="auto-carousel__dots" role="tablist" aria-label="Slides">
-            {items.map((_, i) => (
+            {Array.from({ length: pages }, (_, i) => (
               <button
                 key={i}
                 type="button"
                 role="tab"
-                aria-selected={i === index}
-                aria-label={`Slide ${i + 1}`}
-                className={`auto-carousel__dot${i === index ? " is-active" : ""}`}
+                aria-selected={i === page}
+                aria-label={`Page ${i + 1}`}
+                className={`auto-carousel__dot${i === page ? " is-active" : ""}`}
                 onClick={() => go(i)}
               />
             ))}
@@ -104,13 +145,13 @@ export function AutoCarousel({
             type="button"
             className="auto-carousel__nav"
             aria-label="Next"
-            onClick={() => go(index + 1)}
+            onClick={() => go(page + 1)}
           >
             ›
           </button>
           <span className="auto-carousel__progress" aria-hidden>
             <span
-              key={index}
+              key={`${page}-${paused}`}
               className={`auto-carousel__progress-bar${paused ? " is-paused" : ""}`}
               style={{ animationDuration: `${intervalMs}ms` }}
             />

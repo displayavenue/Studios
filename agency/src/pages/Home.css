@@ -405,15 +405,13 @@
 /* Reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(22px) scale(0.985);
-  transition: opacity 0.8s var(--home-ease), transform 0.8s var(--home-ease);
-  filter: blur(2px);
+  transform: translateY(18px);
+  transition: opacity 0.75s var(--home-ease), transform 0.75s var(--home-ease);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: none;
-  filter: none;
 }
 
 .reveal-delay-1 { transition-delay: 0.08s; }
@@ -474,6 +472,77 @@
     transform: none;
     filter: none;
     transition: none;
+  }
+}
+
+/* Mobile / touch: keep motion visible without relying on hover */
+@media (max-width: 719px) {
+  .home-hero__orb--a {
+    width: 12rem;
+    height: 12rem;
+    opacity: 0.4;
+    animation-duration: 9s;
+  }
+
+  .home-hero__orb--b {
+    width: 8rem;
+    height: 8rem;
+    opacity: 0.35;
+    animation-duration: 11s;
+  }
+
+  .home-promise.is-visible {
+    animation: homeCardIn 0.7s var(--home-ease) both;
+  }
+
+  .home-promise:nth-child(1).is-visible { animation-delay: 0.05s; }
+  .home-promise:nth-child(2).is-visible { animation-delay: 0.12s; }
+  .home-promise:nth-child(3).is-visible { animation-delay: 0.2s; }
+
+  .home-service.is-visible {
+    animation: homeSlideIn 0.65s var(--home-ease) both;
+  }
+
+  .home-service:nth-child(1).is-visible { animation-delay: 0.04s; }
+  .home-service:nth-child(2).is-visible { animation-delay: 0.1s; }
+  .home-service:nth-child(3).is-visible { animation-delay: 0.16s; }
+  .home-service:nth-child(4).is-visible { animation-delay: 0.22s; }
+
+  .home-service:active {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+  }
+
+  .home-promise:active {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes homeCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes homeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (hover: none) {
+  .home-btn-pulse::after {
+    animation-duration: 2.8s;
   }
 }
 

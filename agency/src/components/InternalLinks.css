@@ -147,15 +147,32 @@
 
 .explore-carousel .explore-tile {
   height: 100%;
-  min-height: 5.1rem;
-  background: var(--bg-soft);
-  border: 1px solid transparent;
+  min-height: 5.4rem;
+  background: #f3f6fb;
+  border: 1px solid rgba(15, 40, 70, 0.08);
+  color: inherit;
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.explore-carousel .explore-tile:hover {
+.explore-carousel .explore-tile strong {
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+.explore-carousel .explore-tile span {
+  color: #4a5568;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.explore-carousel .explore-tile:hover,
+.explore-carousel .explore-tile:active {
   background: #fff;
-  border-color: color-mix(in srgb, var(--accent, var(--blue)) 40%, var(--border-soft));
+  border-color: color-mix(in srgb, var(--accent, var(--blue)) 45%, var(--border-soft));
   transform: translateY(-2px);
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
 }
@@ -309,6 +326,15 @@
 
   .explore-dir__footer-note {
     padding: 1.1rem;
+  }
+
+  .explore-carousel .explore-tile {
+    min-height: 5.8rem;
+  }
+
+  .explore-group.is-visible,
+  .explore-group {
+    animation: exploreRise 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 }
 

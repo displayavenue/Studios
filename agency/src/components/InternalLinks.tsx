@@ -365,7 +365,7 @@ export function InternalLinks({
             <p className="explore-dir__lead">{ctx.lead}</p>
           </header>
           <div className="explore-dir__panel">
-            <AutoCarousel label={heading} mode="marquee" className="explore-carousel">
+            <AutoCarousel label={heading} intervalMs={5500} className="explore-carousel">
               {resolved.map((link) => (
                 <Link key={link.href + link.label} to={link.href} className="explore-tile">
                   <strong>{link.label}</strong>
@@ -437,8 +437,7 @@ export function InternalLinks({
               style={
                 {
                   ["--accent" as string]: group.accent,
-                  ["--marquee-duration" as string]: `${Math.max(28, Math.min(56, group.items.length * 3.2))}s`,
-                  animationDelay: `${gi * 0.06}s`,
+                  animationDelay: `${gi * 0.07}s`,
                 } as CSSProperties
               }
             >
@@ -456,7 +455,7 @@ export function InternalLinks({
               </header>
               <AutoCarousel
                 label={group.title}
-                mode={group.items.length > 1 ? "marquee" : "slide"}
+                intervalMs={5200 + (gi % 3) * 400}
                 className="explore-carousel"
               >
                 {group.items.map((link) => (
