@@ -3,10 +3,12 @@ import "./AutoCarousel.css";
 
 type AutoCarouselProps = {
   children: ReactNode[];
-  /** Time between advances (ms). Default slow & readable. */
+  /** Time between advances (ms). */
   intervalMs?: number;
   className?: string;
   label?: string;
+  /** Max items to show in the carousel (hub link covers the rest). */
+  maxItems?: number;
 };
 
 function usePerView() {
@@ -15,7 +17,7 @@ function usePerView() {
     const calc = () => {
       const w = window.innerWidth;
       if (w >= 980) setPerView(3);
-      else if (w >= 640) setPerView(2);
+      else if (w >= 700) setPerView(2);
       else setPerView(1);
     };
     calc();
@@ -26,17 +28,18 @@ function usePerView() {
 }
 
 /**
- * Crisp multi-card auto carousel. Advances one page at a time (slow),
- * pauses on hover/touch, respects reduced motion. No continuous marquee
- * (avoids GPU text blur).
+ * Mobile-first auto carousel: 1 card on phones, crisp text, compact
+ * "n / total" chrome (no dozens of dots), swipe support.
  */
 export function AutoCarousel({
   children,
-  intervalMs = 5200,
+  intervalMs = 5500,
   className = "",
   label = "Carousel",
+  maxItems = 9,
 }: AutoCarouselProps) {
-  const items = children.filter(Boolean);
+  const all = children.filter(Boolean);
+  const items = maxItems > 0 ? all.slice(0, maxItems) : all;
   const count = items.length;
   const perView = usePerView();
   const pages = Math.max(1, Math.ceil(count / perView));
@@ -49,7 +52,6 @@ export function AutoCarousel({
     reducedRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
-  // Keep page in range when perView changes
   useEffect(() => {
     setPage((p) => Math.min(p, Math.max(0, pages - 1)));
   }, [pages]);
@@ -65,7 +67,6 @@ export function AutoCarousel({
   if (count === 0) return null;
 
   const go = (next: number) => setPage(((next % pages) + pages) % pages);
-  const offsetPct = page * 100;
 
   return (
     <div
@@ -87,10 +88,10 @@ export function AutoCarousel({
         const start = touchStartX.current;
         const end = e.changedTouches[0]?.clientX;
         touchStartX.current = null;
-        setPaused(false);
+        window.setTimeout(() => setPaused(false), 1200);
         if (start == null || end == null) return;
         const dx = end - start;
-        if (Math.abs(dx) < 40) return;
+        if (Math.abs(dx) < 36) return;
         go(dx < 0 ? page + 1 : page - 1);
       }}
     >
@@ -98,7 +99,7 @@ export function AutoCarousel({
         <div
           className="auto-carousel__track"
           style={{
-            transform: `translate3d(-${offsetPct}%, 0, 0)`,
+            transform: `translate3d(-${page * 100}%, 0, 0)`,
             ["--per-view" as string]: String(perView),
           }}
         >
@@ -128,18 +129,25 @@ export function AutoCarousel({
           >
             ‹
           </button>
-          <div className="auto-carousel__dots" role="tablist" aria-label="Slides">
-            {Array.from({ length: pages }, (_, i) => (
-              <button
-                key={i}
-                type="button"
-                role="tab"
-                aria-selected={i === page}
-                aria-label={`Page ${i + 1}`}
-                className={`auto-carousel__dot${i === page ? " is-active" : ""}`}
-                onClick={() => go(i)}
-              />
-            ))}
+          <div className="auto-carousel__status" aria-live="polite">
+            <span className="auto-carousel__count">
+              {page + 1} <span aria-hidden>/</span> {pages}
+            </span>
+            {pages <= 6 && (
+              <div className="auto-carousel__dots" role="tablist" aria-label="Pages">
+                {Array.from({ length: pages }, (_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    role="tab"
+                    aria-selected={i === page}
+                    aria-label={`Page ${i + 1}`}
+                    className={`auto-carousel__dot${i === page ? " is-active" : ""}`}
+                    onClick={() => go(i)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
           <button
             type="button"

@@ -406,7 +406,7 @@ export function InternalLinks({
 
         <div className="explore-dir__start">
           <h3 className="explore-dir__section-label">Start here</h3>
-          <div className="explore-dir__start-grid">
+          <AutoCarousel label="Start here" intervalMs={4800} maxItems={8} className="explore-carousel explore-carousel--start">
             {START_HERE.map((item) => (
               <Link
                 key={item.href}
@@ -426,7 +426,7 @@ export function InternalLinks({
                 </span>
               </Link>
             ))}
-          </div>
+          </AutoCarousel>
         </div>
 
         <div className="explore-dir__groups">
@@ -445,17 +445,21 @@ export function InternalLinks({
                 <span className="explore-group__icon" aria-hidden>
                   <Icon name={group.icon} color={group.accent} size={18} />
                 </span>
-                <div>
+                <div className="explore-group__copy">
                   <h3>{group.title}</h3>
                   <p>{group.why}</p>
+                  <Link to={group.hubHref} className="explore-group__hub explore-group__hub--inline">
+                    {group.hubLabel} →
+                  </Link>
                 </div>
-                <Link to={group.hubHref} className="explore-group__hub">
+                <Link to={group.hubHref} className="explore-group__hub explore-group__hub--side">
                   {group.hubLabel} →
                 </Link>
               </header>
               <AutoCarousel
                 label={group.title}
                 intervalMs={5200 + (gi % 3) * 400}
+                maxItems={9}
                 className="explore-carousel"
               >
                 {group.items.map((link) => (
