@@ -27,6 +27,20 @@ if (!empty($settings['autopilot'])) {
 }
 $published = da_social_run_due(15);
 
+// Blog daily autopilot shares this cron key — publish if due / catch up missed days
+$blog = ['ok' => false, 'created' => [], 'skipped' => 'not-loaded'];
+try {
+  require_once __DIR__ . '/lib/blog.php';
+  $blog = da_blog_ensure_published(14);
+  if (!empty($blog['created'])) {
+    require_once __DIR__ . '/seo-sync.php';
+    $publicDir = dirname(__DIR__);
+    @da_sync_seo_artifacts($publicDir . '/content', $publicDir);
+  }
+} catch (Throwable $e) {
+  $blog = ['ok' => false, 'created' => [], 'skipped' => $e->getMessage()];
+}
+
 echo json_encode([
   'ok' => true,
   'at' => gmdate('c'),
@@ -39,4 +53,9 @@ echo json_encode([
     'id' => $r['post']['id'] ?? null,
     'status' => $r['post']['status'] ?? null,
   ], $published),
+  'blog' => [
+    'created' => $blog['created'] ?? [],
+    'skipped' => $blog['skipped'] ?? '',
+    'today' => $blog['today'] ?? null,
+  ],
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

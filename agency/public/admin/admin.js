@@ -1020,19 +1020,26 @@ async function renderBlogStudio() {
     const res = await api("blog-list");
     const blog = res.blog || {};
     const posts = blog.posts || [];
+    const cron = res.cron || {};
+    const lastAuto = blog.lastAutopilotDate || posts.find((p) => p.source === "daily-autopilot")?.publishedAt || "—";
+    const cronUrl = cron.blogCronUrl || 'https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY';
     wrap.innerHTML = `
       <div class="card">
         <div class="list-item-head">
           <h3 style="margin:0">Blog Studio</h3>
           <a class="btn btn-ghost" href="../blog" target="_blank" rel="noreferrer">Open /blog ↗</a>
         </div>
-        <p class="hint">Live posts: <strong>${posts.length}</strong>. Daily cron publishes one new article about Google Ads, Meta, SEO, Local SEO, websites, and lead gen.</p>
+        <p class="hint">Live posts: <strong>${posts.length}</strong>. Autopilot publishes one article/day (Google Ads, Meta, SEO, Local SEO, websites, WhatsApp, lead gen, branding).</p>
+        <p class="hint">Last autopilot date: <strong>${escapeHtml(String(lastAuto))}</strong>${blog.lastAutopilotAt ? ` · ran ${escapeHtml(blog.lastAutopilotAt)}` : ""}</p>
         <label class="check-row"><input type="checkbox" id="blog-auto" ${blog.autoPublish !== false ? "checked" : ""}/> Auto-publish daily</label>
         <div class="row-actions" style="margin:1rem 0;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button type="button" class="btn btn-gold" id="blog-publish-now">Publish today’s post now</button>
+          <button type="button" class="btn btn-gold" id="blog-publish-now">Publish / catch up now</button>
           <button type="button" class="btn btn-ghost" id="blog-refresh">Refresh</button>
+          <button type="button" class="btn btn-ghost" id="blog-copy-cron">Copy cron URL</button>
         </div>
-        <p class="hint">Hostinger cron (daily):<br/><code>curl -s "https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY"</code><br/>Uses the same <code>cron_key</code> from Social Studio API keys.</p>
+        <p class="hint"><strong>Why it stopped:</strong> Hostinger had no cron job hitting this URL. Posts now also auto-create when someone opens <code>/blog</code> or when Google hits <code>sitemap.xml</code>. For a reliable daily schedule, add this in Hostinger → Advanced → Cron Jobs (once daily, e.g. 09:15):</p>
+        <p class="hint"><code style="word-break:break-all">curl -s "${escapeHtml(cronUrl)}"</code></p>
+        <p class="hint">${cron.hasKey ? "Cron key is set (from Social Studio API keys)." : "Set a cron_key in Social Studio → API keys first."} Same key works for Social Studio cron.</p>
         <h4>Posts</h4>
         <div id="blog-posts">
           ${
@@ -1044,7 +1051,7 @@ async function renderBlogStudio() {
             <div class="list-item">
               <div class="list-item-head">
                 <strong>${escapeHtml(p.title || p.slug)}</strong>
-                <span class="hint" style="margin:0">${escapeHtml(p.publishedAt || "")}${p.trending ? " · trending" : ""}</span>
+                <span class="hint" style="margin:0">${escapeHtml(p.publishedAt || "")}${p.source === "daily-autopilot" ? " · auto" : ""}${p.trending ? " · trending" : ""}</span>
               </div>
               <p style="margin:.35rem 0;font-size:.88rem;color:var(--muted)">${escapeHtml(p.excerpt || "")}</p>
               <a href="../blog/${encodeURIComponent(p.slug)}" target="_blank" rel="noreferrer">View →</a>
@@ -1055,17 +1062,35 @@ async function renderBlogStudio() {
           }
         </div>
       </div>`;
+    $("#blog-auto").onchange = async (ev) => {
+      try {
+        await api("blog-set-autopilot", { enabled: !!ev.target.checked });
+        toast(ev.target.checked ? "Auto-publish on" : "Auto-publish off");
+      } catch (e) {
+        toast(e.message || "Could not save", "err");
+        ev.target.checked = !ev.target.checked;
+      }
+    };
     $("#blog-publish-now").onclick = async () => {
       try {
         toast("Publishing…");
         const r = await api("blog-publish-today");
-        toast(r.created ? `Published: ${r.created.title}` : r.message || "Done");
+        const n = (r.createdAll || []).length;
+        toast(n ? `Published ${n} post(s)` : r.message || "Done");
         renderBlogStudio();
       } catch (e) {
         toast(e.message || "Publish failed", "err");
       }
     };
     $("#blog-refresh").onclick = () => renderBlogStudio();
+    $("#blog-copy-cron").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(cronUrl);
+        toast("Cron URL copied");
+      } catch (_) {
+        toast(cronUrl);
+      }
+    };
   } catch (e) {
     wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load blog")}</p>`;
   }

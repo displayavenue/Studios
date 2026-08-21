@@ -1,9 +1,12 @@
 <?php
 /**
  * Daily blog publisher for DisplayAvenue.
- * Hostinger cron (once per day, e.g. 09:15 IST):
+ * Hostinger cron (once per day OR every few hours — safe to re-run):
  *   curl -s "https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY"
- * Uses cron_key from social-local.php (same as Social Studio) when present.
+ * Uses cron_key from social-local.php (same as Social Studio).
+ *
+ * Also auto-runs from /blog visits and sitemap.xml so posts still publish
+ * if Hostinger cron is not configured.
  */
 declare(strict_types=1);
 
@@ -23,14 +26,29 @@ if ($key === '' || $given === '' || !hash_equals($key, $given)) {
   exit;
 }
 
-$created = da_blog_publish_today();
+$result = da_blog_ensure_published(14);
+$created = $result['created'] ?? [];
+
+// Refresh sitemap when new posts land
+if ($created) {
+  try {
+    require_once __DIR__ . '/seo-sync.php';
+    $publicDir = dirname(__DIR__);
+    da_sync_seo_artifacts($publicDir . '/content', $publicDir);
+  } catch (Throwable $e) {
+    // non-fatal
+  }
+}
+
 echo json_encode([
-  'ok' => true,
+  'ok' => !empty($result['ok']),
   'at' => gmdate('c'),
-  'created' => $created ? [
-    'slug' => $created['slug'],
-    'title' => $created['title'],
-    'publishedAt' => $created['publishedAt'],
-  ] : null,
-  'message' => $created ? 'Published today\'s blog post' : 'Already published today or autopilot off',
+  'today' => $result['today'] ?? null,
+  'created' => $created,
+  'skipped' => $result['skipped'] ?? '',
+  'message' => $created
+    ? ('Published ' . count($created) . ' post(s)')
+    : (($result['skipped'] ?? '') === 'autopilot-off'
+      ? 'Autopilot is off'
+      : 'Already up to date'),
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

@@ -26,6 +26,18 @@ if (is_file($contentFile)) {
   if (is_array($decoded)) $blog = $decoded;
 }
 
+// Ensure today's (and missed) autopilot posts exist when /blog is viewed.
+try {
+  require_once __DIR__ . '/admin/lib/blog.php';
+  $ensure = da_blog_ensure_published(7);
+  if (!empty($ensure['created']) && is_file($contentFile)) {
+    $decoded = json_decode((string)file_get_contents($contentFile), true);
+    if (is_array($decoded)) $blog = $decoded;
+  }
+} catch (Throwable $e) {
+  // never break the page shell
+}
+
 $slug = isset($_GET['slug']) ? trim((string)$_GET['slug'], '/') : '';
 if ($slug === '' && !empty($_SERVER['REQUEST_URI'])) {
   $path = (string)(parse_url((string)$_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '');
