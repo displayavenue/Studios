@@ -1,66 +1,164 @@
 {
-  "title": "DisplayAvenue Blog",
-  "lead": "Practical digital marketing updates for Indian business owners — Google Ads, Meta Ads, SEO, websites, and WhatsApp growth.",
-  "autoPublish": true,
-  "postsPerDay": 1,
-  "updatedAt": "2026-08-19T13:00:00.000Z",
-  "posts": [
-    {
-      "slug": "google-ads-cost-per-lead-india-clinics-2026",
-      "title": "Google Ads Cost Per Lead for Clinics in India (2026 Guide)",
-      "excerpt": "What Indian clinic owners should expect to pay per enquiry on Google Ads — and how to cut waste without killing volume.",
-      "category": "Google Ads",
-      "tags": ["Google Ads", "Clinics", "Lead Gen", "India"],
-      "author": "DisplayAvenue",
-      "publishedAt": "2026-08-19",
-      "trending": true,
-      "readMinutes": 6,
-      "cover": "/images/card/front.png",
-      "body": [
-        "Clinic owners across Mumbai, Delhi NCR, and Bengaluru ask the same question: how much should a Google Ads lead cost?",
-        "In 2026, most multi-specialty and dental clinics we work with see qualified enquiry costs between ₹180 and ₹650 depending on city competition, offer clarity, and landing-page speed. Cosmetic and implant campaigns usually sit higher.",
-        "Cost per lead is not the goal. Cost per booked appointment is. Track phone calls, WhatsApp clicks, and form fills separately — then filter tyre-kickers with a clear offer (free consult window, package price range, location).",
-        "Three fixes that usually drop CPL in 14 days: (1) tighten geo radius and exclude students/job-seekers with negatives, (2) send traffic to a one-offer landing page instead of the homepage, (3) reply on WhatsApp within 5 minutes.",
-        "DisplayAvenue builds search + call campaigns with conversion tracking so you see real appointments, not vanity clicks. Want a free clinic ads plan? Use our Strategy Maker or WhatsApp 9222 122333."
-      ]
-    },
-    {
-      "slug": "local-seo-google-business-profile-mumbai-sme",
-      "title": "Local SEO for Mumbai SMEs: Win the Google Maps Pack",
-      "excerpt": "A plain-English Local SEO playbook for shops, clinics, and service businesses that want more Maps calls and walk-ins.",
-      "category": "Local SEO",
-      "tags": ["Local SEO", "Google Business Profile", "Mumbai", "Maps"],
-      "author": "DisplayAvenue",
-      "publishedAt": "2026-08-18",
-      "trending": true,
-      "readMinutes": 5,
-      "cover": "/images/card/back.png",
-      "body": [
-        "If your customers search “near me”, Local SEO and Google Business Profile (GBP) matter more than a long blog.",
-        "Complete every GBP field: categories, services, products, hours, and photos taken at your real location. Name, address, phone must match your website footer exactly.",
-        "Post weekly updates (offers, new work, team notes). Ask for reviews after delivery with a simple WhatsApp script. Reply to every review.",
-        "Build one city × service page for your main offer (example: dental clinic in Mira Road). Link it from your homepage and GBP website button.",
-        "DisplayAvenue’s Local SEO score tool and citation checklist help you see gaps fast. Pair Maps with light Google Ads if you need enquiries this month while organic rankings build."
-      ]
-    },
-    {
-      "slug": "whatsapp-meta-ads-lead-funnel-india",
-      "title": "Meta Ads to WhatsApp: The Lead Funnel Indian SMEs Actually Close",
-      "excerpt": "Cheap Instagram leads are useless if nobody replies. Here’s the WhatsApp-first funnel that turns Meta Ads into sales conversations.",
-      "category": "Meta Ads",
-      "tags": ["Meta Ads", "WhatsApp", "Instagram", "Sales"],
-      "author": "DisplayAvenue",
-      "publishedAt": "2026-08-17",
-      "trending": true,
-      "readMinutes": 5,
-      "cover": "/images/card/front.png",
-      "body": [
-        "Meta Ads can fill your inbox overnight. The problem is response speed and lead quality — not the algorithm alone.",
-        "Use Instant Forms or Click-to-WhatsApp with 3–4 qualifying questions (budget band, city, timeline). Route hot leads to a pinned WhatsApp welcome message with your offer and next step.",
-        "Creative that works in India: before/after, price clarity, UGC-style phone video, and a direct CTA (“WhatsApp now for today’s slots”). Test 3 creatives weekly; kill losers in 48–72 hours.",
-        "Sales ops matter: assign an owner, reply in under 5 minutes during business hours, and tag leads (hot / warm / nurture).",
-        "DisplayAvenue connects Meta Ads, landing pages, and WhatsApp follow-up so cheap leads become booked work. Start with a free plan on our Strategy Maker or message 9222 122333."
-      ]
-    }
-  ]
+    "title": "DisplayAvenue Blog",
+    "lead": "Practical digital marketing updates for Indian business owners — Google Ads, Meta Ads, SEO, websites, and WhatsApp growth.",
+    "autoPublish": true,
+    "postsPerDay": 1,
+    "updatedAt": "2026-08-21T11:07:55+00:00",
+    "posts": [
+        {
+            "slug": "instagram-lead-ads-how-to-improve-lead-quality-in-india-20260821",
+            "title": "Instagram Lead Ads: How to Improve Lead Quality in India",
+            "excerpt": "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+            "category": "Meta Ads",
+            "tags": [
+                "Meta Ads",
+                "India",
+                "SME",
+                "DisplayAvenue"
+            ],
+            "author": "DisplayAvenue",
+            "publishedAt": "2026-08-21",
+            "trending": true,
+            "readMinutes": 4,
+            "cover": "/images/card/front.png",
+            "body": [
+                "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+                "Here is a practical DisplayAvenue checklist for Indian business owners this week:",
+                "1) Ask budget range, city, and timeline inside the Instant Form.",
+                "2) Use Click-to-WhatsApp for high-intent offers.",
+                "3) Refresh creatives every week — fatigue kills ROAS fast.",
+                "4) Assign an owner to reply within 5 minutes during business hours.",
+                "DisplayAvenue helps with Google Ads, Meta Ads, SEO, Local SEO, websites, and WhatsApp lead systems. Get a free plan on https://displayavenue.com/strategy/ or WhatsApp 9222 122333."
+            ],
+            "source": "daily-autopilot"
+        },
+        {
+            "slug": "brand-basics-that-make-ads-convert-faster-20260820",
+            "title": "Brand Basics That Make Ads Convert Faster",
+            "excerpt": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+            "category": "Branding",
+            "tags": [
+                "Branding",
+                "India",
+                "SME",
+                "DisplayAvenue"
+            ],
+            "author": "DisplayAvenue",
+            "publishedAt": "2026-08-20",
+            "trending": true,
+            "readMinutes": 4,
+            "cover": "/images/card/front.png",
+            "body": [
+                "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+                "Here is a practical DisplayAvenue checklist for Indian business owners this week:",
+                "1) One sentence offer people can repeat.",
+                "2) Consistent logo, colours, and photo style.",
+                "3) Show proof: reviews, before/after, client names.",
+                "4) Match landing page look with ad creative.",
+                "DisplayAvenue helps with Google Ads, Meta Ads, SEO, Local SEO, websites, and WhatsApp lead systems. Get a free plan on https://displayavenue.com/strategy/ or WhatsApp 9222 122333."
+            ],
+            "source": "daily-autopilot"
+        },
+        {
+            "slug": "brand-basics-that-make-ads-convert-faster-20260819",
+            "title": "Brand Basics That Make Ads Convert Faster",
+            "excerpt": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+            "category": "Branding",
+            "tags": [
+                "Branding",
+                "India",
+                "SME",
+                "DisplayAvenue"
+            ],
+            "author": "DisplayAvenue",
+            "publishedAt": "2026-08-19",
+            "trending": true,
+            "readMinutes": 4,
+            "cover": "/images/card/front.png",
+            "body": [
+                "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+                "Here is a practical DisplayAvenue checklist for Indian business owners this week:",
+                "1) One sentence offer people can repeat.",
+                "2) Consistent logo, colours, and photo style.",
+                "3) Show proof: reviews, before/after, client names.",
+                "4) Match landing page look with ad creative.",
+                "DisplayAvenue helps with Google Ads, Meta Ads, SEO, Local SEO, websites, and WhatsApp lead systems. Get a free plan on https://displayavenue.com/strategy/ or WhatsApp 9222 122333."
+            ],
+            "source": "daily-autopilot"
+        },
+        {
+            "slug": "google-ads-cost-per-lead-india-clinics-2026",
+            "title": "Google Ads Cost Per Lead for Clinics in India (2026 Guide)",
+            "excerpt": "What Indian clinic owners should expect to pay per enquiry on Google Ads — and how to cut waste without killing volume.",
+            "category": "Google Ads",
+            "tags": [
+                "Google Ads",
+                "Clinics",
+                "Lead Gen",
+                "India"
+            ],
+            "author": "DisplayAvenue",
+            "publishedAt": "2026-08-19",
+            "trending": false,
+            "readMinutes": 6,
+            "cover": "/images/card/front.png",
+            "body": [
+                "Clinic owners across Mumbai, Delhi NCR, and Bengaluru ask the same question: how much should a Google Ads lead cost?",
+                "In 2026, most multi-specialty and dental clinics we work with see qualified enquiry costs between ₹180 and ₹650 depending on city competition, offer clarity, and landing-page speed. Cosmetic and implant campaigns usually sit higher.",
+                "Cost per lead is not the goal. Cost per booked appointment is. Track phone calls, WhatsApp clicks, and form fills separately — then filter tyre-kickers with a clear offer (free consult window, package price range, location).",
+                "Three fixes that usually drop CPL in 14 days: (1) tighten geo radius and exclude students/job-seekers with negatives, (2) send traffic to a one-offer landing page instead of the homepage, (3) reply on WhatsApp within 5 minutes.",
+                "DisplayAvenue builds search + call campaigns with conversion tracking so you see real appointments, not vanity clicks. Want a free clinic ads plan? Use our Strategy Maker or WhatsApp 9222 122333."
+            ]
+        },
+        {
+            "slug": "local-seo-google-business-profile-mumbai-sme",
+            "title": "Local SEO for Mumbai SMEs: Win the Google Maps Pack",
+            "excerpt": "A plain-English Local SEO playbook for shops, clinics, and service businesses that want more Maps calls and walk-ins.",
+            "category": "Local SEO",
+            "tags": [
+                "Local SEO",
+                "Google Business Profile",
+                "Mumbai",
+                "Maps"
+            ],
+            "author": "DisplayAvenue",
+            "publishedAt": "2026-08-18",
+            "trending": false,
+            "readMinutes": 5,
+            "cover": "/images/card/back.png",
+            "body": [
+                "If your customers search “near me”, Local SEO and Google Business Profile (GBP) matter more than a long blog.",
+                "Complete every GBP field: categories, services, products, hours, and photos taken at your real location. Name, address, phone must match your website footer exactly.",
+                "Post weekly updates (offers, new work, team notes). Ask for reviews after delivery with a simple WhatsApp script. Reply to every review.",
+                "Build one city × service page for your main offer (example: dental clinic in Mira Road). Link it from your homepage and GBP website button.",
+                "DisplayAvenue’s Local SEO score tool and citation checklist help you see gaps fast. Pair Maps with light Google Ads if you need enquiries this month while organic rankings build."
+            ]
+        },
+        {
+            "slug": "whatsapp-meta-ads-lead-funnel-india",
+            "title": "Meta Ads to WhatsApp: The Lead Funnel Indian SMEs Actually Close",
+            "excerpt": "Cheap Instagram leads are useless if nobody replies. Here’s the WhatsApp-first funnel that turns Meta Ads into sales conversations.",
+            "category": "Meta Ads",
+            "tags": [
+                "Meta Ads",
+                "WhatsApp",
+                "Instagram",
+                "Sales"
+            ],
+            "author": "DisplayAvenue",
+            "publishedAt": "2026-08-17",
+            "trending": false,
+            "readMinutes": 5,
+            "cover": "/images/card/front.png",
+            "body": [
+                "Meta Ads can fill your inbox overnight. The problem is response speed and lead quality — not the algorithm alone.",
+                "Use Instant Forms or Click-to-WhatsApp with 3–4 qualifying questions (budget band, city, timeline). Route hot leads to a pinned WhatsApp welcome message with your offer and next step.",
+                "Creative that works in India: before/after, price clarity, UGC-style phone video, and a direct CTA (“WhatsApp now for today’s slots”). Test 3 creatives weekly; kill losers in 48–72 hours.",
+                "Sales ops matter: assign an owner, reply in under 5 minutes during business hours, and tag leads (hot / warm / nurture).",
+                "DisplayAvenue connects Meta Ads, landing pages, and WhatsApp follow-up so cheap leads become booked work. Start with a free plan on our Strategy Maker or message 9222 122333."
+            ]
+        }
+    ],
+    "lastAutopilotAt": "2026-08-21T11:07:55+00:00",
+    "lastAutopilotDate": "2026-08-21"
 }

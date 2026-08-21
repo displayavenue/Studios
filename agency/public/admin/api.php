@@ -523,17 +523,54 @@ switch ($action) {
   case 'blog-publish-today':
     requireAuth($config);
     require_once __DIR__ . '/lib/blog.php';
-    $created = da_blog_publish_today();
+    $result = da_blog_ensure_published(14);
+    $createdList = $result['created'] ?? [];
+    $created = $createdList ? $createdList[count($createdList) - 1] : null;
+    if ($createdList) {
+      try {
+        require_once __DIR__ . '/seo-sync.php';
+        $publicDir = dirname(__DIR__);
+        da_sync_seo_artifacts($publicDir . '/content', $publicDir);
+      } catch (Throwable $e) {
+      }
+    }
     respond(200, [
       'ok' => true,
       'created' => $created,
-      'message' => $created ? 'Published' : 'Already published today or autopilot off',
+      'createdAll' => $createdList,
+      'message' => $createdList
+        ? ('Published ' . count($createdList) . ' post(s)')
+        : (($result['skipped'] ?? '') === 'autopilot-off'
+          ? 'Autopilot is off — enable Auto-publish daily'
+          : 'Already published for today'),
     ]);
+
+  case 'blog-set-autopilot':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/blog.php';
+    $enabled = !empty($body['enabled']);
+    $blog = da_blog_set_autopilot($enabled);
+    respond(200, ['ok' => true, 'blog' => $blog]);
 
   case 'blog-list':
     requireAuth($config);
     require_once __DIR__ . '/lib/blog.php';
-    respond(200, ['ok' => true, 'blog' => da_blog_load()]);
+    $cronKey = '';
+    if (is_file(__DIR__ . '/social-local.php')) {
+      $s = include __DIR__ . '/social-local.php';
+      if (is_array($s)) $cronKey = trim((string)($s['cron_key'] ?? ''));
+    }
+    respond(200, [
+      'ok' => true,
+      'blog' => da_blog_load(),
+      'cron' => [
+        'hasKey' => $cronKey !== '',
+        'blogCronUrl' => $cronKey !== ''
+          ? ('https://displayavenue.com/admin/blog-cron.php?key=' . rawurlencode($cronKey))
+          : 'https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY',
+        'hint' => 'Hostinger → Advanced → Cron Jobs → daily curl. Blog also auto-publishes on /blog and sitemap.xml visits if cron is missing.',
+      ],
+    ]);
 
   case 'upload-catalogue':
     requireAuth($config);

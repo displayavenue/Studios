@@ -9,6 +9,10 @@ function da_blog_path(): string {
   return rtrim((string)$config['content_dir'], '/\\') . '/blog.json';
 }
 
+function da_blog_lock_path(): string {
+  return dirname(da_blog_path()) . '/.blog-publish.lock';
+}
+
 function da_blog_load(): array {
   $path = da_blog_path();
   if (!is_file($path)) {
@@ -26,10 +30,12 @@ function da_blog_load(): array {
 
 function da_blog_save(array $blog): bool {
   $blog['updatedAt'] = gmdate('c');
-  return (bool)@file_put_contents(
-    da_blog_path(),
-    json_encode($blog, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
-  );
+  $path = da_blog_path();
+  $json = json_encode($blog, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+  if ($json === false) return false;
+  $ok = (bool)@file_put_contents($path, $json . "\n", LOCK_EX);
+  if ($ok) @chmod($path, 0664);
+  return $ok;
 }
 
 function da_blog_topics(): array {
@@ -111,6 +117,28 @@ function da_blog_topics(): array {
         'Match landing page look with ad creative.',
       ],
     ],
+    [
+      'category' => 'WhatsApp',
+      'title' => 'WhatsApp Business Replies That Convert More Leads',
+      'hook' => 'Speed and a simple script beat fancy funnels for most Indian SMEs.',
+      'points' => [
+        'Reply within 5 minutes during business hours.',
+        'Ask one qualifying question before sending a long pitch.',
+        'Save quick replies for price, location, and next step.',
+        'Move hot chats to a call or visit the same day.',
+      ],
+    ],
+    [
+      'category' => 'Analytics',
+      'title' => 'Which Numbers Matter: Leads, Cost, and Booked Jobs',
+      'hook' => 'Vanity metrics hide waste. Track the path from click to booked work.',
+      'points' => [
+        'Define one primary conversion (call, WhatsApp, or form).',
+        'Review cost per booked job weekly, not only CPL.',
+        'Cut campaigns that never produce sales conversations.',
+        'Share a one-page report with owners every Monday.',
+      ],
+    ],
   ];
 }
 
@@ -151,25 +179,37 @@ function da_blog_build_post(array $topic, string $date): array {
   ];
 }
 
-/** Publish today's post if missing. Returns created post or null. */
-function da_blog_publish_today(): ?array {
+function da_blog_has_autopilot_on_date(array $posts, string $date): bool {
+  foreach ($posts as $p) {
+    if (($p['publishedAt'] ?? '') === $date && ($p['source'] ?? '') === 'daily-autopilot') {
+      return true;
+    }
+  }
+  return false;
+}
+
+function da_blog_topic_for_date(string $date): array {
+  $topics = da_blog_topics();
+  $tz = new DateTimeZone('Asia/Kolkata');
+  $dt = DateTime::createFromFormat('Y-m-d', $date, $tz) ?: new DateTime('now', $tz);
+  $dayIndex = (int)$dt->format('z');
+  return $topics[$dayIndex % count($topics)];
+}
+
+/**
+ * Publish a single autopilot post for an IST calendar date if missing.
+ */
+function da_blog_publish_for_date(string $date): ?array {
   $blog = da_blog_load();
   if (isset($blog['autoPublish']) && empty($blog['autoPublish'])) {
     return null;
   }
-  $tz = new DateTimeZone('Asia/Kolkata');
-  $today = (new DateTime('now', $tz))->format('Y-m-d');
   $posts = is_array($blog['posts'] ?? null) ? $blog['posts'] : [];
-  foreach ($posts as $p) {
-    if (($p['publishedAt'] ?? '') === $today && ($p['source'] ?? '') === 'daily-autopilot') {
-      return null; // already published today
-    }
+  if (da_blog_has_autopilot_on_date($posts, $date)) {
+    return null;
   }
-  $topics = da_blog_topics();
-  $dayIndex = (int)(new DateTime('now', $tz))->format('z');
-  $topic = $topics[$dayIndex % count($topics)];
-  $post = da_blog_build_post($topic, $today);
-  // demote old trending flags (keep newest 3 trending)
+  $topic = da_blog_topic_for_date($date);
+  $post = da_blog_build_post($topic, $date);
   foreach ($posts as &$p) {
     if (!empty($p['trending'])) $p['trending'] = false;
   }
@@ -180,6 +220,111 @@ function da_blog_publish_today(): ?array {
   if (isset($posts[2])) $posts[2]['trending'] = true;
   $posts = array_slice($posts, 0, 120);
   $blog['posts'] = $posts;
-  da_blog_save($blog);
+  $blog['autoPublish'] = true;
+  $blog['lastAutopilotAt'] = gmdate('c');
+  $blog['lastAutopilotDate'] = $date;
+  if (!da_blog_save($blog)) {
+    return null;
+  }
   return $post;
+}
+
+/** Publish today's post if missing. Returns created post or null. */
+function da_blog_publish_today(): ?array {
+  $tz = new DateTimeZone('Asia/Kolkata');
+  $today = (new DateTime('now', $tz))->format('Y-m-d');
+  return da_blog_publish_for_date($today);
+}
+
+/**
+ * Catch up missed IST days (default max 7) and ensure today exists.
+ * Safe to call from cron, sitemap, or /blog visits (file-locked).
+ *
+ * @return array{ok:bool,created:array<int,array>,skipped:string,today:string}
+ */
+function da_blog_ensure_published(int $maxCatchUpDays = 7): array {
+  $tz = new DateTimeZone('Asia/Kolkata');
+  $today = (new DateTime('now', $tz))->format('Y-m-d');
+  $lockFile = da_blog_lock_path();
+  $fh = @fopen($lockFile, 'c+');
+  if (!$fh) {
+    return ['ok' => false, 'created' => [], 'skipped' => 'lock-open-failed', 'today' => $today];
+  }
+  if (!flock($fh, LOCK_EX | LOCK_NB)) {
+    fclose($fh);
+    return ['ok' => true, 'created' => [], 'skipped' => 'busy', 'today' => $today];
+  }
+
+  try {
+    $blog = da_blog_load();
+    if (isset($blog['autoPublish']) && empty($blog['autoPublish'])) {
+      return ['ok' => true, 'created' => [], 'skipped' => 'autopilot-off', 'today' => $today];
+    }
+
+    $posts = is_array($blog['posts'] ?? null) ? $blog['posts'] : [];
+
+    // Always ensure today. Then fill contiguous missed days going backward
+    // until we hit a day that already has an autopilot post (max window).
+    $end = new DateTime('now', $tz);
+    $end->setTime(0, 0, 0);
+    $dates = [$today];
+    for ($i = 1; $i < $maxCatchUpDays; $i++) {
+      $d = clone $end;
+      $d->modify("-{$i} day");
+      $ds = $d->format('Y-m-d');
+      if (da_blog_has_autopilot_on_date($posts, $ds)) {
+        break;
+      }
+      array_unshift($dates, $ds);
+    }
+
+    $created = [];
+    foreach ($dates as $date) {
+      if (da_blog_has_autopilot_on_date($posts, $date)) {
+        continue;
+      }
+      $post = da_blog_publish_for_date($date);
+      if ($post) {
+        $created[] = [
+          'slug' => $post['slug'],
+          'title' => $post['title'],
+          'publishedAt' => $post['publishedAt'],
+        ];
+        $posts = da_blog_load()['posts'] ?? $posts;
+      }
+    }
+
+    if ($created) {
+      $blog = da_blog_load();
+      $posts = is_array($blog['posts'] ?? null) ? $blog['posts'] : [];
+      usort($posts, static function ($a, $b) {
+        return strcmp((string)($b['publishedAt'] ?? ''), (string)($a['publishedAt'] ?? ''));
+      });
+      foreach ($posts as $i => &$p) {
+        $p['trending'] = $i < 3;
+      }
+      unset($p);
+      $blog['posts'] = $posts;
+      $blog['lastAutopilotAt'] = gmdate('c');
+      $blog['lastAutopilotDate'] = $today;
+      da_blog_save($blog);
+    }
+
+    return [
+      'ok' => true,
+      'created' => $created,
+      'skipped' => $created ? '' : 'already-up-to-date',
+      'today' => $today,
+    ];
+  } finally {
+    flock($fh, LOCK_UN);
+    fclose($fh);
+  }
+}
+
+function da_blog_set_autopilot(bool $enabled): array {
+  $blog = da_blog_load();
+  $blog['autoPublish'] = $enabled;
+  da_blog_save($blog);
+  return $blog;
 }
