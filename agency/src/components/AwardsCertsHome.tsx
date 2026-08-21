@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import { CredentialImage } from "./CredentialImage";
+import { AutoCarousel } from "./AutoCarousel";
 import "./AwardsCertsHome.css";
 
 export function AwardsCertsHome() {
@@ -46,23 +47,21 @@ export function AwardsCertsHome() {
                 All {awards.items.length} awards →
               </Link>
             </div>
-            <div
-              className="achome__awards"
-              role="region"
-              aria-label="Awards carousel"
+            <AutoCarousel
+              label="Awards"
+              intervalMs={5600}
+              maxItems={awardItems.length}
+              className="achome-carousel"
             >
-              {awardItems.map((item, i) => (
-                <article
-                  key={item.id}
-                  className={`achome__award reveal reveal-delay-${(i % 3) + 1}`}
-                >
+              {awardItems.map((item) => (
+                <article key={item.id} className="achome__award">
                   <div className="achome__award-media">
                     <CredentialImage
                       src={item.image}
                       alt=""
                       width={560}
                       height={392}
-                      loading={i < 3 ? "eager" : "lazy"}
+                      loading="lazy"
                     />
                   </div>
                   <div className="achome__award-body">
@@ -72,7 +71,7 @@ export function AwardsCertsHome() {
                   </div>
                 </article>
               ))}
-            </div>
+            </AutoCarousel>
           </div>
         )}
 
@@ -84,16 +83,14 @@ export function AwardsCertsHome() {
                 All {certifications.items.length} certificates →
               </Link>
             </div>
-            <div
-              className="achome__certs"
-              role="region"
-              aria-label="Certifications carousel"
+            <AutoCarousel
+              label="Certifications"
+              intervalMs={5800}
+              maxItems={certItems.length}
+              className="achome-carousel"
             >
-              {certItems.map((item, i) => (
-                <article
-                  key={item.id}
-                  className={`achome__cert reveal reveal-delay-${(i % 4) + 1}`}
-                >
+              {certItems.map((item) => (
+                <article key={item.id} className="achome__cert">
                   <div className="achome__cert-media">
                     <CredentialImage
                       src={item.image}
@@ -112,7 +109,7 @@ export function AwardsCertsHome() {
                   </div>
                 </article>
               ))}
-            </div>
+            </AutoCarousel>
           </div>
         )}
       </div>

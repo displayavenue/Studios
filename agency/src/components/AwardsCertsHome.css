@@ -72,8 +72,17 @@
   background: transparent;
   border: 0;
   padding: 0;
-  content-visibility: auto;
-  contain-intrinsic-size: 280px;
+  width: 100%;
+  min-width: 0;
+  /* Don't use content-visibility here — caused blank mobile gaps */
+}
+
+.achome-carousel {
+  width: 100%;
+}
+
+.achome-carousel .auto-carousel__slide > * {
+  display: block;
 }
 
 .achome__award-media picture,
@@ -191,38 +200,35 @@
 
 @media (max-width: 768px) {
   .achome {
-    padding: 2.5rem 0 1.75rem;
+    padding: 2.25rem 0 1.75rem;
   }
 
-  .achome__awards,
-  .achome__certs {
-    display: flex;
-    gap: 0.85rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 1rem;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    padding: 0.15rem 1rem 0.85rem;
-    margin-inline: -1rem;
-    grid-template-columns: none;
-    scrollbar-width: none;
+  .achome__head {
+    margin-bottom: 1.35rem;
   }
 
-  .achome__awards::-webkit-scrollbar,
-  .achome__certs::-webkit-scrollbar {
-    display: none;
+  .achome__cta {
+    flex-direction: column;
   }
 
-  .achome__award,
-  .achome__cert {
-    flex: 0 0 min(78vw, 300px);
-    scroll-snap-align: start;
-    content-visibility: visible;
+  .achome__cta .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .achome__block-head {
-    padding-inline: 0;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+  }
+
+  /* Legacy grid unused on mobile — carousel handles layout */
+  .achome__awards,
+  .achome__certs {
+    display: contents;
+  }
+
+  .achome__award-media,
+  .achome__cert-media {
+    border-radius: 10px;
   }
 }
