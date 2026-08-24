@@ -1,3 +1,6 @@
+const asset = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+
 const COLLECTIONS = [
   {
     id: 'everyday',
@@ -54,7 +57,7 @@ export function HomePage() {
       <main id="top">
         <section className="hero">
           <div className="hero-media" aria-hidden>
-            <img src="/images/hero.jpg" alt="" />
+            <img src={asset('images/hero.jpg')} alt="" />
           </div>
           <div className="hero-veil" aria-hidden />
           <div className="hero-copy">
@@ -96,7 +99,10 @@ export function HomePage() {
         <section className="section feature-split" id="why">
           <div className="container split">
             <div className="split-media">
-              <img src="/images/product.jpg" alt="Varnikya anti-tarnish earrings and bracelet" />
+              <img
+                src={asset('images/product.jpg')}
+                alt="Varnikya anti-tarnish earrings and bracelet"
+              />
             </div>
             <div className="split-copy">
               <h2>Built to resist tarnish</h2>
