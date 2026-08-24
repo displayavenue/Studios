@@ -7,6 +7,7 @@ const QUOTE_NAV = {
   automation: "Lead Automation",
   social: "Social Studio",
   blog: "Blog Studio",
+  videos: "Video Studio",
   quotations: "Quotations & Payments",
   invoices: "Create Invoice",
 };
@@ -159,6 +160,7 @@ function getByPath(obj, path) {
 }
 
 function setByPath(obj, path, value) {
+  if (!obj || typeof obj !== "object") return;
   const parts = path.split(".");
   let cur = obj;
   for (let i = 0; i < parts.length - 1; i++) {
@@ -327,7 +329,7 @@ function renderNav() {
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }${["quotations", "invoices", "livechat", "automation", "social", "blog"].includes(key) ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+        }${["quotations", "invoices", "livechat", "automation", "social", "blog", "videos"].includes(key) ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
@@ -337,6 +339,7 @@ function renderNav() {
       else if (btn.dataset.key === "automation") openAutomation();
       else if (btn.dataset.key === "social") openSocialStudio();
       else if (btn.dataset.key === "blog") openBlogStudio();
+      else if (btn.dataset.key === "videos") openVideoStudio();
       else if (btn.dataset.key === "quotations") openQuotations();
       else if (btn.dataset.key === "invoices") openInvoices();
       else openCollection(btn.dataset.key);
@@ -1093,6 +1096,151 @@ async function renderBlogStudio() {
     };
   } catch (e) {
     wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load blog")}</p>`;
+  }
+}
+
+async function openVideoStudio() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "videos";
+  state.data = { speakerImage: "" };
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.videos;
+  $("#panel-sub").textContent =
+    "Upload your portrait once. Autopilot publishes 3 talking-head reels every day (hook, tip, proof).";
+  renderNav();
+  await renderVideoStudio();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+async function renderVideoStudio() {
+  const wrap = $("#editor-wrap");
+  wrap.innerHTML = `<p class="hint">Loading videos…</p>`;
+  try {
+    const res = await api("videos-list");
+    const videos = res.videos || {};
+    const reels = videos.reels || [];
+    const cron = res.cron || {};
+    const lastAuto = videos.lastAutopilotDate || reels.find((r) => r.source === "daily-autopilot")?.publishedAt || "—";
+    const cronUrl = cron.videosCronUrl || "https://displayavenue.com/admin/videos-cron.php?key=YOUR_CRON_KEY";
+    const speaker = videos.speakerImage || "";
+    state.data = { speakerImage: speaker };
+    wrap.innerHTML = `
+      <div class="card">
+        <div class="list-item-head">
+          <h3 style="margin:0">Video Studio</h3>
+          <a class="btn btn-ghost" href="../videos" target="_blank" rel="noreferrer">Open /videos ↗</a>
+        </div>
+        <p class="hint">Live reels: <strong>${reels.length}</strong>. Autopilot publishes <strong>3 talking-head reels/day</strong> (hook · tip · proof) using your uploaded portrait.</p>
+        <p class="hint">Last autopilot date: <strong>${escapeHtml(String(lastAuto))}</strong>${videos.lastAutopilotAt ? ` · ran ${escapeHtml(videos.lastAutopilotAt)}` : ""}</p>
+
+        <h4>Your speaking portrait</h4>
+        <p class="hint">Use a clear, front-facing photo (chest-up). This image is used on every reel so it looks like you are speaking on camera.</p>
+        ${imageField("Speaker portrait", "speakerImage", speaker, "speaker")}
+        <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem">
+          <label class="field">Speaker name<input type="text" id="videos-speaker-name" value="${escapeAttr(videos.speakerName || "DisplayAvenue")}" /></label>
+          <label class="field">Alt text<input type="text" id="videos-speaker-alt" value="${escapeAttr(videos.speakerImageAlt || "DisplayAvenue speaker")}" /></label>
+        </div>
+        <div class="row-actions" style="margin:0.75rem 0 1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+          <button type="button" class="btn btn-gold" id="videos-save-speaker">Save speaker</button>
+        </div>
+
+        <label class="check-row"><input type="checkbox" id="videos-auto" ${videos.autoPublish !== false ? "checked" : ""}/> Auto-publish 3 reels daily</label>
+        <div class="row-actions" style="margin:1rem 0;display:flex;gap:.5rem;flex-wrap:wrap">
+          <button type="button" class="btn btn-gold" id="videos-publish-now">Publish / catch up now</button>
+          <button type="button" class="btn btn-ghost" id="videos-refresh">Refresh</button>
+          <button type="button" class="btn btn-ghost" id="videos-copy-cron">Copy cron URL</button>
+        </div>
+        <p class="hint">For a reliable daily schedule, add this in Hostinger → Advanced → Cron Jobs (once daily). Reels also auto-create when someone opens <code>/videos</code> or when Google hits <code>sitemap.xml</code>:</p>
+        <p class="hint"><code style="word-break:break-all">curl -s "${escapeHtml(cronUrl)}"</code></p>
+        <p class="hint">${cron.hasKey ? "Cron key is set (from Social Studio API keys)." : "Set a cron_key in Social Studio → API keys first."}</p>
+
+        <h4>Recent reels</h4>
+        <div id="videos-reels">
+          ${
+            reels.length
+              ? reels
+                  .slice(0, 36)
+                  .map(
+                    (r) => `
+            <div class="list-item">
+              <div class="list-item-head">
+                <strong>${escapeHtml(r.title || r.slug)}</strong>
+                <span class="hint" style="margin:0">${escapeHtml(r.publishedAt || "")} · ${escapeHtml(r.type || "")}${r.source === "daily-autopilot" ? " · auto" : ""}</span>
+              </div>
+              <p style="margin:.35rem 0;font-size:.88rem;color:var(--muted)">${escapeHtml((r.lines && r.lines[0]) || r.script || "")}</p>
+              <a href="../videos" target="_blank" rel="noreferrer">View on /videos →</a>
+            </div>`,
+                  )
+                  .join("")
+              : `<p class="empty">No reels yet — click Publish / catch up now (after uploading your portrait).</p>`
+          }
+        </div>
+      </div>`;
+
+    bindImageUploads(wrap);
+
+    // Keep speakerImage path in sync when upload button fills the text input
+    const speakerInput = wrap.querySelector('[data-path="speakerImage"]');
+    if (speakerInput) {
+      speakerInput.addEventListener("change", () => {});
+    }
+
+    $("#videos-save-speaker").onclick = async () => {
+      try {
+        const imgEl = wrap.querySelector('[data-path="speakerImage"]');
+        const speakerImage = (imgEl && imgEl.value) || "";
+        if (!speakerImage) {
+          toast("Upload a portrait first", "err");
+          return;
+        }
+        await api("videos-set-speaker", {
+          speakerImage,
+          speakerName: $("#videos-speaker-name").value || "DisplayAvenue",
+          speakerImageAlt: $("#videos-speaker-alt").value || "",
+        });
+        toast("Speaker portrait saved — all reels updated");
+        renderVideoStudio();
+      } catch (e) {
+        toast(e.message || "Could not save speaker", "err");
+      }
+    };
+
+    $("#videos-auto").onchange = async (ev) => {
+      try {
+        await api("videos-set-autopilot", { enabled: !!ev.target.checked });
+        toast(ev.target.checked ? "Video autopilot on" : "Video autopilot off");
+      } catch (e) {
+        toast(e.message || "Could not save", "err");
+        ev.target.checked = !ev.target.checked;
+      }
+    };
+    $("#videos-publish-now").onclick = async () => {
+      try {
+        toast("Publishing reels…");
+        const r = await api("videos-publish-today");
+        const n = (r.createdAll || []).length;
+        toast(n ? `Published ${n} reel(s)` : r.message || "Done");
+        renderVideoStudio();
+      } catch (e) {
+        toast(e.message || "Publish failed", "err");
+      }
+    };
+    $("#videos-refresh").onclick = () => renderVideoStudio();
+    $("#videos-copy-cron").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(cronUrl);
+        toast("Cron URL copied");
+      } catch (_) {
+        toast(cronUrl);
+      }
+    };
+  } catch (e) {
+    wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load videos")}</p>`;
   }
 }
 
@@ -3235,6 +3383,10 @@ async function enterApp(collections) {
   }
   if (state.current === "blog") {
     openBlogStudio();
+    return;
+  }
+  if (state.current === "videos") {
+    openVideoStudio();
     return;
   }
   if (state.current === "quotations") {

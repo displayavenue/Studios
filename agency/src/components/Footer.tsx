@@ -75,6 +75,7 @@ export function Footer() {
         { label: "Locations", href: "/locations" },
         { label: "Digital business card", href: "/card" },
         { label: "Blog", href: "/blog" },
+        { label: "Videos", href: "/videos" },
         { label: "Talent Branding", href: "/talent-branding" },
         { label: "Contact", href: "/contact" },
         { label: "Privacy Policy", href: "/privacy" },

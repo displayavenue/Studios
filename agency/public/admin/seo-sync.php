@@ -68,6 +68,7 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/contact', 'priority' => '0.8', 'changefreq' => 'monthly'],
     ['path' => '/card', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['path' => '/blog', 'priority' => '0.85', 'changefreq' => 'daily'],
+    ['path' => '/videos', 'priority' => '0.85', 'changefreq' => 'daily'],
     ['path' => '/talent-branding', 'priority' => '0.85', 'changefreq' => 'monthly'],
     ['path' => '/privacy', 'priority' => '0.3', 'changefreq' => 'yearly'],
     ['path' => '/terms', 'priority' => '0.3', 'changefreq' => 'yearly'],
@@ -142,6 +143,14 @@ function da_collect_urls(string $contentDir): array {
           'changefreq' => 'weekly',
         ];
       }
+    }
+  }
+
+  $videosFile = $contentDir . '/videos.json';
+  if (is_file($videosFile)) {
+    $videos = json_decode((string)file_get_contents($videosFile), true);
+    if (is_array($videos) && !empty($videos['reels'])) {
+      // Single /videos hub page already in static list; keep changefreq daily via static entry
     }
   }
 

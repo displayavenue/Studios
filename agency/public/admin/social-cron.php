@@ -41,6 +41,19 @@ try {
   $blog = ['ok' => false, 'created' => [], 'skipped' => $e->getMessage()];
 }
 
+$videos = ['ok' => false, 'created' => [], 'skipped' => 'not-loaded'];
+try {
+  require_once __DIR__ . '/lib/videos.php';
+  $videos = da_videos_ensure_published(14);
+  if (!empty($videos['created'])) {
+    require_once __DIR__ . '/seo-sync.php';
+    $publicDir = dirname(__DIR__);
+    @da_sync_seo_artifacts($publicDir . '/content', $publicDir);
+  }
+} catch (Throwable $e) {
+  $videos = ['ok' => false, 'created' => [], 'skipped' => $e->getMessage()];
+}
+
 echo json_encode([
   'ok' => true,
   'at' => gmdate('c'),
@@ -57,5 +70,10 @@ echo json_encode([
     'created' => $blog['created'] ?? [],
     'skipped' => $blog['skipped'] ?? '',
     'today' => $blog['today'] ?? null,
+  ],
+  'videos' => [
+    'created' => $videos['created'] ?? [],
+    'skipped' => $videos['skipped'] ?? '',
+    'today' => $videos['today'] ?? null,
   ],
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

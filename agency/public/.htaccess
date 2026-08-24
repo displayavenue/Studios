@@ -17,6 +17,9 @@
   RewriteRule ^blog/?$ /blog-seo.php [L,QSA]
   RewriteRule ^blog/([A-Za-z0-9._-]+)/?$ /blog-seo.php?slug=$1 [L,QSA]
 
+  # Videos SEO shell + lazy daily reel publish
+  RewriteRule ^videos/?$ /videos-seo.php [L,QSA]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,0 +1,119 @@
+{
+  "title": "DisplayAvenue Videos",
+  "lead": "Daily talking-head reels — hooks, tips, and proof for Indian business owners. Upload your portrait in Video Studio so every reel looks like you speaking.",
+  "autoPublish": true,
+  "reelsPerDay": 3,
+  "speakerName": "DisplayAvenue",
+  "speakerImage": "",
+  "speakerImageAlt": "DisplayAvenue speaker portrait",
+  "updatedAt": "2026-08-24T20:18:04.127Z",
+  "lastAutopilotAt": "2026-08-24T20:18:04.127Z",
+  "lastAutopilotDate": "2026-08-25",
+  "reels": [
+    {
+      "slug": "hook-stop-wasting-google-ads-budget-20260825",
+      "type": "hook",
+      "category": "Google Ads",
+      "title": "Stop wasting Google Ads budget",
+      "lines": [
+        "Most Indian SMEs waste Google Ads on broad match.",
+        "You pay for clicks that never become WhatsApp chats.",
+        "Fix match types before you raise budget."
+      ],
+      "captions": [
+        {
+          "t": 0,
+          "text": "Most Indian SMEs waste Google Ads on broad match."
+        },
+        {
+          "t": 3.42,
+          "text": "You pay for clicks that never become WhatsApp chats."
+        },
+        {
+          "t": 6.84,
+          "text": "Fix match types before you raise budget."
+        }
+      ],
+      "script": "Most Indian SMEs waste Google Ads on broad match. You pay for clicks that never become WhatsApp chats. Fix match types before you raise budget.",
+      "durationSec": 10,
+      "cta": "Get a free Google Ads check",
+      "ctaHref": "https://wa.me/919222122333?text=Hi%20DisplayAvenue%2C%20I%20watched%20your%20reel%3A%20Stop%20wasting%20Google%20Ads%20budget",
+      "speakerImage": "",
+      "speakerName": "DisplayAvenue",
+      "publishedAt": "2026-08-25",
+      "trending": true,
+      "source": "daily-autopilot",
+      "format": "talking-head"
+    },
+    {
+      "slug": "tip-3-google-ads-fixes-this-week-20260825",
+      "type": "tip",
+      "category": "Google Ads",
+      "title": "3 Google Ads fixes this week",
+      "lines": [
+        "Use exact and phrase match on money keywords.",
+        "Send traffic to one offer page — not your full menu.",
+        "Track calls and WhatsApp as conversions."
+      ],
+      "captions": [
+        {
+          "t": 0,
+          "text": "Use exact and phrase match on money keywords."
+        },
+        {
+          "t": 3.04,
+          "text": "Send traffic to one offer page — not your full menu."
+        },
+        {
+          "t": 7.22,
+          "text": "Track calls and WhatsApp as conversions."
+        }
+      ],
+      "script": "Use exact and phrase match on money keywords. Send traffic to one offer page — not your full menu. Track calls and WhatsApp as conversions.",
+      "durationSec": 10.4,
+      "cta": "WhatsApp us for the checklist",
+      "ctaHref": "https://wa.me/919222122333?text=Hi%20DisplayAvenue%2C%20I%20watched%20your%20reel%3A%203%20Google%20Ads%20fixes%20this%20week",
+      "speakerImage": "",
+      "speakerName": "DisplayAvenue",
+      "publishedAt": "2026-08-25",
+      "trending": true,
+      "source": "daily-autopilot",
+      "format": "talking-head"
+    },
+    {
+      "slug": "proof-why-displayavenue-ads-work-20260825",
+      "type": "proof",
+      "category": "Google Ads",
+      "title": "Why DisplayAvenue Ads work",
+      "lines": [
+        "We build campaigns around booked jobs — not vanity clicks.",
+        "Search terms reviewed twice a week.",
+        "Landing pages and WhatsApp follow-up included."
+      ],
+      "captions": [
+        {
+          "t": 0,
+          "text": "We build campaigns around booked jobs — not vanity clicks."
+        },
+        {
+          "t": 3.8,
+          "text": "Search terms reviewed twice a week."
+        },
+        {
+          "t": 6.08,
+          "text": "Landing pages and WhatsApp follow-up included."
+        }
+      ],
+      "script": "We build campaigns around booked jobs — not vanity clicks. Search terms reviewed twice a week. Landing pages and WhatsApp follow-up included.",
+      "durationSec": 9.3,
+      "cta": "Book a free growth call",
+      "ctaHref": "https://wa.me/919222122333?text=Hi%20DisplayAvenue%2C%20I%20watched%20your%20reel%3A%20Why%20DisplayAvenue%20Ads%20work",
+      "speakerImage": "",
+      "speakerName": "DisplayAvenue",
+      "publishedAt": "2026-08-25",
+      "trending": true,
+      "source": "daily-autopilot",
+      "format": "talking-head"
+    }
+  ]
+}

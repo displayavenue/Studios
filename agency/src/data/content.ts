@@ -7,7 +7,7 @@ export const resourceTypes = [
   { title: "Checklists", icon: "check", href: "/resources/checklists" },
   { title: "Case Studies", icon: "briefcase", href: "/case-studies" },
   { title: "Webinars", icon: "users", href: "/resources/webinars" },
-  { title: "Videos", icon: "camera", href: "/resources/videos" },
+  { title: "Videos", icon: "camera", href: "/videos" },
   { title: "Podcasts", icon: "chat", href: "/resources/podcasts" },
   { title: "Industry Reports", icon: "chart", href: "/resources/reports" },
   { title: "Glossary", icon: "book", href: "/resources/glossary" },

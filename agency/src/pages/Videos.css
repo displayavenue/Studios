@@ -1,0 +1,386 @@
+.videos-page .videos-frame {
+  max-width: 1120px;
+  padding: 1.5rem 1.35rem 2rem;
+}
+
+.videos-meta-line {
+  color: var(--text-muted, #667);
+  font-size: 0.9rem;
+  margin: 0.35rem 0 1.25rem;
+}
+
+.videos-upload-nudge {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0 0 1.5rem;
+  padding: 0.95rem 1.05rem;
+  border: 1px dashed rgba(0, 86, 255, 0.35);
+  background: linear-gradient(135deg, rgba(0, 86, 255, 0.06), rgba(15, 40, 70, 0.04));
+  border-radius: var(--radius-sm, 8px);
+  color: var(--navy, #0f2846);
+  font-size: 0.92rem;
+}
+
+.videos-upload-nudge strong {
+  font-size: 0.98rem;
+}
+
+.videos-today,
+.videos-archive,
+.videos-cta {
+  margin-top: 1.75rem;
+}
+
+.videos-today h2,
+.videos-archive h2,
+.videos-cta h2 {
+  font-size: 1.15rem;
+  color: var(--navy, #0f2846);
+  margin: 0 0 0.85rem;
+}
+
+.videos-empty {
+  color: var(--text-muted, #667);
+  margin: 0 0 1rem;
+}
+
+.videos-rail {
+  display: grid;
+  gap: 1.15rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .videos-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.videos-rail--archive {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .videos-rail--archive {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .videos-rail--archive {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.talk-reel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.talk-reel__stage {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b1a2e;
+  box-shadow: 0 18px 40px rgba(11, 26, 46, 0.22);
+  isolation: isolate;
+}
+
+.talk-reel__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(0, 86, 255, 0.35), transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.18), transparent 50%),
+    linear-gradient(165deg, #102846 0%, #0b1a2e 55%, #07111d 100%);
+  z-index: 0;
+}
+
+.talk-reel__portrait {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  z-index: 1;
+  transform: scale(1.04);
+  transform-origin: center 28%;
+  transition: transform 0.6s ease;
+  animation: talk-idle 7s ease-in-out infinite;
+}
+
+.talk-reel.is-playing .talk-reel__portrait {
+  animation: talk-speak-cam 3.4s ease-in-out infinite;
+}
+
+.talk-reel__placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: #e8eef8;
+  font-weight: 600;
+}
+
+.talk-reel__placeholder-sub {
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.talk-reel__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(7, 17, 29, 0.35) 0%, transparent 28%, transparent 55%, rgba(7, 17, 29, 0.78) 100%),
+    radial-gradient(ellipse at center, transparent 42%, rgba(7, 17, 29, 0.45) 100%);
+}
+
+/* Soft mouth-region pulse to sell the “speaking” look with a still portrait */
+.talk-reel__mouth {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 42%;
+  height: 16%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 220, 190, 0.18), transparent 70%);
+  opacity: 0;
+  filter: blur(6px);
+}
+
+.talk-reel__mouth.is-speaking {
+  opacity: 1;
+  animation: talk-mouth 0.28s ease-in-out infinite alternate;
+}
+
+.talk-reel__chrome {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  right: 0.85rem;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.talk-reel__badge,
+.talk-reel__cat {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(7, 17, 29, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.talk-reel__badge {
+  background: rgba(0, 86, 255, 0.85);
+}
+
+.talk-reel__captions {
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 4.4rem;
+  z-index: 4;
+  text-align: center;
+  pointer-events: none;
+}
+
+.talk-reel__captions p {
+  margin: 0;
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(7, 17, 29, 0.72);
+  color: #fff;
+  font-size: clamp(0.92rem, 2.8vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.35;
+  text-wrap: balance;
+  animation: talk-caption-in 0.28s ease;
+}
+
+.talk-reel__progress {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 3.55rem;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  z-index: 4;
+  overflow: hidden;
+}
+
+.talk-reel__progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #0056ff, #d4af37);
+  border-radius: inherit;
+}
+
+.talk-reel__controls {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 5;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.talk-reel__play,
+.talk-reel__mute {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.82rem;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  color: #0b1a2e;
+  background: #fff;
+}
+
+.talk-reel__play {
+  flex: 1;
+  background: linear-gradient(135deg, #0056ff, #003db8);
+  color: #fff;
+}
+
+.talk-reel__mute {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.talk-reel__meta {
+  text-align: center;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.talk-reel__meta h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--navy, #0f2846);
+  line-height: 1.35;
+}
+
+.talk-reel__meta p {
+  margin: 0.35rem 0 0.7rem;
+  color: var(--text-muted, #667);
+  font-size: 0.85rem;
+}
+
+.talk-reel__cta {
+  display: inline-flex;
+  width: auto;
+  min-height: 2.4rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.88rem;
+}
+
+.videos-cta {
+  padding: 1.25rem 1.1rem;
+  border-radius: var(--radius-sm, 8px);
+  background: linear-gradient(135deg, #0f2846 0%, #163a66 55%, #0f2846 100%);
+  color: #fff;
+}
+
+.videos-cta h2 {
+  color: #fff !important;
+}
+
+.videos-cta p {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.videos-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.videos-cta .btn-ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes talk-idle {
+  0%,
+  100% {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate3d(0, -1.2%, 0);
+  }
+}
+
+@keyframes talk-speak-cam {
+  0%,
+  100% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  35% {
+    transform: scale(1.085) translate3d(0.4%, -0.8%, 0);
+  }
+  70% {
+    transform: scale(1.07) translate3d(-0.35%, -0.4%, 0);
+  }
+}
+
+@keyframes talk-mouth {
+  from {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(0.92, 0.85);
+  }
+  to {
+    opacity: 0.85;
+    transform: translate(-50%, -48%) scale(1.08, 1.15);
+  }
+}
+
+@keyframes talk-caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .talk-reel__portrait,
+  .talk-reel.is-playing .talk-reel__portrait,
+  .talk-reel__mouth.is-speaking,
+  .talk-reel__captions p {
+    animation: none;
+  }
+}
