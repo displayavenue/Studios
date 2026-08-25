@@ -191,6 +191,7 @@ export function LocationCityPage() {
           <p className="loc-trust-line">
             Free plan · WhatsApp reply in business hours · Mumbai MMR specialists · Pan-India delivery
           </p>
+          {city.pricingHint && (
             <p className="loc-pricing">
               <strong>Typical budget:</strong> {city.pricingHint}
             </p>
