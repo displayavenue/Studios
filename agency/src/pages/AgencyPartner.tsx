@@ -11,42 +11,66 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const WHY = [
   {
     title: "30+ in-house professionals",
-    text: "Specialists across marketing, creative, technology, and digital transformation — without building that payroll yourself.",
+    text: "Access specialists across marketing, creative, technology, and digital transformation — without building that payroll yourself.",
   },
   {
     title: "360° digital capabilities",
-    text: "From ads and SEO to websites, ecommerce, CRM, AI automation, and creative production.",
-  },
-  {
-    title: "Your client stays your client",
-    text: "We respect your relationship and operate by the partnership model you choose.",
-  },
-  {
-    title: "No bypassing",
-    text: "For partner-managed projects, we do not approach your client to sell directly.",
+    text: "From marketing and websites to AI, automation, ecommerce, CRM, and technology implementation.",
   },
   {
     title: "Transparent pricing",
-    text: "Clear scope, clear costing, clear deliverables — before work starts.",
+    text: "Clear scope, clear costing, and clear deliverables before work starts.",
+  },
+  {
+    title: "Your client remains your client",
+    text: "We respect your relationship and operate according to the agreed partnership model.",
+  },
+  {
+    title: "No direct client approach",
+    text: "For partner-managed projects, we do not bypass you to sell directly to your client.",
+  },
+  {
+    title: "Flexible collaboration",
+    text: "Refer projects, outsource execution, or build an entire white-label delivery model.",
+  },
+  {
+    title: "Reliable execution",
+    text: "Professional processes, specialist teams, and structured project management.",
   },
   {
     title: "Scale without hiring",
-    text: "Take larger projects and more services without immediately expanding headcount.",
+    text: "Take on larger projects without immediately increasing your payroll.",
   },
 ];
 
-const MODELS = [
+type PartnerModel = {
+  id: string;
+  num: string;
+  title: string;
+  lead: string;
+  body: string;
+  steps?: string[];
+  youManage?: string[];
+  weManage?: string[];
+  offer?: string[];
+  perfectFor?: string[];
+  opportunity?: string;
+  cta: string;
+  href: string;
+};
+
+const MODELS: PartnerModel[] = [
   {
     id: "refer",
     num: "01",
     title: "Refer & Earn",
     lead: "Introduce the client. Earn from the project.",
-    body: "Have a business contact who needs digital marketing, websites, software, branding, or digital transformation? Introduce the opportunity. You earn 10% of the project management cost — we handle qualification and execution.",
+    body: "Have a business contact who needs digital marketing, website development, software, branding, or digital transformation? Simply introduce the opportunity to us. You earn 10% of the project management cost. You don’t need to manage the project, build the team, or handle execution.",
     steps: [
-      "Refer — introduce a business or project",
-      "We qualify — understand the need and prepare the proposal",
-      "Project starts — we handle agreed execution",
-      "You earn — 10% of project management cost (per agreed terms)",
+      "01 — Refer: introduce a business or project to DisplayAvenue",
+      "02 — We qualify: our team understands the requirement and prepares the proposal",
+      "03 — Project starts: we handle the agreed execution",
+      "04 — You earn: 10% of the project management cost (subject to agreed partnership terms)",
     ],
     perfectFor: [
       "Business consultants",
@@ -55,47 +79,72 @@ const MODELS = [
       "IT consultants",
       "Designers",
       "Sales professionals",
+      "Business communities",
       "Entrepreneurs",
+      "Referral partners",
     ],
+    opportunity: "One introduction can become recurring income.",
     cta: "Start referring",
     href: "#partner-form",
   },
   {
     id: "lead",
     num: "02",
-    title: "You lead. We execute.",
-    lead: "Your agency stays in control of the client.",
-    body: "You already have the client and own the relationship. Send us the requirement — we execute the agreed scope behind the scenes. We do not talk to your client unless you authorize it.",
+    title: "You lead the client. We do the back-end execution.",
+    lead: "Your agency remains in control.",
+    body: "You already have the client. You understand their requirements. You manage communication and relationships — but you don’t want to execute everything yourself. You send us the requirement. We execute the agreed scope behind the scenes.",
     youManage: [
-      "Client relationship & meetings",
+      "Client relationship",
+      "Client meetings",
       "Strategy ownership",
       "Communication",
       "Commercial relationship",
       "Final approvals",
     ],
     weManage: [
-      "Research, design, development",
-      "SEO & paid advertising",
-      "Content, social, video",
-      "Technology & automation",
+      "Research",
+      "Design",
+      "Development",
+      "SEO",
+      "Paid advertising",
+      "Content",
+      "Social media",
+      "Video editing",
+      "Technology",
+      "Automation",
       "Reporting support",
+      "Technical execution",
     ],
+    opportunity:
+      "We do not talk directly to your client unless you specifically authorize it. Think of DisplayAvenue as your invisible execution department.",
     cta: "Outsource a project",
     href: "#partner-form",
   },
   {
     id: "white-label",
     num: "03",
-    title: "White-label team",
-    lead: "Your agency brand. Our execution team.",
-    body: "Offer services your current team cannot run alone. White-label DisplayAvenue as an extension of your team under your brand and operating model. Your client sees your agency — we work behind the scenes.",
+    title: "Your agency brand. Our execution team.",
+    lead: "Build a bigger agency without building a bigger payroll.",
+    body: "Want to offer services your current team cannot execute? Take larger clients? Provide complete digital transformation? Look like a full-service agency without hiring 30+ specialists? White-label DisplayAvenue. We work as an extension of your team under your agreed brand and operating model. Your client sees your agency. Your brand remains at the front. Our team works behind the scenes.",
     offer: [
-      "Digital marketing & lead generation",
-      "SEO, Google Ads, Meta Ads",
-      "Websites, Shopify, WordPress, Magento",
-      "CRM, ERP, AI & automation",
-      "UI/UX, design, video, branding",
+      "Digital Marketing",
+      "SEO",
+      "Google Ads",
+      "Meta Ads",
+      "Social Media Marketing",
+      "Content Marketing",
+      "Website Development",
+      "Ecommerce Development",
+      "Shopify · WordPress · Magento",
+      "CRM · ERP Solutions",
+      "AI Solutions · AI Automation",
+      "Lead Generation · Marketing Automation",
+      "UI/UX · Graphic Design",
+      "Video Editing · Photography · Videography",
+      "Branding · Digital Strategy",
+      "Technology Development",
     ],
+    opportunity: "Your agency can sell. Our team can build. Your agency can grow.",
     cta: "Build my white-label team",
     href: "#partner-form",
   },
@@ -110,122 +159,230 @@ const PRINCIPLES = [
   {
     n: "02",
     title: "No bypassing",
-    text: "We do not intentionally bypass a partner to pursue direct business with their client.",
+    text: "We do not intentionally bypass a partner to approach their client for direct business.",
   },
   {
     n: "03",
     title: "Controlled communication",
-    text: "For back-end execution, we communicate through you unless direct contact is approved.",
+    text: "For back-end execution projects, we communicate through the partner unless direct communication is specifically approved.",
   },
   {
     n: "04",
-    title: "Transparent commercials",
-    text: "Pricing, scope, and deliverables are agreed clearly before execution.",
+    title: "Transparent commercial structure",
+    text: "Pricing, scope, and deliverables are discussed clearly before execution.",
   },
   {
     n: "05",
     title: "Professional execution",
-    text: "Work is assigned to the right specialists inside our team.",
+    text: "Projects are assigned to the appropriate specialists inside our team.",
   },
   {
     n: "06",
     title: "Long-term thinking",
-    text: "We build lasting agency relationships — not one-time transactions.",
+    text: "We are interested in building long-term agency relationships, not one-time transactions.",
   },
+];
+
+const CAN_HANDLE = [
+  "Website",
+  "SEO",
+  "Google & Meta Ads",
+  "Social media",
+  "Ecommerce",
+  "CRM, automation, AI or custom technology",
 ];
 
 const CAPABILITIES = [
   {
     title: "Digital marketing",
     items: [
-      "SEO · Local SEO · AI SEO / GEO",
-      "Google Ads · Meta Ads · LinkedIn Ads",
-      "Lead generation · Performance marketing",
-      "Social · Content · Email · Influencer",
-      "Marketing automation · Analytics",
+      "SEO",
+      "Local SEO",
+      "AI SEO / GEO",
+      "Google Ads",
+      "Meta Ads",
+      "LinkedIn Ads",
+      "Performance Marketing",
+      "Lead Generation",
+      "Social Media Marketing",
+      "Content Marketing",
+      "Email Marketing",
+      "Influencer Marketing",
+      "Marketing Automation",
+      "Analytics & Tracking",
     ],
   },
   {
     title: "Web & ecommerce",
     items: [
-      "Corporate sites · Landing pages",
-      "WordPress · Webflow",
-      "Shopify · WooCommerce · Magento",
-      "Custom ecommerce & web apps",
+      "Corporate Websites",
+      "Landing Pages",
+      "WordPress",
+      "Webflow",
+      "Shopify",
+      "WooCommerce",
+      "Magento",
+      "Custom Ecommerce",
+      "Custom Web Development",
     ],
   },
   {
-    title: "Technology & AI",
+    title: "Technology & digital transformation",
     items: [
-      "CRM · ERP · SaaS development",
-      "AI chatbots · Agents · Workflows",
-      "Custom software · Mobile apps",
-      "Admin dashboards · Cloud & DevOps",
+      "CRM Systems",
+      "ERP Solutions",
+      "SaaS Development",
+      "AI Chatbots",
+      "AI Agents",
+      "AI Automation",
+      "AI Workflows",
+      "Custom Software",
+      "Mobile Applications",
+      "Admin Dashboards",
+      "Cloud & DevOps",
     ],
   },
   {
     title: "Creative & production",
     items: [
-      "Branding · Graphic design · UI/UX",
-      "Photography · Videography",
-      "Video editing · Motion · Animation",
-      "Product shoots · Brand films",
+      "Branding",
+      "Graphic Design",
+      "UI/UX",
+      "Photography",
+      "Videography",
+      "Video Editing",
+      "Motion Graphics",
+      "Animation",
+      "Product Shoots",
+      "Brand Films",
+      "Social Media Creatives",
     ],
   },
 ];
 
+const GROWTH_CHAIN = [
+  "Website",
+  "SEO",
+  "Paid advertising",
+  "Social media",
+  "Content",
+  "Automation",
+  "CRM",
+  "Digital transformation",
+];
+
 const WHO = [
-  "Digital marketing agencies needing capacity or specialists",
-  "Web companies that want to add growth services",
-  "Freelancers & consultants taking larger projects",
-  "Branding agencies adding digital and technology",
-  "IT companies needing marketing and creative support",
-  "Social agencies needing ads, design, and tech backend",
-  "Business consultants packaging digital solutions",
-  "New agencies scaling without large fixed costs",
+  {
+    title: "Digital marketing agencies",
+    text: "Need additional execution capacity or specialist services?",
+  },
+  {
+    title: "Web development companies",
+    text: "Want to offer marketing and growth services after launching websites?",
+  },
+  {
+    title: "Freelancers & consultants",
+    text: "Want to take larger projects without hiring a team?",
+  },
+  {
+    title: "Branding agencies",
+    text: "Want to add digital marketing, websites, and technology?",
+  },
+  {
+    title: "IT companies",
+    text: "Need marketing and creative execution support?",
+  },
+  {
+    title: "Social media agencies",
+    text: "Need backend content, design, advertising, and technology support?",
+  },
+  {
+    title: "Business consultants",
+    text: "Want to add complete digital solutions to your offering?",
+  },
+  {
+    title: "New agencies",
+    text: "Want to start lean and scale without large fixed costs?",
+  },
+];
+
+const YOU_GET = [
+  "Dedicated project coordination",
+  "Specialist execution teams",
+  "Structured workflows",
+  "Transparent costing",
+  "Professional deliverables",
+  "Technical expertise",
+  "Scalable capacity",
+  "Multiple service capabilities",
+  "Partner-first communication",
+  "Long-term collaboration",
 ];
 
 const STEPS = [
-  { n: "01", title: "Connect", text: "Tell us about your agency, clients, and needs." },
-  { n: "02", title: "Select your model", text: "Refer & Earn, Back-End Execution, or White-Label." },
-  { n: "03", title: "Agree commercials", text: "Scope, pricing, responsibilities, and communication." },
-  { n: "04", title: "Start execution", text: "Our specialists get to work." },
-  { n: "05", title: "Scale", text: "Expand services as your pipeline grows." },
+  { n: "01", title: "Connect", text: "Tell us about your agency, clients, and requirements." },
+  {
+    n: "02",
+    title: "Select your model",
+    text: "Refer & Earn, Back-End Execution, or White-Label Team.",
+  },
+  {
+    n: "03",
+    title: "Agree the commercials",
+    text: "Define scope, pricing, responsibilities, and communication structure.",
+  },
+  { n: "04", title: "Start execution", text: "Our team gets to work." },
+  {
+    n: "05",
+    title: "Scale",
+    text: "As your business grows, expand the services you offer.",
+  },
 ];
 
 const FAQS = [
   {
     question: "Will DisplayAvenue approach my client directly?",
     answer:
-      "For partner-managed projects, we respect the partner relationship and do not bypass you to pursue direct business. Client-facing involvement follows the agreed partnership model.",
+      "For partner-managed projects, our operating principle is to respect the partner relationship and not bypass the partner to pursue direct business. Communication and client-facing involvement are handled according to the agreed partnership model.",
   },
   {
     question: "Can I use my own pricing?",
     answer:
-      "Yes. In back-end and white-label models, your agency sets its client commercial model while DisplayAvenue provides the agreed execution service.",
+      "Yes. In the back-end and white-label models, your agency can structure its own client commercial model while DisplayAvenue provides the agreed execution service.",
   },
   {
     question: "Will the client know DisplayAvenue is involved?",
     answer:
-      "That depends on the model. With white-label / back-end execution, your agency can remain the client-facing brand.",
+      "That depends on the partnership model. With white-label / back-end execution, the operating arrangement can be structured so your agency remains the client-facing brand.",
   },
   {
     question: "Can you work under my agency’s brand?",
-    answer: "Yes. That is the purpose of Model 3 — White-Label / Agency Team.",
+    answer: "Yes. That’s the purpose of Model 3 — White-Label / Agency Team.",
   },
   {
     question: "Do you only provide digital marketing?",
     answer:
-      "No. We operate across digital marketing, web, ecommerce, technology, AI, automation, creative, and broader digital transformation.",
+      "No. DisplayAvenue operates across digital marketing, web development, ecommerce, technology, AI, automation, creative, and broader digital transformation services.",
   },
   {
     question: "Can I start with one project?",
-    answer: "Yes. Partnerships can begin with a single project and expand as trust builds.",
+    answer:
+      "Yes. A partnership can begin with a single project and expand as the relationship develops.",
+  },
+  {
+    question: "Do I need to hire your team?",
+    answer:
+      "No. The objective is to give your agency access to execution capabilities without requiring you to build every specialist function internally.",
+  },
+  {
+    question: "Can you handle multiple clients?",
+    answer:
+      "Yes. The partnership is designed to support agencies that need scalable execution capacity.",
   },
   {
     question: "How does the referral commission work?",
     answer:
-      "Under Model 1, the referral partner earns 10% of the project management cost, subject to agreed project and partnership terms.",
+      "Under Model 1, the referral partner earns 10% of the project management cost, subject to the agreed project and partnership terms.",
   },
 ];
 
@@ -271,17 +428,17 @@ export function AgencyPartner() {
     const message = String(data.get("message") || "").trim();
     const hp = String(data.get("website") || "").trim();
 
-    if (!name || !phone || !agency) {
+    if (!name || !phone || !agency || !email || !type || !model) {
       setStatus("err");
-      setError("Please add your name, phone, and agency name.");
+      setError("Please complete the required fields (name, agency, phone, email, type, and model).");
       return;
     }
 
     const composed = [
       "Agency Partner enquiry",
-      agency ? `Agency: ${agency}` : "",
-      type ? `Type: ${type}` : "",
-      model ? `Model: ${model}` : "",
+      `Agency: ${agency}`,
+      `Type: ${type}`,
+      `Model: ${model}`,
       website ? `Website/IG: ${website}` : "",
       services ? `Services needed: ${services}` : "",
       volume ? `Volume: ${volume}` : "",
@@ -337,20 +494,22 @@ export function AgencyPartner() {
       <FAQPageSchema faqs={FAQS} />
 
       <section className="ap-hero">
-        <div className="ap-wrap">
+        <div className="ap-wrap ap-hero__inner">
           <p className="ap-brand">DisplayAvenue</p>
           <p className="ap-eyebrow">Agency Partner Program</p>
-          <h1>Grow your agency. We’ll handle the execution.</h1>
+          <h1>
+            Grow your agency.
+            <span className="ap-hero__line2"> We’ll handle the execution.</span>
+          </h1>
           <p className="ap-lead">
-            Your client. Your brand. Your relationship. Our 30+ member execution team — so you can
-            offer more without hiring more.
+            Your client. Your brand. Your relationship. Our 30+ member execution team.
           </p>
           <div className="ap-actions">
             <a className="ap-btn ap-btn--primary" href="#partner-form">
               Become an agency partner
             </a>
             <a className="ap-btn ap-btn--ghost" href={partnerWa} target="_blank" rel="noreferrer">
-              Talk to partnership team
+              Talk to our partnership team
             </a>
           </div>
         </div>
@@ -358,19 +517,33 @@ export function AgencyPartner() {
 
       <section className="ap-section">
         <div className="ap-wrap">
-          <h2>You don’t need 10 specialists to offer 100+ services</h2>
+          <h2>You don’t need to hire 10 specialists to offer 100+ digital services</h2>
           <p className="ap-sub">
-            Don’t turn away projects because your team is overloaded. Don’t lose a client because
-            you cannot execute in-house. Partner with DisplayAvenue as your behind-the-scenes
-            digital execution team — refer, lead, or white-label.
+            You don’t need to turn away projects because your team is overloaded. And you don’t need
+            to lose a client because you cannot execute a project in-house. Partner with
+            DisplayAvenue and turn us into your behind-the-scenes digital execution team — whether
+            you want to earn by referring, keep full client control while outsourcing execution, or
+            operate with a full digital team under your own agency brand.
           </p>
+          <div className="ap-actions ap-actions--inline">
+            <a className="ap-btn ap-btn--primary" href="#models">
+              Refer. Lead. Or white-label.
+            </a>
+          </div>
         </div>
       </section>
 
       <section className="ap-section ap-section--tint">
         <div className="ap-wrap">
           <h2>Why agencies partner with DisplayAvenue</h2>
-          <p className="ap-sub">You focus on relationships. We focus on execution.</p>
+          <p className="ap-sub">
+            You focus on relationships. We focus on execution. Running an agency requires more than
+            winning clients — strategists, designers, developers, performance marketers, SEO
+            specialists, content creators, video editors, technology experts, and account support.
+            Building that team internally is expensive. Managing freelancers is unpredictable.
+            Hiring specialists for every project is exhausting. DisplayAvenue gives you access to an
+            in-house digital execution team without the overhead of building one yourself.
+          </p>
           <ul className="ap-why">
             {WHY.map((item) => (
               <li key={item.title}>
@@ -384,8 +557,8 @@ export function AgencyPartner() {
 
       <section className="ap-section" id="models">
         <div className="ap-wrap">
-          <h2>3 ways to partner</h2>
-          <p className="ap-sub">Refer. Lead. Or white-label.</p>
+          <h2>Choose your partnership model</h2>
+          <p className="ap-sub">3 ways to partner — refer, lead, or white-label.</p>
           <div className="ap-models">
             {MODELS.map((m) => (
               <article key={m.id} className="ap-model" id={`model-${m.id}`}>
@@ -393,17 +566,20 @@ export function AgencyPartner() {
                 <h3>{m.title}</h3>
                 <p className="ap-model__lead">{m.lead}</p>
                 <p>{m.body}</p>
-                {"steps" in m && m.steps ? (
-                  <ol className="ap-ol">
-                    {m.steps.map((s) => (
-                      <li key={s}>{s}</li>
-                    ))}
-                  </ol>
+                {m.steps ? (
+                  <>
+                    <h4 className="ap-h4">How it works</h4>
+                    <ol className="ap-ol">
+                      {m.steps.map((s) => (
+                        <li key={s}>{s}</li>
+                      ))}
+                    </ol>
+                  </>
                 ) : null}
-                {"youManage" in m && m.youManage ? (
+                {m.youManage && m.weManage ? (
                   <div className="ap-split">
                     <div>
-                      <h4>You manage</h4>
+                      <h4 className="ap-h4">You manage</h4>
                       <ul>
                         {m.youManage.map((x) => (
                           <li key={x}>{x}</li>
@@ -411,27 +587,31 @@ export function AgencyPartner() {
                       </ul>
                     </div>
                     <div>
-                      <h4>We manage</h4>
+                      <h4 className="ap-h4">We manage</h4>
                       <ul>
-                        {m.weManage!.map((x) => (
+                        {m.weManage.map((x) => (
                           <li key={x}>{x}</li>
                         ))}
                       </ul>
                     </div>
                   </div>
                 ) : null}
-                {"offer" in m && m.offer ? (
-                  <ul className="ap-checklist">
-                    {m.offer.map((x) => (
-                      <li key={x}>{x}</li>
-                    ))}
-                  </ul>
+                {m.offer ? (
+                  <>
+                    <h4 className="ap-h4">You can offer</h4>
+                    <ul className="ap-checklist ap-checklist--grid">
+                      {m.offer.map((x) => (
+                        <li key={x}>{x}</li>
+                      ))}
+                    </ul>
+                  </>
                 ) : null}
-                {"perfectFor" in m && m.perfectFor ? (
+                {m.perfectFor ? (
                   <p className="ap-perfect">
                     <strong>Perfect for:</strong> {m.perfectFor.join(" · ")}
                   </p>
                 ) : null}
+                {m.opportunity ? <p className="ap-opportunity">{m.opportunity}</p> : null}
                 <a className="ap-btn ap-btn--outline" href={m.href}>
                   {m.cta}
                 </a>
@@ -439,18 +619,21 @@ export function AgencyPartner() {
             ))}
           </div>
           <p className="ap-flow">
-            Client → Your Agency → DisplayAvenue execution team. Not Client → Agency → DisplayAvenue →
-            Client.
+            <strong>Client → Your Agency → DisplayAvenue execution team.</strong>
+            <br />
+            Not: Client → Your Agency → DisplayAvenue → Client. Your relationship stays protected.
           </p>
         </div>
       </section>
 
       <section className="ap-section ap-section--tint">
         <div className="ap-wrap">
-          <h2>100% partner-first</h2>
+          <h2>100% partner-first approach</h2>
           <p className="ap-sub">
-            Your client relationship is your asset. An execution partner should never become a
-            threat to the agency that brought the business.
+            We understand one thing: your client relationship is your asset. We don’t believe an
+            execution partner should become a threat to the agency that brought the business. That’s
+            why our Agency Partner model is built around trust, confidentiality, and clearly defined
+            responsibilities.
           </p>
           <ol className="ap-principles">
             {PRINCIPLES.map((p) => (
@@ -468,13 +651,34 @@ export function AgencyPartner() {
 
       <section className="ap-section">
         <div className="ap-wrap">
+          <h2>Built for agencies that want to scale</h2>
+          <p className="ap-quote">
+            Stop saying “We don’t offer that service.” Start saying “Yes, we can handle that.”
+          </p>
+          <ul className="ap-can">
+            {CAN_HANDLE.map((item) => (
+              <li key={item}>
+                <span>Your client needs {item.toLowerCase()}?</span>
+                <strong>We can execute it.</strong>
+              </li>
+            ))}
+          </ul>
+          <p className="ap-sub">
+            You don’t have to build every capability yourself. Build your agency around sales,
+            relationships, and strategy — and use DisplayAvenue as your execution engine.
+          </p>
+        </div>
+      </section>
+
+      <section className="ap-section ap-section--tint">
+        <div className="ap-wrap">
           <h2>A complete digital execution ecosystem</h2>
           <p className="ap-sub">One partner. Multiple specialist teams.</p>
           <div className="ap-caps">
             {CAPABILITIES.map((c) => (
               <div key={c.title} className="ap-cap">
                 <h3>{c.title}</h3>
-                <ul>
+                <ul className="ap-cap__list">
                   {c.items.map((i) => (
                     <li key={i}>{i}</li>
                   ))}
@@ -485,55 +689,114 @@ export function AgencyPartner() {
         </div>
       </section>
 
-      <section className="ap-section ap-section--tint">
+      <section className="ap-section">
         <div className="ap-wrap">
           <h2>Why build an internal team for everything?</h2>
           <div className="ap-compare">
             <div>
-              <h3>Traditional</h3>
+              <h3>Traditional approach</h3>
               <ul>
-                <li>Hire, train, manage, replace</li>
-                <li>Salaries and freelancer chaos</li>
-                <li>Capacity bottlenecks</li>
+                <li>Hire</li>
+                <li>Train</li>
+                <li>Manage</li>
+                <li>Replace</li>
+                <li>Pay salaries</li>
+                <li>Manage freelancers</li>
+                <li>Handle workload</li>
+                <li>Deal with capacity issues</li>
               </ul>
             </div>
             <div>
               <h3>Partner approach</h3>
-              <ul>
+              <ol className="ap-partner-flow">
                 <li>Sell the project</li>
                 <li>Share the requirement</li>
                 <li>Our specialists execute</li>
                 <li>You deliver to your client</li>
                 <li>You scale</li>
-              </ul>
+              </ol>
+              <p className="ap-perfect">
+                More capabilities. Less overhead. Faster scaling.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="ap-section">
+      <section className="ap-section ap-section--tint">
         <div className="ap-wrap">
           <h2>Transparent pricing</h2>
           <p className="ap-sub">
-            No mystery costs. Defined scopes, deliverables, and project costs. You know what is
-            executed, what it costs, and who owns what. In Models 2 and 3, you set client pricing —
-            we agree your execution cost, and your agency keeps its margin.
+            No mystery costs. No confusing markups. A successful agency partnership needs predictable
+            economics — defined scopes, deliverables, and project costs. You know what is being
+            executed, what it costs, what will be delivered, and who is responsible for what.
+          </p>
+          <p className="ap-sub">
+            For white-label and back-end execution, the commercial model can be structured around
+            your agency’s requirements, project volume, and operating model. Want your own agency
+            margin? That’s exactly what Model 2 and Model 3 are designed for. You decide what you
+            charge your client. We agree on your execution cost. Your agency keeps its commercial
+            margin.
+          </p>
+        </div>
+      </section>
+
+      <section className="ap-section">
+        <div className="ap-wrap">
+          <h2>From one project to a long-term partnership</h2>
+          <p className="ap-sub">
+            A website project can become an SEO client. SEO can become paid advertising. Paid
+            advertising can become social media. The bigger your capability, the bigger the client
+            opportunity.
+          </p>
+          <ol className="ap-chain">
+            {GROWTH_CHAIN.map((step, i) => (
+              <li key={step}>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+          <p className="ap-sub" style={{ marginTop: "1.5rem" }}>
+            Agency partnerships aren’t new to us. We’ve worked this way for 5+ years, helping
+            agencies extend execution without building everything internally. The goal isn’t to
+            become another agency competing with you. The goal is to become the team behind your
+            agency.
           </p>
         </div>
       </section>
 
       <section className="ap-section ap-section--tint">
         <div className="ap-wrap">
-          <h2>Who should become a partner?</h2>
-          <ul className="ap-who">
+          <h2>Who should become a DisplayAvenue agency partner?</h2>
+          <ul className="ap-who-grid">
             {WHO.map((w) => (
-              <li key={w}>{w}</li>
+              <li key={w.title}>
+                <strong>{w.title}</strong>
+                <span>{w.text}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="ap-quote ap-quote--soft">
+            Your agency can look bigger without hiring bigger. You don’t need 30 employees on your
+            payroll. You need access to the right 30+ specialists. That’s the difference.
+          </p>
+        </div>
+      </section>
+
+      <section className="ap-section">
+        <div className="ap-wrap">
+          <h2>What you get as a partner</h2>
+          <p className="ap-sub">A complete execution backend — essentially an extended digital department.</p>
+          <ul className="ap-get">
+            {YOU_GET.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="ap-section">
+      <section className="ap-section ap-section--tint">
         <div className="ap-wrap">
           <h2>How the partnership works</h2>
           <ol className="ap-steps">
@@ -548,7 +811,22 @@ export function AgencyPartner() {
         </div>
       </section>
 
-      <section className="ap-section ap-section--tint" id="faq">
+      <section className="ap-band">
+        <div className="ap-wrap">
+          <h2>Your clients should never know how big your backend is</h2>
+          <p>They only need to know one thing: your agency can deliver.</p>
+          <div className="ap-actions">
+            <a className="ap-btn ap-btn--primary" href="#partner-form">
+              Become a DisplayAvenue partner
+            </a>
+            <a className="ap-btn ap-btn--ghost" href={partnerWa} target="_blank" rel="noreferrer">
+              Talk to partnership team
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="ap-section" id="faq">
         <div className="ap-wrap">
           <h2>FAQ</h2>
           <div className="ap-faqs">
@@ -562,12 +840,13 @@ export function AgencyPartner() {
         </div>
       </section>
 
-      <section className="ap-section" id="partner-form">
+      <section className="ap-section ap-section--tint" id="partner-form">
         <div className="ap-wrap ap-form-wrap">
           <h2>Partner enquiry</h2>
           <p className="ap-sub">
-            Tell us about your agency — we’ll recommend the right model. Information is treated
-            confidentially.
+            Let’s build your execution engine. Tell us a little about your agency and we’ll discuss
+            the most suitable partnership model. Your information is treated confidentially and used
+            only to discuss the partnership opportunity.
           </p>
 
           {status === "ok" ? (
@@ -585,25 +864,44 @@ export function AgencyPartner() {
                 <input name="name" required autoComplete="name" placeholder="Your name" />
               </label>
               <label>
-                <span>Agency / company *</span>
-                <input name="agency" required autoComplete="organization" placeholder="Agency name" />
+                <span>Agency / company name *</span>
+                <input
+                  name="agency"
+                  required
+                  autoComplete="organization"
+                  placeholder="Agency name"
+                />
               </label>
               <label>
                 <span>Phone / WhatsApp *</span>
-                <input name="phone" required inputMode="tel" autoComplete="tel" placeholder="Phone" />
+                <input
+                  name="phone"
+                  required
+                  inputMode="tel"
+                  autoComplete="tel"
+                  placeholder="Phone number"
+                />
               </label>
               <label>
-                <span>Email</span>
-                <input name="email" type="email" autoComplete="email" placeholder="Email" />
+                <span>Email *</span>
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="Email address"
+                />
               </label>
               <label>
                 <span>Website / Instagram</span>
                 <input name="site" placeholder="Website or profile" />
               </label>
               <label>
-                <span>What best describes you?</span>
-                <select name="type" defaultValue="">
-                  <option value="">Select</option>
+                <span>What best describes you? *</span>
+                <select name="type" required defaultValue="">
+                  <option value="" disabled>
+                    Select
+                  </option>
                   {PARTNER_TYPES.map((t) => (
                     <option key={t} value={t}>
                       {t}
@@ -612,9 +910,11 @@ export function AgencyPartner() {
                 </select>
               </label>
               <label>
-                <span>Partnership interest</span>
-                <select name="model" defaultValue="">
-                  <option value="">Select</option>
+                <span>Which partnership are you interested in? *</span>
+                <select name="model" required defaultValue="">
+                  <option value="" disabled>
+                    Select
+                  </option>
                   {PARTNER_MODELS.map((t) => (
                     <option key={t} value={t}>
                       {t}
@@ -658,19 +958,29 @@ export function AgencyPartner() {
       <section className="ap-closing">
         <div className="ap-wrap">
           <p className="ap-brand ap-brand--light">DisplayAvenue</p>
+          <p className="ap-eyebrow">Digital growth. Digital transformation. Execution at scale.</p>
           <h2>Your agency + our execution team</h2>
           <p>
-            More capability. More opportunities. More growth. Refer. Lead. Or white-label.
+            More capability. More opportunities. More growth. Refer. Lead. Or white-label. Let’s
+            build something bigger — together.
           </p>
+          <ul className="ap-closing__meta">
+            <li>Digital Marketing · Digital Transformation · Technology</li>
+            <li>AI & Automation · Web & Ecommerce · Creative & Production</li>
+            <li>30+ in-house team members · India & international markets</li>
+          </ul>
           <div className="ap-actions">
             <a className="ap-btn ap-btn--primary" href="#partner-form">
-              Become a DisplayAvenue partner
+              Become an agency partner
             </a>
-            <a className="ap-btn ap-btn--ghost" href={company.phoneHref}>
-              Call {company.phone}
+            <a className="ap-btn ap-btn--ghost" href={partnerWa} target="_blank" rel="noreferrer">
+              WhatsApp {company.phone}
             </a>
-            <Link className="ap-btn ap-btn--ghost" to="/contact">
-              General contact
+            <a className="ap-btn ap-btn--ghost" href={company.emailHref}>
+              {company.email}
+            </a>
+            <Link className="ap-btn ap-btn--ghost" to="/">
+              displayavenue.com
             </Link>
           </div>
         </div>
