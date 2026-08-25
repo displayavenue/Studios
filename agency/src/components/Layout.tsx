@@ -9,6 +9,7 @@ import { ScrollToTop } from "./ScrollToTop";
 import { StickyMobileCta } from "./StickyMobileCta";
 import { LiveChat } from "./LiveChat";
 import { VisitorTracker } from "./VisitorTracker";
+import { ExitIntentOffer } from "./ExitIntentOffer";
 import "./Placeholder.css";
 
 export function Layout() {
@@ -28,6 +29,7 @@ export function Layout() {
       <WhatsAppFloat />
       <LiveChat />
       <StickyMobileCta />
+      <ExitIntentOffer />
     </div>
   );
 }

@@ -346,6 +346,45 @@ export function cityWhatsAppHref(baseHref: string, city: SeoCity, service?: SeoS
   return `${baseHref}${baseHref.includes("?") ? "&" : "?"}text=${encodeURIComponent(text)}`;
 }
 
+/** Map free-text industry labels on city pages to industry routes. */
+export function industryHrefFromLabel(label: string): string | null {
+  const key = label.toLowerCase();
+  const rules: [RegExp, string][] = [
+    [/clinic|health|patient|wellness|homeopath/, "/industries/healthcare"],
+    [/real\s*estate|property|developer/, "/industries/real-estate"],
+    [/educat|coach|edtech|school|college/, "/industries/education"],
+    [/retail|d2c|e-?commerce|shop/, "/industries/ecommerce"],
+    [/restaurant|f&b|food/, "/industries/restaurants"],
+    [/hotel|hospitality/, "/industries/hospitality"],
+    [/manufactur|industrial/, "/industries/manufacturing"],
+    [/home\s*service|professional|b2b/, "/industries/b2b"],
+    [/fashion|apparel/, "/industries/fashion"],
+    [/jewellery|jewelry/, "/industries/jewellery"],
+    [/startup/, "/industries/startups"],
+    [/finance|bank/, "/industries/finance"],
+    [/auto|dealer/, "/industries/automotive"],
+    [/construct/, "/industries/construction"],
+    [/travel|tour/, "/industries/travel"],
+    [/saas|tech/, "/industries/saas"],
+    [/ngo|non-?profit/, "/industries/ngo"],
+  ];
+  for (const [re, href] of rules) {
+    if (re.test(key)) return href;
+  }
+  return null;
+}
+
+export const LEAD_INTEREST_OPTIONS = [
+  "Google Ads",
+  "Meta / Instagram Ads",
+  "Local SEO / Google Maps",
+  "SEO",
+  "Website / landing pages",
+  "WhatsApp lead system",
+  "Full monthly package",
+  "Not sure — need advice",
+] as const;
+
 export function buildLocationFaqs(city: SeoCity, service: SeoService) {
   const base = [
     {

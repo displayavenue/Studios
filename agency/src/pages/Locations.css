@@ -251,6 +251,31 @@
   color: var(--text-muted);
 }
 
+.loc-list--industries a {
+  color: var(--blue, #0056ff);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.loc-list--industries a:hover {
+  text-decoration: underline;
+}
+
+.loc-convert {
+  padding: 1.1rem 1.15rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(135deg, #f4f8ff 0%, #eef4ff 55%, #f8fbff 100%);
+}
+
+.loc-convert .loc-h2 {
+  margin-top: 0;
+}
+
+.loc-convert .loc-ctas {
+  margin-bottom: 0;
+}
+
 @media (max-width: 900px) {
   .loc-city-grid,
   .loc-city-grid--services {

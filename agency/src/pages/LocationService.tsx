@@ -6,6 +6,7 @@ import {
   cityWhatsAppHref,
   findCity,
   findService,
+  industryHrefFromLabel,
   locationPath,
   locationTldr,
   mmrCities,
@@ -16,7 +17,17 @@ import { company } from "../data/company";
 import "../styles/pages.css";
 import "./Locations.css";
 
-function CityCtas({ cityName, whatsappHref }: { cityName: string; whatsappHref: string }) {
+function CityCtas({
+  cityName,
+  whatsappHref,
+  phoneHref,
+  phoneLabel,
+}: {
+  cityName: string;
+  whatsappHref: string;
+  phoneHref?: string;
+  phoneLabel?: string;
+}) {
   return (
     <div className="loc-ctas">
       <Link to={`/contact?city=${encodeURIComponent(cityName)}`} className="btn btn-primary">
@@ -25,6 +36,11 @@ function CityCtas({ cityName, whatsappHref }: { cityName: string; whatsappHref: 
       <a className="btn btn-outline loc-ctas__wa" href={whatsappHref} target="_blank" rel="noreferrer">
         WhatsApp {cityName}
       </a>
+      {phoneHref ? (
+        <a className="btn btn-outline" href={phoneHref}>
+          Call {phoneLabel || "now"}
+        </a>
+      ) : null}
       <a className="btn btn-outline" href="https://displayavenue.com/strategy/">
         Strategy Maker
       </a>
@@ -186,10 +202,15 @@ export function LocationCityPage() {
           </p>
           {city.marathiHint && <p className="loc-marathi">{city.marathiHint}</p>}
 
-          <CityCtas cityName={city.name} whatsappHref={wa} />
+          <CityCtas
+            cityName={city.name}
+            whatsappHref={wa}
+            phoneHref={company.phoneHref}
+            phoneLabel={company.phone}
+          />
 
           <p className="loc-trust-line">
-            Free plan · WhatsApp reply in business hours · Mumbai MMR specialists · Pan-India delivery
+            Free plan · Reply in business hours · Mumbai MMR specialists · Pan-India delivery
           </p>
           {city.pricingHint && (
             <p className="loc-pricing">
@@ -218,11 +239,25 @@ export function LocationCityPage() {
           {city.industries && city.industries.length > 0 && (
             <section className="loc-section">
               <h2 className="loc-h2">Who we help in {city.name}</h2>
-              <ul className="loc-list">
-                {city.industries.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
+              <ul className="loc-list loc-list--industries">
+                {city.industries.map((i) => {
+                  const href = industryHrefFromLabel(i);
+                  return (
+                    <li key={i}>
+                      {href ? (
+                        <Link to={`${href}?city=${encodeURIComponent(city.name)}`}>
+                          {i} in {city.name}
+                        </Link>
+                      ) : (
+                        i
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
+              <p className="loc-note">
+                Industry pages explain the playbook; add your city on contact so we tag the lead correctly.
+              </p>
             </section>
           )}
 
@@ -338,7 +373,16 @@ export function LocationServicePage() {
             <strong>Answer:</strong> {locationTldr(city, service)}
           </p>
 
-          <CityCtas cityName={city.name} whatsappHref={wa} />
+          <CityCtas
+            cityName={city.name}
+            whatsappHref={wa}
+            phoneHref={company.phoneHref}
+            phoneLabel={company.phone}
+          />
+
+          <p className="loc-trust-line">
+            Free plan · Reply in business hours · Tracking + WhatsApp follow-up included in kickoff
+          </p>
 
           {(city.pricingHint || service.costFaq) && (
             <p className="loc-pricing">
@@ -425,6 +469,19 @@ export function LocationServicePage() {
                 </Link>
               ))}
             </div>
+          </section>
+
+          <section className="loc-section loc-convert">
+            <h2 className="loc-h2">Ready to start in {city.name}?</h2>
+            <p className="loc-body">
+              Tell us your offer and monthly budget. We’ll reply with a plain 30-day plan — no jargon.
+            </p>
+            <CityCtas
+              cityName={city.name}
+              whatsappHref={wa}
+              phoneHref={company.phoneHref}
+              phoneLabel={company.phone}
+            />
           </section>
 
           <p className="loc-back">
