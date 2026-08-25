@@ -159,6 +159,7 @@ function getByPath(obj, path) {
 }
 
 function setByPath(obj, path, value) {
+  if (!obj || typeof obj !== "object") return;
   const parts = path.split(".");
   let cur = obj;
   for (let i = 0; i < parts.length - 1; i++) {
