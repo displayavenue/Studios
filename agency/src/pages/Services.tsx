@@ -43,8 +43,17 @@ export function Services() {
             <Link to="/contact" className="btn btn-primary">
               Request Custom Solution →
             </Link>
+            <Link to="/locations/mumbai" className="btn btn-outline">
+              Mumbai
+            </Link>
+            <Link to="/locations/navi-mumbai" className="btn btn-outline">
+              Navi Mumbai
+            </Link>
+            <Link to="/locations/thane" className="btn btn-outline">
+              Thane
+            </Link>
             <Link to="/locations" className="btn btn-outline">
-              Browse by city
+              All cities
             </Link>
             <Link to="/packages" className="btn btn-outline">
               View Packages

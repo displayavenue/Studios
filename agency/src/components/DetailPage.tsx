@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Icon } from "./Icon";
 import type { DetailPageContent, PageArchitecture } from "../data/catalogTypes";
 import { useCms } from "../cms/CmsProvider";
@@ -9,6 +9,7 @@ import {
   BreadcrumbSchema,
   ArticleSchema,
 } from "./SEO";
+import { whatsappWithText } from "../lib/geoContext";
 import "./DetailPage.css";
 
 function pathFor(page: DetailPageContent): string {
@@ -149,6 +150,8 @@ function sectionTitle(arch: PageArchitecture, page: DetailPageContent): {
 
 export function DetailPage({ page }: { page: DetailPageContent }) {
   const cms = useCms();
+  const [searchParams] = useSearchParams();
+  const cityParam = (searchParams.get("city") || "").trim();
   const path = pathFor(page);
   const arch = resolveArchitecture(page);
   const labels = sectionTitle(arch, page);
@@ -208,6 +211,15 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
   const secondaryCta = page.secondaryCtaLabel || "Call DisplayAvenue";
   const secondaryHref = page.secondaryCtaHref || cms.company.phoneHref;
   const processSteps = page.funnelSteps?.length ? page.funnelSteps : page.process;
+  const contactHref = cityParam
+    ? `/contact?city=${encodeURIComponent(cityParam)}`
+    : "/contact";
+  const waHref = cityParam
+    ? whatsappWithText(
+        cms.company.whatsappHref,
+        `Hi DisplayAvenue, I'm looking at ${page.title} for ${cityParam}.`,
+      )
+    : cms.company.whatsappHref;
 
   return (
     <div className={`detail-page detail-page--${arch}`}>
@@ -262,7 +274,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
               </p>
             )}
             <div className="detail-hero-actions">
-              <Link to="/contact" className="btn btn-primary">
+              <Link to={contactHref} className="btn btn-primary">
                 {primaryCta} →
               </Link>
               {secondaryHref.startsWith("http") || secondaryHref.startsWith("tel:") ? (
@@ -275,12 +287,12 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
                 </Link>
               )}
               <a
-                href={cms.company.whatsappHref}
+                href={waHref}
                 className="btn btn-ghost"
                 target="_blank"
                 rel="noreferrer"
               >
-                WhatsApp Us
+                {cityParam ? `WhatsApp · ${cityParam}` : "WhatsApp Us"}
               </a>
             </div>
             {page.metrics && (
@@ -434,7 +446,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
               </ol>
             </div>
             <div className="detail-mid-cta">
-              <Link to="/contact" className="btn btn-primary">
+              <Link to={contactHref} className="btn btn-primary">
                 {primaryCta} →
               </Link>
             </div>
@@ -517,7 +529,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
               <h3>Case studies</h3>
               <span className="link-arrow">Continue →</span>
             </Link>
-            <Link to="/contact" className="category-card">
+            <Link to={contactHref} className="category-card">
               <h3>Talk to a strategist</h3>
               <span className="link-arrow">Continue →</span>
             </Link>
@@ -538,7 +550,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
                 then propose what to fix first.
               </p>
             </div>
-            <Link to="/contact" className="btn btn-primary">
+            <Link to={contactHref} className="btn btn-primary">
               {primaryCta} →
             </Link>
           </div>

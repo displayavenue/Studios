@@ -23,6 +23,7 @@ import { CitationDirectory } from "./pages/tools/CitationDirectory";
 import { IndustryReport } from "./pages/tools/IndustryReport";
 import { LocationCityPage, LocationServicePage } from "./pages/LocationService";
 import { LocationsHub } from "./pages/Locations";
+import { DigitalMarketingAgencyMumbai } from "./pages/DigitalMarketingAgencyMumbai";
 import { BusinessCard } from "./pages/BusinessCard";
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
@@ -54,6 +55,7 @@ export default function App() {
           <Route path="locations" element={<LocationsHub />} />
           <Route path="locations/:city/:service" element={<LocationServicePage />} />
           <Route path="locations/:city" element={<LocationCityPage />} />
+          <Route path="digital-marketing-agency-mumbai" element={<DigitalMarketingAgencyMumbai />} />
           <Route path="packages" element={<Packages />} />
           <Route path="packages/:slug" element={<PackageDetail />} />
           <Route path="free-tools" element={<FreeTools />} />

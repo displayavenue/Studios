@@ -85,6 +85,39 @@ function da_blog_topics(): array {
       ],
     ],
     [
+      'category' => 'Mumbai',
+      'title' => 'Google Ads for Mumbai SMEs: Where Budget Actually Goes',
+      'hook' => 'In Mumbai, broad match and weak landing pages burn budget before WhatsApp ever rings.',
+      'points' => [
+        'Geo-target Mumbai pin codes that match your service area.',
+        'Use exact and phrase match on money keywords first.',
+        'Send clicks to one offer page with WhatsApp above the fold.',
+        'Review search terms twice a week and add negatives.',
+      ],
+    ],
+    [
+      'category' => 'Navi Mumbai',
+      'title' => 'Local SEO for Navi Mumbai Clinics and Coaching Brands',
+      'hook' => 'Vashi, Nerul, and Kharghar buyers search on Maps — quiet profiles lose calls.',
+      'points' => [
+        'Complete Google Business Profile categories and services.',
+        'Ask for reviews that mention the neighbourhood.',
+        'Post weekly offers and real clinic or classroom photos.',
+        'Build a Navi Mumbai landing page that converts to WhatsApp.',
+      ],
+    ],
+    [
+      'category' => 'Thane',
+      'title' => 'Thane West Lead Gen: Ads + Maps + WhatsApp Speed',
+      'hook' => 'Thane service businesses win when Maps visibility and reply speed work together.',
+      'points' => [
+        'Rank in the local pack for core Thane keywords.',
+        'Run Google Ads while SEO builds.',
+        'Reply to WhatsApp within 5 minutes during business hours.',
+        'Track cost per booked job — not only form fills.',
+      ],
+    ],
+    [
       'category' => 'Websites',
       'title' => 'Why Slow Mobile Sites Kill WhatsApp Enquiries',
       'hook' => 'If your page takes more than 3 seconds on 4G, many buyers never message you.',

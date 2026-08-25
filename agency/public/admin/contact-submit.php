@@ -48,8 +48,21 @@ $name = trim((string)($body['name'] ?? ''));
 $phone = trim((string)($body['phone'] ?? ''));
 $email = trim((string)($body['email'] ?? ''));
 $business = trim((string)($body['business'] ?? ''));
+$city = trim((string)($body['city'] ?? ''));
+$interest = trim((string)($body['interest'] ?? ''));
 $message = trim((string)($body['message'] ?? ''));
 $hp = trim((string)($body['website'] ?? '')); // honeypot
+
+$tags = [];
+if (!empty($body['tags']) && is_array($body['tags'])) {
+  foreach ($body['tags'] as $tag) {
+    $t = trim((string)$tag);
+    if ($t !== '' && strlen($t) <= 80) $tags[] = $t;
+  }
+}
+if ($city !== '' && !in_array($city, $tags, true)) $tags[] = $city;
+if ($interest !== '' && !in_array($interest, $tags, true)) $tags[] = $interest;
+$tags = array_values(array_unique(array_slice($tags, 0, 12)));
 
 if ($hp !== '') {
   echo json_encode(['ok' => true, 'saved' => true]);
@@ -62,7 +75,7 @@ if ($name === '' || $phone === '') {
   exit;
 }
 
-if (strlen($name) > 120 || strlen($phone) > 40 || strlen($email) > 120 || strlen($business) > 160 || strlen($message) > 4000) {
+if (strlen($name) > 120 || strlen($phone) > 40 || strlen($email) > 120 || strlen($business) > 160 || strlen($city) > 80 || strlen($interest) > 120 || strlen($message) > 4000) {
   http_response_code(400);
   echo json_encode(['ok' => false, 'error' => 'Input too long']);
   exit;
@@ -87,6 +100,9 @@ $lead = [
   'phone' => $phone,
   'email' => $email,
   'business' => $business,
+  'city' => $city,
+  'interest' => $interest,
+  'tags' => $tags,
   'message' => $message,
   'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
   'userAgent' => substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 240),
@@ -121,6 +137,9 @@ array_unshift($index, [
   'phone' => $lead['phone'],
   'email' => $lead['email'],
   'business' => $lead['business'],
+  'city' => $city,
+  'interest' => $interest,
+  'tags' => $tags,
   'visitorId' => $visitorId,
   'page' => $lead['page'],
 ]);
@@ -144,6 +163,9 @@ $lines = [
   'Phone: ' . $phone,
   'Email: ' . ($email !== '' ? $email : '(not provided)'),
   'Business: ' . ($business !== '' ? $business : '(not provided)'),
+  'City: ' . ($city !== '' ? $city : '(not provided)'),
+  'Interest: ' . ($interest !== '' ? $interest : '(not provided)'),
+  'Tags: ' . ($tags ? implode(', ', $tags) : '(none)'),
   'Message:',
   $message !== '' ? $message : '(empty)',
   '',

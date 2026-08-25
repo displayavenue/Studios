@@ -60,6 +60,10 @@ export function Footer() {
         { label: "Citation Directory", href: "/free-tools/citation-directory" },
         { label: "All free tools →", href: "/free-tools" },
         { label: "City SEO pages →", href: "/locations" },
+        { label: "Mumbai", href: "/locations/mumbai" },
+        { label: "Navi Mumbai", href: "/locations/navi-mumbai" },
+        { label: "Thane", href: "/locations/thane" },
+        { label: "Mira Road", href: "/locations/mira-road" },
       ],
     },
     {

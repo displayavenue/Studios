@@ -1,9 +1,11 @@
-import { useState, type FormEvent } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useMemo, useState, type FormEvent } from "react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { getStoredUtm, getVisitorId } from "../components/VisitorTracker";
+import { LEAD_INTEREST_OPTIONS, mmrCities } from "../data/locations";
+import { whatsappWithText } from "../lib/geoContext";
 import "../styles/pages.css";
 import "./Contact.css";
 
@@ -12,21 +14,33 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 export function Contact() {
   const { company, contact } = useCms();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const cityFromUrl = searchParams.get("city") || "";
   const fields = contact.fields;
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
   const [error, setError] = useState("");
   const [successTitle, setSuccessTitle] = useState(contact.successTitle);
   const [successMessage, setSuccessMessage] = useState(contact.successMessage);
+  const [submittedCity, setSubmittedCity] = useState(cityFromUrl);
+  const [submittedInterest, setSubmittedInterest] = useState("");
+  const mmrOptions = useMemo(() => mmrCities().map((c) => c.name), []);
+  const defaultCity = cityFromUrl || "";
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const city = String(data.get("city") || "").trim();
+    const interest = String(data.get("interest") || "").trim();
+    const tags = [city, interest].filter(Boolean);
     const payload = {
       name: String(data.get("name") || "").trim(),
       phone: String(data.get("phone") || "").trim(),
       email: String(data.get("email") || "").trim(),
       business: String(data.get("business") || "").trim(),
+      city,
+      interest,
+      tags,
       message: String(data.get("message") || "").trim(),
       website: String(data.get("website") || "").trim(),
       page: `${location.pathname}${location.search || ""}` || "/contact",
@@ -58,6 +72,8 @@ export function Contact() {
       }
       setSuccessTitle(json.successTitle || contact.successTitle);
       setSuccessMessage(json.successMessage || contact.successMessage);
+      setSubmittedCity(city);
+      setSubmittedInterest(interest);
       setStatus("ok");
       form.reset();
     } catch (err) {
@@ -65,17 +81,19 @@ export function Contact() {
       setError(err instanceof Error ? err.message : "Could not send.");
       if (contact.whatsappFallback) {
         window.setTimeout(() => {
-          const text = encodeURIComponent(
-            `Hi DisplayAvenue, I'm ${payload.name}. Phone: ${payload.phone}. ${payload.business ? `Business: ${payload.business}. ` : ""}${payload.message}`,
-          );
-          const wa = company.whatsappHref.includes("?")
-            ? `${company.whatsappHref}&text=${text}`
-            : `${company.whatsappHref}?text=${text}`;
-          window.open(wa, "_blank", "noopener,noreferrer");
+          const text = `Hi DisplayAvenue, I'm ${payload.name}. Phone: ${payload.phone}.${payload.city ? ` City: ${payload.city}.` : ""}${payload.interest ? ` Interest: ${payload.interest}.` : ""}${payload.business ? ` Business: ${payload.business}.` : ""} ${payload.message}`;
+          window.open(whatsappWithText(company.whatsappHref, text), "_blank", "noopener,noreferrer");
         }, 400);
       }
     }
   }
+
+  const successWa = whatsappWithText(
+    company.whatsappHref,
+    submittedCity
+      ? `Hi DisplayAvenue, I just submitted the contact form for ${submittedCity}${submittedInterest ? ` (${submittedInterest})` : ""}.`
+      : `Hi DisplayAvenue, I just submitted the contact form${submittedInterest ? ` about ${submittedInterest}` : ""}.`,
+  );
 
   return (
     <div className="page-shell contact-page">
@@ -142,11 +160,18 @@ export function Contact() {
             <div className="contact-aside__actions">
               <a
                 className="btn btn-primary contact-wa-btn"
-                href={company.whatsappHref}
+                href={
+                  defaultCity
+                    ? whatsappWithText(
+                        company.whatsappHref,
+                        `Hi DisplayAvenue, I need digital marketing help in ${defaultCity}.`,
+                      )
+                    : company.whatsappHref
+                }
                 target="_blank"
                 rel="noreferrer"
               >
-                Chat on WhatsApp
+                Chat on WhatsApp{defaultCity ? ` · ${defaultCity}` : ""}
               </a>
               <a className="btn btn-outline" href={company.phoneHref}>
                 Call {company.phone}
@@ -159,6 +184,7 @@ export function Contact() {
                 <li>More Google & Instagram enquiries</li>
                 <li>Clear monthly marketing packages</li>
                 <li>Websites that convert visitors</li>
+                <li>Mumbai MMR specialists · pan-India delivery</li>
               </ul>
             </div>
 
@@ -187,15 +213,37 @@ export function Contact() {
               <div className="contact-form contact-form--success">
                 <h2>{successTitle}</h2>
                 <p>{successMessage}</p>
-                <div className="contact-form__actions">
+                {submittedCity ? (
+                  <p className="contact-form__city-note">
+                    We noted your city as <strong>{submittedCity}</strong>
+                    {submittedInterest ? (
+                      <>
+                        {" "}
+                        · interest: <strong>{submittedInterest}</strong>
+                      </>
+                    ) : null}
+                    .
+                  </p>
+                ) : null}
+                <p className="contact-form__next-label">While you wait — pick a next step</p>
+                <div className="contact-form__actions contact-form__actions--stack">
                   <a
                     className="btn btn-primary contact-wa-btn"
-                    href={company.whatsappHref}
+                    href={successWa}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    WhatsApp us
+                    WhatsApp us{submittedCity ? ` · ${submittedCity}` : ""}
                   </a>
+                  <a className="btn btn-outline" href="https://displayavenue.com/strategy/">
+                    Free Strategy Maker
+                  </a>
+                  <a className="btn btn-outline" href={company.phoneHref}>
+                    Call {company.phone}
+                  </a>
+                  <Link className="btn btn-outline" to="/free-tools">
+                    Try a free tool
+                  </Link>
                   <button
                     type="button"
                     className="btn btn-outline"
@@ -249,12 +297,47 @@ export function Contact() {
                       autoComplete="organization"
                     />
                   </label>
+                  <label className="contact-field">
+                    <span>City</span>
+                    <input
+                      name="city"
+                      list="contact-city-options"
+                      defaultValue={defaultCity}
+                      placeholder="Mumbai, Navi Mumbai, Thane…"
+                      autoComplete="address-level2"
+                    />
+                    <datalist id="contact-city-options">
+                      {mmrOptions.map((c) => (
+                        <option key={c} value={c} />
+                      ))}
+                      <option value="Pune" />
+                      <option value="Delhi NCR" />
+                      <option value="Bengaluru" />
+                      <option value="Other India" />
+                    </datalist>
+                  </label>
+                  <label className="contact-field">
+                    <span>What do you need?</span>
+                    <select name="interest" defaultValue="">
+                      <option value="">Select an option</option>
+                      {LEAD_INTEREST_OPTIONS.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                   <label className="contact-field contact-field--full">
                     <span>{fields.messageLabel}</span>
                     <textarea
                       name="message"
                       rows={5}
                       placeholder={fields.messagePlaceholder}
+                      defaultValue={
+                        defaultCity
+                          ? `Looking for digital marketing help in ${defaultCity}.`
+                          : undefined
+                      }
                     />
                   </label>
                 </div>

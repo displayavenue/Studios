@@ -201,6 +201,41 @@
   margin-top: 0.35rem;
 }
 
+.contact-form__actions--stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.contact-form__actions--stack .btn {
+  justify-content: center;
+  text-align: center;
+}
+
+.contact-form__city-note {
+  margin: 0.15rem 0 0 !important;
+  font-size: 0.9rem;
+}
+
+.contact-form__next-label {
+  margin: 0.85rem 0 0.15rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy) !important;
+}
+
+.contact-field select {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft, #dbe3ef);
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  background: #fff;
+  color: var(--navy);
+}
+
 .contact-form__head h2 {
   margin: 0;
   font-size: 1.2rem;
