@@ -188,7 +188,9 @@ export function LocationCityPage() {
 
           <CityCtas cityName={city.name} whatsappHref={wa} />
 
-          {city.pricingHint && (
+          <p className="loc-trust-line">
+            Free plan · WhatsApp reply in business hours · Mumbai MMR specialists · Pan-India delivery
+          </p>
             <p className="loc-pricing">
               <strong>Typical budget:</strong> {city.pricingHint}
             </p>

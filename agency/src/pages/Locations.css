@@ -245,9 +245,10 @@
   margin-top: 1.25rem;
 }
 
-.loc-updated {
+.loc-trust-line {
+  margin: -0.35rem 0 1rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
-  font-size: 0.85rem;
 }
 
 @media (max-width: 900px) {
