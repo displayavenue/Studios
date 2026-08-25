@@ -245,6 +245,11 @@
   margin-top: 1.25rem;
 }
 
+.loc-updated {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
 @media (max-width: 900px) {
   .loc-city-grid,
   .loc-city-grid--services {

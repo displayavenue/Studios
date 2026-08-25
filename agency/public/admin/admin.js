@@ -7,6 +7,7 @@ const QUOTE_NAV = {
   automation: "Lead Automation",
   social: "Social Studio",
   blog: "Blog Studio",
+  growth: "Growth Playbook",
   quotations: "Quotations & Payments",
   invoices: "Create Invoice",
 };
@@ -328,7 +329,7 @@ function renderNav() {
       ([key, label]) =>
         `<button type="button" data-key="${key}" class="${
           state.current === key ? "active" : ""
-        }${["quotations", "invoices", "livechat", "automation", "social", "blog"].includes(key) ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+        }${["quotations", "invoices", "livechat", "automation", "social", "blog", "growth"].includes(key) ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
     )
     .join("");
   nav.querySelectorAll("button").forEach((btn) => {
@@ -338,6 +339,7 @@ function renderNav() {
       else if (btn.dataset.key === "automation") openAutomation();
       else if (btn.dataset.key === "social") openSocialStudio();
       else if (btn.dataset.key === "blog") openBlogStudio();
+      else if (btn.dataset.key === "growth") openGrowthPlaybook();
       else if (btn.dataset.key === "quotations") openQuotations();
       else if (btn.dataset.key === "invoices") openInvoices();
       else openCollection(btn.dataset.key);
@@ -1094,6 +1096,98 @@ async function renderBlogStudio() {
     };
   } catch (e) {
     wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load blog")}</p>`;
+  }
+}
+
+async function openGrowthPlaybook() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "growth";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.growth;
+  $("#panel-sub").textContent =
+    "GBP posts, review scripts, NAP checklist, and MMR lead tags for AEO/GEO execution.";
+  renderNav();
+  await renderGrowthPlaybook();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+}
+
+async function renderGrowthPlaybook() {
+  const wrap = $("#editor-wrap");
+  wrap.innerHTML = `<p class="hint">Loading growth playbook…</p>`;
+  try {
+    const res = await fetch("../content/growth-playbook.json", { cache: "no-store" });
+    const data = await res.json();
+    const posts = data.gbpWeeklyPosts || [];
+    const reviews = data.reviewRequestWhatsApp || [];
+    const qs = data.gbpQuestions || [];
+    const nap = data.napChecklist || [];
+    const cites = data.citationTargetsMmr || [];
+    const tags = data.leadTags || [];
+    wrap.innerHTML = `
+      <div class="card">
+        <div class="list-item-head">
+          <h3 style="margin:0">Growth Playbook (AEO / GEO)</h3>
+          <a class="btn btn-ghost" href="../locations/mumbai" target="_blank" rel="noreferrer">Open Mumbai hub ↗</a>
+        </div>
+        <p class="hint">Updated: <strong>${escapeHtml(String(data.updatedAt || "—"))}</strong>. Use these scripts weekly for Google Business Profile, reviews, and MMR lead tagging.</p>
+
+        <h4>GBP weekly post ideas</h4>
+        ${posts
+          .map(
+            (p) => `
+          <div class="list-item">
+            <div class="list-item-head"><strong>${escapeHtml(p.theme || "Post")}</strong>
+              <button type="button" class="btn btn-ghost btn-sm growth-copy" data-copy="${escapeAttr(p.caption || "")}">Copy</button>
+            </div>
+            <p style="margin:.35rem 0;font-size:.9rem">${escapeHtml(p.caption || "")}</p>
+          </div>`,
+          )
+          .join("")}
+
+        <h4>Review request WhatsApp scripts</h4>
+        ${reviews
+          .map(
+            (t, i) => `
+          <div class="list-item">
+            <div class="list-item-head"><strong>Script ${i + 1}</strong>
+              <button type="button" class="btn btn-ghost btn-sm growth-copy" data-copy="${escapeAttr(t)}">Copy</button>
+            </div>
+            <p style="margin:.35rem 0;font-size:.9rem">${escapeHtml(t)}</p>
+          </div>`,
+          )
+          .join("")}
+
+        <h4>GBP Q&amp;A seeds</h4>
+        <ul>${qs.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ul>
+
+        <h4>NAP checklist</h4>
+        <ul>${nap.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ul>
+
+        <h4>MMR citation targets</h4>
+        <p class="hint">${cites.map((c) => escapeHtml(c)).join(" · ")}</p>
+
+        <h4>Lead tags</h4>
+        <p class="hint">${tags.map((c) => escapeHtml(c)).join(" · ")}</p>
+
+        <p class="hint" style="margin-top:1rem">City hubs: <a href="../locations/mumbai" target="_blank">Mumbai</a> · <a href="../locations/navi-mumbai" target="_blank">Navi Mumbai</a> · <a href="../locations/thane" target="_blank">Thane</a> · <a href="../digital-marketing-agency-mumbai" target="_blank">Cite page</a></p>
+      </div>`;
+    wrap.querySelectorAll(".growth-copy").forEach((btn) => {
+      btn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(btn.getAttribute("data-copy") || "");
+          toast("Copied");
+        } catch (_) {
+          toast(btn.getAttribute("data-copy") || "");
+        }
+      };
+    });
+  } catch (e) {
+    wrap.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load growth playbook")}</p>`;
   }
 }
 
@@ -3236,6 +3330,10 @@ async function enterApp(collections) {
   }
   if (state.current === "blog") {
     openBlogStudio();
+    return;
+  }
+  if (state.current === "growth") {
+    openGrowthPlaybook();
     return;
   }
   if (state.current === "quotations") {

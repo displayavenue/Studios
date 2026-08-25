@@ -273,6 +273,8 @@ export function LocationCityPage() {
             <Link to="/locations">← All cities</Link>
             {" · "}
             <Link to="/contact">Contact</Link>
+            {" · "}
+            <span className="loc-updated">Updated for local search · {new Date().getFullYear()}</span>
           </p>
         </div>
       </div>
