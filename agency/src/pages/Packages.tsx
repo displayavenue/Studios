@@ -48,7 +48,7 @@ export function Packages() {
               </div>
             </aside>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0 }} className="packages-grid">
+            <div className="packages-grid">
               {packageCategories.map((cat) => (
                 <div key={cat.title} className="package-col">
                   <span className="icon-box" style={{ background: `${cat.color}18` }}>

@@ -54,7 +54,7 @@ export function Portfolio() {
               <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
                 Explore Our Work by Category
               </h2>
-              <div className="category-grid" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+              <div className="category-grid category-grid--4">
                 {portfolioCategories.map((item) => (
                   <Link key={item.title} to="/portfolio" className="category-card">
                     <span className="icon-box" style={{ background: `${item.color}18` }}>
@@ -72,7 +72,7 @@ export function Portfolio() {
                   View All Projects →
                 </Link>
               </div>
-              <div className="mini-grid-4" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
+              <div className="mini-grid-4 mini-grid-4--2">
                 {featuredProjects.map((item) => (
                   <Link key={item.href} to={item.href} className="featured-card">
                     <div className="featured-media" style={{ background: item.gradient, height: "140px" }}>

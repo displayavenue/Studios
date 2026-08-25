@@ -80,7 +80,7 @@ export function Resources() {
                   </Link>
                 </div>
               </div>
-              <div className="mini-grid-4" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+              <div className="category-grid category-grid--4">
                 {resourceCategories.map((cat) => (
                   <div key={cat.title} className="category-card">
                     <span className="icon-box" style={{ background: `${cat.color}18` }}>

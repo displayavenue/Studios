@@ -286,11 +286,11 @@
   }
 }
 
-/* Sit above sticky mobile CTA */
+/* Sit above sticky mobile CTA with clear tap room */
 @media (max-width: 768px) {
   .da-chat {
-    right: 0.85rem;
-    bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px));
+    right: 0.75rem;
+    bottom: calc(5.35rem + env(safe-area-inset-bottom, 0px));
   }
 
   .da-chat__launcher-label {
@@ -298,12 +298,15 @@
   }
 
   .da-chat__launcher {
-    width: 52px;
+    width: 48px;
+    height: 48px;
+    min-height: 48px;
     padding: 0;
     justify-content: center;
   }
 
   .da-chat__panel {
-    height: min(62vh, 520px);
+    height: min(58vh, 480px);
+    width: min(360px, calc(100vw - 1.25rem));
   }
 }

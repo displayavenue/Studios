@@ -477,6 +477,35 @@
 
 /* Mobile / touch: keep motion visible without relying on hover */
 @media (max-width: 719px) {
+  .home-hero {
+    min-height: auto;
+    align-items: start;
+  }
+
+  .home-hero__inner {
+    width: min(100% - 1.5rem, 40rem);
+    padding: calc(var(--header-h) + var(--announcement-h) + 1.1rem) 0 calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .home-hero h1 {
+    font-size: clamp(1.7rem, 7.4vw, 2.4rem);
+    max-width: none;
+    line-height: 1.08;
+  }
+
+  .home-hero__brand {
+    font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .home-hero__lead {
+    font-size: 0.98rem;
+  }
+
+  .home-hero__scroll {
+    display: none;
+  }
+
   .home-hero__orb--a {
     width: 12rem;
     height: 12rem;
@@ -489,6 +518,10 @@
     height: 8rem;
     opacity: 0.35;
     animation-duration: 11s;
+  }
+
+  .home-block {
+    padding: 2.5rem 0;
   }
 
   .home-promise.is-visible {

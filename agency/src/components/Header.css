@@ -229,8 +229,39 @@
   /* Show phone in the top bar on mobile where Client Login used to be */
   .header-phone {
     display: inline-flex;
-    font-size: 0.85rem;
-    padding-inline: 0.65rem;
+    font-size: 0.82rem;
+    padding-inline: 0.55rem;
+    max-width: 42vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-top-inner {
+    gap: 0.45rem;
+    min-height: 58px;
+  }
+
+  .header-actions {
+    gap: 0.35rem;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .icon-btn {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-phone {
+    font-size: 0.72rem;
+    padding-inline: 0.4rem;
+  }
+
+  .header-top-inner .logo-text small {
+    display: none;
   }
 }
 

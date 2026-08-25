@@ -255,6 +255,10 @@ p {
 }
 
 @media (max-width: 900px) {
+  :root {
+    --header-h: 58px;
+  }
+
   .section {
     padding: 2.5rem 0;
   }
