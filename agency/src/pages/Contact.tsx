@@ -1,9 +1,10 @@
-import { useState, type FormEvent } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useMemo, useState, type FormEvent } from "react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { getStoredUtm, getVisitorId } from "../components/VisitorTracker";
+import { mmrCities } from "../data/locations";
 import "../styles/pages.css";
 import "./Contact.css";
 
@@ -12,21 +13,27 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 export function Contact() {
   const { company, contact } = useCms();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const cityFromUrl = searchParams.get("city") || "";
   const fields = contact.fields;
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
   const [error, setError] = useState("");
   const [successTitle, setSuccessTitle] = useState(contact.successTitle);
   const [successMessage, setSuccessMessage] = useState(contact.successMessage);
+  const mmrOptions = useMemo(() => mmrCities().map((c) => c.name), []);
+  const defaultCity = cityFromUrl || "";
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const city = String(data.get("city") || "").trim();
     const payload = {
       name: String(data.get("name") || "").trim(),
       phone: String(data.get("phone") || "").trim(),
       email: String(data.get("email") || "").trim(),
       business: String(data.get("business") || "").trim(),
+      city,
       message: String(data.get("message") || "").trim(),
       website: String(data.get("website") || "").trim(),
       page: `${location.pathname}${location.search || ""}` || "/contact",
@@ -66,7 +73,7 @@ export function Contact() {
       if (contact.whatsappFallback) {
         window.setTimeout(() => {
           const text = encodeURIComponent(
-            `Hi DisplayAvenue, I'm ${payload.name}. Phone: ${payload.phone}. ${payload.business ? `Business: ${payload.business}. ` : ""}${payload.message}`,
+            `Hi DisplayAvenue, I'm ${payload.name}. Phone: ${payload.phone}.${payload.city ? ` City: ${payload.city}.` : ""}${payload.business ? ` Business: ${payload.business}.` : ""} ${payload.message}`,
           );
           const wa = company.whatsappHref.includes("?")
             ? `${company.whatsappHref}&text=${text}`
@@ -249,12 +256,36 @@ export function Contact() {
                       autoComplete="organization"
                     />
                   </label>
+                  <label className="contact-field">
+                    <span>City</span>
+                    <input
+                      name="city"
+                      list="contact-city-options"
+                      defaultValue={defaultCity}
+                      placeholder="Mumbai, Navi Mumbai, Thane…"
+                      autoComplete="address-level2"
+                    />
+                    <datalist id="contact-city-options">
+                      {mmrOptions.map((c) => (
+                        <option key={c} value={c} />
+                      ))}
+                      <option value="Pune" />
+                      <option value="Delhi NCR" />
+                      <option value="Bengaluru" />
+                      <option value="Other India" />
+                    </datalist>
+                  </label>
                   <label className="contact-field contact-field--full">
                     <span>{fields.messageLabel}</span>
                     <textarea
                       name="message"
                       rows={5}
                       placeholder={fields.messagePlaceholder}
+                      defaultValue={
+                        defaultCity
+                          ? `Looking for digital marketing help in ${defaultCity}.`
+                          : undefined
+                      }
                     />
                   </label>
                 </div>

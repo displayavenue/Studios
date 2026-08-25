@@ -69,6 +69,7 @@ function da_collect_urls(string $contentDir): array {
     ['path' => '/card', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['path' => '/blog', 'priority' => '0.85', 'changefreq' => 'daily'],
     ['path' => '/talent-branding', 'priority' => '0.85', 'changefreq' => 'monthly'],
+    ['path' => '/digital-marketing-agency-mumbai', 'priority' => '0.9', 'changefreq' => 'weekly'],
     ['path' => '/privacy', 'priority' => '0.3', 'changefreq' => 'yearly'],
     ['path' => '/terms', 'priority' => '0.3', 'changefreq' => 'yearly'],
   ];
@@ -110,21 +111,22 @@ function da_collect_urls(string $contentDir): array {
   }
 
   $seoCities = [
-    'mumbai', 'delhi-ncr', 'bengaluru', 'hyderabad', 'chennai', 'pune', 'ahmedabad',
+    'mumbai', 'navi-mumbai', 'thane', 'mira-road', 'panvel', 'kalyan',
+    'delhi-ncr', 'bengaluru', 'hyderabad', 'chennai', 'pune', 'ahmedabad',
     'kolkata', 'jaipur', 'surat', 'lucknow', 'chandigarh', 'indore', 'coimbatore',
-    'kochi', 'nagpur', 'vadodara', 'visakhapatnam', 'noida', 'gurugram', 'thane',
-    'navi-mumbai', 'mira-road',
+    'kochi', 'nagpur', 'vadodara', 'visakhapatnam', 'noida', 'gurugram',
   ];
   $seoServices = [
     'google-ads', 'meta-ads', 'seo', 'local-seo', 'social-media-marketing',
     'website-development', 'lead-generation',
   ];
-  foreach ($seoCities as $city) {
-    $urls[] = ['path' => '/locations/' . $city, 'priority' => '0.75', 'changefreq' => 'monthly'];
+  foreach ($seoCities as $i => $city) {
+    $priority = $i < 6 ? '0.85' : '0.75';
+    $urls[] = ['path' => '/locations/' . $city, 'priority' => $priority, 'changefreq' => 'weekly'];
     foreach ($seoServices as $service) {
       $urls[] = [
         'path' => '/locations/' . $city . '/' . $service,
-        'priority' => '0.7',
+        'priority' => $i < 6 ? '0.8' : '0.7',
         'changefreq' => 'monthly',
       ];
     }

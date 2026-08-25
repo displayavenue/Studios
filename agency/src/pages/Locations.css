@@ -1,0 +1,264 @@
+.loc-hub,
+.loc-page {
+  max-width: 1100px;
+  padding: 1.35rem 1.25rem 1.75rem;
+}
+
+.loc-page {
+  max-width: 920px;
+}
+
+.loc-tldr {
+  margin: 0.85rem 0 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 86, 255, 0.08), rgba(15, 40, 70, 0.04));
+  border: 1px solid rgba(0, 86, 255, 0.18);
+  color: var(--navy);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.loc-marathi {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.loc-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.loc-ctas .btn {
+  min-height: 44px;
+}
+
+@media (max-width: 640px) {
+  .loc-ctas {
+    flex-direction: column;
+  }
+
+  .loc-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .loc-ctas__wa {
+    order: -1;
+  }
+}
+
+.loc-pricing,
+.loc-proof {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.loc-h2 {
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin: 0 0 0.55rem;
+}
+
+.loc-note {
+  margin: 0 0 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.loc-section {
+  margin: 1.5rem 0;
+}
+
+.loc-city-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.loc-city-grid--services {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.loc-city-card {
+  display: block;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.loc-city-card:hover {
+  border-color: var(--blue);
+  box-shadow: var(--shadow);
+}
+
+.loc-city-card--mmr {
+  background: linear-gradient(180deg, #f7f9fc 0%, #fff 100%);
+  border-color: rgba(0, 86, 255, 0.2);
+}
+
+.loc-city-card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.02rem;
+  color: var(--navy);
+}
+
+.loc-city-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  overflow-wrap: anywhere;
+}
+
+.loc-chip {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.loc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.loc-tag {
+  display: inline-flex;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--blue-tint);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.loc-tag--link {
+  text-decoration: none;
+  border: 1px solid rgba(0, 86, 255, 0.2);
+}
+
+.loc-tag--link:hover {
+  background: #fff;
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.loc-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.loc-list li {
+  margin-bottom: 0.35rem;
+}
+
+.loc-steps {
+  list-style: none;
+  margin: 0.65rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.loc-steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: start;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  background: var(--bg-soft);
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+
+.loc-steps span {
+  font-weight: 800;
+  color: var(--blue);
+  font-size: 0.8rem;
+}
+
+.loc-faqs {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.loc-faq {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  background: #fff;
+}
+
+.loc-faq h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.98rem;
+  color: var(--navy);
+  overflow-wrap: anywhere;
+}
+
+.loc-faq p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.loc-map {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  aspect-ratio: 16 / 9;
+  background: #e8eef7;
+}
+
+.loc-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.loc-body {
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.loc-back {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .loc-city-grid,
+  .loc-city-grid--services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .loc-city-grid,
+  .loc-city-grid--services {
+    grid-template-columns: 1fr;
+  }
+
+  .loc-map {
+    aspect-ratio: 4 / 3;
+  }
+}

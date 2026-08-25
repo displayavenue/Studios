@@ -146,8 +146,17 @@ export function Home() {
             <Link to="/services" className="btn btn-ghost">
               See all services →
             </Link>
+            <Link to="/locations/mumbai" className="btn btn-ghost">
+              Mumbai →
+            </Link>
+            <Link to="/locations/navi-mumbai" className="btn btn-ghost">
+              Navi Mumbai →
+            </Link>
+            <Link to="/locations/thane" className="btn btn-ghost">
+              Thane →
+            </Link>
             <Link to="/locations" className="btn btn-ghost">
-              Find your city →
+              All cities →
             </Link>
           </div>
         </div>

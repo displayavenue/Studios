@@ -1,0 +1,48 @@
+{
+  "title": "DisplayAvenue growth playbook",
+  "updatedAt": "2026-08-25",
+  "gbpWeeklyPosts": [
+    {
+      "theme": "Offer",
+      "caption": "Free growth call for Mumbai / Navi Mumbai / Thane business owners. WhatsApp 9222 122333 — tell us your city and offer."
+    },
+    {
+      "theme": "Tip",
+      "caption": "Local SEO tip: post one real photo + short offer on your Google Business Profile every week. Quiet profiles lose Maps calls."
+    },
+    {
+      "theme": "Proof",
+      "caption": "We track cost per booked job — not vanity clicks. Ask for a plain-English weekly report."
+    },
+    {
+      "theme": "Service",
+      "caption": "Google Ads for Mumbai SMEs: exact match first, one landing page, WhatsApp above the fold."
+    }
+  ],
+  "reviewRequestWhatsApp": [
+    "Hi {{name}}, thanks for working with DisplayAvenue. If we helped your {{city}} business, could you leave a short Google review? It helps other owners find us: {{reviewLink}}",
+    "Quick favour — a 2-line Google review mentioning {{city}} (e.g. Thane / Navi Mumbai) helps local trust. Link: {{reviewLink}}"
+  ],
+  "gbpQuestions": [
+    "Do you offer Google Ads in Mumbai?",
+    "Do you work with Navi Mumbai clinics?",
+    "Can you help Thane West Local SEO?",
+    "What is the minimum monthly budget?",
+    "Do you reply on WhatsApp?"
+  ],
+  "leadTags": ["Mumbai", "Navi Mumbai", "Thane", "Mira Road", "Panvel", "Kalyan", "Other India"],
+  "napChecklist": [
+    "Website footer phone matches GBP",
+    "Schema telephone matches WhatsApp number",
+    "Justdial / Sulekha / IndiaMART NAP matches",
+    "LinkedIn company location = Mumbai MMR"
+  ],
+  "citationTargetsMmr": [
+    "Google Business Profile",
+    "Justdial",
+    "Sulekha",
+    "IndiaMART",
+    "Foursquare",
+    "Bing Places"
+  ]
+}

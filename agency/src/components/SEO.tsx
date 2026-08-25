@@ -183,9 +183,18 @@ export function LocalBusinessSchema() {
       hasMap: maps?.shareUrl || maps?.profileUrl || undefined,
       areaServed: [
         { "@type": "Country", name: "India" },
-        { "@type": "City", name: company.address.city || "Mumbai" },
         { "@type": "State", name: "Maharashtra" },
+        { "@type": "City", name: "Mumbai" },
+        { "@type": "City", name: "Navi Mumbai" },
+        { "@type": "City", name: "Thane" },
+        { "@type": "City", name: "Mira Road" },
+        { "@type": "City", name: company.address.city || "Mumbai" },
+        {
+          "@type": "AdministrativeArea",
+          name: "Mumbai Metropolitan Region",
+        },
       ],
+      availableLanguage: ["English", "Hindi", "Marathi"],
       knowsAbout: services.slice(0, 16).map((s) => s.title),
       openingHoursSpecification: [
         {
@@ -207,8 +216,8 @@ export function LocalBusinessSchema() {
           "@type": "ContactPoint",
           telephone: company.phone,
           contactType: "sales",
-          areaServed: "IN",
-          availableLanguage: ["English", "Hindi"],
+          areaServed: ["IN", "Mumbai", "Navi Mumbai", "Thane", "Maharashtra"],
+          availableLanguage: ["English", "Hindi", "Marathi"],
         },
       ],
       sameAs: [
