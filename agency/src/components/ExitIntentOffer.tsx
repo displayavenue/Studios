@@ -1,19 +1,23 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import { cityFromPathAndSearch, whatsappWithText } from "../lib/geoContext";
 import "./ExitIntentOffer.css";
 
 const SESSION_KEY = "da_exit_intent_v1";
+const MIN_DWELL_MS = 12000;
+const AUTO_SHOW_MS = 45000;
 
 /**
  * Soft exit / dwell offer: free Strategy Maker + city WhatsApp.
  * Shows once per browser session; skipped on contact and card pages.
+ * Mouse-leave only counts after a short dwell so navigation chrome does not flash the modal.
  */
 export function ExitIntentOffer() {
   const { company } = useCms();
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const readyAt = useRef(0);
 
   const city = useMemo(
     () => cityFromPathAndSearch(location.pathname, location.search),
@@ -33,9 +37,12 @@ export function ExitIntentOffer() {
       /* ignore */
     }
 
+    readyAt.current = Date.now() + MIN_DWELL_MS;
     let shown = false;
+
     const show = () => {
       if (shown) return;
+      if (Date.now() < readyAt.current) return;
       shown = true;
       try {
         sessionStorage.setItem(SESSION_KEY, "1");
@@ -45,15 +52,18 @@ export function ExitIntentOffer() {
       setOpen(true);
     };
 
-    const onLeave = (e: MouseEvent) => {
-      if (e.clientY <= 8) show();
+    const onMouseOut = (e: MouseEvent) => {
+      // Only when the pointer leaves the viewport toward the top chrome
+      if (e.clientY > 8) return;
+      if (e.relatedTarget != null) return;
+      show();
     };
-    const timer = window.setTimeout(show, 28000);
 
-    document.addEventListener("mouseout", onLeave);
+    const timer = window.setTimeout(show, AUTO_SHOW_MS);
+    document.documentElement.addEventListener("mouseout", onMouseOut);
     return () => {
       window.clearTimeout(timer);
-      document.removeEventListener("mouseout", onLeave);
+      document.documentElement.removeEventListener("mouseout", onMouseOut);
     };
   }, [skip, location.pathname]);
 
