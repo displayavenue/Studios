@@ -305,13 +305,24 @@
   gap: 0.65rem;
 }
 
+.explore-dir__footer-actions .btn-primary {
+  background: #fff;
+  color: var(--blue);
+  border-color: #fff;
+}
+
+.explore-dir__footer-actions .btn-ghost,
 .explore-dir__footer-actions .btn-outline {
-  border-color: rgba(255, 255, 255, 0.35);
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.45);
   color: #fff;
 }
 
+.explore-dir__footer-actions .btn-ghost:hover,
 .explore-dir__footer-actions .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  color: #fff;
 }
 
 @media (max-width: 1000px) {
@@ -375,10 +386,12 @@
 
   .explore-dir__footer-actions {
     width: 100%;
+    flex-direction: column;
   }
 
   .explore-dir__footer-actions .btn {
     flex: 1 1 auto;
+    width: 100%;
     justify-content: center;
     text-align: center;
   }

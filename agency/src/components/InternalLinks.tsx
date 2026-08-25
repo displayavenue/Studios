@@ -485,7 +485,7 @@ export function InternalLinks({
             <Link to="/contact" className="btn btn-primary">
               Book a free call
             </Link>
-            <Link to="/why-displayavenue" className="btn btn-outline">
+            <Link to="/why-displayavenue" className="btn btn-ghost">
               Why DisplayAvenue
             </Link>
           </div>

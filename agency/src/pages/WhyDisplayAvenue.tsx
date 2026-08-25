@@ -52,7 +52,7 @@ export function WhyDisplayAvenue() {
               <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
                 Why Businesses Trust Us
               </h2>
-              <div className="category-grid" style={{ gridTemplateColumns: "repeat(5, 1fr)" }}>
+              <div className="category-grid category-grid--5">
                 {whyTrustCards.map((item) => (
                   <div key={item.title} className="category-card">
                     <span className="icon-box" style={{ background: `${item.color}18` }}>
@@ -82,7 +82,7 @@ export function WhyDisplayAvenue() {
               <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", margin: "1.5rem 0 0.75rem" }}>
                 What Makes Us Different
               </h2>
-              <div className="category-grid" style={{ gridTemplateColumns: "repeat(5, 1fr)" }}>
+              <div className="category-grid category-grid--5">
                 {differentiators.map((item) => (
                   <div
                     key={item.title}
