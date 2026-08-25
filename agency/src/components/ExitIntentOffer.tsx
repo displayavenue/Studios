@@ -27,6 +27,7 @@ export function ExitIntentOffer() {
   const skip =
     location.pathname.includes("/contact") ||
     location.pathname.includes("/card") ||
+    location.pathname.includes("/agency-partner") ||
     location.pathname.startsWith("/admin");
 
   useEffect(() => {
