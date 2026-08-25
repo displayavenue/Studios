@@ -185,7 +185,6 @@ function da_image_folder(string $folder): string {
     'certs' => 'certs',
     'heroes' => 'heroes',
     'reviews' => 'reviews',
-    'speaker' => 'speaker',
     'root' => '',
   ];
   $key = strtolower(trim($folder));
@@ -570,68 +569,6 @@ switch ($action) {
           ? ('https://displayavenue.com/admin/blog-cron.php?key=' . rawurlencode($cronKey))
           : 'https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY',
         'hint' => 'Hostinger → Advanced → Cron Jobs → daily curl. Blog also auto-publishes on /blog and sitemap.xml visits if cron is missing.',
-      ],
-    ]);
-
-  case 'videos-publish-today':
-    requireAuth($config);
-    require_once __DIR__ . '/lib/videos.php';
-    $result = da_videos_ensure_published(14);
-    $createdList = $result['created'] ?? [];
-    if ($createdList) {
-      try {
-        require_once __DIR__ . '/seo-sync.php';
-        $publicDir = dirname(__DIR__);
-        da_sync_seo_artifacts($publicDir . '/content', $publicDir);
-      } catch (Throwable $e) {
-      }
-    }
-    respond(200, [
-      'ok' => true,
-      'createdAll' => $createdList,
-      'message' => $createdList
-        ? ('Published ' . count($createdList) . ' reel(s)')
-        : (($result['skipped'] ?? '') === 'autopilot-off'
-          ? 'Autopilot is off — enable Auto-publish daily'
-          : 'Already published for today'),
-    ]);
-
-  case 'videos-set-autopilot':
-    requireAuth($config);
-    require_once __DIR__ . '/lib/videos.php';
-    $enabled = !empty($body['enabled']);
-    $videos = da_videos_set_autopilot($enabled);
-    respond(200, ['ok' => true, 'videos' => $videos]);
-
-  case 'videos-set-speaker':
-    requireAuth($config);
-    require_once __DIR__ . '/lib/videos.php';
-    $image = trim((string)($body['speakerImage'] ?? ''));
-    $name = trim((string)($body['speakerName'] ?? ''));
-    $alt = trim((string)($body['speakerImageAlt'] ?? ''));
-    if ($image === '' && $name === '') {
-      respond(400, ['ok' => false, 'error' => 'Provide speakerImage or speakerName']);
-    }
-    $videos = da_videos_set_speaker($image, $name, $alt);
-    respond(200, ['ok' => true, 'videos' => $videos]);
-
-  case 'videos-list':
-    requireAuth($config);
-    require_once __DIR__ . '/lib/videos.php';
-    $cronKey = '';
-    if (is_file(__DIR__ . '/social-local.php')) {
-      $s = include __DIR__ . '/social-local.php';
-      if (is_array($s)) $cronKey = trim((string)($s['cron_key'] ?? ''));
-    }
-    respond(200, [
-      'ok' => true,
-      'videos' => da_videos_load(),
-      'cron' => [
-        'hasKey' => $cronKey !== '',
-        'videosCronUrl' => $cronKey !== ''
-          ? ('https://displayavenue.com/admin/videos-cron.php?key=' . rawurlencode($cronKey))
-          : 'https://displayavenue.com/admin/videos-cron.php?key=YOUR_CRON_KEY',
-        'hint' => 'Hostinger → Advanced → Cron Jobs → daily curl. Videos also auto-publish on /videos and sitemap.xml visits if cron is missing.',
       ],
     ]);
 

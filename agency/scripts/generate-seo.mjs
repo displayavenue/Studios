@@ -67,7 +67,6 @@ const staticPages = [
   ["/contact", "0.8", "monthly"],
   ["/card", "0.7", "monthly"],
   ["/blog", "0.85", "daily"],
-  ["/videos", "0.85", "daily"],
   ["/talent-branding", "0.85", "monthly"],
   ["/privacy", "0.3", "yearly"],
   ["/terms", "0.3", "yearly"],

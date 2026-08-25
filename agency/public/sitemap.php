@@ -21,16 +21,6 @@ try {
   // never break sitemap
 }
 
-try {
-  require_once __DIR__ . '/admin/lib/videos.php';
-  $videosResult = da_videos_ensure_published(7);
-  if (!empty($videosResult['created'])) {
-    @da_sync_seo_artifacts(__DIR__ . '/content', __DIR__);
-  }
-} catch (Throwable $e) {
-  // never break sitemap
-}
-
 $contentDir = __DIR__ . '/content';
 $bundle = da_collect_urls($contentDir);
 $base = da_site_base($bundle['company'], $bundle['settings'] ?? []);
