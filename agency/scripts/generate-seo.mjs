@@ -68,6 +68,7 @@ const staticPages = [
   ["/card", "0.7", "monthly"],
   ["/blog", "0.85", "daily"],
   ["/talent-branding", "0.85", "monthly"],
+  ["/agency-partner", "0.9", "weekly"],
   ["/privacy", "0.3", "yearly"],
   ["/terms", "0.3", "yearly"],
 ];

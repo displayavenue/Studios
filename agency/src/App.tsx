@@ -28,6 +28,7 @@ import { BusinessCard } from "./pages/BusinessCard";
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
 import { TalentBranding } from "./pages/TalentBranding";
+import { AgencyPartner } from "./pages/AgencyPartner";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -86,6 +87,7 @@ export default function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="talent-branding" element={<TalentBranding />} />
+          <Route path="agency-partner" element={<AgencyPartner />} />
           <Route path="awards" element={<Awards />} />
           <Route path="certifications" element={<Certifications />} />
           <Route path="privacy" element={<LegalPage type="privacy" />} />

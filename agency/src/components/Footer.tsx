@@ -80,6 +80,7 @@ export function Footer() {
         { label: "Digital business card", href: "/card" },
         { label: "Blog", href: "/blog" },
         { label: "Talent Branding", href: "/talent-branding" },
+        { label: "Agency Partner", href: "/agency-partner" },
         { label: "Contact", href: "/contact" },
         { label: "Privacy Policy", href: "/privacy" },
         { label: "Terms & Conditions", href: "/terms" },
