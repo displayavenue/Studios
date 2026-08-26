@@ -31,7 +31,7 @@
   },
   "servicesMega": {
     "eyebrow": "Celebrate with us",
-    "title": "Wedding & celebration services",
+    "title": "Wedding photography & videography",
     "viewAllLabel": "View all services",
     "viewAllPath": "/services",
     "categories": [
@@ -47,13 +47,13 @@
     "popularCount": 8,
     "popularSlugs": [
       "wedding-photography",
-      "candid-wedding-photography",
+      "wedding-videography",
       "wedding-films",
+      "candid-wedding-photography",
       "pre-wedding-shoot",
+      "pre-wedding-videography",
       "engagement-photography",
-      "maternity-photography",
-      "birthday-photography",
-      "event-coverage"
+      "maternity-photography"
     ]
   },
   "packagesMega": {
@@ -136,16 +136,24 @@
       "path": "/services/wedding-photography"
     },
     {
+      "label": "Wedding Videography",
+      "path": "/services/wedding-videography"
+    },
+    {
+      "label": "Cinematic Films",
+      "path": "/services/wedding-films"
+    },
+    {
       "label": "Candid Wedding",
       "path": "/services/candid-wedding-photography"
     },
     {
-      "label": "Wedding Films",
-      "path": "/services/wedding-films"
+      "label": "Pre-Wedding Photo",
+      "path": "/services/pre-wedding-shoot"
     },
     {
-      "label": "Pre-Wedding",
-      "path": "/services/pre-wedding-shoot"
+      "label": "Pre-Wedding Film",
+      "path": "/services/pre-wedding-videography"
     },
     {
       "label": "Engagement",
@@ -156,7 +164,7 @@
       "path": "/services/maternity-photography"
     },
     {
-      "label": "Birthday",
+      "label": "Birthday Photo & Film",
       "path": "/services/birthday-photography"
     },
     {
@@ -174,14 +182,6 @@
     {
       "label": "Availability",
       "path": "/availability"
-    },
-    {
-      "label": "Hire by city",
-      "path": "/hire"
-    },
-    {
-      "label": "FAQs",
-      "path": "/faqs"
     },
     {
       "label": "Contact",

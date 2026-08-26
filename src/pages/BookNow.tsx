@@ -131,15 +131,17 @@ export function BookNow() {
                   </div>
                   <div className="form-field form-field--full">
                     <label htmlFor="service">Service needed</label>
-                    <select id="service" name="service" defaultValue="Wedding Photography">
+                    <select id="service" name="service" defaultValue="Wedding Photography + Videography">
+                      <option>Wedding Photography + Videography</option>
                       <option>Wedding Photography</option>
-                      <option>Candid Wedding Photography</option>
+                      <option>Wedding Videography</option>
                       <option>Cinematic Wedding Films</option>
-                      <option>Pre Wedding Shoot</option>
-                      <option>Engagement Photography</option>
-                      <option>Maternity Photography</option>
-                      <option>Birthday Photography</option>
-                      <option>Event Coverage</option>
+                      <option>Candid Wedding Photography</option>
+                      <option>Pre-Wedding Photo + Film</option>
+                      <option>Engagement Photo + Film</option>
+                      <option>Maternity Photo + Film</option>
+                      <option>Birthday Photo + Film</option>
+                      <option>Event Photo + Film</option>
                       <option>Destination Wedding</option>
                       <option>Other</option>
                     </select>

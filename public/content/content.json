@@ -4,37 +4,37 @@
       "slug": "hindu-weddings",
       "title": "Hindu Weddings",
       "text": "Pheras, kanyadaan, saptapadi and multi-day rituals documented with candid emotion and traditional clarity — the coverage Hindu families expect from a WeddingSutra-calibre studio.",
-      "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80"
+      "image": "/images/indian/wedding-04.jpg"
     },
     {
       "slug": "destination-weddings",
       "title": "Destination Weddings",
       "text": "Palace, beach and resort weddings across Udaipur, Goa, Jaipur and beyond with travel-ready photo and film crews from Mumbai.",
-      "image": "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80"
+      "image": "/images/indian/wedding-05.jpg"
     },
     {
       "slug": "intimate-weddings",
       "title": "Intimate Weddings",
       "text": "Small guest lists, big emotion — discreet coverage for micro-weddings, court marriages and close-family celebrations.",
-      "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80"
+      "image": "/images/indian/wedding-03.jpg"
     },
     {
       "slug": "christian-weddings",
       "title": "Christian Weddings",
       "text": "Church ceremonies, aisle moments and reception storytelling with quiet reverence and cinematic polish.",
-      "image": "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80"
+      "image": "/images/indian/couple-01.jpg"
     },
     {
       "slug": "muslim-weddings",
       "title": "Muslim Weddings",
       "text": "Nikaah, mehendi and walima coverage with cultural sensitivity and luxurious visual craft.",
-      "image": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1400&q=80"
+      "image": "/images/indian/engage-01.jpg"
     },
     {
       "slug": "sikh-weddings",
       "title": "Sikh Weddings",
       "text": "Anand Karaj, baraat and reception documented with respect for ritual timing and joyful candid frames.",
-      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80"
+      "image": "/images/indian/wedding-02.jpg"
     }
   ],
   "locations": [
@@ -192,7 +192,7 @@
       "excerpt": "Budget, style, shortlist and questions — a WeddingSutra-informed checklist for couples booking DisplayAvenue or any premium studio.",
       "category": "Planning",
       "date": "2026-03-01",
-      "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-04.jpg",
       "readTime": "8 min read",
       "content": "Finalize budget first, study candid vs traditional styles, shortlist 4–5 studios, request full galleries (not only highlights), and book 6–12 months ahead. Discuss deliverables, taxes, travel and pre-wedding bundling before you pay a token."
     },
@@ -202,7 +202,7 @@
       "excerpt": "WeddingSutra breaks down both styles — here’s how Mumbai couples combine them for heirloom albums.",
       "category": "Education",
       "date": "2026-02-18",
-      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-03.jpg",
       "readTime": "6 min read",
       "content": "Candid captures raw emotion; traditional secures family groups. The premium choice is a hybrid crew that delivers both without making elders or couples compromise."
     },
@@ -212,7 +212,7 @@
       "excerpt": "Golden hour locations, outfit tips and guided candid prompts for cinematic chemistry frames.",
       "category": "Pre-Wedding",
       "date": "2026-02-05",
-      "image": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/couple-02.jpg",
       "readTime": "7 min read",
       "content": "Marine Drive, Bandra sea face, heritage hotels and Lonavala hills remain classics. Shoot at golden hour, pack two outfits, and prioritise movement prompts over stiff poses."
     },
@@ -222,7 +222,7 @@
       "excerpt": "What Essential, mid-tier and luxury wedding photo-film packages usually include — and how DisplayAvenue prices Mumbai coverage.",
       "category": "Pricing",
       "date": "2026-01-22",
-      "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/film-01.jpg",
       "readTime": "9 min read",
       "content": "India packages range from budget single-shooter days to celebrity-tier multi-crew productions. Our Essential starts at ₹75,000; Signature photo+film at ₹1,85,000; Luxury destination from ₹3,50,000."
     },
@@ -232,7 +232,7 @@
       "excerpt": "Book weeks 28–34, choose flowing solids, and use partner connection poses for heirloom frames.",
       "category": "Maternity",
       "date": "2026-01-10",
-      "image": "https://images.unsplash.com/photo-1492725764893-90b379c2b6e0?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/maternity-01.jpg",
       "readTime": "5 min read",
       "content": "Comfort is everything. Soft light, gentle bump cradles, forehead touches and profile silhouettes create elegant maternity galleries without stress."
     },
@@ -242,7 +242,7 @@
       "excerpt": "Permissions, drone rules, golden-hour slots and crew travel — plan like a production, not a guest.",
       "category": "Destination",
       "date": "2025-12-12",
-      "image": "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-05.jpg",
       "readTime": "8 min read",
       "content": "Confirm venue drone policy, share full multi-day run-of-show, lock crew stay near the venue, and protect 20–30 minutes for couple portraits at sunset."
     },
@@ -252,7 +252,7 @@
       "excerpt": "Highlight length, feature films, reels and audio — demystifying wedding videography for 2026 couples.",
       "category": "Films",
       "date": "2025-11-28",
-      "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/film-01.jpg",
       "readTime": "6 min read",
       "content": "Most couples love a 3–5 minute highlight for sharing plus a longer film for family. Vertical reels are now standard for Instagram within the wedding week."
     },
@@ -262,7 +262,7 @@
       "excerpt": "Why milestone birthdays and family events deserve the same premium crew as weddings.",
       "category": "Events",
       "date": "2025-11-10",
-      "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/birthday-01.jpg",
       "readTime": "5 min read",
       "content": "First birthdays, 50ths and anniversaries deserve calm, luxury coverage — not rushed party shooters. Ask for social selects and a short reel."
     }

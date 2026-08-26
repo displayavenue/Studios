@@ -35,11 +35,11 @@ export function Services() {
             <span>Services</span>
           </nav>
           <p className="eyebrow">Wedding & celebration services</p>
-          <h1>Wedding photography, films & life’s celebrations</h1>
+          <h1>Wedding photography, videography & life’s celebrations</h1>
           <p>
-            Only what couples search for — wedding, pre-wedding, engagement,
-            maternity, birthday and complete personal event coverage. Candid
-            emotion, traditional heirlooms and cinematic films.
+            Photography and videography for Indian weddings, pre-weddings, engagements,
+            maternity, birthdays and every personal celebration — candid emotion,
+            traditional heirlooms and cinematic films.
           </p>
         </div>
       </section>

@@ -15,6 +15,7 @@ export const portfolioCategories = [
   "Maternity",
   "Birthday",
   "Events",
+  "Films",
   "Destination"
 ];
 
@@ -24,13 +25,13 @@ export const portfolio: PortfolioItem[] = [
     "title": "Udaipur Palace Wedding",
     "category": "Destination",
     "location": "Udaipur",
-    "description": "Three-day destination wedding with mehendi, pheras and lakeside reception — candid stills and cinematic film.",
-    "image": "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
+    "description": "Three-day Indian destination wedding — candid stills and cinematic film.",
+    "image": "/images/indian/wedding-05.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80"
+      "/images/indian/wedding-05.jpg",
+      "/images/indian/wedding-04.jpg",
+      "/images/indian/wedding-02.jpg",
+      "/images/indian/film-01.jpg"
     ]
   },
   {
@@ -38,89 +39,89 @@ export const portfolio: PortfolioItem[] = [
     "title": "Mumbai Candid Wedding",
     "category": "Wedding",
     "location": "Mumbai",
-    "description": "Banquet + temple rituals covered in true candid style with traditional family groups.",
-    "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80",
+    "description": "Banquet + temple rituals with candid photography and traditional groups.",
+    "image": "/images/indian/wedding-03.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80"
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/couple-01.jpg",
+      "/images/indian/wedding-10.jpg",
+      "/images/indian/mehndi-01.jpg"
+    ]
+  },
+  {
+    "slug": "cinematic-wedding-film",
+    "title": "Cinematic Wedding Film",
+    "category": "Films",
+    "location": "Mumbai",
+    "description": "Highlight film and reels from a multi-cam Indian wedding week.",
+    "image": "/images/indian/film-01.jpg",
+    "gallery": [
+      "/images/indian/film-01.jpg",
+      "/images/indian/wedding-06.jpg",
+      "/images/indian/wedding-10.jpg"
     ]
   },
   {
     "slug": "lonavala-pre-wedding",
-    "title": "Lonavala Pre-Wedding Film",
+    "title": "Lonavala Pre-Wedding",
     "category": "Pre-Wedding",
     "location": "Lonavala",
-    "description": "Golden-hour chemistry shoot used across save-the-dates and wedding invites.",
-    "image": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80",
+    "description": "Golden-hour chemistry stills and short pre-wedding film.",
+    "image": "/images/indian/couple-02.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80"
+      "/images/indian/couple-02.jpg",
+      "/images/indian/wedding-07.jpg",
+      "/images/indian/wedding-02.jpg"
     ]
   },
   {
     "slug": "marine-drive-engagement",
-    "title": "Marine Drive Engagement",
+    "title": "Engagement Celebration",
     "category": "Engagement",
     "location": "Mumbai",
-    "description": "Ring ceremony evening with city lights, detail macros and family blessings.",
-    "image": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1400&q=80",
+    "description": "Ring ceremony evening with photo and highlight reel.",
+    "image": "/images/indian/engage-01.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80"
+      "/images/indian/engage-01.jpg",
+      "/images/indian/engage-02.jpg",
+      "/images/indian/mehndi-01.jpg"
     ]
   },
   {
-    "slug": "studio-maternity-session",
-    "title": "Soft Light Maternity Session",
+    "slug": "maternity-heirloom",
+    "title": "Maternity Heirloom Session",
     "category": "Maternity",
     "location": "Mumbai",
-    "description": "Week-32 maternity portraits with partner frames and heirloom retouching.",
-    "image": "https://images.unsplash.com/photo-1492725764893-90b379c2b6e0?auto=format&fit=crop&w=1400&q=80",
+    "description": "Week-32 maternity portraits and announcement film.",
+    "image": "/images/indian/maternity-01.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1492725764893-90b379c2b6e0?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80"
+      "/images/indian/maternity-01.jpg",
+      "/images/indian/maternity-02.jpg"
     ]
   },
   {
-    "slug": "first-birthday-celebration",
+    "slug": "first-birthday-film",
     "title": "First Birthday Celebration",
     "category": "Birthday",
-    "location": "Thane",
-    "description": "Cake smash, décor details and family candids for a luxury first birthday.",
-    "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1400&q=80",
+    "location": "Mumbai",
+    "description": "Cake smash, family candids and birthday reel.",
+    "image": "/images/indian/birthday-01.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=80"
+      "/images/indian/birthday-01.jpg",
+      "/images/indian/wedding-08.jpg"
     ]
   },
   {
     "slug": "jaipur-sangeet-night",
     "title": "Jaipur Sangeet Night",
-    "category": "Wedding",
+    "category": "Films",
     "location": "Jaipur",
-    "description": "Performance-led sangeet with low-light mastery and cinematic reels.",
-    "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=80",
+    "description": "Multi-cam sangeet performances with low-light cinema.",
+    "image": "/images/indian/wedding-06.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1587271636175-90d58cdad458?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80"
-    ]
-  },
-  {
-    "slug": "goa-beach-reception",
-    "title": "Goa Beach Reception",
-    "category": "Events",
-    "location": "Goa",
-    "description": "Sunset reception coverage with drone establishes and dance-floor energy.",
-    "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80",
-    "gallery": [
-      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80"
+      "/images/indian/wedding-06.jpg",
+      "/images/indian/ritual-01.jpg",
+      "/images/indian/film-01.jpg"
     ]
   }
 ];

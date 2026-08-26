@@ -3,312 +3,280 @@
     {
       "slug": "wedding-photography",
       "title": "Wedding Photography",
-      "short": "Luxury candid + traditional wedding photography for Mumbai and pan-India celebrations.",
-      "description": "DisplayAvenue Studios is a premium wedding photographer in Mumbai trusted for candid storytelling and heirloom traditional portraits. Inspired by the craft standards couples discover on WeddingSutra — spontaneous emotion, ritual clarity, and albums families reopen for decades — we cover pheras, mehendi, sangeet and receptions with a calm, cinema-minded crew.",
+      "short": "Luxury candid + traditional wedding photography for Indian celebrations.",
+      "description": "DisplayAvenue Studios is a premium wedding photographer in Mumbai for Indian weddings — candid emotion, traditional family portraits and heirloom colour grading across pheras, mehendi, sangeet and receptions.",
       "benefits": [
-        "Candid + traditional hybrid coverage",
-        "Lead photographer + second shooter options",
-        "Family group portraits elders expect",
-        "Colour-graded gallery + album design credit",
-        "Pan-India destination travel"
+        "Candid + traditional hybrid",
+        "Lead + second shooter options",
+        "Family group portraits",
+        "Pan-India destination travel",
+        "Pairs with wedding videography"
       ],
-      "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-04.jpg",
       "category": "Wedding",
       "related": [
+        "wedding-videography",
         "candid-wedding-photography",
-        "wedding-films",
-        "pre-wedding-shoot"
+        "wedding-films"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       "reviews": [
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹75,000",
       "priceNote": "Starting · single ceremony day",
       "deliverables": [
-        "300–1,500+ edited photographs (package dependent)",
+        "300–1,500+ edited photographs",
         "Private online gallery",
-        "Social media selects within 48 hours",
+        "48-hour social selects",
         "Optional designer album"
       ],
       "equipment": [
-        "Full-frame mirrorless bodies",
-        "Prime & zoom lenses",
-        "Off-camera flash & LED",
-        "Backup media workflow"
+        "Full-frame bodies",
+        "Primes & zooms",
+        "Off-camera flash",
+        "Backup media"
       ]
     },
     {
       "slug": "candid-wedding-photography",
       "title": "Candid Wedding Photography",
-      "short": "Hidden-camera emotion, zero stiff posing — India’s most searched wedding photography style.",
-      "description": "Candid wedding photography — as WeddingSutra describes it — captures laughter, tears and surprise without staged poses. Couples searching for a candid wedding photographer in Mumbai choose DisplayAvenue for discreet coverage that still delivers the polished frames Instagram demands.",
+      "short": "Hidden-camera emotion for Indian weddings — India’s most searched style.",
+      "description": "True candid wedding photography for Indian couples in Mumbai — laughter, tears and ritual details without stiff posing, with Instagram-ready selects.",
       "benefits": [
-        "True candid documentary approach",
-        "Guided couple moments without rigid posing",
-        "Ideal for social-first couples",
-        "Pairs perfectly with cinematic film",
-        "Available across India destinations"
+        "Documentary candid approach",
+        "Guided couple moments",
+        "Ideal with cinematic film",
+        "Low-light specialist crew"
       ],
-      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-03.jpg",
       "category": "Wedding",
       "related": [
         "wedding-photography",
         "wedding-films",
-        "sangeet-photography"
+        "wedding-videography"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       "reviews": [
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹95,000",
       "priceNote": "Starting · full ceremony day",
       "deliverables": [
         "800+ colour-graded candid frames",
-        "Highlight shortlist for Instagram",
+        "Instagram shortlist",
         "Optional same-day teaser stills"
       ],
       "equipment": [
-        "Fast primes for low light",
-        "Silent shutter bodies",
-        "Gimbal-friendly coordination with film team"
+        "Fast primes",
+        "Silent shutter bodies"
       ]
     },
     {
       "slug": "traditional-wedding-photography",
       "title": "Traditional Wedding Photography",
-      "short": "Classic posed family portraits and ritual documentation elders treasure.",
-      "description": "Traditional wedding photography remains essential on Indian wedding days. We create organised family groups, ritual sequences and formal portraits — the cost-effective, timeless layer WeddingSutra notes families still prefer — alongside modern candid coverage when booked as a hybrid.",
+      "short": "Classic posed family portraits and Indian ritual documentation.",
+      "description": "Organised family groups, pheras sequences and formal portraits Indian elders treasure — booked alone or hybrid with candid coverage.",
       "benefits": [
-        "Formal family group portraits",
+        "Formal family groups",
         "Ritual step documentation",
-        "Clear posing direction for large families",
-        "Ideal add-on to candid packages",
-        "Fast turnaround for thank-you cards"
+        "Clear posing for large families"
       ],
-      "image": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/couple-01.jpg",
       "category": "Wedding",
       "related": [
         "wedding-photography",
@@ -319,114 +287,100 @@
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹55,000",
@@ -437,175 +391,414 @@
         "Print-ready files"
       ],
       "equipment": [
-        "Studio lights for banquet halls",
-        "Wide lenses for large groups"
+        "Studio lights",
+        "Wide lenses"
       ]
     },
     {
-      "slug": "wedding-films",
-      "title": "Cinematic Wedding Films",
-      "short": "Cinematic wedding videography — highlight films, teasers and feature-length stories.",
-      "description": "Cinematic videography turns your wedding into a movie: multi-camera coverage, drone where permitted, colour grade and score. Searches for cinematic wedding photographer / videographer have surged across Mumbai and India — we deliver 3–5 minute highlights plus longer films for Luxury packages.",
+      "slug": "destination-wedding-photography",
+      "title": "Destination Wedding Photography",
+      "short": "Udaipur, Goa, Jaipur & beyond — Indian destination wedding stills.",
+      "description": "Travel-ready photography for palace, beach and resort Indian weddings with Mumbai HQ craft and golden-hour planning.",
       "benefits": [
-        "Multi-camera cinematic coverage",
-        "3–5 min highlight + optional feature film",
-        "Drone sequences (venue permitting)",
-        "Same-day teaser available",
-        "Colour-graded, scored delivery"
+        "Travel photo crew",
+        "Venue recce",
+        "Multi-day coverage",
+        "Pairs with destination film"
       ],
-      "image": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-05.jpg",
       "category": "Wedding",
       "related": [
+        "destination-wedding-videography",
         "wedding-photography",
-        "candid-wedding-photography",
-        "destination-wedding-photography"
+        "wedding-films"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       "reviews": [
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
-      "priceFrom": "₹1,25,000",
-      "priceNote": "Starting · highlight film package",
+      "priceFrom": "₹2,50,000",
+      "priceNote": "Starting · travel production",
       "deliverables": [
-        "Highlight film (3–5 min)",
-        "Vertical reels for Instagram",
-        "Optional 20–40 min feature film",
-        "Private streaming gallery"
+        "Full destination gallery",
+        "Social selects",
+        "Travel planning support"
       ],
       "equipment": [
-        "Cinema cameras / hybrid bodies",
-        "Gimbals & wireless audio",
-        "Drone (DGCA compliant)"
+        "Travel kit",
+        "Backup bodies"
       ]
     },
     {
-      "slug": "destination-wedding-photography",
-      "title": "Destination Wedding Photography",
-      "short": "Udaipur, Goa, Jaipur & beyond — travel-ready luxury wedding crews from Mumbai.",
-      "description": "Destination weddings need production discipline: travel logistics, venue familiarity and golden-hour planning. DisplayAvenue Studios brings Mumbai HQ craft to palace, beach and resort weddings across India — the destination coverage couples research when browsing WeddingSutra favourites.",
+      "slug": "pre-wedding-shoot",
+      "title": "Pre Wedding Photography",
+      "short": "Cinematic pre-wedding photography for Indian couples — invites & save-the-dates.",
+      "description": "Guided candid chemistry shoots for Indian couples across Mumbai, Lonavala and destinations — golden-hour light and invite-ready crops.",
       "benefits": [
-        "Travel-ready photo + film crew",
-        "Venue recce & timeline planning",
-        "Drone & low-light specialists",
-        "Multi-day coverage options",
-        "Guest experience coordination"
+        "Guided candid + portraits",
+        "Location scouting",
+        "Outfit-change guidance",
+        "Invite crops"
       ],
-      "image": "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
-      "category": "Wedding",
+      "image": "/images/indian/couple-02.jpg",
+      "category": "Pre-Wedding",
       "related": [
-        "wedding-photography",
-        "wedding-films",
+        "pre-wedding-videography",
+        "engagement-photography",
+        "wedding-photography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹35,000",
+      "priceNote": "Starting · half-day couple shoot",
+      "deliverables": [
+        "80–200 edited photographs",
+        "Social crop set"
+      ],
+      "equipment": [
+        "Portrait primes",
+        "Reflectors"
+      ]
+    },
+    {
+      "slug": "engagement-photography",
+      "title": "Engagement Photography",
+      "short": "Ring ceremonies, rokas and engagement parties for Indian families.",
+      "description": "Premium engagement photography in Mumbai — ring details, blessings and candid guest stories with same-week galleries.",
+      "benefits": [
+        "Ring & detail macros",
+        "Family blessings",
+        "Candid guest storytelling"
+      ],
+      "image": "/images/indian/engage-01.jpg",
+      "category": "Engagement",
+      "related": [
+        "engagement-videography",
+        "pre-wedding-shoot",
+        "wedding-photography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹45,000",
+      "priceNote": "Starting · engagement evening",
+      "deliverables": [
+        "Edited engagement gallery",
+        "Invite detail set"
+      ],
+      "equipment": [
+        "Macro + portrait lenses"
+      ]
+    },
+    {
+      "slug": "maternity-photography",
+      "title": "Maternity Photography",
+      "short": "Elegant Indian maternity portraits — weeks 28–34.",
+      "description": "Premium maternity photography for Indian parents in Mumbai — soft light, partner frames and heirloom retouching.",
+      "benefits": [
+        "Best at 28–34 weeks",
+        "Guided comfortable posing",
+        "Partner & sibling add-ons"
+      ],
+      "image": "/images/indian/maternity-01.jpg",
+      "category": "Maternity",
+      "related": [
+        "maternity-videography",
+        "birthday-photography",
         "pre-wedding-shoot"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
@@ -613,991 +806,483 @@
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
-        {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
-          "rating": 5,
-          "image": ""
-        }
-      ],
-      "tips": [
-        {
-          "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
-        },
-        {
-          "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
-        },
-        {
-          "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
-        },
-        {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
-        },
-        {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
-        },
-        {
-          "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
-        },
-        {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
-        },
-        {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
-        },
-        {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
-        }
-      ],
-      "priceFrom": "₹2,50,000",
-      "priceNote": "Starting · travel production",
-      "deliverables": [
-        "Full destination gallery",
-        "Cinematic highlight film",
-        "Travel & stay planning support"
-      ],
-      "equipment": [
-        "Travel cinema kit",
-        "Drone + backups",
-        "Local fixer network"
-      ]
-    },
-    {
-      "slug": "pre-wedding-shoot",
-      "title": "Pre Wedding Shoot",
-      "short": "Cinematic pre-wedding photography & films for save-the-dates and invitations.",
-      "description": "Pre-wedding photography is a rage with millennial couples — picturesque backdrops, guided candid chemistry, golden-hour light. WeddingSutra advises mixing posed elegance with unscripted laughter. We craft Mumbai city, Lonavala, studio and destination pre-wedding shoots that feel like mini films.",
-      "benefits": [
-        "Guided candid + portrait blend",
-        "Location scouting included",
-        "Outfit change guidance",
-        "Invite & save-the-date crops",
-        "Optional cinematic pre-wedding film"
-      ],
-      "image": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80",
-      "category": "Pre-Wedding",
-      "related": [
-        "engagement-photography",
-        "wedding-photography",
-        "wedding-films"
-      ],
-      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      "reviews": [
         {
           "name": "Ishita & Dev",
           "role": "Pre-wedding · Lonavala",
-          "quote": "Golden-hour chemistry shots we used on every invite. Soft light, zero stiff poses.",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
-        {
-          "name": "Rhea Kapoor",
-          "role": "Bride-to-be · Mumbai",
-          "quote": "Marine Drive + studio combo felt premium and personal.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        }
-      ],
-      "tips": [
-        {
-          "title": "Best season Oct–Mar",
-          "text": "Pleasant weather and softer sun make October to March ideal for outdoor pre-wedding shoots in India."
-        },
-        {
-          "title": "Golden hour first",
-          "text": "Book sunrise or sunset slots — warm tones flatter skin and create cinematic silhouettes."
-        },
-        {
-          "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
-        },
-        {
-          "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
-        },
-        {
-          "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
-        },
-        {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
-        },
-        {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
-        },
-        {
-          "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
-        },
-        {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
-        }
-      ],
-      "priceFrom": "₹35,000",
-      "priceNote": "Starting · half-day couple shoot",
-      "deliverables": [
-        "80–200 edited photographs",
-        "Social crop set",
-        "Optional 60–90 sec film"
-      ],
-      "equipment": [
-        "Portrait primes",
-        "Reflectors & portable light",
-        "Drone optional"
-      ]
-    },
-    {
-      "slug": "engagement-photography",
-      "title": "Engagement Photography",
-      "short": "Ring ceremonies, rokas and intimate engagement parties — photographed with luxury calm.",
-      "description": "Engagement photography captures the first public celebration of your promise — ring details, family blessings and candid joy. Ideal for couples who want WeddingSutra-level polish before the wedding week begins.",
-      "benefits": [
-        "Ring & detail macros",
-        "Family blessing coverage",
-        "Candid guest storytelling",
-        "Same-week social gallery",
-        "Add film or reel packages"
-      ],
-      "image": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1400&q=80",
-      "category": "Engagement",
-      "related": [
-        "pre-wedding-shoot",
-        "wedding-photography",
-        "event-coverage"
-      ],
-      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      "reviews": [
-        {
-          "name": "Simran & Kabir",
-          "role": "Engagement · Mumbai",
-          "quote": "Ring close-ups and candid laughter — guests still ask for our photographer.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        }
-      ],
-      "tips": [
-        {
-          "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
-        },
-        {
-          "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
-        },
-        {
-          "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
-        },
-        {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
-        },
-        {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
-        },
-        {
-          "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
-        },
-        {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
-        },
-        {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
-        },
-        {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
-        }
-      ],
-      "priceFrom": "₹45,000",
-      "priceNote": "Starting · engagement evening",
-      "deliverables": [
-        "Edited engagement gallery",
-        "Detail set for invites",
-        "Optional highlight reel"
-      ],
-      "equipment": [
-        "Macro + portrait lenses",
-        "Low-light banquet kit"
-      ]
-    },
-    {
-      "slug": "maternity-photography",
-      "title": "Maternity Photography",
-      "short": "Elegant maternity portraits between weeks 28–34 — soft light, partner frames, heirloom feel.",
-      "description": "Maternity photography deserves the same premium craft as wedding work. We specialise in flattering bump silhouettes, partner connection frames and serene studio or outdoor sessions timed for the classic 28–34 week window.",
-      "benefits": [
-        "Best booked at 28–34 weeks",
-        "Guided, comfortable posing",
-        "Partner & sibling add-ons",
-        "Studio or golden-hour outdoor",
-        "Heirloom retouching"
-      ],
-      "image": "https://images.unsplash.com/photo-1492725764893-90b379c2b6e0?auto=format&fit=crop&w=1400&q=80",
-      "category": "Maternity",
-      "related": [
-        "birthday-photography",
-        "pre-wedding-shoot",
-        "event-coverage"
-      ],
-      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      "reviews": [
         {
           "name": "Ananya Reddy",
           "role": "Maternity · Mumbai",
-          "quote": "Bump portraits at 32 weeks felt elegant, never clinical. Partner frames are our favourite.",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kavya Iyer",
-          "role": "Mum-to-be · Pune",
-          "quote": "Soft indoor light and guided poses made us relax instantly.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
-          "title": "Book weeks 28–34",
-          "text": "This window balances a defined bump with comfort for posing and travel to the location."
-        },
-        {
-          "title": "Comfort first outfits",
-          "text": "Flowing solids in earth or pastel tones photograph cleaner than busy prints."
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
         },
         {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹25,000",
-      "priceNote": "Starting · studio or outdoor session",
+      "priceNote": "Starting · studio or outdoor",
       "deliverables": [
         "40–80 edited portraits",
-        "Print-ready files",
-        "Optional mini-album"
+        "Print-ready files"
       ],
       "equipment": [
-        "Softbox & natural light setups",
-        "Flattering portrait primes"
+        "Softbox & natural light"
       ]
     },
     {
       "slug": "birthday-photography",
       "title": "Birthday Photography",
-      "short": "First birthdays to milestone celebrations — candid party coverage with premium polish.",
-      "description": "Birthday photography for DisplayAvenue means editorial candid coverage — cake moments, family groups and dance-floor energy without cheap party-videographer aesthetics. From 1st birthdays to 50th soirées across Mumbai.",
+      "short": "First birthdays to milestone celebrations — Indian family candid coverage.",
+      "description": "Premium birthday photography in Mumbai for Indian families — cake moments, décor and dance-floor energy with luxury polish.",
       "benefits": [
-        "Candid + key posed groups",
-        "Cake & décor detail set",
-        "Kid-friendly quiet approach",
-        "Same-week gallery",
-        "Optional reel for invites/thanks"
+        "Candid + key groups",
+        "Cake & décor details",
+        "Kid-friendly approach"
       ],
-      "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/birthday-01.jpg",
       "category": "Birthday",
       "related": [
+        "birthday-videography",
         "event-coverage",
-        "maternity-photography",
-        "engagement-photography"
+        "maternity-photography"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       "reviews": [
         {
-          "name": "Rohit Desai",
-          "role": "Parent · Mumbai",
-          "quote": "First birthday candid coverage — cake smash and family groups both perfect.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Neha Banerjee",
-          "role": "Host · Thane",
-          "quote": "Adult milestone birthday film felt luxury, not party-videographer.",
-          "rating": 5,
-          "image": ""
-        },
-        {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹18,000",
       "priceNote": "Starting · 3-hour coverage",
       "deliverables": [
         "Edited birthday gallery",
-        "Highlight shortlist",
-        "Optional vertical reel"
+        "Social shortlist"
       ],
       "equipment": [
-        "Fast low-light lenses",
-        "On-camera & bounce flash"
+        "Fast low-light lenses"
       ]
     },
     {
       "slug": "event-coverage",
-      "title": "Event Coverage",
-      "short": "All personal event coverage — anniversaries, pujas, receptions, family celebrations.",
-      "description": "Beyond weddings, DisplayAvenue provides all-event coverage for the celebrations that shape a family’s year: anniversaries, thread ceremonies, housewarmings, cocktail nights and receptions. One premium visual language across every milestone.",
+      "title": "Event Photography",
+      "short": "All personal Indian event photography — anniversaries, pujas, receptions.",
+      "description": "Premium photography for Indian family celebrations beyond weddings — anniversaries, thread ceremonies, housewarmings and cocktail nights.",
       "benefits": [
-        "Photo, film or combined crews",
         "Timeline-led coverage",
-        "Guest-friendly discreet team",
-        "Fast social delivery",
-        "Scales from intimate to grand"
+        "Discreet guest-friendly team",
+        "Fast social delivery"
       ],
-      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-08.jpg",
       "category": "Events",
       "related": [
-        "birthday-photography",
+        "event-videography",
         "reception-photography",
-        "wedding-photography"
+        "birthday-photography"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       "reviews": [
         {
-          "name": "Vikram Joshi",
-          "role": "Host · Mumbai",
-          "quote": "Anniversary soirée coverage looked editorial. Quiet team, loud results.",
-          "rating": 5,
-          "image": ""
-        },
-        {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹22,000",
       "priceNote": "Starting · half-day event",
       "deliverables": [
         "Edited event gallery",
-        "Optional highlight reel",
-        "Private client gallery code"
+        "Private gallery code"
       ],
       "equipment": [
-        "Event hybrid kits",
-        "Wireless audio for speeches"
+        "Event hybrid kits"
       ]
     },
     {
       "slug": "haldi-photography",
       "title": "Haldi Photography",
-      "short": "Colour, laughter and ritual — vibrant Haldi morning coverage.",
-      "description": "Haldi ceremonies are pure texture and joy. We capture turmeric rituals, playful family moments and fashion details that set the tone for your wedding week.",
+      "short": "Colour, laughter and ritual — Indian Haldi morning coverage.",
+      "description": "Vibrant Haldi photography for Indian weddings — turmeric rituals, playful family moments and fashion details.",
       "benefits": [
-        "Vibrant colour-accurate edits",
-        "Ritual + candid balance",
-        "Detail plates of décor & outfits",
-        "Pairs with mehendi packages"
+        "Colour-accurate edits",
+        "Ritual + candid balance"
       ],
-      "image": "https://images.unsplash.com/photo-1587271636175-90d58cdad458?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/ritual-01.jpg",
       "category": "Wedding",
       "related": [
+        "haldi-videography",
         "mehendi-photography",
-        "wedding-photography",
-        "sangeet-photography"
+        "wedding-photography"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       "reviews": [
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹28,000",
@@ -1607,25 +1292,22 @@
         "Social story set"
       ],
       "equipment": [
-        "Weather-sealed bodies",
-        "Fast primes"
+        "Weather-sealed bodies"
       ]
     },
     {
       "slug": "mehendi-photography",
       "title": "Mehendi Photography",
-      "short": "Intricate mehendi detail, guest portraits and evening ambience.",
-      "description": "Mehendi photography thrives on macro detail and soft candid storytelling — hands, patterns, music and the quiet before the wedding storm.",
+      "short": "Intricate mehendi detail and Indian guest storytelling.",
+      "description": "Mehendi photography with macro detail plates, décor stories and evening ambience for Indian wedding weeks.",
       "benefits": [
         "Macro mehendi plates",
-        "Guest lifestyle candids",
-        "Décor & floral stories",
-        "Evening ambient coverage"
+        "Guest lifestyle candids"
       ],
-      "image": "https://images.unsplash.com/photo-1594463750939-ebb28c3f7f75?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/mehndi-01.jpg",
       "category": "Wedding",
       "related": [
-        "haldi-photography",
+        "mehendi-videography",
         "sangeet-photography",
         "wedding-photography"
       ],
@@ -1634,114 +1316,100 @@
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹28,000",
@@ -1751,26 +1419,282 @@
         "Detail select set"
       ],
       "equipment": [
-        "Macro lenses",
-        "Portable LED"
+        "Macro lenses"
       ]
     },
     {
       "slug": "sangeet-photography",
       "title": "Sangeet Photography",
-      "short": "Dance-floor energy, performances and night-time glamour.",
-      "description": "Sangeet nights demand low-light mastery and performance timing. We cover choreographed numbers, family dances and fashion with concert-level clarity.",
+      "short": "Dance-floor energy and Indian performance nights.",
+      "description": "Low-light sangeet photography for choreographed numbers, family dances and fashion at Indian wedding celebrations.",
       "benefits": [
-        "Performance peak moments",
-        "Low-light specialist crew",
-        "Optional multi-cam film",
-        "Guest dance-floor stories"
+        "Performance peaks",
+        "Low-light specialists",
+        "Optional multi-cam film pair"
       ],
-      "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-06.jpg",
+      "category": "Wedding",
+      "related": [
+        "sangeet-videography",
+        "wedding-films",
+        "reception-photography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹40,000",
+      "priceNote": "Starting · Sangeet night",
+      "deliverables": [
+        "Edited Sangeet gallery",
+        "Performance highlight set"
+      ],
+      "equipment": [
+        "Fast glass",
+        "Gimbals"
+      ]
+    },
+    {
+      "slug": "reception-photography",
+      "title": "Reception Photography",
+      "short": "Grand entrances, speeches and the last dance.",
+      "description": "Indian wedding reception photography — entrances, cake, speeches and farewells with banquet and outdoor dinner expertise.",
+      "benefits": [
+        "Entrance & stage",
+        "Speech moments",
+        "Dance-floor candids"
+      ],
+      "image": "/images/indian/wedding-10.jpg",
+      "category": "Wedding",
+      "related": [
+        "reception-videography",
+        "wedding-photography",
+        "event-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹45,000",
+      "priceNote": "Starting · reception evening",
+      "deliverables": [
+        "Edited reception gallery",
+        "Thank-you selects"
+      ],
+      "equipment": [
+        "Banquet lighting kit"
+      ]
+    },
+    {
+      "slug": "wedding-videography",
+      "title": "Wedding Videography",
+      "short": "Traditional + cinematic wedding videography for Indian celebrations.",
+      "description": "Full wedding videography in Mumbai — multi-camera coverage of Indian rituals, vows, speeches and dance floors with colour-graded delivery and optional traditional long-form edits.",
+      "benefits": [
+        "Multi-camera coverage",
+        "Traditional long-form option",
+        "Highlight + reels",
+        "Wireless audio for vows"
+      ],
+      "image": "/images/indian/film-01.jpg",
       "category": "Wedding",
       "related": [
         "wedding-films",
-        "reception-photography",
+        "wedding-photography",
         "candid-wedding-photography"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
@@ -1778,287 +1702,395 @@
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
-      "priceFrom": "₹40,000",
-      "priceNote": "Starting · Sangeet night",
+      "priceFrom": "₹95,000",
+      "priceNote": "Starting · ceremony film day",
       "deliverables": [
-        "Edited Sangeet gallery",
-        "Performance highlight set",
-        "Optional reel"
+        "Highlight film 3–5 min",
+        "Optional traditional edit",
+        "Vertical reels",
+        "Private streaming link"
       ],
       "equipment": [
-        "Fast f/1.2–f/1.8 glass",
-        "Monopods & gimbals"
+        "Cinema / hybrid cameras",
+        "Gimbals",
+        "Wireless mics"
       ]
     },
     {
-      "slug": "reception-photography",
-      "title": "Reception Photography",
-      "short": "Grand entrances, speeches and the last dance — reception storytelling.",
-      "description": "Reception photography closes the wedding arc: couple entrances, cake, speeches and farewells. We keep coverage elegant for banquet halls and outdoor dinners alike.",
+      "slug": "wedding-films",
+      "title": "Cinematic Wedding Films",
+      "short": "Cinematic Indian wedding films — teasers, highlights and feature stories.",
+      "description": "Movie-style wedding films for Indian couples: multi-cam, drone where permitted, score and grade. Ideal with photography packages for a complete visual story.",
       "benefits": [
-        "Entrance & stage coverage",
-        "Speech & toast moments",
-        "Family formal sets",
-        "Dance-floor candids"
+        "Cinematic highlight 3–5 min",
+        "Feature film options",
+        "Drone plates (permitted)",
+        "Same-day teaser available"
       ],
-      "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/film-01.jpg",
       "category": "Wedding",
       "related": [
+        "wedding-videography",
         "wedding-photography",
-        "wedding-films",
-        "event-coverage"
+        "destination-wedding-videography"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       "reviews": [
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
-      "priceFrom": "₹45,000",
-      "priceNote": "Starting · reception evening",
+      "priceFrom": "₹1,25,000",
+      "priceNote": "Starting · highlight film package",
       "deliverables": [
-        "Edited reception gallery",
-        "Thank-you card selects"
+        "Highlight film",
+        "Vertical reels",
+        "Optional 20–40 min feature"
       ],
       "equipment": [
-        "Banquet lighting kit",
-        "Fast telephoto options"
+        "Cinema cameras",
+        "Gimbals",
+        "DGCA drone"
       ]
     },
     {
-      "slug": "wedding-drone-coverage",
-      "title": "Wedding Drone Coverage",
-      "short": "Aerial establishing shots for destination and resort weddings.",
-      "description": "Drone coverage adds the sweeping palace, beach and estate frames cinematic wedding films are known for — always venue-permitted and DGCA compliant.",
+      "slug": "destination-wedding-videography",
+      "title": "Destination Wedding Videography",
+      "short": "Travel film crews for Indian destination weddings.",
+      "description": "Cinematic destination wedding videography across Goa, Udaipur, Jaipur and India — travel logistics, venue familiarity and aerial establishes.",
       "benefits": [
-        "Establishing aerials",
-        "Baraat & venue reveals",
-        "Safe licensed pilots",
-        "Edited stills + film plates"
+        "Travel film crew",
+        "Multi-day cinema coverage",
+        "Drone establishes",
+        "Priority edit timeline"
       ],
-      "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1400&q=80",
+      "image": "/images/indian/wedding-05.jpg",
       "category": "Wedding",
       "related": [
         "destination-wedding-photography",
+        "wedding-films",
+        "wedding-drone-coverage"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹2,75,000",
+      "priceNote": "Starting · travel film production",
+      "deliverables": [
+        "Destination highlight film",
+        "Feature option",
+        "Reel set"
+      ],
+      "equipment": [
+        "Travel cinema kit",
+        "Drone"
+      ]
+    },
+    {
+      "slug": "pre-wedding-videography",
+      "title": "Pre Wedding Videography",
+      "short": "Cinematic pre-wedding films for Indian couples.",
+      "description": "Short cinematic pre-wedding films and vertical reels for Indian couples — chemistry-led storytelling for invites, websites and sangeet screens.",
+      "benefits": [
+        "60–90 sec cinematic film",
+        "Vertical reel cuts",
+        "Location scouting",
+        "Guided movement"
+      ],
+      "image": "/images/indian/wedding-07.jpg",
+      "category": "Pre-Wedding",
+      "related": [
+        "pre-wedding-shoot",
+        "engagement-videography",
         "wedding-films"
       ],
       "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
@@ -2066,136 +2098,1278 @@
         {
           "name": "Aanya & Rohan",
           "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Meera Shah",
           "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Kabir Malhotra",
           "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Sneha & Arjun",
           "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
           "rating": 5,
           "image": ""
         },
         {
           "name": "Priya Nair",
           "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Aanya & Rohan",
-          "role": "Wedding · Udaipur",
-          "quote": "Calm crew, stunning pheras light, and a highlight film our families still replay. Worth every rupee.",
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Meera Shah",
-          "role": "Bride · Mumbai",
-          "quote": "Candid frames felt like a hidden camera — zero awkward poses, pure emotion.",
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
           "rating": 5,
           "image": ""
         },
         {
-          "name": "Kabir Malhotra",
-          "role": "Groom · Delhi",
-          "quote": "Multi-day coverage never felt intrusive. Elders loved the traditional groups; we loved the cinema.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Sneha & Arjun",
-          "role": "Couple · Goa",
-          "quote": "Beach reception looked like a movie. Same-week social selects helped every guest post.",
-          "rating": 5,
-          "image": ""
-        },
-        {
-          "name": "Priya Nair",
-          "role": "Bride · Bangalore",
-          "quote": "From mehendi to pheras, nothing was missed. Album design credit made gifting parents easy.",
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
           "rating": 5,
           "image": ""
         }
       ],
       "tips": [
         {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
           "title": "Candid vs traditional",
-          "text": "WeddingSutra notes candid photography captures emotion without staged poses, while traditional coverage keeps family group portraits elders expect. Premium albums blend both."
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
         },
         {
           "title": "Book 6–12 months ahead",
-          "text": "Top Mumbai wedding photographers fill peak season (Nov–Feb & wedding muhurat dates) early. Hold your crew with a token once dates are fixed."
-        },
-        {
-          "title": "Brief your must-haves",
-          "text": "Share ritual timelines, VIP family members, and Pinterest references before the wedding week so nothing sacred is missed."
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
         },
         {
           "title": "Same-day social selects",
-          "text": "Couples now expect Instagram-ready frames within 24–48 hours. Ask for a same-day edit teaser in your package."
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
         },
         {
-          "title": "Drone needs permissions",
-          "text": "Palace, beach and banquet aerials need venue clearance and DGCA-compliant pilots — confirm before promising sky shots."
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
         },
         {
-          "title": "Two shooters minimum",
-          "text": "Parallel events (bride prep + baraat) need at least two photographers so no key moment is orphaned."
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
         },
         {
           "title": "Deliverables in writing",
-          "text": "Confirm edited photo count, film length, album credit, raw delivery and timeline in the contract — WeddingSutra’s hiring tip #1."
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
         },
         {
-          "title": "Golden hour couple portraits",
-          "text": "Schedule 20–30 quiet minutes at sunset for cinematic couple frames guests never interrupt."
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
         },
         {
-          "title": "Colour grading consistency",
-          "text": "Photo and film from one studio keep skin tones and colour language consistent across Instagram, album and cinema."
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
         },
         {
-          "title": "Destination logistics",
-          "text": "For Goa, Udaipur or Jaipur, lock travel, stay and local fixer early — luxury coverage is half planning, half craft."
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹45,000",
+      "priceNote": "Starting · half-day film",
+      "deliverables": [
+        "Pre-wedding film",
+        "Reel exports",
+        "Colour grade"
+      ],
+      "equipment": [
+        "Gimbal + primes",
+        "Wireless audio"
+      ]
+    },
+    {
+      "slug": "engagement-videography",
+      "title": "Engagement Videography",
+      "short": "Engagement and roka films for Indian families.",
+      "description": "Highlight reels and short films for Indian engagement ceremonies — ring moments, blessings and guest energy.",
+      "benefits": [
+        "Ceremony highlight reel",
+        "Speech audio capture",
+        "Same-week social cut"
+      ],
+      "image": "/images/indian/engage-02.jpg",
+      "category": "Engagement",
+      "related": [
+        "engagement-photography",
+        "pre-wedding-videography",
+        "wedding-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹40,000",
+      "priceNote": "Starting · engagement evening film",
+      "deliverables": [
+        "Highlight reel",
+        "Vertical clips"
+      ],
+      "equipment": [
+        "Hybrid camera + gimbal"
+      ]
+    },
+    {
+      "slug": "maternity-videography",
+      "title": "Maternity Videography",
+      "short": "Soft cinematic maternity films for Indian parents-to-be.",
+      "description": "Short maternity films capturing bump portraits, partner connection and announcement-ready clips for Indian families.",
+      "benefits": [
+        "30–60 sec announcement film",
+        "Partner frames",
+        "Gentle guided direction"
+      ],
+      "image": "/images/indian/maternity-02.jpg",
+      "category": "Maternity",
+      "related": [
+        "maternity-photography",
+        "birthday-videography",
+        "pre-wedding-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹22,000",
+      "priceNote": "Starting · session film",
+      "deliverables": [
+        "Maternity film",
+        "Vertical announcement cut"
+      ],
+      "equipment": [
+        "Portrait cinema kit"
+      ]
+    },
+    {
+      "slug": "birthday-videography",
+      "title": "Birthday Videography",
+      "short": "Birthday films and reels for Indian family celebrations.",
+      "description": "Cinematic birthday videography in Mumbai — cake moments, family speeches and highlight reels for first birthdays and milestones.",
+      "benefits": [
+        "Highlight reel",
+        "Speech audio",
+        "Kid-friendly crew"
+      ],
+      "image": "/images/indian/birthday-01.jpg",
+      "category": "Birthday",
+      "related": [
+        "birthday-photography",
+        "event-videography",
+        "maternity-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹20,000",
+      "priceNote": "Starting · 3-hour film coverage",
+      "deliverables": [
+        "Birthday highlight",
+        "Vertical reel"
+      ],
+      "equipment": [
+        "Gimbal + low-light glass"
+      ]
+    },
+    {
+      "slug": "event-videography",
+      "title": "Event Videography",
+      "short": "All personal Indian event videography.",
+      "description": "Film coverage for Indian anniversaries, pujas, cocktail nights and family celebrations — same luxury standard as our wedding films.",
+      "benefits": [
+        "Event highlight reel",
+        "Speech capture",
+        "Social-first cuts"
+      ],
+      "image": "/images/indian/wedding-08.jpg",
+      "category": "Events",
+      "related": [
+        "event-coverage",
+        "reception-videography",
+        "birthday-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹25,000",
+      "priceNote": "Starting · half-day film",
+      "deliverables": [
+        "Highlight film",
+        "Private stream link"
+      ],
+      "equipment": [
+        "Event cinema kit"
+      ]
+    },
+    {
+      "slug": "haldi-videography",
+      "title": "Haldi Videography",
+      "short": "Colourful Haldi films for Indian wedding mornings.",
+      "description": "Short Haldi films capturing turmeric play, music and family joy — perfect social teasers for wedding week.",
+      "benefits": [
+        "Vibrant colour grade",
+        "Music + ambient audio",
+        "Vertical social cuts"
+      ],
+      "image": "/images/indian/ritual-01.jpg",
+      "category": "Wedding",
+      "related": [
+        "haldi-photography",
+        "mehendi-videography",
+        "wedding-films"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹25,000",
+      "priceNote": "Starting · Haldi film",
+      "deliverables": [
+        "Haldi highlight",
+        "Reel set"
+      ],
+      "equipment": [
+        "Gimbal + weather kit"
+      ]
+    },
+    {
+      "slug": "mehendi-videography",
+      "title": "Mehendi Videography",
+      "short": "Mehendi detail films and evening ambience.",
+      "description": "Cinematic mehendi coverage — macro henna details, décor reveals and guest storytelling for Indian wedding weeks.",
+      "benefits": [
+        "Detail macros on film",
+        "Ambience + music",
+        "Social teasers"
+      ],
+      "image": "/images/indian/mehndi-01.jpg",
+      "category": "Wedding",
+      "related": [
+        "mehendi-photography",
+        "sangeet-videography",
+        "wedding-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹25,000",
+      "priceNote": "Starting · Mehendi film",
+      "deliverables": [
+        "Mehendi highlight",
+        "Detail reel"
+      ],
+      "equipment": [
+        "Macro + gimbal"
+      ]
+    },
+    {
+      "slug": "sangeet-videography",
+      "title": "Sangeet Videography",
+      "short": "Multi-cam sangeet films for Indian dance nights.",
+      "description": "Performance-led sangeet videography with multi-camera coverage, audio and cinematic edits for Indian wedding celebrations.",
+      "benefits": [
+        "Multi-cam performances",
+        "Clean audio",
+        "Highlight + reels"
+      ],
+      "image": "/images/indian/wedding-06.jpg",
+      "category": "Wedding",
+      "related": [
+        "sangeet-photography",
+        "wedding-films",
+        "reception-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹55,000",
+      "priceNote": "Starting · Sangeet film night",
+      "deliverables": [
+        "Sangeet highlight film",
+        "Performance cuts"
+      ],
+      "equipment": [
+        "Multi-cam + wireless audio"
+      ]
+    },
+    {
+      "slug": "reception-videography",
+      "title": "Reception Videography",
+      "short": "Reception entrance films, speeches and last dance.",
+      "description": "Indian wedding reception videography — grand entrances, speeches, cake and dance-floor cinema with banquet expertise.",
+      "benefits": [
+        "Entrance cinema",
+        "Speech audio",
+        "Dance-floor coverage"
+      ],
+      "image": "/images/indian/wedding-10.jpg",
+      "category": "Wedding",
+      "related": [
+        "reception-photography",
+        "wedding-videography",
+        "event-videography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
+        }
+      ],
+      "priceFrom": "₹55,000",
+      "priceNote": "Starting · reception film",
+      "deliverables": [
+        "Reception highlight",
+        "Speech edit option"
+      ],
+      "equipment": [
+        "Banquet cinema kit"
+      ]
+    },
+    {
+      "slug": "wedding-drone-coverage",
+      "title": "Wedding Drone Coverage",
+      "short": "Aerial stills & film plates for Indian destination weddings.",
+      "description": "DGCA-compliant drone coverage for Indian palace, beach and estate weddings — establishing aerials for photography and films.",
+      "benefits": [
+        "Aerial stills + 4K clips",
+        "Venue-permitted only",
+        "Licensed pilots"
+      ],
+      "image": "/images/indian/wedding-02.jpg",
+      "category": "Wedding",
+      "related": [
+        "destination-wedding-videography",
+        "wedding-films",
+        "destination-wedding-photography"
+      ],
+      "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "reviews": [
+        {
+          "name": "Aanya & Rohan",
+          "role": "Wedding · Udaipur",
+          "quote": "Photo and film felt like one cinema language. Highlight still gives us chills.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Meera Shah",
+          "role": "Bride · Mumbai",
+          "quote": "Candid stills + cinematic film — zero stiff posing, pure emotion.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Kabir Malhotra",
+          "role": "Groom · Delhi",
+          "quote": "Multi-day photo and video never felt intrusive. Elders loved traditional groups.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Sneha & Arjun",
+          "role": "Couple · Goa",
+          "quote": "Beach reception film looked like a movie. Same-week reels helped every guest post.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Priya Nair",
+          "role": "Bride · Bangalore",
+          "quote": "From mehendi to pheras, photo and film missed nothing.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ishita & Dev",
+          "role": "Pre-wedding · Lonavala",
+          "quote": "Pre-wedding film and stills became our entire invite suite.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Ananya Reddy",
+          "role": "Maternity · Mumbai",
+          "quote": "Bump portraits and a short film felt elegant, never clinical.",
+          "rating": 5,
+          "image": ""
+        },
+        {
+          "name": "Rohit Desai",
+          "role": "Birthday · Mumbai",
+          "quote": "First birthday photo + reel looked as polished as our wedding gallery.",
+          "rating": 5,
+          "image": ""
+        }
+      ],
+      "tips": [
+        {
+          "title": "Photo + film from one crew",
+          "text": "Bundling photography and videography keeps colour language consistent and is usually more cost-effective than hiring separate vendors."
+        },
+        {
+          "title": "Candid vs traditional",
+          "text": "Candid captures raw emotion; traditional secures family groups elders expect. Premium albums blend both."
+        },
+        {
+          "title": "Book 6–12 months ahead",
+          "text": "Peak Mumbai wedding Saturdays and muhurat dates fill early — hold your photo and film crew with a token."
+        },
+        {
+          "title": "Same-day social selects",
+          "text": "Ask for Instagram-ready stills and a vertical reel within 24–48 hours of the function."
+        },
+        {
+          "title": "Brief your must-haves",
+          "text": "Share ritual timings, VIP family names and film length preferences before wedding week."
+        },
+        {
+          "title": "Golden hour portraits",
+          "text": "Protect 20–30 quiet minutes at sunset for cinematic couple frames."
+        },
+        {
+          "title": "Deliverables in writing",
+          "text": "Confirm edited photo count, highlight length, feature film, album credit and timeline in the contract."
+        },
+        {
+          "title": "Drone needs permission",
+          "text": "Palace and banquet aerials need venue clearance and DGCA-compliant pilots."
+        },
+        {
+          "title": "Two shooters minimum",
+          "text": "Parallel rituals need second photographers so baraat and bride prep are never orphaned."
+        },
+        {
+          "title": "Pre-wedding chemistry",
+          "text": "A guided pre-wedding day helps couples relax on camera before the wedding week."
         }
       ],
       "priceFrom": "₹15,000",
       "priceNote": "Add-on · per event day",
       "deliverables": [
         "Aerial still selects",
-        "4K aerial clips for film"
+        "4K plates for film"
       ],
       "equipment": [
-        "DGCA-compliant drone",
-        "ND filters & backups"
+        "DGCA drone",
+        "ND filters"
       ]
     }
   ],
   "homeServices": [
     "wedding-photography",
-    "candid-wedding-photography",
+    "wedding-videography",
     "wedding-films",
+    "candid-wedding-photography",
     "pre-wedding-shoot",
+    "pre-wedding-videography",
     "engagement-photography",
     "maternity-photography",
     "birthday-photography",
-    "event-coverage"
+    "event-videography"
   ]
 }

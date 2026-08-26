@@ -113,7 +113,7 @@ export const extrasFallback: ExtrasContent = {
   awards: [],
   showreel: {
     eyebrow: "Studio showreel",
-    title: "Weddings, brands & places — in one film",
+    title: "Indian weddings, vows & forever — in one film",
     text: "",
     youtubeUrl: "",
     poster: "",

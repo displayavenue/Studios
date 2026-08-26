@@ -1,19 +1,19 @@
 {
   "seo": {
     "title": "Wedding Photographer in Mumbai | Candid Photography & Films | DisplayAvenue",
-    "description": "Premium wedding photographer in Mumbai for candid & traditional photography, cinematic wedding films, pre-wedding shoots, engagement, maternity, birthday and event coverage. Pan-India destination weddings."
+    "description": "Premium wedding photographer & videographer in Mumbai for Indian weddings — candid photography, cinematic films, pre-wedding, engagement, maternity, birthday and event coverage across India."
   },
   "hero": {
     "brand": "DisplayAvenue Studios",
     "eyebrow": "Luxury Wedding Photography & Films · Mumbai",
     "headline": "The wedding photographer couples shortlist for forever",
-    "description": "Candid emotion. Traditional heirloom portraits. Cinematic films. Pre-wedding, engagement, maternity, birthday and all event coverage — crafted in Mumbai, trusted across India.",
+    "description": "Candid photography. Cinematic videography. Traditional heirlooms. Pre-wedding, engagement, maternity, birthday and all event photo + film — crafted in Mumbai for Indian celebrations.",
     "primaryCtaLabel": "Check Availability",
     "primaryCtaPath": "/availability",
     "secondaryCtaLabel": "View Wedding Portfolio",
     "secondaryCtaPath": "/portfolio",
-    "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
-    "imageAlt": "Luxury Indian wedding photography by DisplayAvenue Studios Mumbai"
+    "image": "/images/indian/wedding-01.jpg",
+    "imageAlt": "Indian bride and groom in traditional wedding attire by DisplayAvenue Studios Mumbai"
   },
   "brands": {
     "label": "Trusted by Couples Across India"
@@ -21,7 +21,7 @@
   "services": {
     "eyebrow": "Signature Services",
     "title": "Weddings & life’s celebrations — only what matters",
-    "text": "Wedding, pre-wedding, engagement, maternity, birthday and complete event coverage. No corporate clutter — pure celebration craft.",
+    "text": "Wedding photography & videography, pre-wedding films, engagement, maternity, birthday and complete event coverage — photo and film for every celebration.",
     "ctaLabel": "Explore Services",
     "ctaPath": "/services"
   },

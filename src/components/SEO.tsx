@@ -44,7 +44,7 @@ export function SEO({
   description,
   path = "/",
   type = "website",
-  image = "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+  image = "https://displayavenuestudios.com/images/indian/wedding-01.jpg",
   noindex = false,
 }: SEOProps) {
   const { company } = useCms();
@@ -127,7 +127,7 @@ export function LocalBusinessSchema() {
       telephone: company.phone,
       email: company.email,
       image: [
-        "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+        "https://displayavenuestudios.com/images/indian/wedding-01.jpg",
       ],
       logo: `${company.website}/favicon.svg`,
       priceRange: "₹₹₹",

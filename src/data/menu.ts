@@ -86,7 +86,7 @@ export const menuConfig: MenuConfig = {
   },
   "servicesMega": {
     "eyebrow": "Celebrate with us",
-    "title": "Wedding & celebration services",
+    "title": "Wedding photography & videography",
     "viewAllLabel": "View all services",
     "viewAllPath": "/services",
     "categories": [
@@ -102,19 +102,19 @@ export const menuConfig: MenuConfig = {
     "popularCount": 8,
     "popularSlugs": [
       "wedding-photography",
-      "candid-wedding-photography",
+      "wedding-videography",
       "wedding-films",
+      "candid-wedding-photography",
       "pre-wedding-shoot",
+      "pre-wedding-videography",
       "engagement-photography",
-      "maternity-photography",
-      "birthday-photography",
-      "event-coverage"
+      "maternity-photography"
     ]
   },
   "packagesMega": {
     "allEyebrow": "Packages",
     "allLabel": "All packages",
-    "allText": "Essential \u00b7 Signature \u00b7 Luxury for weddings and life celebrations.",
+    "allText": "Essential · Signature · Luxury for weddings and life celebrations.",
     "allPath": "/packages",
     "itemEyebrow": "Package",
     "pricingEyebrow": "Pricing",
@@ -179,7 +179,7 @@ export const menuConfig: MenuConfig = {
     "citiesCount": 8,
     "ctaEyebrow": "Book your date",
     "ctaTitle": "Peak Saturdays fill first",
-    "ctaText": "Share your wedding date and city \u2014 we reply quickly on WhatsApp.",
+    "ctaText": "Share your wedding date and city — we reply quickly on WhatsApp.",
     "ctaPrimaryLabel": "Book Now",
     "ctaPrimaryPath": "/book-now",
     "ctaSecondaryLabel": "WhatsApp",
@@ -191,16 +191,24 @@ export const menuConfig: MenuConfig = {
       "path": "/services/wedding-photography"
     },
     {
+      "label": "Wedding Videography",
+      "path": "/services/wedding-videography"
+    },
+    {
+      "label": "Cinematic Films",
+      "path": "/services/wedding-films"
+    },
+    {
       "label": "Candid Wedding",
       "path": "/services/candid-wedding-photography"
     },
     {
-      "label": "Wedding Films",
-      "path": "/services/wedding-films"
+      "label": "Pre-Wedding Photo",
+      "path": "/services/pre-wedding-shoot"
     },
     {
-      "label": "Pre-Wedding",
-      "path": "/services/pre-wedding-shoot"
+      "label": "Pre-Wedding Film",
+      "path": "/services/pre-wedding-videography"
     },
     {
       "label": "Engagement",
@@ -211,7 +219,7 @@ export const menuConfig: MenuConfig = {
       "path": "/services/maternity-photography"
     },
     {
-      "label": "Birthday",
+      "label": "Birthday Photo & Film",
       "path": "/services/birthday-photography"
     },
     {
@@ -229,14 +237,6 @@ export const menuConfig: MenuConfig = {
     {
       "label": "Availability",
       "path": "/availability"
-    },
-    {
-      "label": "Hire by city",
-      "path": "/hire"
-    },
-    {
-      "label": "FAQs",
-      "path": "/faqs"
     },
     {
       "label": "Contact",
