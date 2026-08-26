@@ -103,7 +103,11 @@ export function Contact() {
         title={contact.seo?.title || contactMeta.title}
         description={contact.seo?.description || contactMeta.description}
         path="/contact"
-        keywords={contact.seo?.keywords || contactMeta.keywords}
+        keywords={
+          contact.seo?.keywords?.length
+            ? contact.seo.keywords
+            : contactMeta.keywords
+        }
       />
       <div className="container">
         <div className="contact-layout">

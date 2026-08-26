@@ -47,8 +47,13 @@ export const fallbackContact: ContactCms = {
     messagePlaceholder: "Tell us about your project or goals",
   },
   seo: {
-    title: "Get Free Proposal | DisplayAvenue",
+    title: "Get Free Proposal | Contact DisplayAvenue Mumbai",
     description:
-      "Book a free consultation or request a custom proposal from DisplayAvenue.",
+      "Book a free consultation or request a custom proposal. Tell us your city and goal — DisplayAvenue replies with a clear next step. WhatsApp 9222 122333.",
+    keywords: [
+      "contact DisplayAvenue",
+      "free digital marketing consultation Mumbai",
+      "WhatsApp 9222122333",
+    ],
   },
 };

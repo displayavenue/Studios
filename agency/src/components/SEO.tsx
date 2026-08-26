@@ -74,6 +74,8 @@ export function SEO({
     setMeta('meta[name="description"]', "content", description);
     if (keywordsContent) {
       setMeta('meta[name="keywords"]', "content", keywordsContent);
+    } else {
+      document.querySelector('meta[name="keywords"]')?.remove();
     }
     if (siteVerification) {
       setMeta(
