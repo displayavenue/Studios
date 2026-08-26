@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { CredentialImage } from "../components/CredentialImage";
 import { useCms } from "../cms/CmsProvider";
 import "./AwardsCerts.css";
@@ -23,14 +24,13 @@ export function Awards() {
     [items, filter],
   );
 
-  const seoTitle = awards.seo?.title || "Awards | DisplayAvenue";
-  const seoDesc =
-    awards.seo?.description ||
-    "Awards won by the DisplayAvenue team for digital marketing excellence.";
+  const seoTitle = awards.seo?.title || staticPageSeo["/awards"].title;
+  const seoDesc = awards.seo?.description || staticPageSeo["/awards"].description;
+  const seoKeywords = awards.seo?.keywords || staticPageSeo["/awards"].keywords;
 
   return (
     <div className="acred">
-      <SEO title={seoTitle} description={seoDesc} path="/awards" />
+      <SEO title={seoTitle} description={seoDesc} path="/awards" keywords={seoKeywords} />
       <div className="container">
         <header className="acred__hero">
           <p className="acred__kicker">DisplayAvenue recognition</p>

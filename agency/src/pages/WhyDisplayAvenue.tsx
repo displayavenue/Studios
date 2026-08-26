@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import {
   whyPillars,
   whyTrustCards,
@@ -15,7 +16,12 @@ import "../styles/pages.css";
 export function WhyDisplayAvenue() {
   return (
     <div className="page-shell">
-      <SEO title="Why DisplayAvenue" description="Why brands choose DisplayAvenue for measurable ROI, AI delivery, and transparent growth." path="/why-displayavenue" />
+      <SEO
+        title={staticPageSeo["/why-displayavenue"].title}
+        description={staticPageSeo["/why-displayavenue"].description}
+        path="/why-displayavenue"
+        keywords={staticPageSeo["/why-displayavenue"].keywords}
+      />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

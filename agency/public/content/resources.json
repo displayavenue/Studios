@@ -100,7 +100,17 @@
       "slug": "blog",
       "kind": "resource",
       "title": "Blog",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Blog | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. Get a free plan from DisplayAvenue. Wh…",
+      "seoKeywords": [
+        "Blog",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Blog"
     },
     {
       "icon": "book",
@@ -202,7 +212,17 @@
       "slug": "guides",
       "kind": "resource",
       "title": "Guides & eBooks",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Guides & eBooks | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Guides & eBooks: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resou…",
+      "seoKeywords": [
+        "Guides & eBooks",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Guides & eBooks"
     },
     {
       "icon": "doc",
@@ -304,7 +324,17 @@
       "slug": "whitepapers",
       "kind": "resource",
       "title": "Whitepapers",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Whitepapers | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Whitepapers: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resources.",
+      "seoKeywords": [
+        "Whitepapers",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Whitepapers"
     },
     {
       "icon": "layers",
@@ -406,7 +436,17 @@
       "slug": "templates",
       "kind": "resource",
       "title": "Templates",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Templates | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Templates: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resources.",
+      "seoKeywords": [
+        "Templates",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Templates"
     },
     {
       "icon": "check",
@@ -508,7 +548,17 @@
       "slug": "checklists",
       "kind": "resource",
       "title": "Checklists",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Checklists | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Checklists: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resources.",
+      "seoKeywords": [
+        "Checklists",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Checklists"
     },
     {
       "icon": "users",
@@ -610,7 +660,17 @@
       "slug": "webinars",
       "kind": "resource",
       "title": "Webinars",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Webinars | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Webinars: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resources.",
+      "seoKeywords": [
+        "Webinars",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Webinars"
     },
     {
       "icon": "camera",
@@ -712,7 +772,17 @@
       "slug": "videos",
       "kind": "resource",
       "title": "Videos",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Videos | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Videos: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resources.",
+      "seoKeywords": [
+        "Videos",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Videos"
     },
     {
       "icon": "chat",
@@ -814,7 +884,17 @@
       "slug": "podcasts",
       "kind": "resource",
       "title": "Podcasts",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Podcasts | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Podcasts: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resources.",
+      "seoKeywords": [
+        "Podcasts",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Podcasts"
     },
     {
       "icon": "chart",
@@ -916,7 +996,17 @@
       "slug": "reports",
       "kind": "resource",
       "title": "Industry Reports",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Industry Reports | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Industry Reports: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Reso…",
+      "seoKeywords": [
+        "Industry Reports",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Industry Reports"
     },
     {
       "icon": "book",
@@ -1018,7 +1108,17 @@
       "slug": "glossary",
       "kind": "resource",
       "title": "Glossary",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Glossary | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Glossary: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenue · Resources.",
+      "seoKeywords": [
+        "Glossary",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Glossary"
     },
     {
       "icon": "brain",
@@ -1120,7 +1220,17 @@
       "slug": "ai-marketing-guide",
       "kind": "resource",
       "title": "AI Marketing: Complete Guide",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "AI Marketing: Complete Guide | Guides & Resources | DisplayAvenue",
+      "seoDescription": "AI Marketing: Complete Guide: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayA…",
+      "seoKeywords": [
+        "AI Marketing: Complete Guide",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "AI Marketing: Complete Guide"
     },
     {
       "icon": "growth",
@@ -1222,7 +1332,17 @@
       "slug": "roi-playbook",
       "kind": "resource",
       "title": "ROI Playbook for Digital Growth",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "ROI Playbook for Digital Growth | Guides & Resources | DisplayAvenue",
+      "seoDescription": "ROI Playbook for Digital Growth: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. Displ…",
+      "seoKeywords": [
+        "ROI Playbook for Digital Growth",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "ROI Playbook for Digital Growth"
     },
     {
       "icon": "doc",
@@ -1324,7 +1444,17 @@
       "slug": "90-day-template",
       "kind": "resource",
       "title": "90-Day Marketing Strategy Template",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "90-Day Marketing Strategy Template | Guides & Resources | DisplayAven…",
+      "seoDescription": "90-Day Marketing Strategy Template: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. Di…",
+      "seoKeywords": [
+        "90-Day Marketing Strategy Template",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "90-Day Marketing Strategy Template"
     },
     {
       "icon": "search",
@@ -1426,7 +1556,17 @@
       "slug": "seo-strategies",
       "kind": "resource",
       "title": "10 Proven SEO Strategies",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "10 Proven SEO Strategies | Guides & Resources | DisplayAvenue",
+      "seoDescription": "10 Proven SEO Strategies: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAvenu…",
+      "seoKeywords": [
+        "10 Proven SEO Strategies",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "10 Proven SEO Strategies"
     },
     {
       "icon": "robot",
@@ -1528,7 +1668,17 @@
       "slug": "ai-agents-marketing",
       "kind": "resource",
       "title": "AI Agents in Marketing Ops",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "AI Agents in Marketing Ops | Guides & Resources | DisplayAvenue",
+      "seoDescription": "AI Agents in Marketing Ops: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. DisplayAve…",
+      "seoKeywords": [
+        "AI Agents in Marketing Ops",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "AI Agents in Marketing Ops"
     },
     {
       "icon": "chart",
@@ -1630,7 +1780,17 @@
       "slug": "attribution-guide",
       "kind": "resource",
       "title": "Full-Funnel Attribution Guide",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "Full-Funnel Attribution Guide | Guides & Resources | DisplayAvenue",
+      "seoDescription": "Full-Funnel Attribution Guide: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. Display…",
+      "seoKeywords": [
+        "Full-Funnel Attribution Guide",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Full-Funnel Attribution Guide"
     },
     {
       "icon": "doc",
@@ -1732,7 +1892,18 @@
       "slug": "landing-pages",
       "kind": "resource",
       "title": "High-Converting Landing Pages",
-      "category": "Resources"
+      "category": "Resources",
+      "seoTitle": "High-Converting Landing Pages | Guides & Resources | DisplayAvenue",
+      "seoDescription": "High-Converting Landing Pages: Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth. Display…",
+      "seoKeywords": [
+        "High-Converting Landing Pages",
+        "Resources",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "High-Converting Landing Pages"
     }
-  ]
+  ],
+  "updatedAt": "2026-08-26T03:43:49.976Z"
 }

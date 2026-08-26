@@ -8,6 +8,8 @@ type SEOProps = {
   type?: string;
   image?: string;
   noindex?: boolean;
+  /** Comma-separated or array of focused phrases (not stuffed) */
+  keywords?: string | string[];
 };
 
 /** Absolute public URL including Vite base (/demo when deployed as demo). */
@@ -57,15 +59,22 @@ export function SEO({
   type = "website",
   image = DEFAULT_OG,
   noindex = false,
+  keywords,
 }: SEOProps) {
   const { company, tracking } = useCms();
   const siteVerification = tracking.googleSiteVerification?.trim();
+  const keywordsContent = Array.isArray(keywords)
+    ? keywords.filter(Boolean).join(", ")
+    : (keywords || "").trim();
 
   useEffect(() => {
     document.title = title;
     const url = absoluteUrl(company.website, path);
 
     setMeta('meta[name="description"]', "content", description);
+    if (keywordsContent) {
+      setMeta('meta[name="keywords"]', "content", keywordsContent);
+    }
     if (siteVerification) {
       setMeta(
         'meta[name="google-site-verification"]',
@@ -111,6 +120,7 @@ export function SEO({
     type,
     image,
     noindex,
+    keywordsContent,
     company.website,
     company.name,
     company.address.city,

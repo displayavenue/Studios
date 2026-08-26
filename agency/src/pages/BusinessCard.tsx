@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { cardProfile as c } from "../data/cardProfile";
 import "./BusinessCard.css";
 
@@ -31,9 +32,10 @@ export function BusinessCard() {
   return (
     <div className="bc-page">
       <SEO
-        title="Akash · DisplayAvenue Business Card"
-        description="Contact DisplayAvenue — phone, WhatsApp, email info@displayavenue.com, services and free tools. Opened from the DisplayAvenue business card QR."
+        title={staticPageSeo["/card"].title}
+        description={staticPageSeo["/card"].description}
         path="/card"
+        keywords={staticPageSeo["/card"].keywords}
       />
 
       {/* —— PRINT SHEET: exact physical card size for local stationery —— */}

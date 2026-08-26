@@ -38,7 +38,13 @@ export function BlogPost() {
         description={post.excerpt}
         path={`/blog/${post.slug}`}
         type="article"
-        noindex={false}
+        keywords={[
+          post.title,
+          post.category,
+          "DisplayAvenue blog",
+          "digital marketing India",
+          ...(post.tags || []).slice(0, 4),
+        ].filter(Boolean)}
       />
       <ArticleSchema
         title={post.title}

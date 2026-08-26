@@ -25,7 +25,7 @@ export type AwardsCms = {
   enabled: boolean;
   title: string;
   sub: string;
-  seo?: { title?: string; description?: string };
+  seo?: { title?: string; description?: string; keywords?: string[] };
   homeTitle?: string;
   homeSub?: string;
   homeAwardsLimit?: number;
@@ -37,7 +37,7 @@ export type CertificationsCms = {
   enabled: boolean;
   title: string;
   sub: string;
-  seo?: { title?: string; description?: string };
+  seo?: { title?: string; description?: string; keywords?: string[] };
   items: CertificationItem[];
 };
 

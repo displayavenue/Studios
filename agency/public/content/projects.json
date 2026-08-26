@@ -100,7 +100,17 @@
       "slug": "vaidraj",
       "kind": "project",
       "title": "Vaidraj Ayurvedic Store",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "seoTitle": "Vaidraj Ayurvedic Store | Portfolio Project | DisplayAvenue",
+      "seoDescription": "A featured DisplayAvenue project spanning strategy, design, and growth for Vaidraj Ayurvedic Store. Get a free plan from DisplayAvenue. WhatsApp 9222 122333.",
+      "seoKeywords": [
+        "Vaidraj Ayurvedic Store",
+        "E-commerce",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Vaidraj Ayurvedic Store"
     },
     {
       "icon": "code",
@@ -202,7 +212,17 @@
       "slug": "bpg",
       "kind": "project",
       "title": "Bhaskar Patil Group Website",
-      "category": "Web Development"
+      "category": "Web Development",
+      "seoTitle": "Bhaskar Patil Group Website | Portfolio Project | DisplayAvenue",
+      "seoDescription": "A featured DisplayAvenue project spanning strategy, design, and growth for Bhaskar Patil Group Website. Get a free plan from DisplayAvenue. WhatsApp 9222 12233…",
+      "seoKeywords": [
+        "Bhaskar Patil Group Website",
+        "Web Development",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Bhaskar Patil Group Website"
     },
     {
       "icon": "brand",
@@ -304,7 +324,17 @@
       "slug": "rak",
       "kind": "project",
       "title": "RAK Ceramics Brand System",
-      "category": "Branding"
+      "category": "Branding",
+      "seoTitle": "RAK Ceramics Brand System | Portfolio Project | DisplayAvenue",
+      "seoDescription": "A featured DisplayAvenue project spanning strategy, design, and growth for RAK Ceramics Brand System. Get a free plan from DisplayAvenue. WhatsApp 9222 122333.",
+      "seoKeywords": [
+        "RAK Ceramics Brand System",
+        "Branding",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "RAK Ceramics Brand System"
     },
     {
       "icon": "megaphone",
@@ -406,7 +436,18 @@
       "slug": "royal",
       "kind": "project",
       "title": "Royal Mouth Fresheners Growth",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "seoTitle": "Royal Mouth Fresheners Growth | Portfolio Project | DisplayAvenue",
+      "seoDescription": "A featured DisplayAvenue project spanning strategy, design, and growth for Royal Mouth Fresheners Growth. Get a free plan from DisplayAvenue. WhatsApp 9222 122…",
+      "seoKeywords": [
+        "Royal Mouth Fresheners Growth",
+        "Digital Marketing",
+        "DisplayAvenue",
+        "digital marketing India",
+        "Mumbai MMR"
+      ],
+      "primaryKeyword": "Royal Mouth Fresheners Growth"
     }
-  ]
+  ],
+  "updatedAt": "2026-08-26T03:43:49.975Z"
 }

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SEO, BreadcrumbSchema, FAQPageSchema } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { company } from "../data/company";
 import { locationPath, mmrCities, seoServices } from "../data/locations";
 import "../styles/pages.css";
@@ -34,9 +35,10 @@ export function DigitalMarketingAgencyMumbai() {
   return (
     <div className="page-shell">
       <SEO
-        title="Digital Marketing Agency in Mumbai | DisplayAvenue"
-        description="DisplayAvenue is a Mumbai MMR digital marketing agency for SMEs — Google Ads, SEO, Local SEO, Meta Ads, websites, and WhatsApp lead systems. WhatsApp 9222 122333."
+        title={staticPageSeo["/digital-marketing-agency-mumbai"].title}
+        description={staticPageSeo["/digital-marketing-agency-mumbai"].description}
         path="/digital-marketing-agency-mumbai"
+        keywords={staticPageSeo["/digital-marketing-agency-mumbai"].keywords}
       />
       <BreadcrumbSchema
         items={[

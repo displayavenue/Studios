@@ -20,7 +20,7 @@ export type ContactCms = {
     messageLabel: string;
     messagePlaceholder: string;
   };
-  seo?: { title?: string; description?: string };
+  seo?: { title?: string; description?: string; keywords?: string[] };
 };
 
 export const fallbackContact: ContactCms = {
