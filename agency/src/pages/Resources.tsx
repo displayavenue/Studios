@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import {
   resourceTypes,
   resourceCategories,
@@ -14,7 +15,12 @@ import "./tools/tools.css";
 export function Resources() {
   return (
     <div className="page-shell">
-      <SEO title="Resources & Insights | DisplayAvenue" description="Guides, blogs, templates, and playbooks for digital growth." path="/resources" />
+      <SEO
+        title={staticPageSeo["/resources"].title}
+        description={staticPageSeo["/resources"].description}
+        path="/resources"
+        keywords={staticPageSeo["/resources"].keywords}
+      />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

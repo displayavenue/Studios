@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { industries } from "../data/industries";
 import {
   caseStudyServices,
@@ -14,7 +15,12 @@ import "../styles/pages.css";
 export function CaseStudies() {
   return (
     <div className="page-shell">
-      <SEO title="Case Studies | DisplayAvenue" description="Real results from DisplayAvenue clients - SEO, ads, ecommerce, and full-funnel growth." path="/case-studies" />
+      <SEO
+        title={staticPageSeo["/case-studies"].title}
+        description={staticPageSeo["/case-studies"].description}
+        path="/case-studies"
+        keywords={staticPageSeo["/case-studies"].keywords}
+      />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

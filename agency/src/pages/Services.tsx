@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import "../styles/pages.css";
 
 export function Services() {
@@ -10,9 +11,10 @@ export function Services() {
   return (
     <div className="page-shell">
       <SEO
-        title="Services | DisplayAvenue"
-        description="Practical marketing, website, ads, and branding services for Indian business owners who want more customers from Google and Instagram."
+        title={staticPageSeo["/services"].title}
+        description={staticPageSeo["/services"].description}
         path="/services"
+        keywords={staticPageSeo["/services"].keywords}
       />
       <div className="container">
         <div className="page-frame" style={{ padding: "1.75rem" }}>

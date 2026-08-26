@@ -13,6 +13,7 @@ import {
   seoCities,
   seoServices,
 } from "../data/locations";
+import { locationCityMeta, locationServiceMeta, staticPageSeo } from "../data/pageSeo";
 import { company } from "../data/company";
 import "../styles/pages.css";
 import "./Locations.css";
@@ -54,9 +55,10 @@ export function LocationsHub() {
   return (
     <div className="page-shell">
       <SEO
-        title="Digital Marketing by City in India | Mumbai, Navi Mumbai, Thane & More"
-        description="Google Ads, Meta Ads, SEO, Local SEO, and websites for businesses across Mumbai, Navi Mumbai, Thane, Delhi NCR, Bengaluru, Pune, and more Indian cities."
+        title={staticPageSeo["/locations"].title}
+        description={staticPageSeo["/locations"].description}
         path="/locations"
+        keywords={staticPageSeo["/locations"].keywords}
       />
       <BreadcrumbSchema
         items={[
@@ -155,6 +157,7 @@ export function LocationCityPage() {
   }
 
   const wa = cityWhatsAppHref(company.whatsappHref, city);
+  const cityMeta = locationCityMeta(city.name, city.state);
   const faqs = city.faqs?.length
     ? city.faqs
     : [
@@ -171,12 +174,10 @@ export function LocationCityPage() {
   return (
     <div className="page-shell">
       <SEO
-        title={`Digital Marketing Agency in ${city.name} | DisplayAvenue`}
-        description={
-          city.tldr ||
-          `Google Ads, Meta Ads, SEO, Local SEO, websites and lead generation for businesses in ${city.name}, ${city.state}. Free strategy + WhatsApp support.`
-        }
+        title={cityMeta.title}
+        description={city.tldr || cityMeta.description}
         path={locationPath(city.slug)}
+        keywords={cityMeta.keywords}
       />
       <BreadcrumbSchema
         items={[
@@ -337,6 +338,7 @@ export function LocationServicePage() {
   const path = locationPath(city.slug, service.slug);
   const faqs = buildLocationFaqs(city, service);
   const wa = cityWhatsAppHref(company.whatsappHref, city, service);
+  const serviceMeta = locationServiceMeta(city.name, city.state, service.name);
   const nearby =
     city.tier === "mmr"
       ? mmrCities().filter((c) => c.slug !== city.slug).slice(0, 6)
@@ -347,9 +349,10 @@ export function LocationServicePage() {
   return (
     <div className="page-shell">
       <SEO
-        title={`${service.name} in ${city.name} | DisplayAvenue`}
+        title={serviceMeta.title}
         description={`${service.name} agency in ${city.name}, ${city.state}. ${service.pitch} Get a free growth plan on WhatsApp 9222 122333.`}
         path={path}
+        keywords={serviceMeta.keywords}
       />
       <BreadcrumbSchema
         items={[

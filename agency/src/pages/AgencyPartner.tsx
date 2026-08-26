@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { SEO, FAQPageSchema, BreadcrumbSchema } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { useCms } from "../cms/CmsProvider";
 import { getStoredUtm, getVisitorId } from "../components/VisitorTracker";
 import { whatsappWithText } from "../lib/geoContext";
@@ -481,9 +482,10 @@ export function AgencyPartner() {
   return (
     <div className="ap-page">
       <SEO
-        title="Agency Partner Program | DisplayAvenue"
-        description="Grow your agency with DisplayAvenue as your behind-the-scenes execution team. Refer & Earn, back-end execution, or white-label. 30+ specialists. Partner-first."
+        title={staticPageSeo["/agency-partner"].title}
+        description={staticPageSeo["/agency-partner"].description}
         path="/agency-partner"
+        keywords={staticPageSeo["/agency-partner"].keywords}
       />
       <BreadcrumbSchema
         items={[

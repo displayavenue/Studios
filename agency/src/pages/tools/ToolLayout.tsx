@@ -33,7 +33,12 @@ export function ToolLayout({
 
   return (
     <div className="page-shell tool-app-page">
-      <SEO title={`${title} | DisplayAvenue`} description={description} path={path} />
+      <SEO
+        title={`${title} | Free Tool | DisplayAvenue`}
+        description={description}
+        path={path}
+        keywords={[title, "free marketing tool", "DisplayAvenue", "digital marketing India"]}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", path: "/" },

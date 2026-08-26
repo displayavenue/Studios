@@ -63,6 +63,8 @@ export type DetailPageContent = {
   comparison?: { traditional: string[]; ours: string[] };
   seoTitle?: string;
   seoDescription?: string;
+  /** Focused keyword phrases for meta keywords (optional) */
+  seoKeywords?: string[];
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
   industrySlug?: string;

@@ -3,6 +3,7 @@ import type { RefObject } from "react";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { useReveal } from "../hooks/useReveal";
 import { GoogleReviews } from "../components/GoogleReviews";
 import { AwardsCertsHome } from "../components/AwardsCertsHome";
@@ -56,13 +57,15 @@ export function Home() {
   const { company, home, content } = useCms();
   const revealRef = useReveal();
   const hero = home.hero as typeof home.hero & { image?: string; imageAlt?: string };
-  const seoTitle = home.seo?.title || `${company.name} | Get more customers online`;
-  const seoDesc = home.seo?.description || home.hero.lead;
+  const homeMeta = staticPageSeo["/"];
+  const seoTitle = home.seo?.title || homeMeta.title;
+  const seoDesc = home.seo?.description || homeMeta.description;
+  const seoKeywords = home.seo?.keywords || homeMeta.keywords;
   const quote = content.testimonials[0];
 
   return (
     <div className="home-page" ref={revealRef as RefObject<HTMLDivElement>}>
-      <SEO title={seoTitle} description={seoDesc} path="/" />
+      <SEO title={seoTitle} description={seoDesc} path="/" keywords={seoKeywords} />
 
       <section className="home-hero" aria-label="Introduction">
         <div className="home-hero__media" aria-hidden>

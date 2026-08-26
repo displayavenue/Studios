@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import {
   toolCategories,
   popularTools,
@@ -25,9 +26,10 @@ export function FreeTools() {
   return (
     <div className="page-shell">
       <SEO
-        title="Free Marketing Tools | DisplayAvenue"
-        description="Free ROI calculator, SEO checklist, local SEO scorecard, citation directory, and more. No signup required."
+        title={staticPageSeo["/free-tools"].title}
+        description={staticPageSeo["/free-tools"].description}
         path="/free-tools"
+        keywords={staticPageSeo["/free-tools"].keywords}
       />
       <div className="container-wide">
         <div className="page-frame">

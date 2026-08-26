@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { CredentialImage } from "../components/CredentialImage";
 import { useCms } from "../cms/CmsProvider";
 import "./AwardsCerts.css";
@@ -23,14 +24,20 @@ export function Certifications() {
     [items, filter],
   );
 
-  const seoTitle = certifications.seo?.title || "Certifications | DisplayAvenue";
+  const seoTitle = certifications.seo?.title || staticPageSeo["/certifications"].title;
   const seoDesc =
-    certifications.seo?.description ||
-    "Professional certifications held by the DisplayAvenue team.";
+    certifications.seo?.description || staticPageSeo["/certifications"].description;
+  const seoKeywords =
+    certifications.seo?.keywords || staticPageSeo["/certifications"].keywords;
 
   return (
     <div className="acred">
-      <SEO title={seoTitle} description={seoDesc} path="/certifications" />
+      <SEO
+        title={seoTitle}
+        description={seoDesc}
+        path="/certifications"
+        keywords={seoKeywords}
+      />
       <div className="container">
         <header className="acred__hero">
           <p className="acred__kicker">Team credentials</p>

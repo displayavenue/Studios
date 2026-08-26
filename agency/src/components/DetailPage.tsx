@@ -10,6 +10,7 @@ import {
   ArticleSchema,
 } from "./SEO";
 import { whatsappWithText } from "../lib/geoContext";
+import { catalogMeta } from "../data/pageSeo";
 import "./DetailPage.css";
 
 function pathFor(page: DetailPageContent): string {
@@ -155,10 +156,10 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
   const path = pathFor(page);
   const arch = resolveArchitecture(page);
   const labels = sectionTitle(arch, page);
-  const title =
-    page.seoTitle ||
-    `${page.title} | DisplayAvenue`;
-  const description = page.seoDescription || page.summary;
+  const meta = catalogMeta(page);
+  const title = meta.title;
+  const description = meta.description;
+  const keywords = meta.keywords;
   const listPath =
     page.kind === "combo"
       ? `/industries/${page.industrySlug || ""}`
@@ -223,7 +224,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
 
   return (
     <div className={`detail-page detail-page--${arch}`}>
-      <SEO title={title} description={description} path={path} />
+      <SEO title={title} description={description} path={path} keywords={keywords} />
       <BreadcrumbSchema items={crumbs} />
       {(page.kind === "service" ||
         page.kind === "solution" ||

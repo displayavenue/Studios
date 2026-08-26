@@ -39,6 +39,12 @@ export function IndustryReport() {
         description="Benchmarks for how Indian SMEs win enquiries from Google, Instagram, and WhatsApp - plus a practical 90-day plan."
         path={path}
         type="article"
+        keywords={[
+          "India SME digital marketing report",
+          "SME growth benchmarks India",
+          "Google Instagram WhatsApp leads",
+          "DisplayAvenue report",
+        ]}
       />
       <BreadcrumbSchema
         items={[

@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import "./TalentBranding.css";
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
@@ -29,7 +30,7 @@ type CaseStudy = {
 
 type TalentCms = {
   enabled?: boolean;
-  seo?: { title?: string; description?: string };
+  seo?: { title?: string; description?: string; keywords?: string[] };
   hero: {
     badge: string;
     title: string;
@@ -118,12 +119,10 @@ export function TalentBranding() {
   return (
     <div className="tb-page">
       <SEO
-        title={d.seo?.title || "Personal Branding for Models & Actresses | DisplayAvenue"}
-        description={
-          d.seo?.description ||
-          "Social media plans for models and actresses — Organic ₹18,000, Ads ₹35,000, Ads + PR ₹50,000."
-        }
+        title={d.seo?.title || staticPageSeo["/talent-branding"].title}
+        description={d.seo?.description || staticPageSeo["/talent-branding"].description}
         path="/talent-branding"
+        keywords={d.seo?.keywords || staticPageSeo["/talent-branding"].keywords}
       />
 
       <section className="tb-hero">

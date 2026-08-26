@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { useCms } from "../cms/CmsProvider";
 import { industryStats } from "../data/industries";
 import "../styles/pages.css";
@@ -17,9 +18,10 @@ export function Industries() {
   return (
     <div className="page-shell">
       <SEO
-        title="Industries We Serve | DisplayAvenue"
-        description="Industry-specific digital growth for healthcare, real estate, ecommerce, education, and more Indian businesses."
+        title={staticPageSeo["/industries"].title}
+        description={staticPageSeo["/industries"].description}
         path="/industries"
+        keywords={staticPageSeo["/industries"].keywords}
       />
       <div className="container-wide">
         <div className="page-frame">

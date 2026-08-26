@@ -1,4 +1,5 @@
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { Link } from "react-router-dom";
 import "../styles/pages.css";
 
@@ -7,9 +8,10 @@ export function LegalPage({ type }: { type: "privacy" | "terms" }) {
   return (
     <div className="page-shell">
       <SEO
-        title={isPrivacy ? "Privacy Policy | DisplayAvenue" : "Terms & Conditions | DisplayAvenue"}
-        description={isPrivacy ? "Privacy policy for DisplayAvenue digital agency services and website." : "Terms and conditions for using DisplayAvenue websites and services."}
+        title={isPrivacy ? staticPageSeo["/privacy"].title : staticPageSeo["/terms"].title}
+        description={isPrivacy ? staticPageSeo["/privacy"].description : staticPageSeo["/terms"].description}
         path={isPrivacy ? "/privacy" : "/terms"}
+        keywords={isPrivacy ? staticPageSeo["/privacy"].keywords : staticPageSeo["/terms"].keywords}
       />
       <div className="container">
         <div className="page-frame" style={{ padding: "2rem", maxWidth: 840, margin: "0 auto" }}>

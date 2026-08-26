@@ -6,6 +6,7 @@ import { SEO } from "../components/SEO";
 import { getStoredUtm, getVisitorId } from "../components/VisitorTracker";
 import { LEAD_INTEREST_OPTIONS, mmrCities } from "../data/locations";
 import { whatsappWithText } from "../lib/geoContext";
+import { staticPageSeo } from "../data/pageSeo";
 import "../styles/pages.css";
 import "./Contact.css";
 
@@ -95,15 +96,18 @@ export function Contact() {
       : `Hi DisplayAvenue, I just submitted the contact form${submittedInterest ? ` about ${submittedInterest}` : ""}.`,
   );
 
+  const contactMeta = staticPageSeo["/contact"];
   return (
     <div className="page-shell contact-page">
       <SEO
-        title={contact.seo?.title || "Get Free Proposal | DisplayAvenue"}
-        description={
-          contact.seo?.description ||
-          "Book a free consultation or request a custom proposal from DisplayAvenue."
-        }
+        title={contact.seo?.title || contactMeta.title}
+        description={contact.seo?.description || contactMeta.description}
         path="/contact"
+        keywords={
+          contact.seo?.keywords?.length
+            ? contact.seo.keywords
+            : contactMeta.keywords
+        }
       />
       <div className="container">
         <div className="contact-layout">

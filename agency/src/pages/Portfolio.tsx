@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import {
   portfolioCategories,
   featuredProjects,
@@ -13,7 +14,12 @@ import "../styles/pages.css";
 export function Portfolio() {
   return (
     <div className="page-shell">
-      <SEO title="Portfolio | DisplayAvenue" description="Websites, apps, branding, and campaigns delivered by DisplayAvenue." path="/portfolio" />
+      <SEO
+        title={staticPageSeo["/portfolio"].title}
+        description={staticPageSeo["/portfolio"].description}
+        path="/portfolio"
+        keywords={staticPageSeo["/portfolio"].keywords}
+      />
       <div className="container-wide">
         <div className="page-frame">
           <div className="page-grid-3">

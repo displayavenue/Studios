@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO, BreadcrumbSchema } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { fallbackBlog, sortBlogPosts, type BlogCms, type BlogPost } from "../data/blog";
 import "../styles/pages.css";
 import "./Blog.css";
@@ -43,12 +44,10 @@ export function Blog() {
   return (
     <div className="page-shell blog-page">
       <SEO
-        title="Blog | DisplayAvenue Digital Marketing Insights"
-        description={
-          blog.lead ||
-          "Practical digital marketing updates for Indian business owners — Google Ads, Meta Ads, SEO, websites, and WhatsApp growth."
-        }
+        title={staticPageSeo["/blog"].title}
+        description={blog.lead || staticPageSeo["/blog"].description}
         path="/blog"
+        keywords={staticPageSeo["/blog"].keywords}
         type="website"
         noindex={false}
       />

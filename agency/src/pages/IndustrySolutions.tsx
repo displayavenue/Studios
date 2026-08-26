@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { staticPageSeo } from "../data/pageSeo";
 import { useCms } from "../cms/CmsProvider";
 import "../styles/pages.css";
 
@@ -21,9 +22,10 @@ export function IndustrySolutions() {
   return (
     <div className="page-shell">
       <SEO
-        title="Industry Solutions | DisplayAvenue"
-        description="Industry × service landing pages for real estate, manufacturing, healthcare, education, ecommerce and more - each with its own search intent and conversion path."
+        title={staticPageSeo["/industry-solutions"].title}
+        description={staticPageSeo["/industry-solutions"].description}
         path="/industry-solutions"
+        keywords={staticPageSeo["/industry-solutions"].keywords}
       />
       <div className="container-wide">
         <div className="page-frame">
