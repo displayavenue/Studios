@@ -1,82 +1,191 @@
 {
   "items": [
-    { "id": "about", "label": "About", "type": "link", "path": "/about" },
-    { "id": "services", "label": "Services", "type": "mega", "mega": "services" },
-    { "id": "packages", "label": "Packages", "type": "mega", "mega": "packages" },
-    { "id": "portfolio", "label": "Portfolio", "type": "link", "path": "/portfolio" },
-    { "id": "explore", "label": "Explore", "type": "mega", "mega": "explore" },
-    { "id": "contact", "label": "Contact", "type": "link", "path": "/contact" }
+    {
+      "id": "services",
+      "label": "Services",
+      "type": "mega",
+      "mega": "services"
+    },
+    {
+      "id": "packages",
+      "label": "Packages",
+      "type": "mega",
+      "mega": "packages"
+    },
+    {
+      "id": "portfolio",
+      "label": "Portfolio",
+      "type": "link",
+      "path": "/portfolio"
+    },
+    {
+      "id": "explore",
+      "label": "Explore",
+      "type": "mega",
+      "mega": "explore"
+    }
   ],
   "cta": {
     "label": "Book Now",
     "path": "/book-now"
   },
   "servicesMega": {
-    "eyebrow": "Services",
-    "title": "Photography, film & post production",
+    "eyebrow": "Celebrate with us",
+    "title": "Wedding & celebration services",
     "viewAllLabel": "View all services",
     "viewAllPath": "/services",
     "categories": [
       "Wedding",
-      "Corporate",
-      "Product",
-      "Events",
-      "Aerial",
-      "Post"
+      "Pre-Wedding",
+      "Engagement",
+      "Maternity",
+      "Birthday",
+      "Events"
     ],
     "linksPerCategory": 5,
-    "popularLabel": "Popular",
-    "popularCount": 6,
-    "popularSlugs": []
+    "popularLabel": "Most searched",
+    "popularCount": 8,
+    "popularSlugs": [
+      "wedding-photography",
+      "candid-wedding-photography",
+      "wedding-films",
+      "pre-wedding-shoot",
+      "engagement-photography",
+      "maternity-photography",
+      "birthday-photography",
+      "event-coverage"
+    ]
   },
   "packagesMega": {
-    "allEyebrow": "Overview",
+    "allEyebrow": "Packages",
     "allLabel": "All packages",
-    "allText": "Compare Essential, Signature and Luxury tiers",
+    "allText": "Essential · Signature · Luxury for weddings and life celebrations.",
     "allPath": "/packages",
     "itemEyebrow": "Package",
-    "pricingEyebrow": "Guide",
-    "pricingLabel": "Pricing",
-    "pricingText": "See what shapes your quote →",
+    "pricingEyebrow": "Pricing",
+    "pricingLabel": "Compare pricing",
+    "pricingText": "Transparent starting ranges for Mumbai and destination weddings.",
     "pricingPath": "/pricing",
     "showPricing": true
   },
   "exploreMega": {
     "discoverTitle": "Discover",
     "discoverLinks": [
-      { "label": "Locations", "path": "/locations" },
-      { "label": "Hire by city", "path": "/hire" },
-      { "label": "Case studies", "path": "/case-studies" },
-      { "label": "Availability", "path": "/availability" },
-      { "label": "Industries", "path": "/industries" },
-      { "label": "Blog", "path": "/blog" },
-      { "label": "Careers", "path": "/careers" },
-      { "label": "Client gallery", "path": "/client-gallery" },
-      { "label": "FAQs", "path": "/faqs" },
-      { "label": "All pages", "path": "/pages" }
+      {
+        "label": "Wedding photographer Mumbai",
+        "path": "/locations/wedding-photographer-mumbai"
+      },
+      {
+        "label": "Candid wedding Mumbai",
+        "path": "/locations/candid-wedding-photographer-mumbai"
+      },
+      {
+        "label": "Pre-wedding shoot Mumbai",
+        "path": "/locations/pre-wedding-shoot-mumbai"
+      },
+      {
+        "label": "Hire by city",
+        "path": "/hire"
+      },
+      {
+        "label": "Case studies",
+        "path": "/case-studies"
+      },
+      {
+        "label": "Availability",
+        "path": "/availability"
+      },
+      {
+        "label": "Wedding styles",
+        "path": "/industries"
+      },
+      {
+        "label": "Careers",
+        "path": "/careers"
+      },
+      {
+        "label": "Client gallery",
+        "path": "/client-gallery"
+      },
+      {
+        "label": "Journal",
+        "path": "/blog"
+      },
+      {
+        "label": "FAQs",
+        "path": "/faqs"
+      },
+      {
+        "label": "All pages",
+        "path": "/pages"
+      }
     ],
     "citiesTitle": "Top cities",
     "citiesCount": 8,
-    "ctaEyebrow": "Book consultation",
-    "ctaTitle": "Ready when you are",
-    "ctaText": "Share your date and city — we reply quickly on WhatsApp.",
+    "ctaEyebrow": "Book your date",
+    "ctaTitle": "Peak Saturdays fill first",
+    "ctaText": "Share your wedding date and city — we reply quickly on WhatsApp.",
     "ctaPrimaryLabel": "Book Now",
     "ctaPrimaryPath": "/book-now",
     "ctaSecondaryLabel": "WhatsApp",
     "showWhatsApp": true
   },
   "mobileLinks": [
-    { "label": "About", "path": "/about" },
-    { "label": "Portfolio", "path": "/portfolio" },
-    { "label": "Case studies", "path": "/case-studies" },
-    { "label": "Availability", "path": "/availability" },
-    { "label": "Hire by city", "path": "/hire" },
-    { "label": "Locations", "path": "/locations" },
-    { "label": "Industries", "path": "/industries" },
-    { "label": "Blog", "path": "/blog" },
-    { "label": "Careers", "path": "/careers" },
-    { "label": "Client gallery", "path": "/client-gallery" },
-    { "label": "FAQs", "path": "/faqs" },
-    { "label": "Contact", "path": "/contact" }
+    {
+      "label": "Wedding Photography",
+      "path": "/services/wedding-photography"
+    },
+    {
+      "label": "Candid Wedding",
+      "path": "/services/candid-wedding-photography"
+    },
+    {
+      "label": "Wedding Films",
+      "path": "/services/wedding-films"
+    },
+    {
+      "label": "Pre-Wedding",
+      "path": "/services/pre-wedding-shoot"
+    },
+    {
+      "label": "Engagement",
+      "path": "/services/engagement-photography"
+    },
+    {
+      "label": "Maternity",
+      "path": "/services/maternity-photography"
+    },
+    {
+      "label": "Birthday",
+      "path": "/services/birthday-photography"
+    },
+    {
+      "label": "Event Coverage",
+      "path": "/services/event-coverage"
+    },
+    {
+      "label": "Packages",
+      "path": "/packages"
+    },
+    {
+      "label": "Portfolio",
+      "path": "/portfolio"
+    },
+    {
+      "label": "Availability",
+      "path": "/availability"
+    },
+    {
+      "label": "Hire by city",
+      "path": "/hire"
+    },
+    {
+      "label": "FAQs",
+      "path": "/faqs"
+    },
+    {
+      "label": "Contact",
+      "path": "/contact"
+    }
   ]
 }

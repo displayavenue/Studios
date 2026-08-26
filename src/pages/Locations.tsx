@@ -14,12 +14,12 @@ function locationFaqs(city: string, service: string) {
       answer: `Pricing depends on coverage hours, crew size and deliverables. DisplayAvenue Studios publishes transparent starting packages and provides a custom quote for ${city} shoots after a short consultation.`,
     },
     {
-      question: `Do you travel to ${city} for weddings and commercial shoots?`,
+      question: `Do you travel to ${city} for weddings and celebrations?`,
       answer: `Yes. Our Mumbai-based team travels pan India, including ${city}. Travel and stay are scoped clearly in your proposal before booking.`,
     },
     {
       question: `How far in advance should I book in ${city}?`,
-      answer: `Peak wedding and event dates in ${city} often book 2–6 months ahead. Corporate and product shoots can sometimes be scheduled sooner — WhatsApp us to check availability.`,
+      answer: `Peak wedding Saturdays and muhurat dates in ${city} often book 6–12 months ahead. Pre-wedding, maternity and birthday sessions can sometimes be scheduled sooner — WhatsApp us to check availability.`,
     },
     {
       question: `What is included in a ${city} photography package?`,
@@ -35,8 +35,8 @@ export function Locations() {
   return (
     <div ref={ref}>
       <SEO
-        title="Wedding & Commercial Photographers Across India | Locations"
-        description="DisplayAvenue Studios location pages for Mumbai, Delhi, Bangalore, Pune, Hyderabad, Ahmedabad, Goa, Jaipur and more — book luxury photography & film pan India."
+        title="Wedding Photographer Near Me | Mumbai, Delhi, Goa, Udaipur & India"
+        description="Find a premium wedding photographer near you — Mumbai, Delhi, Bangalore, Pune, Goa, Udaipur, Jaipur and pan-India destination coverage by DisplayAvenue Studios."
         path="/locations"
       />
       <BreadcrumbSchema
@@ -58,7 +58,7 @@ export function Locations() {
           <p>
             Local SEO pages for cities we shoot often — each built to help you
             find the right crew, package and booking path for your celebration
-            or brand.
+            with candid photography and cinematic films.
           </p>
         </div>
       </section>
@@ -110,12 +110,15 @@ export function LocationDetail() {
   const relatedServices = services
     .filter((s) => {
       const svc = loc.service.toLowerCase();
-      if (svc.includes("wedding")) return s.category === "Wedding";
-      if (svc.includes("corporate")) return s.category === "Corporate";
-      if (svc.includes("product")) return s.category === "Product";
-      if (svc.includes("hotel") || svc.includes("restaurant"))
-        return ["hotel-photography", "restaurant-photography", "food-photography", "drone-photography"].includes(s.slug);
-      return s.category === "Wedding" || s.category === "Corporate";
+      if (svc.includes("maternity")) return s.category === "Maternity";
+      if (svc.includes("birthday")) return s.category === "Birthday";
+      if (svc.includes("engagement")) return s.category === "Engagement";
+      if (svc.includes("pre")) return s.category === "Pre-Wedding";
+      if (svc.includes("candid")) return s.slug === "candid-wedding-photography" || s.category === "Wedding";
+      if (svc.includes("destination"))
+        return s.slug === "destination-wedding-photography" || s.category === "Wedding";
+      if (svc.includes("wedding") || svc.includes("film")) return s.category === "Wedding";
+      return s.category === "Wedding" || s.category === "Events";
     })
     .slice(0, 6);
 
@@ -173,7 +176,7 @@ export function LocationDetail() {
               <li>Transparent packages and written proposals before booking</li>
               <li>Travel-ready crews from our Mumbai headquarters</li>
               <li>Fast social selects and structured gallery / film delivery</li>
-              <li>Experience across weddings, brands, hotels and events</li>
+              <li>Experience across weddings, pre-weddings and family celebrations</li>
             </ul>
           </article>
           <article className="info-panel card reveal">
@@ -182,7 +185,7 @@ export function LocationDetail() {
               <li>{loc.service}</li>
               <li>Wedding Videography</li>
               <li>Pre Wedding Shoot</li>
-              <li>Corporate & Product Photography</li>
+              <li> Photography</li>
               <li>Drone Photography & Videography</li>
             </ul>
             <div style={{ marginTop: "1.25rem" }}>

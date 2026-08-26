@@ -16,9 +16,9 @@ export function IndustryDetail() {
     return (
       <section className="page-hero">
         <div className="container">
-          <h1>Industry page not found</h1>
+          <h1>Wedding style not found</h1>
           <Link to="/industries" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            All Industries
+            All wedding styles
           </Link>
         </div>
       </section>
@@ -28,19 +28,26 @@ export function IndustryDetail() {
   const relatedServices = services
     .filter((s) => {
       const t = industry.title.toLowerCase();
-      if (t.includes("hotel") || t.includes("restaurant"))
-        return ["hotel-photography", "restaurant-photography", "food-photography", "drone-photography"].includes(s.slug);
-      if (t.includes("fashion"))
-        return ["fashion-photography", "model-portfolio", "product-photography"].includes(s.slug);
-      if (t.includes("manufactur") || t.includes("construction") || t.includes("automobile"))
-        return ["industrial-photography", "factory-photography", "corporate-videography", "drone-videography"].includes(s.slug);
-      if (t.includes("real estate"))
-        return ["real-estate-photography", "architecture-photography", "interior-photography", "drone-photography"].includes(s.slug);
-      if (t.includes("education") || t.includes("government") || t.includes("ngo"))
-        return ["event-photography", "event-videography", "corporate-photography"].includes(s.slug);
-      if (t.includes("health"))
-        return ["corporate-photography", "corporate-videography", "brand-story-videos"].includes(s.slug);
-      return s.category === "Corporate" || s.category === "Product";
+      if (t.includes("destination"))
+        return [
+          "destination-wedding-photography",
+          "wedding-films",
+          "wedding-photography",
+          "wedding-drone-coverage",
+          "pre-wedding-shoot",
+        ].includes(s.slug);
+      if (t.includes("intimate"))
+        return [
+          "wedding-photography",
+          "candid-wedding-photography",
+          "wedding-films",
+          "engagement-photography",
+        ].includes(s.slug);
+      return (
+        s.category === "Wedding" ||
+        s.category === "Pre-Wedding" ||
+        s.slug === "wedding-films"
+      );
     })
     .slice(0, 6);
 
@@ -49,7 +56,7 @@ export function IndustryDetail() {
   return (
     <div ref={ref}>
       <SEO
-        title={`${industry.title} Photography & Videography | DisplayAvenue Studios`}
+        title={`${industry.title} Photography & Films | DisplayAvenue Studios`}
         description={industry.text}
         path={`/industries/${industry.slug}`}
       />
@@ -60,12 +67,12 @@ export function IndustryDetail() {
             <nav className="breadcrumb" aria-label="Breadcrumb">
               <Link to="/">Home</Link>
               <span>/</span>
-              <Link to="/industries">Industries</Link>
+              <Link to="/industries">Wedding Styles</Link>
               <span>/</span>
               <span>{industry.title}</span>
             </nav>
-            <p className="eyebrow">Industry</p>
-            <h1>{industry.title} visual production</h1>
+            <p className="eyebrow">Wedding style</p>
+            <h1>{industry.title}</h1>
             <p>{industry.text}</p>
             <div className="home-hero__actions" style={{ marginTop: "1.75rem" }}>
               <Link to="/book-now" className="btn btn--gold">
@@ -77,7 +84,7 @@ export function IndustryDetail() {
             </div>
           </div>
           <div className="service-hero__img">
-            <img src={industry.image} alt={`${industry.title} photography by DisplayAvenue Studios`} />
+            <img src={industry.image} alt={`${industry.title} photography by DisplayAvenue Studios Mumbai`} />
           </div>
         </div>
       </section>

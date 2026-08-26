@@ -20,7 +20,7 @@ export function SiteConversion() {
           <p className="eyebrow">Client love</p>
           <h2>Ready when you are — call, WhatsApp or book</h2>
           <p>
-            Couples and brands across India trust DisplayAvenue for weddings,
+            Couples and families across India trust DisplayAvenue for weddings,
             campaigns and hospitality visuals. Tell us your date and city —
             we’ll reply fast with a clear plan.
           </p>

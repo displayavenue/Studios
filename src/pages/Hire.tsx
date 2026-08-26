@@ -141,8 +141,8 @@ export function HireIndex() {
   return (
     <div>
       <SEO
-        title="Hire Photographers & Videographers by City | DisplayAvenue"
-        description="Hire DisplayAvenue Studios for wedding, product, corporate and aerial productions across Mumbai, Delhi, Bangalore, Goa and more."
+        title="Hire Wedding Photographer by City | DisplayAvenue Studios"
+        description="Hire a wedding photographer in Mumbai, Delhi, Bangalore, Goa and more — candid photography, cinematic films, pre-wedding, maternity and event coverage."
         path="/hire"
       />
       <section className="page-hero">

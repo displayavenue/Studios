@@ -1,6 +1,6 @@
 {
   "name": "DisplayAvenue Studios",
-  "tagline": "India's Premium Visual Production Studio",
+  "tagline": "Premium Wedding Photographer & Filmmaker · Mumbai",
   "website": "https://displayavenuestudios.com",
   "phone": "+91 7400303493",
   "phoneHref": "tel:+917400303493",
@@ -9,7 +9,7 @@
   "email": "hello@displayavenuestudios.com",
   "emailHref": "mailto:hello@displayavenuestudios.com",
   "coverage": "Pan India",
-  "primaryFocus": "Mumbai",
+  "primaryFocus": "Mumbai Weddings · Pan India Destinations",
   "address": {
     "lines": [
       "Office No. 44, D Wing,",
@@ -67,7 +67,7 @@
       "path": "/pricing"
     },
     {
-      "label": "Industries",
+      "label": "Wedding Styles",
       "path": "/industries"
     },
     {
@@ -76,20 +76,19 @@
     }
   ],
   "trustBadges": [
-    "Pan India Coverage",
-    "Professional Team",
-    "Luxury Experience",
-    "Fast Delivery"
+    "Wedding Photographer in Mumbai",
+    "Candid + Traditional",
+    "Cinematic Wedding Films",
+    "Pan India Destinations",
+    "Pre-Wedding · Maternity · Events"
   ],
   "brandLogos": [
-    "Taj Hotels",
-    "Reliance",
-    "Nykaa",
-    "MakeMyTrip",
-    "FabIndia",
-    "Tata",
-    "Marriott",
-    "Boat"
+    "Destination Couples",
+    "Mumbai Banquets",
+    "Palace Weddings",
+    "Intimate Ceremonies",
+    "Pre-Wedding Films",
+    "Family Celebrations"
   ],
   "socials": [
     "https://www.instagram.com/displayavenuestudios/",

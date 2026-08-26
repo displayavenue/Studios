@@ -116,11 +116,13 @@ export function LocalBusinessSchema() {
 
     upsertJsonLd("schema-local-business", {
       "@context": "https://schema.org",
-      "@type": ["LocalBusiness", "ProfessionalService"],
+      "@type": ["LocalBusiness", "ProfessionalService", "Photographers"],
       "@id": `${company.website}/#business`,
       name: company.name,
-      alternateName: "DisplayAvenue",
-      description: company.tagline,
+      alternateName: ["DisplayAvenue", "DisplayAvenue Wedding Photographers"],
+      description:
+        company.tagline ||
+        "Premium wedding photographer in Mumbai for candid & traditional photography, cinematic wedding films, pre-wedding, engagement, maternity, birthday and event coverage across India.",
       url: company.website,
       telephone: company.phone,
       email: company.email,
@@ -152,7 +154,20 @@ export function LocalBusinessSchema() {
         { "@type": "Country", name: "India" },
         { "@type": "City", name: company.primaryFocus || "Mumbai" },
       ],
-      knowsAbout: services.slice(0, 12).map((s) => s.title),
+      knowsAbout: [
+        "Wedding photographer in Mumbai",
+        "Candid wedding photography",
+        "Cinematic wedding films",
+        "Pre-wedding shoot",
+        "Destination wedding photography",
+        "Maternity photography",
+        "Engagement photography",
+        "Birthday photography",
+        ...services.slice(0, 8).map((s) => s.title),
+      ],
+      slogan: "The wedding photographer couples shortlist for forever",
+      keywords:
+        "wedding photographer Mumbai, candid wedding photographer, wedding photography packages, pre wedding shoot Mumbai, cinematic wedding films",
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",

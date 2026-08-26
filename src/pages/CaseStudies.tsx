@@ -14,8 +14,8 @@ export function CaseStudies() {
   return (
     <div ref={ref}>
       <SEO
-        title="Case Studies | Real Wedding & Brand Productions | DisplayAvenue"
-        description="Real DisplayAvenue Studios case studies — destination weddings, product catalogues, hospitality aerials and brand films across India."
+        title="Wedding Case Studies | Real Couples & Outcomes | DisplayAvenue"
+        description="Real DisplayAvenue wedding case studies — destination weddings, candid Mumbai celebrations, pre-wedding films and maternity sessions across India."
         path="/case-studies"
       />
       <section className="page-hero">
@@ -28,8 +28,7 @@ export function CaseStudies() {
           <p className="eyebrow">Case studies</p>
           <h1>Real productions. Real outcomes.</h1>
           <p>
-            Behind-the-scenes stories from weddings, brands and hospitality
-            clients — challenge, approach and results.
+            Behind-the-scenes stories from real weddings and celebrations — challenge, approach and results.
           </p>
         </div>
       </section>

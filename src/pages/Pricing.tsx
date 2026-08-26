@@ -29,8 +29,8 @@ const factors = [
     text: "Standard timelines are included; rush editing and same-day selects are available as add-ons.",
   },
   {
-    title: "Usage rights",
-    text: "Personal wedding use differs from commercial advertising and paid media licensing.",
+    title: "Functions covered",
+    text: "Single ceremony days differ from full wedding weeks with Haldi, Mehendi, Sangeet and Reception.",
   },
 ];
 
@@ -41,8 +41,8 @@ export function Pricing() {
   return (
     <div ref={ref}>
       <SEO
-        title="Transparent Pricing | DisplayAvenue Studios"
-        description="Understand DisplayAvenue Studios pricing factors, payment terms, travel charges, album and drone pricing for weddings and commercial work."
+        title="Wedding Photography Packages & Pricing Mumbai | DisplayAvenue"
+        description="Wedding photography packages in Mumbai from ₹75,000. Compare Essential, Signature & Luxury photo-film packages for weddings, pre-wedding, maternity and events."
         path="/pricing"
       />
 
@@ -53,11 +53,12 @@ export function Pricing() {
             <span>/</span>
             <span>Pricing</span>
           </nav>
-          <p className="eyebrow">Pricing</p>
-          <h1>Transparent pricing for premium visual production</h1>
+          <p className="eyebrow">Wedding packages & pricing</p>
+          <h1>Transparent wedding photography packages in Mumbai</h1>
           <p>
-            We publish starting packages and explain what influences the final
-            quote — so you can plan with confidence before booking.
+            Clear Essential, Signature and Luxury tiers for weddings,
+            pre-weddings and life celebrations — so you can shortlist like
+            couples do on WeddingSutra, then book with confidence.
           </p>
         </div>
       </section>
@@ -87,7 +88,7 @@ export function Pricing() {
                   ["Same-week selects", "—", "Included", "Same-day option"],
                   ["Album design", "Add-on", "Credit included", "Premium design"],
                   ["Drone window", "Add-on", "Add-on", "Priority slot"],
-                  ["Best for", "Intimate days", "Most weddings/brands", "Destination & luxury"],
+                  ["Best for", "Intimate ceremonies", "Most Mumbai weddings", "Destination & luxury"],
                 ].map(([label, a, b, c]) => (
                   <tr key={label}>
                     <td>{label}</td>
@@ -111,11 +112,11 @@ export function Pricing() {
           <div className="pricing-cards">
             {[
               ["Wedding Photography & Film", "From ₹75,000", "Single-day Essential coverage", "/packages/wedding"],
-              ["Corporate Photo + Film", "From ₹35,000", "Half-day on-location package", "/packages/corporate"],
-              ["Product Photography", "From ₹999 / SKU", "Marketplace packshot sets", "/packages/product"],
-              ["Monthly Content Retainer", "From ₹45,000 / mo", "Ongoing social content systems", "/packages/monthly-content"],
-              ["Drone Add-on", "From ₹15,000", "Licensed aerial stills or film", "/packages"],
-              ["Luxury Album Design", "From ₹25,000", "Editorial design + print coordination", "/packages"],
+              ["Pre-Wedding & Engagement", "From ₹35,000", "Chemistry shoots & ring ceremonies", "/packages/pre-wedding-engagement"],
+              ["Maternity · Birthday · Events", "From ₹18,000", "Life milestone coverage", "/packages/maternity-birthday-events"],
+              ["Destination Wedding", "From ₹2,50,000", "Travel-ready photo + film crew", "/services/destination-wedding-photography"],
+              ["Wedding Drone Add-on", "From ₹15,000", "Licensed aerial stills or film", "/services/wedding-drone-coverage"],
+              ["Luxury Album Design", "From ₹25,000", "Editorial design + print coordination", "/packages/wedding"],
             ].map(([title, price, note, href]) => (
               <Link key={title} to={href} className="card pricing-card reveal">
                 <h3>{title}</h3>
@@ -163,7 +164,7 @@ export function Pricing() {
               <li>Booking amount to reserve date and crew</li>
               <li>Milestone payment before the shoot day</li>
               <li>Balance before final gallery / film delivery</li>
-              <li>Invoices available for corporate clients</li>
+              <li>Written contracts & GST invoices for every booking</li>
               <li>Razorpay-ready online payments (coming online)</li>
             </ul>
           </article>
@@ -174,7 +175,7 @@ export function Pricing() {
               <li>Outstation travel & stay quoted per crew member</li>
               <li>Drone, live streaming and albums as optional add-ons</li>
               <li>Rush editing available subject to capacity</li>
-              <li>Commercial usage licensing quoted separately</li>
+              <li>Personal & family usage included; album print quoted clearly</li>
             </ul>
           </article>
         </div>

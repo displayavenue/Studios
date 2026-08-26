@@ -13,8 +13,8 @@ export function Industries() {
   return (
     <div ref={ref}>
       <SEO
-        title="Industries We Serve | DisplayAvenue Studios"
-        description="Visual production for manufacturing, healthcare, hotels, restaurants, education, fashion, real estate, government and NGOs across India."
+        title="Wedding Styles We Cover | Hindu, Destination, Intimate & More"
+        description="DisplayAvenue Studios covers Hindu, Christian, Muslim, Sikh, intimate and destination weddings across India with candid photography and cinematic films."
         path="/industries"
       />
 
@@ -23,13 +23,14 @@ export function Industries() {
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link to="/">Home</Link>
             <span>/</span>
-            <span>Industries</span>
+            <span>Wedding Styles</span>
           </nav>
-          <p className="eyebrow">Industries</p>
-          <h1>Sector expertise with a luxury studio standard</h1>
+          <p className="eyebrow">Wedding styles</p>
+          <h1>Every celebration culture, one luxury standard</h1>
           <p>
-            We adapt creative direction, permissions and delivery formats to
-            the realities of each industry — without compromising craft.
+            From Hindu pheras to destination palace weekends — we adapt ritual
+            timing, family traditions and cinematic storytelling to your wedding
+            style.
           </p>
         </div>
       </section>
@@ -46,7 +47,7 @@ export function Industries() {
               <div>
                 <h2>{ind.title}</h2>
                 <p>{ind.text}</p>
-                <span className="text-link">Open industry page →</span>
+                <span className="text-link">Explore this style →</span>
               </div>
             </Link>
           ))}
@@ -55,7 +56,7 @@ export function Industries() {
 
       <TestimonialsSection compact limit={3} />
 
-      <CTABanner title="Building visuals for your industry?" />
+      <CTABanner title="Planning a wedding in this style?" />
     </div>
   );
 }

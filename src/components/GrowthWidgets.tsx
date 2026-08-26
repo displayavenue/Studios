@@ -11,7 +11,7 @@ export function GoogleReviewsBlock({ compact = false }: { compact?: boolean }) {
       <div className="container">
         <div className="section-head section-head--center">
           <p className="eyebrow">{g.label}</p>
-          <h2>Loved on Google by couples &amp; brands</h2>
+          <h2>Loved on Google by couples across India</h2>
           <div className="google-reviews__score">
             <span className="google-reviews__stars">★★★★★</span>
             <strong>{g.rating.toFixed(1)}</strong>
@@ -59,7 +59,7 @@ export function InstagramGrid() {
         <div className="section-head section-head--center">
           <p className="eyebrow">Instagram</p>
           <h2>Fresh frames from {ig.handle}</h2>
-          <p>Follow along for weddings, brands and places across India.</p>
+          <p>Follow along for weddings, pre-weddings and celebrations across India.</p>
         </div>
         <div className="instagram-grid__row">
           {ig.posts.map((p) => (

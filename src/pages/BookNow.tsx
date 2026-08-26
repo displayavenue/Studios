@@ -133,11 +133,14 @@ export function BookNow() {
                     <label htmlFor="service">Service needed</label>
                     <select id="service" name="service" defaultValue="Wedding Photography">
                       <option>Wedding Photography</option>
-                      <option>Wedding Videography</option>
-                      <option>Corporate Photography</option>
-                      <option>Product Photography</option>
+                      <option>Candid Wedding Photography</option>
+                      <option>Cinematic Wedding Films</option>
+                      <option>Pre Wedding Shoot</option>
+                      <option>Engagement Photography</option>
+                      <option>Maternity Photography</option>
+                      <option>Birthday Photography</option>
                       <option>Event Coverage</option>
-                      <option>Monthly Content</option>
+                      <option>Destination Wedding</option>
                       <option>Other</option>
                     </select>
                   </div>

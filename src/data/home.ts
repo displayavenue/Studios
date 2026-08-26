@@ -48,87 +48,83 @@ export type HomeContent = {
 };
 
 export const homeContent: HomeContent = {
-  seo: {
-    title: "DisplayAvenue Studios | India's Premium Visual Production Studio",
-    description:
-      "Luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India. Book DisplayAvenue Studios.",
+  "seo": {
+    "title": "Wedding Photographer in Mumbai | Candid Photography & Films | DisplayAvenue",
+    "description": "Premium wedding photographer in Mumbai for candid & traditional photography, cinematic wedding films, pre-wedding shoots, engagement, maternity, birthday and event coverage. Pan-India destination weddings."
   },
-  hero: {
-    brand: "DisplayAvenue Studios",
-    eyebrow: "Premium Photography • Videography • Film Production",
-    headline: "India's Premium Visual Production Studio",
-    description:
-      "Luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India.",
-    primaryCtaLabel: "Book Your Shoot",
-    primaryCtaPath: "/book-now",
-    secondaryCtaLabel: "View Portfolio",
-    secondaryCtaPath: "/portfolio",
-    image:
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80",
-    imageAlt:
-      "Indian bride and groom at a luxury wedding photographed by DisplayAvenue Studios",
+  "hero": {
+    "brand": "DisplayAvenue Studios",
+    "eyebrow": "Luxury Wedding Photography & Films · Mumbai",
+    "headline": "The wedding photographer couples shortlist for forever",
+    "description": "Candid emotion. Traditional heirloom portraits. Cinematic films. Pre-wedding, engagement, maternity, birthday and all event coverage — crafted in Mumbai, trusted across India.",
+    "primaryCtaLabel": "Check Availability",
+    "primaryCtaPath": "/availability",
+    "secondaryCtaLabel": "View Wedding Portfolio",
+    "secondaryCtaPath": "/portfolio",
+    "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
+    "imageAlt": "Luxury Indian wedding photography by DisplayAvenue Studios Mumbai"
   },
-  brands: {
-    label: "Trusted by Brands",
+  "brands": {
+    "label": "Trusted by Couples Across India"
   },
-  services: {
-    eyebrow: "Services",
-    title: "Visual production for every celebration and brand",
-    text: "From luxury weddings to commercial campaigns, our Mumbai-based studio delivers pan-India photography, videography and post production.",
-    ctaLabel: "View All Services",
-    ctaPath: "/services",
+  "services": {
+    "eyebrow": "Signature Services",
+    "title": "Weddings & life’s celebrations — only what matters",
+    "text": "Wedding, pre-wedding, engagement, maternity, birthday and complete event coverage. No corporate clutter — pure celebration craft.",
+    "ctaLabel": "Explore Services",
+    "ctaPath": "/services"
   },
-  portfolio: {
-    eyebrow: "Featured Portfolio",
-    title: "Work that feels expensive on purpose",
-    text: "A selection of weddings, brand films, hospitality and commercial projects produced by DisplayAvenue Studios.",
-    ctaLabel: "Explore Portfolio",
-    ctaPath: "/portfolio",
+  "portfolio": {
+    "eyebrow": "Featured Stories",
+    "title": "Weddings that feel like cinema",
+    "text": "Destination palaces, Mumbai banquets, pre-wedding chemistry and milestone celebrations — a portfolio built for couples.",
+    "ctaLabel": "Explore Portfolio",
+    "ctaPath": "/portfolio"
   },
-  packages: {
-    eyebrow: "Packages",
-    title: "Essential · Signature · Luxury",
-    text: "Transparent wedding packages designed for intimate ceremonies and destination celebrations. Compare and customise with our team.",
-    featuredBadge: "Most Popular",
-    ctaLabel: "Wedding Package Page",
-    ctaPath: "/packages/wedding",
-    secondaryCtaLabel: "All Packages",
-    secondaryCtaPath: "/packages",
+  "packages": {
+    "eyebrow": "Wedding Packages",
+    "title": "Essential · Signature · Luxury",
+    "text": "Transparent photography and film packages for intimate ceremonies and destination celebrations — compare and customise.",
+    "featuredBadge": "Most Booked",
+    "ctaLabel": "Wedding Packages",
+    "ctaPath": "/packages/wedding",
+    "secondaryCtaLabel": "All Packages",
+    "secondaryCtaPath": "/packages"
   },
-  whyChoose: {
-    eyebrow: "Why Choose Us",
-    title: "Why Choose DisplayAvenue Studios",
-    text: "Built for premium clients who expect cinema-grade craft, reliable coordination and a luxury experience from inquiry to delivery.",
+  "whyChoose": {
+    "eyebrow": "Why Couples Choose Us",
+    "title": "Why DisplayAvenue for your wedding",
+    "text": "WeddingSutra-informed craft, cinema-grade films and a calm crew that families trust on the biggest days."
   },
-  process: {
-    eyebrow: "How We Work",
-    title: "A clear path from inquiry to delivery",
-    text: "",
+  "process": {
+    "eyebrow": "How We Work",
+    "title": "From WhatsApp enquiry to heirloom gallery",
+    "text": ""
   },
-  testimonials: {
-    eyebrow: "Testimonials",
-    title: "Loved by couples, brands and hotels",
-    text: "Google-ready reviews from weddings, product launches and hospitality projects across India.",
+  "testimonials": {
+    "eyebrow": "Love Notes",
+    "title": "Loved by couples across India",
+    "text": "Real words from weddings, pre-weddings, maternity and milestone celebrations."
   },
-  faqs: {
-    eyebrow: "FAQs",
-    title: "Questions couples and brands ask first",
-    text: "Clear answers on booking, pricing, travel and delivery. Browse the full FAQ library for more.",
-    ctaLabel: "View All FAQs",
-    ctaPath: "/faqs",
+  "faqs": {
+    "eyebrow": "FAQs",
+    "title": "Questions couples ask before booking",
+    "text": "Clear answers on candid vs traditional, pricing, travel and deliverables.",
+    "ctaLabel": "View All FAQs",
+    "ctaPath": "/faqs"
   },
-  blogs: {
-    eyebrow: "Latest Blogs",
-    title: "Guides for planning, booking and better visuals",
-    text: "",
-    ctaLabel: "Read the Blog",
-    ctaPath: "/blog",
+  "blogs": {
+    "eyebrow": "Wedding Journal",
+    "title": "Guides for planning your wedding visuals",
+    "text": "",
+    "ctaLabel": "Read the Journal",
+    "ctaPath": "/blog"
   },
-  ctaBanner: {
-    eyebrow: "Book Consultation",
-    title: "Ready to Capture Your Story?",
-    text: "Book a consultation with DisplayAvenue Studios — India's Premium Visual Production Studio for weddings, brands and events.",
-    primaryLabel: "Book Consultation",
-    primaryPath: "/book-now",
-  },
+  "ctaBanner": {
+    "eyebrow": "Book Your Date",
+    "title": "Is your wedding date still open?",
+    "text": "Check availability and reserve DisplayAvenue Studios — Mumbai’s premium wedding photography & film studio for celebrations that deserve forever.",
+    "primaryLabel": "Book Consultation",
+    "primaryPath": "/book-now"
+  }
 };

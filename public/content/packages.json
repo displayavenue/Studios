@@ -2,207 +2,156 @@
   "packageGroups": [
     {
       "slug": "wedding",
-      "title": "Wedding Packages",
-      "subtitle": "Curated photography and film packages for intimate celebrations and grand destination weddings.",
+      "title": "Wedding Photography & Film Packages",
+      "subtitle": "Essential, Signature and Luxury packages for Mumbai and destination weddings — candid + traditional + cinema, the way WeddingSutra couples shortlist studios.",
       "tiers": [
         {
           "id": "wedding-essential",
           "name": "Essential",
           "priceLabel": "₹75,000",
-          "priceNote": "Starting price for single-day coverage",
-          "description": "Clean coverage for intimate weddings and ceremonies.",
+          "priceNote": "Starting · single ceremony day",
+          "description": "Intimate weddings and single-function coverage with heirloom stills.",
           "features": [
             "1 lead photographer",
             "8 hours coverage",
             "300+ edited photographs",
-            "Online gallery for 12 months",
-            "Highlight teaser (30–45 sec)"
+            "Traditional + candid mix",
+            "Online gallery 12 months",
+            "30–45 sec teaser"
           ]
         },
         {
           "id": "wedding-signature",
           "name": "Signature",
           "priceLabel": "₹1,85,000",
-          "priceNote": "Most chosen by couples in Mumbai",
-          "description": "Balanced stills and cinema for multi-function weddings.",
+          "priceNote": "Most booked by Mumbai couples",
+          "description": "Full-day photo + cinema for multi-ritual wedding days.",
           "highlighted": true,
           "features": [
             "2 photographers + 1 cinematographer",
-            "Full-day ceremony coverage",
+            "Full-day coverage",
             "800+ edited photographs",
-            "Cinematic highlight film (3–5 min)",
-            "Drone sequence (venue permitting)",
-            "Same-day social selects"
+            "Cinematic highlight film 3–5 min",
+            "Same-day social selects",
+            "Drone sequence (venue permitting)"
           ]
         },
         {
           "id": "wedding-luxury",
           "name": "Luxury",
           "priceLabel": "₹3,50,000",
-          "priceNote": "Destination & multi-day productions",
+          "priceNote": "Destination & multi-day",
           "description": "Full visual production for luxury and destination weddings.",
           "features": [
             "Dedicated photo + film crew",
             "Multi-day event coverage",
             "1,500+ edited photographs",
             "Feature-length wedding film",
-            "Premium album design credit",
             "Pre-wedding shoot included",
-            "Priority editing timeline"
+            "Premium album design credit",
+            "Priority edit timeline"
           ]
         }
       ]
     },
     {
-      "slug": "corporate",
-      "title": "Corporate Packages",
-      "subtitle": "Brand imagery and film packages for companies, manufacturers and institutions.",
+      "slug": "pre-wedding-engagement",
+      "title": "Pre-Wedding & Engagement Packages",
+      "subtitle": "Chemistry shoots, rokas and ring ceremonies — crafted for invites, reels and wedding-week excitement.",
       "tiers": [
         {
-          "id": "corporate-essential",
+          "id": "pre-essential",
           "name": "Essential",
           "priceLabel": "₹35,000",
-          "priceNote": "Half-day on-location",
-          "description": "Leadership portraits and workplace essentials.",
+          "priceNote": "Half-day pre-wedding",
+          "description": "One location, guided candid portraits.",
           "features": [
-            "Half-day shoot (4 hours)",
+            "4-hour shoot",
             "1 photographer",
-            "Lighting kit included",
-            "40 retouched images",
-            "Web and LinkedIn exports"
+            "80+ edited images",
+            "Invite crops",
+            "Online gallery"
           ]
         },
         {
-          "id": "corporate-signature",
+          "id": "pre-signature",
           "name": "Signature",
-          "priceLabel": "₹95,000",
-          "priceNote": "Photo + short brand film",
-          "description": "Complete visual refresh for websites and employer branding.",
+          "priceLabel": "₹75,000",
+          "priceNote": "Most popular couple package",
+          "description": "Two looks + short cinematic film.",
           "highlighted": true,
           "features": [
-            "Full-day production",
-            "Photographer + videographer",
-            "100+ edited photographs",
-            "2-minute brand film",
-            "Interview setup included",
-            "Motion lower-thirds"
+            "6–8 hour shoot",
+            "Photo + film",
+            "150+ edited images",
+            "60–90 sec film",
+            "Outfit-change guidance",
+            "Location scouting"
           ]
         },
         {
-          "id": "corporate-luxury",
-          "name": "Luxury",
-          "priceLabel": "₹2,25,000",
-          "priceNote": "Campaign-ready production",
-          "description": "Multi-location campaign production with creative direction.",
-          "features": [
-            "Creative treatment workshop",
-            "2-day production window",
-            "Full crew and cinema kit",
-            "Campaign stills set",
-            "Hero film + cutdowns",
-            "Colour grade and sound design"
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "product",
-      "title": "Product Photography Packages",
-      "subtitle": "Catalogue and campaign packages for e-commerce, marketplaces and retail brands.",
-      "tiers": [
-        {
-          "id": "product-essential",
-          "name": "Essential",
-          "priceLabel": "₹999",
-          "priceNote": "Per SKU · packshot",
-          "description": "Clean white-background packshots for listings.",
-          "features": [
-            "White background main image",
-            "3–5 angles per SKU",
-            "Basic retouching",
-            "Marketplace-ready crop",
-            "48-hour delivery option"
-          ]
-        },
-        {
-          "id": "product-signature",
-          "name": "Signature",
-          "priceLabel": "₹2,499",
-          "priceNote": "Per SKU · complete set",
-          "description": "Listing set with lifestyle and detail frames.",
-          "highlighted": true,
-          "features": [
-            "Packshot + lifestyle frames",
-            "Infographic-ready plates",
-            "Detail macro shots",
-            "Colour-accurate retouching",
-            "Amazon & Flipkart variants"
-          ]
-        },
-        {
-          "id": "product-luxury",
-          "name": "Luxury",
-          "priceLabel": "₹7,500",
-          "priceNote": "Per hero product · campaign",
-          "description": "Campaign-grade product stories for launches.",
-          "features": [
-            "Art-directed set design",
-            "Hero campaign stills",
-            "Short product film / reel",
-            "Advanced retouching",
-            "Multi-platform cutdowns"
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "monthly-content",
-      "title": "Monthly Content Packages",
-      "subtitle": "Ongoing visual content systems for brands that need consistent Instagram and YouTube output.",
-      "tiers": [
-        {
-          "id": "content-essential",
-          "name": "Essential",
-          "priceLabel": "₹45,000",
-          "priceNote": "Per month",
-          "description": "One content day with editing for social channels.",
-          "features": [
-            "1 shoot day / month",
-            "12 edited stills",
-            "8 reels / short videos",
-            "Caption-ready delivery",
-            "Brand colour consistency"
-          ]
-        },
-        {
-          "id": "content-signature",
-          "name": "Signature",
-          "priceLabel": "₹85,000",
-          "priceNote": "Per month · most popular",
-          "description": "Two shoot days with strategy-aligned content batches.",
-          "highlighted": true,
-          "features": [
-            "2 shoot days / month",
-            "24 edited stills",
-            "16 reels",
-            "1 YouTube long-form edit",
-            "Monthly content calendar",
-            "Priority turnaround"
-          ]
-        },
-        {
-          "id": "content-luxury",
+          "id": "pre-luxury",
           "name": "Luxury",
           "priceLabel": "₹1,50,000",
-          "priceNote": "Per month · full studio retainer",
-          "description": "Dedicated production retainer for ambitious brand channels.",
+          "priceNote": "Destination pre-wedding",
+          "description": "Travel pre-wedding with cinema-grade production.",
           "features": [
-            "Weekly content production",
-            "On-call creative producer",
-            "Unlimited revision within scope",
-            "Campaign mini-films",
-            "Analytics review call",
-            "WhatsApp creative desk"
+            "Destination day production",
+            "Full crew",
+            "200+ images",
+            "Cinematic pre-wedding film",
+            "Drone (if permitted)",
+            "Styling consult"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "maternity-birthday-events",
+      "title": "Maternity, Birthday & Event Packages",
+      "subtitle": "Premium coverage for life’s other milestones — bump portraits, birthdays and family celebrations.",
+      "tiers": [
+        {
+          "id": "life-essential",
+          "name": "Essential",
+          "priceLabel": "₹18,000",
+          "priceNote": "Birthday / intimate event",
+          "description": "Focused candid coverage for smaller celebrations.",
+          "features": [
+            "3 hours coverage",
+            "1 photographer",
+            "Edited gallery",
+            "Key group portraits",
+            "Social selects"
+          ]
+        },
+        {
+          "id": "life-signature",
+          "name": "Signature",
+          "priceLabel": "₹45,000",
+          "priceNote": "Maternity or full evening event",
+          "description": "Portrait session or full celebration story.",
+          "highlighted": true,
+          "features": [
+            "Maternity studio/outdoor OR 6-hour event",
+            "Guided posing / timeline coverage",
+            "40–120 edited images",
+            "Optional vertical reel",
+            "Partner & family frames"
+          ]
+        },
+        {
+          "id": "life-luxury",
+          "name": "Luxury",
+          "priceLabel": "₹95,000",
+          "priceNote": "Grand celebration production",
+          "description": "Photo + film for milestone parties and luxury soirées.",
+          "features": [
+            "Photo + videographer",
+            "Full evening coverage",
+            "Highlight reel",
+            "Detail + décor story",
+            "Priority gallery delivery"
           ]
         }
       ]

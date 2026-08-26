@@ -34,31 +34,32 @@ export function ServiceDetail() {
     .filter(Boolean);
   const relatedWork = portfolio
     .filter((p) => {
-      if (service.category === "Wedding") return p.category === "Wedding";
-      if (service.category === "Product") return p.category === "Products";
-      if (service.category === "Corporate") return p.category === "Corporate";
-      if (service.category === "Events") return p.category === "Events";
-      if (service.category === "Aerial") return p.category === "Drone";
-      return p.category.toLowerCase().includes(service.category.toLowerCase().slice(0, 5));
+      if (service.category === "Wedding")
+        return p.category === "Wedding" || p.category === "Destination";
+      if (service.category === "Pre-Wedding") return p.category === "Pre-Wedding";
+      if (service.category === "Engagement") return p.category === "Engagement";
+      if (service.category === "Maternity") return p.category === "Maternity";
+      if (service.category === "Birthday") return p.category === "Birthday";
+      return p.category === "Events" || p.category === "Wedding";
     })
     .slice(0, 3);
 
   const pricing =
     service.category === "Wedding"
-      ? packageGroups[0]
-      : service.category === "Corporate" || service.category === "Events"
-        ? packageGroups[1]
-        : service.category === "Product"
-          ? packageGroups[2]
-          : packageGroups[3];
+      ? packageGroups.find((g) => g.slug === "wedding") || packageGroups[0]
+      : service.category === "Pre-Wedding" || service.category === "Engagement"
+        ? packageGroups.find((g) => g.slug === "pre-wedding-engagement") ||
+          packageGroups[1]
+        : packageGroups.find((g) => g.slug === "maternity-birthday-events") ||
+          packageGroups[packageGroups.length - 1];
 
   const serviceFaqs = faqs.slice(0, 4);
 
   return (
     <div ref={ref}>
       <SEO
-        title={`${service.title} in India | DisplayAvenue Studios`}
-        description={`${service.description} Book ${service.title.toLowerCase()} with DisplayAvenue Studios — Mumbai HQ, pan-India coverage. Call +91 7400303493.`}
+        title={`${service.title} in Mumbai & India | DisplayAvenue Studios`}
+        description={`${service.description.slice(0, 140)}… Book ${service.title.toLowerCase()} with DisplayAvenue Studios — wedding photographer in Mumbai, pan-India destinations. Call +91 7400303493.`}
         path={`/services/${service.slug}`}
         image={service.image}
       />

@@ -8,148 +8,119 @@ export type PortfolioItem = {
   gallery: string[];
 };
 
-export const portfolio: PortfolioItem[] = [
-  {
-    slug: "udaipur-palace-wedding",
-    title: "Udaipur Palace Wedding",
-    category: "Wedding",
-    location: "Udaipur",
-    description:
-      "A three-day destination wedding filmed across lakeside courtyards, with golden-hour portraits and a cinematic highlight film.",
-    image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "mumbai-heritage-ceremony",
-    title: "Mumbai Heritage Ceremony",
-    category: "Wedding",
-    location: "Mumbai",
-    description:
-      "An intimate city wedding blending traditional rituals with contemporary reception styling at a heritage Mumbai venue.",
-    image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1708963738411-74ab1cd5eafb?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "fintech-brand-film",
-    title: "Fintech Brand Film",
-    category: "Corporate",
-    location: "Bengaluru",
-    description:
-      "A founder-led brand story and workplace photography system for a growing fintech scale-up.",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "jewellery-campaign",
-    title: "Jewellery Campaign",
-    category: "Products",
-    location: "Mumbai",
-    description:
-      "Art-directed product and campaign stills for a premium jewellery launch across e-commerce and print.",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "hospitality-goa-resort",
-    title: "Goa Resort Visuals",
-    category: "Hotels",
-    location: "Goa",
-    description:
-      "Hospitality photography and drone coverage for a coastal resort — rooms, dining and experiential lifestyle.",
-    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "restaurant-launch-bandra",
-    title: "Bandra Restaurant Launch",
-    category: "Restaurants",
-    location: "Mumbai",
-    description:
-      "Food, ambience and launch-night coverage for a new fine-dining restaurant in Bandra.",
-    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1514222709107-a180c68d72b4?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "industrial-plant-story",
-    title: "Industrial Plant Story",
-    category: "Corporate",
-    location: "Pune",
-    description:
-      "Factory photography and manufacturing film for a precision engineering company seeking global buyers.",
-    image: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1581094794329-c8112c4e5190?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "luxury-villa-aerials",
-    title: "Luxury Villa Aerials",
-    category: "Drone",
-    location: "Lonavala",
-    description:
-      "Licensed drone photography and twilight exteriors for a luxury villa listing.",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "award-night-delhi",
-    title: "Delhi Award Night",
-    category: "Events",
-    location: "New Delhi",
-    description:
-      "Red-carpet and stage coverage for a national awards evening with same-night press delivery.",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
-  {
-    slug: "south-mumbai-residence",
-    title: "South Mumbai Residence",
-    category: "Real Estate",
-    location: "Mumbai",
-    description:
-      "Interior and architectural photography for a restored South Mumbai residence.",
-    image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1400&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1000&q=80",
-    ],
-  },
+export const portfolioCategories = [
+  "Wedding",
+  "Pre-Wedding",
+  "Engagement",
+  "Maternity",
+  "Birthday",
+  "Events",
+  "Destination"
 ];
 
-export const portfolioCategories = [
-  "All",
-  "Wedding",
-  "Corporate",
-  "Products",
-  "Events",
-  "Drone",
-  "Hotels",
-  "Restaurants",
-  "Real Estate",
+export const portfolio: PortfolioItem[] = [
+  {
+    "slug": "udaipur-palace-wedding",
+    "title": "Udaipur Palace Wedding",
+    "category": "Destination",
+    "location": "Udaipur",
+    "description": "Three-day destination wedding with mehendi, pheras and lakeside reception — candid stills and cinematic film.",
+    "image": "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80"
+    ]
+  },
+  {
+    "slug": "mumbai-candid-wedding",
+    "title": "Mumbai Candid Wedding",
+    "category": "Wedding",
+    "location": "Mumbai",
+    "description": "Banquet + temple rituals covered in true candid style with traditional family groups.",
+    "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80"
+    ]
+  },
+  {
+    "slug": "lonavala-pre-wedding",
+    "title": "Lonavala Pre-Wedding Film",
+    "category": "Pre-Wedding",
+    "location": "Lonavala",
+    "description": "Golden-hour chemistry shoot used across save-the-dates and wedding invites.",
+    "image": "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+  {
+    "slug": "marine-drive-engagement",
+    "title": "Marine Drive Engagement",
+    "category": "Engagement",
+    "location": "Mumbai",
+    "description": "Ring ceremony evening with city lights, detail macros and family blessings.",
+    "image": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+  {
+    "slug": "studio-maternity-session",
+    "title": "Soft Light Maternity Session",
+    "category": "Maternity",
+    "location": "Mumbai",
+    "description": "Week-32 maternity portraits with partner frames and heirloom retouching.",
+    "image": "https://images.unsplash.com/photo-1492725764893-90b379c2b6e0?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1492725764893-90b379c2b6e0?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80"
+    ]
+  },
+  {
+    "slug": "first-birthday-celebration",
+    "title": "First Birthday Celebration",
+    "category": "Birthday",
+    "location": "Thane",
+    "description": "Cake smash, décor details and family candids for a luxury first birthday.",
+    "image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1400&q=80"
+    ]
+  },
+  {
+    "slug": "jaipur-sangeet-night",
+    "title": "Jaipur Sangeet Night",
+    "category": "Wedding",
+    "location": "Jaipur",
+    "description": "Performance-led sangeet with low-light mastery and cinematic reels.",
+    "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1587271636175-90d58cdad458?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80"
+    ]
+  },
+  {
+    "slug": "goa-beach-reception",
+    "title": "Goa Beach Reception",
+    "category": "Events",
+    "location": "Goa",
+    "description": "Sunset reception coverage with drone establishes and dance-floor energy.",
+    "image": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1400&q=80",
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80"
+    ]
+  }
 ];

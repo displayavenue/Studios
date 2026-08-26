@@ -1,6 +1,6 @@
 export const company = {
   name: "DisplayAvenue Studios",
-  tagline: "India's Premium Visual Production Studio",
+  tagline: "Premium Wedding Photographer & Filmmaker · Mumbai",
   website: "https://displayavenuestudios.com",
   phone: "+91 7400303493",
   phoneHref: "tel:+917400303493",
@@ -9,7 +9,7 @@ export const company = {
   email: "hello@displayavenuestudios.com",
   emailHref: "mailto:hello@displayavenuestudios.com",
   coverage: "Pan India",
-  primaryFocus: "Mumbai",
+  primaryFocus: "Mumbai Weddings · Pan India Destinations",
   socials: [
     "https://www.instagram.com/displayavenuestudios/",
     "https://www.youtube.com/@displayavenuestudios",
@@ -48,24 +48,23 @@ export const navLinks = [
   { label: "Blog", path: "/blog" },
   { label: "Contact", path: "/contact" },
   { label: "Pricing", path: "/pricing" },
-  { label: "Industries", path: "/industries" },
+  { label: "Wedding Styles", path: "/industries" },
   { label: "FAQs", path: "/faqs" },
 ];
 
 export const trustBadges = [
-  "Pan India Coverage",
-  "Professional Team",
-  "Luxury Experience",
-  "Fast Delivery",
+  "Wedding Photographer in Mumbai",
+  "Candid + Traditional",
+  "Cinematic Wedding Films",
+  "Pan India Destinations",
+  "Pre-Wedding · Maternity · Events",
 ];
 
 export const brandLogos = [
-  "Taj Hotels",
-  "Reliance",
-  "Nykaa",
-  "MakeMyTrip",
-  "FabIndia",
-  "Tata",
-  "Marriott",
-  "Boat",
+  "Destination Couples",
+  "Mumbai Banquets",
+  "Palace Weddings",
+  "Intimate Ceremonies",
+  "Pre-Wedding Films",
+  "Family Celebrations",
 ];

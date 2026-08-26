@@ -15,7 +15,7 @@ export function Careers() {
     <div ref={ref}>
       <SEO
         title="Careers | Join DisplayAvenue Studios"
-        description="Join DisplayAvenue Studios in Mumbai — wedding photographers, product shooters, editors and producers for pan-India visual productions."
+        description="Join DisplayAvenue Studios in Mumbai — wedding photographers, filmmakers and producers for pan-India destination weddings and celebrations."
         path="/careers"
       />
       <section className="page-hero">

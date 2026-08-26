@@ -24,7 +24,7 @@ export function Portfolio() {
     <div ref={ref}>
       <SEO
         title="Portfolio | DisplayAvenue Studios"
-        description="Explore luxury wedding, corporate, product, drone, hotel and event portfolio projects by DisplayAvenue Studios."
+        description="Explore luxury wedding, pre-wedding, engagement, maternity, birthday and destination wedding portfolio by DisplayAvenue Studios Mumbai."
         path="/portfolio"
       />
 
@@ -36,7 +36,7 @@ export function Portfolio() {
             <span>Portfolio</span>
           </nav>
           <p className="eyebrow">Portfolio</p>
-          <h1>Selected work across weddings, brands and spaces</h1>
+          <h1>Selected weddings, pre-weddings and celebrations</h1>
           <p>
             Every project page highlights craft, location and outcomes — built
             for inspiration and SEO discovery.
@@ -79,7 +79,7 @@ export function Portfolio() {
 
       <TestimonialsSection compact limit={3} title="The stories behind the frames" />
 
-      <CTABanner title="Want work like this for your date or brand?" />
+      <CTABanner title="Want work like this for your wedding date?" />
     </div>
   );
 }

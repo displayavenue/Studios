@@ -13,7 +13,7 @@ export function About() {
   return (
     <div ref={ref}>
       <SEO
-        title="About DisplayAvenue Studios | India's Premium Visual Production Studio"
+        title="About DisplayAvenue Studios | Premium Wedding Photographer & Filmmaker · Mumbai"
         description="Meet DisplayAvenue Studios — a Mumbai-based luxury visual production company delivering photography, videography and post production across India."
         path="/about"
       />

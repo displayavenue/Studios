@@ -14,7 +14,7 @@ export function Packages() {
     <div ref={ref}>
       <SEO
         title="Photography & Film Packages | DisplayAvenue Studios"
-        description="Compare Essential, Signature and Luxury packages for weddings, corporate, product photography and monthly content retainers."
+        description="Compare Essential, Signature and Luxury wedding photography packages in Mumbai — plus pre-wedding, maternity, birthday and event packages."
         path="/packages"
       />
 

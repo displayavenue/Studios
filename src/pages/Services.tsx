@@ -6,7 +6,14 @@ import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
-const categories = ["Wedding", "Corporate", "Product", "Events", "Aerial", "Post"] as const;
+const categories = [
+  "Wedding",
+  "Pre-Wedding",
+  "Engagement",
+  "Maternity",
+  "Birthday",
+  "Events",
+] as const;
 
 export function Services() {
   const ref = useReveal<HTMLDivElement>();
@@ -15,8 +22,8 @@ export function Services() {
   return (
     <div ref={ref}>
       <SEO
-        title="Photography & Videography Services | DisplayAvenue Studios"
-        description="Explore wedding, corporate, product, drone, event and post-production services from DisplayAvenue Studios across India."
+        title="Wedding Photography Services in Mumbai | Pre-Wedding, Maternity & Events"
+        description="Premium wedding photographer in Mumbai for candid & traditional photography, cinematic wedding films, pre-wedding shoots, engagement, maternity, birthday and all event coverage."
         path="/services"
       />
 
@@ -27,12 +34,12 @@ export function Services() {
             <span>/</span>
             <span>Services</span>
           </nav>
-          <p className="eyebrow">Services</p>
-          <h1>Photography, videography and post production for every brief</h1>
+          <p className="eyebrow">Wedding & celebration services</p>
+          <h1>Wedding photography, films & life’s celebrations</h1>
           <p>
-            SEO-ready service pages for weddings, brands, hospitality, events
-            and commercial content — each designed to help you book with
-            clarity.
+            Only what couples search for — wedding, pre-wedding, engagement,
+            maternity, birthday and complete personal event coverage. Candid
+            emotion, traditional heirlooms and cinematic films.
           </p>
         </div>
       </section>

@@ -26,7 +26,7 @@ export function AllPages() {
     { label: "Case Studies", path: "/case-studies" },
     { label: "Availability", path: "/availability" },
     { label: "Hire by City", path: "/hire" },
-    { label: "Industries", path: "/industries" },
+    { label: "Wedding Styles", path: "/industries" },
     { label: "Locations", path: "/locations" },
     { label: "Blog", path: "/blog" },
     { label: "Careers", path: "/careers" },
