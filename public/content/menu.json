@@ -45,8 +45,13 @@
     "discoverTitle": "Discover",
     "discoverLinks": [
       { "label": "Locations", "path": "/locations" },
+      { "label": "Hire by city", "path": "/hire" },
+      { "label": "Case studies", "path": "/case-studies" },
+      { "label": "Availability", "path": "/availability" },
       { "label": "Industries", "path": "/industries" },
       { "label": "Blog", "path": "/blog" },
+      { "label": "Careers", "path": "/careers" },
+      { "label": "Client gallery", "path": "/client-gallery" },
       { "label": "FAQs", "path": "/faqs" },
       { "label": "All pages", "path": "/pages" }
     ],
@@ -63,9 +68,14 @@
   "mobileLinks": [
     { "label": "About", "path": "/about" },
     { "label": "Portfolio", "path": "/portfolio" },
+    { "label": "Case studies", "path": "/case-studies" },
+    { "label": "Availability", "path": "/availability" },
+    { "label": "Hire by city", "path": "/hire" },
     { "label": "Locations", "path": "/locations" },
     { "label": "Industries", "path": "/industries" },
     { "label": "Blog", "path": "/blog" },
+    { "label": "Careers", "path": "/careers" },
+    { "label": "Client gallery", "path": "/client-gallery" },
     { "label": "FAQs", "path": "/faqs" },
     { "label": "Contact", "path": "/contact" }
   ]

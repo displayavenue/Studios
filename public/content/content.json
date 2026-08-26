@@ -159,6 +159,33 @@
   ],
   "blogs": [
     {
+      "slug": "drone-permissions-india-events",
+      "title": "Drone Permissions for Events in India — What Clients Should Know",
+      "excerpt": "A practical overview of permissions, weather windows and safety so aerial coverage doesn’t surprise your schedule.",
+      "category": "Aerial",
+      "date": "04 Aug 2026",
+      "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1000&q=80",
+      "readTime": "7 min read"
+    },
+    {
+      "slug": "how-to-prepare-for-product-photoshoot",
+      "title": "How to Prepare for a Product Photoshoot",
+      "excerpt": "A brand checklist for samples, styling refs, marketplace crops and colour expectations before studio day.",
+      "category": "Product",
+      "date": "12 Aug 2026",
+      "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=80",
+      "readTime": "6 min read"
+    },
+    {
+      "slug": "wedding-photography-cost-mumbai-2026",
+      "title": "Wedding Photography Cost in Mumbai (2026 Guide)",
+      "excerpt": "What shapes wedding photography prices in Mumbai — crew size, hours, albums and films — with realistic starting ranges.",
+      "category": "Weddings",
+      "date": "20 Aug 2026",
+      "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
+      "readTime": "8 min read"
+    },
+    {
       "slug": "how-to-choose-wedding-photographer-mumbai",
       "title": "How to Choose a Wedding Photographer in Mumbai",
       "excerpt": "A practical guide to evaluating portfolios, packages, contracts and chemistry before you book your wedding visual team.",

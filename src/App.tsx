@@ -17,6 +17,11 @@ import { FAQs } from "./pages/FAQs";
 import { BookNow } from "./pages/BookNow";
 import { Contact } from "./pages/Contact";
 import { AllPages } from "./pages/AllPages";
+import { CaseStudies, CaseStudyDetail } from "./pages/CaseStudies";
+import { Careers } from "./pages/Careers";
+import { ClientGallery } from "./pages/ClientGallery";
+import { Availability } from "./pages/Availability";
+import { HireIndex, HireCityService } from "./pages/Hire";
 
 export default function App() {
   return (
@@ -39,6 +44,13 @@ export default function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="faqs" element={<FAQs />} />
+          <Route path="case-studies" element={<CaseStudies />} />
+          <Route path="case-studies/:slug" element={<CaseStudyDetail />} />
+          <Route path="careers" element={<Careers />} />
+          <Route path="client-gallery" element={<ClientGallery />} />
+          <Route path="availability" element={<Availability />} />
+          <Route path="hire" element={<HireIndex />} />
+          <Route path="hire/:city/:serviceSlug" element={<HireCityService />} />
           <Route path="book-now" element={<BookNow />} />
           <Route path="contact" element={<Contact />} />
           <Route path="pages" element={<AllPages />} />

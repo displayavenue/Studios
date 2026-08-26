@@ -32,6 +32,11 @@ import {
 } from "../data/content";
 import { homeContent as fallbackHome, type HomeContent } from "../data/home";
 import { menuConfig as fallbackMenu, mergeMenu, type MenuConfig } from "../data/menu";
+import {
+  extrasFallback,
+  mergeExtras,
+  type ExtrasContent,
+} from "../data/extras";
 
 export type CmsState = {
   company: typeof fallbackCompany & {
@@ -42,6 +47,7 @@ export type CmsState = {
   };
   home: HomeContent;
   menu: MenuConfig;
+  extras: ExtrasContent;
   services: typeof fallbackServices;
   homeServices: typeof fallbackHomeServices;
   packageGroups: typeof fallbackPackages;
@@ -86,6 +92,7 @@ const defaults: CmsState = {
   },
   home: fallbackHome,
   menu: fallbackMenu,
+  extras: extrasFallback,
   services: fallbackServices,
   homeServices: fallbackHomeServices,
   packageGroups: fallbackPackages,
@@ -120,11 +127,12 @@ export function CmsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [company, home, menu, services, packages, portfolio, content] =
+      const [company, home, menu, extras, services, packages, portfolio, content] =
         await Promise.all([
           fetchJson<Record<string, unknown>>("/content/company.json"),
           fetchJson<Partial<HomeContent>>("/content/home.json"),
           fetchJson<Partial<MenuConfig>>("/content/menu.json"),
+          fetchJson<Partial<ExtrasContent>>("/content/extras.json"),
           fetchJson<{ services?: CmsState["services"]; homeServices?: string[] }>(
             "/content/services.json",
           ),
@@ -162,6 +170,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         },
         home: mergeHome(home),
         menu: mergeMenu(menu),
+        extras: mergeExtras(extras),
         services: services?.services || fallbackServices,
         homeServices: services?.homeServices || fallbackHomeServices,
         packageGroups: packages?.packageGroups || fallbackPackages,

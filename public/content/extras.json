@@ -1,0 +1,826 @@
+{
+  "googleReviews": {
+    "rating": 4.9,
+    "count": 186,
+    "label": "Google reviews",
+    "profileUrl": "https://www.google.com/maps/search/?api=1&query=DisplayAvenue+Studios+Mira+Road",
+    "reviews": [
+      {
+        "name": "Riya Malhotra",
+        "initials": "RM",
+        "rating": 5,
+        "time": "2 weeks ago",
+        "text": "Booked DisplayAvenue for our Mumbai wedding — calm crew, stunning frames, and the highlight film still gives us chills. Worth every rupee."
+      },
+      {
+        "name": "Kabir Banerjee",
+        "initials": "KB",
+        "rating": 5,
+        "time": "1 month ago",
+        "text": "Corporate brand film delivered on time and on brand. Leadership used the cuts in our AGM the same week. Highly professional."
+      },
+      {
+        "name": "Ananya Reddy",
+        "initials": "AR",
+        "rating": 5,
+        "time": "3 weeks ago",
+        "text": "Product shoot for our jewellery line looked premium on Amazon and Instagram. Colour accuracy was excellent."
+      },
+      {
+        "name": "Vikram Joshi",
+        "initials": "VJ",
+        "rating": 5,
+        "time": "2 months ago",
+        "text": "Destination coverage in Udaipur felt like a luxury film unit. Relatives still ask for the photographer’s contact."
+      },
+      {
+        "name": "Sneha Iyer",
+        "initials": "SI",
+        "rating": 5,
+        "time": "5 days ago",
+        "text": "Event coverage for our conference was seamless. Same-night selects helped our social team post live."
+      },
+      {
+        "name": "Arjun Desai",
+        "initials": "AD",
+        "rating": 4,
+        "time": "1 month ago",
+        "text": "Drone + interiors for our Goa property lifted OTA bookings. Clear communication throughout."
+      }
+    ]
+  },
+  "instagram": {
+    "handle": "@displayavenuestudios",
+    "url": "https://www.instagram.com/displayavenuestudios/",
+    "posts": [
+      {
+        "id": "1",
+        "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80",
+        "likes": "2,418",
+        "caption": "Udaipur pheras · golden hour"
+      },
+      {
+        "id": "2",
+        "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80",
+        "likes": "1,902",
+        "caption": "Jewellery hero frames"
+      },
+      {
+        "id": "3",
+        "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
+        "likes": "987",
+        "caption": "Conference keynote coverage"
+      },
+      {
+        "id": "4",
+        "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80",
+        "likes": "3,104",
+        "caption": "Aerial approach · hospitality"
+      },
+      {
+        "id": "5",
+        "image": "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=800&q=80",
+        "likes": "2,771",
+        "caption": "Reception portraits"
+      },
+      {
+        "id": "6",
+        "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
+        "likes": "1,455",
+        "caption": "Founder story film stills"
+      }
+    ]
+  },
+  "awards": [
+    {
+      "title": "Top Wedding Film Studio",
+      "org": "Mumbai Creators Awards",
+      "year": "2025"
+    },
+    {
+      "title": "Best Commercial Imagery",
+      "org": "India Visual Summit",
+      "year": "2024"
+    },
+    {
+      "title": "Hospitality Photography Excellence",
+      "org": "Travel Media Guild",
+      "year": "2024"
+    },
+    {
+      "title": "Pan-India Production Partner",
+      "org": "Brand Studio Index",
+      "year": "2023"
+    }
+  ],
+  "showreel": {
+    "eyebrow": "Studio showreel",
+    "title": "Weddings, brands & places — in one film",
+    "text": "A 45-second look at how DisplayAvenue captures emotion, craft and place across India.",
+    "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    "poster": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80"
+  },
+  "caseStudies": [
+    {
+      "slug": "udaipur-destination-wedding-film",
+      "title": "Udaipur destination wedding film",
+      "client": "Aanya & Rohan",
+      "category": "Wedding",
+      "city": "Udaipur",
+      "year": "2025",
+      "result": "Highlight film shared 12K+ times by guests in the first week",
+      "summary": "A three-day destination wedding with mehendi, pheras and a lakeside reception — covered as a luxury film production.",
+      "challenge": "Multiple venues, tight ritual timings and low-light palace interiors.",
+      "approach": "Dual photo + film crews, drone windows at golden hour, and a quiet second shooter for family candids.",
+      "outcome": "Same-week social selects, a cinematic highlight, and an heirloom album design handoff.",
+      "image": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1400&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+    {
+      "slug": "d2c-jewellery-catalogue-refresh",
+      "title": "D2C jewellery catalogue refresh",
+      "client": "Private jewellery brand",
+      "category": "Product",
+      "city": "Mumbai",
+      "year": "2025",
+      "result": "Listing conversion improved after imagery refresh (client-reported)",
+      "summary": "Full packshot + lifestyle system for 48 SKUs across gold and diamond lines.",
+      "challenge": "Inconsistent old photos, colour drift, and weak mobile crops for marketplaces.",
+      "approach": "Tethered studio day, colour-managed retouching, Amazon/Flipkart export matrix.",
+      "outcome": "A reusable content bank for ads, PDP and lookbooks for one quarter.",
+      "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1400&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+    {
+      "slug": "hospitality-drone-ota-lift",
+      "title": "Hospitality drone & interiors for OTA lift",
+      "client": "Boutique resort · Goa",
+      "category": "Aerial",
+      "city": "Goa",
+      "year": "2024",
+      "result": "Guests began mentioning “the photos” at check-in (GM feedback)",
+      "summary": "Aerial approaches, suite interiors and amenity stories for booking platforms.",
+      "challenge": "Coastal wind windows and strict flight permissions near the coast.",
+      "approach": "Dawn flights, ND filtration, and ground interiors matched to aerial grade.",
+      "outcome": "A seasonal asset library for OTA, Google Hotel ads and Instagram.",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+    {
+      "slug": "saas-brand-story-film",
+      "title": "SaaS founder brand story film",
+      "client": "B2B SaaS · Bangalore",
+      "category": "Corporate",
+      "city": "Bangalore",
+      "year": "2025",
+      "result": "Used as homepage hero and Series-A pitch leave-behind",
+      "summary": "Interview-led brand film with office texture and product UI cutaways.",
+      "challenge": "Busy leadership calendar and noisy open-office floors.",
+      "approach": "Half-day controlled interview set + B-roll sprint across teams.",
+      "outcome": "90s master, 30s ad cut, and stills pack for LinkedIn.",
+      "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1000&q=80"
+      ]
+    }
+  ],
+  "careers": {
+    "eyebrow": "Careers",
+    "title": "Build visual stories with us",
+    "text": "We’re a Mumbai-based crew working pan-India. We hire photographers, cinematographers, editors and producers who care about craft and calm client care.",
+    "perks": [
+      "Pan-India productions",
+      "Premium kits & backups",
+      "Clear briefs & shot lists",
+      "On-time payments",
+      "Creative mentorship"
+    ],
+    "roles": [
+      {
+        "id": "lead-wedding-photographer",
+        "title": "Lead Wedding Photographer",
+        "type": "Contract / Project",
+        "location": "Mumbai · travel India",
+        "summary": "Own coverage direction on luxury weddings with a second shooter and film partners.",
+        "requirements": [
+          "5+ years wedding experience",
+          "Strong Indian ritual fluency",
+          "Dual-card workflow discipline"
+        ]
+      },
+      {
+        "id": "product-studio-photographer",
+        "title": "Product Studio Photographer",
+        "type": "Full-time",
+        "location": "Mumbai studio",
+        "summary": "Catalogue and lifestyle product days for D2C and marketplace brands.",
+        "requirements": [
+          "Studio lighting mastery",
+          "Tethered capture",
+          "Retouching brief literacy"
+        ]
+      },
+      {
+        "id": "video-editor",
+        "title": "Video Editor (Weddings & Brand)",
+        "type": "Full-time / Hybrid",
+        "location": "Mumbai / remote",
+        "summary": "Highlight films, reels and brand edits with strong pacing and colour sense.",
+        "requirements": [
+          "Premiere or DaVinci",
+          "Social-first storytelling",
+          "Organised project archives"
+        ]
+      },
+      {
+        "id": "producer",
+        "title": "Production Coordinator",
+        "type": "Full-time",
+        "location": "Mumbai HQ",
+        "summary": "Run calendars, travel, permissions and client updates across shoots.",
+        "requirements": [
+          "Ops mindset",
+          "Vendor coordination",
+          "WhatsApp-first client care"
+        ]
+      }
+    ]
+  },
+  "clientGalleries": [
+    {
+      "code": "AANYA2025",
+      "title": "Aanya & Rohan · Udaipur Wedding",
+      "type": "Wedding",
+      "cover": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+    {
+      "code": "NYKAADEMO",
+      "title": "Brand Product Day · Demo Gallery",
+      "type": "Product",
+      "cover": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+    {
+      "code": "GOARESORT",
+      "title": "Goa Resort · Aerial & Interiors",
+      "type": "Hospitality",
+      "cover": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=80"
+      ]
+    }
+  ],
+  "availability": {
+    "eyebrow": "Availability",
+    "title": "Wedding & production calendar",
+    "text": "Peak Saturdays fill first. Hold your date with a booking token after a short consult.",
+    "note": "Green = open · Amber = limited crew · Red = fully booked. Final holds confirmed on WhatsApp after token payment.",
+    "months": [
+      {
+        "label": "August 2026",
+        "year": 2026,
+        "month": 8,
+        "days": [
+          {
+            "date": 1,
+            "status": "past"
+          },
+          {
+            "date": 2,
+            "status": "past"
+          },
+          {
+            "date": 3,
+            "status": "past"
+          },
+          {
+            "date": 4,
+            "status": "past"
+          },
+          {
+            "date": 5,
+            "status": "past"
+          },
+          {
+            "date": 6,
+            "status": "past"
+          },
+          {
+            "date": 7,
+            "status": "past"
+          },
+          {
+            "date": 8,
+            "status": "past"
+          },
+          {
+            "date": 9,
+            "status": "past"
+          },
+          {
+            "date": 10,
+            "status": "past"
+          },
+          {
+            "date": 11,
+            "status": "past"
+          },
+          {
+            "date": 12,
+            "status": "past"
+          },
+          {
+            "date": 13,
+            "status": "past"
+          },
+          {
+            "date": 14,
+            "status": "past"
+          },
+          {
+            "date": 15,
+            "status": "past"
+          },
+          {
+            "date": 16,
+            "status": "past"
+          },
+          {
+            "date": 17,
+            "status": "past"
+          },
+          {
+            "date": 18,
+            "status": "past"
+          },
+          {
+            "date": 19,
+            "status": "past"
+          },
+          {
+            "date": 20,
+            "status": "past"
+          },
+          {
+            "date": 21,
+            "status": "past"
+          },
+          {
+            "date": 22,
+            "status": "past"
+          },
+          {
+            "date": 23,
+            "status": "past"
+          },
+          {
+            "date": 24,
+            "status": "past"
+          },
+          {
+            "date": 25,
+            "status": "past"
+          },
+          {
+            "date": 26,
+            "status": "open"
+          },
+          {
+            "date": 27,
+            "status": "open"
+          },
+          {
+            "date": 28,
+            "status": "limited"
+          },
+          {
+            "date": 29,
+            "status": "open"
+          },
+          {
+            "date": 30,
+            "status": "booked"
+          },
+          {
+            "date": 31,
+            "status": "open"
+          }
+        ]
+      },
+      {
+        "label": "September 2026",
+        "year": 2026,
+        "month": 9,
+        "days": [
+          {
+            "date": 1,
+            "status": "open"
+          },
+          {
+            "date": 2,
+            "status": "open"
+          },
+          {
+            "date": 3,
+            "status": "open"
+          },
+          {
+            "date": 4,
+            "status": "limited"
+          },
+          {
+            "date": 5,
+            "status": "open"
+          },
+          {
+            "date": 6,
+            "status": "open"
+          },
+          {
+            "date": 7,
+            "status": "open"
+          },
+          {
+            "date": 8,
+            "status": "open"
+          },
+          {
+            "date": 9,
+            "status": "open"
+          },
+          {
+            "date": 10,
+            "status": "open"
+          },
+          {
+            "date": 11,
+            "status": "open"
+          },
+          {
+            "date": 12,
+            "status": "booked"
+          },
+          {
+            "date": 13,
+            "status": "open"
+          },
+          {
+            "date": 14,
+            "status": "open"
+          },
+          {
+            "date": 15,
+            "status": "open"
+          },
+          {
+            "date": 16,
+            "status": "open"
+          },
+          {
+            "date": 17,
+            "status": "open"
+          },
+          {
+            "date": 18,
+            "status": "open"
+          },
+          {
+            "date": 19,
+            "status": "open"
+          },
+          {
+            "date": 20,
+            "status": "booked"
+          },
+          {
+            "date": 21,
+            "status": "open"
+          },
+          {
+            "date": 22,
+            "status": "booked"
+          },
+          {
+            "date": 23,
+            "status": "open"
+          },
+          {
+            "date": 24,
+            "status": "open"
+          },
+          {
+            "date": 25,
+            "status": "booked"
+          },
+          {
+            "date": 26,
+            "status": "limited"
+          },
+          {
+            "date": 27,
+            "status": "open"
+          },
+          {
+            "date": 28,
+            "status": "open"
+          },
+          {
+            "date": 29,
+            "status": "open"
+          },
+          {
+            "date": 30,
+            "status": "open"
+          }
+        ]
+      },
+      {
+        "label": "October 2026",
+        "year": 2026,
+        "month": 10,
+        "days": [
+          {
+            "date": 1,
+            "status": "open"
+          },
+          {
+            "date": 2,
+            "status": "open"
+          },
+          {
+            "date": 3,
+            "status": "booked"
+          },
+          {
+            "date": 4,
+            "status": "limited"
+          },
+          {
+            "date": 5,
+            "status": "open"
+          },
+          {
+            "date": 6,
+            "status": "open"
+          },
+          {
+            "date": 7,
+            "status": "open"
+          },
+          {
+            "date": 8,
+            "status": "open"
+          },
+          {
+            "date": 9,
+            "status": "open"
+          },
+          {
+            "date": 10,
+            "status": "limited"
+          },
+          {
+            "date": 11,
+            "status": "open"
+          },
+          {
+            "date": 12,
+            "status": "open"
+          },
+          {
+            "date": 13,
+            "status": "open"
+          },
+          {
+            "date": 14,
+            "status": "open"
+          },
+          {
+            "date": 15,
+            "status": "open"
+          },
+          {
+            "date": 16,
+            "status": "limited"
+          },
+          {
+            "date": 17,
+            "status": "open"
+          },
+          {
+            "date": 18,
+            "status": "open"
+          },
+          {
+            "date": 19,
+            "status": "open"
+          },
+          {
+            "date": 20,
+            "status": "open"
+          },
+          {
+            "date": 21,
+            "status": "open"
+          },
+          {
+            "date": 22,
+            "status": "booked"
+          },
+          {
+            "date": 23,
+            "status": "open"
+          },
+          {
+            "date": 24,
+            "status": "booked"
+          },
+          {
+            "date": 25,
+            "status": "booked"
+          },
+          {
+            "date": 26,
+            "status": "open"
+          },
+          {
+            "date": 27,
+            "status": "open"
+          },
+          {
+            "date": 28,
+            "status": "open"
+          },
+          {
+            "date": 29,
+            "status": "open"
+          },
+          {
+            "date": 30,
+            "status": "booked"
+          },
+          {
+            "date": 31,
+            "status": "open"
+          }
+        ]
+      },
+      {
+        "label": "November 2026",
+        "year": 2026,
+        "month": 11,
+        "days": [
+          {
+            "date": 1,
+            "status": "open"
+          },
+          {
+            "date": 2,
+            "status": "open"
+          },
+          {
+            "date": 3,
+            "status": "open"
+          },
+          {
+            "date": 4,
+            "status": "open"
+          },
+          {
+            "date": 5,
+            "status": "open"
+          },
+          {
+            "date": 6,
+            "status": "open"
+          },
+          {
+            "date": 7,
+            "status": "open"
+          },
+          {
+            "date": 8,
+            "status": "limited"
+          },
+          {
+            "date": 9,
+            "status": "open"
+          },
+          {
+            "date": 10,
+            "status": "open"
+          },
+          {
+            "date": 11,
+            "status": "booked"
+          },
+          {
+            "date": 12,
+            "status": "open"
+          },
+          {
+            "date": 13,
+            "status": "open"
+          },
+          {
+            "date": 14,
+            "status": "limited"
+          },
+          {
+            "date": 15,
+            "status": "booked"
+          },
+          {
+            "date": 16,
+            "status": "open"
+          },
+          {
+            "date": 17,
+            "status": "open"
+          },
+          {
+            "date": 18,
+            "status": "open"
+          },
+          {
+            "date": 19,
+            "status": "open"
+          },
+          {
+            "date": 20,
+            "status": "booked"
+          },
+          {
+            "date": 21,
+            "status": "booked"
+          },
+          {
+            "date": 22,
+            "status": "open"
+          },
+          {
+            "date": 23,
+            "status": "open"
+          },
+          {
+            "date": 24,
+            "status": "open"
+          },
+          {
+            "date": 25,
+            "status": "open"
+          },
+          {
+            "date": 26,
+            "status": "open"
+          },
+          {
+            "date": 27,
+            "status": "open"
+          },
+          {
+            "date": 28,
+            "status": "limited"
+          },
+          {
+            "date": 29,
+            "status": "open"
+          },
+          {
+            "date": 30,
+            "status": "open"
+          }
+        ]
+      }
+    ]
+  }
+}

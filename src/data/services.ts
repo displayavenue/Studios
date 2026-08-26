@@ -22,6 +22,11 @@ export type Service = {
   related: string[];
   /** Optional YouTube watch / share / embed URL — shown on the service page when set */
   youtubeUrl?: string;
+  /** Starting price label shown on cards and detail pages */
+  priceFrom?: string;
+  priceNote?: string;
+  deliverables?: string[];
+  equipment?: string[];
   /** Per-service client reviews shown on the service detail page */
   reviews?: ServiceReview[];
   /** Interesting facts & tips for this service — CMS editable */

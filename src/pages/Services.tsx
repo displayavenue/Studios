@@ -63,6 +63,11 @@ export function Services() {
                     <div>
                       <h3>{service.title}</h3>
                       <p>{service.short}</p>
+                      {service.priceFrom ? (
+                        <p className="price-from price-from--sm">
+                          From <strong>{service.priceFrom}</strong>
+                        </p>
+                      ) : null}
                       <span className="text-link">View details →</span>
                     </div>
                   </Link>

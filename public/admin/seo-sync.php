@@ -35,6 +35,11 @@ function da_collect_urls(string $contentDir): array {
     '/locations',
     '/blog',
     '/faqs',
+    '/case-studies',
+    '/careers',
+    '/client-gallery',
+    '/availability',
+    '/hire',
     '/book-now',
     '/contact',
     '/pages',
@@ -73,6 +78,27 @@ function da_collect_urls(string $contentDir): array {
   foreach (($content['blogs'] ?? []) as $b) {
     if (!empty($b['slug'])) {
       $urls[] = ['path' => '/blog/' . $b['slug'], 'priority' => '0.6', 'changefreq' => 'weekly'];
+    }
+  }
+
+  $extras = da_read_json_file($contentDir . '/extras.json');
+  foreach (($extras['caseStudies'] ?? []) as $cs) {
+    if (!empty($cs['slug'])) {
+      $urls[] = ['path' => '/case-studies/' . $cs['slug'], 'priority' => '0.65', 'changefreq' => 'monthly'];
+    }
+  }
+  $cities = [];
+  foreach (($content['locations'] ?? []) as $l) {
+    $city = trim((string)($l['city'] ?? ''));
+    if ($city !== '') $cities[$city] = true;
+  }
+  $cities = array_slice(array_keys($cities), 0, 8);
+  $topServices = array_slice($services['services'] ?? [], 0, 12);
+  foreach ($cities as $city) {
+    $citySlug = strtolower(preg_replace('/\s+/', '-', $city));
+    foreach ($topServices as $svc) {
+      if (empty($svc['slug'])) continue;
+      $urls[] = ['path' => '/hire/' . $citySlug . '/' . $svc['slug'], 'priority' => '0.55', 'changefreq' => 'monthly'];
     }
   }
 

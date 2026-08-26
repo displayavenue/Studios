@@ -21,6 +21,7 @@ return [
     'services' => 'Services',
     'packages' => 'Packages & Pricing',
     'portfolio' => 'Portfolio',
+    'extras' => 'Reviews, Case Studies & More',
     'content' => 'FAQs, Blog, Team, Industries',
     'settings' => 'Settings',
   ],

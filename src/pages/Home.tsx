@@ -3,6 +3,12 @@ import { SEO, FAQPageSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { TestimonialsSection } from "../components/TestimonialsSection";
+import {
+  AwardsStrip,
+  GoogleReviewsBlock,
+  InstagramGrid,
+  ShowreelBlock,
+} from "../components/GrowthWidgets";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Home.css";
@@ -11,6 +17,7 @@ export function Home() {
   const ref = useReveal<HTMLDivElement>();
   const {
     company: { trustBadges, brandLogos },
+    company,
     home,
     homeServices,
     services,
@@ -20,6 +27,7 @@ export function Home() {
     faqs,
     processSteps,
     whyChoose,
+    extras,
   } = useCms();
   const weddingPackages = packageGroups[0];
   const { hero } = home;
@@ -81,6 +89,9 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <AwardsStrip />
+      <ShowreelBlock />
 
       <section className="section section--light">
         <div className="container">
@@ -255,6 +266,61 @@ export function Home() {
 
       <TestimonialsSection />
 
+      <GoogleReviewsBlock />
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head reveal">
+            <p className="eyebrow">Case studies</p>
+            <h2>Real productions, real outcomes</h2>
+          </div>
+          <div className="card-grid-2">
+            {extras.caseStudies.slice(0, 2).map((c) => (
+              <Link key={c.slug} to={`/case-studies/${c.slug}`} className="case-card card reveal">
+                <div className="case-card__img">
+                  <img src={c.image} alt="" loading="lazy" />
+                </div>
+                <div className="case-card__body">
+                  <span className="pill">
+                    {c.category} · {c.city}
+                  </span>
+                  <h3>{c.title}</h3>
+                  <p>{c.result}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="section-cta reveal">
+            <Link to="/case-studies" className="btn btn--outline">
+              All case studies
+            </Link>
+            <Link to="/availability" className="btn btn--ghost">
+              Check availability
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--light">
+        <div className="container hindi-strip reveal">
+          <div>
+            <p className="eyebrow">हिंदी में बात करें</p>
+            <h2>आपकी शूट डेट अभी फ्री है क्या?</h2>
+            <p>
+              मुंबई हेडक्वार्टर से पैन-इंडिया कवरेज। व्हाट्सऐप पर तुरंत पूछें — हम जल्दी जवाब देते हैं।
+            </p>
+          </div>
+          <div className="section-cta">
+            <a href={company.whatsappHref} className="btn btn--gold" target="_blank" rel="noreferrer">
+              WhatsApp करें
+            </a>
+            <Link to="/book-now" className="btn btn--outline">
+              बुकिंग शुरू करें
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section section--light">
         <div className="container faq-home">
           <div className="section-head reveal">
@@ -315,6 +381,8 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <InstagramGrid />
 
       <CTABanner />
     </div>

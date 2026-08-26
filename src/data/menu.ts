@@ -92,8 +92,13 @@ export const menuConfig: MenuConfig = {
   exploreMega: {
     discoverTitle: "Discover",
     discoverLinks: [
+      { label: "Hire by city", path: "/hire" },
+      { label: "Case studies", path: "/case-studies" },
+      { label: "Availability", path: "/availability" },
       { label: "Locations", path: "/locations" },
       { label: "Industries", path: "/industries" },
+      { label: "Careers", path: "/careers" },
+      { label: "Client gallery", path: "/client-gallery" },
       { label: "Blog", path: "/blog" },
       { label: "FAQs", path: "/faqs" },
       { label: "All pages", path: "/pages" },
@@ -111,8 +116,13 @@ export const menuConfig: MenuConfig = {
   mobileLinks: [
     { label: "About", path: "/about" },
     { label: "Portfolio", path: "/portfolio" },
+    { label: "Hire by city", path: "/hire" },
+    { label: "Case studies", path: "/case-studies" },
+    { label: "Availability", path: "/availability" },
     { label: "Locations", path: "/locations" },
     { label: "Industries", path: "/industries" },
+    { label: "Careers", path: "/careers" },
+    { label: "Client gallery", path: "/client-gallery" },
     { label: "Blog", path: "/blog" },
     { label: "FAQs", path: "/faqs" },
     { label: "Contact", path: "/contact" },

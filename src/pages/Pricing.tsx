@@ -62,6 +62,46 @@ export function Pricing() {
         </div>
       </section>
 
+      <section className="section section--light">
+        <div className="container">
+          <div className="section-head reveal">
+            <p className="eyebrow">Compare tiers</p>
+            <h2>Essential vs Signature vs Luxury</h2>
+            <p>A clear side-by-side of what usually changes between tiers.</p>
+          </div>
+          <div className="compare-wrap reveal">
+            <table className="compare-table">
+              <thead>
+                <tr>
+                  <th>Included</th>
+                  <th>Essential</th>
+                  <th>Signature</th>
+                  <th>Luxury</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Lead coverage hours", "6–8 hrs", "10–12 hrs", "Full day+"],
+                  ["Second shooter", "Optional", "Included", "Included + assistant"],
+                  ["Highlight film", "Add-on", "Included", "Extended + reels"],
+                  ["Same-week selects", "—", "Included", "Same-day option"],
+                  ["Album design", "Add-on", "Credit included", "Premium design"],
+                  ["Drone window", "Add-on", "Add-on", "Priority slot"],
+                  ["Best for", "Intimate days", "Most weddings/brands", "Destination & luxury"],
+                ].map(([label, a, b, c]) => (
+                  <tr key={label}>
+                    <td>{label}</td>
+                    <td>{a}</td>
+                    <td>{b}</td>
+                    <td>{c}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
           <div className="section-head reveal">

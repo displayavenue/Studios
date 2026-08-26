@@ -159,6 +159,7 @@ function renderEditor() {
   else if (key === "packages") wrap.innerHTML = renderPackages(data);
   else if (key === "portfolio") wrap.innerHTML = renderPortfolio(data);
   else if (key === "content") wrap.innerHTML = renderContent(data);
+  else if (key === "extras") wrap.innerHTML = renderExtras(data);
   else if (key === "settings") wrap.innerHTML = renderSettings(data);
   else wrap.innerHTML = `<div class="card"><p>Unknown collection.</p></div>`;
 
@@ -539,9 +540,19 @@ function renderServices(d) {
         ${field("Full description", `services.${i}.description`, s.description, "textarea")}
         ${field("Image URL", `services.${i}.image`, s.image)}
         ${field("YouTube video URL (optional)", `services.${i}.youtubeUrl`, s.youtubeUrl || "")}
+        ${field("Starting price", `services.${i}.priceFrom`, s.priceFrom || "")}
+        ${field("Price note", `services.${i}.priceNote`, s.priceNote || "")}
         <div class="field full">
           <label>Benefits (one per line)</label>
           <textarea data-path="services.${i}.benefits" data-array="true">${escapeHtml((s.benefits || []).join("\n"))}</textarea>
+        </div>
+        <div class="field full">
+          <label>Deliverables (one per line)</label>
+          <textarea data-path="services.${i}.deliverables" data-array="true">${escapeHtml((s.deliverables || []).join("\n"))}</textarea>
+        </div>
+        <div class="field full">
+          <label>Equipment (one per line)</label>
+          <textarea data-path="services.${i}.equipment" data-array="true">${escapeHtml((s.equipment || []).join("\n"))}</textarea>
         </div>
         <div class="field full">
           <label>Related service slugs (one per line)</label>
@@ -753,7 +764,206 @@ function renderContent(d) {
   ].join("");
 }
 
+
+function renderExtras(d) {
+  const g = d.googleReviews || {};
+  const ig = d.instagram || {};
+  const awards = d.awards || [];
+  const showreel = d.showreel || {};
+  const cases = d.caseStudies || [];
+  const careers = d.careers || {};
+  const roles = careers.roles || [];
+  const galleries = d.clientGalleries || [];
+  const avail = d.availability || {};
+  return `
+  <div class="card">
+    <h3>Google reviews strip</h3>
+    <div class="grid-2">
+      ${field("Label", "googleReviews.label", g.label)}
+      ${field("Average rating", "googleReviews.rating", g.rating ?? 4.9, "number")}
+      ${field("Review count", "googleReviews.count", g.count ?? 0, "number")}
+      ${field("Google profile URL", "googleReviews.profileUrl", g.profileUrl)}
+    </div>
+    <div class="card-head" style="margin-top:1rem">
+      <h3 style="font-size:1rem;margin:0">Featured reviews (${(g.reviews || []).length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-google-review">Add review</button>
+    </div>
+    ${(g.reviews || []).map((r, i) => `
+      <details class="item-card" style="margin-top:.65rem" ${i < 2 ? "open" : ""}>
+        <summary>
+          <span>${escapeHtml(r.name || "Review")}</span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-google-review" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("Name", `googleReviews.reviews.${i}.name`, r.name)}
+          ${field("Initials", `googleReviews.reviews.${i}.initials`, r.initials)}
+          ${field("Rating (1-5)", `googleReviews.reviews.${i}.rating`, r.rating ?? 5, "number")}
+          ${field("Time label", `googleReviews.reviews.${i}.time`, r.time)}
+          ${field("Review text", `googleReviews.reviews.${i}.text`, r.text, "textarea")}
+        </div>
+      </details>
+    `).join("")}
+  </div>
+  <div class="card">
+    <h3>Instagram grid</h3>
+    <div class="grid-2">
+      ${field("Handle", "instagram.handle", ig.handle)}
+      ${field("Profile URL", "instagram.url", ig.url)}
+    </div>
+    <div class="card-head" style="margin-top:1rem">
+      <h3 style="font-size:1rem;margin:0">Posts (${(ig.posts || []).length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-ig-post">Add post</button>
+    </div>
+    ${(ig.posts || []).map((p, i) => `
+      <details class="item-card" style="margin-top:.65rem" ${i < 2 ? "open" : ""}>
+        <summary>
+          <span>${escapeHtml(p.caption || p.id || "Post")}</span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-ig-post" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("ID", `instagram.posts.${i}.id`, p.id)}
+          ${field("Image URL", `instagram.posts.${i}.image`, p.image)}
+          ${field("Likes label", `instagram.posts.${i}.likes`, p.likes)}
+          ${field("Caption", `instagram.posts.${i}.caption`, p.caption)}
+        </div>
+      </details>
+    `).join("")}
+  </div>
+  <div class="card">
+    <div class="card-head">
+      <h3>Awards (${awards.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-award">Add award</button>
+    </div>
+    ${awards.map((a, i) => `
+      <details class="item-card" style="margin-top:.65rem" ${i < 3 ? "open" : ""}>
+        <summary>
+          <span>${escapeHtml(a.title || "Award")}</span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-award" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("Title", `awards.${i}.title`, a.title)}
+          ${field("Organisation", `awards.${i}.org`, a.org)}
+          ${field("Year", `awards.${i}.year`, a.year)}
+        </div>
+      </details>
+    `).join("")}
+  </div>
+  <div class="card">
+    <h3>Showreel</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "showreel.eyebrow", showreel.eyebrow)}
+      ${field("Title", "showreel.title", showreel.title)}
+      ${field("Text", "showreel.text", showreel.text, "textarea")}
+      ${field("YouTube URL", "showreel.youtubeUrl", showreel.youtubeUrl)}
+      ${field("Poster image", "showreel.poster", showreel.poster)}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head">
+      <h3>Case studies (${cases.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-case-study">Add case study</button>
+    </div>
+    ${cases.map((c, i) => `
+      <details class="item-card" style="margin-top:.65rem" ${i < 1 ? "open" : ""}>
+        <summary>
+          <span>${escapeHtml(c.title || c.slug || "Case study")}</span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-case-study" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("Slug", `caseStudies.${i}.slug`, c.slug)}
+          ${field("Title", `caseStudies.${i}.title`, c.title)}
+          ${field("Client", `caseStudies.${i}.client`, c.client)}
+          ${field("Category", `caseStudies.${i}.category`, c.category)}
+          ${field("City", `caseStudies.${i}.city`, c.city)}
+          ${field("Year", `caseStudies.${i}.year`, c.year)}
+          ${field("Result highlight", `caseStudies.${i}.result`, c.result)}
+          ${field("Cover image", `caseStudies.${i}.image`, c.image)}
+          ${field("Summary", `caseStudies.${i}.summary`, c.summary, "textarea")}
+          ${field("Challenge", `caseStudies.${i}.challenge`, c.challenge, "textarea")}
+          ${field("Approach", `caseStudies.${i}.approach`, c.approach, "textarea")}
+          ${field("Outcome", `caseStudies.${i}.outcome`, c.outcome, "textarea")}
+          <div class="field full">
+            <label>Gallery image URLs (one per line)</label>
+            <textarea data-path="caseStudies.${i}.gallery" data-array="true">${escapeHtml((c.gallery || []).join("\n"))}</textarea>
+          </div>
+        </div>
+      </details>
+    `).join("")}
+  </div>
+  <div class="card">
+    <h3>Careers page</h3>
+    <div class="grid-2">
+      ${field("Eyebrow", "careers.eyebrow", careers.eyebrow)}
+      ${field("Title", "careers.title", careers.title)}
+      ${field("Intro text", "careers.text", careers.text, "textarea")}
+      <div class="field full">
+        <label>Perks (one per line)</label>
+        <textarea data-path="careers.perks" data-array="true">${escapeHtml((careers.perks || []).join("\n"))}</textarea>
+      </div>
+    </div>
+    <div class="card-head" style="margin-top:1rem">
+      <h3 style="font-size:1rem;margin:0">Open roles (${roles.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-career-role">Add role</button>
+    </div>
+    ${roles.map((r, i) => `
+      <details class="item-card" style="margin-top:.65rem" ${i < 2 ? "open" : ""}>
+        <summary>
+          <span>${escapeHtml(r.title || "Role")}</span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-career-role" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("ID", `careers.roles.${i}.id`, r.id)}
+          ${field("Title", `careers.roles.${i}.title`, r.title)}
+          ${field("Type", `careers.roles.${i}.type`, r.type)}
+          ${field("Location", `careers.roles.${i}.location`, r.location)}
+          ${field("Summary", `careers.roles.${i}.summary`, r.summary, "textarea")}
+          <div class="field full">
+            <label>Requirements (one per line)</label>
+            <textarea data-path="careers.roles.${i}.requirements" data-array="true">${escapeHtml((r.requirements || []).join("\n"))}</textarea>
+          </div>
+        </div>
+      </details>
+    `).join("")}
+  </div>
+  <div class="card">
+    <div class="card-head">
+      <h3>Client galleries (${galleries.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-client-gallery">Add gallery</button>
+    </div>
+    <p class="help-banner">Clients unlock a private gallery with a code (e.g. AANYA2025).</p>
+    ${galleries.map((g, i) => `
+      <details class="item-card" style="margin-top:.65rem" ${i < 1 ? "open" : ""}>
+        <summary>
+          <span>${escapeHtml(g.code || g.title || "Gallery")}</span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-client-gallery" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("Access code", `clientGalleries.${i}.code`, g.code)}
+          ${field("Title", `clientGalleries.${i}.title`, g.title)}
+          ${field("Type", `clientGalleries.${i}.type`, g.type)}
+          ${field("Cover image", `clientGalleries.${i}.cover`, g.cover)}
+          <div class="field full">
+            <label>Image URLs (one per line)</label>
+            <textarea data-path="clientGalleries.${i}.images" data-array="true">${escapeHtml((g.images || []).join("\n"))}</textarea>
+          </div>
+        </div>
+      </details>
+    `).join("")}
+  </div>
+  <div class="card">
+    <h3>Availability calendar</h3>
+    <p class="help-banner">Edit month labels and day statuses in JSON carefully, or update the headline copy here. Day grid is stored under availability.months.</p>
+    <div class="grid-2">
+      ${field("Eyebrow", "availability.eyebrow", avail.eyebrow)}
+      ${field("Title", "availability.title", avail.title)}
+      ${field("Intro text", "availability.text", avail.text, "textarea")}
+      ${field("Note under calendar", "availability.note", avail.note, "textarea")}
+    </div>
+  </div>`;
+}
+
 function renderSettings(d) {
+
   return `
   <div class="card">
     <h3>Settings</h3>
@@ -890,6 +1100,86 @@ function handleAction(action, btn) {
     case "del-mobile-link":
       if (!confirm("Delete this mobile link?")) return;
       d.mobileLinks.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-google-review":
+      d.googleReviews = d.googleReviews || { reviews: [] };
+      d.googleReviews.reviews = d.googleReviews.reviews || [];
+      d.googleReviews.reviews.unshift({
+        name: "New Client",
+        initials: "NC",
+        rating: 5,
+        time: "just now",
+        text: "Write the review…",
+      });
+      setDirty(true); renderEditor(); break;
+    case "del-google-review":
+      if (!confirm("Delete this Google review?")) return;
+      d.googleReviews.reviews.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-ig-post":
+      d.instagram = d.instagram || { posts: [] };
+      d.instagram.posts = d.instagram.posts || [];
+      d.instagram.posts.unshift({
+        id: String(Date.now()),
+        image: "",
+        likes: "0",
+        caption: "New post",
+      });
+      setDirty(true); renderEditor(); break;
+    case "del-ig-post":
+      if (!confirm("Delete this Instagram post?")) return;
+      d.instagram.posts.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-award":
+      add("awards", { title: "New award", org: "Organisation", year: "2026" });
+      break;
+    case "del-award":
+      del("awards");
+      break;
+    case "add-case-study":
+      add("caseStudies", {
+        slug: "new-case-study",
+        title: "New case study",
+        client: "Client",
+        category: "Wedding",
+        city: "Mumbai",
+        year: "2026",
+        result: "",
+        summary: "",
+        challenge: "",
+        approach: "",
+        outcome: "",
+        image: "",
+        gallery: [],
+      });
+      break;
+    case "del-case-study":
+      del("caseStudies");
+      break;
+    case "add-career-role":
+      d.careers = d.careers || { roles: [] };
+      d.careers.roles = d.careers.roles || [];
+      d.careers.roles.unshift({
+        id: `role-${Date.now()}`,
+        title: "New role",
+        type: "Full-time",
+        location: "Mumbai",
+        summary: "",
+        requirements: [],
+      });
+      setDirty(true); renderEditor(); break;
+    case "del-career-role":
+      if (!confirm("Delete this role?")) return;
+      d.careers.roles.splice(i, 1); setDirty(true); renderEditor(); break;
+    case "add-client-gallery":
+      add("clientGalleries", {
+        code: "CODE2026",
+        title: "New gallery",
+        type: "Wedding",
+        cover: "",
+        images: [],
+      });
+      break;
+    case "del-client-gallery":
+      del("clientGalleries");
+      break;
     case "sync-seo":
       (async () => {
         try {

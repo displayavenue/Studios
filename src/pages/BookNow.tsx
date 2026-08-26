@@ -50,9 +50,44 @@ export function BookNow() {
                   Thank you. A DisplayAvenue producer will contact you shortly
                   via phone or WhatsApp to confirm next steps.
                 </p>
-                <a href={company.whatsappHref} className="btn btn--gold" target="_blank" rel="noreferrer">
+                <div className="pay-token card">
+                  <p className="eyebrow">Secure your date</p>
+                  <h3>Pay booking token</h3>
+                  <p>
+                    After we confirm availability, reserve your crew with a
+                    refundable-against-invoice token. Demo checkout below
+                    (UPI / card).
+                  </p>
+                  <div className="pay-token__row">
+                    <div>
+                      <strong>₹15,000</strong>
+                      <span>Booking token</span>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn--gold"
+                      onClick={() =>
+                        alert(
+                          "Demo payment — connect Razorpay/UPI keys in production to collect real tokens.",
+                        )
+                      }
+                    >
+                      Pay with UPI / Card
+                    </button>
+                  </div>
+                  <p className="form-note">
+                    Or pay later on WhatsApp after we share the payment link.
+                  </p>
+                </div>
+                <a href={company.whatsappHref} className="btn btn--outline" target="_blank" rel="noreferrer">
                   Continue on WhatsApp
                 </a>
+                <Link to="/availability" className="btn btn--ghost">
+                  View calendar
+                </Link>
+                <Link to="/client-gallery" className="btn btn--ghost">
+                  Client gallery portal
+                </Link>
               </div>
             ) : (
               <>

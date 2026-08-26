@@ -7,6 +7,7 @@ import { ServiceTips } from "../components/ServiceTips";
 import { useReveal } from "../hooks/useReveal";
 import { useCms, useService } from "../cms/CmsProvider";
 import { getYoutubeEmbedUrl } from "../utils/youtube";
+import { serviceWhatsAppMessage, whatsappPrefill } from "../utils/whatsapp";
 import "./Page.css";
 
 export function ServiceDetail() {
@@ -95,11 +96,28 @@ export function ServiceDetail() {
             <p className="eyebrow">{service.category}</p>
             <h1>{service.title}</h1>
             <p>{service.description}</p>
+            {service.priceFrom ? (
+              <p className="price-from">
+                Starting <strong>{service.priceFrom}</strong>
+                {service.priceNote ? <small> · {service.priceNote}</small> : null}
+              </p>
+            ) : null}
             <div className="home-hero__actions" style={{ marginTop: "1.75rem" }}>
               <Link to="/book-now" className="btn btn--gold">
                 Book This Service
               </Link>
-              <Link to="/pricing" className="btn btn--outline">
+              <a
+                href={whatsappPrefill(
+                  company.whatsappHref,
+                  serviceWhatsAppMessage(service.title),
+                )}
+                className="btn btn--outline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp quote
+              </a>
+              <Link to="/pricing" className="btn btn--ghost">
                 View Pricing
               </Link>
             </div>
@@ -150,6 +168,35 @@ export function ServiceDetail() {
           </ul>
         </div>
       </section>
+
+      {(service.deliverables?.length || service.equipment?.length) ? (
+        <section className="section section--light">
+          <div className="container grid-2">
+            {service.deliverables?.length ? (
+              <div>
+                <p className="eyebrow">Deliverables</p>
+                <h2>What you take home</h2>
+                <ul className="check-list">
+                  {service.deliverables.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {service.equipment?.length ? (
+              <div>
+                <p className="eyebrow">Kit</p>
+                <h2>Equipment &amp; craft</h2>
+                <ul className="check-list">
+                  {service.equipment.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       {relatedWork.length > 0 && (
         <section className="section section--light">
