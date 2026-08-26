@@ -1,34 +1,11 @@
-export type ServiceReview = {
-  name: string;
-  role: string;
-  quote: string;
-  rating?: number;
-  image?: string;
-};
-
-export type ServiceTip = {
-  title: string;
-  text: string;
-};
-
+export type ServiceReview = { name: string; role: string; quote: string; rating?: number; image?: string; };
+export type ServiceTip = { title: string; text: string; };
 export type Service = {
-  slug: string;
-  title: string;
-  short: string;
-  description: string;
-  benefits: string[];
-  image: string;
+  slug: string; title: string; short: string; description: string; benefits: string[]; image: string;
   category: "Wedding" | "Pre-Wedding" | "Engagement" | "Maternity" | "Birthday" | "Events";
-  related: string[];
-  youtubeUrl?: string;
-  reviews?: ServiceReview[];
-  tips?: ServiceTip[];
-  priceFrom?: string;
-  priceNote?: string;
-  deliverables?: string[];
-  equipment?: string[];
+  related: string[]; youtubeUrl?: string; reviews?: ServiceReview[]; tips?: ServiceTip[];
+  priceFrom?: string; priceNote?: string; deliverables?: string[]; equipment?: string[];
 };
-
 export const services: Service[] = [
   {
     "slug": "wedding-photography",
@@ -42,7 +19,7 @@ export const services: Service[] = [
       "Pan-India destination travel",
       "Pairs with wedding videography"
     ],
-    "image": "/images/indian/wedding-04.jpg",
+    "image": "/images/indian/wedding-03.jpg",
     "category": "Wedding",
     "related": [
       "wedding-videography",
@@ -176,7 +153,7 @@ export const services: Service[] = [
       "Ideal with cinematic film",
       "Low-light specialist crew"
     ],
-    "image": "/images/indian/wedding-03.jpg",
+    "image": "/images/indian/w2-alt.jpg",
     "category": "Wedding",
     "related": [
       "wedding-photography",
@@ -436,7 +413,7 @@ export const services: Service[] = [
       "Multi-day coverage",
       "Pairs with destination film"
     ],
-    "image": "/images/indian/wedding-05.jpg",
+    "image": "/images/indian/wedding-04.jpg",
     "category": "Wedding",
     "related": [
       "destination-wedding-videography",
@@ -567,7 +544,7 @@ export const services: Service[] = [
       "Outfit-change guidance",
       "Invite crops"
     ],
-    "image": "/images/indian/couple-02.jpg",
+    "image": "/images/indian/wedding-07.jpg",
     "category": "Pre-Wedding",
     "related": [
       "pre-wedding-videography",
@@ -1080,7 +1057,7 @@ export const services: Service[] = [
       "Discreet guest-friendly team",
       "Fast social delivery"
     ],
-    "image": "/images/indian/wedding-08.jpg",
+    "image": "/images/indian/film-01.jpg",
     "category": "Events",
     "related": [
       "event-videography",
@@ -1591,7 +1568,7 @@ export const services: Service[] = [
       "Speech moments",
       "Dance-floor candids"
     ],
-    "image": "/images/indian/wedding-10.jpg",
+    "image": "/images/indian/reception-alt.jpg",
     "category": "Wedding",
     "related": [
       "reception-videography",
@@ -1985,7 +1962,7 @@ export const services: Service[] = [
       "Drone establishes",
       "Priority edit timeline"
     ],
-    "image": "/images/indian/wedding-05.jpg",
+    "image": "/images/indian/wedding-04.jpg",
     "category": "Wedding",
     "related": [
       "destination-wedding-photography",
@@ -2116,7 +2093,7 @@ export const services: Service[] = [
       "Location scouting",
       "Guided movement"
     ],
-    "image": "/images/indian/wedding-07.jpg",
+    "image": "/images/indian/couple-02.jpg",
     "category": "Pre-Wedding",
     "related": [
       "pre-wedding-shoot",
@@ -2374,7 +2351,7 @@ export const services: Service[] = [
       "Partner frames",
       "Gentle guided direction"
     ],
-    "image": "/images/indian/maternity-02.jpg",
+    "image": "/images/indian/maternity-01.jpg",
     "category": "Maternity",
     "related": [
       "maternity-photography",
@@ -2630,7 +2607,7 @@ export const services: Service[] = [
       "Speech capture",
       "Social-first cuts"
     ],
-    "image": "/images/indian/wedding-08.jpg",
+    "image": "/images/indian/film-01.jpg",
     "category": "Events",
     "related": [
       "event-coverage",
@@ -3142,7 +3119,7 @@ export const services: Service[] = [
       "Speech audio",
       "Dance-floor coverage"
     ],
-    "image": "/images/indian/wedding-10.jpg",
+    "image": "/images/indian/reception-alt.jpg",
     "category": "Wedding",
     "related": [
       "reception-photography",
@@ -3270,7 +3247,7 @@ export const services: Service[] = [
       "Venue-permitted only",
       "Licensed pilots"
     ],
-    "image": "/images/indian/wedding-02.jpg",
+    "image": "/images/indian/wedding-04.jpg",
     "category": "Wedding",
     "related": [
       "destination-wedding-videography",
@@ -3390,7 +3367,6 @@ export const services: Service[] = [
     ]
   }
 ];
-
 export const homeServices: string[] = [
   "wedding-photography",
   "wedding-videography",
@@ -3403,6 +3379,5 @@ export const homeServices: string[] = [
   "birthday-photography",
   "event-videography"
 ];
-
 export const fallbackServices = services;
 export const fallbackHomeServices = homeServices;

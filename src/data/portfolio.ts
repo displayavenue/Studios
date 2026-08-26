@@ -1,13 +1,4 @@
-export type PortfolioItem = {
-  slug: string;
-  title: string;
-  category: string;
-  location: string;
-  description: string;
-  image: string;
-  gallery: string[];
-};
-
+export type PortfolioItem = { slug: string; title: string; category: string; location: string; description: string; image: string; gallery: string[]; };
 export const portfolioCategories = [
   "Wedding",
   "Pre-Wedding",
@@ -18,7 +9,6 @@ export const portfolioCategories = [
   "Films",
   "Destination"
 ];
-
 export const portfolio: PortfolioItem[] = [
   {
     "slug": "udaipur-palace-wedding",
@@ -26,11 +16,11 @@ export const portfolio: PortfolioItem[] = [
     "category": "Destination",
     "location": "Udaipur",
     "description": "Three-day Indian destination wedding — candid stills and cinematic film.",
-    "image": "/images/indian/wedding-05.jpg",
+    "image": "/images/indian/wedding-04.jpg",
     "gallery": [
-      "/images/indian/wedding-05.jpg",
       "/images/indian/wedding-04.jpg",
-      "/images/indian/wedding-02.jpg",
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/wedding-08.jpg",
       "/images/indian/film-01.jpg"
     ]
   },
@@ -40,12 +30,12 @@ export const portfolio: PortfolioItem[] = [
     "category": "Wedding",
     "location": "Mumbai",
     "description": "Banquet + temple rituals with candid photography and traditional groups.",
-    "image": "/images/indian/wedding-03.jpg",
+    "image": "/images/indian/w2-alt.jpg",
     "gallery": [
+      "/images/indian/w2-alt.jpg",
       "/images/indian/wedding-03.jpg",
-      "/images/indian/couple-01.jpg",
-      "/images/indian/wedding-10.jpg",
-      "/images/indian/mehndi-01.jpg"
+      "/images/indian/wedding-08.jpg",
+      "/images/indian/film-01.jpg"
     ]
   },
   {
@@ -57,8 +47,9 @@ export const portfolio: PortfolioItem[] = [
     "image": "/images/indian/film-01.jpg",
     "gallery": [
       "/images/indian/film-01.jpg",
-      "/images/indian/wedding-06.jpg",
-      "/images/indian/wedding-10.jpg"
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/wedding-08.jpg",
+      "/images/indian/film-01.jpg"
     ]
   },
   {
@@ -67,11 +58,12 @@ export const portfolio: PortfolioItem[] = [
     "category": "Pre-Wedding",
     "location": "Lonavala",
     "description": "Golden-hour chemistry stills and short pre-wedding film.",
-    "image": "/images/indian/couple-02.jpg",
+    "image": "/images/indian/wedding-07.jpg",
     "gallery": [
-      "/images/indian/couple-02.jpg",
       "/images/indian/wedding-07.jpg",
-      "/images/indian/wedding-02.jpg"
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/wedding-08.jpg",
+      "/images/indian/film-01.jpg"
     ]
   },
   {
@@ -83,8 +75,9 @@ export const portfolio: PortfolioItem[] = [
     "image": "/images/indian/engage-01.jpg",
     "gallery": [
       "/images/indian/engage-01.jpg",
-      "/images/indian/engage-02.jpg",
-      "/images/indian/mehndi-01.jpg"
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/wedding-08.jpg",
+      "/images/indian/film-01.jpg"
     ]
   },
   {
@@ -96,7 +89,9 @@ export const portfolio: PortfolioItem[] = [
     "image": "/images/indian/maternity-01.jpg",
     "gallery": [
       "/images/indian/maternity-01.jpg",
-      "/images/indian/maternity-02.jpg"
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/wedding-08.jpg",
+      "/images/indian/film-01.jpg"
     ]
   },
   {
@@ -108,7 +103,9 @@ export const portfolio: PortfolioItem[] = [
     "image": "/images/indian/birthday-01.jpg",
     "gallery": [
       "/images/indian/birthday-01.jpg",
-      "/images/indian/wedding-08.jpg"
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/wedding-08.jpg",
+      "/images/indian/film-01.jpg"
     ]
   },
   {
@@ -120,7 +117,8 @@ export const portfolio: PortfolioItem[] = [
     "image": "/images/indian/wedding-06.jpg",
     "gallery": [
       "/images/indian/wedding-06.jpg",
-      "/images/indian/ritual-01.jpg",
+      "/images/indian/wedding-03.jpg",
+      "/images/indian/wedding-08.jpg",
       "/images/indian/film-01.jpg"
     ]
   }

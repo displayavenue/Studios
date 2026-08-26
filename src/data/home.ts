@@ -62,7 +62,7 @@ export const homeContent: HomeContent = {
     "secondaryCtaLabel": "View Wedding Portfolio",
     "secondaryCtaPath": "/portfolio",
     "image": "/images/indian/wedding-01.jpg",
-    "imageAlt": "Indian bride and groom in traditional wedding attire by DisplayAvenue Studios Mumbai"
+    "imageAlt": "Luxury Indian wedding couple in designer lehenga and sherwani — DisplayAvenue Studios Mumbai"
   },
   "brands": {
     "label": "Trusted by Couples Across India"
