@@ -5,7 +5,7 @@
 @media (max-width: 768px) {
   .sticky-mcta {
     display: grid;
-    grid-template-columns: 1fr 1fr 1.35fr;
+    grid-template-columns: 1fr 1fr 1.45fr;
     gap: 0.4rem;
     position: fixed;
     left: 0;
@@ -16,6 +16,18 @@
     background: rgba(5, 10, 31, 0.94);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translate3d(0, calc(100% + 12px), 0);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .sticky-mcta.is-visible {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .sticky-mcta__btn {
@@ -23,9 +35,16 @@
     place-items: center;
     min-height: 44px;
     border-radius: 10px;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 700;
     text-align: center;
+    transition:
+      transform 0.18s ease,
+      background-color 0.18s ease;
+  }
+
+  .sticky-mcta__btn:active {
+    transform: scale(0.98);
   }
 
   .sticky-mcta__btn--call {
@@ -44,12 +63,28 @@
     color: #fff;
   }
 
-  /* Keep WhatsApp float above the sticky bar */
   .wa-float {
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      bottom 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .app-shell:has(.sticky-mcta.is-visible) .wa-float {
     bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px));
   }
 
   .app-shell {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .app-shell:has(.sticky-mcta.is-visible) {
     padding-bottom: calc(4.4rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-mcta {
+    transition: none !important;
   }
 }

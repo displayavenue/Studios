@@ -7,12 +7,16 @@ import { TrackingScripts } from "./TrackingScripts";
 import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
 import { ScrollToTop } from "./ScrollToTop";
 import { StickyMobileCta } from "./StickyMobileCta";
+import { ScrollProgress } from "./ScrollProgress";
+import { useMotionPrefs } from "../hooks/useMotionPrefs";
 import "./Placeholder.css";
 
 export function Layout() {
+  useMotionPrefs();
   return (
     <div className="app-shell">
       <ScrollToTop />
+      <ScrollProgress />
       <TrackingScripts />
       <LocalBusinessSchema />
       <WebSiteSchema />

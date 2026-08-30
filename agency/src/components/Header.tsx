@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { type MegaKey } from "../data/company";
 import { useCms } from "../cms/CmsProvider";
@@ -106,14 +106,18 @@ export function Header() {
               <Icon name="arrow" size={14} color="#fff" />
             </Link>
             <button
-              className="icon-btn mobile-toggle"
+              className={`icon-btn mobile-toggle${open ? " is-open" : ""}`}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls={navId}
               type="button"
               onClick={() => setOpen((v) => !v)}
             >
-              <Icon name={open ? "close" : "menu"} size={22} color="#fff" />
+              <span className="mobile-toggle__bars" aria-hidden>
+                <span />
+                <span />
+                <span />
+              </span>
             </button>
           </div>
         </div>
@@ -183,14 +187,16 @@ export function Header() {
         hidden={!open}
       >
         <div className="mobile-drawer-inner">
-          {navItems.map((item) => {
+          {navItems.map((item, idx) => {
             const expanded = mobileSection === item.label;
+            const staggerStyle = { "--nav-i": idx } as CSSProperties;
             if (!item.mega) {
               return (
                 <Link
                   key={item.label}
                   to={item.href}
                   className="mobile-link"
+                  style={staggerStyle}
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
@@ -198,7 +204,7 @@ export function Header() {
               );
             }
             return (
-              <div key={item.label} className="mobile-accordion">
+              <div key={item.label} className="mobile-accordion" style={staggerStyle}>
                 <button
                   type="button"
                   className="mobile-link accordion-btn"
@@ -221,13 +227,16 @@ export function Header() {
               </div>
             );
           })}
-          <div className="mobile-cta">
+          <div className="mobile-cta" style={{ "--nav-i": navItems.length } as CSSProperties}>
             <Link
               to="/contact"
-              className="btn btn-primary"
+              className="btn btn-primary btn-shimmer"
               onClick={() => setOpen(false)}
             >
               Get Free Proposal
+              <span className="btn-arrow" aria-hidden>
+                →
+              </span>
             </Link>
             <a className="btn btn-outline" href={company.clientLogin}>
               Client Login

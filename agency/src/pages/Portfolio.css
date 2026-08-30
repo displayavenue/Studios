@@ -1,0 +1,41 @@
+/* Portfolio motion helpers — desktop layout unchanged */
+
+.portfolio-cats-mobile,
+.portfolio-featured-mobile {
+  display: block;
+}
+
+.portfolio-cats-desktop,
+.portfolio-featured-desktop,
+.portfolio-view-all-desktop {
+  display: none;
+}
+
+.portfolio-swipe-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  min-height: 100%;
+}
+
+.portfolio-page .logo-marquee__item {
+  background: var(--bg-soft);
+  border-color: var(--border-soft);
+  color: var(--navy);
+}
+
+@media (min-width: 768px) {
+  .portfolio-cats-mobile,
+  .portfolio-featured-mobile {
+    display: none;
+  }
+
+  .portfolio-cats-desktop,
+  .portfolio-featured-desktop {
+    display: grid;
+  }
+
+  .portfolio-view-all-desktop {
+    display: inline;
+  }
+}

@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+import type { RefObject } from "react";
 import { useCms } from "../cms/CmsProvider";
 import { Logo } from "./Logo";
 import { Icon } from "./Icon";
+import { useReveal } from "../hooks/useReveal";
 import "./Footer.css";
 
 export function Footer() {
   const { company, content, services, industries, packages, solutions, cases } = useCms();
+  const revealRef = useReveal();
 
   const serviceLinks = services.slice(0, 10).map((s) => ({
     label: s.title,
@@ -68,16 +71,19 @@ export function Footer() {
   ];
 
   return (
-    <footer className="site-footer">
-      <div className="footer-cta">
+    <footer className="site-footer" ref={revealRef as RefObject<HTMLElement>}>
+      <div className="footer-cta reveal-up">
         <div className="container footer-cta-inner">
           <div>
             <h2>{content.footerCta.title}</h2>
             <p>{content.footerCta.sub}</p>
           </div>
           <div className="footer-cta-actions">
-            <Link to="/contact" className="btn btn-primary">
-              Book Free Consultation →
+            <Link to="/contact" className="btn btn-primary btn-shimmer">
+              Book Free Consultation
+              <span className="btn-arrow" aria-hidden>
+                →
+              </span>
             </Link>
             <Link to="/services" className="btn btn-ghost">
               Browse services →
@@ -91,7 +97,7 @@ export function Footer() {
 
       <div className="footer-main">
         <div className="container footer-grid footer-grid--lean">
-          <div className="footer-brand">
+          <div className="footer-brand reveal-up reveal-delay-1">
             <Logo light />
             <p>
               DisplayAvenue helps Indian business owners get found on Google and
@@ -148,8 +154,8 @@ export function Footer() {
             </div>
           </div>
 
-          {footerCols.map((col) => (
-            <div key={col.title}>
+          {footerCols.map((col, i) => (
+            <div key={col.title} className={`reveal-up reveal-delay-${Math.min(i + 2, 5)}`}>
               <h4>{col.title}</h4>
               <ul>
                 {col.links.map((link) => (
@@ -165,7 +171,7 @@ export function Footer() {
             </div>
           ))}
 
-          <div>
+          <div className="reveal-up reveal-delay-3">
             <h4>Get In Touch</h4>
             <ul className="footer-contact">
               <li>

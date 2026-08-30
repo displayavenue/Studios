@@ -1,0 +1,132 @@
+.brand-type {
+  display: inline;
+}
+
+.brand-type__ch {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  animation: brandTypeIn 0.45s var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+}
+
+@keyframes brandTypeIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.word-reveal {
+  display: inline;
+}
+
+.word-reveal__word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em);
+  animation: wordRise 0.7s var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+}
+
+@keyframes wordRise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rotate-kw {
+  margin: 0.85rem 0 0;
+  display: grid;
+  gap: 0.25rem;
+  min-height: 3.2rem;
+}
+
+.rotate-kw__label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.rotate-kw__stage {
+  position: relative;
+  display: block;
+  min-height: 1.5em;
+}
+
+.rotate-kw__item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.45s var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.45s var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1));
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+  color: #9ec1ff;
+  letter-spacing: -0.02em;
+}
+
+.rotate-kw__item.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+.home-stat {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.home-stat strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.1rem);
+  letter-spacing: -0.03em;
+  color: inherit;
+  line-height: 1.1;
+}
+
+.home-stat span {
+  font-size: 0.82rem;
+  color: inherit;
+  opacity: 0.72;
+}
+
+.motion-rail__item {
+  transition: transform 0.35s var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+@media (max-width: 767px) {
+  .motion-rail__item:not(.is-active) {
+    transform: scale(0.96);
+    opacity: 0.88;
+  }
+
+  .motion-rail__item.is-active {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-type__ch,
+  .word-reveal__word {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .rotate-kw__item {
+    position: static;
+    opacity: 0;
+    transform: none;
+    transition: none;
+  }
+
+  .rotate-kw__item.is-active {
+    opacity: 1;
+  }
+}
