@@ -16,10 +16,10 @@ export function StickyMobileCta() {
       return;
     }
     const onScroll = () => {
-      const doc = document.documentElement;
-      const max = Math.max(1, doc.scrollHeight - window.innerHeight);
-      const ratio = window.scrollY / max;
-      setVisible(ratio >= 0.28);
+      // Viewport-based gate: InternalLinks make document height huge, so % of
+      // scrollHeight never matches "25–35% of the page journey" users expect.
+      const threshold = Math.max(280, window.innerHeight * 0.32);
+      setVisible(window.scrollY >= threshold);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
