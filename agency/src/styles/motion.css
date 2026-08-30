@@ -225,12 +225,23 @@
   }
 }
 
-/* ----- Low power / reduced motion ----- */
+/* ----- Low power: only continuous loops — keep scroll/hero reveals ----- */
 html.da-low-power .logo-marquee__track,
 html.da-low-power .btn-shimmer::after,
 html.da-low-power .home-hero__glow,
 html.da-low-power .wa-float--pulse {
   animation: none !important;
+}
+
+/* Never hide reveal targets without JS — fail open for SEO/UX */
+@media (max-width: 767px) {
+  .word-reveal__word {
+    animation-duration: 0.55s;
+  }
+
+  .rotate-kw__item {
+    transition-duration: 0.4s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

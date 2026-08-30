@@ -70,10 +70,6 @@
       bottom 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .app-shell:has(.sticky-mcta.is-visible) .wa-float {
-    bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px));
-  }
-
   .app-shell {
     padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   }
