@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  --velora-bg: #eaeded;
+  --velora-bg-deep: #d5dbdb;
+  --velora-ink: #0f1111;
+  --velora-ink-soft: #232f3e;
+  --velora-muted: #565959;
+  --velora-accent: #007185;
+  --velora-accent-soft: #005f73;
+  --velora-cta: #ffa41c;
+  --velora-cta-hover: #fa8900;
+  --velora-sand: #f7fafa;
+  --velora-line: rgba(15, 17, 17, 0.15);
+  --velora-card: #ffffff;
+  --velora-header: #131921;
+  --velora-header-secondary: #232f3e;
+  --background: var(--velora-bg);
+  --foreground: var(--velora-ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--velora-bg);
+  color: var(--velora-ink);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  letter-spacing: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(0, 113, 133, 0.18);
+}
+
+/* Full-width Amazon-style page shell */
+.container-velora {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-velora {
+    padding-inline: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-velora {
+    padding-inline: 1rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-velora {
+    padding-inline: 1.25rem;
+  }
+}
+
+.store-section {
+  background: var(--velora-card);
+  border: 1px solid var(--velora-line);
+  border-radius: 0.25rem;
+  padding: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .store-section {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .store-section {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+.store-section-flush-mobile {
+  background: var(--velora-card);
+  border-block: 1px solid var(--velora-line);
+  border-radius: 0;
+  padding: 0.875rem 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .store-section-flush-mobile {
+    border: 1px solid var(--velora-line);
+    border-radius: 0.25rem;
+    padding: 1rem;
+  }
+}
+
+.store-section-muted {
+  background: var(--velora-bg);
+  border: none;
+  border-radius: 0;
+  padding: 1rem 0;
+}
+
+.product-grid-amazon {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .product-grid-amazon {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid-amazon {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .product-grid-amazon {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  .product-grid-amazon {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.announce {
+  background: var(--velora-header-secondary);
+  color: #ffffff;
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 0.45rem 1rem;
+}
+
+.admin-shell {
+  background: #0f1210;
+  color: #e8efe9;
+  min-height: 100vh;
+}
+
+.admin-panel {
+  background: #171b18;
+  border: 1px solid rgba(232, 239, 233, 0.08);
+  border-radius: 12px;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--velora-accent);
+  outline-offset: 2px;
+}

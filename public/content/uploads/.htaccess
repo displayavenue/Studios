@@ -1,8 +1,0 @@
-# Serve uploaded images only
-<IfModule mod_authz_core.c>
-  Require all granted
-</IfModule>
-
-<FilesMatch "\.(?i:jpe?g|png|gif|webp)$">
-  Header set Cache-Control "public, max-age=31536000, immutable"
-</FilesMatch>
