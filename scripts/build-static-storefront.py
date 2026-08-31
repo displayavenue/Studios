@@ -11,6 +11,7 @@ from html import escape
 from pathlib import Path
 
 OUT = Path("/workspace/deploy/velora-static")
+BUILD_VERSION = __import__("datetime").datetime.now().strftime("%Y%m%d%H%M")
 
 
 def inr(n: float) -> str:
@@ -57,17 +58,16 @@ a{color:inherit;text-decoration:none}.muted{color:var(--muted)}
 .wrap{width:100%;max-width:none;margin:0 auto;padding:0 .5rem}@media(min-width:640px){.wrap{padding:0 .75rem}}@media(min-width:1024px){.wrap{padding:0 1rem}}
 .announce{background:var(--header2);color:#fff;font-size:12px;text-align:center;padding:.45rem .75rem}
 header.site{position:sticky;top:0;z-index:40;background:var(--header);color:#fff}
+.header-inner{display:flex;flex-direction:column}
 .nav-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem;height:48px}@media(min-width:768px){.nav-top{height:56px}}
-.logo{font-size:1.15rem;font-weight:700;white-space:nowrap}@media(min-width:768px){.logo{font-size:1.25rem}}
-.nav-search-row{padding-bottom:.5rem}@media(min-width:768px){.nav-search-row{display:none}}
-.nav-search,.nav-search-desktop{display:flex;width:100%}.nav-search-desktop{display:none;flex:1;min-width:0}@media(min-width:768px){.nav-search-desktop{display:flex}}
-.nav-search input,.nav-search-desktop input{flex:1;min-width:0;height:40px;border:0;padding:0 .75rem;font:inherit}
-.nav-search button,.nav-search-desktop button{width:44px;height:40px;border:0;background:var(--cta);cursor:pointer;display:flex;align-items:center;justify-content:center}
-.nav-links{display:none;background:var(--header2);overflow-x:auto;white-space:nowrap;padding:.5rem 0;font-size:.85rem;gap:1rem}@media(min-width:768px){.nav-links{display:flex;align-items:center}}
-.nav-links a{color:#fff;padding:0 .25rem}.nav-actions{display:flex;align-items:center;gap:.25rem;color:#fff;font-size:.85rem}
-.nav-actions a{padding:.35rem .5rem;white-space:nowrap}
-.subnav{display:flex;gap:1rem;overflow-x:auto;padding:.55rem 0;font-size:.82rem;background:var(--header2);color:#fff;-ms-overflow-style:none;scrollbar-width:none}.subnav::-webkit-scrollbar{display:none}
-.subnav a{white-space:nowrap;color:#fff}
+.logo{font-size:1.15rem;font-weight:700;white-space:nowrap;color:#fff}@media(min-width:768px){.logo{font-size:1.25rem}}
+.nav-search{display:flex;width:100%;padding:0 0 .5rem}@media(min-width:768px){.header-inner{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;align-items:center;column-gap:.75rem}.nav-top{display:contents}.logo{grid-column:1;grid-row:1}.nav-search{grid-column:2;grid-row:1;padding:0}.nav-actions{grid-column:3;grid-row:1}.subnav{grid-column:1/-1;grid-row:2}}
+.nav-search input{flex:1;min-width:0;height:40px;border:0;border-radius:4px 0 0 4px;padding:0 .75rem;font:inherit;background:#fff;color:var(--ink)}
+.nav-search button{width:44px;height:40px;border:0;border-radius:0 4px 4px 0;background:var(--cta);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.nav-actions{display:flex;align-items:center;gap:.25rem;color:#fff;font-size:.85rem}
+.nav-actions a{padding:.35rem .5rem;white-space:nowrap;color:#fff}
+.subnav{display:flex;gap:.85rem;overflow-x:auto;padding:.55rem 0;font-size:.82rem;background:var(--header2);color:#fff;margin:0 -.5rem;padding-left:.5rem;padding-right:.5rem;-webkit-overflow-scrolling:touch;-ms-overflow-style:none;scrollbar-width:none}.subnav::-webkit-scrollbar{display:none}@media(min-width:768px){.subnav{margin:0;padding-left:0;padding-right:0}}
+.subnav a{white-space:nowrap;color:#fff;flex-shrink:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 1rem;border-radius:4px;border:1px solid transparent;font:inherit;font-weight:500;font-size:.9rem;cursor:pointer;background:var(--ink);color:#fff}
 .btn.cta{background:var(--cta);color:var(--ink)}.btn.buy{background:#ffd814;color:var(--ink)}.btn.ghost{background:#fff;border-color:var(--line);color:var(--ink)}
 .hero{position:relative;aspect-ratio:4/3;min-height:200px;color:#fff;overflow:hidden}@media(min-width:768px){.hero{aspect-ratio:21/9;min-height:280px}}
@@ -96,9 +96,9 @@ footer .back{background:var(--header);text-align:center;padding:1rem;font-size:.
 footer .cols{display:grid;gap:1.5rem;padding:2rem 0}@media(min-width:768px){footer .cols{grid-template-columns:repeat(4,1fr)}}
 footer a{color:#d5dbdb;font-size:.875rem}
 footer .copy{border-top:1px solid rgba(255,255,255,.1);padding:1rem;text-align:center;font-size:12px;color:#999}
-.pdp-breadcrumb{font-size:.75rem;color:var(--muted);padding:.5rem 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pdp-mobile-image{background:#fff}.pdp-mobile-image .gallery{aspect-ratio:1;position:relative}.pdp-mobile-image .gallery img{width:100%;height:100%;object-fit:contain;padding:1rem}
-.pdp-grid{display:grid;gap:.75rem;padding:.75rem 0 1.5rem}@media(min-width:1024px){.pdp-grid{grid-template-columns:80px minmax(0,1fr) 360px;gap:1rem;padding:1rem 0 2rem}}
+.pdp-breadcrumb{font-size:.75rem;color:var(--muted);padding:.35rem .5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--bg)}
+.pdp-mobile-image{background:#fff;border-bottom:1px solid var(--line)}.pdp-mobile-image .gallery{height:38vh;max-height:320px;min-height:180px;display:flex;align-items:center;justify-content:center}.pdp-mobile-image .gallery img{max-width:100%;max-height:100%;object-fit:contain;padding:.5rem}
+.pdp-grid{display:grid;gap:.75rem;padding:0 0 1.5rem}@media(min-width:1024px){.pdp-grid{grid-template-columns:80px minmax(0,1fr) 360px;gap:1rem;padding:1rem 0 2rem}}
 .pdp-gallery-desktop{display:none}@media(min-width:1024px){.pdp-gallery-desktop{display:block}.pdp-mobile-image{display:none}}
 .pdp-gallery-desktop .gallery{aspect-ratio:1;background:#fff;border:1px solid var(--line);border-radius:4px;padding:1rem}.pdp-gallery-desktop .gallery img{width:100%;height:100%;object-fit:contain}
 .buybox{background:#fff;border:1px solid var(--line);border-radius:4px;padding:1rem}
@@ -144,38 +144,41 @@ document.addEventListener('DOMContentLoaded',function(){
 """
 
 
-def layout(title: str, body: str) -> str:
+def layout(title: str, body: str, version: str = BUILD_VERSION) -> str:
     year = __import__("datetime").datetime.now().year
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <title>{escape(title)}</title>
 <meta name="description" content="VELORA — Smart Products. Better Living. Curated everyday products delivered across India."/>
 <link rel="canonical" href="https://jyotishkundali.com/"/>
 <meta property="og:title" content="VELORA — Smart Products. Better Living."/>
 <meta property="og:url" content="https://jyotishkundali.com/"/>
-<link rel="stylesheet" href="/assets/site.css"/>
-<script defer src="/assets/cart.js"></script>
+<style>body{{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eaeded;color:#0f1111}}header.site{{background:#131921;color:#fff}}.announce{{background:#232f3e;color:#fff;font-size:12px;text-align:center;padding:.45rem .75rem}}</style>
+<link rel="stylesheet" href="/assets/site.css?v={version}"/>
+<script defer src="/assets/cart.js?v={version}"></script>
 </head>
 <body class="has-bottom-nav">
 <div class="announce">Free shipping on prepaid orders · Easy returns · Ships across India where serviceable</div>
-<header class="site"><div class="wrap">
+<header class="site"><div class="wrap header-inner">
   <div class="nav-top">
     <a class="logo" href="/">VELORA</a>
-    <form class="nav-search-desktop" action="/shop.html" method="get"><input name="q" placeholder="Search VELORA" aria-label="Search products"/><button type="submit" aria-label="Search">🔍</button></form>
     <div class="nav-actions">
       <a href="/cart.html">Cart (<span data-cart-count>0</span>)</a>
     </div>
   </div>
-  <form class="nav-search-row nav-search" action="/shop.html" method="get"><input name="q" placeholder="Search VELORA" aria-label="Search products"/><button type="submit" aria-label="Search">🔍</button></form>
-  <div class="subnav wrap">
+  <form class="nav-search" action="/shop.html" method="get"><input name="q" placeholder="Search VELORA" aria-label="Search products"/><button type="submit" aria-label="Search">🔍</button></form>
+  <nav class="subnav" aria-label="Categories">
     <a href="/shop.html">Shop All</a>
     <a href="/shop.html">Trending</a>
     <a href="/shop.html">Best Sellers</a>
     <a href="/shop.html">New Arrivals</a>
-  </div>
+  </nav>
 </div></header>
 {body}
 <nav class="bottom-nav" aria-label="Bottom navigation"><a href="/">Home</a><a href="/shop.html">Shop</a><a href="/cart.html">Cart</a><a href="/legal.html">Help</a></nav>
@@ -376,6 +379,17 @@ def main() -> None:
     (OUT / ".htaccess").write_text(
         """DirectoryIndex index.html
 
+<IfModule mod_headers.c>
+  <FilesMatch "\\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+  <FilesMatch "\\.(css|js)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -390,7 +404,7 @@ def main() -> None:
 """
     )
 
-    print(f"Built static VELORA site with {len(products)} products → {OUT}")
+    print(f"Built static VELORA site with {len(products)} products → {OUT} (v{BUILD_VERSION})")
 
 
 if __name__ == "__main__":
