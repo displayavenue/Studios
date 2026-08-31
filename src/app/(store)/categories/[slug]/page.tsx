@@ -24,10 +24,12 @@ export default async function CategoryPage({
     storefront: true,
   });
   return (
-    <div className="container-velora py-10">
-      <h1 className="font-display text-4xl">{category.name}</h1>
-      <p className="mt-2 text-sm text-[var(--velora-muted)]">{result.total} products</p>
-      <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <div className="container-velora py-4">
+      <div className="store-section mb-4">
+        <h1 className="text-2xl font-bold sm:text-3xl">{category.name}</h1>
+        <p className="mt-1 text-sm text-[var(--velora-muted)]">{result.total} products</p>
+      </div>
+      <div className="product-grid-amazon">
         {result.items.map((p) => <ProductCard key={p.id} product={p} />)}
       </div>
     </div>

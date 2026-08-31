@@ -75,7 +75,7 @@ export default async function ProductPage({
         { eligibleForRecommendations: true },
       ],
     },
-    take: 4,
+    take: 6,
     include: {
       images: { where: { isPrimary: true }, take: 1 },
       reviews: { where: { moderationStatus: "APPROVED" }, select: { rating: true } },
@@ -102,117 +102,171 @@ export default async function ProductPage({
     },
   };
 
+  const mainImage = product.primaryImageUrl || product.images[0]?.url;
+
   return (
-    <div className="container-velora py-8 md:py-12">
+    <div className="container-velora py-4">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <nav className="mb-6 text-xs text-[var(--velora-muted)]" aria-label="Breadcrumb">
-        <Link href="/">Home</Link> / <Link href="/shop">Shop</Link>
+      <nav className="mb-3 text-xs text-[var(--velora-muted)]" aria-label="Breadcrumb">
+        <Link href="/" className="hover:text-[var(--velora-accent)] hover:underline">Home</Link>
+        {" › "}
+        <Link href="/shop" className="hover:text-[var(--velora-accent)] hover:underline">Shop</Link>
         {product.category && (
           <>
-            {" / "}
-            <Link href={`/categories/${product.category.slug}`}>{product.category.name}</Link>
+            {" › "}
+            <Link href={`/categories/${product.category.slug}`} className="hover:text-[var(--velora-accent)] hover:underline">
+              {product.category.name}
+            </Link>
           </>
         )}
-        {" / "}
-        <span>{product.title}</span>
+        {" › "}
+        <span className="text-[var(--velora-ink)]">{product.title}</span>
       </nav>
 
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div>
-          <div className="relative aspect-square overflow-hidden bg-[var(--velora-sand)]/30">
-            {(product.primaryImageUrl || product.images[0]?.url) && (
-              <Image
-                src={product.primaryImageUrl || product.images[0].url}
-                alt={product.title}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width:1024px) 100vw, 50vw"
-              />
-            )}
+      {/* Main product area — full width 3-column Amazon layout */}
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)_320px] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_360px]">
+        {/* Thumbnails */}
+        {product.images.length > 1 && (
+          <div className="order-2 flex gap-2 overflow-x-auto lg:order-1 lg:flex-col lg:overflow-visible">
+            {product.images.slice(0, 6).map((img) => (
+              <div
+                key={img.id}
+                className="relative h-16 w-16 shrink-0 overflow-hidden rounded border border-[var(--velora-line)] bg-white lg:h-20 lg:w-20"
+              >
+                <Image src={img.url} alt={img.alt || product.title} fill className="object-contain p-1" sizes="80px" />
+              </div>
+            ))}
           </div>
-          {product.images.length > 1 && (
-            <div className="mt-3 grid grid-cols-4 gap-2">
-              {product.images.slice(0, 4).map((img) => (
-                <div key={img.id} className="relative aspect-square overflow-hidden bg-[var(--velora-sand)]/20">
-                  <Image src={img.url} alt={img.alt || product.title} fill className="object-cover" sizes="120px" />
-                </div>
-              ))}
+        )}
+
+        {/* Main image */}
+        <div className={`order-1 ${product.images.length > 1 ? "lg:order-2" : "lg:col-span-1"}`}>
+          <div className="store-section p-3 sm:p-4">
+            <div className="relative aspect-square w-full overflow-hidden bg-white">
+              {mainImage && (
+                <Image
+                  src={mainImage}
+                  alt={product.title}
+                  fill
+                  priority
+                  className="object-contain p-4"
+                  sizes="(max-width:1024px) 100vw, 45vw"
+                />
+              )}
             </div>
-          )}
+          </div>
         </div>
 
-        <div>
-          <h1 className="font-display text-3xl md:text-4xl">{product.title}</h1>
-          {product.brand && (
-            <p className="mt-2 text-sm text-[var(--velora-muted)]">{product.brand}</p>
-          )}
-          {avg != null && (
-            <p className="mt-2 text-sm">
-              {avg.toFixed(1)} · {product.reviews.length} verified review
-              {product.reviews.length === 1 ? "" : "s"}
-            </p>
-          )}
+        {/* Buy box */}
+        <div className="order-3 lg:row-span-2">
+          <div className="store-section sticky top-36 space-y-4 p-4 lg:p-5">
+            <div>
+              <h1 className="text-lg font-normal leading-snug sm:text-xl lg:text-2xl">{product.title}</h1>
+              {product.brand && (
+                <p className="mt-1 text-sm">
+                  Brand:{" "}
+                  <Link href={`/shop?q=${encodeURIComponent(product.brand)}`} className="text-[var(--velora-accent)] hover:underline">
+                    {product.brand}
+                  </Link>
+                </p>
+              )}
+              {avg != null && (
+                <p className="mt-2 text-sm">
+                  <span className="text-[var(--velora-accent)]">★ {avg.toFixed(1)}</span>
+                  {" · "}
+                  {product.reviews.length} verified review{product.reviews.length === 1 ? "" : "s"}
+                </p>
+              )}
+            </div>
 
-          <div className="mt-6 flex items-baseline gap-3">
-            <span className="text-3xl font-semibold">{formatINR(price)}</span>
-            {savings > 0 && (
-              <>
-                <span className="text-lg text-[var(--velora-muted)] line-through">
-                  {formatINR(compare)}
-                </span>
-                <span className="text-sm text-[var(--velora-accent)]">
-                  Save {formatINR(savings)}
-                </span>
-              </>
-            )}
+            <hr className="border-[var(--velora-line)]" />
+
+            <div>
+              {savings > 0 && (
+                <p className="text-xs text-[#c45500]">
+                  -{Math.round((savings / compare) * 100)}% · Save {formatINR(savings)}
+                </p>
+              )}
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="text-2xl font-normal sm:text-3xl">{formatINR(price)}</span>
+                {savings > 0 && (
+                  <span className="text-sm text-[var(--velora-muted)] line-through">
+                    M.R.P.: {formatINR(compare)}
+                  </span>
+                )}
+              </div>
+              <p className="mt-1 text-xs text-[var(--velora-muted)]">Inclusive of all taxes</p>
+            </div>
+
+            <div className="text-sm">
+              {product.stockQuantity > 0 ? (
+                product.stockQuantity <= 5 ? (
+                  <span className="font-semibold text-[#c45500]">Only {product.stockQuantity} left in stock</span>
+                ) : (
+                  <span className="text-[#007600] font-semibold">In stock</span>
+                )
+              ) : (
+                <span className="font-semibold text-[#c45500]">Currently unavailable</span>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <AddToCartButton
+                productId={product.id}
+                size="lg"
+                className="w-full bg-[var(--velora-cta)] text-[var(--velora-ink)] hover:bg-[var(--velora-cta-hover)]"
+              />
+              <Link
+                href={`/checkout?buy=${product.id}`}
+                className="flex h-11 w-full items-center justify-center rounded-sm bg-[#ffd814] text-sm font-medium text-[var(--velora-ink)] hover:bg-[#f7ca00]"
+              >
+                Buy Now
+              </Link>
+            </div>
+
+            <div className="space-y-2 border-t border-[var(--velora-line)] pt-4 text-xs text-[var(--velora-muted)]">
+              <p>✓ Secure transaction</p>
+              <p>✓ Shipping estimates at checkout based on PIN code</p>
+              <p>
+                ✓ Returns: See{" "}
+                <Link href="/legal/returns" className="text-[var(--velora-accent)] hover:underline">
+                  returns policy
+                </Link>
+              </p>
+            </div>
           </div>
+        </div>
 
-          <p className="mt-4 text-sm text-[var(--velora-muted)]">
-            {product.stockQuantity > 0
-              ? product.stockQuantity <= 5
-                ? `Low stock — ${product.stockQuantity} left`
-                : "In stock"
-              : "Out of stock"}
-          </p>
-
-          <div className="mt-8 space-y-3">
-            <AddToCartButton productId={product.id} size="lg" />
-            <Link
-              href={`/checkout?buy=${product.id}`}
-              className="flex h-12 w-full items-center justify-center rounded-md border border-[var(--velora-ink)] text-sm font-medium"
-            >
-              Buy Now
-            </Link>
-          </div>
-
+        {/* Product details — spans below image on desktop */}
+        <div className={`order-4 space-y-4 ${product.images.length > 1 ? "lg:col-span-2" : "lg:col-span-1"}`}>
           {product.shortDescription && (
-            <div className="mt-10">
-              <h2 className="font-display text-xl">Overview</h2>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--velora-muted)]">
+            <div className="store-section">
+              <h2 className="text-lg font-bold">About this item</h2>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--velora-muted)]">
                 {product.shortDescription}
               </p>
             </div>
           )}
 
           {product.description && (
-            <div className="mt-8">
-              <h2 className="font-display text-xl">Description</h2>
-              <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-[var(--velora-muted)]">
+            <div className="store-section">
+              <h2 className="text-lg font-bold">Product description</h2>
+              <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-[var(--velora-muted)]">
                 {product.description}
               </p>
             </div>
           )}
 
-          <div className="mt-8 space-y-2 text-sm text-[var(--velora-muted)]">
-            <p>Shipping: Estimates shown at checkout based on PIN code serviceability.</p>
-            <p>
+          <div className="store-section text-sm text-[var(--velora-muted)]">
+            <h2 className="text-lg font-bold text-[var(--velora-ink)]">Shipping & returns</h2>
+            <p className="mt-3">Shipping: Estimates shown at checkout based on PIN code serviceability.</p>
+            <p className="mt-2">
               Returns: See{" "}
-              <Link href="/legal/returns" className="underline">
+              <Link href="/legal/returns" className="text-[var(--velora-accent)] hover:underline">
                 returns policy
               </Link>
               .
@@ -222,40 +276,55 @@ export default async function ProductPage({
       </div>
 
       {product.reviews.length > 0 && (
-        <section className="mt-16">
-          <h2 className="font-display text-2xl">Reviews</h2>
-          <div className="mt-6 space-y-4">
-            {product.reviews.map((r) => (
-              <div key={r.id} className="border-b border-[var(--velora-line)] pb-4">
-                <p className="text-sm font-medium">
-                  {r.rating}/5 · {r.user.profile?.firstName || "Customer"}
-                  {r.verifiedPurchase && (
-                    <span className="ml-2 text-xs text-[var(--velora-accent)]">Verified purchase</span>
-                  )}
-                </p>
-                {r.title && <p className="mt-1 text-sm font-medium">{r.title}</p>}
-                {r.body && <p className="mt-1 text-sm text-[var(--velora-muted)]">{r.body}</p>}
-              </div>
-            ))}
+        <section className="mt-6">
+          <div className="store-section">
+            <h2 className="text-xl font-bold">Customer reviews</h2>
+            <div className="mt-4 space-y-4">
+              {product.reviews.map((r) => (
+                <div key={r.id} className="border-b border-[var(--velora-line)] pb-4 last:border-0">
+                  <p className="text-sm">
+                    <span className="text-[var(--velora-accent)]">★ {r.rating}/5</span>
+                    {" · "}
+                    <span className="font-medium">{r.user.profile?.firstName || "Customer"}</span>
+                    {r.verifiedPurchase && (
+                      <span className="ml-2 text-xs text-[var(--velora-accent)]">Verified purchase</span>
+                    )}
+                  </p>
+                  {r.title && <p className="mt-1 text-sm font-semibold">{r.title}</p>}
+                  {r.body && <p className="mt-1 text-sm text-[var(--velora-muted)]">{r.body}</p>}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      <section className="mt-16">
-        <h2 className="font-display text-2xl">Related Products</h2>
-        <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {related.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
+      <section className="mt-6 pb-6">
+        <div className="store-section">
+          <h2 className="text-xl font-bold">Customers also viewed</h2>
+          <div className="product-grid-amazon mt-4">
+            {related.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Sticky mobile CTA */}
-      <div className="fixed inset-x-0 bottom-14 z-30 border-t border-[var(--velora-line)] bg-[rgba(247,243,235,0.96)] p-3 md:hidden">
+      <div className="fixed inset-x-0 bottom-14 z-30 border-t border-[var(--velora-line)] bg-white p-3 shadow-lg md:hidden">
         <div className="flex items-center gap-3">
-          <div className="flex-1 font-semibold">{formatINR(price)}</div>
-          <div className="w-40">
-            <AddToCartButton productId={product.id} size="sm" />
+          <div className="flex-1">
+            <div className="text-lg font-semibold">{formatINR(price)}</div>
+            {product.stockQuantity > 0 && product.stockQuantity <= 5 && (
+              <div className="text-xs text-[#c45500]">Only {product.stockQuantity} left</div>
+            )}
+          </div>
+          <div className="w-36">
+            <AddToCartButton
+              productId={product.id}
+              size="sm"
+              className="w-full bg-[var(--velora-cta)] text-[var(--velora-ink)]"
+            />
           </div>
         </div>
       </div>

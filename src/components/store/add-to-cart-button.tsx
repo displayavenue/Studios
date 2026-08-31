@@ -2,15 +2,18 @@
 
 import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export function AddToCartButton({
   productId,
   size = "default",
   label = "Add to Cart",
+  className,
 }: {
   productId: string;
   size?: "default" | "sm" | "lg";
   label?: string;
+  className?: string;
 }) {
   const [pending, startTransition] = useTransition();
   const [done, setDone] = useState(false);
@@ -18,7 +21,7 @@ export function AddToCartButton({
   return (
     <Button
       size={size}
-      className="w-full"
+      className={cn("w-full", className)}
       disabled={pending}
       onClick={() => {
         startTransition(async () => {
