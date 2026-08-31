@@ -4,6 +4,7 @@ import { useCms } from "../cms/CmsProvider";
 import { Logo } from "./Logo";
 import { Icon } from "./Icon";
 import { useReveal } from "../hooks/useReveal";
+import { PreferredSources } from "./PreferredSources";
 import "./Footer.css";
 
 export function Footer() {
@@ -152,6 +153,7 @@ export function Footer() {
                 </svg>
               </a>
             </div>
+            <PreferredSources theme="dark" compact className="preferred-sources--footer" />
           </div>
 
           {footerCols.map((col, i) => (
