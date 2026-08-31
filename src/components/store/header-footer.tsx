@@ -11,20 +11,24 @@ export function StoreHeader() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Primary bar — Amazon-style dark header */}
       <div className="bg-[var(--velora-header)] text-white">
-        <div className="container-velora flex h-14 items-center gap-3 md:gap-4">
-          <button
-            className="focus-ring rounded p-2 hover:outline hover:outline-1 hover:outline-white/40 lg:hidden"
-            aria-label="Open menu"
-            onClick={() => setOpen(true)}
-          >
-            <Menu className="h-5 w-5" />
-          </button>
-
-          <Link href="/" className="flex shrink-0 items-center gap-1 px-1 py-2 hover:outline hover:outline-1 hover:outline-white/40">
-            <span className="text-xl font-bold tracking-tight">{BRAND.name}</span>
-          </Link>
+        {/* Row 1: logo + actions */}
+        <div className="container-velora flex h-12 items-center justify-between gap-2 sm:h-14">
+          <div className="flex min-w-0 items-center gap-1">
+            <button
+              className="focus-ring rounded p-2 hover:outline hover:outline-1 hover:outline-white/40 lg:hidden"
+              aria-label="Open menu"
+              onClick={() => setOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+            <Link
+              href="/"
+              className="truncate px-1 py-2 text-lg font-bold tracking-tight hover:outline hover:outline-1 hover:outline-white/40 sm:text-xl"
+            >
+              {BRAND.name}
+            </Link>
+          </div>
 
           <div className="hidden items-center gap-1 rounded-sm px-2 py-1 text-xs hover:outline hover:outline-1 hover:outline-white/40 md:flex">
             <MapPin className="h-4 w-4 shrink-0" aria-hidden />
@@ -34,9 +38,10 @@ export function StoreHeader() {
             </div>
           </div>
 
-          <form action="/shop" className="flex min-w-0 flex-1 items-stretch">
+          {/* Desktop search stays inline */}
+          <form action="/shop" className="hidden min-w-0 flex-1 items-stretch md:flex">
             <select
-              className="hidden h-10 rounded-l-sm border-0 bg-[#e6e6e6] px-2 text-xs text-[var(--velora-ink)] sm:block"
+              className="h-10 rounded-l-sm border-0 bg-[#e6e6e6] px-2 text-xs text-[var(--velora-ink)]"
               aria-label="Search category"
               defaultValue="all"
             >
@@ -49,7 +54,7 @@ export function StoreHeader() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search VELORA"
-              className="h-10 min-w-0 flex-1 rounded-l-sm border-0 px-3 text-sm text-[var(--velora-ink)] outline-none sm:rounded-none"
+              className="h-10 min-w-0 flex-1 border-0 px-3 text-sm text-[var(--velora-ink)] outline-none"
               aria-label="Search products"
             />
             <button
@@ -61,7 +66,7 @@ export function StoreHeader() {
             </button>
           </form>
 
-          <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
+          <div className="flex shrink-0 items-center gap-0.5">
             <Link
               href="/account"
               className="hidden items-center rounded-sm px-2 py-1 hover:outline hover:outline-1 hover:outline-white/40 sm:flex"
@@ -97,7 +102,7 @@ export function StoreHeader() {
             </Link>
             <Link
               href="/cart"
-              className="flex items-end gap-1 rounded-sm px-2 py-1 hover:outline hover:outline-1 hover:outline-white/40"
+              className="flex items-end gap-1 rounded-sm px-1 py-1 hover:outline hover:outline-1 hover:outline-white/40 sm:px-2"
               aria-label="Cart"
             >
               <ShoppingBag className="h-6 w-6" />
@@ -105,29 +110,47 @@ export function StoreHeader() {
             </Link>
           </div>
         </div>
+
+        {/* Row 2: mobile search — full width like Amazon app */}
+        <div className="container-velora pb-2 md:hidden">
+          <form action="/shop" className="flex items-stretch">
+            <input
+              name="q"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search VELORA"
+              className="h-10 min-w-0 flex-1 rounded-l-sm border-0 bg-white px-3 text-sm text-[var(--velora-ink)] outline-none"
+              aria-label="Search products"
+            />
+            <button
+              type="submit"
+              className="flex h-10 w-12 shrink-0 items-center justify-center rounded-r-sm bg-[var(--velora-cta)] text-[var(--velora-ink)]"
+              aria-label="Search"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+          </form>
+        </div>
       </div>
 
-      {/* Secondary nav */}
-      <div className="hidden bg-[var(--velora-header-secondary)] text-sm text-white lg:block">
-        <div className="container-velora flex h-10 items-center gap-5 overflow-x-auto whitespace-nowrap">
-          <button className="flex items-center gap-1 font-semibold hover:outline hover:outline-1 hover:outline-white/40">
+      {/* Secondary nav — horizontal scroll on tablet, full on desktop */}
+      <div className="bg-[var(--velora-header-secondary)] text-sm text-white lg:block">
+        <div className="container-velora flex h-10 items-center gap-4 overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <button className="hidden items-center gap-1 font-semibold hover:underline lg:flex">
             <Menu className="h-4 w-4" aria-hidden />
             All
           </button>
-          <Link href="/shop?sort=trending" className="hover:underline">Trending</Link>
-          <Link href="/shop?sort=best_selling" className="hover:underline">Best Sellers</Link>
-          <Link href="/shop?sort=newest" className="hover:underline">New Arrivals</Link>
-          <Link href="/categories" className="hover:underline">Categories</Link>
-          <Link href="/shop" className="hover:underline">Shop All</Link>
-          <Link href="/legal/shipping" className="hover:underline">Shipping</Link>
-          <Link href="/legal/returns" className="hover:underline">Returns</Link>
-          <Link href="/contact" className="hover:underline">Customer Service</Link>
+          <Link href="/shop?sort=trending" className="shrink-0 hover:underline">Trending</Link>
+          <Link href="/shop?sort=best_selling" className="shrink-0 hover:underline">Best Sellers</Link>
+          <Link href="/shop?sort=newest" className="shrink-0 hover:underline">New Arrivals</Link>
+          <Link href="/categories" className="shrink-0 hover:underline">Categories</Link>
+          <Link href="/shop" className="shrink-0 hover:underline">Shop All</Link>
         </div>
       </div>
 
       {open && (
         <div className="fixed inset-0 z-50 bg-black/50 lg:hidden" role="dialog" aria-modal>
-          <div className="h-full w-72 bg-[var(--velora-header)] p-5 text-white shadow-xl">
+          <div className="h-full w-[min(100vw-3rem,18rem)] bg-[var(--velora-header)] p-5 text-white shadow-xl">
             <div className="mb-6 flex items-center justify-between">
               <span className="text-lg font-bold">{BRAND.name}</span>
               <button className="focus-ring rounded p-2" aria-label="Close menu" onClick={() => setOpen(false)}>
@@ -191,7 +214,7 @@ export function StoreFooter() {
         <div>
           <h3 className="text-sm font-semibold">Newsletter</h3>
           <p className="mt-3 text-sm text-gray-300">Product drops and useful finds. Unsubscribe anytime.</p>
-          <form className="mt-3 flex gap-2" action="/api/newsletter" method="post">
+          <form className="mt-3 flex flex-col gap-2 sm:flex-row" action="/api/newsletter" method="post">
             <input
               type="email"
               name="email"

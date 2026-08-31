@@ -7,7 +7,7 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
         Free shipping on prepaid orders · Easy returns · Ships across India where serviceable
       </div>
       <StoreHeader />
-      <main className="flex-1 pb-20 md:pb-0">{children}</main>
+      <main className="flex-1 pb-[4.5rem] md:pb-0">{children}</main>
       <StoreFooter />
       <MobileBottomNav />
     </>

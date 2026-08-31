@@ -60,24 +60,24 @@ a {
   width: 100%;
   max-width: none;
   margin-inline: auto;
-  padding-inline: 0.75rem;
+  padding-inline: 0.5rem;
 }
 
 @media (min-width: 640px) {
   .container-velora {
-    padding-inline: 1rem;
+    padding-inline: 0.75rem;
   }
 }
 
 @media (min-width: 1024px) {
   .container-velora {
-    padding-inline: 1.25rem;
+    padding-inline: 1rem;
   }
 }
 
 @media (min-width: 1536px) {
   .container-velora {
-    padding-inline: 1.5rem;
+    padding-inline: 1.25rem;
   }
 }
 
@@ -85,12 +85,33 @@ a {
   background: var(--velora-card);
   border: 1px solid var(--velora-line);
   border-radius: 0.25rem;
-  padding: 1rem;
+  padding: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .store-section {
+    padding: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
   .store-section {
     padding: 1.25rem 1.5rem;
+  }
+}
+
+.store-section-flush-mobile {
+  background: var(--velora-card);
+  border-block: 1px solid var(--velora-line);
+  border-radius: 0;
+  padding: 0.875rem 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .store-section-flush-mobile {
+    border: 1px solid var(--velora-line);
+    border-radius: 0.25rem;
+    padding: 1rem;
   }
 }
 

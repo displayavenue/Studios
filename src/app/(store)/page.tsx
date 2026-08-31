@@ -51,8 +51,8 @@ export default async function HomePage() {
   return (
     <div>
       {/* Full-width hero banner */}
-      <section className="relative w-full">
-        <div className="relative aspect-[21/9] min-h-[220px] w-full overflow-hidden sm:min-h-[280px] lg:min-h-[360px]">
+      <section className="relative w-full overflow-hidden">
+        <div className="relative aspect-[4/3] min-h-[200px] w-full sm:aspect-[21/9] sm:min-h-[280px] lg:min-h-[360px]">
           <Image
             src={heroImage}
             alt="VELORA curated products"
@@ -85,7 +85,7 @@ export default async function HomePage() {
       </section>
 
       {/* Category strip — full width */}
-      <section className="container-velora py-4">
+      <section className="container-velora pb-3 pt-3 sm:pb-4 sm:pt-4">
         <div className="store-section">
           <SectionHead title="Shop by Category" href="/categories" compact />
           <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12">
