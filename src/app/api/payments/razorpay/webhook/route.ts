@@ -33,11 +33,13 @@ export async function POST(req: NextRequest) {
           where: { razorpayOrderId: entity.order_id },
         });
         if (payment && payment.status !== PaymentStatus.SUCCESS) {
+          // Webhook HMAC already verified above — do not reuse it as payment signature.
           await confirmRazorpayPayment({
             orderId: payment.orderId,
             razorpayOrderId: entity.order_id,
             razorpayPaymentId: entity.id,
-            signature: signature || "webhook",
+            signature: `webhook:${payload.event}`,
+            skipSignatureCheck: true,
           });
         }
       }

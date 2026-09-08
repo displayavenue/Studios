@@ -6,6 +6,8 @@ import { BirthDetailsForm } from "@/components/site/birth-details-form";
 import { PageHero, SectionShell, Surface } from "@/components/site/page-chrome";
 import { PRICING } from "@/config/site";
 import { formatINR, toNumber } from "@/lib/utils";
+import { SamplePreview } from "@/components/site/sample-preview";
+import { StickyPayBar } from "@/components/site/sticky-pay-bar";
 
 export const dynamic = "force-dynamic";
 
@@ -45,15 +47,23 @@ export default async function ServiceDetailPage({ params }: Props) {
     : ["Digital PDF report", "Dashboard access", "Interpretive guidance with clear disclaimers"];
 
   return (
-    <div>
+    <div className="pb-24 md:pb-0">
       <PageHero
         eyebrow={product.category?.name || "Astrology Report"}
         title={product.name}
         subtitle={product.shortDescription || undefined}
       >
-        <p className="inline-flex items-center rounded-full bg-[var(--jk-gold)] px-4 py-1.5 text-sm font-bold text-[var(--jk-navy)]">
-          {formatINR(price)}
-        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="inline-flex items-center rounded-full bg-[var(--jk-gold)] px-4 py-1.5 text-sm font-bold text-[var(--jk-navy)]">
+            {formatINR(price)}
+          </p>
+          <Link
+            href="/membership"
+            className="inline-flex items-center rounded-full border border-white/30 px-3 py-1.5 text-xs text-white/90"
+          >
+            Included with Premium membership
+          </Link>
+        </div>
       </PageHero>
 
       <SectionShell muted>
@@ -81,6 +91,8 @@ export default async function ServiceDetailPage({ params }: Props) {
               )}
             </Surface>
 
+            <SamplePreview productName={product.name} />
+
             <Surface>
               <h2 className="font-display text-xl font-semibold">What&apos;s included</h2>
               <ul className="mt-4 space-y-3">
@@ -106,6 +118,8 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
         </div>
       </SectionShell>
+
+      <StickyPayBar price={price} />
     </div>
   );
 }

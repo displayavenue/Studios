@@ -34,8 +34,12 @@ export const MOBILE_NAV = [
 ] as const;
 
 export function useMockProviders() {
+  // Explicit flag wins so production can disable mocks while keeping other env defaults.
+  if (process.env.USE_MOCK_PROVIDERS === "false") return false;
+  if (process.env.USE_MOCK_PROVIDERS === "true") return true;
   return (
-    process.env.USE_MOCK_PROVIDERS === "true" ||
-    process.env.JYOTISH_MODE === "development"
+    process.env.JYOTISH_MODE === "development" ||
+    !process.env.RAZORPAY_KEY_ID ||
+    !process.env.RAZORPAY_KEY_SECRET
   );
 }
