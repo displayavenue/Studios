@@ -9,6 +9,18 @@ export type BirthInput = {
   lng?: number;
   timezone?: string;
   country?: string;
+  /** Optional partner moon longitude (sidereal) for matching templates */
+  partnerMoonLongitude?: number;
+};
+
+export type ChartPlanet = {
+  sign: string;
+  house: number;
+  note: string;
+  longitude?: number;
+  formatted?: string;
+  nakshatra?: string;
+  pada?: number;
 };
 
 export type ChartData = {
@@ -18,7 +30,9 @@ export type ChartData = {
   moonSign?: string;
   sunSign?: string;
   houses?: Record<string, string>;
-  planets?: Record<string, { sign: string; house: number; note: string }>;
+  planets?: Record<string, ChartPlanet>;
+  /** Full Vedic engine payload when available */
+  vedic?: Record<string, unknown>;
 };
 
 export interface AstrologyProvider {

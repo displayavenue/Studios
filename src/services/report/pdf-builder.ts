@@ -23,7 +23,8 @@ export type ReportPdfInput = {
     ascendant?: string;
     moonSign?: string;
     sunSign?: string;
-    planets?: Record<string, { sign: string; house: number; note: string }>;
+    engineNote?: string;
+    planets?: Record<string, { sign: string; house: number; note: string; formatted?: string; nakshatra?: string }>;
   };
   disclaimer: string;
   isSample?: boolean;
@@ -124,6 +125,9 @@ export async function buildReportPdf(input: ReportPdfInput): Promise<Uint8Array>
   );
   write(`Place of birth: ${input.place}`);
   write(`Report id theme: ${input.productSlug}`, 9, false, MUTED, 14);
+  if (input.chartSummary.engineNote) {
+    write(`Calculation engine: ${input.chartSummary.engineNote}`, 9, false, MUTED, 8);
+  }
   if (input.chartSummary.mock) {
     write(
       "Chart engine note: interpretive demo placements are used when a live ephemeris is not configured. This is not a scientific or predictive guarantee.",
@@ -136,13 +140,16 @@ export async function buildReportPdf(input: ReportPdfInput): Promise<Uint8Array>
 
   // ── Chart snapshot ─────────────────────────────────────
   write("Chart snapshot", 14, true, GOLD, 8);
-  write(`Ascendant (Lagna) theme: ${input.chartSummary.ascendant || "—"}`);
-  write(`Moon sign theme: ${input.chartSummary.moonSign || "—"}`);
-  write(`Sun sign theme: ${input.chartSummary.sunSign || "—"}`, 11, false, INK, 10);
+  write(`Ascendant (Lagna): ${input.chartSummary.ascendant || "—"}`);
+  write(`Moon sign: ${input.chartSummary.moonSign || "—"}`);
+  write(`Sun sign: ${input.chartSummary.sunSign || "—"}`, 11, false, INK, 10);
   if (input.chartSummary.planets) {
-    write("Planetary placement table (interpretive)", 12, true, INK, 6);
+    write("Planetary placement table", 12, true, INK, 6);
     for (const [name, p] of Object.entries(input.chartSummary.planets)) {
-      write(`${name}: ${p.sign}, house ${p.house} — ${p.note}`, 10, false, MUTED, 2);
+      const detail = p.formatted
+        ? `${name}: ${p.formatted}, house ${p.house}${p.nakshatra ? `, ${p.nakshatra}` : ""}`
+        : `${name}: ${p.sign}, house ${p.house} - ${p.note}`;
+      write(detail, 10, false, MUTED, 2);
     }
     ctx.y -= 8;
   }
