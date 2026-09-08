@@ -15,6 +15,7 @@ import {
   wholeSignHouse,
 } from "./placements";
 import { formatDms } from "./math";
+import { buildNavamsaTable, type NavamsaPlacement } from "./navamsa";
 
 export type VedicBirthInput = {
   name: string;
@@ -66,6 +67,10 @@ export type VedicChart = {
     antardashas: DashaPeriod[];
   };
   dosha: DoshaReport;
+  navamsa: {
+    navLagnaSign: string;
+    placements: NavamsaPlacement[];
+  };
 };
 
 const DISCLAIMER =
@@ -193,6 +198,10 @@ export function calculateVedicChart(input: VedicBirthInput): VedicChart {
     houses,
     dasha: { mahadashas, current, antardashas: antars },
     dosha: { manglik, kaalSarp, sadeSati },
+    navamsa: buildNavamsaTable(
+      lagnaLon,
+      planets.map((p) => ({ name: p.name, longitude: p.longitude })),
+    ),
   };
 }
 
