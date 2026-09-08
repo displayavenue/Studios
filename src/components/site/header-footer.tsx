@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Search, Sparkles } from "lucide-react";
 import { BRAND, NAV_LINKS, MOBILE_NAV } from "@/config/site";
+import { LanguageToggle } from "@/components/site/i18n";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -51,6 +52,9 @@ export function SiteHeader() {
           >
             Login
           </Link>
+          <div className="hidden sm:block">
+            <LanguageToggle />
+          </div>
           <Link
             href="/signup"
             className="gold-btn inline-flex h-9 items-center px-4 text-sm"
@@ -103,6 +107,7 @@ export function SiteFooter() {
             <Link href="/contact" className="hover:text-[var(--jk-gold)]">Contact</Link>
             <Link href="/legal/privacy" className="hover:text-[var(--jk-gold)]">Privacy Policy</Link>
             <Link href="/legal/terms" className="hover:text-[var(--jk-gold)]">Terms & Conditions</Link>
+            <Link href="/legal/refund" className="hover:text-[var(--jk-gold)]">Refund Policy</Link>
             <Link href="/blog" className="hover:text-[var(--jk-gold)]">Blog</Link>
             <Link href="/contact" className="hover:text-[var(--jk-gold)]">Help</Link>
           </div>

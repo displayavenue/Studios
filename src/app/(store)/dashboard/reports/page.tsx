@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { PageHero, SectionShell, Surface } from "@/components/site/page-chrome";
+import { listUserReports } from "@/services/report/service";
+import { PageHero, SectionShell, Surface, GoldCtaLink } from "@/components/site/page-chrome";
+import { OrderTimeline } from "@/components/site/order-timeline";
+import { ShareReportCard } from "@/components/site/share-report-card";
 
 export const dynamic = "force-dynamic";
 
@@ -10,62 +12,66 @@ export default async function ReportsPage() {
   const session = await getSession();
   if (!session) redirect("/login?next=/dashboard/reports");
 
-  let reports: Array<{
-    id: string;
-    title: string | null;
-    jobStatus: string;
-    createdAt: Date;
-    product: { name: string };
-  }> = [];
-  try {
-    reports = await prisma.report.findMany({
-      where: { userId: session.id },
-      take: 40,
-      orderBy: { createdAt: "desc" },
-      include: { product: { select: { name: true } } },
-    });
-  } catch {
-    reports = [];
-  }
+  const reports = await listUserReports(session.id);
 
   return (
     <div>
       <PageHero
         eyebrow="Library"
         title="Your reports"
-        subtitle="Generated Kundali PDFs and purchased readings appear here after checkout completes."
+        subtitle="Track generation status and download PDFs when ready."
       />
       <SectionShell muted>
         {!reports.length ? (
           <Surface className="text-center">
             <p className="text-sm text-[var(--jk-muted)]">No reports yet. Buy a reading to generate your first PDF.</p>
-            <Link
-              href="/services"
-              className="mt-4 inline-flex text-sm font-semibold text-[var(--jk-navy)] hover:text-[var(--jk-gold-dark)]"
-            >
-              Browse services →
-            </Link>
+            <div className="mt-4 flex justify-center">
+              <GoldCtaLink href="/services">Browse services</GoldCtaLink>
+            </div>
           </Surface>
         ) : (
           <div className="space-y-3">
-            {reports.map((report) => (
-              <Surface key={report.id} className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <p className="font-display text-lg text-[var(--jk-navy)]">
-                    {report.title || report.product.name}
-                  </p>
-                  <p className="mt-1 text-xs text-[var(--jk-muted)]">
-                    {report.product.name} · {report.jobStatus.replace(/_/g, " ").toLowerCase()} ·{" "}
-                    {report.createdAt.toLocaleString("en-IN")}
-                  </p>
-                </div>
-                <span className="rounded-full bg-[var(--jk-navy)]/5 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--jk-navy)]">
-                  {report.jobStatus.replace(/_/g, " ")}
-                </span>
-              </Surface>
-            ))}
+            {reports.map((report) => {
+              const ready = report.jobStatus === "COMPLETED";
+              const statusForTimeline =
+                report.jobStatus === "COMPLETED"
+                  ? "REPORT_READY"
+                  : report.jobStatus === "QUEUED"
+                    ? "PAID"
+                    : "REPORT_GENERATING";
+              return (
+                <Surface key={report.id} className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+                  <div>
+                    <p className="font-display text-lg text-[var(--jk-navy)]">
+                      {report.title || report.product.name}
+                    </p>
+                    <p className="mt-1 text-xs text-[var(--jk-muted)]">
+                      {report.product.name} · {report.jobStatus.replace(/_/g, " ").toLowerCase()} ·{" "}
+                      {report.createdAt.toLocaleString("en-IN")}
+                    </p>
+                    {ready ? (
+                      <a
+                        href={`/api/reports/${report.id}/pdf`}
+                        className="gold-btn mt-4 inline-flex h-10 items-center px-5 text-sm"
+                      >
+                        Download PDF
+                      </a>
+                    ) : (
+                      <p className="mt-4 text-sm text-[var(--jk-muted)]">Generating your interpretive PDF…</p>
+                    )}
+                  </div>
+                  <div>
+                    <OrderTimeline status={statusForTimeline} />
+                  </div>
+                </Surface>
+              );
+            })}
           </div>
         )}
+        <p className="mt-6 text-center text-sm text-[var(--jk-muted)]">
+          Need help? <Link href="/contact" className="underline">Contact support</Link> or read our{" "}
+          <Link href="/legal/refund" className="underline">refund policy</Link>.
+        </p>
       </SectionShell>
     </div>
   );
