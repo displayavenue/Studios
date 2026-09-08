@@ -139,6 +139,18 @@ export function interpretVedicChart(
           `Partnership chapters refine when a second birth chart is supplied. ` +
           `Your Moon ${chart.moon.formatted} / ${chart.moon.nakshatra} is the emotional signature Ashtakoota will compare.`;
       }
+    } else if (t.includes("navamsa") || t.includes("d9") || t.includes("d-9") || t.includes("marriage chart")) {
+      const n = chart.navamsa;
+      body =
+        `Navamsa (D9) is the finer marital / dharma subplot. Navamsa Lagna: ${n.navLagnaSign}. ` +
+        n.placements
+          .map(
+            (p) =>
+              `${p.name}: Rasi ${p.rasiSign} → Navamsa ${p.navamsaSign} (${p.navamsaFormatted}), ` +
+              `nakshatra ${p.navamsaNakshatra}, house from Navamsa Lagna ${p.houseFromNavLagna}`,
+          )
+          .join("; ") +
+        `. D9 readings are classical symbolic layers — not predictions of relationship outcome.`;
     } else if (t.includes("house") || t.includes("life map") || t.includes("bhava")) {
       body =
         `Twelve rooms of the life story: ` +

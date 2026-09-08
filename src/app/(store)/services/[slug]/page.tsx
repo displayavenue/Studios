@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { BirthDetailsForm } from "@/components/site/birth-details-form";
 import { PageHero, SectionShell } from "@/components/site/page-chrome";
 import { ProductDetailSections } from "@/components/site/product-detail-sections";
+import { productNeedsPartner } from "@/config/matching";
 import { PRICING } from "@/config/site";
 import { formatINR, toNumber } from "@/lib/utils";
 import { SamplePreview } from "@/components/site/sample-preview";
@@ -118,7 +119,12 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
 
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <BirthDetailsForm productSlug={product.slug} productName={product.name} price={price} />
+            <BirthDetailsForm
+              productSlug={product.slug}
+              productName={product.name}
+              price={price}
+              needsPartner={productNeedsPartner(product.slug)}
+            />
           </div>
         </div>
 

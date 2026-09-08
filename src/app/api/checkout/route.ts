@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
       guestEmail: session ? undefined : String(body.guestEmail || ""),
       productSlug: String(body.productSlug),
       birthDetails: body.birthDetails,
+      partnerBirthDetails: body.partnerBirthDetails || null,
     });
 
     return NextResponse.json(result);

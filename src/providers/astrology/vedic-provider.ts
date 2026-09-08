@@ -64,7 +64,7 @@ export class VedicAstrologyProvider implements AstrologyProvider {
         })),
       };
     }
-    return interpretVedicChart(vedic, templateKey, chapterTitles, undefined);
+    return interpretVedicChart(vedic, templateKey, chapterTitles, chart.partnerMoonLongitude);
   }
 }
 

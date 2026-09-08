@@ -33,6 +33,9 @@ export type ChartData = {
   planets?: Record<string, ChartPlanet>;
   /** Full Vedic engine payload when available */
   vedic?: Record<string, unknown>;
+  /** Sidereal Moon longitude of partner for Ashtakoota / matching templates */
+  partnerMoonLongitude?: number;
+  partnerName?: string;
 };
 
 export interface AstrologyProvider {

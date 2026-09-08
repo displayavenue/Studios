@@ -5,6 +5,8 @@ import { createPaymentOrder, verifyPaymentSignature } from "@/providers/payment"
 import { enqueueReportJob } from "@/services/report/service";
 import { hashPassword, createSessionToken, setSessionCookie } from "@/lib/auth";
 import { notifyUser } from "@/providers/notifications";
+import { resolvePlace } from "@/lib/vedic/geo";
+import { productNeedsPartner } from "@/config/matching";
 import { nanoid } from "nanoid";
 
 export type BirthDetailsInput = {
@@ -51,6 +53,7 @@ export async function createReportOrder(input: {
   guestEmail?: string;
   productSlug: string;
   birthDetails: BirthDetailsInput;
+  partnerBirthDetails?: BirthDetailsInput | null;
 }) {
   const user = await resolveCheckoutUser({
     userId: input.userId,
@@ -63,8 +66,16 @@ export async function createReportOrder(input: {
   });
   if (!product) throw new Error("PRODUCT_NOT_FOUND");
 
+  if (productNeedsPartner(product.slug)) {
+    const p = input.partnerBirthDetails;
+    if (!p?.name?.trim() || !p.dob || !p.placeName?.trim()) {
+      throw new Error("PARTNER_BIRTH_DETAILS_REQUIRED");
+    }
+  }
+
   const price = toNumber(product.price);
   const dob = new Date(input.birthDetails.dob);
+  const place = resolvePlace(input.birthDetails.placeName);
 
   const birthProfile = await prisma.birthProfile.create({
     data: {
@@ -75,9 +86,9 @@ export async function createReportOrder(input: {
       birthTime: input.birthDetails.birthTime || null,
       birthTimeUnknown: input.birthDetails.birthTimeUnknown ?? false,
       placeName: input.birthDetails.placeName,
-      lat: 28.6139,
-      lng: 77.209,
-      timezone: "Asia/Kolkata",
+      lat: place.lat,
+      lng: place.lng,
+      timezone: place.timezone,
       country: "IN",
       isDefault: true,
     },
@@ -97,7 +108,10 @@ export async function createReportOrder(input: {
           quantity: 1,
           unitPrice: price,
           totalPrice: price,
-          metadata: { birthDetails: input.birthDetails },
+          metadata: {
+            birthDetails: input.birthDetails,
+            partnerBirthDetails: input.partnerBirthDetails || null,
+          },
         },
       },
     },

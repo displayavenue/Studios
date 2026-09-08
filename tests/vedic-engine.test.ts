@@ -8,6 +8,8 @@ import { vimshottariMahadashas } from "@/lib/vedic/dasha";
 import { computeSiderealLongitudes, computeTropicalLongitudes } from "@/lib/vedic/ephemeris";
 
 import { buildLifeStory } from "@/lib/vedic/storytelling";
+import { interpretVedicChart } from "@/lib/vedic/interpret";
+import { resolvePlace } from "@/lib/vedic/geo";
 
 describe("Vedic calculation engine", () => {
   it("uses Lahiri ayanamsa near the J2000 reference (~23.85°)", () => {
@@ -98,5 +100,51 @@ describe("Vedic calculation engine", () => {
     expect(story[1].body.length).toBeGreaterThan(200);
     expect(story[2].body.length).toBeGreaterThan(200);
     expect(story[3].body.length).toBeGreaterThan(200);
+  });
+
+  it("includes Navamsa (D9) placements", () => {
+    const chart = calculateVedicChart({
+      name: "D9 Tester",
+      dob: "1990-08-15",
+      birthTime: "10:30",
+      placeName: "Mumbai, India",
+      lat: 19.076,
+      lng: 72.8777,
+      timezone: "Asia/Kolkata",
+    });
+    expect(chart.navamsa.navLagnaSign).toBeTruthy();
+    expect(chart.navamsa.placements).toHaveLength(9);
+    expect(chart.navamsa.placements[0].navamsaSign).toBeTruthy();
+  });
+
+  it("writes live Ashtakoota when partner Moon is supplied", () => {
+    const a = calculateVedicChart({
+      name: "A",
+      dob: "1990-08-15",
+      birthTime: "10:30",
+      placeName: "Mumbai",
+      lat: 19.076,
+      lng: 72.8777,
+      timezone: "Asia/Kolkata",
+    });
+    const b = calculateVedicChart({
+      name: "B",
+      dob: "1992-03-21",
+      birthTime: "14:15",
+      placeName: "Delhi",
+      lat: 28.6139,
+      lng: 77.209,
+      timezone: "Asia/Kolkata",
+    });
+    const interp = interpretVedicChart(a, "guna-milan", ["Guna Milan matching"], b.moon.longitude);
+    const chapter = interp.chapters.find((c) => c.title.toLowerCase().includes("guna"));
+    expect(chapter?.body).toMatch(/Ashtakoota total \d+\/36/);
+  });
+
+  it("resolves common Indian cities for place geocoding", () => {
+    const pune = resolvePlace("Pune, Maharashtra");
+    expect(pune.lat).toBeCloseTo(18.52, 1);
+    const fallback = resolvePlace("Unknown Hamlet");
+    expect(fallback.approx).toBe(true);
   });
 });

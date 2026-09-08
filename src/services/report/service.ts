@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { ReportJobStatus } from "@/generated/prisma/enums";
 import { createAstrologyProvider } from "@/providers/astrology/vedic-provider";
-import { createStorageProvider } from "@/providers/storage/mock-provider";
+import { createStorageProvider } from "@/providers/storage";
 import { notifyUser } from "@/providers/notifications";
 import {
   buildReportPdf,
@@ -9,6 +9,9 @@ import {
   type ReportPdfInput,
 } from "@/services/report/pdf-builder";
 import { resolvePlace } from "@/lib/vedic/geo";
+import { productNeedsPartner } from "@/config/matching";
+import type { BirthDetailsInput } from "@/services/order/service";
+import type { ChartData } from "@/providers/astrology/types";
 
 /** Stub report job queue — processes shortly after enqueue; replace with BullMQ/SQS later. */
 export async function enqueueReportJob(reportId: string) {
@@ -18,6 +21,40 @@ export async function enqueueReportJob(reportId: string) {
     });
   }, 150);
   return { queued: true, reportId };
+}
+
+async function loadPartnerDetails(
+  orderId: string | null,
+  productId: string,
+): Promise<BirthDetailsInput | null> {
+  if (!orderId) return null;
+  const item = await prisma.orderItem.findFirst({
+    where: { orderId, productId },
+  });
+  const meta = item?.metadata as {
+    partnerBirthDetails?: BirthDetailsInput | null;
+  } | null;
+  return meta?.partnerBirthDetails || null;
+}
+
+async function partnerMoonFromDetails(
+  astrology: ReturnType<typeof createAstrologyProvider>,
+  partner: BirthDetailsInput,
+): Promise<{ moonLon?: number; name: string; chart: ChartData }> {
+  const place = resolvePlace(partner.placeName);
+  const chart = await astrology.calculateChart({
+    name: partner.name,
+    gender: partner.gender || undefined,
+    dob: partner.dob,
+    birthTime: partner.birthTime,
+    birthTimeUnknown: partner.birthTimeUnknown,
+    placeName: partner.placeName,
+    lat: place.lat,
+    lng: place.lng,
+    timezone: place.timezone,
+  });
+  const moonLon = chart.planets?.Moon?.longitude ?? (chart.vedic as { moon?: { longitude?: number } } | undefined)?.moon?.longitude;
+  return { moonLon, name: partner.name, chart };
 }
 
 export async function processReportJob(reportId: string) {
@@ -54,6 +91,17 @@ export async function processReportJob(reportId: string) {
     lng: place.lng,
     timezone: place.timezone,
   });
+
+  let partnerMeta: { name?: string; moonLon?: number } | undefined;
+  if (productNeedsPartner(report.product.slug)) {
+    const partner = await loadPartnerDetails(report.orderId, report.productId);
+    if (partner) {
+      const resolved = await partnerMoonFromDetails(astrology, partner);
+      chart.partnerMoonLongitude = resolved.moonLon;
+      chart.partnerName = resolved.name;
+      partnerMeta = { name: resolved.name, moonLon: resolved.moonLon };
+    }
+  }
 
   await prisma.report.update({
     where: { id: reportId },
@@ -101,7 +149,9 @@ export async function processReportJob(reportId: string) {
       planets: chart.planets,
       engineNote: chart.mock
         ? undefined
-        : "Lahiri sidereal · whole-sign houses · astronomy-engine geocentric positions",
+        : partnerMeta?.moonLon != null
+          ? `Lahiri sidereal · whole-sign houses · Ashtakoota with ${partnerMeta.name || "partner"} · astronomy-engine`
+          : "Lahiri sidereal · whole-sign houses · astronomy-engine geocentric positions",
     },
     disclaimer: chart.disclaimer,
   };
@@ -137,6 +187,7 @@ export async function processReportJob(reportId: string) {
         pdfBase64: Buffer.from(pdfBytes).toString("base64"),
         storageKey: key,
         pageHint: packed.chapters.length || undefined,
+        partner: partnerMeta || null,
       },
       summary: interpretation.sections.overview,
       generatedAt: new Date(),
@@ -186,6 +237,23 @@ export async function buildSampleProductPdf(slug: string) {
     lng: 72.8777,
     timezone: "Asia/Kolkata",
   });
+
+  if (productNeedsPartner(product.slug)) {
+    const partner = await astrology.calculateChart({
+      name: "Sample Partner",
+      dob: "1992-03-21",
+      birthTime: "14:15",
+      placeName: "Delhi, India",
+      lat: 28.6139,
+      lng: 77.209,
+      timezone: "Asia/Kolkata",
+    });
+    chart.partnerMoonLongitude =
+      partner.planets?.Moon?.longitude ??
+      (partner.vedic as { moon?: { longitude?: number } } | undefined)?.moon?.longitude;
+    chart.partnerName = "Sample Partner";
+  }
+
   const packed = parseProductWhatsIncluded(product.whatsIncluded);
   const interpretation = await astrology.interpretChart(
     chart,
@@ -247,9 +315,13 @@ export async function getReportPdfBuffer(reportId: string, userId: string) {
     where: { id: reportId, userId },
   });
   if (!report) return null;
-  const content = report.content as { pdfBase64?: string } | null;
+  const content = report.content as { pdfBase64?: string; storageKey?: string } | null;
   if (content?.pdfBase64) {
     return Buffer.from(content.pdfBase64, "base64");
+  }
+  if (content?.storageKey) {
+    const { readStoredPdf } = await import("@/providers/storage");
+    return readStoredPdf(content.storageKey);
   }
   return null;
 }
