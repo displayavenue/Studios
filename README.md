@@ -1,18 +1,16 @@
-# VELORA
+# JyotishKundali
 
-**Smart Products. Better Living.**
+**Know Yourself. Understand Your Path.**
 
-AI-powered dropshipping ecommerce operating system for **jyotishkundali.com**.
-
-Daily business objectives (not guarantees): ₹1,00,000 revenue · ₹10,000 net contribution.
+Astrology SaaS platform for personalized Vedic reports, compatibility insights, and self-discovery — built for **jyotishkundali.com**.
 
 ## Stack
 
 - Next.js 16 (App Router) + TypeScript + Tailwind CSS
 - PostgreSQL + Prisma 7
-- Supabase Auth ready (local JWT auth when unset)
-- Razorpay + Shiprocket abstractions (mock providers in development)
-- Meta Pixel / CAPI architecture + Google Merchant feeds
+- Local JWT auth (Supabase Auth ready when configured)
+- Razorpay payments (mock providers in development)
+- Mock astrology, AI, and storage providers for local dev
 - Vitest
 
 ## Requirements
@@ -38,104 +36,69 @@ Open http://localhost:3000
 
 | Role | Email | Password |
 |------|-------|----------|
-| Super Admin | admin@jyotishkundali.com | VeloraAdmin!234 |
+| Super Admin | admin@jyotishkundali.com | JyotishAdmin!234 |
 | Customer | customer@example.com | Customer!234 |
 
-~20 demo products are seeded with `demo=true`. They never mix into production metrics logic as live demand.
+Astrology report products are seeded at ₹499. Membership product at ₹2,999/year.
 
 ## Architecture
 
 ```
 src/
-  app/           # Storefront + Admin + API routes
-  components/    # UI + store components
-  services/      # Business logic (pricing, orders, feeds, AI, profit)
-  providers/     # Supplier / payment / shipping adapters
+  app/           # Marketing site + Dashboard + Admin + API routes
+  components/    # UI + site components
+  services/      # Order + report job queue
+  providers/     # Astrology / AI / payment / storage adapters
   lib/           # Prisma, auth, RBAC, utils
-  config/        # Brand + defaults
+  config/        # Brand + pricing
 prisma/          # Schema + migrations + seed
 ```
 
-### Supplier layer
+### Provider layer
 
-Do **not** hard-code one supplier. Use `SupplierProvider`:
+- `MockAstrologyProvider` — interpretive mock charts (clearly labeled, not real ephemeris)
+- `MockAiProvider` — reflective AI responses for development
+- `Razorpay` — payment orders + webhook stub
+- `MockStorageProvider` — PDF upload placeholder
 
-- `MockSupplierProvider` — development
-- `CsvSupplierProvider` — CSV feeds
-- `ApiSupplierProvider` — generic REST
-- Plug CJ / Baapstore / Deodap adapters when you have legitimate credentials
+Set `USE_MOCK_PROVIDERS=true` or `JYOTISH_MODE=development` to force mock mode.
 
-### Profit-first engines
+## Customer site
 
-- Landed cost → selling price → contribution before ads
-- Actual net contribution after shipping, fees, refunds, RTO, ads
-- Product quality score 0–100
-- Winner detection with minimum sample sizes
+- `/` — Homepage with featured services
+- `/services` — Report catalogue (₹499 each)
+- `/services/[slug]` — Product page with birth details form
+- `/membership` — Annual membership (₹2,999/year)
+- `/dashboard` — Customer hub (reports, horoscope, AI)
+- `/login` / `/signup` — Authentication
 
 ## Admin
 
-`/admin` — VELORA Command Center
+`/admin` — Dashboard with KPIs
 
-Includes products, import, discovery, winners, suppliers, orders, marketing, feeds, profit planner, simulator, AI assistant, automation, store health, reports.
+- Customers, Orders, Products, Reports, Subscriptions, Settings
 
-## Feeds
+## Disclaimer
 
-- Google Merchant TSV: `/api/feeds/google`
-- Meta Catalog CSV: `/api/feeds/meta`
-- Sitemap: `/sitemap.xml`
-
-## Integrations
-
-Set credentials in `.env`. When missing, clearly labeled **mock** providers run — they are not live APIs.
-
-| Integration | Env vars |
-|-------------|----------|
-| Supabase | `NEXT_PUBLIC_SUPABASE_URL`, keys |
-| Razorpay | `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, webhook secret |
-| Shiprocket | `SHIPROCKET_EMAIL`, `SHIPROCKET_PASSWORD` |
-| OpenAI | `OPENAI_API_KEY` |
-| Meta | `NEXT_PUBLIC_META_PIXEL_ID`, `META_ACCESS_TOKEN`, catalog/ad account |
-| Google | `GOOGLE_MERCHANT_ID`, Ads OAuth vars |
-| GA4 / GTM | `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GTM_ID` |
-
-## 5,000+ catalog
-
-Architecture supports 5,000–50,000+ SKUs via:
-
-- Indexed PostgreSQL queries
-- Server-side pagination (24–48 / page)
-- Batched import jobs
-- Duplicate detection + multi-supplier offers
-- Never loading the full catalog into the browser
-
-Import only from connected legitimate sources. Do not fabricate products to hit 5,000.
+All astrology and face-reading content is for **interpretive and entertainment purposes**. Mock providers never invent real planetary positions as factual data.
 
 ## Scripts
 
-```bash
-npm run dev
-npm run build
-npm run test
-npm run db:seed
-npm run lint
-```
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run db:seed` | Seed categories, products, admin user |
+| `npm run db:studio` | Prisma Studio |
 
-## Deployment (Vercel + Supabase)
+## Environment variables
 
-1. Create Supabase Postgres and set `DATABASE_URL`
-2. Set all production env vars (disable `USE_MOCK_PROVIDERS`)
-3. Deploy to Vercel; attach domain `jyotishkundali.com`
-4. Run migrations: `npx prisma migrate deploy`
-5. Configure cron for inventory/price sync and daily reports
-6. Configure Razorpay + Shiprocket webhooks to `/api/payments/razorpay/webhook`
-
-## Compliance notes
-
-- No fabricated reviews, sales, inventory, GTINs, or testimonials
-- Revenue/profit targets are objectives only
-- AI content must not invent medical claims or missing specs
-- Autopilot must never spend without caps
-
-## API docs
-
-See `docs/api/README.md`.
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `AUTH_SECRET` | JWT signing secret |
+| `RAZORPAY_KEY_ID` | Razorpay key (optional in dev) |
+| `RAZORPAY_KEY_SECRET` | Razorpay secret |
+| `RAZORPAY_WEBHOOK_SECRET` | Webhook verification |
+| `USE_MOCK_PROVIDERS` | Force mock providers |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL |

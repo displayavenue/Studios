@@ -1,62 +1,41 @@
 export const BRAND = {
-  name: "VELORA",
-  tagline: "Smart Products. Better Living.",
+  name: "JyotishKundali",
+  tagline: "Know Yourself. Understand Your Path.",
   domain: "jyotishkundali.com",
   currency: "INR",
   timezone: "Asia/Kolkata",
 } as const;
 
-export const DEFAULT_TARGETS = {
-  dailyRevenue: 100_000,
-  dailyContribution: 10_000,
-  minSellingPrice: 1_500,
-  maxSellingPrice: 10_000,
-  minContribution: 500,
-  preferredContribution: 1_000,
-  minMarginPercent: 35,
-  paymentFeeRate: 0.02,
-  defaultReturnRiskRate: 0.05,
-  defaultTaxRate: 0.18,
+export const PRICING = {
+  reportPrice: 499,
+  membershipYearly: 2999,
 } as const;
 
-export const PRODUCT_SCORE_WEIGHTS = {
-  contributionPotential: 20,
-  supplierReliability: 15,
-  shipping: 10,
-  inventory: 10,
-  returnRisk: 10,
-  completeness: 10,
-  adSuitability: 10,
-  demandPerformance: 10,
-  priceCompetitiveness: 5,
-} as const;
+export const ASTROLOGY_DISCLAIMER =
+  "Astrology and face-reading content on this site is for interpretive and entertainment purposes. Mock or demo calculations are not real planetary positions.";
 
-export const CATEGORY_SEEDS = [
-  { name: "Smart Gadgets", slug: "smart-gadgets", targetCount: 600 },
-  { name: "Home & Kitchen", slug: "home-kitchen", targetCount: 900 },
-  { name: "Beauty & Personal Care", slug: "beauty-personal-care", targetCount: 700 },
-  { name: "Fitness & Wellness", slug: "fitness-wellness", targetCount: 400 },
-  { name: "Travel Accessories", slug: "travel-accessories", targetCount: 350 },
-  { name: "Automotive", slug: "automotive", targetCount: 450 },
-  { name: "Pet Products", slug: "pet-products", targetCount: 300 },
-  { name: "Lifestyle", slug: "lifestyle", targetCount: 500 },
-  { name: "Office & Work Accessories", slug: "office-work", targetCount: 300 },
-  { name: "Fashion Accessories", slug: "fashion-accessories", targetCount: 300 },
-  { name: "Electronics Accessories", slug: "electronics-accessories", targetCount: 500 },
-  { name: "Home Organization", slug: "home-organization", targetCount: 200 },
-  { name: "Personal Accessories", slug: "personal-accessories", targetCount: 200 },
-  { name: "Other Trending Products", slug: "other-trending", targetCount: 200 },
+export const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Astrology" },
+  { href: "/services?category=self-discovery", label: "Self Discovery" },
+  { href: "/services?category=marriage", label: "Compatibility" },
+  { href: "/services?category=daily-astrology", label: "Daily Horoscope" },
+  { href: "/services", label: "Free Tools" },
+  { href: "/experts", label: "Experts" },
+  { href: "/blog", label: "Blog" },
 ] as const;
 
-export const SAMPLE_THRESHOLDS = {
-  minVisitors: 100,
-  minAddToCarts: 20,
-  minPurchases: 5,
-} as const;
+export const MOBILE_NAV = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/dashboard", label: "Reports" },
+  { href: "/dashboard/ai", label: "AI" },
+  { href: "/dashboard", label: "Account" },
+] as const;
 
 export function useMockProviders() {
   return (
     process.env.USE_MOCK_PROVIDERS === "true" ||
-    process.env.VELORA_MODE === "development"
+    process.env.JYOTISH_MODE === "development"
   );
 }

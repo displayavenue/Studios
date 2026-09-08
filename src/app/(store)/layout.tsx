@@ -1,14 +1,13 @@
-import { StoreFooter, StoreHeader, MobileBottomNav } from "@/components/store/header-footer";
+import { SiteFooter, SiteHeader, MobileBottomNav } from "@/components/site/header-footer";
+import { ASTROLOGY_DISCLAIMER } from "@/config/site";
 
-export default function StoreLayout({ children }: { children: React.ReactNode }) {
+export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="announce">
-        Free shipping on prepaid orders · Easy returns · Ships across India where serviceable
-      </div>
-      <StoreHeader />
+      <div className="announce">{ASTROLOGY_DISCLAIMER}</div>
+      <SiteHeader />
       <main className="flex-1 pb-[4.5rem] md:pb-0">{children}</main>
-      <StoreFooter />
+      <SiteFooter />
       <MobileBottomNav />
     </>
   );

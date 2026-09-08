@@ -1,219 +1,133 @@
-import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { ProductCard } from "@/components/store/product-card";
+import { ServiceCard } from "@/components/site/service-card";
 import { Button } from "@/components/ui/button";
-import { BRAND } from "@/config/site";
+import { BRAND, PRICING } from "@/config/site";
+import { formatINR } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
 async function getHomeData() {
-  const [trending, bestSellers, newest, categories, highContribution] = await Promise.all([
-    prisma.product.findMany({
-      where: { status: "PUBLISHED", visibleOnStore: true, trending: true },
-      take: 12,
-      include: { images: { where: { isPrimary: true }, take: 1 }, reviews: { where: { moderationStatus: "APPROVED" }, select: { rating: true } } },
-    }),
-    prisma.product.findMany({
-      where: { status: "PUBLISHED", visibleOnStore: true, bestSeller: true },
-      take: 12,
-      include: { images: { where: { isPrimary: true }, take: 1 }, reviews: { where: { moderationStatus: "APPROVED" }, select: { rating: true } } },
-    }),
-    prisma.product.findMany({
-      where: { status: "PUBLISHED", visibleOnStore: true },
-      orderBy: { createdAt: "desc" },
-      take: 12,
-      include: { images: { where: { isPrimary: true }, take: 1 }, reviews: { where: { moderationStatus: "APPROVED" }, select: { rating: true } } },
-    }),
-    prisma.category.findMany({
-      where: { isActive: true, parentId: null },
-      orderBy: { sortOrder: "asc" },
-      take: 12,
-    }),
-    prisma.product.findMany({
-      where: { status: "PUBLISHED", visibleOnStore: true },
-      orderBy: { contributionBeforeAds: "desc" },
-      take: 6,
-      include: { images: { where: { isPrimary: true }, take: 1 }, reviews: { where: { moderationStatus: "APPROVED" }, select: { rating: true } } },
-    }),
-  ]);
-
-  return { trending, bestSellers, newest, categories, highContribution };
+  const products = await prisma.product.findMany({
+    where: { status: "PUBLISHED", isActive: true, isMembership: false },
+    orderBy: { sortOrder: "asc" },
+    take: 6,
+    include: { category: true },
+  });
+  return { products };
 }
 
 export default async function HomePage() {
-  const data = await getHomeData();
-  const heroImage =
-    data.trending[0]?.primaryImageUrl ||
-    data.trending[0]?.images[0]?.url ||
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600";
+  const { products } = await getHomeData();
 
   return (
     <div>
-      {/* Full-width hero banner */}
-      <section className="relative w-full overflow-hidden">
-        <div className="relative aspect-[4/3] min-h-[200px] w-full sm:aspect-[21/9] sm:min-h-[280px] lg:min-h-[360px]">
-          <Image
-            src={heroImage}
-            alt="VELORA curated products"
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
-          <div className="container-velora absolute inset-0 flex flex-col justify-center">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--velora-cta)] sm:text-sm">
-              {BRAND.tagline}
-            </p>
-            <h1 className="mt-2 max-w-2xl text-2xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
-              Discover products that make life better
-            </h1>
-            <p className="mt-3 max-w-xl text-sm text-gray-200 sm:text-base">
-              Curated everyday products, smart finds and useful innovations delivered to your door.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              <Button asChild size="lg" className="bg-[var(--velora-cta)] text-[var(--velora-ink)] hover:bg-[var(--velora-cta-hover)]">
-                <Link href="/shop?sort=trending">Shop Trending</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/50 bg-white/10 text-white hover:bg-white/20">
-                <Link href="/shop">Explore All Products</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Category strip — full width */}
-      <section className="container-velora pb-3 pt-3 sm:pb-4 sm:pt-4">
-        <div className="store-section">
-          <SectionHead title="Shop by Category" href="/categories" compact />
-          <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12">
-            {data.categories.map((c) => (
-              <Link
-                key={c.id}
-                href={`/categories/${c.slug}`}
-                className="rounded border border-[var(--velora-line)] bg-[var(--velora-sand)] px-2 py-3 text-center text-xs font-medium transition hover:border-[var(--velora-accent)] hover:text-[var(--velora-accent)] sm:text-sm"
-              >
-                {c.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="container-velora pb-4">
-        <div className="store-section">
-          <SectionHead title="Trending Products" href="/shop?sort=trending" />
-          <ProductGrid products={data.trending} />
-        </div>
-      </section>
-
-      <section className="container-velora pb-4">
-        <div className="store-section">
-          <SectionHead title="Best Sellers" href="/shop?sort=best_selling" />
-          <ProductGrid products={data.bestSellers} />
-        </div>
-      </section>
-
-      <section className="container-velora pb-4">
-        <div className="store-section">
-          <SectionHead title="Problem Solvers" href="/shop" subtitle="Practical products for everyday friction." />
-          <ProductGrid products={data.highContribution} />
-        </div>
-      </section>
-
-      <section className="container-velora pb-4">
-        <div className="store-section">
-          <SectionHead title="New Arrivals" href="/shop?sort=newest" />
-          <ProductGrid products={data.newest} />
-        </div>
-      </section>
-
-      <section className="container-velora pb-6">
-        <div className="store-section">
-          <h2 className="text-xl font-bold sm:text-2xl">Why VELORA</h2>
-          <p className="mt-2 text-sm text-[var(--velora-muted)]">
-            We curate useful products, price for healthy contribution, and ship through verified logistics partners.
-            Reviews come only from verified purchases — never fabricated social proof.
+      <section className="hero-gradient text-[var(--jk-ivory)]">
+        <div className="container-jk py-16 sm:py-24">
+          <p className="text-sm uppercase tracking-[0.2em] text-[var(--jk-gold)]">{BRAND.tagline}</p>
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+            Discover Your True Self
+          </h1>
+          <p className="mt-5 max-w-2xl text-base text-[var(--jk-ivory)]/80 sm:text-lg">
+            Personalized Vedic astrology reports, compatibility insights, and self-discovery tools —
+            crafted for reflection, not prediction.
           </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button asChild size="lg" className="bg-[var(--jk-gold)] text-[var(--jk-navy)] hover:bg-[var(--jk-gold-soft)]">
+              <Link href="/services/janam-kundali">Create My Kundali</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-[var(--jk-gold)]/50 bg-transparent text-[var(--jk-ivory)] hover:bg-white/10">
+              <Link href="/services">Explore Services</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-[var(--jk-line)] bg-white">
+        <div className="container-jk flex flex-wrap items-center justify-center gap-6 py-4 text-center text-sm text-[var(--jk-muted)]">
+          <span>Secure payments via Razorpay</span>
+          <span className="hidden sm:inline">·</span>
+          <span>Reports from ₹{PRICING.reportPrice}</span>
+          <span className="hidden sm:inline">·</span>
+          <span>Interpretive & entertainment purpose</span>
+        </div>
+      </section>
+
+      <section className="container-jk py-12">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <h2 className="font-display text-2xl font-semibold sm:text-3xl">Featured Services</h2>
+            <p className="mt-2 text-sm text-[var(--jk-muted)]">Each report is {formatINR(PRICING.reportPrice)} — delivered digitally.</p>
+          </div>
+          <Link href="/services" className="text-sm text-[var(--jk-purple)] hover:underline">
+            View all
+          </Link>
+        </div>
+        <div className="service-grid mt-8">
+          {products.length ? (
+            products.map((p) => <ServiceCard key={p.id} product={p} />)
+          ) : (
+            <p className="text-sm text-[var(--jk-muted)]">Run <code>npm run db:seed</code> to load astrology reports.</p>
+          )}
+        </div>
+      </section>
+
+      <section className="container-jk pb-12">
+        <div className="site-section">
+          <h2 className="font-display text-2xl font-semibold">How it works</h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-3">
             {[
-              ["Curated catalog", "Quality scoring before publish — not a dump of random SKUs."],
-              ["Transparent pricing", "Landed cost and contribution informed — no fake discounts."],
-              ["India-ready checkout", "Razorpay + COD where eligible, Shiprocket logistics ready."],
-            ].map(([t, d]) => (
-              <div key={t} className="rounded border border-[var(--velora-line)] bg-[var(--velora-sand)] p-4">
-                <h3 className="font-semibold">{t}</h3>
-                <p className="mt-2 text-sm text-[var(--velora-muted)]">{d}</p>
+              ["1", "Share birth details", "Name, date, time, and place of birth — time can be marked unknown."],
+              ["2", "Secure checkout", "Pay ₹499 per report via Razorpay. Membership available at ₹2,999/year."],
+              ["3", "Receive your report", "Your personalized interpretive report is generated and available in your dashboard."],
+            ].map(([step, title, desc]) => (
+              <div key={step} className="rounded-lg border border-[var(--jk-line)] p-5">
+                <span className="font-display text-2xl text-[var(--jk-gold)]">{step}</span>
+                <h3 className="mt-2 font-semibold">{title}</h3>
+                <p className="mt-2 text-sm text-[var(--jk-muted)]">{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container-velora pb-8">
-        <div className="store-section">
-          <h2 className="text-xl font-bold">FAQ</h2>
-          <div className="mt-4 divide-y divide-[var(--velora-line)]">
+      <section className="container-jk pb-12">
+        <div className="site-section hero-gradient text-[var(--jk-ivory)]">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-wider text-[var(--jk-gold)]">Membership</p>
+              <h2 className="mt-2 font-display text-2xl font-semibold">Unlimited insights, one year</h2>
+              <p className="mt-2 text-sm text-[var(--jk-ivory)]/75">
+                Daily horoscope, AI assistant, and member pricing on select reports.
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="font-display text-3xl text-[var(--jk-gold)]">{formatINR(PRICING.membershipYearly)}<span className="text-base font-normal text-[var(--jk-ivory)]/70">/year</span></p>
+              <Button asChild className="mt-4 bg-[var(--jk-gold)] text-[var(--jk-navy)] hover:bg-[var(--jk-gold-soft)]">
+                <Link href="/membership">Learn more</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-jk pb-16">
+        <div className="site-section">
+          <h2 className="font-display text-2xl font-semibold">FAQ</h2>
+          <div className="mt-4 divide-y divide-[var(--jk-line)]">
             {[
-              ["Do you guarantee delivery times?", "We only show estimates supported by the shipping provider. Dates are not invented."],
-              ["Are reviews real?", "Yes. Only customers who purchased a product can leave a review."],
-              ["What payment methods are supported?", "Razorpay (UPI/cards/netbanking) and configurable COD where PIN-code eligible."],
+              ["Are these real planetary positions?", "Production uses verified ephemeris data. Demo/mock mode clearly labels interpretive sample calculations."],
+              ["What if I don't know my birth time?", "Select 'birth time unknown' — reports adjust scope accordingly with a note in your reading."],
+              ["Is this medical or financial advice?", "No. All content is for interpretive reflection and entertainment only."],
             ].map(([q, a]) => (
               <details key={q} className="py-3">
                 <summary className="cursor-pointer text-sm font-medium">{q}</summary>
-                <p className="mt-2 text-sm text-[var(--velora-muted)]">{a}</p>
+                <p className="mt-2 text-sm text-[var(--jk-muted)]">{a}</p>
               </details>
             ))}
           </div>
         </div>
       </section>
-    </div>
-  );
-}
-
-function SectionHead({
-  title,
-  href,
-  subtitle,
-  compact,
-}: {
-  title: string;
-  href: string;
-  subtitle?: string;
-  compact?: boolean;
-}) {
-  return (
-    <div className="flex items-end justify-between gap-4 border-b border-[var(--velora-line)] pb-2">
-      <div>
-        <h2 className={`font-bold ${compact ? "text-lg" : "text-xl sm:text-2xl"}`}>{title}</h2>
-        {subtitle && <p className="mt-1 text-sm text-[var(--velora-muted)]">{subtitle}</p>}
-      </div>
-      <Link href={href} className="shrink-0 text-sm text-[var(--velora-accent)] hover:underline">
-        See all
-      </Link>
-    </div>
-  );
-}
-
-function ProductGrid({
-  products,
-}: {
-  products: React.ComponentProps<typeof ProductCard>["product"][];
-}) {
-  if (!products.length) {
-    return (
-      <p className="mt-4 text-sm text-[var(--velora-muted)]">
-        No products to show yet. Connect a supplier and publish approved products.
-      </p>
-    );
-  }
-  return (
-    <div className="product-grid-amazon mt-4">
-      {products.map((p) => (
-        <ProductCard key={p.id} product={p} />
-      ))}
     </div>
   );
 }

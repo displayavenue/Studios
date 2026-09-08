@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --velora-bg: #eaeded;
-  --velora-bg-deep: #d5dbdb;
-  --velora-ink: #0f1111;
-  --velora-ink-soft: #232f3e;
-  --velora-muted: #565959;
-  --velora-accent: #007185;
-  --velora-accent-soft: #005f73;
-  --velora-cta: #ffa41c;
-  --velora-cta-hover: #fa8900;
-  --velora-sand: #f7fafa;
-  --velora-line: rgba(15, 17, 17, 0.15);
-  --velora-card: #ffffff;
-  --velora-header: #131921;
-  --velora-header-secondary: #232f3e;
-  --background: var(--velora-bg);
-  --foreground: var(--velora-ink);
+  --jk-navy: #0b1b3a;
+  --jk-midnight: #132a4a;
+  --jk-gold: #c9a227;
+  --jk-gold-soft: #e8d48a;
+  --jk-ivory: #f7f3ea;
+  --jk-purple: #6b5b95;
+  --jk-purple-soft: #9b8ec4;
+  --jk-ink: #0b1b3a;
+  --jk-ink-soft: #1e3a5f;
+  --jk-muted: #5c6b7a;
+  --jk-line: rgba(11, 27, 58, 0.12);
+  --jk-card: #ffffff;
+  --jk-header: var(--jk-navy);
+  --jk-header-secondary: var(--jk-midnight);
+  --background: var(--jk-ivory);
+  --foreground: var(--jk-ink);
 }
 
 @theme inline {
@@ -35,15 +35,18 @@ html {
 }
 
 body {
-  background: var(--velora-bg);
-  color: var(--velora-ink);
-  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  background: var(--jk-ivory);
+  color: var(--jk-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
   min-height: 100vh;
 }
 
-h1, h2, h3, .font-display {
-  font-family: var(--font-body), Arial, Helvetica, sans-serif;
-  letter-spacing: normal;
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  letter-spacing: 0.01em;
 }
 
 a {
@@ -52,128 +55,100 @@ a {
 }
 
 ::selection {
-  background: rgba(0, 113, 133, 0.18);
+  background: rgba(201, 162, 39, 0.25);
 }
 
-/* Full-width Amazon-style page shell */
-.container-velora {
+.container-jk {
   width: 100%;
-  max-width: none;
+  max-width: 72rem;
   margin-inline: auto;
-  padding-inline: 0.5rem;
+  padding-inline: 1rem;
 }
 
 @media (min-width: 640px) {
-  .container-velora {
-    padding-inline: 0.75rem;
+  .container-jk {
+    padding-inline: 1.5rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .container-velora {
-    padding-inline: 1rem;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container-velora {
-    padding-inline: 1.25rem;
-  }
-}
-
-.store-section {
-  background: var(--velora-card);
-  border: 1px solid var(--velora-line);
-  border-radius: 0.25rem;
-  padding: 0.875rem;
-}
-
-@media (min-width: 640px) {
-  .store-section {
-    padding: 1rem;
-  }
+.site-section {
+  background: var(--jk-card);
+  border: 1px solid var(--jk-line);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
 }
 
 @media (min-width: 768px) {
-  .store-section {
-    padding: 1.25rem 1.5rem;
+  .site-section {
+    padding: 1.75rem 2rem;
   }
 }
 
-.store-section-flush-mobile {
-  background: var(--velora-card);
-  border-block: 1px solid var(--velora-line);
-  border-radius: 0;
-  padding: 0.875rem 0.5rem;
-}
-
-@media (min-width: 640px) {
-  .store-section-flush-mobile {
-    border: 1px solid var(--velora-line);
-    border-radius: 0.25rem;
-    padding: 1rem;
-  }
-}
-
-.store-section-muted {
-  background: var(--velora-bg);
+.site-section-muted {
+  background: transparent;
   border: none;
-  border-radius: 0;
-  padding: 1rem 0;
+  padding: 2rem 0;
 }
 
-.product-grid-amazon {
+.service-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 @media (min-width: 640px) {
-  .product-grid-amazon {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
-  .product-grid-amazon {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1280px) {
-  .product-grid-amazon {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1536px) {
-  .product-grid-amazon {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  .service-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 .announce {
-  background: var(--velora-header-secondary);
-  color: #ffffff;
+  background: var(--jk-midnight);
+  color: var(--jk-ivory);
   font-size: 0.75rem;
   text-align: center;
   padding: 0.45rem 1rem;
 }
 
 .admin-shell {
-  background: #0f1210;
-  color: #e8efe9;
+  background: var(--jk-navy);
+  color: var(--jk-ivory);
   min-height: 100vh;
 }
 
 .admin-panel {
-  background: #171b18;
-  border: 1px solid rgba(232, 239, 233, 0.08);
+  background: var(--jk-midnight);
+  border: 1px solid rgba(247, 243, 234, 0.08);
   border-radius: 12px;
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid var(--velora-accent);
+  outline: 2px solid var(--jk-gold);
   outline-offset: 2px;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--jk-navy) 0%, var(--jk-midnight) 55%, #1a3d6b 100%);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(90deg, var(--jk-gold) 0%, var(--jk-gold-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.disclaimer-strip {
+  background: rgba(107, 91, 149, 0.08);
+  border: 1px solid rgba(107, 91, 149, 0.15);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  color: var(--jk-muted);
 }

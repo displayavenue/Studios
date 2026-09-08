@@ -22,11 +22,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="admin-shell flex min-h-screen">
       <aside className="hidden w-64 shrink-0 border-r border-white/10 p-4 lg:block">
         <div className="px-2 py-3">
-          <Link href="/admin" className="font-display text-2xl tracking-[0.12em]">
+          <Link href="/admin" className="font-display text-2xl tracking-wide text-[var(--jk-gold)]">
             {BRAND.name}
           </Link>
-          <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-emerald-400/80">
-            Command Center
+          <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[var(--jk-ivory)]/60">
+            Admin Console
           </p>
         </div>
         <nav className="mt-4 max-h-[calc(100vh-120px)] space-y-0.5 overflow-y-auto text-sm" aria-label="Admin">
@@ -34,7 +34,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <Link
               key={item.href}
               href={item.href}
-              className="block rounded-md px-3 py-2 text-[#c5d0c8] hover:bg-white/5 hover:text-white"
+              className="block rounded-md px-3 py-2 text-[var(--jk-ivory)]/75 hover:bg-white/5 hover:text-[var(--jk-gold)]"
             >
               {item.label}
             </Link>
@@ -44,12 +44,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center justify-between border-b border-white/10 px-4 py-3 lg:px-8">
           <div>
-            <p className="text-xs uppercase tracking-[0.16em] text-[#8fa396]">Signed in</p>
+            <p className="text-xs uppercase tracking-[0.16em] text-[var(--jk-ivory)]/50">Signed in</p>
             <p className="text-sm">{session.email}</p>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <Link href="/" className="text-[#8fa396] hover:text-white">
-              View store
+            <Link href="/" className="text-[var(--jk-ivory)]/60 hover:text-[var(--jk-gold)]">
+              View site
             </Link>
             <form action={logoutAction}>
               <button type="submit" className="rounded-md border border-white/15 px-3 py-1.5 hover:bg-white/5">

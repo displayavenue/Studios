@@ -5,10 +5,10 @@ import { prisma } from "@/lib/prisma";
 import { Role } from "@/generated/prisma/enums";
 import { hasPermission, type Permission, isAdminRole } from "@/lib/rbac";
 
-const COOKIE_NAME = "velora_session";
+const COOKIE_NAME = "jk_session";
 
 function getSecret() {
-  const secret = process.env.AUTH_SECRET || "velora-dev-secret-change-in-production";
+  const secret = process.env.AUTH_SECRET || "jyotishkundali-dev-secret-change-in-production";
   return new TextEncoder().encode(secret);
 }
 
@@ -115,14 +115,9 @@ export async function registerUser(input: {
       email: input.email.toLowerCase(),
       passwordHash,
       role: input.role ?? Role.CUSTOMER,
-      profile: {
-        create: {
-          firstName: input.firstName,
-          lastName: input.lastName,
-        },
-      },
+      firstName: input.firstName,
+      lastName: input.lastName,
     },
-    include: { profile: true },
   });
 
   return user;
@@ -131,7 +126,6 @@ export async function registerUser(input: {
 export async function loginUser(email: string, password: string) {
   const user = await prisma.user.findUnique({
     where: { email: email.toLowerCase() },
-    include: { profile: true },
   });
   if (!user || !user.passwordHash || !user.isActive) throw new Error("INVALID_CREDENTIALS");
 
@@ -147,8 +141,8 @@ export async function loginUser(email: string, password: string) {
     id: user.id,
     email: user.email,
     role: user.role,
-    firstName: user.profile?.firstName,
-    lastName: user.profile?.lastName,
+    firstName: user.firstName,
+    lastName: user.lastName,
   };
 
   const token = await createSessionToken(sessionUser);
@@ -174,7 +168,6 @@ export async function logoutUser() {
   await clearSessionCookie();
 }
 
-/** True when Supabase credentials are configured. Otherwise local auth is used. */
 export function isSupabaseConfigured() {
   return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 }

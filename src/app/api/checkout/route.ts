@@ -1,28 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { getSession } from "@/lib/auth";
-import { createCheckoutOrder } from "@/services/order/service";
+import { createReportOrder } from "@/services/order/service";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
     const session = await getSession();
-    const jar = await cookies();
-    const guestId = jar.get("velora_guest")?.value;
+    if (!session) {
+      return NextResponse.json({ error: "LOGIN_REQUIRED" }, { status: 401 });
+    }
 
-    const result = await createCheckoutOrder({
-      userId: session?.id,
-      sessionId: guestId,
-      email: String(body.email),
-      phone: String(body.phone),
-      address: body.address,
-      paymentMethod: body.paymentMethod === "COD" ? "COD" : "RAZORPAY",
-      couponCode: body.couponCode,
-      idempotencyKey: body.idempotencyKey,
-      utm: body.utm,
-    });
+    const body = await req.json();
 
-    return NextResponse.json(result);
+    if (body.productSlug && body.birthDetails) {
+      const result = await createReportOrder({
+        userId: session.id,
+        productSlug: String(body.productSlug),
+        birthDetails: body.birthDetails,
+      });
+      return NextResponse.json(result);
+    }
+
+    return NextResponse.json({ error: "INVALID_REQUEST" }, { status: 400 });
   } catch (e) {
     return NextResponse.json(
       { error: e instanceof Error ? e.message : "CHECKOUT_FAILED" },

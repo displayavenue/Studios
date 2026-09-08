@@ -1,8 +1,10 @@
 export default function ContactPage() {
   return (
-    <div className="container-velora max-w-xl py-16">
-      <h1 className="font-display text-4xl">Contact</h1>
-      <p className="mt-4 text-sm text-[var(--velora-muted)]">support@jyotishkundali.com</p>
+    <div className="container-jk py-10">
+      <h1 className="font-display text-3xl font-semibold">Contact Us</h1>
+      <p className="mt-3 text-[var(--jk-muted)]">
+        Reach us at support@jyotishkundali.com for help with reports, membership, or account issues.
+      </p>
     </div>
   );
 }

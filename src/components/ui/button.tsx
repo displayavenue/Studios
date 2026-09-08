@@ -4,16 +4,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--velora-accent)] disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--jk-gold)] disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-[var(--velora-ink)] text-white hover:bg-[var(--velora-ink-soft)]",
-        accent: "bg-[var(--velora-accent)] text-white hover:opacity-90",
+        default: "bg-[var(--jk-navy)] text-white hover:bg-[var(--jk-midnight)]",
+        accent: "bg-[var(--jk-gold)] text-[var(--jk-navy)] hover:bg-[var(--jk-gold-soft)]",
         outline:
-          "border border-[var(--velora-ink)]/15 bg-transparent hover:bg-[var(--velora-ink)]/5",
-        ghost: "hover:bg-[var(--velora-ink)]/5",
-        link: "text-[var(--velora-accent)] underline-offset-4 hover:underline",
+          "border border-[var(--jk-line)] bg-transparent hover:bg-[var(--jk-navy)]/5",
+        ghost: "hover:bg-[var(--jk-navy)]/5",
+        link: "text-[var(--jk-purple)] underline-offset-4 hover:underline",
       },
       size: {
         default: "h-11 px-5 py-2",

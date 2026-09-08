@@ -1,8 +1,10 @@
-export default function Page() {
+import { BRAND } from "@/config/site";
+
+export default function PrivacyPage() {
   return (
-    <div className="container-velora max-w-2xl py-16">
-      <h1 className="font-display text-4xl">Privacy Policy</h1>
-      <p className="mt-6 text-sm leading-relaxed text-[var(--velora-muted)]">We store only required customer information and protect personal data. Domain: jyotishkundali.com.</p>
+    <div className="container-jk py-10 prose prose-sm max-w-3xl">
+      <h1 className="font-display text-3xl">Privacy Policy</h1>
+      <p className="text-[var(--jk-muted)]">{BRAND.name} respects your privacy. Birth details and personal data are used solely to generate interpretive astrology reports.</p>
     </div>
   );
 }

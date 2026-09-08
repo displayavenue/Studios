@@ -59,7 +59,7 @@ export function toNumber(v: unknown): number {
   return Number(v) || 0;
 }
 
-export function generateOrderNumber(prefix = "VEL"): string {
+export function generateOrderNumber(prefix = "JK"): string {
   const d = new Date();
   const date = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
   const rand = Math.random().toString(36).slice(2, 8).toUpperCase();

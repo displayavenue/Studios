@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND.name}`,
   },
   description:
-    "VELORA — curated everyday products, smart finds and useful innovations delivered across India.",
+    "JyotishKundali — personalized Vedic astrology reports, kundali insights, compatibility readings, and self-discovery tools. Know yourself. Understand your path.",
   openGraph: {
     title: BRAND.name,
     description: BRAND.tagline,
