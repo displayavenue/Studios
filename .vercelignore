@@ -1,8 +1,3 @@
-# Local / OS
-.env
-.env.*
-!.env.example
-
 # Dev artifacts
 .next
 node_modules
@@ -17,3 +12,9 @@ deploy/jyotishkundali-static
 dist
 public/admin
 public/content
+
+# Never upload local secret backups
+.env.local
+.env*.local
+.env.local-backup
+.gitignore.bak-vercel
