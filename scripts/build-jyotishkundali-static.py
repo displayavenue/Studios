@@ -17,13 +17,15 @@ SEED = Path("/workspace/prisma/seed-data.ts")
 
 def parse_products() -> list[dict]:
     text = SEED.read_text()
-    # Extract PRODUCT_SEEDS objects with name, slug, categorySlug, shortDescription
+    membership_idx = text.find("export const MEMBERSHIP_PRODUCT")
+    start = text.find("export const PRODUCT_SEEDS")
+    product_block = text[start:membership_idx if membership_idx > 0 else None]
     pattern = re.compile(
         r'name:\s*"([^"]+)",\s*slug:\s*"([^"]+)",\s*categorySlug:\s*"([^"]+)",\s*shortDescription:\s*"([^"]+)"',
         re.M,
     )
     products = []
-    for i, m in enumerate(pattern.finditer(text), 1):
+    for i, m in enumerate(pattern.finditer(product_block), 1):
         products.append(
             {
                 "name": m.group(1),
@@ -34,8 +36,8 @@ def parse_products() -> list[dict]:
                 "sort": i,
             }
         )
-    if len(products) < 70:
-        raise SystemExit(f"Expected ~78 products, found {len(products)}")
+    if len(products) < 20:
+        raise SystemExit(f"Expected 20+ unique products, found {len(products)}")
     return products
 
 
@@ -53,16 +55,14 @@ def parse_categories() -> list[dict]:
 
 
 HOME_SERVICE_CARDS = [
-    ("Kundali & Birth Chart", "Detailed Janam Kundali with planetary positions and life insights.", "☉", "violet", "/services/janam-kundali.html"),
-    ("Marriage & Relationships", "Guna Milan and compatibility analysis for lasting harmony.", "♥", "pink", "/services.html?c=marriage"),
-    ("Career & Profession", "Career guidance based on planetary influences and timing.", "↑", "blue", "/services.html?c=career"),
-    ("Wealth & Finance", "Financial astrology for money and prosperity themes.", "₹", "amber", "/services.html?c=wealth"),
-    ("Dosha Reports", "Manglik, Kaal Sarp, and other dosha analysis reports.", "△", "orange", "/services.html?c=dosha"),
-    ("Face Self-Discovery", "AI-powered face reading for personality and self-reflection.", "◉", "fuchsia", "/services.html?c=self-discovery"),
-    ("Numerology", "Name, date of birth, and mobile number analysis.", "8", "indigo", "/services.html?c=numerology"),
-    ("Daily Horoscope", "Personalized daily, weekly, and monthly guidance.", "☾", "sky", "/services.html?c=daily-astrology"),
-    ("Compatibility Matching", "Deep relationship compatibility for couples.", "⚭", "rose", "/services.html?c=marriage"),
-    ("AI Astrology Assistant", "Ask questions about your chart and reports anytime.", "✦", "emerald", "/login.html"),
+    ("Kundali & Birth Charts", "Janam Kundali, houses, dasha timelines, and natal deep-dives.", "☉", "violet", "/services.html?c=kundali"),
+    ("Marriage & Matching", "Guna Milan, love chemistry, marriage timing, and couple synastry.", "♥", "pink", "/services.html?c=marriage"),
+    ("Career & Profession", "Career path, timing windows, business themes, and abroad-work motifs.", "↑", "blue", "/services.html?c=career"),
+    ("Wealth & Family", "Prosperity themes, property symbolism, education, and family dynamics.", "₹", "amber", "/services.html?c=wealth"),
+    ("Dosha & Planets", "Dosha scans, Manglik, Rahu-Ketu, Sade Sati, and Saturn lessons.", "△", "orange", "/services.html?c=dosha"),
+    ("Face Self-Discovery", "AI face reading and strengths maps for reflective self-awareness.", "◉", "fuchsia", "/services.html?c=self-discovery"),
+    ("Numerology", "Complete number profiles, name, mobile, and personal year forecasts.", "8", "indigo", "/services.html?c=numerology"),
+    ("Horoscopes & Transits", "Year-ahead forecasts, gochar reports, and monthly personalised guidance.", "☾", "sky", "/services.html?c=daily-astrology"),
 ]
 
 MEMBERSHIP_FEATURES = [
@@ -279,7 +279,7 @@ def home_service_card(title: str, desc: str, icon: str, color: str, href: str) -
   <span class="svc-icon {escape(color)}" aria-hidden="true">{escape(icon)}</span>
   <h3>{escape(title)}</h3>
   <p>{escape(desc)}</p>
-  <div class="svc-foot"><span class="price">₹499</span><span class="svc-arrow" aria-hidden="true">→</span></div>
+  <div class="svc-foot"><span class="price">View products</span><span class="svc-arrow" aria-hidden="true">→</span></div>
 </a>"""
 
 
@@ -293,7 +293,7 @@ def build_homepage(product_count: int) -> str:
     <h1>Discover Your True Self Through Ancient Wisdom &amp; Modern AI</h1>
     <p class="hero-services">Astrology · Face Analysis · Numerology · Daily Guidance · And More</p>
     <div class="hero-chips">
-      <span class="hero-chip"><span class="ic" aria-hidden="true">📄</span>78+ Detailed Reports</span>
+      <span class="hero-chip"><span class="ic" aria-hidden="true">📄</span>{product_count}+ Detailed Reports</span>
       <span class="hero-chip"><span class="ic" aria-hidden="true">🔒</span>Secure &amp; Private</span>
       <span class="hero-chip"><span class="ic" aria-hidden="true">⚡</span>Instant PDF Download</span>
       <span class="hero-chip"><span class="ic" aria-hidden="true">🛡</span>Razorpay Checkout</span>
@@ -313,8 +313,8 @@ def build_homepage(product_count: int) -> str:
 </div></section>
 <section class="section section-muted"><div class="wrap">
   <div class="section-intro">
-    <h2 class="display">Explore Our Services</h2>
-    <p>Every individual report is ₹499. Choose what you need — no fabricated claims.</p>
+    <h2 class="display">Explore by category</h2>
+    <p class="muted" style="text-align:center;max-width:36rem;margin:.5rem auto 0">Eight clear categories — each product has a distinct job. Individual reports are ₹499.</p>
   </div>
   <div class="service-grid">{service_cards}</div>
 </div></section>
@@ -349,16 +349,14 @@ def build_homepage(product_count: int) -> str:
     </div>
   </div>
   <div class="testimonial">
-    <p class="label">What members say — placeholder</p>
-    <div class="stars" aria-label="Sample rating display">★★★★★</div>
-    <blockquote>&ldquo;Sample placeholder quote. Real customer reviews will appear here after verified purchases — we never invent testimonials.&rdquo;</blockquote>
+    <p class="label">Sample stories · not verified reviews</p>
+    <p class="muted" style="font-size:.75rem;margin:.5rem 0 0">Illustrative copy for layout only. Real testimonials appear only after verified purchases.</p>
+    <blockquote style="font-size:1rem;margin-top:1rem">&ldquo;The chapters felt organised instead of vague. Clear disclaimers made me trust the tone more. Focus area: Complete Janam Kundali.&rdquo;</blockquote>
     <div class="author">
-      <div class="avatar">JK</div>
-      <div>
-        <p>Verified reviews coming soon</p>
-        <p class="sub">Only from customers who purchased a report</p>
-      </div>
+      <div class="avatar">A</div>
+      <div><strong>Aarav · Mumbai</strong><span>Sample · not verified</span></div>
     </div>
+    <p style="margin-top:1rem;font-size:.85rem"><a href="/services.html">Browse unique reports →</a></p>
   </div>
 </div></section>
 <section class="cta-final"><div class="wrap">
@@ -425,15 +423,25 @@ def main() -> None:
     <div class="surface">
       <strong class="display" style="font-size:1.35rem">About this report</strong>
       <p class="muted" style="line-height:1.65;margin:.75rem 0 0">{escape(p['desc'])}</p>
+      <p class="muted" style="line-height:1.65;margin:.75rem 0 0">Structured like leading astrology product pages: clear chapters, honest limits, and a detailed list of what you receive in the PDF — for reflection and entertainment, not guarantees.</p>
     </div>
     <div class="surface" style="margin-top:1rem">
-      <strong class="display" style="font-size:1.2rem">What's included</strong>
+      <strong class="display" style="font-size:1.2rem">What you will get</strong>
       <ul class="muted" style="font-size:.9rem;line-height:1.7;margin:.75rem 0 0;padding-left:1.1rem">
-        <li>Digital PDF report</li>
-        <li>Dashboard access after payment</li>
-        <li>English language delivery</li>
-        <li>Interpretive guidance with clear disclaimers</li>
+        <li>Long-form digital PDF with named chapters for this topic</li>
+        <li>Plain-language explanations of traditional Jyotish terms</li>
+        <li>Who-this-is-for guidance so you do not buy overlapping reports</li>
+        <li>Dashboard archive access after payment</li>
+        <li>Delivery usually within minutes of successful payment</li>
+        <li>Clear entertainment / non-advice disclaimer</li>
       </ul>
+    </div>
+    <div class="surface" style="margin-top:1rem">
+      <strong class="display" style="font-size:1.2rem">FAQ</strong>
+      <p style="margin:.75rem 0 0;font-size:.9rem"><strong>Is this a prediction?</strong></p>
+      <p class="muted" style="font-size:.9rem;margin:.35rem 0 0">No. Reports are interpretive guidance for personal reflection and entertainment.</p>
+      <p style="margin:.75rem 0 0;font-size:.9rem"><strong>What birth details are needed?</strong></p>
+      <p class="muted" style="font-size:.9rem;margin:.35rem 0 0">Date, time, and place of birth. Unknown time is supported with clear caveats.</p>
     </div>
     <p class="disclaimer">Astrology readings are interpretive and intended for personal reflection and entertainment. They should not be treated as certainty or professional advice.</p>
   </div>

@@ -1,0 +1,20 @@
+# Dev artifacts
+.next
+node_modules
+coverage
+*.log
+.DS_Store
+
+# Hostinger static mirror (not needed on Vercel)
+deploy/jyotishkundali-static
+
+# Other product static sites
+dist
+public/admin
+public/content
+
+# Never upload local secret backups
+.env.local
+.env*.local
+.env.local-backup
+.gitignore.bak-vercel

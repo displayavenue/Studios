@@ -21,79 +21,66 @@ import {
 import { prisma } from "@/lib/prisma";
 import { BRAND, PRICING } from "@/config/site";
 import { formatINR } from "@/lib/utils";
+import { SAMPLE_STORIES, SAMPLE_STORIES_DISCLAIMER } from "@/content/sample-stories";
 
 export const dynamic = "force-dynamic";
 
 const SERVICE_CATEGORIES = [
   {
-    title: "Kundali & Birth Chart",
-    desc: "Detailed Janam Kundali with planetary positions and life insights.",
+    title: "Kundali & Birth Charts",
+    desc: "Janam Kundali, houses, dasha timelines, and natal deep-dives.",
     href: "/services?category=kundali",
     color: "bg-violet-100 text-violet-600",
     icon: "☉",
   },
   {
-    title: "Marriage & Relationships",
-    desc: "Guna Milan and compatibility analysis for lasting harmony.",
+    title: "Marriage & Matching",
+    desc: "Guna Milan, love chemistry, marriage timing, and couple synastry.",
     href: "/services?category=marriage",
     color: "bg-pink-100 text-pink-600",
     icon: "♥",
   },
   {
     title: "Career & Profession",
-    desc: "Career guidance based on planetary influences and timing.",
+    desc: "Career path, timing windows, business themes, and abroad-work motifs.",
     href: "/services?category=career",
     color: "bg-blue-100 text-blue-600",
     icon: "↑",
   },
   {
-    title: "Wealth & Finance",
-    desc: "Financial astrology for money and prosperity themes.",
+    title: "Wealth & Family",
+    desc: "Prosperity themes, property symbolism, education, and family dynamics.",
     href: "/services?category=wealth",
     color: "bg-amber-100 text-amber-700",
     icon: "₹",
   },
   {
-    title: "Dosha Reports",
-    desc: "Manglik, Kaal Sarp, and other dosha analysis reports.",
+    title: "Dosha & Planets",
+    desc: "Dosha scans, Manglik, Rahu-Ketu, Sade Sati, and Saturn lessons.",
     href: "/services?category=dosha",
     color: "bg-orange-100 text-orange-600",
     icon: "△",
   },
   {
     title: "Face Self-Discovery",
-    desc: "AI-powered face reading for personality and self-reflection.",
+    desc: "AI face reading and strengths maps for reflective self-awareness.",
     href: "/services?category=self-discovery",
     color: "bg-fuchsia-100 text-fuchsia-600",
     icon: "◉",
   },
   {
     title: "Numerology",
-    desc: "Name, date of birth, and mobile number analysis.",
+    desc: "Complete number profiles, name, mobile, and personal year forecasts.",
     href: "/services?category=numerology",
     color: "bg-indigo-100 text-indigo-600",
     icon: "8",
   },
   {
-    title: "Daily Horoscope",
-    desc: "Personalized daily, weekly, and monthly guidance.",
+    title: "Horoscopes & Transits",
+    desc: "Year-ahead forecasts, gochar reports, and monthly personalised guidance.",
     href: "/services?category=daily-astrology",
     color: "bg-sky-100 text-sky-600",
     icon: "☾",
-  },
-  {
-    title: "Compatibility Matching",
-    desc: "Deep relationship compatibility for couples.",
-    href: "/services?category=marriage",
-    color: "bg-rose-100 text-rose-600",
-    icon: "⚭",
-  },
-  {
-    title: "AI Astrology Assistant",
-    desc: "Ask questions about your chart and reports anytime.",
-    href: "/dashboard/ai",
-    color: "bg-emerald-100 text-emerald-600",
-    icon: "✦",
   },
 ] as const;
 
@@ -204,10 +191,11 @@ export default async function HomePage() {
         <div className="container-jk">
           <div className="text-center">
             <h2 className="font-display text-3xl font-semibold text-[var(--jk-ink)] sm:text-4xl">
-              Explore Our Services
+              Explore by category
             </h2>
             <p className="mx-auto mt-2 max-w-xl text-sm text-[var(--jk-muted)]">
-              Every individual report is {formatINR(PRICING.reportPrice)}. Choose what you need — no fabricated claims.
+              Eight clear categories — each product has a distinct job. Individual reports are{" "}
+              {formatINR(PRICING.reportPrice)}.
             </p>
           </div>
           <div className="service-grid mt-10">
@@ -223,7 +211,7 @@ export default async function HomePage() {
                 <h3 className="text-base font-semibold text-[var(--jk-ink)]">{s.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--jk-muted)]">{s.desc}</p>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="text-sm font-bold text-[var(--jk-ink)]">{formatINR(PRICING.reportPrice)}</span>
+                  <span className="text-sm font-medium text-[var(--jk-gold-dark)]">View products</span>
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-[var(--jk-ink)] transition group-hover:bg-[var(--jk-gold)]">
                     <ArrowRight className="h-3.5 w-3.5" />
                   </span>
@@ -346,26 +334,24 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="rounded-3xl bg-white p-6 shadow-md sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--jk-muted)]">
-              What members say — placeholder
+            <p className="text-xs font-semibold uppercase tracking-wider text-amber-700">
+              Sample stories · not verified reviews
             </p>
-            <div className="mt-3 flex gap-1 text-[var(--jk-gold)]" aria-label="Sample rating display">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <Star key={n} className="h-4 w-4 fill-current" />
+            <p className="mt-2 text-xs leading-relaxed text-[var(--jk-muted)]">{SAMPLE_STORIES_DISCLAIMER}</p>
+            <div className="mt-5 space-y-4">
+              {SAMPLE_STORIES.slice(0, 3).map((s) => (
+                <blockquote key={s.id} className="border-l-2 border-[var(--jk-gold)] pl-3">
+                  <p className="text-sm leading-relaxed text-[var(--jk-ink)] line-clamp-3">“{s.quote}”</p>
+                  <footer className="mt-2 text-xs text-[var(--jk-muted)]">
+                    {s.name} · {s.city} · <span className="text-amber-700">Sample</span>
+                  </footer>
+                </blockquote>
               ))}
             </div>
-            <blockquote className="mt-4 font-display text-xl leading-relaxed text-[var(--jk-ink)]">
-              “Sample placeholder quote. Real customer reviews will appear here after verified purchases — we never invent testimonials.”
-            </blockquote>
-            <div className="mt-6 flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-violet-100 font-semibold text-violet-700">
-                JK
-              </div>
-              <div>
-                <p className="text-sm font-semibold">Verified reviews coming soon</p>
-                <p className="text-xs text-[var(--jk-muted)]">Only from customers who purchased a report</p>
-              </div>
-            </div>
+            <Link href="/stories" className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-[var(--jk-navy)] hover:text-[var(--jk-gold-dark)]">
+              Browse all {SAMPLE_STORIES.length} sample stories
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
         </div>
       </section>

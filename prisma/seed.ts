@@ -3,6 +3,7 @@ import { PrismaClient } from "../src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
 import {
+  ACTIVE_PRODUCT_SLUGS,
   CATEGORY_SEEDS,
   MEMBERSHIP_PRODUCT,
   PRODUCT_SEEDS,
@@ -13,9 +14,8 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log("Seeding JyotishKundali...");
+  console.log("Seeding JyotishKundali (enriched unique catalogue)...");
 
-  // Categories
   const categoryMap = new Map<string, string>();
   for (const cat of CATEGORY_SEEDS) {
     const row = await prisma.category.upsert({
@@ -38,13 +38,14 @@ async function main() {
   }
   console.log(`  Categories: ${CATEGORY_SEEDS.length}`);
 
-  // Report products (78 × ₹499)
   let productCount = 0;
   for (const p of PRODUCT_SEEDS) {
     const categoryId = categoryMap.get(p.categorySlug);
     if (!categoryId) {
       throw new Error(`Unknown category slug: ${p.categorySlug}`);
     }
+
+    const seoDescription = p.shortDescription.slice(0, 160);
 
     await prisma.product.upsert({
       where: { slug: p.slug },
@@ -53,21 +54,18 @@ async function main() {
         name: p.name,
         slug: p.slug,
         shortDescription: p.shortDescription,
-        description: p.shortDescription,
+        description: p.description,
         price: 499,
         compareAtPrice: 699,
         type: "REPORT",
         isMembership: false,
-        whatsIncluded: ["PDF report", "Instant digital delivery", "English & Hindi UI"],
-        faqs: [
-          { q: "How long does delivery take?", a: "Reports are generated digitally and delivered within minutes." },
-          { q: "What birth details are needed?", a: "Date, time, and place of birth. Time can be marked unknown if needed." },
-        ],
+        whatsIncluded: { ...p.whatsIncluded, pageEstimate: p.pageEstimate },
+        faqs: p.faqs,
         languages: ["en", "hi"],
-        deliveryNote: "PDF delivered within minutes after payment.",
+        deliveryNote: p.deliveryNote,
         status: "PUBLISHED",
         seoTitle: `${p.name} | JyotishKundali`,
-        seoDescription: p.shortDescription,
+        seoDescription,
         sortOrder: p.sortOrder,
         reportTemplateKey: p.reportTemplateKey,
         isActive: true,
@@ -76,13 +74,18 @@ async function main() {
         categoryId,
         name: p.name,
         shortDescription: p.shortDescription,
-        description: p.shortDescription,
+        description: p.description,
         price: 499,
+        compareAtPrice: 699,
         type: "REPORT",
         isMembership: false,
+        whatsIncluded: { ...p.whatsIncluded, pageEstimate: p.pageEstimate },
+        faqs: p.faqs,
+        languages: ["en", "hi"],
+        deliveryNote: p.deliveryNote,
         status: "PUBLISHED",
         seoTitle: `${p.name} | JyotishKundali`,
-        seoDescription: p.shortDescription,
+        seoDescription,
         sortOrder: p.sortOrder,
         reportTemplateKey: p.reportTemplateKey,
         isActive: true,
@@ -90,9 +93,8 @@ async function main() {
     });
     productCount++;
   }
-  console.log(`  Report products: ${productCount}`);
+  console.log(`  Active report products: ${productCount}`);
 
-  // Membership product (₹2999/year)
   const membershipCategoryId = categoryMap.get(MEMBERSHIP_PRODUCT.categorySlug)!;
   await prisma.product.upsert({
     where: { slug: MEMBERSHIP_PRODUCT.slug },
@@ -107,16 +109,8 @@ async function main() {
       type: "MEMBERSHIP",
       isMembership: true,
       membershipPriceYearly: MEMBERSHIP_PRODUCT.membershipPriceYearly,
-      whatsIncluded: [
-        "Access to self-discovery report catalog",
-        "Daily horoscope & moon sign alerts",
-        "Member pricing on select reports",
-        "Priority PDF generation",
-      ],
-      faqs: [
-        { q: "How long is the membership?", a: "One year from the date of purchase." },
-        { q: "Can I cancel?", a: "Yes — access continues until the end of the paid period." },
-      ],
+      whatsIncluded: MEMBERSHIP_PRODUCT.whatsIncluded,
+      faqs: MEMBERSHIP_PRODUCT.faqs,
       languages: ["en", "hi"],
       deliveryNote: "Membership activates immediately after payment.",
       status: "PUBLISHED",
@@ -127,19 +121,30 @@ async function main() {
       isActive: true,
     },
     update: {
+      categoryId: membershipCategoryId,
       name: MEMBERSHIP_PRODUCT.name,
       shortDescription: MEMBERSHIP_PRODUCT.shortDescription,
       description: MEMBERSHIP_PRODUCT.description,
       type: "MEMBERSHIP",
       isMembership: true,
       membershipPriceYearly: MEMBERSHIP_PRODUCT.membershipPriceYearly,
+      whatsIncluded: MEMBERSHIP_PRODUCT.whatsIncluded,
+      faqs: MEMBERSHIP_PRODUCT.faqs,
       status: "PUBLISHED",
       isActive: true,
     },
   });
   console.log("  Membership product: 1");
 
-  // Admin user
+  const deactivated = await prisma.product.updateMany({
+    where: {
+      slug: { notIn: [...ACTIVE_PRODUCT_SLUGS] },
+      isActive: true,
+    },
+    data: { isActive: false, status: "DRAFT" },
+  });
+  console.log(`  Deactivated duplicate/legacy products: ${deactivated.count}`);
+
   const adminHash = await bcrypt.hash("JyotishAdmin!234", 12);
   await prisma.user.upsert({
     where: { email: "admin@jyotishkundali.com" },
@@ -158,7 +163,6 @@ async function main() {
     },
   });
 
-  // Demo customer
   const demoHash = await bcrypt.hash("DemoUser!234", 12);
   await prisma.user.upsert({
     where: { email: "demo@jyotishkundali.com" },
@@ -179,7 +183,6 @@ async function main() {
   });
   console.log("  Users: admin + demo customer");
 
-  // System settings
   for (const setting of SYSTEM_SETTINGS) {
     await prisma.systemSetting.upsert({
       where: { key: setting.key },

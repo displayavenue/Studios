@@ -62,7 +62,12 @@ export default function LoginForm() {
             {pending ? "Signing in…" : "Sign in"}
           </button>
         </form>
-        <p className="mt-6 text-center text-sm text-[var(--jk-muted)]">
+        <p className="mt-4 text-center text-sm">
+          <Link href="/forgot-password" className="text-[var(--jk-gold-dark)] underline">
+            Forgot password?
+          </Link>
+        </p>
+        <p className="mt-4 text-center text-sm text-[var(--jk-muted)]">
           New to {BRAND.name}?{" "}
           <Link href="/signup" className="font-medium text-[var(--jk-gold-dark)] underline">
             Create an account

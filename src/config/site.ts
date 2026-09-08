@@ -18,10 +18,9 @@ export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Astrology" },
   { href: "/services?category=self-discovery", label: "Self Discovery" },
-  { href: "/services?category=marriage", label: "Compatibility" },
-  { href: "/services?category=daily-astrology", label: "Daily Horoscope" },
-  { href: "/services", label: "Free Tools" },
-  { href: "/experts", label: "Experts" },
+  { href: "/services?category=marriage", label: "Matching" },
+  { href: "/services?category=daily-astrology", label: "Horoscopes" },
+  { href: "/stories", label: "Sample Stories" },
   { href: "/blog", label: "Blog" },
 ] as const;
 
@@ -34,8 +33,12 @@ export const MOBILE_NAV = [
 ] as const;
 
 export function useMockProviders() {
+  // Explicit flag wins so production can disable mocks while keeping other env defaults.
+  if (process.env.USE_MOCK_PROVIDERS === "false") return false;
+  if (process.env.USE_MOCK_PROVIDERS === "true") return true;
   return (
-    process.env.USE_MOCK_PROVIDERS === "true" ||
-    process.env.JYOTISH_MODE === "development"
+    process.env.JYOTISH_MODE === "development" ||
+    !process.env.RAZORPAY_KEY_ID ||
+    !process.env.RAZORPAY_KEY_SECRET
   );
 }
