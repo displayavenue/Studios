@@ -13,7 +13,9 @@
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "deploy:vercel": "bash scripts/deploy-vercel.sh",
+    "deploy:vercel:preview": "bash scripts/deploy-vercel.sh preview"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
