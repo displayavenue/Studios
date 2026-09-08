@@ -114,7 +114,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               faqs={product.faqs}
               deliveryNote={product.deliveryNote}
             />
-            <SamplePreview productName={product.name} />
+            <SamplePreview productName={product.name} productSlug={product.slug} />
           </div>
 
           <div className="lg:sticky lg:top-24 lg:self-start">
