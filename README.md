@@ -66,7 +66,9 @@ Checkout, dashboard, admin, and APIs deploy to Vercel (Mumbai `bom1`).
    - `DATABASE_URL` — managed Postgres (Neon/Supabase/etc.)
    - `AUTH_SECRET` — long random string
    - `NEXT_PUBLIC_SITE_URL` — e.g. `https://your-app.vercel.app` or `https://app.jyotishkundali.com`
-   - `USE_MOCK_PROVIDERS=true` until Razorpay/astrology keys are ready
+   - `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` / `NEXT_PUBLIC_RAZORPAY_KEY_ID` — from Razorpay dashboard (or existing Hostinger `api/config.php`)
+   - Optional: `RAZORPAY_WEBHOOK_SECRET` for `payment.captured` webhooks
+   - Set `USE_MOCK_PROVIDERS=false` once keys are present
 3. Optional domain: add `app.jyotishkundali.com` in Vercel → Domains, then CNAME to `cname.vercel-dns.com`.
 4. After first deploy, run migrations/seed against the production DB:
    ```bash
@@ -74,7 +76,17 @@ Checkout, dashboard, admin, and APIs deploy to Vercel (Mumbai `bom1`).
    DATABASE_URL='…' npm run db:seed
    ```
 
-### Deploy from CLI
+### Razorpay checkout
+
+Product pages open **Razorpay Checkout.js** after birth details. Flow:
+
+1. `POST /api/checkout` creates order + Razorpay order  
+2. Client opens Checkout.js  
+3. `POST /api/payments/razorpay/confirm` verifies payment signature  
+4. Report job is queued  
+
+Status: `GET /api/payments/razorpay/status`  
+Webhook: `POST /api/payments/razorpay/webhook` (requires `RAZORPAY_WEBHOOK_SECRET`)
 
 ```bash
 export VERCEL_TOKEN=…   # https://vercel.com/account/tokens

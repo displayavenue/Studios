@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { Input, Label } from "@/components/ui/input";
+import { openRazorpayCheckout } from "@/lib/razorpay-client";
 
 export type BirthDetails = {
   name: string;
@@ -32,6 +34,7 @@ type ProfileProps = {
 type Props = CheckoutProps | ProfileProps;
 
 export function BirthDetailsForm(props: Props) {
+  const router = useRouter();
   const mode = props.mode ?? "checkout";
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -61,22 +64,81 @@ export function BirthDetailsForm(props: Props) {
         return;
       }
 
-      const { productSlug, onSubmit } = props as CheckoutProps;
+      const { productSlug, productName, price, onSubmit } = props as CheckoutProps;
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productSlug, birthDetails: details }),
       });
       const data = await res.json();
+
+      if (res.status === 401 || data.error === "LOGIN_REQUIRED") {
+        const next = encodeURIComponent(`/services/${productSlug}`);
+        router.push(`/login?next=${next}`);
+        return;
+      }
       if (!res.ok) throw new Error(data.error || "Checkout failed");
 
       onSubmit?.(details);
 
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
-      } else if (data.order) {
-        window.location.href = `/dashboard?order=${data.order.orderNumber}`;
+      const order = data.order as { id: string; orderNumber: string };
+      const razorpay = data.razorpay as {
+        id: string;
+        amount: number;
+        currency: string;
+        keyId: string;
+        mock?: boolean;
+      };
+
+      if (!order?.id || !razorpay?.id) {
+        throw new Error("Invalid checkout response");
       }
+
+      // Mock path: auto-confirm without opening Checkout.js
+      if (razorpay.mock) {
+        const confirm = await fetch("/api/payments/razorpay/confirm", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orderId: order.id,
+            razorpayOrderId: razorpay.id,
+            razorpayPaymentId: `pay_mock_${Date.now()}`,
+            signature: "mock_ok",
+          }),
+        });
+        const confirmData = await confirm.json();
+        if (!confirm.ok) throw new Error(confirmData.error || "Mock payment failed");
+        window.location.href = `/dashboard?order=${order.orderNumber}`;
+        return;
+      }
+
+      const keyId = razorpay.keyId || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "";
+      if (!keyId) throw new Error("Razorpay key missing");
+
+      const payment = await openRazorpayCheckout({
+        keyId,
+        orderId: razorpay.id,
+        amountPaise: razorpay.amount,
+        currency: razorpay.currency,
+        name: details.name,
+        description: `${productName} — ₹${price}`,
+        prefillName: details.name,
+      });
+
+      const confirm = await fetch("/api/payments/razorpay/confirm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: order.id,
+          razorpayOrderId: payment.razorpay_order_id,
+          razorpayPaymentId: payment.razorpay_payment_id,
+          signature: payment.razorpay_signature,
+        }),
+      });
+      const confirmData = await confirm.json();
+      if (!confirm.ok) throw new Error(confirmData.error || "Payment verification failed");
+
+      window.location.href = `/dashboard?order=${order.orderNumber}`;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -154,7 +216,7 @@ export function BirthDetailsForm(props: Props) {
       </div>
 
       <p className="mt-5 rounded-xl border border-[var(--jk-gold)]/25 bg-[var(--jk-gold)]/5 px-3 py-2.5 text-xs leading-relaxed text-[var(--jk-muted)]">
-        Interpretive astrology for reflection and entertainment — not medical, legal, or financial advice.
+        Secure Razorpay checkout. Interpretive astrology for reflection — not medical, legal, or financial advice.
       </p>
 
       {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
@@ -165,7 +227,7 @@ export function BirthDetailsForm(props: Props) {
         disabled={pending}
         className="gold-btn mt-5 flex h-12 w-full items-center justify-center gap-2 text-sm disabled:opacity-60"
       >
-        {pending ? "Processing…" : isCheckout ? `Get My Report — ₹${price}` : "Save details"}
+        {pending ? "Opening payment…" : isCheckout ? `Pay ₹${price} securely` : "Save details"}
         {!pending && <ArrowRight className="h-4 w-4" />}
       </button>
     </form>

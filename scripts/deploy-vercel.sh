@@ -21,8 +21,24 @@ fi
 AUTH_SECRET_VALUE="${AUTH_SECRET:-$(openssl rand -hex 32)}"
 SAFE_DATABASE_URL="${DATABASE_URL:-postgresql://jyotish:jyotish@127.0.0.1:5432/jyotishkundali?schema=public}"
 
+# Prefer already-exported Razorpay env; otherwise read from local .env (never commit).
+if [[ -z "${RAZORPAY_KEY_ID:-}" && -f .env ]]; then
+  RAZORPAY_KEY_ID="$(rg -N '^RAZORPAY_KEY_ID=' .env | head -1 | cut -d= -f2- | tr -d '"' || true)"
+fi
+if [[ -z "${RAZORPAY_KEY_SECRET:-}" && -f .env ]]; then
+  RAZORPAY_KEY_SECRET="$(rg -N '^RAZORPAY_KEY_SECRET=' .env | head -1 | cut -d= -f2- | tr -d '"' || true)"
+fi
+NEXT_PUBLIC_RAZORPAY_KEY_ID="${NEXT_PUBLIC_RAZORPAY_KEY_ID:-${RAZORPAY_KEY_ID:-}}"
+
+# When live Razorpay keys are present, disable mocks on deploy.
+if [[ -n "${RAZORPAY_KEY_ID:-}" && -n "${RAZORPAY_KEY_SECRET:-}" ]]; then
+  MOCK_FLAG=false
+else
+  MOCK_FLAG=true
+fi
+
 ENV_FILE_CONTENT="$(cat <<EOF
-USE_MOCK_PROVIDERS=true
+USE_MOCK_PROVIDERS=${MOCK_FLAG}
 JYOTISH_MODE=production
 AUTH_SECRET=${AUTH_SECRET_VALUE}
 NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://jyotishkundali.com}
@@ -30,6 +46,9 @@ NEXT_PUBLIC_SITE_DOMAIN=${NEXT_PUBLIC_SITE_DOMAIN:-jyotishkundali.com}
 NEXT_PUBLIC_BRAND_NAME=JyotishKundali
 NEXT_PUBLIC_TAGLINE=Know Yourself. Understand Your Path.
 DATABASE_URL=${SAFE_DATABASE_URL}
+RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID:-}
+RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET:-}
+NEXT_PUBLIC_RAZORPAY_KEY_ID=${NEXT_PUBLIC_RAZORPAY_KEY_ID:-}
 EOF
 )"
 
@@ -59,7 +78,7 @@ sed -i '/^\.env$/d; /^\.env\.local$/d' .gitignore
 rm -f .env.local-backup
 
 ENV_ARGS=(
-  -e "USE_MOCK_PROVIDERS=true"
+  -e "USE_MOCK_PROVIDERS=${MOCK_FLAG}"
   -e "JYOTISH_MODE=production"
   -e "AUTH_SECRET=${AUTH_SECRET_VALUE}"
   -e "NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://jyotishkundali.com}"
@@ -67,9 +86,15 @@ ENV_ARGS=(
   -e "NEXT_PUBLIC_BRAND_NAME=JyotishKundali"
   -e "NEXT_PUBLIC_TAGLINE=Know Yourself. Understand Your Path."
   -e "DATABASE_URL=${SAFE_DATABASE_URL}"
-  -b "USE_MOCK_PROVIDERS=true"
+  -e "RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID:-}"
+  -e "RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET:-}"
+  -e "NEXT_PUBLIC_RAZORPAY_KEY_ID=${NEXT_PUBLIC_RAZORPAY_KEY_ID:-}"
+  -b "USE_MOCK_PROVIDERS=${MOCK_FLAG}"
   -b "AUTH_SECRET=${AUTH_SECRET_VALUE}"
   -b "DATABASE_URL=${SAFE_DATABASE_URL}"
+  -b "NEXT_PUBLIC_RAZORPAY_KEY_ID=${NEXT_PUBLIC_RAZORPAY_KEY_ID:-}"
+  -b "RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID:-}"
+  -b "RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET:-}"
 )
 
 if [[ "$TARGET" == "temporary" ]]; then
