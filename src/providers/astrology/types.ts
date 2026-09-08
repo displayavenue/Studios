@@ -23,5 +23,12 @@ export type ChartData = {
 
 export interface AstrologyProvider {
   calculateChart(input: BirthInput): Promise<ChartData>;
-  interpretChart(chart: ChartData, templateKey: string): Promise<{ sections: Record<string, string> }>;
+  interpretChart(
+    chart: ChartData,
+    templateKey: string,
+    chapterTitles?: string[],
+  ): Promise<{
+    sections: Record<string, string>;
+    chapters?: Array<{ title: string; body: string }>;
+  }>;
 }

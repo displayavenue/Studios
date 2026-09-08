@@ -1,9 +1,13 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { prisma } from "@/lib/prisma";
 import { ReportJobStatus } from "@/generated/prisma/enums";
 import { createAstrologyProvider } from "@/providers/astrology/mock-provider";
 import { createStorageProvider } from "@/providers/storage/mock-provider";
 import { notifyUser } from "@/providers/notifications";
+import {
+  buildReportPdf,
+  parseProductWhatsIncluded,
+  type ReportPdfInput,
+} from "@/services/report/pdf-builder";
 
 /** Stub report job queue — processes shortly after enqueue; replace with BullMQ/SQS later. */
 export async function enqueueReportJob(reportId: string) {
@@ -46,9 +50,11 @@ export async function processReportJob(reportId: string) {
     data: { jobStatus: ReportJobStatus.INTERPRETING },
   });
 
+  const packed = parseProductWhatsIncluded(report.product.whatsIncluded);
   const interpretation = await astrology.interpretChart(
     chart,
     report.product.reportTemplateKey || "default",
+    packed.chapters,
   );
 
   await prisma.report.update({
@@ -56,16 +62,38 @@ export async function processReportJob(reportId: string) {
     data: { jobStatus: ReportJobStatus.GENERATING_PDF },
   });
 
-  const pdfBytes = await buildReportPdf({
+  const pdfInput: ReportPdfInput = {
     title: report.product.name,
+    productSlug: report.product.slug,
     personName: report.birthProfile.name,
     place: report.birthProfile.placeName,
     dob: report.birthProfile.dob.toISOString().slice(0, 10),
+    birthTime: report.birthProfile.birthTime,
+    birthTimeUnknown: report.birthProfile.birthTimeUnknown,
+    shortDescription: report.product.shortDescription,
     overview: interpretation.sections.overview,
     personality: interpretation.sections.personality,
     guidance: interpretation.sections.guidance,
+    chapters: interpretation.chapters?.length
+      ? interpretation.chapters
+      : packed.chapters.map((title) => ({
+          title: title.replace(/^\d+\.\s*/, ""),
+          body: interpretation.sections.overview,
+        })),
+    included: packed.included,
+    whoFor: packed.whoFor,
+    outcomes: packed.outcomes,
+    chartSummary: {
+      mock: chart.mock,
+      ascendant: chart.ascendant,
+      moonSign: chart.moonSign,
+      sunSign: chart.sunSign,
+      planets: chart.planets,
+    },
     disclaimer: chart.disclaimer,
-  });
+  };
+
+  const pdfBytes = await buildReportPdf(pdfInput);
 
   await prisma.report.update({
     where: { id: reportId },
@@ -76,7 +104,6 @@ export async function processReportJob(reportId: string) {
   const key = `reports/${report.userId}/${reportId}.pdf`;
   const uploaded = await storage.uploadPdf(Buffer.from(pdfBytes), key);
 
-  // Persist downloadable artifact. For mock storage we also keep bytes via API route.
   await prisma.pdfFile.create({
     data: {
       reportId,
@@ -87,7 +114,6 @@ export async function processReportJob(reportId: string) {
     },
   });
 
-  // Store PDF buffer as base64 in report content for local/mock download reliability.
   await prisma.report.update({
     where: { id: reportId },
     data: {
@@ -97,6 +123,7 @@ export async function processReportJob(reportId: string) {
         interpretation,
         pdfBase64: Buffer.from(pdfBytes).toString("base64"),
         storageKey: key,
+        pageHint: packed.chapters.length || undefined,
       },
       summary: interpretation.sections.overview,
       generatedAt: new Date(),
@@ -129,67 +156,59 @@ export async function processReportJob(reportId: string) {
   return { reportId, orderId: report.orderId };
 }
 
-async function buildReportPdf(input: {
-  title: string;
-  personName: string;
-  place: string;
-  dob: string;
-  overview: string;
-  personality: string;
-  guidance: string;
-  disclaimer: string;
-}) {
-  const doc = await PDFDocument.create();
-  const page = doc.addPage([595, 842]);
-  const font = await doc.embedFont(StandardFonts.Helvetica);
-  const bold = await doc.embedFont(StandardFonts.HelveticaBold);
-  const { width, height } = page.getSize();
-  let y = height - 56;
+/** Generate a watermarked sample PDF for a product slug (no payment). */
+export async function buildSampleProductPdf(slug: string) {
+  const product = await prisma.product.findFirst({
+    where: { slug, status: "PUBLISHED", isActive: true, isMembership: false },
+  });
+  if (!product) return null;
 
-  const write = (text: string, size = 11, useBold = false, color = rgb(0.05, 0.05, 0.1)) => {
-    const f = useBold ? bold : font;
-    const lines = wrapText(text, 86);
-    for (const line of lines) {
-      if (y < 56) break;
-      page.drawText(line, { x: 48, y, size, font: f, color });
-      y -= size + 6;
-    }
-    y -= 8;
+  const astrology = createAstrologyProvider();
+  const chart = await astrology.calculateChart({
+    name: "Sample Reader",
+    dob: "1990-08-15",
+    birthTime: "10:30",
+    placeName: "Mumbai, India",
+  });
+  const packed = parseProductWhatsIncluded(product.whatsIncluded);
+  const interpretation = await astrology.interpretChart(
+    chart,
+    product.reportTemplateKey || "default",
+    packed.chapters,
+  );
+
+  const pdfBytes = await buildReportPdf({
+    title: product.name,
+    productSlug: product.slug,
+    personName: "Sample Reader",
+    place: "Mumbai, India",
+    dob: "1990-08-15",
+    birthTime: "10:30",
+    birthTimeUnknown: false,
+    shortDescription: product.shortDescription,
+    overview: interpretation.sections.overview,
+    personality: interpretation.sections.personality,
+    guidance: interpretation.sections.guidance,
+    chapters: interpretation.chapters || [],
+    included: packed.included,
+    whoFor: packed.whoFor,
+    outcomes: packed.outcomes,
+    chartSummary: {
+      mock: chart.mock,
+      ascendant: chart.ascendant,
+      moonSign: chart.moonSign,
+      sunSign: chart.sunSign,
+      planets: chart.planets,
+    },
+    disclaimer: chart.disclaimer,
+    isSample: true,
+  });
+
+  return {
+    bytes: Buffer.from(pdfBytes),
+    fileName: `${product.slug}-sample.pdf`,
+    productName: product.name,
   };
-
-  write("JyotishKundali", 18, true, rgb(0.78, 0.64, 0.15));
-  write(input.title, 16, true);
-  write(`Prepared for: ${input.personName}`);
-  write(`Birth: ${input.dob} · ${input.place}`);
-  write("Overview", 13, true);
-  write(input.overview);
-  write("Personality themes", 13, true);
-  write(input.personality);
-  write("Guidance", 13, true);
-  write(input.guidance);
-  write("Disclaimer", 12, true);
-  write(input.disclaimer, 9, false, rgb(0.4, 0.45, 0.5));
-  write("This PDF is generated for personal reflection and entertainment.", 9, false, rgb(0.4, 0.45, 0.5));
-
-  void width;
-  return doc.save();
-}
-
-function wrapText(text: string, maxChars: number) {
-  const words = text.split(/\s+/);
-  const lines: string[] = [];
-  let current = "";
-  for (const word of words) {
-    const next = current ? `${current} ${word}` : word;
-    if (next.length > maxChars) {
-      if (current) lines.push(current);
-      current = word;
-    } else {
-      current = next;
-    }
-  }
-  if (current) lines.push(current);
-  return lines;
 }
 
 export async function listUserReports(userId: string) {
