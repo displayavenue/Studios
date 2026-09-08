@@ -1,0 +1,789 @@
+// JyotishKundali — Astrology SaaS Prisma Schema
+// PostgreSQL · Prisma 7
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ───────────────────────────────────────────────
+
+enum Role {
+  CUSTOMER
+  EXPERT
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum OrderStatus {
+  PENDING
+  PAYMENT_PROCESSING
+  PAID
+  REPORT_GENERATING
+  REPORT_READY
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+  EXPIRED
+  PAUSED
+  TRIALING
+}
+
+enum ReportJobStatus {
+  QUEUED
+  PROCESSING
+  CALCULATING
+  INTERPRETING
+  GENERATING_PDF
+  UPLOADING
+  COMPLETED
+  FAILED
+}
+
+enum ProductType {
+  REPORT
+  MEMBERSHIP
+  CONSULTATION
+  TOOL
+}
+
+enum ProductStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum FamilyRelation {
+  SPOUSE
+  CHILD
+  PARENT
+  SIBLING
+  FRIEND
+  OTHER
+}
+
+enum VerificationPurpose {
+  EMAIL_VERIFY
+  PHONE_VERIFY
+  PASSWORD_RESET
+  LOGIN_OTP
+}
+
+enum ConsultationStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum SupportTicketStatus {
+  OPEN
+  IN_PROGRESS
+  WAITING_CUSTOMER
+  RESOLVED
+  CLOSED
+}
+
+enum SupportTicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum NotificationType {
+  ORDER
+  REPORT
+  SUBSCRIPTION
+  CONSULTATION
+  MARKETING
+  SYSTEM
+}
+
+// ─── Auth & Users ─────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  phone         String?
+  passwordHash  String?
+  role          Role      @default(CUSTOMER)
+  emailVerified Boolean   @default(false)
+  googleId      String?   @unique
+  firstName     String?
+  lastName      String?
+  avatarUrl     String?
+  locale        String    @default("en")
+  isActive      Boolean   @default(true)
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  sessions           Session[]
+  verificationTokens VerificationToken[]
+  birthProfiles      BirthProfile[]
+  familyMembers      FamilyMember[]
+  orders             Order[]
+  subscriptions      Subscription[]
+  reports            Report[]
+  faceAnalyses       FaceAnalysis[]
+  numerologyReports  NumerologyReport[]
+  compatibilityReports CompatibilityReport[]
+  dailyHoroscopes    DailyHoroscope[]
+  couponRedemptions  CouponRedemption[]
+  reviews            Review[]
+  expertProfile      Expert?
+  consultations      Consultation[]       @relation("CustomerConsultations")
+  notifications      Notification[]
+  auditLogs          AuditLog[]
+  supportTickets     SupportTicket[]
+  analyticsEvents    AnalyticsEvent[]
+
+  @@index([role])
+  @@index([phone])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model VerificationToken {
+  id        String              @id @default(cuid())
+  userId    String?
+  email     String?
+  phone     String?
+  token     String              @unique
+  code      String?
+  purpose   VerificationPurpose
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime            @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([phone])
+  @@index([purpose])
+  @@index([expiresAt])
+}
+
+// ─── Birth Data ───────────────────────────────────────────
+
+model BirthProfile {
+  id                String    @id @default(cuid())
+  userId            String
+  name              String
+  gender            Gender?
+  dob               DateTime
+  birthTime         String?
+  birthTimeUnknown  Boolean   @default(false)
+  placeName         String
+  lat               Decimal   @db.Decimal(10, 7)
+  lng               Decimal   @db.Decimal(10, 7)
+  timezone          String
+  country           String
+  isDefault         Boolean   @default(false)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  user                 User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reports              Report[]
+  faceAnalyses         FaceAnalysis[]
+  numerologyReports    NumerologyReport[]
+  compatibilityReports CompatibilityReport[] @relation("ProfileA")
+  compatibilityReportsB CompatibilityReport[] @relation("ProfileB")
+  dailyHoroscopes      DailyHoroscope[]
+  orderItems           OrderItem[]
+
+  @@index([userId])
+}
+
+model FamilyMember {
+  id               String         @id @default(cuid())
+  userId           String
+  name             String
+  relation         FamilyRelation
+  gender           Gender?
+  dob              DateTime
+  birthTime        String?
+  birthTimeUnknown Boolean        @default(false)
+  placeName        String
+  lat              Decimal        @db.Decimal(10, 7)
+  lng              Decimal        @db.Decimal(10, 7)
+  timezone         String
+  country          String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([relation])
+}
+
+// ─── Catalog ──────────────────────────────────────────────
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+
+  @@index([isActive])
+  @@index([sortOrder])
+}
+
+model Product {
+  id                   String        @id @default(cuid())
+  categoryId           String
+  name                 String
+  slug                 String        @unique
+  shortDescription     String?
+  description          String?       @db.Text
+  price                Decimal       @default(499) @db.Decimal(10, 2)
+  compareAtPrice       Decimal?      @db.Decimal(10, 2)
+  type                 ProductType   @default(REPORT)
+  isMembership         Boolean       @default(false)
+  membershipPriceYearly Decimal?     @db.Decimal(10, 2)
+  whatsIncluded        Json?
+  faqs                 Json?
+  languages            Json?
+  deliveryNote         String?
+  thumbnailUrl         String?
+  status               ProductStatus @default(DRAFT)
+  seoTitle             String?
+  seoDescription       String?
+  sortOrder            Int           @default(0)
+  reportTemplateKey    String?
+  isActive             Boolean       @default(true)
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  category      Category       @relation(fields: [categoryId], references: [id])
+  orderItems    OrderItem[]
+  subscriptions Subscription[]
+  reports       Report[]
+  reviews       Review[]
+  consultations Consultation[]
+
+  @@index([categoryId])
+  @@index([status])
+  @@index([type])
+  @@index([isActive])
+  @@index([sortOrder])
+  @@index([reportTemplateKey])
+}
+
+// ─── Orders & Payments ────────────────────────────────────
+
+model Order {
+  id              String      @id @default(cuid())
+  orderNumber     String      @unique
+  userId          String
+  status          OrderStatus @default(PENDING)
+  subtotal        Decimal     @db.Decimal(10, 2)
+  discount        Decimal     @default(0) @db.Decimal(10, 2)
+  tax             Decimal     @default(0) @db.Decimal(10, 2)
+  total           Decimal     @db.Decimal(10, 2)
+  currency        String      @default("INR")
+  couponCode      String?
+  notes           String?
+  paidAt          DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user              User               @relation(fields: [userId], references: [id])
+  items             OrderItem[]
+  payments          Payment[]
+  reports           Report[]
+  couponRedemptions CouponRedemption[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id             String   @id @default(cuid())
+  orderId        String
+  productId      String
+  birthProfileId String?
+  quantity       Int      @default(1)
+  unitPrice      Decimal  @db.Decimal(10, 2)
+  totalPrice     Decimal  @db.Decimal(10, 2)
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  order        Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product      Product       @relation(fields: [productId], references: [id])
+  birthProfile BirthProfile? @relation(fields: [birthProfileId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Payment {
+  id                String        @id @default(cuid())
+  orderId           String
+  status            PaymentStatus @default(PENDING)
+  amount            Decimal       @db.Decimal(10, 2)
+  currency          String        @default("INR")
+  razorpayOrderId   String?       @unique
+  razorpayPaymentId String?       @unique
+  razorpaySignature String?
+  method            String?
+  failureReason     String?
+  paidAt            DateTime?
+  refundedAt        DateTime?
+  metadata          Json?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+  @@index([status])
+}
+
+model Subscription {
+  id                     String             @id @default(cuid())
+  userId                 String
+  productId              String
+  status                 SubscriptionStatus @default(ACTIVE)
+  razorpaySubscriptionId String?            @unique
+  razorpayPlanId         String?
+  amount                 Decimal            @db.Decimal(10, 2)
+  currency               String             @default("INR")
+  renewsAt               DateTime?
+  cancelledAt            DateTime?
+  startedAt              DateTime           @default(now())
+  expiresAt              DateTime?
+  metadata               Json?
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@index([renewsAt])
+}
+
+// ─── Reports ──────────────────────────────────────────────
+
+model ReportTemplate {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  description String?
+  version     String   @default("1.0")
+  isActive    Boolean  @default(true)
+  config      Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sections ReportSection[]
+  reports  Report[]
+
+  @@index([isActive])
+}
+
+model ReportSection {
+  id         String   @id @default(cuid())
+  templateId String
+  key        String
+  title      String
+  sortOrder  Int      @default(0)
+  config     Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  template ReportTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@unique([templateId, key])
+  @@index([templateId])
+  @@index([sortOrder])
+}
+
+model Report {
+  id             String          @id @default(cuid())
+  userId         String
+  orderId        String?
+  productId      String
+  birthProfileId String?
+  templateId     String?
+  jobStatus      ReportJobStatus @default(QUEUED)
+  title          String?
+  summary        String?         @db.Text
+  content        Json?
+  language       String          @default("en")
+  errorMessage   String?
+  generatedAt    DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  user         User            @relation(fields: [userId], references: [id])
+  order        Order?          @relation(fields: [orderId], references: [id])
+  product      Product         @relation(fields: [productId], references: [id])
+  birthProfile BirthProfile?   @relation(fields: [birthProfileId], references: [id])
+  template     ReportTemplate? @relation(fields: [templateId], references: [id])
+  pdfFiles     PdfFile[]
+
+  @@index([userId])
+  @@index([orderId])
+  @@index([productId])
+  @@index([jobStatus])
+  @@index([createdAt])
+}
+
+model PdfFile {
+  id        String   @id @default(cuid())
+  reportId  String
+  url       String
+  fileName  String?
+  fileSize  Int?
+  mimeType  String   @default("application/pdf")
+  createdAt DateTime @default(now())
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@index([reportId])
+}
+
+// ─── Specialized Reports ──────────────────────────────────
+
+model FaceAnalysis {
+  id             String          @id @default(cuid())
+  userId         String
+  birthProfileId String?
+  imageUrl       String
+  jobStatus      ReportJobStatus @default(QUEUED)
+  results        Json?
+  errorMessage   String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id])
+  birthProfile BirthProfile? @relation(fields: [birthProfileId], references: [id])
+
+  @@index([userId])
+  @@index([jobStatus])
+}
+
+model NumerologyReport {
+  id             String          @id @default(cuid())
+  userId         String
+  birthProfileId String?
+  fullName       String?
+  jobStatus      ReportJobStatus @default(QUEUED)
+  results        Json?
+  errorMessage   String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id])
+  birthProfile BirthProfile? @relation(fields: [birthProfileId], references: [id])
+
+  @@index([userId])
+  @@index([jobStatus])
+}
+
+model CompatibilityReport {
+  id              String          @id @default(cuid())
+  userId          String
+  profileAId      String
+  profileBId      String
+  jobStatus       ReportJobStatus @default(QUEUED)
+  gunMilanScore   Int?
+  manglikMatch    Json?
+  results         Json?
+  errorMessage    String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  user     User         @relation(fields: [userId], references: [id])
+  profileA BirthProfile @relation("ProfileA", fields: [profileAId], references: [id])
+  profileB BirthProfile @relation("ProfileB", fields: [profileBId], references: [id])
+
+  @@index([userId])
+  @@index([jobStatus])
+}
+
+model DailyHoroscope {
+  id             String   @id @default(cuid())
+  userId         String?
+  birthProfileId String?
+  sign           String
+  date           DateTime @db.Date
+  language       String   @default("en")
+  content        Json
+  createdAt      DateTime @default(now())
+
+  user         User?         @relation(fields: [userId], references: [id])
+  birthProfile BirthProfile? @relation(fields: [birthProfileId], references: [id])
+
+  @@unique([sign, date, language])
+  @@index([userId])
+  @@index([date])
+}
+
+// ─── Coupons & Reviews ────────────────────────────────────
+
+model Coupon {
+  id              String    @id @default(cuid())
+  code            String    @unique
+  description     String?
+  discountType    String    @default("percent")
+  discountValue   Decimal   @db.Decimal(10, 2)
+  minOrderAmount  Decimal?  @db.Decimal(10, 2)
+  maxDiscount     Decimal?  @db.Decimal(10, 2)
+  usageLimit      Int?
+  usageCount      Int       @default(0)
+  perUserLimit    Int       @default(1)
+  startsAt        DateTime?
+  expiresAt       DateTime?
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  redemptions CouponRedemption[]
+
+  @@index([isActive])
+  @@index([expiresAt])
+}
+
+model CouponRedemption {
+  id        String   @id @default(cuid())
+  couponId  String
+  userId    String
+  orderId   String?
+  createdAt DateTime @default(now())
+
+  coupon Coupon @relation(fields: [couponId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+  order  Order? @relation(fields: [orderId], references: [id])
+
+  @@index([couponId])
+  @@index([userId])
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  userId     String
+  productId  String
+  rating     Int
+  title      String?
+  body       String?  @db.Text
+  isApproved Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([productId])
+  @@index([isApproved])
+}
+
+// ─── Experts & Consultations ──────────────────────────────
+
+model Expert {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  displayName   String
+  bio           String?  @db.Text
+  specialties   Json?
+  languages     Json?
+  experienceYrs Int?
+  rating        Decimal? @db.Decimal(3, 2)
+  reviewCount   Int      @default(0)
+  pricePerMin   Decimal? @db.Decimal(10, 2)
+  isActive      Boolean  @default(true)
+  isVerified    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id])
+  consultations Consultation[]
+
+  @@index([isActive])
+  @@index([isVerified])
+}
+
+model Consultation {
+  id          String             @id @default(cuid())
+  userId      String
+  expertId    String
+  productId   String?
+  status      ConsultationStatus @default(SCHEDULED)
+  scheduledAt DateTime
+  durationMin Int                @default(30)
+  amount      Decimal            @db.Decimal(10, 2)
+  notes       String?
+  meetingUrl  String?
+  startedAt   DateTime?
+  endedAt     DateTime?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  user    User    @relation("CustomerConsultations", fields: [userId], references: [id])
+  expert  Expert  @relation(fields: [expertId], references: [id])
+  product Product? @relation(fields: [productId], references: [id])
+
+  @@index([userId])
+  @@index([expertId])
+  @@index([status])
+  @@index([scheduledAt])
+}
+
+// ─── Content & System ─────────────────────────────────────
+
+model BlogPost {
+  id             String        @id @default(cuid())
+  title          String
+  slug           String        @unique
+  excerpt        String?
+  content        String        @db.Text
+  coverImageUrl  String?
+  authorName     String?
+  status         ProductStatus @default(DRAFT)
+  seoTitle       String?
+  seoDescription String?
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([status])
+  @@index([publishedAt])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType
+  title     String
+  body      String?
+  link      String?
+  isRead    Boolean          @default(false)
+  readAt    DateTime?
+  metadata  Json?
+  createdAt DateTime         @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isRead])
+  @@index([type])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  entityType String?
+  entityId   String?
+  metadata   Json?
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([action])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
+
+model SystemSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  group     String?
+  label     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([group])
+}
+
+model AnalyticsEvent {
+  id         String   @id @default(cuid())
+  userId     String?
+  sessionId  String?
+  eventName  String
+  properties Json?
+  pageUrl    String?
+  referrer   String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([eventName])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model SupportTicket {
+  id          String                @id @default(cuid())
+  userId      String
+  subject     String
+  description String                @db.Text
+  status      SupportTicketStatus   @default(OPEN)
+  priority    SupportTicketPriority @default(MEDIUM)
+  orderId     String?
+  assignedTo  String?
+  resolvedAt  DateTime?
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@index([priority])
+}

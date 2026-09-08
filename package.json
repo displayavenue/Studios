@@ -1,27 +1,44 @@
 {
-  "name": "displayavenue",
+  "name": "jyotishkundali",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "prisma generate && tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy:hostinger": "bash scripts/deploy-hostinger.sh"
+    "deploy:hostinger": "bash scripts/deploy-hostinger.sh",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "pg": "^8.23.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^24.13.3",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "oxlint": "^1.75.0",
+    "prisma": "^7.10.0",
+    "tsx": "^4.23.13",
     "typescript": "~6.0.2",
     "vite": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
