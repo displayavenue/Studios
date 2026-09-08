@@ -1,0 +1,19 @@
+# Local / OS
+.env
+.env.*
+!.env.example
+
+# Dev artifacts
+.next
+node_modules
+coverage
+*.log
+.DS_Store
+
+# Hostinger static mirror (not needed on Vercel)
+deploy/jyotishkundali-static
+
+# Other product static sites
+dist
+public/admin
+public/content

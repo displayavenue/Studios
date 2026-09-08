@@ -55,7 +55,34 @@ Shared hosting serves a static catalogue mirror:
 bash scripts/deploy-jyotishkundali.sh   # requires SSH_PASS
 ```
 
-Full dynamic app (checkout, dashboard, admin) deploys to Vercel with production env vars.
+## Vercel (Next.js app)
+
+Checkout, dashboard, admin, and APIs deploy to Vercel (Mumbai `bom1`).
+
+### One-time setup
+
+1. Create a Vercel project from this repo (Framework: Next.js).
+2. Set environment variables (Production + Preview as needed):
+   - `DATABASE_URL` — managed Postgres (Neon/Supabase/etc.)
+   - `AUTH_SECRET` — long random string
+   - `NEXT_PUBLIC_SITE_URL` — e.g. `https://your-app.vercel.app` or `https://app.jyotishkundali.com`
+   - `USE_MOCK_PROVIDERS=true` until Razorpay/astrology keys are ready
+3. Optional domain: add `app.jyotishkundali.com` in Vercel → Domains, then CNAME to `cname.vercel-dns.com`.
+4. After first deploy, run migrations/seed against the production DB:
+   ```bash
+   DATABASE_URL='…' npx prisma migrate deploy
+   DATABASE_URL='…' npm run db:seed
+   ```
+
+### Deploy from CLI
+
+```bash
+export VERCEL_TOKEN=…   # https://vercel.com/account/tokens
+npm run deploy:vercel           # production
+npm run deploy:vercel:preview   # preview URL
+```
+
+Health check: `GET /api/health`
 
 ## Scripts
 
@@ -65,8 +92,10 @@ Full dynamic app (checkout, dashboard, admin) deploys to Vercel with production 
 | `npm run db:seed` | Seed categories, 78 products, membership, users |
 | `npm run build` | Prisma generate + Next build |
 | `npm test` | Vitest |
+| `npm run deploy:vercel` | Deploy Next.js app to Vercel (prod) |
 | `scripts/build-jyotishkundali-static.py` | Static Hostinger build |
 | `scripts/deploy-jyotishkundali.sh` | Deploy static site to domain |
+| `scripts/deploy-vercel.sh` | Deploy Next.js app to Vercel |
 
 ## Disclaimer
 
