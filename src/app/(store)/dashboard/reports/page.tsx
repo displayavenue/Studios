@@ -50,12 +50,15 @@ export default async function ReportsPage() {
                       {report.createdAt.toLocaleString("en-IN")}
                     </p>
                     {ready ? (
-                      <a
-                        href={`/api/reports/${report.id}/pdf`}
-                        className="gold-btn mt-4 inline-flex h-10 items-center px-5 text-sm"
-                      >
-                        Download PDF
-                      </a>
+                      <div className="mt-4 flex flex-wrap items-center gap-3">
+                        <a
+                          href={`/api/reports/${report.id}/pdf`}
+                          className="gold-btn inline-flex h-10 items-center px-5 text-sm"
+                        >
+                          Download PDF
+                        </a>
+                        <ShareReportCard title={report.title || report.product.name} personName={report.birthProfile?.name} />
+                      </div>
                     ) : (
                       <p className="mt-4 text-sm text-[var(--jk-muted)]">Generating your interpretive PDF…</p>
                     )}

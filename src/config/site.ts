@@ -18,10 +18,9 @@ export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Astrology" },
   { href: "/services?category=self-discovery", label: "Self Discovery" },
-  { href: "/services?category=marriage", label: "Compatibility" },
-  { href: "/services?category=daily-astrology", label: "Daily Horoscope" },
-  { href: "/services", label: "Free Tools" },
-  { href: "/experts", label: "Experts" },
+  { href: "/services?category=marriage", label: "Matching" },
+  { href: "/services?category=daily-astrology", label: "Horoscopes" },
+  { href: "/stories", label: "Sample Stories" },
   { href: "/blog", label: "Blog" },
 ] as const;
 
