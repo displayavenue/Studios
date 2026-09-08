@@ -1,0 +1,24 @@
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  RewriteRule ^services/?$ /services.html [L]
+  RewriteRule ^membership/?$ /membership.html [L]
+  RewriteRule ^login/?$ /login.html [L]
+  RewriteRule ^legal/?$ /legal.html [L]
+  RewriteRule ^contact/?$ /contact.html [L]
+  RewriteRule ^services/([^/]+)/?$ /services/$1.html [L]
+</IfModule>

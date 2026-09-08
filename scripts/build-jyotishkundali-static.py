@@ -188,7 +188,30 @@ body.has-bottom{padding-bottom:3.75rem}@media(min-width:768px){body.has-bottom{p
 .steps{display:grid;gap:1rem}@media(min-width:768px){.steps{grid-template-columns:repeat(4,1fr)}}
 .steps .step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem}
 .steps .n{color:var(--gold-dark);font-weight:600;font-size:.8rem}
+.page-hero{position:relative;overflow:hidden;color:var(--ivory);background:radial-gradient(ellipse 80% 60% at 70% 55%,rgba(245,197,66,.18),transparent 55%),radial-gradient(ellipse 50% 40% at 30% 70%,rgba(139,92,246,.2),transparent 50%),linear-gradient(180deg,#050814 0%,#0c1630 45%,#121f3d 100%)}
+.page-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 10% 20%,rgba(255,255,255,.7),transparent),radial-gradient(1px 1px at 70% 35%,rgba(255,255,255,.45),transparent),radial-gradient(1px 1px at 60% 80%,rgba(255,255,255,.35),transparent);opacity:.9;pointer-events:none}
+.page-hero .inner{position:relative;z-index:1;padding:3rem 0}@media(min-width:640px){.page-hero .inner{padding:4rem 0}}
+.page-hero .eyebrow{margin:0;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.page-hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(1.75rem,4vw,2.75rem);font-weight:600;line-height:1.15;margin:.5rem 0 0;max-width:20ch;color:#fff}
+.page-hero .lead{margin:.75rem 0 0;max-width:40rem;font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.55}
+.page-hero .price-pill{display:inline-flex;margin-top:1.25rem;background:var(--gold);color:var(--navy);font-size:.875rem;font-weight:700;padding:.4rem 1rem;border-radius:999px}
+.shell{padding:2.5rem 0 3.5rem}.shell.muted{background:var(--bg)}.shell.white{background:#fff}
+.surface{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.25rem;box-shadow:0 1px 3px rgba(11,27,58,.06)}@media(min-width:640px){.surface{padding:1.5rem}}
+.cat-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.cat-pills a{display:inline-flex;align-items:center;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:.82rem;font-weight:500;color:var(--ink)}.cat-pills a:hover{border-color:var(--gold)}
+.cat-pills a.all{background:var(--navy);color:#fff;border-color:var(--navy)}
+.buybox .btn.gold{width:100%;margin-top:1rem}
 """
+
+
+def page_hero(eyebrow: str, title: str, lead: str = "", extra: str = "") -> str:
+    lead_html = f'<p class="lead">{lead}</p>' if lead else ""
+    return f"""<section class="page-hero"><div class="wrap inner">
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  {lead_html}
+  {extra}
+</div></section>"""
 
 
 def layout(title: str, body: str) -> str:
@@ -208,7 +231,6 @@ def layout(title: str, body: str) -> str:
 <link rel="stylesheet" href="/assets/site.css?v={BUILD_VERSION}"/>
 </head>
 <body class="has-bottom">
-<div class="announce">Secure payments · Downloadable reports · Private &amp; interpretive guidance</div>
 <header class="site"><div class="wrap nav">
   <a class="logo" href="/"><span class="logo-mark" aria-hidden="true">✦</span> JyotishKundali</a>
   <nav class="nav-links" aria-label="Main">
@@ -231,7 +253,7 @@ def layout(title: str, body: str) -> str:
   <div class="cols">
     <div><div class="display" style="font-size:1.4rem;color:var(--gold)">JyotishKundali</div><p class="tagline">Discover your true self through ancient wisdom and modern AI.</p></div>
     <div><strong>Explore</strong><p><a href="/services.html">All services</a></p><p><a href="/membership.html">Membership</a></p></div>
-    <div><strong>Help</strong><p><a href="/legal.html">Privacy &amp; Terms</a></p><p><a href="mailto:support@jyotishkundali.com">Contact</a></p></div>
+    <div><strong>Help</strong><p><a href="/legal.html">Privacy &amp; Terms</a></p><p><a href="/contact.html">Contact</a></p></div>
     <div><strong>Note</strong><p style="color:rgba(255,255,255,.65);font-size:.85rem;line-height:1.5">Astrology reports are interpretive and for personal reflection. Not guarantees or professional advice.</p></div>
   </div>
   <div class="copy">
@@ -370,17 +392,20 @@ def main() -> None:
     (OUT / "index.html").write_text(home)
 
     # Services index
-    cat_filters = "".join(
-        f'<a href="/services.html?c={escape(c["slug"])}" style="margin-right:.75rem;font-size:.85rem">{escape(c["name"])}</a>'
+    cat_filters = '<a class="all" href="/services.html">All</a>' + "".join(
+        f'<a href="/services.html?c={escape(c["slug"])}">{escape(c["name"])}</a>'
         for c in categories
     )
     services = layout(
         "Services — JyotishKundali",
-        f"""<section class="section"><div class="wrap">
-  <h1 class="display" style="font-size:2.4rem;margin:0">Astrology &amp; self-discovery services</h1>
-  <p class="muted">All individual reports ₹499. {len(products)} services available.</p>
-  <p style="margin:1rem 0">{cat_filters}</p>
-  <div class="grid" style="margin-top:1rem">{''.join(service_card(p) for p in products)}</div>
+        page_hero(
+            "Astrology Services",
+            "Explore all reports",
+            f"Every individual report is ₹499. {len(products)} personalized readings available.",
+        )
+        + f"""<section class="shell muted"><div class="wrap">
+  <div class="cat-pills">{cat_filters}</div>
+  <div class="grid">{''.join(service_card(p) for p in products)}</div>
   <p class="disclaimer">Astrology reports are interpretive and intended for personal reflection and entertainment. They are not guarantees of future events.</p>
 </div></section>""",
     )
@@ -389,14 +414,21 @@ def main() -> None:
     for p in products:
         page = layout(
             f"{p['name']} — JyotishKundali",
-            f"""<section class="wrap pdp">
+            page_hero(
+                escape(p["category"].replace("-", " ")),
+                escape(p["name"]),
+                escape(p["desc"]),
+                f'<span class="price-pill">₹{p["price"]}</span>',
+            )
+            + f"""<section class="shell muted"><div class="wrap pdp">
   <div>
-    <p class="muted" style="font-size:.8rem;text-transform:uppercase;letter-spacing:.12em">{escape(p['category'].replace('-',' '))}</p>
-    <h1 class="display" style="font-size:clamp(1.8rem,4vw,2.6rem);margin:.35rem 0 1rem">{escape(p['name'])}</h1>
-    <p class="muted" style="line-height:1.65">{escape(p['desc'])}</p>
-    <div class="panel" style="margin-top:1.5rem">
-      <strong>What's included</strong>
-      <ul class="muted" style="font-size:.9rem;line-height:1.7">
+    <div class="surface">
+      <strong class="display" style="font-size:1.35rem">About this report</strong>
+      <p class="muted" style="line-height:1.65;margin:.75rem 0 0">{escape(p['desc'])}</p>
+    </div>
+    <div class="surface" style="margin-top:1rem">
+      <strong class="display" style="font-size:1.2rem">What's included</strong>
+      <ul class="muted" style="font-size:.9rem;line-height:1.7;margin:.75rem 0 0;padding-left:1.1rem">
         <li>Digital PDF report</li>
         <li>Dashboard access after payment</li>
         <li>English language delivery</li>
@@ -405,59 +437,90 @@ def main() -> None:
     </div>
     <p class="disclaimer">Astrology readings are interpretive and intended for personal reflection and entertainment. They should not be treated as certainty or professional advice.</p>
   </div>
-  <div class="buybox">
+  <div class="buybox surface">
     <div class="price-big">₹{p['price']}</div>
     <p class="muted" style="font-size:.85rem">One-time payment · Digital delivery</p>
-    <a class="btn" style="width:100%;margin-top:1rem" href="/login.html">Get My Report — ₹{p['price']}</a>
+    <a class="btn gold" href="/login.html">Get My Report — ₹{p['price']}</a>
     <p class="disclaimer">After payment, your JyotishKundali account is created automatically and your report is prepared.</p>
   </div>
-</section>""",
+</div></section>""",
         )
         (OUT / "services" / f"{p['slug']}.html").write_text(page)
 
+    membership_list = "".join(
+        f'<li><span class="ck" aria-hidden="true">✓</span>{escape(f)}</li>' for f in MEMBERSHIP_FEATURES
+    )
     membership = layout(
         "Membership — JyotishKundali",
-        """<section class="section"><div class="wrap panel" style="max-width:720px;margin:0 auto">
-  <h1 class="display" style="font-size:2.4rem;margin:0">Your Complete Self-Discovery Journey</h1>
-  <p style="font-size:1.5rem;font-weight:600;margin:1rem 0">₹2,999 / year</p>
-  <ul class="muted" style="line-height:1.8">
-    <li>Personalized daily / weekly / monthly guidance</li>
-    <li>Premium Kundali features</li>
-    <li>Numerology &amp; face self-discovery tools</li>
-    <li>Compatibility tools &amp; AI astrology assistant</li>
-    <li>Family profiles &amp; report history</li>
-  </ul>
-  <a class="btn" href="/login.html">Join Premium</a>
-  <p class="disclaimer">Transparent renewal and cancellation. Membership benefits activate after payment verification.</p>
+        page_hero(
+            "Annual membership",
+            "Complete Self-Discovery Premium Membership",
+            "Unlock premium tools for ₹2,999/year — transparent renewal and cancellation.",
+        )
+        + f"""<section class="shell muted"><div class="wrap">
+  <div class="premium-banner" style="max-width:56rem;margin:0 auto">
+    <div class="premium-badge"><span aria-hidden="true">👑</span><span class="tag">Most Popular</span></div>
+    <p style="font-size:2rem;font-weight:600;color:var(--gold);margin:0">₹2,999<span style="font-size:1rem;font-weight:400;color:rgba(255,255,255,.6)">/year</span></p>
+    <ul class="premium-features">{membership_list}</ul>
+    <a class="btn gold" style="margin-top:1.5rem" href="/login.html">Get Premium for ₹2,999/year →</a>
+    <p class="disclaimer" style="color:rgba(255,255,255,.55)">Membership benefits activate after payment verification.</p>
+  </div>
 </div></section>""",
     )
     (OUT / "membership.html").write_text(membership)
 
     login = layout(
         "Login — JyotishKundali",
-        """<section class="section"><div class="wrap panel" style="max-width:420px;margin:0 auto">
-  <h1 class="display" style="font-size:2rem">Welcome back</h1>
-  <p class="muted">Full account login runs on the JyotishKundali app. This static mirror showcases the public catalogue.</p>
-  <a class="btn" style="width:100%;margin-top:1rem" href="/services.html">Browse services</a>
+        page_hero("Account", "Sign in", "Access your Kundali reports and personalized dashboard.")
+        + """<section class="shell muted"><div class="wrap">
+  <div class="surface" style="max-width:420px;margin:0 auto">
+    <p style="font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);margin:0">JyotishKundali</p>
+    <h2 class="display" style="font-size:1.75rem;margin:.35rem 0 0">Welcome back</h2>
+    <p class="muted" style="margin-top:.5rem">Full account login runs on the JyotishKundali app. This static mirror showcases the public catalogue.</p>
+    <a class="btn gold" style="width:100%;margin-top:1.25rem" href="/services.html">Browse services</a>
+  </div>
 </div></section>""",
     )
     (OUT / "login.html").write_text(login)
 
     legal = layout(
         "Legal — JyotishKundali",
-        """<section class="section"><div class="wrap" style="max-width:720px">
-  <h1 class="display" style="font-size:2.4rem">Policies</h1>
-  <h2 style="margin-top:2rem">Disclaimer</h2>
-  <p class="muted">Astrology reports are interpretive and intended for personal reflection and entertainment. They are not guarantees of future events and should not replace qualified professional advice.</p>
-  <h2 style="margin-top:1.5rem">Face reading</h2>
-  <p class="muted">Face self-discovery is an AI-powered interpretive experience for entertainment and self-reflection. It is not a scientifically validated personality or health assessment.</p>
-  <h2 style="margin-top:1.5rem">Privacy</h2>
-  <p class="muted">We store only required information for orders and reports. You may request data deletion.</p>
-  <h2 style="margin-top:1.5rem">Refunds</h2>
-  <p class="muted">Digital report refunds follow the published refund policy after purchase.</p>
+        page_hero("Legal", "Policies", "Privacy, terms, and interpretive-content disclaimers.")
+        + """<section class="shell muted"><div class="wrap">
+  <div class="surface" style="max-width:720px;margin:0 auto">
+    <h2 class="display" style="font-size:1.35rem;margin:0">Disclaimer</h2>
+    <p class="muted">Astrology reports are interpretive and intended for personal reflection and entertainment. They are not guarantees of future events and should not replace qualified professional advice.</p>
+    <h2 class="display" style="font-size:1.35rem;margin-top:1.5rem">Face reading</h2>
+    <p class="muted">Face self-discovery is an AI-powered interpretive experience for entertainment and self-reflection. It is not a scientifically validated personality or health assessment.</p>
+    <h2 class="display" style="font-size:1.35rem;margin-top:1.5rem">Privacy</h2>
+    <p class="muted">We store only required information for orders and reports. You may request data deletion.</p>
+    <h2 class="display" style="font-size:1.35rem;margin-top:1.5rem">Refunds</h2>
+    <p class="muted">Digital report refunds follow the published refund policy after purchase.</p>
+  </div>
 </div></section>""",
     )
     (OUT / "legal.html").write_text(legal)
+
+    contact = layout(
+        "Contact — JyotishKundali",
+        page_hero("Support", "Contact", "Questions about reports, membership, or payments? Reach the JyotishKundali team.")
+        + """<section class="shell muted"><div class="wrap" style="display:grid;gap:1rem;max-width:56rem;margin:0 auto">
+  <div class="surface">
+    <p style="font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);margin:0">Email</p>
+    <a href="mailto:hello@jyotishkundali.com" class="display" style="display:block;font-size:1.5rem;margin-top:.75rem;color:var(--navy)">hello@jyotishkundali.com</a>
+    <p class="muted" style="margin-top:.75rem">We typically reply within one business day.</p>
+  </div>
+  <div class="surface">
+    <p style="font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);margin:0">Before you write</p>
+    <ul class="muted" style="margin:.75rem 0 0;padding-left:1.1rem;line-height:1.7">
+      <li>Include your order ID for payment issues.</li>
+      <li>Birth-detail corrections can be updated in your profile.</li>
+      <li>Reports are interpretive guidance, not professional advice.</li>
+    </ul>
+  </div>
+</div></section>""",
+    )
+    (OUT / "contact.html").write_text(contact)
 
     (OUT / ".htaccess").write_text(
         f"""DirectoryIndex index.html
@@ -481,6 +544,7 @@ def main() -> None:
   RewriteRule ^membership/?$ /membership.html [L]
   RewriteRule ^login/?$ /login.html [L]
   RewriteRule ^legal/?$ /legal.html [L]
+  RewriteRule ^contact/?$ /contact.html [L]
   RewriteRule ^services/([^/]+)/?$ /services/$1.html [L]
 </IfModule>
 """

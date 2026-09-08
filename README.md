@@ -2,103 +2,76 @@
 
 **Know Yourself. Understand Your Path.**
 
-Astrology SaaS platform for personalized Vedic reports, compatibility insights, and self-discovery — built for **jyotishkundali.com**.
+Production-ready astrology / self-discovery SaaS for [jyotishkundali.com](https://jyotishkundali.com).
 
 ## Stack
 
-- Next.js 16 (App Router) + TypeScript + Tailwind CSS
+- Next.js (App Router) + TypeScript + Tailwind CSS
 - PostgreSQL + Prisma 7
-- Local JWT auth (Supabase Auth ready when configured)
-- Razorpay payments (mock providers in development)
-- Mock astrology, AI, and storage providers for local dev
-- Vitest
+- Razorpay (payments + subscriptions architecture)
+- Provider abstractions: Astrology, AI, Storage, Notifications
+- Mock providers when credentials are missing (`USE_MOCK_PROVIDERS=true`)
 
-## Requirements
-
-- Node.js 20+
-- PostgreSQL 14+
-
-## Setup
+## Quick start
 
 ```bash
 cp .env.example .env
-# Set DATABASE_URL and AUTH_SECRET
-
+# set DATABASE_URL, AUTH_SECRET
 npm install
-npx prisma migrate dev
+npx prisma db push
 npm run db:seed
 npm run dev
 ```
 
 Open http://localhost:3000
 
-### Seed accounts
+### Demo accounts (seed)
 
 | Role | Email | Password |
 |------|-------|----------|
 | Super Admin | admin@jyotishkundali.com | JyotishAdmin!234 |
-| Customer | customer@example.com | Customer!234 |
+| Customer | demo@jyotishkundali.com | DemoUser!234 |
 
-Astrology report products are seeded at ₹499. Membership product at ₹2,999/year.
+## Pricing
 
-## Architecture
+- Individual reports: **₹499**
+- Complete Self Discovery Membership: **₹2,999 / year**
+- Catalogue: **78** seeded report products across 8 categories
 
+## Architecture highlights
+
+- Automatic account creation after successful payment (server-verified Razorpay webhooks)
+- Report job queue states: QUEUED → … → COMPLETED / FAILED
+- Secure PDF download via signed URLs (storage provider)
+- AstrologyProvider / AIProvider interfaces — never invent planetary positions in UI
+- Face self-discovery presented as interpretive / entertainment only
+- RBAC: CUSTOMER, EXPERT, ADMIN, SUPER_ADMIN
+
+## Hostinger public site
+
+Shared hosting serves a static catalogue mirror:
+
+```bash
+bash scripts/deploy-jyotishkundali.sh   # requires SSH_PASS
 ```
-src/
-  app/           # Marketing site + Dashboard + Admin + API routes
-  components/    # UI + site components
-  services/      # Order + report job queue
-  providers/     # Astrology / AI / payment / storage adapters
-  lib/           # Prisma, auth, RBAC, utils
-  config/        # Brand + pricing
-prisma/          # Schema + migrations + seed
-```
 
-### Provider layer
-
-- `MockAstrologyProvider` — interpretive mock charts (clearly labeled, not real ephemeris)
-- `MockAiProvider` — reflective AI responses for development
-- `Razorpay` — payment orders + webhook stub
-- `MockStorageProvider` — PDF upload placeholder
-
-Set `USE_MOCK_PROVIDERS=true` or `JYOTISH_MODE=development` to force mock mode.
-
-## Customer site
-
-- `/` — Homepage with featured services
-- `/services` — Report catalogue (₹499 each)
-- `/services/[slug]` — Product page with birth details form
-- `/membership` — Annual membership (₹2,999/year)
-- `/dashboard` — Customer hub (reports, horoscope, AI)
-- `/login` / `/signup` — Authentication
-
-## Admin
-
-`/admin` — Dashboard with KPIs
-
-- Customers, Orders, Products, Reports, Subscriptions, Settings
-
-## Disclaimer
-
-All astrology and face-reading content is for **interpretive and entertainment purposes**. Mock providers never invent real planetary positions as factual data.
+Full dynamic app (checkout, dashboard, admin) deploys to Vercel with production env vars.
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Development server |
-| `npm run build` | Production build |
-| `npm run db:seed` | Seed categories, products, admin user |
-| `npm run db:studio` | Prisma Studio |
+| Script | Purpose |
+|--------|---------|
+| `npm run db:push` | Sync Prisma schema |
+| `npm run db:seed` | Seed categories, 78 products, membership, users |
+| `npm run build` | Prisma generate + Next build |
+| `npm test` | Vitest |
+| `scripts/build-jyotishkundali-static.py` | Static Hostinger build |
+| `scripts/deploy-jyotishkundali.sh` | Deploy static site to domain |
 
-## Environment variables
+## Disclaimer
 
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string |
-| `AUTH_SECRET` | JWT signing secret |
-| `RAZORPAY_KEY_ID` | Razorpay key (optional in dev) |
-| `RAZORPAY_KEY_SECRET` | Razorpay secret |
-| `RAZORPAY_WEBHOOK_SECRET` | Webhook verification |
-| `USE_MOCK_PROVIDERS` | Force mock providers |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL |
+Astrology and face-reading content is interpretive and for personal reflection / entertainment. It is not a guarantee of future events and is not medical, legal, or financial advice.
+
+## Environment
+
+See `.env.example` for DATABASE_URL, Razorpay, Astrology API, AI, object storage, email, WhatsApp, and Google OAuth placeholders.

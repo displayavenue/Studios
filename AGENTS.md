@@ -8,17 +8,30 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## Project
+
+**JyotishKundali** astrology / self-discovery SaaS (not VELORA ecommerce).
+
 ## Deployment (jyotishkundali.com)
 
-After storefront or static-site changes, **always deploy yourself** — do not ask the user to deploy.
+After public-site or static-site changes, **always deploy yourself** — do not ask the user to deploy.
 
-1. Ensure PostgreSQL is running and products are seeded (`npm run db:seed` if needed).
-2. Build and deploy the static Hostinger storefront:
+1. Build and deploy the static Hostinger catalogue:
    ```bash
    bash scripts/deploy-jyotishkundali.sh
    ```
-   Requires `SSH_PASS` in the environment (injected in Cloud Agent). The script builds via `scripts/build-static-storefront.py` and uploads to `domains/jyotishkundali.com/public_html`.
-3. Verify live: `curl -sL https://jyotishkundali.com/ | grep VELORA` and spot-check a product page for `buybox` / `pdp-mobile-image`.
-4. Capture mobile screenshots of the live domain when validating layout changes.
+   Requires `SSH_PASS`. Builds via `scripts/build-jyotishkundali-static.py` and uploads to `domains/jyotishkundali.com/public_html`.
+2. Verify live:
+   ```bash
+   curl -sL https://jyotishkundali.com/ | grep JyotishKundali
+   curl -sL https://jyotishkundali.com/ | grep -c VELORA   # must be 0
+   ```
+3. Capture mobile screenshots of the live domain when validating layout changes.
 
-The Next.js app (admin, checkout API, etc.) runs separately on Vercel; the public domain serves the static storefront from Hostinger.
+The Next.js app (dashboard, checkout API, admin) deploys to Vercel; the public domain currently serves the static catalogue from Hostinger.
+
+## Content rules
+
+- Do not fabricate testimonials, user counts, or planetary positions.
+- Face analysis is entertainment / self-reflection only.
+- Mock providers must be clearly labeled in development.

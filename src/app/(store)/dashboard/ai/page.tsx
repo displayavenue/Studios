@@ -1,15 +1,31 @@
-export default function DashboardAiPage() {
+import Link from "next/link";
+import { PageHero, SectionShell, Surface, GoldCtaLink } from "@/components/site/page-chrome";
+
+export default function AiPage() {
   return (
-    <div className="container-jk py-10">
-      <h1 className="font-display text-2xl font-semibold">AI Assistant</h1>
-      <div className="site-section mt-8">
-        <p className="text-[var(--jk-muted)]">
-          Ask reflective questions about your chart themes. AI responses are interpretive — not factual predictions.
-        </p>
-        <div className="mt-6 rounded-lg border border-dashed border-[var(--jk-line)] p-8 text-center text-sm text-[var(--jk-muted)]">
-          AI chat coming soon. Mock provider available in development mode.
-        </div>
-      </div>
+    <div>
+      <PageHero
+        eyebrow="Ask anything"
+        title="AI astrology chat"
+        subtitle="Conversational guidance grounded in your chart context. Available for members and report owners."
+      />
+      <SectionShell muted>
+        <Surface className="mx-auto max-w-2xl">
+          <div className="rounded-2xl border border-[var(--jk-line)] bg-[#f8f9fb] p-5 text-sm text-[var(--jk-muted)]">
+            Chat requires membership or a purchased report. Wire your LLM provider in the environment, then open this
+            console from a logged-in account.
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <GoldCtaLink href="/membership">Get membership</GoldCtaLink>
+            <Link
+              href="/services"
+              className="inline-flex h-11 items-center justify-center rounded-full border border-[var(--jk-line)] bg-white px-7 text-sm font-semibold text-[var(--jk-navy)] transition hover:border-[var(--jk-gold)] hover:text-[var(--jk-gold-dark)]"
+            >
+              Buy a report
+            </Link>
+          </div>
+        </Surface>
+      </SectionShell>
     </div>
   );
 }

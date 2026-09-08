@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { BirthDetailsForm } from "@/components/site/birth-details-form";
+import { PageHero, SectionShell, Surface } from "@/components/site/page-chrome";
 import { PRICING } from "@/config/site";
 import { formatINR, toNumber } from "@/lib/utils";
 
@@ -11,59 +13,99 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const product = await prisma.product.findUnique({ where: { slug } });
-  if (!product) return { title: "Service not found" };
-  return {
-    title: product.seoTitle || product.name,
-    description: product.seoDescription || product.shortDescription,
-  };
+  try {
+    const product = await prisma.product.findUnique({ where: { slug } });
+    if (!product) return { title: "Service not found" };
+    return {
+      title: product.seoTitle || product.name,
+      description: product.seoDescription || product.shortDescription,
+    };
+  } catch {
+    return { title: "Service" };
+  }
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const product = await prisma.product.findFirst({
-    where: { slug, status: "PUBLISHED", isActive: true },
-    include: { category: true },
-  });
+  let product = null;
+  try {
+    product = await prisma.product.findFirst({
+      where: { slug, status: "PUBLISHED", isActive: true },
+      include: { category: true },
+    });
+  } catch {
+    notFound();
+  }
 
   if (!product) notFound();
 
   const price = toNumber(product.price) || PRICING.reportPrice;
+  const included = Array.isArray(product.whatsIncluded)
+    ? (product.whatsIncluded as string[])
+    : ["Digital PDF report", "Dashboard access", "Interpretive guidance with clear disclaimers"];
 
   return (
-    <div className="container-jk py-10">
-      <nav className="text-sm text-[var(--jk-muted)]">
-        <Link href="/services" className="hover:text-[var(--jk-purple)]">Services</Link>
-        {product.category && (
-          <>
-            <span className="mx-2">/</span>
-            <Link href={`/services?category=${product.category.slug}`} className="hover:text-[var(--jk-purple)]">
-              {product.category.name}
-            </Link>
-          </>
-        )}
-      </nav>
+    <div>
+      <PageHero
+        eyebrow={product.category?.name || "Astrology Report"}
+        title={product.name}
+        subtitle={product.shortDescription || undefined}
+      >
+        <p className="inline-flex items-center rounded-full bg-[var(--jk-gold)] px-4 py-1.5 text-sm font-bold text-[var(--jk-navy)]">
+          {formatINR(price)}
+        </p>
+      </PageHero>
 
-      <div className="mt-6 grid gap-10 lg:grid-cols-2">
-        <div>
-          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--jk-navy)]/5">
-            <span className="font-display text-3xl text-[var(--jk-gold)]">☽</span>
+      <SectionShell muted>
+        <nav className="mb-6 text-sm text-[var(--jk-muted)]">
+          <Link href="/services" className="hover:text-[var(--jk-gold-dark)]">Services</Link>
+          {product.category && (
+            <>
+              <span className="mx-2">/</span>
+              <Link href={`/services?category=${product.category.slug}`} className="hover:text-[var(--jk-gold-dark)]">
+                {product.category.name}
+              </Link>
+            </>
+          )}
+        </nav>
+
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="space-y-6">
+            <Surface>
+              <h2 className="font-display text-2xl font-semibold">About this report</h2>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--jk-muted)]">
+                {product.description || product.shortDescription}
+              </p>
+              {product.deliveryNote && (
+                <p className="mt-4 text-sm text-[var(--jk-ink)]">{product.deliveryNote}</p>
+              )}
+            </Surface>
+
+            <Surface>
+              <h2 className="font-display text-xl font-semibold">What&apos;s included</h2>
+              <ul className="mt-4 space-y-3">
+                {included.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-[var(--jk-ink)]">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--jk-gold-dark)]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Surface>
+
+            <Surface className="border-[var(--jk-gold)]/30 bg-[var(--jk-gold)]/5">
+              <p className="text-sm leading-relaxed text-[var(--jk-muted)]">
+                Astrology readings are interpretive and intended for personal reflection and entertainment.
+                They should not be treated as certainty or professional advice.
+              </p>
+            </Surface>
           </div>
-          <h1 className="font-display text-3xl font-semibold sm:text-4xl">{product.name}</h1>
-          <p className="mt-2 text-lg font-semibold text-[var(--jk-navy)]">{formatINR(price)}</p>
-          <p className="mt-4 text-[var(--jk-muted)]">{product.shortDescription}</p>
-          {product.description && (
-            <div className="prose prose-sm mt-6 max-w-none text-[var(--jk-ink-soft)]">
-              <p>{product.description}</p>
-            </div>
-          )}
-          {product.deliveryNote && (
-            <p className="mt-4 text-sm text-[var(--jk-muted)]">{product.deliveryNote}</p>
-          )}
-        </div>
 
-        <BirthDetailsForm productSlug={product.slug} productName={product.name} price={price} />
-      </div>
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <BirthDetailsForm productSlug={product.slug} productName={product.name} price={price} />
+          </div>
+        </div>
+      </SectionShell>
     </div>
   );
 }
