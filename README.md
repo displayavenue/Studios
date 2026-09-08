@@ -88,6 +88,8 @@ Product pages open **Razorpay Checkout.js** after birth details. Flow:
 Status: `GET /api/payments/razorpay/status`  
 Webhook: `POST /api/payments/razorpay/webhook` (requires `RAZORPAY_WEBHOOK_SECRET`)
 
+### Deploy from CLI
+
 ```bash
 export VERCEL_TOKEN=…   # https://vercel.com/account/tokens
 npm run deploy:vercel           # production
