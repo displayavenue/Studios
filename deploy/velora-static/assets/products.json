@@ -1,0 +1,202 @@
+[
+  {
+    "slug": "smart-led-desk-lamp-with-usb-charging",
+    "title": "Smart LED Desk Lamp with USB Charging",
+    "price": 2229.0,
+    "compare": 2786.0,
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800",
+    "desc": "Adjustable LED desk lamp with 3 brightness levels and USB charging port. Verified supplier demo data.",
+    "brand": "Velora Basics",
+    "stock": 120
+  },
+  {
+    "slug": "stainless-steel-vacuum-flask-750ml",
+    "title": "Stainless Steel Vacuum Flask 750ml",
+    "price": 1609.0,
+    "compare": 2011.0,
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800",
+    "desc": "Double-wall insulated stainless steel flask. Keeps drinks hot or cold. Demo product for development.",
+    "brand": "HomeCraft",
+    "stock": 200
+  },
+  {
+    "slug": "resistance-band-set-with-door-anchor",
+    "title": "Resistance Band Set with Door Anchor",
+    "price": 1549.0,
+    "compare": 1936.0,
+    "image": "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=800",
+    "desc": "5-band resistance set with handles and door anchor. Demo catalog item.",
+    "brand": "FitNest",
+    "stock": 85
+  },
+  {
+    "slug": "compact-travel-organizer-pack",
+    "title": "Compact Travel Organizer Pack",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800",
+    "desc": "Packing cubes set for organized travel. Development demo product.",
+    "brand": "PackLite",
+    "stock": 150
+  },
+  {
+    "slug": "car-phone-mount-magnetic-holder",
+    "title": "Car Phone Mount Magnetic Holder",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800",
+    "desc": "Magnetic car phone mount for dashboard and air vent. Demo item.",
+    "brand": "DriveSafe",
+    "stock": 300
+  },
+  {
+    "slug": "facial-cleansing-brush-set",
+    "title": "Facial Cleansing Brush Set",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800",
+    "desc": "Soft silicone facial cleansing brush. Demo product \u2014 no medical claims.",
+    "brand": "GlowKit",
+    "stock": 90
+  },
+  {
+    "slug": "ceramic-desk-planter-with-tray",
+    "title": "Ceramic Desk Planter with Tray",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800",
+    "desc": "Minimal ceramic planter for indoor plants. Demo catalog.",
+    "brand": "LivingSpace",
+    "stock": 60
+  },
+  {
+    "slug": "ergonomic-laptop-stand-adjustable",
+    "title": "Ergonomic Laptop Stand Adjustable",
+    "price": 2029.0,
+    "compare": 2536.0,
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800",
+    "desc": "Aluminum adjustable laptop stand. Demo supplier product.",
+    "brand": "WorkEase",
+    "stock": 110
+  },
+  {
+    "slug": "wireless-earbuds-charging-case",
+    "title": "Wireless Earbuds Charging Case",
+    "price": 2309.0,
+    "compare": 2886.0,
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800",
+    "desc": "Bluetooth earbuds with charging case. Demo specs only \u2014 no fabricated certifications.",
+    "brand": "SoundPocket",
+    "stock": 75
+  },
+  {
+    "slug": "pet-grooming-glove-brush",
+    "title": "Pet Grooming Glove Brush",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800",
+    "desc": "Soft pet grooming glove for dogs and cats. Demo product.",
+    "brand": "PawCare",
+    "stock": 180
+  },
+  {
+    "slug": "minimal-leather-card-holder",
+    "title": "Minimal Leather Card Holder",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800",
+    "desc": "Slim card holder. Demo fashion accessory.",
+    "brand": "Forma",
+    "stock": 140
+  },
+  {
+    "slug": "stackable-storage-bin-set-of-3",
+    "title": "Stackable Storage Bin Set of 3",
+    "price": 1739.0,
+    "compare": 2174.0,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+    "desc": "Clear stackable storage bins. Demo home organization product.",
+    "brand": "OrganizeIt",
+    "stock": 95
+  },
+  {
+    "slug": "everyday-crossbody-sling-bag",
+    "title": "Everyday Crossbody Sling Bag",
+    "price": 1759.0,
+    "compare": 2199.0,
+    "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800",
+    "desc": "Water-resistant sling bag for daily carry. Demo item.",
+    "brand": "CarryDay",
+    "stock": 70
+  },
+  {
+    "slug": "portable-mini-fan-rechargeable",
+    "title": "Portable Mini Fan Rechargeable",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1707227155253-27c34f35457b?w=800",
+    "desc": "USB-C rechargeable mini fan. Demo trending product.",
+    "brand": "CoolBreeze",
+    "stock": 220
+  },
+  {
+    "slug": "smart-digital-kitchen-scale",
+    "title": "Smart Digital Kitchen Scale",
+    "price": 1639.0,
+    "compare": 2049.0,
+    "image": "https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?w=800",
+    "desc": "Precision kitchen scale with tare function. Demo gadget.",
+    "brand": "MeasurePro",
+    "stock": 130
+  },
+  {
+    "slug": "non-stick-silicone-spatula-set",
+    "title": "Non-Stick Silicone Spatula Set",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800",
+    "desc": "Heat-resistant silicone spatula set of 4. Demo kitchen product.",
+    "brand": "CookEase",
+    "stock": 250
+  },
+  {
+    "slug": "yoga-mat-non-slip-6mm",
+    "title": "Yoga Mat Non-Slip 6mm",
+    "price": 1809.0,
+    "compare": 2261.0,
+    "image": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800",
+    "desc": "Non-slip yoga mat with carrying strap. Demo fitness product.",
+    "brand": "FlexMat",
+    "stock": 100
+  },
+  {
+    "slug": "braided-usb-c-fast-charge-cable-2m",
+    "title": "Braided USB-C Fast Charge Cable 2m",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=800",
+    "desc": "Durable braided USB-C cable. Demo electronics accessory.",
+    "brand": "ChargeLink",
+    "stock": 400
+  },
+  {
+    "slug": "hair-dryer-diffuser-attachment",
+    "title": "Hair Dryer Diffuser Attachment",
+    "price": 1499.0,
+    "compare": 1874.0,
+    "image": "https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800",
+    "desc": "Universal diffuser attachment. Demo beauty accessory \u2014 no performance guarantees.",
+    "brand": "StyleAir",
+    "stock": 80
+  },
+  {
+    "slug": "scented-soy-candle-gift-set",
+    "title": "Scented Soy Candle Gift Set",
+    "price": 1709.0,
+    "compare": 2136.0,
+    "image": "https://images.unsplash.com/photo-1602602670342-5c4c4c0c8c8c?w=800",
+    "desc": "Set of 3 soy wax candles. Demo lifestyle product.",
+    "brand": "Ambiance",
+    "stock": 55
+  }
+]

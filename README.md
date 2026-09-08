@@ -1,39 +1,77 @@
-# DisplayAvenue Studios
+# JyotishKundali
 
-Premium website for **DisplayAvenue Studios** — India's Premium Visual Production Studio.
+**Know Yourself. Understand Your Path.**
+
+Production-ready astrology / self-discovery SaaS for [jyotishkundali.com](https://jyotishkundali.com).
 
 ## Stack
 
-- React 19 + TypeScript + Vite + React Router
-- Hostinger PHP CMS at `/admin` (edits JSON in `/content`)
-- Design system: Cormorant Garamond + Poppins, black / gold / white
+- Next.js (App Router) + TypeScript + Tailwind CSS
+- PostgreSQL + Prisma 7
+- Razorpay (payments + subscriptions architecture)
+- Provider abstractions: Astrology, AI, Storage, Notifications
+- Mock providers when credentials are missing (`USE_MOCK_PROVIDERS=true`)
 
-## Develop
+## Quick start
 
 ```bash
+cp .env.example .env
+# set DATABASE_URL, AUTH_SECRET
 npm install
+npx prisma db push
+npm run db:seed
 npm run dev
 ```
 
-## Build
+Open http://localhost:3000
+
+### Demo accounts (seed)
+
+| Role | Email | Password |
+|------|-------|----------|
+| Super Admin | admin@jyotishkundali.com | JyotishAdmin!234 |
+| Customer | demo@jyotishkundali.com | DemoUser!234 |
+
+## Pricing
+
+- Individual reports: **₹499**
+- Complete Self Discovery Membership: **₹2,999 / year**
+- Catalogue: **78** seeded report products across 8 categories
+
+## Architecture highlights
+
+- Automatic account creation after successful payment (server-verified Razorpay webhooks)
+- Report job queue states: QUEUED → … → COMPLETED / FAILED
+- Secure PDF download via signed URLs (storage provider)
+- AstrologyProvider / AIProvider interfaces — never invent planetary positions in UI
+- Face self-discovery presented as interpretive / entertainment only
+- RBAC: CUSTOMER, EXPERT, ADMIN, SUPER_ADMIN
+
+## Hostinger public site
+
+Shared hosting serves a static catalogue mirror:
 
 ```bash
-npm run build
-npm run preview
+bash scripts/deploy-jyotishkundali.sh   # requires SSH_PASS
 ```
 
-## CMS (edit the live site)
+Full dynamic app (checkout, dashboard, admin) deploys to Vercel with production env vars.
 
-1. Deploy the build to Hostinger `public_html`
-2. Open `https://displayavenuestudios.com/admin/`
-3. Login — default password in `admin/config.php`: `DisplayAdmin@2026` (**change it**)
-4. Edit company info, services, packages, portfolio, blogs, FAQs, team, etc.
-5. Click **Save changes** — refresh the website to see updates
+## Scripts
 
-Ensure the `content/` folder is writable (chmod 755/775).
+| Script | Purpose |
+|--------|---------|
+| `npm run db:push` | Sync Prisma schema |
+| `npm run db:seed` | Seed categories, 78 products, membership, users |
+| `npm run build` | Prisma generate + Next build |
+| `npm test` | Vitest |
+| `scripts/build-jyotishkundali-static.py` | Static Hostinger build |
+| `scripts/deploy-jyotishkundali.sh` | Deploy static site to domain |
 
-## Pages
+## Disclaimer
 
-Home, About, Services (+ detail), Packages, Pricing, Portfolio (+ detail), Industries, Locations (+ detail), Blog, FAQs, Book Now, Contact.
+Astrology and face-reading content is interpretive and for personal reflection / entertainment. It is not a guarantee of future events and is not medical, legal, or financial advice.
 
-Company: [displayavenuestudios.com](https://displayavenuestudios.com) · Mumbai · Pan India
+## Environment
+
+See `.env.example` for DATABASE_URL, Razorpay, Astrology API, AI, object storage, email, WhatsApp, and Google OAuth placeholders.
