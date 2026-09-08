@@ -14,7 +14,7 @@ export function degToDms(deg: number): { d: number; m: number; s: number } {
 
 export function formatDms(deg: number): string {
   const { d, m, s } = degToDms(deg);
-  return `${d}°${String(m).padStart(2, "0")}'${s.toFixed(0).padStart(2, "0")}"`;
+  return `${d}deg ${String(m).padStart(2, "0")}'${s.toFixed(0).padStart(2, "0")}"`;
 }
 
 export function julianDay(date: Date): number {
