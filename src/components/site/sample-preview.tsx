@@ -44,9 +44,9 @@ export function SamplePreview({ productName, productSlug }: { productName: strin
           <ul className="relative mt-3 space-y-1.5 text-sm text-[var(--jk-muted)]">
             <li>• Cover with birth-detail placeholders</li>
             <li>• Lahiri sidereal chart snapshot (real astronomy-engine positions)</li>
+            <li>• Life story: Prologue, Past, Present, Future, Epilogue</li>
             <li>• Lagna, Moon nakshatra, planetary table, Vimshottari dasha</li>
             <li>• Product-specific chapters from calculated placements</li>
-            <li>• Classical dosha / matching flags where the template applies</li>
             <li>• Clear entertainment disclaimer — not predictive certainty</li>
           </ul>
           <p className="relative mt-3 text-xs text-amber-800">

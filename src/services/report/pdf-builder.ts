@@ -162,13 +162,37 @@ export async function buildReportPdf(input: ReportPdfInput): Promise<Uint8Array>
   write("Guidance for reflection", 14, true, GOLD, 8);
   write(input.guidance, 11, false, INK, 14);
 
-  // ── Product chapters ───────────────────────────────────
+  // ── Life story + product chapters ──────────────────────
   if (input.chapters.length) {
-    write("Report chapters", 14, true, GOLD, 8);
-    input.chapters.forEach((ch, i) => {
-      write(`${String(i + 1).padStart(2, "0")}. ${ch.title}`, 12, true, INK, 4);
-      write(ch.body, 11, false, MUTED, 10);
-    });
+    const story = input.chapters.filter((ch) =>
+      /prologue|path behind|chapter you are living|road ahead|epilogue|past|present|future/i.test(
+        ch.title,
+      ),
+    );
+    const rest = input.chapters.filter((ch) => !story.includes(ch));
+
+    if (story.length) {
+      write("Your life story — Past, Present, Future", 16, true, GOLD, 10);
+      write(
+        "A narrative reading of your chart timeline. Symbolic climate, not fixed fate.",
+        10,
+        false,
+        MUTED,
+        12,
+      );
+      story.forEach((ch, i) => {
+        write(`${String(i + 1).padStart(2, "0")}. ${ch.title}`, 13, true, INK, 6);
+        write(ch.body, 11, false, MUTED, 12);
+      });
+    }
+
+    if (rest.length) {
+      write("Report chapters", 14, true, GOLD, 8);
+      rest.forEach((ch, i) => {
+        write(`${String(i + 1).padStart(2, "0")}. ${ch.title}`, 12, true, INK, 4);
+        write(ch.body, 11, false, MUTED, 10);
+      });
+    }
   }
 
   // ── What you get / who for / outcomes ──────────────────

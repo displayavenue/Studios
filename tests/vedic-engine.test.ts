@@ -7,6 +7,8 @@ import { longitudeToNakshatra, longitudeToSign } from "@/lib/vedic/placements";
 import { vimshottariMahadashas } from "@/lib/vedic/dasha";
 import { computeSiderealLongitudes, computeTropicalLongitudes } from "@/lib/vedic/ephemeris";
 
+import { buildLifeStory } from "@/lib/vedic/storytelling";
+
 describe("Vedic calculation engine", () => {
   it("uses Lahiri ayanamsa near the J2000 reference (~23.85°)", () => {
     const a = lahiriAyanamsa(new Date("2000-01-01T12:00:00Z"));
@@ -75,5 +77,26 @@ describe("Vedic calculation engine", () => {
     const sid = computeSiderealLongitudes(new Date("2000-06-01T00:00:00Z"));
     const sep = Math.abs(((sid.Ketu - sid.Rahu + 360) % 360) - 180);
     expect(sep).toBeLessThan(0.001);
+  });
+
+  it("builds a past / present / future life story", () => {
+    const chart = calculateVedicChart({
+      name: "Story Seeker",
+      dob: "1990-08-15",
+      birthTime: "10:30",
+      placeName: "Mumbai, India",
+      lat: 19.076,
+      lng: 72.8777,
+      timezone: "Asia/Kolkata",
+    });
+    const story = buildLifeStory(chart, "janam-kundali");
+    expect(story.length).toBe(5);
+    expect(story[0].title.toLowerCase()).toContain("prologue");
+    expect(story[1].title.toLowerCase()).toMatch(/past|behind/);
+    expect(story[2].title.toLowerCase()).toMatch(/present|living/);
+    expect(story[3].title.toLowerCase()).toMatch(/future|ahead|road/);
+    expect(story[1].body.length).toBeGreaterThan(200);
+    expect(story[2].body.length).toBeGreaterThan(200);
+    expect(story[3].body.length).toBeGreaterThan(200);
   });
 });
