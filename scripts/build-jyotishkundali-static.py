@@ -13,6 +13,8 @@ from pathlib import Path
 OUT = Path("/workspace/deploy/jyotishkundali-static")
 BUILD_VERSION = datetime.now().strftime("%Y%m%d%H%M")
 SEED = Path("/workspace/prisma/seed-data.ts")
+# Live checkout / dashboard run on Vercel until DNS cutover
+APP_BASE = "https://jyotishkundali.vercel.app"
 
 
 def parse_products() -> list[dict]:
@@ -448,8 +450,8 @@ def main() -> None:
   <div class="buybox surface">
     <div class="price-big">₹{p['price']}</div>
     <p class="muted" style="font-size:.85rem">One-time payment · Digital delivery</p>
-    <a class="btn gold" href="/login.html">Get My Report — ₹{p['price']}</a>
-    <p class="disclaimer">After payment, your JyotishKundali account is created automatically and your report is prepared.</p>
+    <a class="btn gold" href="{APP_BASE}/services/{p['slug']}">Get My Report — ₹{p['price']}</a>
+    <p class="disclaimer">Secure checkout opens on the JyotishKundali app. Your account is created automatically after payment.</p>
   </div>
 </div></section>""",
         )
@@ -470,7 +472,7 @@ def main() -> None:
     <div class="premium-badge"><span aria-hidden="true">👑</span><span class="tag">Most Popular</span></div>
     <p style="font-size:2rem;font-weight:600;color:var(--gold);margin:0">₹2,999<span style="font-size:1rem;font-weight:400;color:rgba(255,255,255,.6)">/year</span></p>
     <ul class="premium-features">{membership_list}</ul>
-    <a class="btn gold" style="margin-top:1.5rem" href="/login.html">Get Premium for ₹2,999/year →</a>
+    <a class="btn gold" style="margin-top:1.5rem" href="{APP_BASE}/membership">Get Premium for ₹2,999/year →</a>
     <p class="disclaimer" style="color:rgba(255,255,255,.55)">Membership benefits activate after payment verification.</p>
   </div>
 </div></section>""",
@@ -485,7 +487,8 @@ def main() -> None:
     <p style="font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);margin:0">JyotishKundali</p>
     <h2 class="display" style="font-size:1.75rem;margin:.35rem 0 0">Welcome back</h2>
     <p class="muted" style="margin-top:.5rem">Full account login runs on the JyotishKundali app. This static mirror showcases the public catalogue.</p>
-    <a class="btn gold" style="width:100%;margin-top:1.25rem" href="/services.html">Browse services</a>
+    <a class="btn gold" style="width:100%;margin-top:1.25rem" href="{APP_BASE}/login">Sign in on app →</a>
+    <a class="btn" style="width:100%;margin-top:.75rem;display:inline-flex;justify-content:center" href="/services.html">Browse services</a>
   </div>
 </div></section>""",
     )

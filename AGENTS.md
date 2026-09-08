@@ -40,7 +40,14 @@ bash scripts/deploy-vercel.sh          # production
 
 Set production env in the Vercel project: `DATABASE_URL`, `AUTH_SECRET`, `NEXT_PUBLIC_SITE_URL`, plus payment/provider keys when leaving mock mode. Region is `bom1` (Mumbai) via `vercel.json`. Health check: `/api/health`.
 
-The public apex currently serves the Hostinger static catalogue; point `app.jyotishkundali.com` (or the apex later) at Vercel when enabling live checkout.
+### Domain cutover (static catalogue ↔ app)
+
+- **Apex today:** Hostinger static catalogue at `https://jyotishkundali.com` (browse/SEO).
+- **App today:** Vercel at `https://jyotishkundali.vercel.app` (checkout, dashboard, PDF APIs).
+- Static “Get My Report” / login CTAs should deep-link to the Vercel app product or login URLs until DNS cutover.
+- When ready for live checkout on the brand domain: create `app.jyotishkundali.com` (CNAME → Vercel) or move the apex to Vercel and keep a static marketing mirror if desired.
+- Keep `NEXT_PUBLIC_SITE_URL` aligned with the public app origin used in emails and PDF download links.
+- Storage: default filesystem via `/api/storage/pdf`; set `STORAGE_PROVIDER=s3` (+ bucket keys) for production object storage. Email: set `RESEND_API_KEY` + `EMAIL_FROM` for real receipts.
 
 ## Content rules
 
