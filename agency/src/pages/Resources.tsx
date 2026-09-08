@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { PreferredSources } from "../components/PreferredSources";
 import {
   resourceTypes,
   resourceCategories,
@@ -49,6 +50,7 @@ export function Resources() {
                   Contact Our Team
                 </Link>
               </div>
+              <PreferredSources theme="light" className="preferred-sources--resources" />
             </aside>
 
             <div>

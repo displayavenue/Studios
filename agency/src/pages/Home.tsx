@@ -14,6 +14,7 @@ import {
   RotatingKeywords,
   WordReveal,
 } from "../components/motion/MotionBits";
+import { PreferredSources } from "../components/PreferredSources";
 import "./Home.css";
 
 const promises = [
@@ -301,6 +302,9 @@ export function Home() {
               →
             </span>
           </Link>
+          <div className="reveal reveal-delay-4" style={{ marginTop: "1.25rem" }}>
+            <PreferredSources theme="dark" className="preferred-sources--home" />
+          </div>
         </div>
       </section>
 

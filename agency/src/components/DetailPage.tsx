@@ -9,6 +9,7 @@ import {
   BreadcrumbSchema,
   ArticleSchema,
 } from "./SEO";
+import { PreferredSources } from "./PreferredSources";
 import "./DetailPage.css";
 
 function pathFor(page: DetailPageContent): string {
@@ -522,6 +523,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
               <span className="link-arrow">Continue →</span>
             </Link>
           </div>
+          <PreferredSources theme="light" className="preferred-sources--resources" />
           <div className="detail-bottom-cta">
             <div>
               <h3>

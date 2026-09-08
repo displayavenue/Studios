@@ -42,6 +42,7 @@ const cases = readJson("cases.json");
 const projects = readJson("projects.json");
 const resources = readJson("resources.json");
 const combos = readJson("combos.json");
+const blog = readJson("blog.json");
 
 const staticPages = [
   ["/", "1.0", "weekly"],
@@ -60,6 +61,7 @@ const staticPages = [
   ["/case-studies", "0.8", "weekly"],
   ["/portfolio", "0.8", "weekly"],
   ["/resources", "0.8", "weekly"],
+  ["/blog", "0.85", "daily"],
   ["/awards", "0.75", "monthly"],
   ["/certifications", "0.75", "monthly"],
   ["/why-displayavenue", "0.7", "monthly"],
@@ -100,6 +102,17 @@ for (const item of items(combos)) {
       path: `/industries/${item.industrySlug}/${item.serviceSlug}`,
       priority: "0.7",
       changefreq: "monthly",
+    });
+  }
+}
+
+const blogPosts = Array.isArray(blog?.posts) ? blog.posts : [];
+for (const post of blogPosts) {
+  if (post?.slug) {
+    urls.push({
+      path: `/blog/${post.slug}`,
+      priority: "0.7",
+      changefreq: "weekly",
     });
   }
 }

@@ -21,6 +21,8 @@ import { SeoChecklist } from "./pages/tools/SeoChecklist";
 import { LocalSeoScore } from "./pages/tools/LocalSeoScore";
 import { CitationDirectory } from "./pages/tools/CitationDirectory";
 import { IndustryReport } from "./pages/tools/IndustryReport";
+import { Blog } from "./pages/Blog";
+import { BlogPost } from "./pages/BlogPost";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -71,6 +73,8 @@ export default function App() {
           <Route path="services" element={<Services />} />
           <Route path="services/:slug" element={<ServiceDetail />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:slug" element={<BlogPost />} />
           <Route path="awards" element={<Awards />} />
           <Route path="certifications" element={<Certifications />} />
           <Route path="privacy" element={<LegalPage type="privacy" />} />
