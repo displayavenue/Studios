@@ -30,10 +30,7 @@ function chapterBody(title: string, chart: ChartData, personHint: string): strin
   return (
     `${clean}. For ${personHint}, this chapter explores symbolic themes linked to ${chart.ascendant || "your"} rising colour, ` +
     `Moon in ${chart.moonSign || "your moon sign"}, and Sun in ${chart.sunSign || "your sun sign"}. ` +
-    `In traditional storytelling, these placements colour how you begin new chapters, how you restore emotionally, and where vitality shows up in daily life.\n\n` +
-    `Reflection prompts: Which part of this theme already feels true in your experience? Where do you want more patience with yourself? ` +
-    `If you are sharing this PDF with family, use it as vocabulary for a calm conversation rather than as a verdict.\n\n` +
-    `Remember: JyotishKundali chapters are interpretive entertainment. Keep medical, legal, financial, and relationship decisions with qualified professionals and your own judgment.`
+    `Use these notes as journaling prompts — not fixed predictions.`
   );
 }
 
@@ -73,31 +70,22 @@ export class MockAstrologyProvider implements AstrologyProvider {
     const titles =
       chapterTitles.length > 0
         ? chapterTitles
-        : [
-            "Chart overview & how to read this report",
-            "Temperament & rising themes",
-            "Emotional rhythm",
-            "Practical reflection prompts",
-          ];
-
-    const personHint = "this chart";
-    const chapters = titles.map((title) => ({
-      title: title.replace(/^\d+\.\s*/, ""),
-      body: chapterBody(title, chart, personHint),
-    }));
+        : ["Chart overview", "Temperament", "Emotional rhythm", "Reflection prompts"];
 
     return {
       sections: {
-        overview: `This ${templateKey.replace(/-/g, " ")} reading is framed around ${chart.ascendant} rising, Moon in ${chart.moonSign}, and Sun in ${chart.sunSign}. It organises life themes into clear chapters so you can revisit what matters without treating astrology as certainty.`,
-        personality: `With Moon in ${chart.moonSign} and rising themes of ${chart.ascendant}, the personality colour of this chart emphasises how you meet the world and what restores you. Notice patterns; do not force a label.`,
-        guidance:
-          "Treat every chapter as reflective entertainment. Pair insights with your lived experience, professional advice where needed, and kindness toward yourself and others.",
+        overview: `Mock ${templateKey} reading — ${chart.ascendant} rising, Moon ${chart.moonSign}.`,
+        personality: `Moon in ${chart.moonSign}; rising ${chart.ascendant}.`,
+        guidance: "Mock guidance for development only.",
       },
-      chapters,
+      chapters: titles.map((title) => ({
+        title: title.replace(/^\d+\.\s*/, ""),
+        body: chapterBody(title, chart, "this chart"),
+      })),
     };
   }
 }
 
-export function createAstrologyProvider(): AstrologyProvider {
+export function createMockAstrologyProvider(): AstrologyProvider {
   return new MockAstrologyProvider();
 }

@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { ReportJobStatus } from "@/generated/prisma/enums";
-import { createAstrologyProvider } from "@/providers/astrology/mock-provider";
+import { createAstrologyProvider } from "@/providers/astrology/vedic-provider";
 import { createStorageProvider } from "@/providers/storage/mock-provider";
 import { notifyUser } from "@/providers/notifications";
 import {
@@ -8,6 +8,7 @@ import {
   parseProductWhatsIncluded,
   type ReportPdfInput,
 } from "@/services/report/pdf-builder";
+import { resolvePlace } from "@/lib/vedic/geo";
 
 /** Stub report job queue — processes shortly after enqueue; replace with BullMQ/SQS later. */
 export async function enqueueReportJob(reportId: string) {
@@ -36,6 +37,12 @@ export async function processReportJob(reportId: string) {
   });
 
   const astrology = createAstrologyProvider();
+  const place = resolvePlace(
+    report.birthProfile.placeName,
+    report.birthProfile.lat != null ? Number(report.birthProfile.lat) : null,
+    report.birthProfile.lng != null ? Number(report.birthProfile.lng) : null,
+    report.birthProfile.timezone,
+  );
   const chart = await astrology.calculateChart({
     name: report.birthProfile.name,
     gender: report.birthProfile.gender ?? undefined,
@@ -43,6 +50,9 @@ export async function processReportJob(reportId: string) {
     birthTime: report.birthProfile.birthTime ?? undefined,
     birthTimeUnknown: report.birthProfile.birthTimeUnknown,
     placeName: report.birthProfile.placeName,
+    lat: place.lat,
+    lng: place.lng,
+    timezone: place.timezone,
   });
 
   await prisma.report.update({
@@ -89,6 +99,9 @@ export async function processReportJob(reportId: string) {
       moonSign: chart.moonSign,
       sunSign: chart.sunSign,
       planets: chart.planets,
+      engineNote: chart.mock
+        ? undefined
+        : "Lahiri sidereal · whole-sign houses · astronomy-engine geocentric positions",
     },
     disclaimer: chart.disclaimer,
   };
@@ -119,8 +132,8 @@ export async function processReportJob(reportId: string) {
     data: {
       jobStatus: ReportJobStatus.COMPLETED,
       content: {
-        chart,
-        interpretation,
+        chart: JSON.parse(JSON.stringify(chart)),
+        interpretation: JSON.parse(JSON.stringify(interpretation)),
         pdfBase64: Buffer.from(pdfBytes).toString("base64"),
         storageKey: key,
         pageHint: packed.chapters.length || undefined,
@@ -169,6 +182,9 @@ export async function buildSampleProductPdf(slug: string) {
     dob: "1990-08-15",
     birthTime: "10:30",
     placeName: "Mumbai, India",
+    lat: 19.076,
+    lng: 72.8777,
+    timezone: "Asia/Kolkata",
   });
   const packed = parseProductWhatsIncluded(product.whatsIncluded);
   const interpretation = await astrology.interpretChart(
@@ -199,6 +215,9 @@ export async function buildSampleProductPdf(slug: string) {
       moonSign: chart.moonSign,
       sunSign: chart.sunSign,
       planets: chart.planets,
+      engineNote: chart.mock
+        ? undefined
+        : "Lahiri sidereal · whole-sign houses · astronomy-engine geocentric positions",
     },
     disclaimer: chart.disclaimer,
     isSample: true,

@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { createAstrologyProvider } from "@/providers/astrology/mock-provider";
+import { createAstrologyProvider } from "@/providers/astrology/vedic-provider";
+import { resolvePlace } from "@/lib/vedic/geo";
 
 export async function GET() {
   const session = await getSession();
@@ -20,6 +21,12 @@ export async function GET() {
     });
   }
 
+  const place = resolvePlace(
+    profile.placeName,
+    profile.lat != null ? Number(profile.lat) : null,
+    profile.lng != null ? Number(profile.lng) : null,
+    profile.timezone,
+  );
   const astrology = createAstrologyProvider();
   const chart = await astrology.calculateChart({
     name: profile.name,
@@ -27,6 +34,9 @@ export async function GET() {
     placeName: profile.placeName,
     birthTime: profile.birthTime ?? undefined,
     birthTimeUnknown: profile.birthTimeUnknown,
+    lat: place.lat,
+    lng: place.lng,
+    timezone: place.timezone,
   });
   const interpretation = await astrology.interpretChart(chart, "daily-horoscope");
   const sign = chart.moonSign || chart.sunSign || "General";
