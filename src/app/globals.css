@@ -11,13 +11,17 @@
   --jk-purple: #8b5cf6;
   --jk-pink: #ec4899;
   --jk-blue: #3b82f6;
-  --jk-ink: #0b1224;
-  --jk-muted: #64748b;
-  --jk-line: rgba(11, 27, 58, 0.1);
+  --jk-ink: #1a1a1a;
+  --jk-muted: #6b7280;
+  --jk-line: rgba(26, 26, 26, 0.1);
   --jk-card: #ffffff;
-  --jk-header: #050814;
-  --background: #f4f5f7;
+  --jk-header: #ffffff;
+  --background: #fffdf6;
   --foreground: var(--jk-ink);
+  /* AstroTalk-inspired marketplace tokens (JyotishKundali branded) */
+  --at-yellow: #f5c518;
+  --at-yellow-ink: #b45309;
+  --at-cream: #fff8e8;
 }
 
 @theme inline {
@@ -189,4 +193,58 @@ a {
 .gold-btn:hover {
   background: var(--jk-gold-soft);
   transform: translateY(-1px);
+}
+
+/* Marketplace (AstroTalk-like) surface */
+.at-home {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(245, 197, 24, 0.22), transparent 55%),
+    var(--background);
+}
+
+.at-hero {
+  background:
+    radial-gradient(ellipse 60% 45% at 70% 30%, rgba(245, 197, 24, 0.28), transparent 50%),
+    radial-gradient(ellipse 40% 35% at 15% 60%, rgba(255, 248, 232, 0.9), transparent 45%),
+    linear-gradient(180deg, #fffdf6 0%, #fff8e8 100%);
+}
+
+.at-card {
+  background: #fff;
+  border: 1px solid var(--jk-line);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(26, 26, 26, 0.04);
+}
+
+.at-cta {
+  background: var(--at-yellow);
+  color: var(--jk-ink);
+  font-weight: 700;
+  border-radius: 999px;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.at-cta:hover {
+  filter: brightness(0.97);
+  transform: translateY(-1px);
+}
+
+.at-ticker {
+  display: inline-block;
+  animation: at-marquee 40s linear infinite;
+}
+
+@keyframes at-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .at-ticker {
+    animation: none;
+  }
 }

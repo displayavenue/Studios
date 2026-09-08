@@ -14,26 +14,67 @@ export const PRICING = {
 export const ASTROLOGY_DISCLAIMER =
   "Astrology and face-reading content on this site is for interpretive and entertainment purposes. Mock or demo calculations are not real planetary positions.";
 
+/** AstroTalk-style marketplace navigation (JyotishKundali branded). */
+export const MARKETPLACE_NAV = [
+  {
+    label: "Consultations",
+    href: "/chat-with-astrologer",
+    children: [
+      { href: "/chat-with-astrologer", label: "Chat with Astrologer" },
+      { href: "/talk-to-astrologer", label: "Call with Astrologer" },
+      { href: "/experts", label: "Browse experts" },
+    ],
+  },
+  {
+    label: "Horoscope",
+    href: "/horoscope",
+    children: [
+      { href: "/horoscope", label: "Daily Horoscope" },
+      { href: "/services?category=daily-astrology", label: "Forecast reports" },
+    ],
+  },
+  {
+    label: "Free Services",
+    href: "/free-kundli",
+    children: [
+      { href: "/free-kundli", label: "Free Kundli" },
+      { href: "/services/guna-milan", label: "Kundali Matching" },
+      { href: "/horoscope", label: "Daily Horoscope" },
+    ],
+  },
+  {
+    label: "Reports",
+    href: "/services",
+    children: [
+      { href: "/services?category=kundali", label: "Kundali PDFs" },
+      { href: "/services?category=marriage", label: "Marriage & Matching" },
+      { href: "/services?category=career", label: "Career" },
+      { href: "/membership", label: "Membership" },
+    ],
+  },
+  { label: "Blog", href: "/blog" },
+] as const;
+
+/** @deprecated Prefer MARKETPLACE_NAV — kept for older imports */
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Astrology" },
-  { href: "/services?category=self-discovery", label: "Self Discovery" },
-  { href: "/services?category=marriage", label: "Matching" },
-  { href: "/services?category=daily-astrology", label: "Horoscopes" },
-  { href: "/stories", label: "Sample Stories" },
+  { href: "/chat-with-astrologer", label: "Chat" },
+  { href: "/talk-to-astrologer", label: "Call" },
+  { href: "/free-kundli", label: "Free Kundli" },
+  { href: "/horoscope", label: "Horoscope" },
+  { href: "/services", label: "Reports" },
   { href: "/blog", label: "Blog" },
 ] as const;
 
 export const MOBILE_NAV = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/dashboard", label: "Reports" },
-  { href: "/dashboard/ai", label: "AI" },
+  { href: "/chat-with-astrologer", label: "Chat" },
+  { href: "/free-kundli", label: "Kundli" },
+  { href: "/services", label: "Reports" },
   { href: "/dashboard", label: "Account" },
 ] as const;
 
 export function useMockProviders() {
-  // Explicit flag wins so production can disable mocks while keeping other env defaults.
   if (process.env.USE_MOCK_PROVIDERS === "false") return false;
   if (process.env.USE_MOCK_PROVIDERS === "true") return true;
   return (

@@ -68,17 +68,17 @@ export function useI18n() {
 export function LanguageToggle() {
   const { lang, setLang } = useI18n();
   return (
-    <div className="inline-flex rounded-full border border-white/20 p-0.5 text-xs">
+    <div className="inline-flex rounded-full border border-[var(--jk-line)] bg-white p-0.5 text-xs">
       <button
         type="button"
-        className={`rounded-full px-2.5 py-1 ${lang === "en" ? "bg-[var(--jk-gold)] text-[var(--jk-navy)]" : "text-white/80"}`}
+        className={`rounded-full px-2.5 py-1 ${lang === "en" ? "bg-[var(--at-yellow)] font-semibold text-[var(--jk-ink)]" : "text-[var(--jk-muted)]"}`}
         onClick={() => setLang("en")}
       >
         EN
       </button>
       <button
         type="button"
-        className={`rounded-full px-2.5 py-1 ${lang === "hi" ? "bg-[var(--jk-gold)] text-[var(--jk-navy)]" : "text-white/80"}`}
+        className={`rounded-full px-2.5 py-1 ${lang === "hi" ? "bg-[var(--at-yellow)] font-semibold text-[var(--jk-ink)]" : "text-[var(--jk-muted)]"}`}
         onClick={() => setLang("hi")}
       >
         हिं
