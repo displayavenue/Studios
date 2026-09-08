@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { FileText, Moon, Sparkles, User } from "lucide-react";
+import { FileText, Moon, Sparkles, User, Users } from "lucide-react";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PageHero, SectionShell, Surface, GoldCtaLink } from "@/components/site/page-chrome";
@@ -16,13 +16,19 @@ export default async function DashboardPage() {
     jobStatus: string;
     product: { name: string; slug: string };
   }> = [];
+  let membershipActive = false;
   try {
-    reports = await prisma.report.findMany({
-      where: { userId: session.id },
-      orderBy: { createdAt: "desc" },
-      take: 5,
-      include: { product: { select: { name: true, slug: true } } },
-    });
+    [reports, membershipActive] = await Promise.all([
+      prisma.report.findMany({
+        where: { userId: session.id },
+        orderBy: { createdAt: "desc" },
+        take: 5,
+        include: { product: { select: { name: true, slug: true } } },
+      }),
+      prisma.subscription
+        .findFirst({ where: { userId: session.id, status: "ACTIVE" } })
+        .then((s) => Boolean(s)),
+    ]);
   } catch {
     reports = [];
   }
@@ -33,6 +39,7 @@ export default async function DashboardPage() {
     { title: "My Reports", href: "/dashboard/reports", description: "View and download purchased reports.", icon: FileText },
     { title: "Daily Horoscope", href: "/dashboard/horoscope", description: "Today's personalized guidance.", icon: Moon },
     { title: "AI Assistant", href: "/dashboard/ai", description: "Ask reflective questions about your chart.", icon: Sparkles },
+    { title: "Family", href: "/dashboard/family", description: "Save profiles for compatibility later.", icon: Users },
     { title: "Profile", href: "/dashboard/profile", description: "Manage birth details and settings.", icon: User },
   ];
 
@@ -42,10 +49,20 @@ export default async function DashboardPage() {
         eyebrow="Dashboard"
         title={`Welcome back, ${name}`}
         subtitle="Your personal astrology hub — reports, guidance, and self-discovery tools."
-      />
+      >
+        {membershipActive ? (
+          <span className="inline-flex rounded-full bg-[var(--jk-gold)] px-3 py-1 text-xs font-semibold text-[var(--jk-navy)]">
+            Premium member
+          </span>
+        ) : (
+          <Link href="/membership" className="inline-flex rounded-full border border-white/30 px-3 py-1 text-xs text-white/85">
+            Unlock Premium — ₹2,999/year
+          </Link>
+        )}
+      </PageHero>
 
       <SectionShell muted>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {cards.map(({ title, href, description, icon: Icon }) => (
             <Link
               key={href}

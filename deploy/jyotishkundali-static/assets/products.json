@@ -1,403 +1,187 @@
 [
   {
-    "name": "Janam Kundali",
+    "name": "Complete Janam Kundali",
     "slug": "janam-kundali",
     "category": "kundali",
-    "desc": "Classic birth chart snapshot for curious self-exploration and reflection.",
+    "desc": "Your full birth-chart PDF: planets, houses, dasha overview, and life-theme chapters.",
     "price": 499,
     "sort": 1
   },
   {
-    "name": "Detailed Kundali",
-    "slug": "detailed-kundali",
+    "name": "Lagna Personality Report",
+    "slug": "lagna-analysis",
     "category": "kundali",
-    "desc": "Expanded chart reading with richer house and planet storytelling.",
+    "desc": "Ascendant-focused temperament, first impressions, and body\u2013mind style themes.",
     "price": 499,
     "sort": 2
   },
   {
-    "name": "Vedic Birth Chart",
-    "slug": "vedic-birth-chart",
+    "name": "Moon & Nakshatra Report",
+    "slug": "nakshatra-analysis",
     "category": "kundali",
-    "desc": "Traditional Vedic chart layout with interpretive notes for each graha.",
+    "desc": "Birth-star and Moon-sign storytelling for moods, instincts, and inner rhythm.",
     "price": 499,
     "sort": 3
   },
   {
-    "name": "Lagna Analysis",
-    "slug": "lagna-analysis",
+    "name": "Navamsa (D9) Partnership Chart",
+    "slug": "navamsa-chart",
     "category": "kundali",
-    "desc": "Ascendant-focused themes about temperament and first impressions.",
+    "desc": "Divisional D9 chart notes on dharma, partnership quality, and inner maturity themes.",
     "price": 499,
     "sort": 4
   },
   {
-    "name": "Rashi Analysis",
-    "slug": "rashi-analysis",
+    "name": "Mahadasha Timeline Report",
+    "slug": "mahadasha-antardasha",
     "category": "kundali",
-    "desc": "Moon sign storytelling about moods, instincts, and daily rhythm.",
+    "desc": "Vimshottari Mahadasha & Antardasha chapters with symbolic timing windows.",
     "price": 499,
     "sort": 5
   },
   {
-    "name": "Nakshatra Analysis",
-    "slug": "nakshatra-analysis",
+    "name": "Twelve Houses Life Map",
+    "slug": "house-analysis",
     "category": "kundali",
-    "desc": "Birth star themes for personality flair and symbolic life motifs.",
+    "desc": "House-by-house walkthrough of life themes from self to spirituality.",
     "price": 499,
     "sort": 6
   },
   {
-    "name": "Navamsa Chart",
-    "slug": "navamsa-chart",
-    "category": "kundali",
-    "desc": "D9 divisional chart notes on dharma, partnership, and inner purpose.",
+    "name": "Kundali Matching (Guna Milan)",
+    "slug": "guna-milan",
+    "category": "marriage",
+    "desc": "Traditional Ashtakoot Guna Milan score with plain-language compatibility notes.",
     "price": 499,
     "sort": 7
   },
   {
-    "name": "Planetary Position Report",
-    "slug": "planetary-position-report",
-    "category": "kundali",
-    "desc": "Sign, degree, nakshatra, and house table with light interpretation.",
+    "name": "Love Compatibility Report",
+    "slug": "love-compatibility",
+    "category": "marriage",
+    "desc": "Romantic chemistry themes \u2014 attraction, communication, and emotional fit.",
     "price": 499,
     "sort": 8
   },
   {
-    "name": "House Analysis",
-    "slug": "house-analysis",
-    "category": "kundali",
-    "desc": "Twelve-house walkthrough of life themes from an entertainment lens.",
+    "name": "Marriage Timing Windows",
+    "slug": "marriage-timing",
+    "category": "marriage",
+    "desc": "Dasha and transit windows framed as possible wedding-chapter markers.",
     "price": 499,
     "sort": 9
   },
   {
-    "name": "Mahadasha & Antardasha",
-    "slug": "mahadasha-antardasha",
-    "category": "kundali",
-    "desc": "Vimshottari timeline highlighting symbolic chapter changes over time.",
+    "name": "Couple Synastry Report",
+    "slug": "couple-kundali",
+    "category": "marriage",
+    "desc": "Side-by-side couple chart: strengths, friction points, and shared growth path.",
     "price": 499,
     "sort": 10
   },
   {
-    "name": "Marriage Kundali",
-    "slug": "marriage-kundali",
-    "category": "marriage",
-    "desc": "Partnership-oriented chart notes for romance and commitment curiosity.",
+    "name": "Career Path Analysis",
+    "slug": "career-analysis",
+    "category": "career",
+    "desc": "10th-house vocation themes, work style, and professional identity motifs.",
     "price": 499,
     "sort": 11
   },
   {
-    "name": "Guna Milan",
-    "slug": "guna-milan",
-    "category": "marriage",
-    "desc": "Traditional gun milan score presented as a fun compatibility snapshot.",
+    "name": "Career Timing Report",
+    "slug": "career-timing",
+    "category": "career",
+    "desc": "Dasha chapters that may feel more supportive for career moves and skill bets.",
     "price": 499,
     "sort": 12
   },
   {
-    "name": "Marriage Compatibility",
-    "slug": "marriage-compatibility",
-    "category": "marriage",
-    "desc": "Side-by-side chart themes for long-term partnership storytelling.",
+    "name": "Business & Startup Themes",
+    "slug": "business-kundali",
+    "category": "career",
+    "desc": "Entrepreneurial chart motifs for founders and side-hustle planners.",
     "price": 499,
     "sort": 13
   },
   {
-    "name": "Love Compatibility",
-    "slug": "love-compatibility",
-    "category": "marriage",
-    "desc": "Romantic chemistry reading for couples who enjoy symbolic matchmaking.",
+    "name": "Foreign Career Themes",
+    "slug": "foreign-career-analysis",
+    "category": "career",
+    "desc": "Abroad-work and relocation motifs from chart travel indicators.",
     "price": 499,
     "sort": 14
   },
   {
-    "name": "Marriage Timing",
-    "slug": "marriage-timing",
-    "category": "marriage",
-    "desc": "Dasha and transit windows framed as possible wedding chapter markers.",
+    "name": "Wealth & Prosperity Themes",
+    "slug": "wealth-analysis",
+    "category": "wealth",
+    "desc": "2nd & 11th house money motifs for reflective financial curiosity.",
     "price": 499,
     "sort": 15
   },
   {
-    "name": "Relationship Analysis",
-    "slug": "relationship-analysis",
-    "category": "marriage",
-    "desc": "Balanced notes on communication style, attraction, and shared growth.",
+    "name": "Property & Home Themes",
+    "slug": "property-analysis",
+    "category": "wealth",
+    "desc": "Home, land, and living-space symbolism from chart houses and transits.",
     "price": 499,
     "sort": 16
   },
   {
-    "name": "Manglik Analysis",
-    "slug": "manglik-analysis",
-    "category": "marriage",
-    "desc": "Manglik flag check with calm, curiosity-friendly explanation.",
+    "name": "Education & Learning Style",
+    "slug": "education-analysis",
+    "category": "wealth",
+    "desc": "Study motivation, learning style, and education-path motifs from the chart.",
     "price": 499,
     "sort": 17
   },
   {
-    "name": "Couple Kundali",
-    "slug": "couple-kundali",
-    "category": "marriage",
-    "desc": "Combined couple report families can share before wedding planning chats.",
+    "name": "Family Dynamics Report",
+    "slug": "family-analysis",
+    "category": "wealth",
+    "desc": "Household bonds, parental themes, and family-role storytelling from the chart.",
     "price": 499,
     "sort": 18
   },
   {
-    "name": "Partner Compatibility",
-    "slug": "partner-compatibility",
-    "category": "marriage",
-    "desc": "Partner pairing themes from synastry-style chart comparison.",
+    "name": "Complete Dosha Scan",
+    "slug": "dosha-analysis",
+    "category": "dosha",
+    "desc": "Combined dosha overview explained in calm, curiosity-friendly language.",
     "price": 499,
     "sort": 19
   },
   {
-    "name": "Marriage Prediction Report",
-    "slug": "marriage-prediction-report",
-    "category": "marriage",
-    "desc": "Symbolic marriage storyline\u2014not a guarantee, just reflective fun.",
+    "name": "Manglik Analysis",
+    "slug": "manglik-analysis",
+    "category": "dosha",
+    "desc": "Mars/Manglik flag check with calm explanation for marriage discussions.",
     "price": 499,
     "sort": 20
   },
   {
-    "name": "Career Analysis",
-    "slug": "career-analysis",
-    "category": "career",
-    "desc": "10th-house themes about work style, ambition, and professional identity.",
-    "price": 499,
-    "sort": 21
-  },
-  {
-    "name": "Career Timing",
-    "slug": "career-timing",
-    "category": "career",
-    "desc": "Dasha chapters that may feel more supportive for career moves.",
-    "price": 499,
-    "sort": 22
-  },
-  {
-    "name": "Business Kundali",
-    "slug": "business-kundali",
-    "category": "career",
-    "desc": "Entrepreneurial chart motifs for founders who enjoy symbolic planning.",
-    "price": 499,
-    "sort": 23
-  },
-  {
-    "name": "Business Success Analysis",
-    "slug": "business-success-analysis",
-    "category": "career",
-    "desc": "Business growth storytelling from chart yogas and house emphasis.",
-    "price": 499,
-    "sort": 24
-  },
-  {
-    "name": "Job/Career Direction",
-    "slug": "job-career-direction",
-    "category": "career",
-    "desc": "Career path prompts based on chart strengths\u2014not hiring advice.",
-    "price": 499,
-    "sort": 25
-  },
-  {
-    "name": "Leadership Style Analysis",
-    "slug": "leadership-style-analysis",
-    "category": "career",
-    "desc": "How your chart may colour decision-making and team presence.",
-    "price": 499,
-    "sort": 26
-  },
-  {
-    "name": "Entrepreneurship Analysis",
-    "slug": "entrepreneurship-analysis",
-    "category": "career",
-    "desc": "Startup-friendly chart themes for self-starters and side-hustle dreamers.",
-    "price": 499,
-    "sort": 27
-  },
-  {
-    "name": "Foreign Career Analysis",
-    "slug": "foreign-career-analysis",
-    "category": "career",
-    "desc": "Abroad-work motifs from chart indicators\u2014exploratory, not immigration advice.",
-    "price": 499,
-    "sort": 28
-  },
-  {
-    "name": "Government Job Astrology",
-    "slug": "government-job-astrology",
-    "category": "career",
-    "desc": "Public-sector career symbolism reviewed for entertainment and reflection.",
-    "price": 499,
-    "sort": 29
-  },
-  {
-    "name": "Professional Growth Report",
-    "slug": "professional-growth-report",
-    "category": "career",
-    "desc": "Promotion and skill-growth themes from dasha and 10th-house cues.",
-    "price": 499,
-    "sort": 30
-  },
-  {
-    "name": "Wealth Analysis",
-    "slug": "wealth-analysis",
-    "category": "wealth",
-    "desc": "2nd and 11th-house money motifs for reflective financial curiosity.",
-    "price": 499,
-    "sort": 31
-  },
-  {
-    "name": "Financial Astrology",
-    "slug": "financial-astrology",
-    "category": "wealth",
-    "desc": "Symbolic finance themes\u2014not investment, tax, or legal guidance.",
-    "price": 499,
-    "sort": 32
-  },
-  {
-    "name": "Property Analysis",
-    "slug": "property-analysis",
-    "category": "wealth",
-    "desc": "Home and land symbolism from chart houses and transits.",
-    "price": 499,
-    "sort": 33
-  },
-  {
-    "name": "Foreign Settlement",
-    "slug": "foreign-settlement",
-    "category": "wealth",
-    "desc": "Relocation and abroad-life storytelling from chart travel themes.",
-    "price": 499,
-    "sort": 34
-  },
-  {
-    "name": "Education Analysis",
-    "slug": "education-analysis",
-    "category": "wealth",
-    "desc": "Learning style and study motivation notes from the 5th house.",
-    "price": 499,
-    "sort": 35
-  },
-  {
-    "name": "Family Analysis",
-    "slug": "family-analysis",
-    "category": "wealth",
-    "desc": "Family bond themes and household dynamics from chart symbolism.",
-    "price": 499,
-    "sort": 36
-  },
-  {
-    "name": "Children Analysis",
-    "slug": "children-analysis",
-    "category": "wealth",
-    "desc": "Parenting and children motifs for gentle, reflective storytelling.",
-    "price": 499,
-    "sort": 37
-  },
-  {
-    "name": "Life Path Analysis",
-    "slug": "life-path-analysis",
-    "category": "wealth",
-    "desc": "Big-picture life journey themes from lagna, Sun, and 9th-house cues.",
-    "price": 499,
-    "sort": 38
-  },
-  {
-    "name": "Major Life Events Analysis",
-    "slug": "major-life-events-analysis",
-    "category": "wealth",
-    "desc": "Symbolic markers for chapters like moves, milestones, and fresh starts.",
-    "price": 499,
-    "sort": 39
-  },
-  {
-    "name": "Complete Life Report",
-    "slug": "complete-life-report",
-    "category": "wealth",
-    "desc": "Wide-angle life narrative blending key houses, dasha, and transits.",
-    "price": 499,
-    "sort": 40
-  },
-  {
-    "name": "Dosha Analysis",
-    "slug": "dosha-analysis",
-    "category": "dosha",
-    "desc": "Combined dosha scan explained in plain, curiosity-friendly language.",
-    "price": 499,
-    "sort": 41
-  },
-  {
-    "name": "Rahu-Ketu Analysis",
+    "name": "Rahu-Ketu & Axis Themes",
     "slug": "rahu-ketu-analysis",
     "category": "dosha",
-    "desc": "North and south node themes about cravings, detours, and growth edges.",
+    "desc": "North/south node themes: cravings, detours, karma axis, and growth edges.",
     "price": 499,
-    "sort": 42
-  },
-  {
-    "name": "Saturn Analysis",
-    "slug": "saturn-analysis",
-    "category": "dosha",
-    "desc": "Shani symbolism around discipline, patience, and life lessons.",
-    "price": 499,
-    "sort": 43
+    "sort": 21
   },
   {
     "name": "Sade Sati Report",
     "slug": "sade-sati-report",
     "category": "dosha",
-    "desc": "Sade sati phase status with calm transit storytelling.",
+    "desc": "Saturn Sade Sati phase status with calm transit storytelling.",
     "price": 499,
-    "sort": 44
+    "sort": 22
   },
   {
-    "name": "Jupiter Analysis",
-    "slug": "jupiter-analysis",
+    "name": "Saturn Life Lessons",
+    "slug": "saturn-analysis",
     "category": "dosha",
-    "desc": "Guru themes of wisdom, optimism, and expansive life chapters.",
+    "desc": "Shani symbolism around discipline, patience, responsibility, and mastery.",
     "price": 499,
-    "sort": 45
-  },
-  {
-    "name": "Mars Analysis",
-    "slug": "mars-analysis",
-    "category": "dosha",
-    "desc": "Mangal energy notes on drive, courage, and spirited momentum.",
-    "price": 499,
-    "sort": 46
-  },
-  {
-    "name": "Venus Analysis",
-    "slug": "venus-analysis",
-    "category": "dosha",
-    "desc": "Shukra motifs about charm, creativity, comfort, and affection.",
-    "price": 499,
-    "sort": 47
-  },
-  {
-    "name": "Mercury Analysis",
-    "slug": "mercury-analysis",
-    "category": "dosha",
-    "desc": "Budh themes on communication flair, wit, and mental agility.",
-    "price": 499,
-    "sort": 48
-  },
-  {
-    "name": "Sun Analysis",
-    "slug": "sun-analysis",
-    "category": "dosha",
-    "desc": "Surya symbolism about confidence, visibility, and core identity.",
-    "price": 499,
-    "sort": 49
-  },
-  {
-    "name": "Moon Analysis",
-    "slug": "moon-analysis",
-    "category": "dosha",
-    "desc": "Chandra themes on emotions, intuition, and inner comfort needs.",
-    "price": 499,
-    "sort": 50
+    "sort": 23
   },
   {
     "name": "AI Face Self-Discovery",
@@ -405,127 +189,39 @@
     "category": "self-discovery",
     "desc": "Playful AI face scan that turns features into personality story prompts.",
     "price": 499,
-    "sort": 51
+    "sort": 24
   },
   {
-    "name": "Face Personality Interpretation",
-    "slug": "face-personality-interpretation",
+    "name": "Complete Face Reading Report",
+    "slug": "premium-face-reading",
     "category": "self-discovery",
-    "desc": "Face-reading style notes on temperament\u2014for fun self-reflection only.",
+    "desc": "Extended face-reading PDF with richer chapters on presence, work, and bonds.",
     "price": 499,
-    "sort": 52
+    "sort": 25
   },
   {
-    "name": "Face Feature Interpretation",
-    "slug": "face-feature-interpretation",
-    "category": "self-discovery",
-    "desc": "Feature-by-feature symbolic meanings from classic physiognomy lore.",
-    "price": 499,
-    "sort": 53
-  },
-  {
-    "name": "Communication Style Analysis",
-    "slug": "communication-style-analysis",
-    "category": "self-discovery",
-    "desc": "How you may come across in conversation, based on face and chart cues.",
-    "price": 499,
-    "sort": 54
-  },
-  {
-    "name": "Leadership Style Analysis (Face)",
-    "slug": "face-leadership-style-analysis",
-    "category": "self-discovery",
-    "desc": "Face-led leadership presence themes for entertainment and self-awareness.",
-    "price": 499,
-    "sort": 55
-  },
-  {
-    "name": "Career Style Analysis",
-    "slug": "career-style-analysis",
-    "category": "self-discovery",
-    "desc": "Work persona motifs blending face reading with symbolic career flair.",
-    "price": 499,
-    "sort": 56
-  },
-  {
-    "name": "Relationship Style Analysis",
-    "slug": "relationship-style-analysis",
-    "category": "self-discovery",
-    "desc": "Affection and attachment style storytelling from expressive face cues.",
-    "price": 499,
-    "sort": 57
-  },
-  {
-    "name": "Strengths & Growth Analysis",
+    "name": "Strengths & Growth Map",
     "slug": "strengths-growth-analysis",
     "category": "self-discovery",
     "desc": "Balanced strengths and growth edges for mindful personal reflection.",
     "price": 499,
-    "sort": 58
+    "sort": 26
   },
   {
-    "name": "Self-Discovery Face Report",
-    "slug": "self-discovery-face-report",
-    "category": "self-discovery",
-    "desc": "Full face-reading PDF blending personality, style, and growth chapters.",
-    "price": 499,
-    "sort": 59
-  },
-  {
-    "name": "Premium Face Reading",
-    "slug": "premium-face-reading",
-    "category": "self-discovery",
-    "desc": "Deluxe face report with richer chapters and shareable PDF delivery.",
-    "price": 499,
-    "sort": 60
-  },
-  {
-    "name": "Life Path Number",
-    "slug": "life-path-number",
+    "name": "Complete Numerology Report",
+    "slug": "complete-numerology-report",
     "category": "numerology",
-    "desc": "Birth-date life path number with symbolic personality storytelling.",
+    "desc": "All core numbers in one PDF \u2014 life path, destiny, soul urge, personality.",
     "price": 499,
-    "sort": 61
-  },
-  {
-    "name": "Destiny Number",
-    "slug": "destiny-number",
-    "category": "numerology",
-    "desc": "Name-based destiny number themes for playful self-discovery.",
-    "price": 499,
-    "sort": 62
-  },
-  {
-    "name": "Soul Urge Number",
-    "slug": "soul-urge-number",
-    "category": "numerology",
-    "desc": "Inner motivation number notes about what quietly inspires you.",
-    "price": 499,
-    "sort": 63
-  },
-  {
-    "name": "Personality Number",
-    "slug": "personality-number",
-    "category": "numerology",
-    "desc": "Outer-persona number themes about first impressions and social vibe.",
-    "price": 499,
-    "sort": 64
+    "sort": 27
   },
   {
     "name": "Name Numerology",
     "slug": "name-numerology",
     "category": "numerology",
-    "desc": "Full-name numerology breakdown with light interpretive notes.",
+    "desc": "Full-name number breakdown with interpretive notes for identity & brand feel.",
     "price": 499,
-    "sort": 65
-  },
-  {
-    "name": "Business Name Numerology",
-    "slug": "business-name-numerology",
-    "category": "numerology",
-    "desc": "Brand-name number vibes for founders who enjoy symbolic naming fun.",
-    "price": 499,
-    "sort": 66
+    "sort": 28
   },
   {
     "name": "Mobile Number Numerology",
@@ -533,102 +229,38 @@
     "category": "numerology",
     "desc": "Phone-number numerology reading presented as entertainment.",
     "price": 499,
-    "sort": 67
+    "sort": 29
   },
   {
-    "name": "Numerology Compatibility",
-    "slug": "numerology-compatibility",
-    "category": "numerology",
-    "desc": "Number-match chemistry between two names or birth dates.",
-    "price": 499,
-    "sort": 68
-  },
-  {
-    "name": "Personal Year Report",
+    "name": "Personal Year Forecast",
     "slug": "personal-year-report",
     "category": "numerology",
     "desc": "Current personal year themes for reflective planning and curiosity.",
     "price": 499,
-    "sort": 69
+    "sort": 30
   },
   {
-    "name": "Complete Numerology Report",
-    "slug": "complete-numerology-report",
-    "category": "numerology",
-    "desc": "All core numbers in one PDF for number-lovers and gift givers.",
-    "price": 499,
-    "sort": 70
-  },
-  {
-    "name": "Daily Horoscope",
-    "slug": "daily-horoscope",
+    "name": "Personalized Year Ahead",
+    "slug": "annual-life-forecast",
     "category": "daily-astrology",
-    "desc": "Today's symbolic horoscope prompts for your sign or chart.",
+    "desc": "Birthday-to-birthday year-ahead forecast for reflective journaling.",
     "price": 499,
-    "sort": 71
-  },
-  {
-    "name": "Weekly Horoscope",
-    "slug": "weekly-horoscope",
-    "category": "daily-astrology",
-    "desc": "Seven-day rashifal-style themes for mood and momentum reflection.",
-    "price": 499,
-    "sort": 72
-  },
-  {
-    "name": "Monthly Horoscope",
-    "slug": "monthly-horoscope",
-    "category": "daily-astrology",
-    "desc": "Month-ahead transit storytelling for gentle planning inspiration.",
-    "price": 499,
-    "sort": 73
-  },
-  {
-    "name": "Yearly Horoscope",
-    "slug": "yearly-horoscope",
-    "category": "daily-astrology",
-    "desc": "Annual rashifal overview with chapter themes for the year ahead.",
-    "price": 499,
-    "sort": 74
-  },
-  {
-    "name": "Personalized Daily Guidance",
-    "slug": "personalized-daily-guidance",
-    "category": "daily-astrology",
-    "desc": "Chart-aware daily nudges tailored to your birth details.",
-    "price": 499,
-    "sort": 75
+    "sort": 31
   },
   {
     "name": "Planetary Transit Report",
     "slug": "planetary-transit-report",
     "category": "daily-astrology",
-    "desc": "Gochar highlights when major planets shift signs or houses.",
+    "desc": "Gochar highlights when major planets shift signs or houses for you.",
     "price": 499,
-    "sort": 76
+    "sort": 32
   },
   {
     "name": "Personalized Monthly Guidance",
     "slug": "personalized-monthly-guidance",
     "category": "daily-astrology",
-    "desc": "Personalized month-ahead notes keyed to your unique chart.",
+    "desc": "Chart-aware month-ahead notes for mood, focus, and gentle planning.",
     "price": 499,
-    "sort": 77
-  },
-  {
-    "name": "Annual Life Forecast",
-    "slug": "annual-life-forecast",
-    "category": "daily-astrology",
-    "desc": "Birthday-to-birthday year-ahead forecast for reflective journaling.",
-    "price": 499,
-    "sort": 78
-  },
-  {
-    "name": "Complete Self Discovery Membership",
-    "slug": "complete-self-discovery-membership",
-    "category": "self-discovery",
-    "desc": "Annual membership with access to self-discovery reports, daily alerts, and member pricing.",
-    "price": 499,
-    "sort": 79
+    "sort": 33
   }
 ]

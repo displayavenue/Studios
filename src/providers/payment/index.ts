@@ -6,6 +6,7 @@ export type PaymentOrderResult = {
   amount: number;
   currency: string;
   receipt: string;
+  keyId: string;
   mock: boolean;
 };
 
@@ -13,21 +14,28 @@ function razorpayConfigured() {
   return Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET);
 }
 
+export function getRazorpayKeyId(): string {
+  return process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || "";
+}
+
 /**
  * Create Razorpay order server-side.
- * Uses clearly labeled mock when credentials are missing.
+ * Uses clearly labeled mock when credentials are missing or mocks are forced.
  */
 export async function createPaymentOrder(input: {
   amountPaise: number;
   receipt: string;
   notes?: Record<string, string>;
 }): Promise<PaymentOrderResult> {
+  const keyId = getRazorpayKeyId() || "rzp_test_mock";
+
   if (!razorpayConfigured() || useMockProviders()) {
     return {
       id: `order_mock_${Date.now()}`,
       amount: input.amountPaise,
       currency: "INR",
       receipt: input.receipt,
+      keyId,
       mock: true,
     };
   }
@@ -45,7 +53,7 @@ export async function createPaymentOrder(input: {
     body: JSON.stringify({
       amount: input.amountPaise,
       currency: "INR",
-      receipt: input.receipt,
+      receipt: input.receipt.slice(0, 40),
       notes: input.notes,
     }),
   });
@@ -62,7 +70,7 @@ export async function createPaymentOrder(input: {
     receipt: string;
   };
 
-  return { ...data, mock: false };
+  return { ...data, keyId, mock: false };
 }
 
 export async function verifyPaymentSignature(input: {
@@ -71,7 +79,6 @@ export async function verifyPaymentSignature(input: {
   signature: string;
 }): Promise<boolean> {
   if (!razorpayConfigured() || useMockProviders()) {
-    // Dev mock: accept signatures starting with mock_ or matching hmac of mock secret
     if (input.signature.startsWith("mock_")) return true;
   }
 

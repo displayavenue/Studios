@@ -45,7 +45,7 @@ export default async function ServicesPage({ searchParams }: Props) {
       <PageHero
         eyebrow="Astrology Services"
         title="Explore all reports"
-        subtitle={`Every individual report is ${formatINR(PRICING.reportPrice)}. Personalized interpretive guidance based on your birth details.`}
+        subtitle={`Every individual report is ${formatINR(PRICING.reportPrice)}. Unique products by category — no overlapping duplicates.`}
       />
 
       <SectionShell muted>
