@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
-import { MARKETPLACE_DISCLAIMER, type MarketplaceAstrologer } from "@/content/marketplace-astrologers";
+import {
+  MARKETPLACE_DISCLAIMER,
+  expertPhotoUrl,
+  type MarketplaceAstrologer,
+} from "@/content/marketplace-astrologers";
 import { FREE_CONSULT_MINUTES } from "@/config/wallet";
 
-type Expert = MarketplaceAstrologer & { source?: "live" | "sample" };
+type Expert = MarketplaceAstrologer & { source?: "live" | "sample"; photoUrl?: string };
 
 export default function ConsultSessionPage() {
   const params = useParams<{ slug: string }>();
@@ -80,6 +85,9 @@ export default function ConsultSessionPage() {
     );
   }
 
+  const photo = a.photoUrl || expertPhotoUrl(a.slug);
+  const photoLg = expertPhotoUrl(a.slug, "lg");
+
   function send() {
     if (!input.trim()) return;
     const q = input.trim();
@@ -101,12 +109,13 @@ export default function ConsultSessionPage() {
         <div className="at-card overflow-hidden">
           <div className="flex items-center justify-between gap-3 border-b border-[var(--jk-line)] bg-white px-4 py-3">
             <div className="flex items-center gap-3">
-              <div
-                className="flex h-11 w-11 items-center justify-center rounded-full text-sm font-bold text-white"
-                style={{ background: a.accent }}
-              >
-                {a.initials}
-              </div>
+              <Image
+                src={photo}
+                alt={a.name}
+                width={44}
+                height={44}
+                className="h-11 w-11 rounded-full object-cover"
+              />
               <div>
                 <p className="font-semibold">
                   {a.name}{" "}
@@ -127,12 +136,13 @@ export default function ConsultSessionPage() {
 
           {mode === "call" && calling ? (
             <div className="flex flex-col items-center justify-center gap-4 bg-[var(--jk-ink)] px-6 py-16 text-white">
-              <div
-                className="flex h-24 w-24 items-center justify-center rounded-full text-2xl font-bold"
-                style={{ background: a.accent }}
-              >
-                {a.initials}
-              </div>
+              <Image
+                src={photoLg}
+                alt={a.name}
+                width={96}
+                height={96}
+                className="h-24 w-24 rounded-full object-cover ring-4 ring-white/20"
+              />
               <p className="text-lg font-semibold">Calling {a.name}…</p>
               <p className="max-w-sm text-center text-sm text-white/65">
                 Demo call UI only — telephony is not connected. Switch to chat or continue with reports.

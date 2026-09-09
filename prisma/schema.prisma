@@ -717,6 +717,7 @@ model Expert {
   badge         String?
   accent        String?
   initials      String?
+  photoUrl      String?
   isOnline      Boolean  @default(false)
   isSample      Boolean  @default(false)
   isActive      Boolean  @default(true)
