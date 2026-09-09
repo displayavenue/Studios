@@ -15,7 +15,13 @@ export type MarketplaceAstrologer = {
   categories: Array<"love" | "marriage" | "career" | "women" | "business" | "health" | "vedic" | "tarot" | "numerology">;
   initials: string;
   accent: string;
+  /** Circular portrait path under /public (Indian headshot, original asset). */
+  photoUrl: string;
 };
+
+export function expertPhotoUrl(slug: string, size: "sm" | "lg" = "sm") {
+  return size === "lg" ? `/experts/${slug}-lg.jpg` : `/experts/${slug}.jpg`;
+}
 
 export const MARKETPLACE_DISCLAIMER =
   "Live verified experts appear after admin approval. Sample profiles are labeled for UI demos. Chat/call rooms are demo-mode (no live telephony). Interpretive guidance only — not medical, legal, or financial advice.";
@@ -36,6 +42,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["vedic", "career", "health"],
     initials: "AM",
     accent: "#f59e0b",
+    photoUrl: expertPhotoUrl("acharya-meera"),
   },
   {
     slug: "pandit-raghav",
@@ -52,6 +59,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["marriage", "love", "vedic"],
     initials: "PR",
     accent: "#0ea5e9",
+    photoUrl: expertPhotoUrl("pandit-raghav"),
   },
   {
     slug: "divya-joshi",
@@ -68,6 +76,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["tarot", "love", "women"],
     initials: "DJ",
     accent: "#ec4899",
+    photoUrl: expertPhotoUrl("divya-joshi"),
   },
   {
     slug: "guru-devraj",
@@ -84,6 +93,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["career", "business", "vedic"],
     initials: "GD",
     accent: "#8b5cf6",
+    photoUrl: expertPhotoUrl("guru-devraj"),
   },
   {
     slug: "saanvi-sharma",
@@ -100,6 +110,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["numerology", "tarot", "women"],
     initials: "SS",
     accent: "#14b8a6",
+    photoUrl: expertPhotoUrl("saanvi-sharma"),
   },
   {
     slug: "jyotishi-neel",
@@ -116,6 +127,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["health", "vedic", "marriage"],
     initials: "JN",
     accent: "#f97316",
+    photoUrl: expertPhotoUrl("jyotishi-neel"),
   },
   {
     slug: "vastu-ananya",
@@ -132,6 +144,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["business", "health"],
     initials: "AV",
     accent: "#84cc16",
+    photoUrl: expertPhotoUrl("vastu-ananya"),
   },
   {
     slug: "heena-kapoor",
@@ -148,6 +161,7 @@ export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
     categories: ["women", "love", "career"],
     initials: "HK",
     accent: "#e11d48",
+    photoUrl: expertPhotoUrl("heena-kapoor"),
   },
 ];
 

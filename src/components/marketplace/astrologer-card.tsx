@@ -1,7 +1,47 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import type { MarketplaceAstrologer } from "@/content/marketplace-astrologers";
+import { expertPhotoUrl } from "@/content/marketplace-astrologers";
 
-type CardExpert = MarketplaceAstrologer & { source?: "live" | "sample" };
+type CardExpert = MarketplaceAstrologer & { source?: "live" | "sample"; photoUrl?: string };
+
+function ExpertAvatar({
+  a,
+  size = 56,
+}: {
+  a: Pick<CardExpert, "name" | "slug" | "initials" | "accent" | "photoUrl">;
+  size?: number;
+}) {
+  const src = a.photoUrl || expertPhotoUrl(a.slug);
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div
+        className="flex items-center justify-center rounded-full text-sm font-bold text-white"
+        style={{ background: a.accent, width: size, height: size }}
+        aria-hidden
+      >
+        {a.initials}
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={a.name}
+      width={size}
+      height={size}
+      className="rounded-full object-cover"
+      style={{ width: size, height: size }}
+      onError={() => setFailed(true)}
+    />
+  );
+}
 
 export function AstrologerCard({
   a,
@@ -14,13 +54,7 @@ export function AstrologerCard({
     <article className="at-card flex flex-col p-4">
       <div className="flex items-start gap-3">
         <div className="relative shrink-0">
-          <div
-            className="flex h-14 w-14 items-center justify-center rounded-full text-sm font-bold text-white"
-            style={{ background: a.accent }}
-            aria-hidden
-          >
-            {a.initials}
-          </div>
+          <ExpertAvatar a={a} size={56} />
           <span
             className={`absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white ${
               a.online ? "bg-emerald-500" : "bg-slate-300"
@@ -73,3 +107,5 @@ export function AstrologerCard({
     </article>
   );
 }
+
+export { ExpertAvatar };

@@ -152,11 +152,13 @@ export default function HomePage() {
                 key={a.slug}
                 className={`flex flex-col items-center ${i === 1 ? "mt-0 scale-110" : "mt-8 opacity-95"}`}
               >
-                <div
-                  className="flex h-36 w-28 items-center justify-center rounded-[2.5rem] border-4 border-white text-2xl font-bold text-white shadow-lg sm:h-44 sm:w-32"
-                  style={{ background: `linear-gradient(160deg, ${a.accent}, #1f2937)` }}
-                >
-                  {a.initials}
+                <div className="relative h-36 w-28 overflow-hidden rounded-[2.5rem] border-4 border-white shadow-lg sm:h-44 sm:w-32">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={a.photoUrl}
+                    alt={a.name}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <p className="mt-2 text-center text-xs font-semibold">{a.name.split(" ")[0]}</p>
               </div>

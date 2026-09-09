@@ -4,6 +4,7 @@ import { Prisma } from "@/generated/prisma/client";
 import { Role } from "@/generated/prisma/enums";
 import {
   MARKETPLACE_ASTROLOGERS,
+  expertPhotoUrl,
   type MarketplaceAstrologer,
 } from "@/content/marketplace-astrologers";
 
@@ -50,6 +51,7 @@ export function mapExpertRow(row: {
   badge: string | null;
   accent: string | null;
   initials: string | null;
+  photoUrl?: string | null;
   isOnline: boolean;
   isSample: boolean;
   isVerified: boolean;
@@ -74,6 +76,7 @@ export function mapExpertRow(row: {
     categories: categories.length ? categories : ["vedic"],
     initials: row.initials || initialsFromName(row.displayName),
     accent: row.accent || "#f59e0b",
+    photoUrl: row.photoUrl || expertPhotoUrl(row.slug),
     source: row.isSample ? "sample" : "live",
     isVerified: row.isVerified,
   };
@@ -159,6 +162,7 @@ export async function seedSampleExperts() {
       badge: a.badge,
       accent: a.accent,
       initials: a.initials,
+      photoUrl: a.photoUrl,
       isOnline: a.online,
       isSample: true,
       isActive: true,
@@ -222,6 +226,7 @@ export async function applyAsExpert(input: {
       badge: "Rising Star",
       accent: "#0ea5e9",
       initials: initialsFromName(input.displayName),
+      photoUrl: expertPhotoUrl(slug),
       isOnline: false,
       isSample: false,
       isActive: true,
