@@ -248,3 +248,133 @@ a {
     animation: none;
   }
 }
+
+/* AstroTalk-style dark auth modal (JyotishKundali branded) */
+:root {
+  --at-auth-bg: #050505;
+  --at-auth-panel: #0a0a0a;
+  --at-auth-field: #1a1a1a;
+  --at-auth-gold: #c4b03a;
+  --at-auth-gold-btn: #b8a82e;
+}
+
+.at-auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .at-auth-overlay {
+    align-items: center;
+    padding: 1.5rem;
+  }
+}
+
+.at-auth-modal {
+  width: 100%;
+  max-width: 26rem;
+  border-radius: 1.25rem 1.25rem 0 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 100%, rgba(196, 176, 58, 0.18), transparent 55%),
+    var(--at-auth-panel);
+  padding: 1.75rem 1.35rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 640px) {
+  .at-auth-modal {
+    border-radius: 1.25rem;
+  }
+}
+
+.at-auth-logo {
+  display: flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--at-auth-gold);
+  color: #111;
+  font-size: 1.5rem;
+  font-weight: 800;
+  box-shadow: 0 0 0 6px rgba(196, 176, 58, 0.15);
+}
+
+.at-auth-input {
+  height: 3rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--at-auth-field);
+  outline: none;
+}
+
+.at-auth-input:focus {
+  border-color: rgba(196, 176, 58, 0.55);
+}
+
+.at-auth-cta {
+  display: flex;
+  height: 3rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.65rem;
+  background: var(--at-auth-gold-btn);
+  color: #111;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.at-auth-cta:disabled {
+  opacity: 0.55;
+}
+
+.at-auth-or {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.at-auth-or::before,
+.at-auth-or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.at-auth-social {
+  display: inline-flex;
+  height: 2.85rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #000;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.at-auth-social:hover {
+  background: #111;
+}
+
+.at-page-hero {
+  background:
+    radial-gradient(ellipse 60% 45% at 70% 30%, rgba(245, 197, 24, 0.22), transparent 50%),
+    linear-gradient(180deg, #fffdf6 0%, #fff8e8 100%);
+  border-bottom: 1px solid var(--jk-line);
+}

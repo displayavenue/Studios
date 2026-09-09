@@ -78,9 +78,9 @@ export const NAV_LINKS = [
 export const MOBILE_NAV = [
   { href: "/", label: "Home" },
   { href: "/chat-with-astrologer", label: "Chat" },
+  { href: "/talk-to-astrologer", label: "Call" },
   { href: "/shop", label: "Shop" },
   { href: "/wallet", label: "Wallet" },
-  { href: "/dashboard", label: "Account" },
 ] as const;
 
 export function useMockProviders() {

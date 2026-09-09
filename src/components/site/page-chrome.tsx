@@ -7,14 +7,32 @@ export function PageHero({
   subtitle,
   lead,
   children,
+  variant = "dark",
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   lead?: string;
   children?: React.ReactNode;
+  variant?: "dark" | "marketplace";
 }) {
   const blurb = lead ?? subtitle;
+  if (variant === "marketplace") {
+    return (
+      <section className="at-page-hero">
+        <div className="container-jk relative z-10 py-10 sm:py-12">
+          {eyebrow && (
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--at-yellow-ink)]">{eyebrow}</p>
+          )}
+          <h1 className="mt-2 max-w-3xl text-3xl font-bold tracking-tight text-[var(--jk-ink)] sm:text-4xl">
+            {title}
+          </h1>
+          {blurb && <p className="mt-3 max-w-2xl text-sm text-[var(--jk-muted)] sm:text-base">{blurb}</p>}
+          {children && <div className="mt-6">{children}</div>}
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="hero-astro">
       <div className="zodiac-glow opacity-40" aria-hidden />
