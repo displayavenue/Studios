@@ -171,14 +171,23 @@ export function SiteFooter() {
       links: [
         { href: "/free-kundli", label: "Free Kundli" },
         { href: "/horoscope", label: "Daily Horoscope" },
+        { href: "/panchang", label: "Panchang" },
+        { href: "/calculators", label: "Calculators" },
         { href: "/services/guna-milan", label: "Kundali Matching" },
+      ],
+    },
+    {
+      title: "Shop & wallet",
+      links: [
+        { href: "/shop", label: "AstroMall" },
+        { href: "/wallet", label: "Wallet" },
+        { href: "/membership", label: "Membership" },
       ],
     },
     {
       title: "Reports",
       links: [
         { href: "/services", label: "All PDF reports" },
-        { href: "/membership", label: "Membership" },
         { href: "/stories", label: "Sample stories" },
       ],
     },

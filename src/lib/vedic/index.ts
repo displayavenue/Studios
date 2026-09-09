@@ -6,4 +6,5 @@ export { ENGINE_META } from "./constants";
 export { lahiriAyanamsa } from "./ayanamsa";
 export { buildNavamsaTable, siderealToNavamsa } from "./navamsa";
 export { resolvePlace } from "./geo";
+export { computePanchang } from "./panchang";
 
