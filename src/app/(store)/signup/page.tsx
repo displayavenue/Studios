@@ -1,14 +1,8 @@
-import { Suspense } from "react";
-import SignupForm from "./signup-form";
+import { redirect } from "next/navigation";
 
+export const metadata = { title: "Sign up" };
+
+/** Signup uses the same phone OTP flow as Sign In (AstroTalk-style). */
 export default function SignupPage() {
-  return (
-    <div className="at-home min-h-[60vh]">
-      <div className="container-jk py-16">
-        <Suspense fallback={<div className="text-center text-sm text-[var(--jk-muted)]">Loading…</div>}>
-          <SignupForm />
-        </Suspense>
-      </div>
-    </div>
-  );
+  redirect("/login?next=/dashboard");
 }

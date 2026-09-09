@@ -20,6 +20,7 @@ import {
 } from "@/content/marketplace-astrologers";
 import { SAMPLE_STORIES, SAMPLE_STORIES_DISCLAIMER } from "@/content/sample-stories";
 import { BRAND } from "@/config/site";
+import { CmsHomeBanners } from "@/components/site/cms-banners";
 
 export const dynamic = "force-dynamic";
 
@@ -182,6 +183,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <CmsHomeBanners />
 
       {/* Quick actions */}
       <section className="container-jk -mt-2 pb-12">

@@ -10,15 +10,17 @@ export default function EmailLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next") || "/dashboard";
-  const { openAuth, closeAuth } = useAuthModal();
+  const { closeAuth } = useAuthModal();
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
   const field =
     "mt-1.5 flex h-11 w-full rounded-xl border border-[var(--jk-line)] bg-[#f8f9fb] px-3 text-sm outline-none focus:border-[var(--at-yellow)] focus:bg-white";
 
   useEffect(() => {
+    // Email page must not keep a leftover OTP overlay from another route.
     closeAuth();
-  }, [closeAuth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally once on mount
+  }, []);
 
   return (
     <div className="mx-auto w-full max-w-md">
@@ -65,9 +67,9 @@ export default function EmailLoginForm() {
           </button>
         </form>
         <div className="mt-4 flex flex-col gap-2 text-center text-sm">
-          <button type="button" onClick={() => openAuth({ next })} className="font-semibold text-[var(--at-yellow-ink)]">
+          <Link href={`/login?next=${encodeURIComponent(next)}`} className="font-semibold text-[var(--at-yellow-ink)]">
             Sign in with phone OTP →
-          </button>
+          </Link>
           <Link href="/signup" className="text-[var(--jk-muted)] hover:text-[var(--jk-ink)]">
             Create account
           </Link>
