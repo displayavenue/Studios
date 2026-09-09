@@ -10,6 +10,8 @@ export const company = {
   email: "info@displayavenue.com",
   emailHref: "mailto:info@displayavenue.com",
   clientLogin: "https://displayavenue.com/client-login",
+  catalogueUrl: "/catalogue/DisplayAvenue-Catalogue.pdf",
+  catalogueFileName: "DisplayAvenue-Catalogue.pdf",
   address: {
     city: "Mumbai",
     lines: ["Mumbai, Maharashtra, India"],

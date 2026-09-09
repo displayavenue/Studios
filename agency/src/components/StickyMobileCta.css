@@ -3,6 +3,11 @@
 }
 
 @media (max-width: 768px) {
+  /* Hide sticky bar while the mobile nav drawer is open (avoids double WhatsApp). */
+  body.menu-open .sticky-mcta {
+    display: none !important;
+  }
+
   .sticky-mcta {
     display: grid;
     grid-template-columns: 1fr 1fr 1.45fr;
