@@ -55,7 +55,8 @@ export function AuthModal() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || data.error || "Failed to send OTP");
       setStep("otp");
-      if (data.debugCode) setHint(`Demo OTP: ${data.debugCode}`);
+      if (data.message) setHint(String(data.message));
+      else if (data.debugCode) setHint(`Demo OTP: ${data.debugCode}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed");
     } finally {

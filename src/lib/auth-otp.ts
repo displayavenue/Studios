@@ -29,7 +29,11 @@ export async function sendLoginOtp(input: { phone: string; countryCode?: string 
     throw new Error("INVALID_PHONE");
   }
 
-  const code = useMockProviders() ? "123456" : String(randomInt(100000, 999999));
+  const smsConfigured = Boolean(
+    process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && (process.env.TWILIO_SMS_FROM || process.env.TWILIO_WHATSAPP_FROM),
+  );
+  const useDemoOtp = useMockProviders() || !smsConfigured;
+  const code = useDemoOtp ? "123456" : String(randomInt(100000, 999999));
   const token = `otp_${phone10}_${Date.now()}`;
 
   await prisma.verificationToken.create({
@@ -52,8 +56,7 @@ export async function sendLoginOtp(input: { phone: string; countryCode?: string 
     phone: phone10,
     expiresInSec: OTP_TTL_MS / 1000,
     mock: sms.mock,
-    /** Only returned when mock providers are forced — never on live SMS */
-    debugCode: useMockProviders() ? code : undefined,
+    message: sms.mock || useDemoOtp ? "SMS provider not configured — use OTP 123456 for demo." : undefined,
   };
 }
 
