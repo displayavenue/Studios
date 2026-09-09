@@ -52,8 +52,8 @@ export async function sendLoginOtp(input: { phone: string; countryCode?: string 
     phone: phone10,
     expiresInSec: OTP_TTL_MS / 1000,
     mock: sms.mock,
-    /** Only returned in mock mode for QA */
-    debugCode: sms.mock ? code : undefined,
+    /** Only returned when mock providers are forced — never on live SMS */
+    debugCode: useMockProviders() ? code : undefined,
   };
 }
 

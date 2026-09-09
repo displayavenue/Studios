@@ -13,7 +13,7 @@ async function logoutAction() {
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
   if (!session || !isAdminRole(session.role)) {
-    redirect("/login");
+    redirect("/login/email?next=/admin");
   }
 
   const nav = ADMIN_NAV.filter((n) => hasPermission(session.role, n.permission));
