@@ -12,33 +12,6 @@ import { AiPlatformMenu } from "./menus/AiPlatformMenu";
 import { IndustriesMenu } from "./menus/IndustriesMenu";
 import "./Header.css";
 
-const MOBILE_SPOTLIGHT = [
-  {
-    label: "Services",
-    href: "/services",
-    image: "/images/hero-agency-india.jpg",
-    alt: "DisplayAvenue digital marketing services",
-  },
-  {
-    label: "Case Studies",
-    href: "/case-studies",
-    image: "/images/hero-agency.jpg",
-    alt: "DisplayAvenue client case studies",
-  },
-  {
-    label: "Portfolio",
-    href: "/portfolio",
-    image: "/images/hero-agency-alt.jpg",
-    alt: "DisplayAvenue portfolio work",
-  },
-  {
-    label: "Industries",
-    href: "/industries",
-    image: "/images/hero-india.jpg",
-    alt: "Industries DisplayAvenue serves",
-  },
-] as const;
-
 export function Header() {
   const { company } = useCms();
   const navItems = company.navItems;
@@ -111,20 +84,6 @@ export function Header() {
             aria-label="Site menu"
           >
             <div className="mobile-drawer-inner">
-              <div className="mobile-spotlight" aria-label="Popular pages">
-                {MOBILE_SPOTLIGHT.map((item) => (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    className="mobile-spotlight__card"
-                    onClick={() => setOpen(false)}
-                  >
-                    <img src={item.image} alt={item.alt} loading="lazy" />
-                    <span>{item.label}</span>
-                  </Link>
-                ))}
-              </div>
-
               {navItems.map((item, idx) => {
                 const expanded = mobileSection === item.label;
                 const staggerStyle = { "--nav-i": idx } as CSSProperties;
