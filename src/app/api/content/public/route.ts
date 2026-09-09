@@ -16,6 +16,13 @@ export async function GET() {
   let announcementText: string | null = null;
   if (announcement?.value && typeof announcement.value === "object" && announcement.value !== null && "text" in (announcement.value as object)) {
     announcementText = String((announcement.value as { text: string }).text || "") || null;
+  } else if (typeof announcement?.value === "string") {
+    announcementText = announcement.value || null;
   }
-  return NextResponse.json({ ticker: lines, announcement: announcementText });
+
+  const bannersRow = await prisma.systemSetting.findUnique({ where: { key: "marketplace.banners" } });
+  let banners: unknown[] = [];
+  if (Array.isArray(bannersRow?.value)) banners = bannersRow.value as unknown[];
+
+  return NextResponse.json({ ticker: lines, announcement: announcementText, banners });
 }

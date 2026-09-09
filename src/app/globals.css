@@ -370,6 +370,20 @@ a {
   background: #121212;
 }
 
+.at-auth-page {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 115%, rgba(196, 176, 58, 0.22), transparent 55%),
+    #050505;
+  color: #fff;
+}
+
+.at-auth-page-panel {
+  border-radius: 1.25rem;
+  max-width: 26rem;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
 .at-page-hero {
   background:
     radial-gradient(ellipse 60% 45% at 70% 30%, rgba(245, 197, 24, 0.22), transparent 50%),
