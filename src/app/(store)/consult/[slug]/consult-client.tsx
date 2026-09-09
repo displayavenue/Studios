@@ -1,20 +1,23 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
-import { getAstrologer, MARKETPLACE_DISCLAIMER } from "@/content/marketplace-astrologers";
+import { MARKETPLACE_DISCLAIMER, type MarketplaceAstrologer } from "@/content/marketplace-astrologers";
 import { FREE_CONSULT_MINUTES } from "@/config/wallet";
+
+type Expert = MarketplaceAstrologer & { source?: "live" | "sample" };
 
 export default function ConsultSessionPage() {
   const params = useParams<{ slug: string }>();
   const search = useSearchParams();
   const mode = search.get("mode") === "call" ? "call" : "chat";
-  const a = useMemo(() => getAstrologer(String(params.slug)), [params.slug]);
+  const [a, setA] = useState<Expert | null>(null);
+  const [loading, setLoading] = useState(true);
   const [messages, setMessages] = useState<Array<{ role: "user" | "astro"; text: string }>>([
     {
       role: "astro",
-      text: "Namaste — this is a demo consultation room. Share what you’d like to reflect on (career, love, family). Guidance is interpretive entertainment only.",
+      text: "Namaste — this is a consultation room. Share what you’d like to reflect on (career, love, family). Guidance is interpretive entertainment only.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -22,7 +25,17 @@ export default function ConsultSessionPage() {
   const [minutes, setMinutes] = useState(1);
   const [walletNote, setWalletNote] = useState<string | null>(null);
 
-  // Tick session minutes for demo billing preview
+  useEffect(() => {
+    const slug = String(params.slug);
+    fetch(`/api/experts/${encodeURIComponent(slug)}`)
+      .then(async (res) => {
+        const data = await res.json();
+        if (res.ok) setA(data.expert);
+        else setA(null);
+      })
+      .finally(() => setLoading(false));
+  }, [params.slug]);
+
   useEffect(() => {
     if (mode === "call" && calling) return;
     const t = setInterval(() => setMinutes((m) => m + 1), 60_000);
@@ -50,6 +63,12 @@ export default function ConsultSessionPage() {
     }
   }
 
+  if (loading) {
+    return (
+      <div className="container-jk py-16 text-center text-sm text-[var(--jk-muted)]">Loading expert…</div>
+    );
+  }
+
   if (!a) {
     return (
       <div className="container-jk py-16 text-center">
@@ -70,7 +89,7 @@ export default function ConsultSessionPage() {
       { role: "user", text: q },
       {
         role: "astro",
-        text: `(Demo reply from ${a!.name}) Thanks for sharing. In a live session we’d open your chart themes around “${q.slice(0, 80)}”. For deeper work, try Free Kundli or a PDF report.`,
+        text: `(${a!.source === "live" ? "Live" : "Demo"} reply from ${a!.name}) Thanks for sharing. In a live session we’d open your chart themes around “${q.slice(0, 80)}”. For deeper work, try Free Kundli or a PDF report.`,
       },
     ]);
     void maybeCharge();
@@ -89,7 +108,12 @@ export default function ConsultSessionPage() {
                 {a.initials}
               </div>
               <div>
-                <p className="font-semibold">{a.name}</p>
+                <p className="font-semibold">
+                  {a.name}{" "}
+                  <span className="text-xs font-medium text-[var(--jk-muted)]">
+                    · {a.source === "live" ? "live" : "sample"}
+                  </span>
+                </p>
                 <p className="text-xs text-emerald-600">
                   {a.online ? "online" : "offline"} · ₹{a.pricePerMinInr}/min · {mode} · ~{minutes}m
                   {minutes <= FREE_CONSULT_MINUTES ? " (free intro)" : ""}

@@ -18,7 +18,7 @@ export type MarketplaceAstrologer = {
 };
 
 export const MARKETPLACE_DISCLAIMER =
-  "Expert cards below are sample marketplace profiles for product UI. Live chat/call routing is demo-mode until real consultants are onboarded. Interpretive guidance only — not medical, legal, or financial advice.";
+  "Live verified experts appear after admin approval. Sample profiles are labeled for UI demos. Chat/call rooms are demo-mode (no live telephony). Interpretive guidance only — not medical, legal, or financial advice.";
 
 export const MARKETPLACE_ASTROLOGERS: MarketplaceAstrologer[] = [
   {

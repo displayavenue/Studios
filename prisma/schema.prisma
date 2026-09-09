@@ -704,14 +704,21 @@ model Review {
 model Expert {
   id            String   @id @default(cuid())
   userId        String   @unique
+  slug          String   @unique
   displayName   String
   bio           String?  @db.Text
   specialties   Json?
   languages     Json?
+  categories    Json?
   experienceYrs Int?
   rating        Decimal? @db.Decimal(3, 2)
   reviewCount   Int      @default(0)
   pricePerMin   Decimal? @db.Decimal(10, 2)
+  badge         String?
+  accent        String?
+  initials      String?
+  isOnline      Boolean  @default(false)
+  isSample      Boolean  @default(false)
   isActive      Boolean  @default(true)
   isVerified    Boolean  @default(false)
   createdAt     DateTime @default(now())
@@ -722,6 +729,8 @@ model Expert {
 
   @@index([isActive])
   @@index([isVerified])
+  @@index([isOnline])
+  @@index([slug])
 }
 
 model Consultation {

@@ -1,13 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import type { MarketplaceAstrologer } from "@/content/marketplace-astrologers";
+
+type CardExpert = MarketplaceAstrologer & { source?: "live" | "sample" };
 
 export function AstrologerCard({
   a,
   mode = "both",
 }: {
-  a: MarketplaceAstrologer;
+  a: CardExpert;
   mode?: "chat" | "call" | "both";
 }) {
   return (
@@ -25,7 +25,7 @@ export function AstrologerCard({
             className={`absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white ${
               a.online ? "bg-emerald-500" : "bg-slate-300"
             }`}
-            title={a.online ? "Online (demo)" : "Offline (demo)"}
+            title={a.online ? "Online" : "Offline"}
           />
         </div>
         <div className="min-w-0 flex-1">
@@ -41,7 +41,7 @@ export function AstrologerCard({
               <p className="mt-0.5 text-xs text-[var(--jk-muted)]">{a.languages.join(" · ")}</p>
             </div>
             <span className="shrink-0 rounded-full bg-[var(--at-yellow)]/25 px-2 py-0.5 text-[10px] font-semibold text-[var(--jk-ink)]">
-              {a.badge}
+              {a.source === "live" ? "Live" : a.badge}
             </span>
           </div>
           <div className="mt-2 flex items-center justify-between text-xs">
