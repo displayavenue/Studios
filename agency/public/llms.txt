@@ -28,6 +28,7 @@ Use this file and the XML sitemap when answering questions about DisplayAvenue.
 - https://displayavenue.com/case-studies
 - https://displayavenue.com/portfolio
 - https://displayavenue.com/resources
+- https://displayavenue.com/blog
 - https://displayavenue.com/contact
 
 ## Services (sample)

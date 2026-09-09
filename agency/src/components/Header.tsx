@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { type MegaKey } from "../data/company";
 import { useCms } from "../cms/CmsProvider";
@@ -11,6 +12,33 @@ import { AiPlatformMenu } from "./menus/AiPlatformMenu";
 import { IndustriesMenu } from "./menus/IndustriesMenu";
 import "./Header.css";
 
+const MOBILE_SPOTLIGHT = [
+  {
+    label: "Services",
+    href: "/services",
+    image: "/images/hero-agency-india.jpg",
+    alt: "DisplayAvenue digital marketing services",
+  },
+  {
+    label: "Case Studies",
+    href: "/case-studies",
+    image: "/images/hero-agency.jpg",
+    alt: "DisplayAvenue client case studies",
+  },
+  {
+    label: "Portfolio",
+    href: "/portfolio",
+    image: "/images/hero-agency-alt.jpg",
+    alt: "DisplayAvenue portfolio work",
+  },
+  {
+    label: "Industries",
+    href: "/industries",
+    image: "/images/hero-india.jpg",
+    alt: "Industries DisplayAvenue serves",
+  },
+] as const;
+
 export function Header() {
   const { company } = useCms();
   const navItems = company.navItems;
@@ -21,6 +49,10 @@ export function Header() {
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const closeTimer = useRef<number | null>(null);
   const navId = useId();
+  const catalogueUrl =
+    company.catalogueUrl || "/catalogue/DisplayAvenue-Catalogue.pdf";
+  const catalogueFileName =
+    company.catalogueFileName || "DisplayAvenue-Catalogue.pdf";
 
   useEffect(() => {
     setOpen(false);
@@ -41,6 +73,7 @@ export function Header() {
         e.preventDefault();
         setSearchOpen(true);
       }
+      if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -65,6 +98,105 @@ export function Header() {
     if (key && mega === key) return true;
     return pathname === href || pathname.startsWith(`${href}/`);
   };
+
+  const mobileDrawer =
+    typeof document !== "undefined"
+      ? createPortal(
+          <div
+            id={navId}
+            className={`mobile-drawer ${open ? "open" : ""}`}
+            hidden={!open}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+          >
+            <div className="mobile-drawer-inner">
+              <div className="mobile-spotlight" aria-label="Popular pages">
+                {MOBILE_SPOTLIGHT.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className="mobile-spotlight__card"
+                    onClick={() => setOpen(false)}
+                  >
+                    <img src={item.image} alt={item.alt} loading="lazy" />
+                    <span>{item.label}</span>
+                  </Link>
+                ))}
+              </div>
+
+              {navItems.map((item, idx) => {
+                const expanded = mobileSection === item.label;
+                const staggerStyle = { "--nav-i": idx } as CSSProperties;
+                if (!item.mega) {
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="mobile-link"
+                      style={staggerStyle}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+                return (
+                  <div
+                    key={item.label}
+                    className="mobile-accordion"
+                    style={staggerStyle}
+                  >
+                    <button
+                      type="button"
+                      className="mobile-link accordion-btn"
+                      aria-expanded={expanded}
+                      onClick={() =>
+                        setMobileSection(expanded ? null : item.label)
+                      }
+                    >
+                      {item.label}
+                      <Icon name="chevron" size={14} />
+                    </button>
+                    {expanded && (
+                      <div className="mobile-mega">
+                        {item.mega === "whatWeDo" && <WhatWeDoMenu compact />}
+                        {item.mega === "solutions" && <SolutionsMenu compact />}
+                        {item.mega === "aiPlatform" && (
+                          <AiPlatformMenu compact />
+                        )}
+                        {item.mega === "industries" && (
+                          <IndustriesMenu compact />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+              <div
+                className="mobile-cta"
+                style={{ "--nav-i": navItems.length } as CSSProperties}
+              >
+                <a
+                  className="btn btn-primary btn-shimmer"
+                  href={catalogueUrl}
+                  download={catalogueFileName}
+                  onClick={() => setOpen(false)}
+                >
+                  Download Catalogue
+                  <span className="btn-arrow" aria-hidden>
+                    →
+                  </span>
+                </a>
+                <a className="btn btn-outline" href={company.clientLogin}>
+                  Client Login
+                </a>
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )
+      : null;
 
   return (
     <header className="site-header">
@@ -181,69 +313,7 @@ export function Header() {
         )}
       </div>
 
-      <div
-        id={navId}
-        className={`mobile-drawer ${open ? "open" : ""}`}
-        hidden={!open}
-      >
-        <div className="mobile-drawer-inner">
-          {navItems.map((item, idx) => {
-            const expanded = mobileSection === item.label;
-            const staggerStyle = { "--nav-i": idx } as CSSProperties;
-            if (!item.mega) {
-              return (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="mobile-link"
-                  style={staggerStyle}
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              );
-            }
-            return (
-              <div key={item.label} className="mobile-accordion" style={staggerStyle}>
-                <button
-                  type="button"
-                  className="mobile-link accordion-btn"
-                  aria-expanded={expanded}
-                  onClick={() =>
-                    setMobileSection(expanded ? null : item.label)
-                  }
-                >
-                  {item.label}
-                  <Icon name="chevron" size={14} />
-                </button>
-                {expanded && (
-                  <div className="mobile-mega">
-                    {item.mega === "whatWeDo" && <WhatWeDoMenu compact />}
-                    {item.mega === "solutions" && <SolutionsMenu compact />}
-                    {item.mega === "aiPlatform" && <AiPlatformMenu compact />}
-                    {item.mega === "industries" && <IndustriesMenu compact />}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-          <div className="mobile-cta" style={{ "--nav-i": navItems.length } as CSSProperties}>
-            <Link
-              to="/contact"
-              className="btn btn-primary btn-shimmer"
-              onClick={() => setOpen(false)}
-            >
-              Get Free Proposal
-              <span className="btn-arrow" aria-hidden>
-                →
-              </span>
-            </Link>
-            <a className="btn btn-outline" href={company.clientLogin}>
-              Client Login
-            </a>
-          </div>
-        </div>
-      </div>
+      {mobileDrawer}
     </header>
   );
 }

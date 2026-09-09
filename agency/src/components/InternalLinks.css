@@ -241,12 +241,15 @@
 }
 
 .explore-dir__footer-actions .btn-outline {
-  border-color: rgba(255, 255, 255, 0.35);
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.45);
   color: #fff;
 }
 
 .explore-dir__footer-actions .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 @media (max-width: 1000px) {

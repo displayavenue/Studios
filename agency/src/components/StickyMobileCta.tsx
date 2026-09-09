@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import "./StickyMobileCta.css";
 
@@ -46,9 +46,14 @@ export function StickyMobileCta() {
       >
         WhatsApp
       </a>
-      <Link className="sticky-mcta__btn sticky-mcta__btn--cta" to="/contact" tabIndex={visible ? 0 : -1}>
-        Get Free Proposal
-      </Link>
+      <a
+        className="sticky-mcta__btn sticky-mcta__btn--cta"
+        href={company.catalogueUrl || "/catalogue/DisplayAvenue-Catalogue.pdf"}
+        download={company.catalogueFileName || "DisplayAvenue-Catalogue.pdf"}
+        tabIndex={visible ? 0 : -1}
+      >
+        Download Catalogue
+      </a>
     </nav>
   );
 }

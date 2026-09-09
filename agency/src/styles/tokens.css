@@ -77,6 +77,11 @@ body {
 
 body.menu-open {
   overflow: hidden;
+  touch-action: none;
+}
+
+body.menu-open .mobile-drawer {
+  touch-action: pan-y;
 }
 
 a {
