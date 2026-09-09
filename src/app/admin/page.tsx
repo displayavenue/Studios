@@ -45,6 +45,7 @@ export default async function AdminDashboardPage() {
           <QuickLink href="/admin/orders">Orders</QuickLink>
           <QuickLink href="/admin/reports">Reports queue</QuickLink>
           <QuickLink href="/admin/products">Products</QuickLink>
+          <QuickLink href="/admin/experts">Experts</QuickLink>
           <QuickLink href="/admin/subscriptions">Subscriptions</QuickLink>
           <QuickLink href="/admin/customers">Customers</QuickLink>
         </div>

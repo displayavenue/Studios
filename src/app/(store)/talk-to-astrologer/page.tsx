@@ -15,7 +15,7 @@ export default function TalkToAstrologerPage() {
           Call with <span className="text-[var(--at-yellow-ink)]">Astrologer</span>
         </h1>
         <p className="mt-2 max-w-2xl text-sm text-[var(--jk-muted)]">
-          One-on-one voice call UI in demo mode. Real telephony is not connected yet — this mirrors the AstroTalk-style call listing.
+          Voice call UI in demo mode (telephony not connected). Same live/sample expert directory and wallet billing as chat.
         </p>
         <div className="mt-8">
           <Suspense fallback={<p className="text-sm text-[var(--jk-muted)]">Loading experts…</p>}>

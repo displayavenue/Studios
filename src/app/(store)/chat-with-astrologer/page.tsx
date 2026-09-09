@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import { AstrologerDirectory } from "@/components/marketplace/astrologer-directory";
+import { FREE_CONSULT_MINUTES } from "@/config/wallet";
 
 export const metadata = {
   title: "Chat with Astrologer",
-  description: "Chat with sample JyotishKundali marketplace astrologers — demo consult UI.",
+  description: "Chat with JyotishKundali marketplace astrologers — wallet-backed consult UI.",
 };
 
 export default function ChatWithAstrologerPage() {
@@ -15,7 +16,7 @@ export default function ChatWithAstrologerPage() {
           Chat with <span className="text-[var(--at-yellow-ink)]">Astrologer</span>
         </h1>
         <p className="mt-2 max-w-2xl text-sm text-[var(--jk-muted)]">
-          First consultation is free in demo mode. Pick a sample expert to open the chat UI — live wallet billing comes later.
+          First {FREE_CONSULT_MINUTES} minutes free, then wallet billing. Live verified experts and labeled sample profiles appear in the directory.
         </p>
         <div className="mt-8">
           <Suspense fallback={<p className="text-sm text-[var(--jk-muted)]">Loading experts…</p>}>
