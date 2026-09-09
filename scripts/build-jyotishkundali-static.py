@@ -57,14 +57,14 @@ def parse_categories() -> list[dict]:
 
 
 HOME_SERVICE_CARDS = [
-    ("Kundali & Birth Charts", "Janam Kundali, houses, dasha timelines, and natal deep-dives.", "☉", "violet", "/services.html?c=kundali"),
-    ("Marriage & Matching", "Guna Milan, love chemistry, marriage timing, and couple synastry.", "♥", "pink", "/services.html?c=marriage"),
-    ("Career & Profession", "Career path, timing windows, business themes, and abroad-work motifs.", "↑", "blue", "/services.html?c=career"),
-    ("Wealth & Family", "Prosperity themes, property symbolism, education, and family dynamics.", "₹", "amber", "/services.html?c=wealth"),
-    ("Dosha & Planets", "Dosha scans, Manglik, Rahu-Ketu, Sade Sati, and Saturn lessons.", "△", "orange", "/services.html?c=dosha"),
-    ("Face Self-Discovery", "AI face reading and strengths maps for reflective self-awareness.", "◉", "fuchsia", "/services.html?c=self-discovery"),
-    ("Numerology", "Complete number profiles, name, mobile, and personal year forecasts.", "8", "indigo", "/services.html?c=numerology"),
-    ("Horoscopes & Transits", "Year-ahead forecasts, gochar reports, and monthly personalised guidance.", "☾", "sky", "/services.html?c=daily-astrology"),
+    ("Chat with Astrologer", "Instant text consultation — first minutes free.", "💬", "amber", f"{APP_BASE}/chat-with-astrologer"),
+    ("Call Astrologer", "One-on-one voice call demo.", "☎", "sky", f"{APP_BASE}/talk-to-astrologer"),
+    ("Free Kundli", "Lahiri Janam Kundli preview.", "☉", "violet", f"{APP_BASE}/free-kundli"),
+    ("AstroMall", "Gemstones, yantras, puja kits.", "✦", "rose", f"{APP_BASE}/shop"),
+    ("Panchang", "Daily tithi & nakshatra.", "☾", "indigo", f"{APP_BASE}/panchang"),
+    ("PDF Reports", "33 specialised interpretive reports.", "📄", "blue", "/services.html"),
+    ("Calculators", "Matching & moon-sign tools.", "✧", "fuchsia", f"{APP_BASE}/calculators"),
+    ("Wallet", "Recharge for consult minutes.", "₹", "emerald", f"{APP_BASE}/wallet"),
 ]
 
 MEMBERSHIP_FEATURES = [
@@ -300,10 +300,16 @@ def build_homepage(product_count: int) -> str:
       <span class="hero-chip"><span class="ic" aria-hidden="true">⚡</span>Instant PDF Download</span>
       <span class="hero-chip"><span class="ic" aria-hidden="true">🛡</span>Razorpay Checkout</span>
     </div>
-    <form class="hero-form" action="/services/janam-kundali.html" method="get">
-      <input name="q" type="text" placeholder="Enter your birth details to create your Kundali" aria-label="Birth details"/>
-      <button class="btn gold" type="submit">Generate Now →</button>
+    <form class="hero-form" action="{APP_BASE}/free-kundli" method="get">
+      <input name="q" type="text" placeholder="Open Free Kundli on the JyotishKundali app" aria-label="Free Kundli"/>
+      <button class="btn gold" type="submit">Start Free Chat →</button>
     </form>
+    <p style="margin-top:1rem;font-size:.85rem;color:rgba(255,255,255,.7)">
+      <a href="{APP_BASE}/chat-with-astrologer" style="color:var(--gold)">Chat</a> ·
+      <a href="{APP_BASE}/shop" style="color:var(--gold)">AstroMall</a> ·
+      <a href="{APP_BASE}/panchang" style="color:var(--gold)">Panchang</a> ·
+      <a href="{APP_BASE}/wallet" style="color:var(--gold)">Wallet</a>
+    </p>
   </div>
 </div></section>
 <section class="trust-ribbon" aria-label="Trust highlights"><div class="wrap">

@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { getAstrologer, MARKETPLACE_DISCLAIMER } from "@/content/marketplace-astrologers";
+import { FREE_CONSULT_MINUTES } from "@/config/wallet";
 
 export default function ConsultSessionPage() {
   const params = useParams<{ slug: string }>();
@@ -18,6 +19,36 @@ export default function ConsultSessionPage() {
   ]);
   const [input, setInput] = useState("");
   const [calling, setCalling] = useState(mode === "call");
+  const [minutes, setMinutes] = useState(1);
+  const [walletNote, setWalletNote] = useState<string | null>(null);
+
+  // Tick session minutes for demo billing preview
+  useEffect(() => {
+    if (mode === "call" && calling) return;
+    const t = setInterval(() => setMinutes((m) => m + 1), 60_000);
+    return () => clearInterval(t);
+  }, [mode, calling]);
+
+  async function maybeCharge() {
+    if (!a) return;
+    const res = await fetch("/api/wallet/charge-consult", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ expertSlug: a.slug, minutes }),
+    });
+    const data = await res.json();
+    if (res.status === 401) {
+      setWalletNote("Login + wallet required after free minutes. /wallet");
+      return;
+    }
+    if (res.status === 402) {
+      setWalletNote(data.message || "Insufficient balance — recharge wallet.");
+      return;
+    }
+    if (res.ok && data.charged > 0) {
+      setWalletNote(`Charged ₹${data.charged}. Balance ₹${data.balanceInr}.`);
+    }
+  }
 
   if (!a) {
     return (
@@ -42,6 +73,7 @@ export default function ConsultSessionPage() {
         text: `(Demo reply from ${a!.name}) Thanks for sharing. In a live session we’d open your chart themes around “${q.slice(0, 80)}”. For deeper work, try Free Kundli or a PDF report.`,
       },
     ]);
+    void maybeCharge();
   }
 
   return (
@@ -59,7 +91,8 @@ export default function ConsultSessionPage() {
               <div>
                 <p className="font-semibold">{a.name}</p>
                 <p className="text-xs text-emerald-600">
-                  {a.online ? "online" : "offline"} · ₹{a.pricePerMinInr}/min sample · {mode}
+                  {a.online ? "online" : "offline"} · ₹{a.pricePerMinInr}/min · {mode} · ~{minutes}m
+                  {minutes <= FREE_CONSULT_MINUTES ? " (free intro)" : ""}
                 </p>
               </div>
             </div>
@@ -121,7 +154,11 @@ export default function ConsultSessionPage() {
           )}
         </div>
         <p className="mt-4 text-xs text-[var(--jk-muted)]">{MARKETPLACE_DISCLAIMER}</p>
+        {walletNote && <p className="mt-2 text-sm text-[var(--at-yellow-ink)]">{walletNote}</p>}
         <div className="mt-4 flex flex-wrap gap-3 text-sm">
+          <Link href="/wallet" className="font-semibold text-[var(--at-yellow-ink)]">
+            Wallet →
+          </Link>
           <Link href="/free-kundli" className="font-semibold text-[var(--at-yellow-ink)]">
             Free Kundli →
           </Link>

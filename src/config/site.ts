@@ -22,6 +22,7 @@ export const MARKETPLACE_NAV = [
     children: [
       { href: "/chat-with-astrologer", label: "Chat with Astrologer" },
       { href: "/talk-to-astrologer", label: "Call with Astrologer" },
+      { href: "/wallet", label: "Wallet recharge" },
       { href: "/experts", label: "Browse experts" },
     ],
   },
@@ -38,8 +39,18 @@ export const MARKETPLACE_NAV = [
     href: "/free-kundli",
     children: [
       { href: "/free-kundli", label: "Free Kundli" },
+      { href: "/panchang", label: "Panchang" },
+      { href: "/calculators", label: "Calculators" },
       { href: "/services/guna-milan", label: "Kundali Matching" },
-      { href: "/horoscope", label: "Daily Horoscope" },
+    ],
+  },
+  {
+    label: "Shop",
+    href: "/shop",
+    children: [
+      { href: "/shop", label: "AstroMall" },
+      { href: "/shop?category=gemstone", label: "Gemstones" },
+      { href: "/shop?category=puja", label: "Puja kits" },
     ],
   },
   {
@@ -48,20 +59,18 @@ export const MARKETPLACE_NAV = [
     children: [
       { href: "/services?category=kundali", label: "Kundali PDFs" },
       { href: "/services?category=marriage", label: "Marriage & Matching" },
-      { href: "/services?category=career", label: "Career" },
       { href: "/membership", label: "Membership" },
     ],
   },
   { label: "Blog", href: "/blog" },
 ] as const;
 
-/** @deprecated Prefer MARKETPLACE_NAV — kept for older imports */
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/chat-with-astrologer", label: "Chat" },
-  { href: "/talk-to-astrologer", label: "Call" },
+  { href: "/shop", label: "Shop" },
   { href: "/free-kundli", label: "Free Kundli" },
-  { href: "/horoscope", label: "Horoscope" },
+  { href: "/panchang", label: "Panchang" },
   { href: "/services", label: "Reports" },
   { href: "/blog", label: "Blog" },
 ] as const;
@@ -69,8 +78,8 @@ export const NAV_LINKS = [
 export const MOBILE_NAV = [
   { href: "/", label: "Home" },
   { href: "/chat-with-astrologer", label: "Chat" },
-  { href: "/free-kundli", label: "Kundli" },
-  { href: "/services", label: "Reports" },
+  { href: "/shop", label: "Shop" },
+  { href: "/wallet", label: "Wallet" },
   { href: "/dashboard", label: "Account" },
 ] as const;
 

@@ -6,6 +6,10 @@ import {
   ScrollText,
   ArrowRight,
   Check,
+  Sparkles,
+  Calendar,
+  Calculator,
+  Wallet,
 } from "lucide-react";
 import { AstrologerCard } from "@/components/marketplace/astrologer-card";
 import { DailyHoroscopePanel } from "@/components/marketplace/daily-horoscope-panel";
@@ -43,6 +47,30 @@ const QUICK = [
     title: "Get Free Kundli",
     desc: "Detailed birth chart analysis",
     icon: ScrollText,
+  },
+  {
+    href: "/shop",
+    title: "AstroMall",
+    desc: "Gemstones, yantras, puja kits",
+    icon: Sparkles,
+  },
+  {
+    href: "/panchang",
+    title: "Panchang",
+    desc: "Tithi, nakshatra, yoga, karana",
+    icon: Calendar,
+  },
+  {
+    href: "/calculators",
+    title: "Calculators",
+    desc: "Matching & moon-sign tools",
+    icon: Calculator,
+  },
+  {
+    href: "/wallet",
+    title: "Wallet",
+    desc: "Recharge consult minutes",
+    icon: Wallet,
   },
 ] as const;
 
