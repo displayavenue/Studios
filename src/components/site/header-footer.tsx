@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, Menu, Search, User, X, MessageCircle } from "lucide-react";
+import { ChevronDown, Menu, Search, User, X, MessageCircle, Wallet } from "lucide-react";
 import { BRAND, MARKETPLACE_NAV, MOBILE_NAV } from "@/config/site";
 import { LanguageToggle } from "@/components/site/i18n";
 import { ACTIVITY_TICKER } from "@/content/marketplace-astrologers";
+import { useAuthModal } from "@/components/site/auth-provider";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const { openAuth } = useAuthModal();
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--jk-line)] bg-white/95 text-[var(--jk-ink)] backdrop-blur-md">
@@ -78,19 +80,23 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <Link href="/services" className="focus-ring rounded-lg p-2 text-[var(--jk-ink)]/70 hover:bg-black/5" aria-label="Search">
+          <Link href="/free-kundli" className="focus-ring rounded-lg p-2 text-[var(--jk-ink)]/70 hover:bg-black/5" aria-label="Search Kundli">
             <Search className="h-4 w-4" />
+          </Link>
+          <Link href="/wallet" className="focus-ring hidden rounded-lg p-2 text-[var(--jk-ink)]/70 hover:bg-black/5 sm:inline-flex" aria-label="Wallet">
+            <Wallet className="h-4 w-4" />
           </Link>
           <div className="hidden sm:block">
             <LanguageToggle />
           </div>
-          <Link
-            href="/login"
+          <button
+            type="button"
+            onClick={() => openAuth({ next: "/dashboard" })}
             className="focus-ring hidden rounded-lg p-2 text-[var(--jk-ink)]/70 hover:bg-black/5 sm:inline-flex"
-            aria-label="Account"
+            aria-label="Sign in"
           >
             <User className="h-4 w-4" />
-          </Link>
+          </button>
           <Link
             href="/chat-with-astrologer"
             className="at-cta inline-flex h-9 items-center gap-1 px-3 text-xs sm:px-4 sm:text-sm"
@@ -142,11 +148,18 @@ export function SiteHeader() {
                     ],
               )}
               <hr className="my-2 border-[var(--jk-line)]" />
-              <Link href="/login" onClick={() => setOpen(false)} className="px-2 py-2">
-                Login
-              </Link>
-              <Link href="/signup" onClick={() => setOpen(false)} className="px-2 py-2 font-semibold text-[var(--at-yellow-ink)]">
-                Sign Up
+              <button
+                type="button"
+                className="rounded-lg px-2 py-2 text-left hover:bg-[var(--at-yellow)]/20"
+                onClick={() => {
+                  setOpen(false);
+                  openAuth({ next: "/dashboard" });
+                }}
+              >
+                Login / Sign up
+              </button>
+              <Link href="/dashboard" onClick={() => setOpen(false)} className="rounded-lg px-2 py-2 hover:bg-[var(--at-yellow)]/20">
+                My account
               </Link>
             </nav>
           </div>

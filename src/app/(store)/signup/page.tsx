@@ -1,16 +1,14 @@
 import { Suspense } from "react";
 import SignupForm from "./signup-form";
-import { PageHero, SectionShell } from "@/components/site/page-chrome";
 
 export default function SignupPage() {
   return (
-    <div>
-      <PageHero eyebrow="Account" title="Create Account" subtitle="Start your self-discovery journey with JyotishKundali." />
-      <SectionShell muted>
+    <div className="at-home min-h-[60vh]">
+      <div className="container-jk py-16">
         <Suspense fallback={<div className="text-center text-sm text-[var(--jk-muted)]">Loading…</div>}>
           <SignupForm />
         </Suspense>
-      </SectionShell>
+      </div>
     </div>
   );
 }
