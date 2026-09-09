@@ -5,8 +5,8 @@ import { useState } from "react";
 import { ChevronDown, Menu, Search, User, X, MessageCircle, Wallet } from "lucide-react";
 import { BRAND, MARKETPLACE_NAV, MOBILE_NAV } from "@/config/site";
 import { LanguageToggle } from "@/components/site/i18n";
-import { ACTIVITY_TICKER } from "@/content/marketplace-astrologers";
 import { useAuthModal } from "@/components/site/auth-provider";
+import { ActivityTicker } from "@/components/site/activity-ticker";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -109,15 +109,7 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className="overflow-hidden border-t border-[var(--jk-line)] bg-[var(--at-cream)]">
-        <div className="at-ticker whitespace-nowrap py-1.5 text-xs text-[var(--jk-muted)]">
-          {[...ACTIVITY_TICKER, ...ACTIVITY_TICKER].map((line, i) => (
-            <span key={`${line}-${i}`} className="mx-6 inline-block">
-              <span className="text-[var(--at-yellow-ink)]">✦</span> {line}
-            </span>
-          ))}
-        </div>
-      </div>
+      <ActivityTicker />
 
       {open && (
         <div className="fixed inset-0 z-50 bg-black/50 lg:hidden" role="dialog" aria-modal>

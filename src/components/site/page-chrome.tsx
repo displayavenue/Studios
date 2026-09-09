@@ -7,7 +7,7 @@ export function PageHero({
   subtitle,
   lead,
   children,
-  variant = "dark",
+  variant = "marketplace",
 }: {
   eyebrow?: string;
   title: string;

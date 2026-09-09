@@ -9,6 +9,7 @@ import { useAuthModal } from "@/components/site/auth-provider";
 
 type Step = "phone" | "otp";
 
+/** AstroTalk-style dark OTP sheet — JyotishKundali branded. */
 export function AuthModal() {
   const { open, closeAuth, nextPath } = useAuthModal();
   const router = useRouter();
@@ -36,7 +37,11 @@ export function AuthModal() {
       if (e.key === "Escape") closeAuth();
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
   }, [open, closeAuth]);
 
   if (!open) return null;
@@ -56,7 +61,6 @@ export function AuthModal() {
       if (!res.ok) throw new Error(data.message || data.error || "Failed to send OTP");
       setStep("otp");
       if (data.message) setHint(String(data.message));
-      else if (data.debugCode) setHint(`Demo OTP: ${data.debugCode}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed");
     } finally {
@@ -109,43 +113,52 @@ export function AuthModal() {
 
   return (
     <div className="at-auth-overlay" role="dialog" aria-modal="true" aria-label="Sign in">
-      <button type="button" className="absolute inset-0 cursor-default" aria-label="Close" onClick={closeAuth} />
+      <button type="button" className="absolute inset-0 cursor-default bg-black/75" aria-label="Close" onClick={closeAuth} />
       <div className="at-auth-modal relative z-10">
         <button
           type="button"
           onClick={closeAuth}
-          className="absolute right-4 top-4 rounded-full p-1.5 text-white/70 hover:bg-white/10 hover:text-white"
+          className="absolute right-4 top-4 z-20 rounded-full p-1.5 text-white/80 hover:bg-white/10"
           aria-label="Close sign in"
         >
-          <X className="h-5 w-5" />
+          <X className="h-5 w-5" strokeWidth={2} />
         </button>
 
-        <div className="flex flex-col items-center pt-2">
+        <div className="flex flex-col items-center pt-1">
           <div className="at-auth-logo" aria-hidden>
-            <span>✦</span>
+            <AuthPlanetMark />
           </div>
-          <h2 className="mt-5 text-2xl font-semibold text-white">Sign In</h2>
-          <p className="mt-2 text-sm text-white/55">
-            {step === "phone" ? "Enter your phone number to continue" : `Enter OTP sent to +91 ${phone}`}
+        </div>
+
+        <div className="mt-6 text-left">
+          <h2 className="text-[1.65rem] font-semibold tracking-tight text-white">Sign In</h2>
+          <p className="mt-1.5 text-[0.95rem] text-white/50">
+            {step === "phone" ? "Enter your phone number to continue" : `Enter the OTP sent to +91 ${phone}`}
           </p>
         </div>
 
         {step === "phone" ? (
-          <form onSubmit={sendOtp} className="mt-7 space-y-4">
-            <div className="flex gap-2">
-              <div className="at-auth-input flex w-[6.5rem] shrink-0 items-center justify-center gap-1.5 px-2 text-sm text-white">
-                <span aria-hidden>🇮🇳</span>
-                <span>+91</span>
-                <span className="text-white/40">▾</span>
-              </div>
+          <form onSubmit={sendOtp} className="mt-6 space-y-3.5">
+            <div className="flex gap-2.5">
+              <button
+                type="button"
+                className="at-auth-input flex w-[5.75rem] shrink-0 items-center justify-center gap-1 px-2 text-[0.9rem] text-white"
+                aria-label="Country code India"
+              >
+                <span className="text-base leading-none" aria-hidden>
+                  🇮🇳
+                </span>
+                <span className="font-medium">+91</span>
+                <span className="text-[0.65rem] text-white/45">▼</span>
+              </button>
               <input
                 inputMode="numeric"
-                autoComplete="tel"
+                autoComplete="tel-national"
                 maxLength={10}
                 placeholder="Phone number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))}
-                className="at-auth-input flex-1 px-4 text-sm text-white placeholder:text-white/35"
+                className="at-auth-input flex-1 px-3.5 text-[0.95rem] text-white placeholder:text-white/35"
                 required
               />
             </div>
@@ -154,15 +167,15 @@ export function AuthModal() {
             </button>
           </form>
         ) : (
-          <form onSubmit={verifyOtp} className="mt-7 space-y-4">
+          <form onSubmit={verifyOtp} className="mt-6 space-y-3.5">
             <input
               inputMode="numeric"
               autoComplete="one-time-code"
               maxLength={6}
-              placeholder="Enter 6-digit OTP"
+              placeholder="Enter OTP"
               value={code}
               onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
-              className="at-auth-input w-full px-4 text-center text-lg tracking-[0.35em] text-white placeholder:tracking-normal placeholder:text-white/35"
+              className="at-auth-input w-full px-3.5 text-center text-lg tracking-[0.4em] text-white placeholder:tracking-normal placeholder:text-white/35"
               required
             />
             <button type="submit" disabled={pending || code.length < 4} className="at-auth-cta">
@@ -170,7 +183,7 @@ export function AuthModal() {
             </button>
             <button
               type="button"
-              className="w-full text-center text-xs text-white/50 hover:text-white/80"
+              className="w-full text-center text-xs text-white/45 hover:text-white/75"
               onClick={() => {
                 setStep("phone");
                 setCode("");
@@ -182,11 +195,11 @@ export function AuthModal() {
           </form>
         )}
 
-        <div className="at-auth-or my-6">
+        <div className="at-auth-or my-5">
           <span>OR</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2.5">
           <button type="button" disabled={pending} onClick={() => oauth("google")} className="at-auth-social">
             <GoogleMark />
             Google
@@ -202,28 +215,39 @@ export function AuthModal() {
 
         <p className="mt-6 text-center text-[11px] leading-relaxed text-white/40">
           By continuing, you agree to our{" "}
-          <Link href="/legal/terms" className="underline hover:text-white/70" onClick={closeAuth}>
+          <Link href="/legal/terms" className="text-white/55 hover:text-white/80" onClick={closeAuth}>
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href="/legal/privacy" className="underline hover:text-white/70" onClick={closeAuth}>
+          <Link href="/legal/privacy" className="text-white/55 hover:text-white/80" onClick={closeAuth}>
             Privacy Policy
           </Link>
           .
         </p>
-        <p className="mt-3 text-center text-[10px] text-white/30">{BRAND.name}</p>
+        <p className="mt-2 text-center text-[10px] text-white/25">{BRAND.name}</p>
       </div>
     </div>
+  );
+}
+
+function AuthPlanetMark() {
+  return (
+    <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
+      <circle cx="32" cy="32" r="30" fill="#c4b03a" />
+      <circle cx="32" cy="32" r="10" fill="#111" />
+      <ellipse cx="32" cy="32" rx="22" ry="8" fill="none" stroke="#111" strokeWidth="2.2" transform="rotate(-28 32 32)" />
+      <ellipse cx="32" cy="32" rx="22" ry="8" fill="none" stroke="#111" strokeWidth="1.6" transform="rotate(32 32 32)" />
+      <circle cx="48" cy="24" r="2.2" fill="#111" />
+      <circle cx="18" cy="40" r="1.8" fill="#111" />
+      <circle cx="40" cy="46" r="1.5" fill="#111" />
+    </svg>
   );
 }
 
 function GoogleMark() {
   return (
     <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
-      <path
-        fill="#EA4335"
-        d="M12 10.2v3.6h5.1c-.2 1.2-1.5 3.6-5.1 3.6-3.1 0-5.6-2.5-5.6-5.6S8.9 6.2 12 6.2c1.8 0 3 .7 3.7 1.4l2.5-2.4C16.8 3.8 14.6 2.8 12 2.8 6.9 2.8 2.8 6.9 2.8 12S6.9 21.2 12 21.2c5.2 0 8.6-3.6 8.6-8.7 0-.6-.1-1-.2-1.5H12z"
-      />
+      <path fill="#EA4335" d="M12 10.2v3.6h5.1c-.2 1.2-1.5 3.6-5.1 3.6-3.1 0-5.6-2.5-5.6-5.6S8.9 6.2 12 6.2c1.8 0 3 .7 3.7 1.4l2.5-2.4C16.8 3.8 14.6 2.8 12 2.8 6.9 2.8 2.8 6.9 2.8 12S6.9 21.2 12 21.2c5.2 0 8.6-3.6 8.6-8.7 0-.6-.1-1-.2-1.5H12z" />
     </svg>
   );
 }
