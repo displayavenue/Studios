@@ -16,14 +16,27 @@ export function GrowthLayout() {
 
   useEffect(() => {
     setHideSticky(pathname.includes("thank-you"));
-    const form = document.getElementById("growth-form");
-    if (!form || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(
-      ([entry]) => setHideSticky(Boolean(entry?.isIntersecting)),
-      { rootMargin: "-10% 0px -35% 0px", threshold: 0.05 },
-    );
-    io.observe(form);
-    return () => io.disconnect();
+    if (pathname.includes("thank-you")) return;
+    let io: IntersectionObserver | null = null;
+    let cancelled = false;
+    const attach = () => {
+      if (cancelled) return;
+      const form = document.getElementById("growth-form");
+      if (!form || typeof IntersectionObserver === "undefined") {
+        window.setTimeout(attach, 120);
+        return;
+      }
+      io = new IntersectionObserver(
+        ([entry]) => setHideSticky(Boolean(entry?.isIntersecting)),
+        { rootMargin: "-10% 0px -35% 0px", threshold: 0.05 },
+      );
+      io.observe(form);
+    };
+    attach();
+    return () => {
+      cancelled = true;
+      io?.disconnect();
+    };
   }, [pathname]);
 
   const scrollToForm = (cta_text: string, cta_location: string) => {
