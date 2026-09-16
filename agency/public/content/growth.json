@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "parentBrand": "Mediashouter Group",
+  "googlePlaceId": "",
+  "googleReviewsUrl": "https://www.google.com/search?kgmid=/g/11l59jbzkb&q=Display+Avenue",
+  "officeAddressLines": [
+    "[INSERT VERIFIED DISPLAYAVENUE OFFICE ADDRESS HERE]"
+  ],
+  "officeCity": "Mumbai, Maharashtra, India",
+  "officeHours": "Mon-Sat · 10:00 AM - 7:00 PM IST",
+  "webhookUrl": "",
+  "bookingUrl": "/contact",
+  "metaPixelId": "",
+  "capiEnabled": false,
+  "seo": {
+    "title": "Generate More Qualified Leads | DisplayAvenue",
+    "description": "DisplayAvenue helps businesses generate and manage qualified leads through websites, Meta Ads, Google Ads, Google Business Profile and e-commerce solutions."
+  }
+}

@@ -16,6 +16,9 @@ import { Contact } from "./pages/Contact";
 import { LegalPage } from "./pages/LegalPage";
 import { Awards } from "./pages/Awards";
 import { Certifications } from "./pages/Certifications";
+import { GrowthLayout } from "./pages/growth/GrowthLayout";
+import { Growth } from "./pages/growth/Growth";
+import { GrowthThankYou } from "./pages/growth/GrowthThankYou";
 import { RoiCalculator } from "./pages/tools/RoiCalculator";
 import { SeoChecklist } from "./pages/tools/SeoChecklist";
 import { LocalSeoScore } from "./pages/tools/LocalSeoScore";
@@ -41,6 +44,10 @@ export default function App() {
   return (
     <BrowserRouter basename={basename === "/" ? undefined : basename}>
       <Routes>
+        <Route element={<GrowthLayout />}>
+          <Route path="growth" element={<Growth />} />
+          <Route path="growth/thank-you" element={<GrowthThankYou />} />
+        </Route>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="industries" element={<Industries />} />

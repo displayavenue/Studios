@@ -66,6 +66,7 @@ const staticPages = [
   ["/certifications", "0.75", "monthly"],
   ["/why-displayavenue", "0.7", "monthly"],
   ["/contact", "0.8", "monthly"],
+  ["/growth", "0.85", "weekly"],
   ["/privacy", "0.3", "yearly"],
   ["/terms", "0.3", "yearly"],
 ];
