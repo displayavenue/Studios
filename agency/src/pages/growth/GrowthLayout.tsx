@@ -3,20 +3,32 @@ import { useEffect, useState } from "react";
 import { useCms } from "../../cms/CmsProvider";
 import { TrackingScripts } from "../../components/TrackingScripts";
 import { ScrollToTop } from "../../components/ScrollToTop";
-import { Logo } from "../../components/Logo";
 import { trackCtaClick, trackGrowthEvent } from "./growthAnalytics";
 import { captureGrowthAttribution } from "./growthAttribution";
 import "./Growth.css";
 
-/** Slim paid-traffic shell — no main mega-nav, InternalLinks, or site sticky CTA. */
+const NAV = [
+  { href: "#services", label: "Services" },
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#cases", label: "Case Studies" },
+  { href: "#reviews", label: "Reviews" },
+  { href: "#pricing", label: "Pricing" },
+] as const;
+
+/** Slim paid-traffic shell — premium sticky nav, no main site chrome. */
 export function GrowthLayout() {
   const { company } = useCms();
   const { pathname } = useLocation();
   const [hideSticky, setHideSticky] = useState(false);
+  const [compact, setCompact] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const isThanks = pathname.includes("thank-you");
 
   useEffect(() => {
-    setHideSticky(pathname.includes("thank-you"));
-    if (pathname.includes("thank-you")) return;
+    setHideSticky(isThanks);
+    setMenuOpen(false);
+    if (isThanks) return;
     let io: IntersectionObserver | null = null;
     let cancelled = false;
     const attach = () => {
@@ -37,6 +49,19 @@ export function GrowthLayout() {
       cancelled = true;
       io?.disconnect();
     };
+  }, [pathname, isThanks]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrolled = window.scrollY;
+      setCompact(scrolled > 40);
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(100, (scrolled / max) * 100) : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
   const scrollToForm = (cta_text: string, cta_location: string) => {
@@ -47,18 +72,34 @@ export function GrowthLayout() {
       utm_source: last.utm_source,
       utm_campaign: last.utm_campaign,
     });
+    setMenuOpen(false);
     document
       .getElementById("growth-form")
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <div className="growth-shell">
+    <div className={`growth-shell ${menuOpen ? "is-menu-open" : ""}`}>
       <ScrollToTop />
       <TrackingScripts />
-      <header className="growth-topbar">
+      <div className="growth-progress" aria-hidden>
+        <div style={{ width: `${progress}%` }} />
+      </div>
+      <header className={`growth-topbar ${compact ? "is-compact" : ""}`}>
         <div className="growth-topbar__inner">
-          <Logo light />
+          <a href="/growth" className="growth-brand">
+            <strong>DisplayAvenue</strong>
+            <small>Digital Growth</small>
+          </a>
+          {!isThanks && (
+            <nav className="growth-nav" aria-label="Growth page">
+              {NAV.map((item) => (
+                <a key={item.href} href={item.href}>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          )}
           <div className="growth-topbar__actions">
             <a
               className="growth-topbar__phone"
@@ -69,13 +110,40 @@ export function GrowthLayout() {
             </a>
             <button
               type="button"
-              className="btn btn-primary btn-sm"
+              className="growth-btn growth-btn--primary growth-btn--sm"
               onClick={() => scrollToForm("Get My Growth Plan", "topbar")}
             >
-              Get My Growth Plan
+              Get My Growth Plan <span className="growth-btn__arrow">→</span>
+            </button>
+            <button
+              type="button"
+              className={`growth-menu-toggle ${menuOpen ? "is-open" : ""}`}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span />
+              <span />
+              <span />
             </button>
           </div>
         </div>
+        {menuOpen && !isThanks && (
+          <div className="growth-mobile-menu">
+            {NAV.map((item) => (
+              <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </a>
+            ))}
+            <button
+              type="button"
+              className="growth-btn growth-btn--primary"
+              onClick={() => scrollToForm("Get My Growth Plan", "mobile_menu")}
+            >
+              Get My Growth Plan →
+            </button>
+          </div>
+        )}
       </header>
       <main>
         <Outlet />
@@ -147,15 +215,18 @@ export function GrowthLayout() {
         </div>
       </footer>
 
-      {!hideSticky && (
+      {!hideSticky && !isThanks && (
         <div className="growth-sticky-cta">
+          <div>
+            <strong>Plans Starting ₹30K</strong>
+          </div>
           <button
             type="button"
             onClick={() =>
               scrollToForm("Plans Starting ₹30K — Get My Growth Plan", "sticky_mobile")
             }
           >
-            Plans Starting ₹30K — Get My Growth Plan
+            Get My Growth Plan →
           </button>
         </div>
       )}

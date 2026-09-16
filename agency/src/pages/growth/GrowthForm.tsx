@@ -262,7 +262,7 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
           <div style={{ width: `${progress}%` }} />
         </div>
         <p className="growth-form__step">
-          Step {step} of {total}
+          {String(step).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </p>
       </div>
 
@@ -436,24 +436,25 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
 
       <div className="growth-form__nav">
         {step > 1 ? (
-          <button type="button" className="btn btn-outline" onClick={goBack}>
+          <button type="button" className="growth-btn growth-btn--outline" onClick={goBack}>
             Back
           </button>
         ) : (
           <span />
         )}
         {step < total ? (
-          <button type="button" className="btn btn-primary" onClick={goNext}>
-            Next
+          <button type="button" className="growth-btn growth-btn--primary" onClick={goNext}>
+            Next <span className="growth-btn__arrow">→</span>
           </button>
         ) : (
           <button
             type="button"
-            className="btn btn-primary"
+            className="growth-btn growth-btn--primary"
             onClick={submit}
             disabled={submitting}
           >
             {submitting ? "Submitting…" : "Get My Growth Plan"}
+            {!submitting && <span className="growth-btn__arrow">→</span>}
           </button>
         )}
       </div>

@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type RefObject } from "react";
 import { Link } from "react-router-dom";
 import { useCms } from "../../cms/CmsProvider";
 import { SEO } from "../../components/SEO";
-import { Icon } from "../../components/Icon";
+import { useReveal } from "../../hooks/useReveal";
 import { GrowthForm } from "./GrowthForm";
 import {
   growthFaqs,
@@ -11,6 +11,7 @@ import {
 } from "./growthData";
 import { captureGrowthAttribution } from "./growthAttribution";
 import { trackCtaClick, trackGrowthEvent } from "./growthAnalytics";
+import { GrowthHeroSystem, GrowthOrbit, GrowthServiceVisual } from "./GrowthVisuals";
 
 type GrowthConfig = {
   parentBrand?: string;
@@ -23,63 +24,54 @@ type GrowthConfig = {
   seo?: { title?: string; description?: string };
 };
 
-const problemCards = [
+const problems = [
   {
     title: "Wrong Audience",
-    text: "Your advertising may reach people who aren’t the right customers.",
+    text: "Ads reach people who aren’t ready to buy.",
   },
   {
     title: "Weak Offer",
-    text: "Visitors don’t immediately understand why they should enquire.",
+    text: "People see your business but don’t understand why they should enquire.",
   },
   {
     title: "Poor Website Experience",
-    text: "Traffic reaches a website that isn’t designed around conversion.",
+    text: "Traffic arrives but visitors don’t convert.",
   },
   {
-    title: "No Lead Qualification",
-    text: "You receive enquiries without knowing which prospects are serious.",
+    title: "No Qualification",
+    text: "You receive enquiries that aren’t relevant to your business.",
   },
   {
     title: "Poor Tracking",
-    text: "You cannot clearly see which marketing activities are generating valuable opportunities.",
+    text: "You don’t know which channel is actually generating opportunities.",
   },
-];
-
-const whyCards = [
-  "One Digital Growth Team",
-  "Multiple Digital Channels",
-  "Conversion-Focused",
-  "Tracking & Analytics",
-  "Monthly Strategy",
-  "Long-Term Partnership",
 ];
 
 const howSteps = [
   {
     n: "01",
     title: "Understand",
-    text: "Understand your business, market and goals.",
+    text: "We understand your business, market and goals.",
   },
   {
     n: "02",
     title: "Plan",
-    text: "Build the appropriate digital growth strategy.",
+    text: "We build the digital growth strategy.",
   },
   {
     n: "03",
     title: "Build",
-    text: "Develop or improve the website, landing pages and required digital assets.",
+    text: "We create or improve the website and conversion system.",
   },
   {
     n: "04",
     title: "Market",
-    text: "Manage Meta Ads, Google Ads, Google Business Profile and lead-generation activities.",
+    text: "We run and manage the relevant acquisition channels.",
   },
   {
     n: "05",
     title: "Optimize",
-    text: "Measure performance and improve the funnel over time.",
+    text: "We measure, learn and improve.",
   },
 ];
 
@@ -87,17 +79,17 @@ const funnelStages = [
   {
     n: "01",
     title: "Attract",
-    items: ["Meta Ads", "Google Ads", "Google Business Profile"],
+    items: ["Meta Ads", "Google Ads", "GBP"],
   },
   {
     n: "02",
     title: "Engage",
-    items: ["Website", "Landing Pages", "Content"],
+    items: ["Website", "Landing Page", "Content"],
   },
   {
     n: "03",
     title: "Capture",
-    items: ["Lead Form", "WhatsApp", "Phone"],
+    items: ["Forms", "WhatsApp", "Calls"],
   },
   {
     n: "04",
@@ -107,26 +99,38 @@ const funnelStages = [
   {
     n: "05",
     title: "Follow Up",
-    items: ["CRM", "WhatsApp", "Sales Team"],
+    items: ["CRM", "WhatsApp", "Sales"],
   },
   {
     n: "06",
     title: "Convert",
-    items: ["Sales Opportunity", "Proposal", "Customer"],
+    items: ["Opportunity", "Proposal", "Customer"],
   },
+];
+
+const CASE_IMAGES = [
+  "/images/hero-agency-india.jpg",
+  "/images/hero-agency.jpg",
+  "/images/hero-agency-alt.jpg",
+  "/images/hero-india.jpg",
 ];
 
 export function Growth() {
   const { company, content, cases, googleReviews } = useCms();
+  const revealRef = useReveal();
   const [cfg, setCfg] = useState<GrowthConfig>({});
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [planPref, setPlanPref] = useState("");
   const [expertOpen, setExpertOpen] = useState(false);
+  const [activeService, setActiveService] = useState<string>(growthServices[0].id);
+  const [activeProblem, setActiveProblem] = useState(0);
+  const [heroIn, setHeroIn] = useState(false);
 
   useEffect(() => {
     captureGrowthAttribution();
     trackGrowthEvent("page_view", { landing_page: "/growth" });
     trackGrowthEvent("view_content", { content_name: "growth_landing" });
+    const t = window.setTimeout(() => setHeroIn(true), 40);
     const base = (import.meta.env.BASE_URL || "/").replace(/\/?$/, "/");
     fetch(`${base}content/growth.json`)
       .then((r) => (r.ok ? r.json() : null))
@@ -136,8 +140,7 @@ export function Growth() {
       .catch(() => undefined);
 
     const faqId = "growth-faq-jsonld";
-    const existing = document.getElementById(faqId);
-    if (!existing) {
+    if (!document.getElementById(faqId)) {
       const script = document.createElement("script");
       script.id = faqId;
       script.type = "application/ld+json";
@@ -152,7 +155,10 @@ export function Growth() {
       });
       document.head.appendChild(script);
     }
-    return () => document.getElementById(faqId)?.remove();
+    return () => {
+      window.clearTimeout(t);
+      document.getElementById(faqId)?.remove();
+    };
   }, []);
 
   const reviewsUrl =
@@ -173,22 +179,22 @@ export function Growth() {
   const testimonials = content.testimonials || [];
 
   const caseCards = useMemo(() => {
-    return (cases || []).slice(0, 4).map((item) => ({
+    return (cases || []).slice(0, 4).map((item, idx) => ({
       slug: item.slug,
       client: item.title?.split(" - ")[0] || item.title,
       industry: item.category || item.eyebrow || "Digital growth",
       challenge: item.summary || item.headline || "",
-      services: item.category || "",
       href: `/case-studies/${item.slug}`,
+      image: CASE_IMAGES[idx % CASE_IMAGES.length],
     }));
   }, [cases]);
 
   const officeLines = cfg.officeAddressLines?.length
     ? cfg.officeAddressLines
     : ["[INSERT VERIFIED DISPLAYAVENUE OFFICE ADDRESS HERE]"];
-  const officePlaceholder = officeLines.some((l) =>
-    l.includes("[INSERT VERIFIED"),
-  );
+  const officePlaceholder = officeLines.some((l) => l.includes("[INSERT VERIFIED"));
+  const activeSvc =
+    growthServices.find((s) => s.id === activeService) || growthServices[0];
 
   const scrollToForm = (cta_text: string, cta_location: string, planId = "") => {
     if (planId) setPlanPref(planId);
@@ -230,7 +236,10 @@ export function Growth() {
     "DisplayAvenue helps businesses generate and manage qualified leads through websites, Meta Ads, Google Ads, Google Business Profile and e-commerce solutions.";
 
   return (
-    <div className="growth-page">
+    <div
+      className={`growth-page ${heroIn ? "is-hero-in" : ""}`}
+      ref={revealRef as RefObject<HTMLDivElement>}
+    >
       <SEO
         title={seoTitle}
         description={seoDesc}
@@ -238,211 +247,272 @@ export function Growth() {
         image="/images/hero-agency-india.jpg"
       />
 
-      {/* HERO */}
       <section className="growth-hero">
+        <div className="growth-hero__bg" aria-hidden />
         <div className="growth-wrap growth-hero__grid">
           <div className="growth-hero__copy">
-            <p className="growth-eyebrow">Digital Lead Generation for Businesses</p>
-            <h1>Get More Qualified Leads for Your Business</h1>
-            <p className="growth-hero__lead">
-              DisplayAvenue builds and manages the digital systems that help
-              businesses attract, capture, qualify and convert potential customers.
+            <p className="growth-eyebrow growth-hero__a1">
+              Digital Lead Generation for Businesses
             </p>
-            <p className="growth-hero__sub">
-              From your website and Google presence to Meta Ads, Google Ads,
-              lead-generation funnels and e-commerce management — one team managing
-              your digital growth.
+            <h1 className="growth-hero__a2">
+              Get More Qualified Leads for Your Business
+            </h1>
+            <p className="growth-hero__lead growth-hero__a3">
+              We build and manage the digital system behind your growth — from websites
+              and Google Business Profile to Meta Ads, Google Ads, lead generation and
+              e-commerce.
             </p>
-            <div className="growth-badge">Monthly Plans Starting at ₹30,000</div>
-            <div className="growth-hero__actions">
+            <div className="growth-badge growth-hero__a4">
+              Growth Plans Starting at ₹30,000/Month
+            </div>
+            <div className="growth-hero__actions growth-hero__a5">
               <button
                 type="button"
-                className="btn btn-primary"
+                className="growth-btn growth-btn--primary"
                 onClick={() => scrollToForm("Get My Growth Plan", "hero")}
               >
-                Get My Growth Plan
+                Get My Growth Plan <span className="growth-btn__arrow">→</span>
               </button>
               <button
                 type="button"
-                className="btn btn-outline-light"
+                className="growth-btn growth-btn--ghost"
                 onClick={() => talkToExpert("hero")}
               >
                 Talk to an Expert
               </button>
             </div>
-            <p className="growth-trust-line">
+            <p className="growth-trust-line growth-hero__a6">
               Strategy · Execution · Tracking · Optimization
             </p>
           </div>
-          <div className="growth-hero__visual" aria-hidden>
-            <div className="growth-funnel-mini">
-              <div className="growth-funnel-mini__row">
-                <span>Meta Ads</span>
-                <span>+</span>
-                <span>Google Ads</span>
-                <span>+</span>
-                <span>Website</span>
-                <span>+</span>
-                <span>Google Business Profile</span>
-              </div>
-              <div className="growth-funnel-mini__arrow">↓</div>
-              <div className="growth-funnel-mini__node">Landing Page</div>
-              <div className="growth-funnel-mini__arrow">↓</div>
-              <div className="growth-funnel-mini__node is-accent">Qualified Lead</div>
-              <div className="growth-funnel-mini__arrow">↓</div>
-              <div className="growth-funnel-mini__node">WhatsApp / Call</div>
-              <div className="growth-funnel-mini__arrow">↓</div>
-              <div className="growth-funnel-mini__node is-strong">Sales Opportunity</div>
-            </div>
+          <div className="growth-hero__visual growth-hero__a7">
+            <GrowthHeroSystem />
           </div>
         </div>
       </section>
 
-      {/* PROBLEM */}
-      <section className="growth-section">
-        <div className="growth-wrap">
-          <h2>Getting Clicks Isn’t the Goal. Getting Qualified Enquiries Is.</h2>
-          <p className="growth-lede">
-            Businesses often invest in advertising but still struggle to turn traffic
-            into genuine sales opportunities. The problem can be targeting, the offer,
-            the website, tracking, qualification or follow-up.
-          </p>
-          <div className="growth-cards-5">
-            {problemCards.map((card) => (
-              <article key={card.title} className="growth-card">
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-              </article>
-            ))}
+      <section className="growth-section growth-section--ink">
+        <div className="growth-wrap growth-problem">
+          <div className="reveal-up">
+            <p className="growth-eyebrow light">The real problem</p>
+            <h2>More Traffic Doesn’t Always Mean More Business.</h2>
+            <p className="growth-lede light">
+              Clicks are easy to chase. Qualified enquiries are harder.
+            </p>
           </div>
-          <p className="growth-bridge">
+          <div className="growth-problem__stage">
+            <div className="growth-problem__list" role="tablist">
+              {problems.map((p, idx) => (
+                <button
+                  key={p.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeProblem === idx}
+                  className={`growth-problem__item ${activeProblem === idx ? "is-active" : ""}`}
+                  onMouseEnter={() => setActiveProblem(idx)}
+                  onFocus={() => setActiveProblem(idx)}
+                  onClick={() => setActiveProblem(idx)}
+                >
+                  <span>0{idx + 1}</span>
+                  <strong>{p.title}</strong>
+                </button>
+              ))}
+            </div>
+            <div className="growth-problem__panel reveal-right" role="tabpanel">
+              <p className="growth-problem__title">{problems[activeProblem].title}</p>
+              <p>{problems[activeProblem].text}</p>
+              <div className="growth-problem__viz" data-idx={activeProblem} />
+            </div>
+          </div>
+          <p className="growth-bridge reveal-up">
             DisplayAvenue connects these elements into one measurable digital growth
             system.
           </p>
         </div>
       </section>
 
-      {/* SYSTEM / SERVICES */}
-      <section className="growth-section growth-section--soft" id="services">
+      <section className="growth-section growth-section--soft" id="system">
+        <div className="growth-wrap growth-system">
+          <div className="reveal-up">
+            <p className="growth-eyebrow">Digital growth system</p>
+            <h2>One Team. Your Entire Digital Growth System.</h2>
+            <p className="growth-lede">
+              Instead of coordinating multiple agencies and freelancers, work with one
+              digital growth team across your website, advertising, Google presence, lead
+              generation and e-commerce operations.
+            </p>
+          </div>
+          <div className="reveal-scale">
+            <GrowthOrbit />
+          </div>
+        </div>
+      </section>
+
+      <section className="growth-section" id="services">
         <div className="growth-wrap">
-          <h2>One System. Multiple Digital Growth Channels.</h2>
-          <p className="growth-lede">
-            Instead of coordinating multiple agencies and freelancers, work with one
-            digital growth team across your website, advertising, Google presence, lead
-            generation and e-commerce operations.
-          </p>
-          <p className="growth-positioning">
-            One Digital Growth Partner for Your Website, Marketing, Leads & E-commerce.
-          </p>
-          <div className="growth-services">
-            {growthServices.map((svc) => (
-              <article key={svc.id} className="growth-service" style={{ ["--accent" as string]: svc.accent }}>
-                <h3>{svc.title}</h3>
-                <p className="growth-service__sub">{svc.subtitle}</p>
+          <div className="reveal-up">
+            <p className="growth-eyebrow">Services</p>
+            <h2>One System. Multiple Digital Growth Channels.</h2>
+            <p className="growth-lede">
+              One Digital Growth Partner for Your Website, Marketing, Leads & E-commerce.
+            </p>
+          </div>
+          <div className="growth-showcase">
+            <div className="growth-showcase__nav" role="tablist">
+              {growthServices.map((svc) => (
+                <button
+                  key={svc.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeService === svc.id}
+                  className={activeService === svc.id ? "is-active" : ""}
+                  onClick={() => setActiveService(svc.id)}
+                >
+                  {svc.title}
+                </button>
+              ))}
+            </div>
+            <div className="growth-showcase__panel" role="tabpanel">
+              <div className="growth-showcase__copy">
+                <h3>{activeSvc.title}</h3>
+                <p className="growth-showcase__sub">{activeSvc.subtitle}</p>
                 <ul>
-                  {svc.items.map((item) => (
+                  {activeSvc.items.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                {svc.note && <p className="growth-service__note">{svc.note}</p>}
+                {activeSvc.note && <p className="growth-showcase__note">{activeSvc.note}</p>}
                 <button
                   type="button"
-                  className="btn btn-outline btn-sm"
-                  onClick={() => scrollToForm(svc.cta, `service_${svc.id}`)}
+                  className="growth-btn growth-btn--primary"
+                  onClick={() => scrollToForm(activeSvc.cta, `service_${activeSvc.id}`)}
                 >
-                  {svc.cta}
+                  {activeSvc.cta} <span className="growth-btn__arrow">→</span>
                 </button>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* VISUAL FUNNEL */}
-      <section className="growth-section">
-        <div className="growth-wrap">
-          <h2>From Ad Click to Sales Opportunity</h2>
-          <p className="growth-lede">
-            A coordinated path from attention to conversation. We do not guarantee
-            conversion — we build the system that makes conversion measurable.
-          </p>
-          <div className="growth-funnel-stages">
-            {funnelStages.map((stage, idx) => (
-              <div key={stage.n} className="growth-funnel-stage">
-                <div className="growth-funnel-stage__n">{stage.n}</div>
-                <h3>{stage.title}</h3>
-                <ul>
-                  {stage.items.map((i) => (
-                    <li key={i}>{i}</li>
-                  ))}
-                </ul>
-                {idx < funnelStages.length - 1 && (
-                  <div className="growth-funnel-stage__down" aria-hidden>
-                    ↓
-                  </div>
-                )}
               </div>
-            ))}
+              <GrowthServiceVisual serviceId={activeSvc.id} />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* WHY */}
-      <section className="growth-section growth-section--navy">
+      <section className="growth-section growth-section--ink" id="funnel">
         <div className="growth-wrap">
-          <h2>More Than an Agency. Your Digital Growth Team.</h2>
-          <p className="growth-lede">
-            DisplayAvenue brings multiple digital functions together so your website,
-            advertising, lead generation and e-commerce activities can work as part of a
-            coordinated strategy.
-          </p>
-          <div className="growth-why-grid">
-            {whyCards.map((title) => (
-              <article key={title} className="growth-why-card">
-                <Icon name="check" size={18} color="#7dd3fc" />
-                <h3>{title}</h3>
+          <div className="reveal-up">
+            <p className="growth-eyebrow light">Conversion path</p>
+            <h2>From Attention to Opportunity.</h2>
+            <p className="growth-lede light">
+              We connect the pieces of your digital marketing system so your business can
+              turn attention into qualified enquiries. We do not guarantee conversion.
+            </p>
+          </div>
+          <div className="growth-cinematic-funnel">
+            {funnelStages.map((stage, idx) => (
+              <article
+                key={stage.n}
+                className={`growth-cinematic-funnel__stage reveal-up reveal-delay-${Math.min(idx + 1, 5)}`}
+              >
+                <span>{stage.n}</span>
+                <h3>{stage.title}</h3>
+                <p>{stage.items.join(" · ")}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* TRUST */}
-      <section className="growth-section">
+      <section className="growth-section growth-section--soft" id="how-it-works">
         <div className="growth-wrap">
-          <h2>Trusted by Businesses. Built for Growth.</h2>
-          <p className="growth-lede">
-            Built for business owners, founders and decision-makers who want ongoing
-            digital growth — not a cheap social package.
-          </p>
-          <div className="growth-trust-strip">
-            <div>
-              <strong>Google Reviews</strong>
-              <span>Verified profile available</span>
-            </div>
-            <div>
-              <strong>B2B Focus</strong>
-              <span>SMEs & decision-makers</span>
-            </div>
-            <div>
-              <strong>₹30k–₹90k</strong>
-              <span>Monthly growth plans</span>
-            </div>
-            <div>
-              <strong>7 Channels</strong>
-              <span>One coordinated team</span>
-            </div>
+          <div className="reveal-up">
+            <p className="growth-eyebrow">Process</p>
+            <h2>How It Works</h2>
+          </div>
+          <ol className="growth-timeline">
+            {howSteps.map((s, idx) => (
+              <li
+                key={s.n}
+                className={`reveal-up reveal-delay-${Math.min(idx + 1, 5)}`}
+              >
+                <span>{s.n}</span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="growth-section growth-section--dark-cases" id="cases">
+        <div className="growth-wrap">
+          <div className="reveal-up">
+            <p className="growth-eyebrow light">Case studies</p>
+            <h2>Real Work. Real Businesses.</h2>
+            <p className="growth-lede light">
+              Selected DisplayAvenue engagements. Results vary by market, offer and
+              execution — we only show qualitative descriptions from our existing
+              library.
+            </p>
+          </div>
+          <div className="growth-editorial">
+            {caseCards.map((c, idx) => (
+              <article
+                key={c.slug}
+                className={`growth-editorial__row ${idx % 2 ? "is-flip" : ""} reveal-up`}
+              >
+                <Link to={c.href} className="growth-editorial__media">
+                  <img src={c.image} alt="" loading="lazy" />
+                </Link>
+                <div className="growth-editorial__copy">
+                  <p className="growth-editorial__tag">{c.industry}</p>
+                  <h3>{c.client}</h3>
+                  <p>{c.challenge}</p>
+                  <Link to={c.href}>View case study →</Link>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* GOOGLE REVIEWS — genuine only */}
+      <section className="growth-section" id="testimonials">
+        <div className="growth-wrap">
+          <div className="reveal-up">
+            <p className="growth-eyebrow">Customers</p>
+            <h2>Happy Customers. Real Experiences.</h2>
+          </div>
+          {testimonials.length > 0 ? (
+            <div className="growth-quote-rail" tabIndex={0}>
+              {testimonials.map((t) => (
+                <article key={t.name} className="growth-quote">
+                  <p className="growth-quote__mark">“</p>
+                  <p className="growth-quote__text">{t.quote}</p>
+                  <strong>{t.name}</strong>
+                  <span>{t.title}</span>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="growth-placeholder-box">
+              <p>
+                Testimonials will appear here when verified customer quotes are available
+                in CMS content.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
       <section className="growth-section growth-section--soft" id="reviews">
         <div className="growth-wrap">
-          <h2>What Our Customers Say</h2>
-          <p className="growth-lede">
-            Real feedback from businesses that have worked with DisplayAvenue.
-          </p>
+          <div className="reveal-up">
+            <p className="growth-eyebrow">Google</p>
+            <h2>What Our Customers Say</h2>
+            <p className="growth-lede">
+              Real feedback from businesses that have worked with DisplayAvenue.
+            </p>
+          </div>
           {syncedReviews.length > 0 ? (
             <div className="growth-reviews">
               {syncedReviews.slice(0, 6).map((r) => (
@@ -466,110 +536,39 @@ export function Growth() {
             <div className="growth-placeholder-box">
               <p>
                 Google reviews will appear here after a verified Google Business Profile
-                sync. Configure <code>GOOGLE_PLACE_ID</code> /{" "}
-                <code>googlePlaceId</code> in <code>content/growth.json</code> and run
-                Places sync from admin. We do not display invented reviews.
+                sync. Configure <code>googlePlaceId</code> in <code>content/growth.json</code>{" "}
+                and run Places sync from admin. We do not display invented reviews.
               </p>
-              {cfg.googlePlaceId ? (
-                <p>
-                  Configured place ID: <code>{cfg.googlePlaceId}</code>
-                </p>
-              ) : (
-                <p>
-                  Place ID not set yet. Profile link is available below.
-                </p>
-              )}
             </div>
           )}
           {reviewsUrl && (
             <a
-              className="btn btn-outline"
+              className="growth-btn growth-btn--outline"
               href={reviewsUrl}
               target="_blank"
               rel="noreferrer"
             >
-              View All Google Reviews
+              View All Google Reviews →
             </a>
           )}
         </div>
       </section>
 
-      {/* TESTIMONIALS from existing CMS content only */}
-      <section className="growth-section">
+      <section className="growth-section growth-section--pricing" id="pricing">
         <div className="growth-wrap">
-          <h2>Happy Customers. Real Experiences.</h2>
-          {testimonials.length > 0 ? (
-            <div className="growth-testimonials">
-              {testimonials.map((t) => (
-                <article key={t.name} className="growth-testimonial">
-                  <div className="growth-stars">★★★★★</div>
-                  <p>“{t.quote}”</p>
-                  <strong>{t.name}</strong>
-                  <span>{t.title}</span>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div className="growth-placeholder-box">
-              <p>
-                Testimonials will appear here when verified customer quotes are available
-                in CMS content. We do not create fictional testimonials.
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* CASE STUDIES — qualitative only */}
-      <section className="growth-section growth-section--soft">
-        <div className="growth-wrap">
-          <h2>Real Work. Real Businesses.</h2>
-          <p className="growth-lede">
-            Selected DisplayAvenue engagements from our case-study library. Results vary
-            by market, offer and execution.
-          </p>
-          <div className="growth-cases">
-            {caseCards.map((c) => (
-              <article key={c.slug} className="growth-case">
-                <p className="growth-case__industry">{c.industry}</p>
-                <h3>{c.client}</h3>
-                <p>{c.challenge}</p>
-                <Link to={c.href}>View case study →</Link>
-              </article>
-            ))}
+          <div className="reveal-up">
+            <p className="growth-eyebrow">Investment</p>
+            <h2>Digital Growth Plans Starting at ₹30,000/Month</h2>
+            <p className="growth-lede">
+              Choose the level of digital support your business needs. Advertising spend
+              and third-party costs are separate unless specifically included.
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section className="growth-section">
-        <div className="growth-wrap">
-          <h2>How It Works</h2>
-          <div className="growth-how">
-            {howSteps.map((s) => (
-              <article key={s.n} className="growth-how__item">
-                <span>{s.n}</span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PRICING */}
-      <section className="growth-section growth-section--soft" id="pricing">
-        <div className="growth-wrap">
-          <h2>Digital Growth Plans Starting at ₹30,000/Month</h2>
-          <p className="growth-lede">
-            Choose the level of digital support your business needs. Advertising spend
-            and third-party costs are separate unless specifically included.
-          </p>
           <div className="growth-pricing">
             {growthPricing.map((plan) => (
               <article
                 key={plan.id}
-                className={`growth-price ${plan.featured ? "is-featured" : ""}`}
+                className={`growth-price ${plan.featured ? "is-featured" : ""} reveal-up`}
               >
                 <h3>{plan.name}</h3>
                 <div className="growth-price__amount">
@@ -584,53 +583,48 @@ export function Growth() {
                 </ul>
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="growth-btn growth-btn--primary"
                   onClick={() => scrollToForm(plan.cta, `pricing_${plan.id}`, plan.id)}
                 >
-                  {plan.cta}
+                  {plan.cta} <span className="growth-btn__arrow">→</span>
                 </button>
               </article>
             ))}
           </div>
           <p className="growth-price-note">
-            These are package examples. Exact deliverables, volume and scope must be
-            confirmed in the final proposal. Advertising spend, third-party software,
-            hosting, domains, paid plugins and other external costs are billed separately
-            unless specifically included in your proposal.
+            Ad spend is separate. Final scope and deliverables are confirmed before
+            onboarding. These are package examples — not unlimited work.
           </p>
         </div>
       </section>
 
-      {/* PRICE QUALIFICATION */}
-      <section className="growth-section growth-section--navy growth-qualify">
-        <div className="growth-wrap">
-          <h2>Looking for a Long-Term Digital Growth Partner?</h2>
+      <section className="growth-section growth-section--cta-band">
+        <div className="growth-wrap reveal-up">
+          <h2>Serious About Growing Your Business?</h2>
           <p>
-            Our monthly digital growth plans start at ₹30,000. If you’re looking for a
-            team to manage multiple areas of your digital presence and customer
-            acquisition, tell us about your business.
+            Our digital growth engagements start at ₹30,000/month. Tell us about your
+            business and we’ll understand what you need.
           </p>
           <button
             type="button"
-            className="btn btn-primary"
+            className="growth-btn growth-btn--primary"
             onClick={() => scrollToForm("Check My Fit", "qualification_banner")}
           >
-            Check My Fit
+            Check My Fit <span className="growth-btn__arrow">→</span>
           </button>
         </div>
       </section>
 
-      {/* FORM */}
-      <section className="growth-section">
-        <div className="growth-wrap growth-wrap--narrow">
+      <section className="growth-section growth-section--form">
+        <div className="growth-wrap growth-wrap--form">
           <GrowthForm initialPlanId={planPref} />
         </div>
       </section>
 
-      {/* OFFICE */}
       <section className="growth-section growth-section--soft" id="growth-office">
         <div className="growth-wrap growth-office">
-          <div>
+          <div className="reveal-up">
+            <p className="growth-eyebrow">Visit</p>
             <h2>Meet Your Digital Growth Partner</h2>
             <p>
               Have questions about your digital growth strategy? Speak with our team or
@@ -650,14 +644,13 @@ export function Growth() {
             </address>
             {officePlaceholder && (
               <p className="growth-config-note">
-                Office street address is a configuration placeholder — replace in{" "}
-                <code>content/growth.json</code> with the verified DisplayAvenue address.
-                Do not invent an address.
+                Office street address is a configuration placeholder in{" "}
+                <code>content/growth.json</code>.
               </p>
             )}
             <div className="growth-office__actions">
               <a
-                className="btn btn-outline"
+                className="growth-btn growth-btn--outline"
                 href={company.googleMaps?.shareUrl || reviewsUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -665,14 +658,14 @@ export function Growth() {
                 Get Directions
               </a>
               <a
-                className="btn btn-outline"
+                className="growth-btn growth-btn--outline"
                 href={company.phoneHref}
                 onClick={() => trackGrowthEvent("phone_click", { cta_location: "office" })}
               >
                 Call Us
               </a>
               <a
-                className="btn btn-primary"
+                className="growth-btn growth-btn--primary"
                 href={company.whatsappHref}
                 target="_blank"
                 rel="noreferrer"
@@ -680,11 +673,11 @@ export function Growth() {
                   trackGrowthEvent("whatsapp_click", { cta_location: "office" })
                 }
               >
-                WhatsApp Us
+                WhatsApp Us →
               </a>
             </div>
           </div>
-          <div className="growth-office__map">
+          <div className="growth-office__map reveal-right">
             <iframe
               title="DisplayAvenue location"
               src={
@@ -698,10 +691,9 @@ export function Growth() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="growth-section">
         <div className="growth-wrap growth-wrap--narrow">
-          <h2>Frequently Asked Questions</h2>
+          <h2 className="reveal-up">Frequently Asked Questions</h2>
           <div className="growth-faq">
             {growthFaqs.map((item, idx) => {
               const open = openFaq === idx;
@@ -737,14 +729,14 @@ export function Growth() {
             <h3>Talk to an Expert</h3>
             <p>Choose how you’d like to connect.</p>
             <a
-              className="btn btn-primary"
+              className="growth-btn growth-btn--primary"
               href={company.phoneHref}
               onClick={() => trackGrowthEvent("phone_click", { cta_location: "expert_sheet" })}
             >
               Call {company.phone}
             </a>
             <a
-              className="btn btn-outline"
+              className="growth-btn growth-btn--outline"
               href={company.whatsappHref}
               target="_blank"
               rel="noreferrer"
@@ -756,13 +748,13 @@ export function Growth() {
             </a>
             <button
               type="button"
-              className="btn btn-outline"
+              className="growth-btn growth-btn--outline"
               onClick={() => {
                 setExpertOpen(false);
                 scrollToForm("Get My Growth Plan", "expert_sheet");
               }}
             >
-              Get My Growth Plan
+              Get My Growth Plan →
             </button>
           </div>
         </div>
