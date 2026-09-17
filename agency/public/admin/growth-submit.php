@@ -120,6 +120,8 @@ $lead = [
   'referrer' => mb_substr(trim((string)($body['referrer'] ?? '')), 0, 300),
   'device' => mb_substr(trim((string)($body['device'] ?? '')), 0, 40),
   'event_id' => mb_substr(trim((string)($body['event_id'] ?? '')), 0, 80),
+  'fbp' => mb_substr(trim((string)($body['fbp'] ?? '')), 0, 200),
+  'fbc' => mb_substr(trim((string)($body['fbc'] ?? '')), 0, 300),
   'page' => '/growth',
   'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
   'userAgent' => substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 240),
@@ -203,6 +205,46 @@ if ($webhookUrl !== '' && filter_var($webhookUrl, FILTER_VALIDATE_URL)) {
   }
 }
 
+// Meta Conversions API (server-side Lead) — deduped with browser Pixel via event_id
+require_once __DIR__ . '/meta-capi.php';
+$capiEnabled = !empty($growth['capiEnabled']);
+$capiResult = ['ok' => false, 'skipped' => true];
+if ($capiEnabled) {
+  $trackingPath = $contentDir . '/tracking.json';
+  $tracking = is_file($trackingPath)
+    ? (json_decode((string)file_get_contents($trackingPath), true) ?: [])
+    : [];
+  if (empty($config['meta_capi_pixel_id'])) {
+    $config['meta_capi_pixel_id'] = trim((string)(
+      $growth['metaPixelId']
+      ?? $tracking['metaPixelId']
+      ?? ''
+    ));
+  }
+  $schemeHost = $scheme . '://' . preg_replace('/:\d+$/', '', $host);
+  $sourceUrl = $schemeHost . '/growth';
+  $capiResult = da_meta_capi_send_event($config, [
+    'event_name' => 'Lead',
+    'event_id' => $lead['event_id'] !== '' ? $lead['event_id'] : $lead['id'],
+    'event_source_url' => $sourceUrl,
+    'email' => $lead['email'],
+    'phone' => $lead['phone'],
+    'name' => $lead['name'],
+    'client_ip_address' => $lead['ip'],
+    'client_user_agent' => $lead['userAgent'],
+    'fbp' => $lead['fbp'],
+    'fbc' => $lead['fbc'],
+    'fbclid' => $lead['fbclid'],
+    'custom_data' => [
+      'content_name' => 'growth_lead_form',
+      'content_category' => $lead['industry'] !== '' ? $lead['industry'] : 'growth',
+      'status' => true,
+      'value' => $lead['lead_score'],
+      'currency' => 'INR',
+    ],
+  ]);
+}
+
 echo json_encode([
   'ok' => true,
   'saved' => (bool)$written,
@@ -211,4 +253,11 @@ echo json_encode([
   'mail' => $mailOk,
   'webhook' => $webhookOk,
   'webhook_configured' => $webhookUrl !== '',
+  'capi' => [
+    'enabled' => $capiEnabled,
+    'ok' => !empty($capiResult['ok']),
+    'skipped' => !empty($capiResult['skipped']),
+    'http_code' => $capiResult['http_code'] ?? null,
+    'error' => $capiResult['error'] ?? null,
+  ],
 ]);

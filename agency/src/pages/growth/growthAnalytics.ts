@@ -40,10 +40,20 @@ export function trackGrowthEvent(event: string, params: GrowthEventParams = {}) 
       form_submit: "Lead",
     };
     const standard = metaMap[event];
+    const cleaned = cleanParams(params);
+    const eventID =
+      cleaned.event_id !== undefined ? String(cleaned.event_id) : undefined;
+    const { event_id: _omit, ...metaParams } = cleaned;
     if (standard) {
-      window.fbq("track", standard, cleanParams(params));
+      if (eventID) {
+        window.fbq("track", standard, metaParams, { eventID });
+      } else {
+        window.fbq("track", standard, metaParams);
+      }
+    } else if (eventID) {
+      window.fbq("trackCustom", event, metaParams, { eventID });
     } else {
-      window.fbq("trackCustom", event, cleanParams(params));
+      window.fbq("trackCustom", event, metaParams);
     }
   }
 }

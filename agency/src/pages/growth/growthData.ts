@@ -392,6 +392,8 @@ export type GrowthLeadPayload = {
   last_utm_campaign: string;
   last_utm_content: string;
   fbclid: string;
+  fbp: string;
+  fbc: string;
   landing_page: string;
   referrer: string;
   device: string;

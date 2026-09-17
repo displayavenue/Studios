@@ -17,6 +17,14 @@ import {
 } from "./growthAttribution";
 import { trackGrowthEvent } from "./growthAnalytics";
 
+function readCookie(name: string): string {
+  if (typeof document === "undefined") return "";
+  const match = document.cookie.match(
+    new RegExp(`(?:^|; )${name.replace(/[$()*+.?[\\\]^{|}]/g, "\\$&")}=([^;]*)`),
+  );
+  return match ? decodeURIComponent(match[1]) : "";
+}
+
 type FormState = {
   name: string;
   business_name: string;
@@ -184,6 +192,8 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
       last_utm_campaign: last.utm_campaign,
       last_utm_content: last.utm_content,
       fbclid: last.fbclid || first.fbclid,
+      fbp: readCookie("_fbp"),
+      fbc: readCookie("_fbc"),
       landing_page: "/growth",
       referrer: document.referrer || "",
       device: deviceType(),

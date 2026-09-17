@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Meta CAPI secrets (never commit access tokens)
+public/admin/.meta-capi.secret.php
