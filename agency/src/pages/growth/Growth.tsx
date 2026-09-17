@@ -171,6 +171,7 @@ export function Growth() {
     Boolean(googleReviews.lastSyncedAt) &&
     (googleReviews.syncSource === "google" ||
       googleReviews.syncSource === "places" ||
+      googleReviews.syncSource === "places-api" ||
       googleReviews.syncSource === "gmb") &&
     googleReviews.reviews?.length > 0
       ? googleReviews.reviews
