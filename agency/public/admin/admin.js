@@ -758,7 +758,7 @@ function renderTracking(d) {
       ${field("Google Tag Manager ID (GTM-…)", "googleTagManagerId", d.googleTagManagerId || d.gtmId || "")}
       ${field("Google Analytics ID (G-…)", "googleAnalyticsId", d.googleAnalyticsId || d.gaId || "")}
       ${field("Google Ads tag ID (AW-…)", "googleAdsId", d.googleAdsId || "")}
-      ${field("Meta Pixel ID", "metaPixelId", d.metaPixelId || "")}
+      ${field("Meta Pixel ID (comma-separate for multiple)", "metaPixelId", d.metaPixelId || "")}
       ${field("Google Search Console verification", "googleSiteVerification", d.googleSiteVerification || "")}
     </div>
     <div class="field full" style="margin-top:1rem">

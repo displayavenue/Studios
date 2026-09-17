@@ -5,8 +5,10 @@ export type TrackingSettings = {
   googleAnalyticsId?: string;
   /** Google Ads tag ID, e.g. AW-123456789 */
   googleAdsId?: string;
-  /** Meta (Facebook) Pixel ID */
+  /** Meta (Facebook) Pixel ID — one ID, or comma-separated for multiple */
   metaPixelId?: string;
+  /** Optional extra Meta Pixel IDs (merged with metaPixelId) */
+  metaPixelIds?: string[];
   googleSiteVerification?: string;
   /** Paste full script tags from Google Ads, LinkedIn, AI ad platforms, etc. */
   headScripts?: string;
@@ -22,6 +24,7 @@ export const defaultTracking: Required<
     | "googleAnalyticsId"
     | "googleAdsId"
     | "metaPixelId"
+    | "metaPixelIds"
     | "googleSiteVerification"
     | "headScripts"
     | "bodyStartHtml"
@@ -32,6 +35,7 @@ export const defaultTracking: Required<
   googleAnalyticsId: "G-WQD9K577DF",
   googleAdsId: "",
   metaPixelId: "",
+  metaPixelIds: [],
   googleSiteVerification: "80ZVa9R1VjKZnfedwtUgfAYvfs1WsncTMsAwiSeSTBM",
   headScripts: "",
   bodyStartHtml: "",
@@ -50,5 +54,8 @@ export function mergeTracking(
       p.googleTagManagerId || legacy.gtmId || defaultTracking.googleTagManagerId,
     googleAnalyticsId:
       p.googleAnalyticsId || legacy.gaId || defaultTracking.googleAnalyticsId,
+    metaPixelIds: Array.isArray(p.metaPixelIds)
+      ? p.metaPixelIds.map(String).filter(Boolean)
+      : defaultTracking.metaPixelIds,
   };
 }

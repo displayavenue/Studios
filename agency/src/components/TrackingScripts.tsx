@@ -67,22 +67,41 @@ function injectGoogleAnalytics(markerId: string, measurementId: string, adsId?: 
   document.head.appendChild(config);
 }
 
-function injectMetaPixel(markerId: string, pixelId: string) {
+function injectMetaPixel(markerId: string, pixelIds: string[]) {
+  const ids = [...new Set(pixelIds.map((id) => id.trim()).filter(Boolean))];
+  if (!ids.length) return;
   if (document.querySelector(`script[data-cms-tracking="${markerId}"]`)) return;
 
+  const inits = ids.map((id) => `fbq('init','${id}');`).join("");
   const script = document.createElement("script");
   script.setAttribute("data-cms-tracking", markerId);
   script.textContent = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');fbq('init','${pixelId}');fbq('track','PageView');`;
+'https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');`;
   document.head.appendChild(script);
 
-  const noscript = document.createElement("noscript");
-  noscript.setAttribute("data-cms-tracking", `${markerId}-ns`);
-  noscript.innerHTML = `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1" alt="" />`;
-  document.body.insertBefore(noscript, document.body.firstChild);
+  ids.forEach((id, index) => {
+    const noscript = document.createElement("noscript");
+    noscript.setAttribute("data-cms-tracking", `${markerId}-ns-${index}`);
+    noscript.innerHTML = `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=${id}&ev=PageView&noscript=1" alt="" />`;
+    document.body.insertBefore(noscript, document.body.firstChild);
+  });
+}
+
+function parseMetaPixelIds(tracking: {
+  metaPixelId?: string;
+  metaPixelIds?: string[];
+}): string[] {
+  const fromList = Array.isArray(tracking.metaPixelIds)
+    ? tracking.metaPixelIds
+    : [];
+  const fromSingle = String(tracking.metaPixelId || "")
+    .split(/[,;\s]+/)
+    .map((id) => id.trim())
+    .filter(Boolean);
+  return [...new Set([...fromSingle, ...fromList])];
 }
 
 function ensureSiteVerification(content: string) {
@@ -145,8 +164,8 @@ export function TrackingScripts() {
       injectGoogleAnalytics("cms-ga", adsId, adsId);
     }
 
-    const metaId = tracking.metaPixelId?.trim();
-    if (metaId) injectMetaPixel("cms-meta", metaId);
+    const metaIds = parseMetaPixelIds(tracking);
+    if (metaIds.length) injectMetaPixel("cms-meta", metaIds);
 
     ensureSiteVerification(tracking.googleSiteVerification || "");
 
