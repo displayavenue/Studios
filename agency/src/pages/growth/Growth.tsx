@@ -479,6 +479,7 @@ export function Growth() {
         </div>
       </section>
 
+      {syncedReviews.length === 0 && (
       <section className="growth-section" id="testimonials">
         <div className="growth-wrap">
           <div className="reveal-up">
@@ -506,6 +507,7 @@ export function Growth() {
           )}
         </div>
       </section>
+      )}
 
       <section className="growth-section growth-section--soft" id="reviews">
         <div className="growth-wrap">
