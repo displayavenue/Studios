@@ -8,3 +8,13 @@
 <IfModule mod_expires.c>
   ExpiresActive Off
 </IfModule>
+
+# Deny Meta CAPI secrets and hidden admin files
+<FilesMatch "^\.meta-capi\.secret\.php$">
+  Require all denied
+</FilesMatch>
+<IfModule mod_authz_core.c>
+  <FilesMatch "^\.">
+    Require all denied
+  </FilesMatch>
+</IfModule>

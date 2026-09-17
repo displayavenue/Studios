@@ -14,19 +14,21 @@
   "catalogueFileName": "DisplayAvenue-Catalogue.pdf",
   "catalogueUpdatedAt": "",
   "address": {
-    "city": "Mumbai",
+    "city": "Mira Road East, Mumbai",
     "lines": [
-      "Mumbai, Maharashtra, India"
+      "Office No. 44, Shree Sharanam Chs, Kanakia Fire Station, D wing",
+      "Kanakia Layout, near Seven Eleven Scholastic School, Unique Gardens, Gaurav City",
+      "Mira Road East, Mumbai, Mira Bhayandar, Maharashtra 401107, India"
     ],
-    "hours": "Mon-Sat \u00b7 10:00 AM - 7:00 PM IST"
+    "hours": "Mon-Sat · 10:00 AM - 7:00 PM IST"
   },
   "googleMaps": {
     "name": "Display Avenue",
-    "shareUrl": "https://share.google/OC1gFqDqJCDFjdL50",
+    "shareUrl": "https://maps.app.goo.gl/MUgowgr6oRqLGWFZ6",
     "profileUrl": "https://www.google.com/search?kgmid=/g/11l59jbzkb&q=Display+Avenue",
-    "embedUrl": "https://maps.google.com/maps?q=Display+Avenue+Mumbai&hl=en&z=15&output=embed",
+    "embedUrl": "https://maps.google.com/maps?q=19.2932431,72.8773878&hl=en&z=17&output=embed",
     "kgmid": "/g/11l59jbzkb",
-    "placeId": "",
+    "placeId": "ChIJNa7u4d6x5zsRoOOdxeOMqwM",
     "placeQuery": "Display Avenue Mira Road Mumbai"
   },
   "socials": {
