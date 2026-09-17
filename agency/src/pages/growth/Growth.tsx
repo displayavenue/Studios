@@ -108,11 +108,18 @@ const funnelStages = [
   },
 ];
 
-const CASE_IMAGES = [
-  "/images/hero-agency-india.jpg",
-  "/images/hero-agency.jpg",
-  "/images/hero-agency-alt.jpg",
-  "/images/hero-india.jpg",
+const CASE_IMAGES: Record<string, string> = {
+  "vaidraj-seo": "/images/cases/vaidraj-seo.jpg",
+  "bpg-ads": "/images/cases/bpg-ads.jpg",
+  "royal-ecom": "/images/cases/royal-ecom.jpg",
+  island360: "/images/cases/island360.jpg",
+};
+
+const CASE_IMAGE_FALLBACKS = [
+  "/images/cases/vaidraj-seo.jpg",
+  "/images/cases/bpg-ads.jpg",
+  "/images/cases/royal-ecom.jpg",
+  "/images/cases/island360.jpg",
 ];
 
 export function Growth() {
@@ -188,7 +195,9 @@ export function Growth() {
       industry: item.category || item.eyebrow || "Digital growth",
       challenge: item.summary || item.headline || "",
       href: `/case-studies/${item.slug}`,
-      image: CASE_IMAGES[idx % CASE_IMAGES.length],
+      image:
+        CASE_IMAGES[item.slug] ||
+        CASE_IMAGE_FALLBACKS[idx % CASE_IMAGE_FALLBACKS.length],
     }));
   }, [cases]);
 
@@ -465,7 +474,7 @@ export function Growth() {
                 className={`growth-editorial__row ${idx % 2 ? "is-flip" : ""} reveal-up`}
               >
                 <Link to={c.href} className="growth-editorial__media">
-                  <img src={c.image} alt="" loading="lazy" />
+                  <img src={c.image} alt={`${c.client} case study`} loading="lazy" />
                 </Link>
                 <div className="growth-editorial__copy">
                   <p className="growth-editorial__tag">{c.industry}</p>
