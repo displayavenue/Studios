@@ -172,7 +172,9 @@ export function Growth() {
     (googleReviews.syncSource === "google" ||
       googleReviews.syncSource === "places" ||
       googleReviews.syncSource === "places-api" ||
-      googleReviews.syncSource === "gmb") &&
+      googleReviews.syncSource === "gmb" ||
+      googleReviews.syncSource === "manual-google" ||
+      googleReviews.syncSource === "manual") &&
     googleReviews.reviews?.length > 0
       ? googleReviews.reviews
       : [];
