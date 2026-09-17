@@ -2,11 +2,11 @@
   "enabled": true,
   "parentBrand": "Mediashouter Group",
   "googlePlaceId": "",
-  "googleReviewsUrl": "https://www.google.com/search?kgmid=/g/11l59jbzkb&q=Display+Avenue",
+  "googleReviewsUrl": "https://maps.app.goo.gl/MUgowgr6oRqLGWFZ6",
   "officeAddressLines": [
     "[INSERT VERIFIED DISPLAYAVENUE OFFICE ADDRESS HERE]"
   ],
-  "officeCity": "Mumbai, Maharashtra, India",
+  "officeCity": "Mira Road, Mumbai, Maharashtra, India",
   "officeHours": "Mon-Sat · 10:00 AM - 7:00 PM IST",
   "webhookUrl": "",
   "bookingUrl": "/contact",
