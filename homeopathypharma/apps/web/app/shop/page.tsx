@@ -3,7 +3,7 @@ import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { ProductGrid } from "@/components/product-grid";
 import { featuredBrands } from "@/lib/content/brands";
-import { categoryImageDataUrl } from "@/lib/content/images";
+import { categoryImageSrc } from "@/lib/content/images";
 import { PRODUCTS } from "@/lib/content/products";
 import { productsForCategory } from "@/lib/content/products-by-taxonomy";
 import { allCatalogTopicCount, CATALOG_TAXONOMY } from "@/lib/content/taxonomy";
@@ -54,7 +54,7 @@ export default function ShopPage() {
           <li key={category.slug}>
             <Link href={`/shop/categories/${category.slug}/`} className="category-browse-card hp-focus-ring">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={categoryImageDataUrl(category.name, category.slug)} alt="" width={72} height={72} />
+              <img src={categoryImageSrc(category.slug)} alt="" width={72} height={72} />
               <div>
                 <h3 className="font-display" style={{ margin: 0, fontSize: "1.05rem", color: "var(--hp-color-teal-900)" }}>
                   {category.name}

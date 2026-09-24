@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 
 const items = [
   { href: "/", label: "Home", icon: "⌂" },
-  { href: "/shop/categories/", label: "Shop", icon: "▤" },
+  { href: "/shop/", label: "Shop", icon: "▤" },
   { href: "/brands/", label: "Brands", icon: "◇" },
-  { href: "/consult/", label: "Consult", icon: "✚" },
+  { href: "/cart/", label: "Cart", icon: "▣" },
   { href: "/login/", label: "Account", icon: "◎" },
 ] as const;
 

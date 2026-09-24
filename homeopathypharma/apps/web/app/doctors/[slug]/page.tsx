@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@homeopathypharma/ui";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { getDoctorBySlug, listAllDoctorSlugs } from "@/lib/content/doctors";
-import { doctorAvatarDataUrl } from "@/lib/content/images";
+import { doctorAvatarSrc } from "@/lib/content/images";
 import { toParams } from "@/lib/static-params";
 
 export function generateStaticParams() {
@@ -52,7 +52,7 @@ export default async function DoctorProfilePage({ params }: DoctorProfilePagePro
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={doctorAvatarDataUrl(doctor.fullName, doctor.locality)}
+        src={doctorAvatarSrc(doctor.fullName)}
         alt=""
         width={160}
         height={160}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { DoctorProfile } from "@/lib/content/doctors";
-import { doctorAvatarDataUrl } from "@/lib/content/images";
+import { doctorAvatarSrc } from "@/lib/content/images";
 
 export function DoctorGrid({
   doctors,
@@ -25,7 +25,7 @@ export function DoctorGrid({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="doctor-card__avatar"
-              src={doctorAvatarDataUrl(doctor.fullName, doctor.locality)}
+              src={doctorAvatarSrc(doctor.fullName)}
               alt=""
               width={96}
               height={96}

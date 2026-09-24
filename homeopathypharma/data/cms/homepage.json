@@ -1,12 +1,12 @@
 {
-  "searchPlaceholder": "Search medicines, brands & doctors",
+  "searchPlaceholder": "Search for Medicines and Health Products",
   "banners": [
     {
       "id": "banner-hero",
       "eyebrow": "",
-      "title": "Homeopathy, labelled clearly.",
-      "subtitle": "Shop SBL, Dr. Reckeweg, and Schwabe — then book a listed BHMS doctor when you need guidance.",
-      "ctaLabel": "Shop medicines",
+      "title": "Shop homeopathy medicines",
+      "subtitle": "SBL · Reckeweg · Schwabe with clear pack labels",
+      "ctaLabel": "Browse medicines",
       "ctaHref": "/shop/",
       "tone": "teal"
     }
@@ -26,10 +26,10 @@
     { "label": "All categories", "href": "/shop/categories/", "seed": "all" }
   ],
   "rails": {
-    "bestsellersTitle": "Popular from SBL, Reckeweg & Schwabe",
+    "bestsellersTitle": "Popular medicines",
     "consultTitle": "Consult a listed BHMS doctor",
     "consultBody": "Online video or clinic visits with practitioners listed for Mumbai — no fake verified badges.",
-    "brandsTitle": "Trusted brands in stock",
+    "brandsTitle": "Featured brands",
     "doctorsTitle": "Doctors in Mumbai"
   }
 }

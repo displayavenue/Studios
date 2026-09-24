@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { brands } from "@/lib/content/brands";
+import { brandImageSrc } from "@/lib/content/images";
 
 export const metadata: Metadata = buildPageMetadata(
   "Brands",
@@ -21,8 +22,10 @@ export default function BrandsIndexPage() {
           <li key={brand.slug}>
             <Link
               href={`/brands/${brand.slug}/`}
-              className={`brand-card hp-focus-ring${brand.featured ? " brand-card--featured" : ""}`}
+              className={`brand-card brand-card--photo hp-focus-ring${brand.featured ? " brand-card--featured" : ""}`}
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={brandImageSrc(brand.slug)} alt="" width={200} height={200} />
               {brand.featured ? <span className="brand-card__badge">Featured</span> : null}
               <p className="brand-card__count">{brand.productCount} products</p>
               <h2 className="font-display">{brand.name}</h2>

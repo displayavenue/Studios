@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@/lib/content/products";
-import { productImageDataUrl } from "@/lib/content/images";
+import { productImageSrc } from "@/lib/content/images";
 
 export function ProductGrid({
   products,
@@ -16,12 +16,7 @@ export function ProductGrid({
   return (
     <ul className={`product-grid${compact ? " product-grid--compact" : ""}`} role="list">
       {products.map((product) => {
-        const image = productImageDataUrl({
-          name: product.name,
-          form: product.form,
-          brandName: product.brandName,
-          potency: product.potency,
-        });
+        const image = productImageSrc({ form: product.form, brandSlug: product.brandSlug, name: product.name });
         const discount =
           product.mrpInr > product.priceInr
             ? Math.round(((product.mrpInr - product.priceInr) / product.mrpInr) * 100)

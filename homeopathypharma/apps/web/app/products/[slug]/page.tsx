@@ -4,7 +4,7 @@ import { Button, Container, Section } from "@homeopathypharma/ui";
 import { buildProductJsonLd, serializeJsonLd } from "@homeopathypharma/seo";
 import { ProductGrid } from "@/components/product-grid";
 import { buildPageMetadata } from "@/components/content-page";
-import { productImageDataUrl } from "@/lib/content/images";
+import { productImageSrc } from "@/lib/content/images";
 import { getProduct, listProductSlugs, relatedProducts } from "@/lib/content/products";
 import { toParams } from "@/lib/static-params";
 
@@ -48,12 +48,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const related = relatedProducts(slug, 8);
-  const image = productImageDataUrl({
-    name: product.name,
-    form: product.form,
-    brandName: product.brandName,
-    potency: product.potency,
-  });
+  const image = productImageSrc({ form: product.form, brandSlug: product.brandSlug, name: product.name });
   const jsonLd = serializeJsonLd(
     buildProductJsonLd({
       name: product.name,
