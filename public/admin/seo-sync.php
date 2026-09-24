@@ -76,7 +76,8 @@ function da_collect_urls(string $contentDir): array {
     }
   }
   foreach (($content['blogs'] ?? []) as $b) {
-    if (!empty($b['slug'])) {
+    $status = (string)($b['status'] ?? 'published');
+    if (!empty($b['slug']) && $status !== 'draft') {
       $urls[] = ['path' => '/blog/' . $b['slug'], 'priority' => '0.6', 'changefreq' => 'weekly'];
     }
   }

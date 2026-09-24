@@ -1,5 +1,18 @@
 export type FAQ = { question: string; answer: string; category: string };
-export type BlogPost = { slug: string; title: string; excerpt: string; category: string; date: string; image: string; readTime: string; content?: string };
+export type BlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  image: string;
+  readTime: string;
+  content?: string;
+  status?: "published" | "draft";
+  keyword?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+};
 export type Industry = { slug: string; title: string; text: string; image: string };
 export type LocationPage = { slug: string; title: string; city: string; service: string; intro: string };
 export type Testimonial = { name: string; role: string; quote: string; image: string };
@@ -72,14 +85,33 @@ export const faqs = [
 
 export const blogs = [
   {
+    "slug": "destination-wedding-drone-rules-india",
+    "title": "Destination Wedding Drone Rules Couples Should Know",
+    "excerpt": "A practical India guide to destination wedding photographer — pricing signals, deliverables, candid vs traditional choices, and how DisplayAvenue Studios helps couples book with clarity.",
+    "category": "Destination",
+    "date": "2026-09-25",
+    "image": "/images/indian/wedding-04.jpg",
+    "readTime": "7 min read",
+    "content": "<p>Searching for a <strong>destination wedding photographer</strong> in <strong>India</strong>? Couples usually want three things: a clear package, a calm on-ground crew, and deliverables that still look premium years later. This guide from DisplayAvenue Studios covers what actually matters before you pay a booking token.</p>\n<h2>How to shortlist a destination wedding photographer in India</h2>\n<ol><li>Review full wedding galleries — not only highlight reels.</li><li>Confirm candid + traditional coverage if elders expect family groups.</li><li>Ask whether photography and videography come from one studio (consistent colour language).</li><li>Get deliverables in writing: edited count, film length, reels, album credit, timeline.</li><li>Book 6–12 months ahead for peak India Saturdays and muhurat dates.</li></ol>\n<h2>Candid vs traditional — what India families usually need</h2>\n<p>Candid destination wedding photographer coverage captures emotion without stiff posing. Traditional coverage organises family groups and ritual sequences elders treasure. Premium Indian weddings almost always need both. DisplayAvenue Studios builds hybrid crews so you do not have to choose.</p>\n<h2>What DisplayAvenue includes for Destination Wedding Photography</h2>\n<p>Based in Mira Road East, Mumbai, we travel pan-India for India and destination celebrations. Couples receive colour-graded galleries, cinematic films where booked, private client gallery codes, and WhatsApp-first coordination from enquiry to delivery.</p>\n<h2>Ready to check availability?</h2>\n<p>Share your date, city and whether you need photography, videography or both. We reply quickly with package guidance and open calendar dates.</p>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "source": "auto",
+    "keyword": "destination wedding photographer",
+    "seoTitle": "Destination Wedding Drone Rules Couples Should Know | DisplayAvenue Studios",
+    "seoDescription": "A practical India guide to destination wedding photographer — pricing signals, deliverables, candid vs traditional choices, and how DisplayAvenue Studios helps couples book with clarity."
+  },
+  {
     "slug": "how-to-hire-wedding-photographer-mumbai",
     "title": "How to Hire the Best Wedding Photographer in Mumbai (2026 Guide)",
     "excerpt": "Budget, style, shortlist and questions — a WeddingSutra-informed checklist for couples booking DisplayAvenue or any premium studio.",
     "category": "Planning",
     "date": "2026-03-01",
-    "image": "/images/indian/wedding-04.jpg",
+    "image": "/images/indian/wedding-03.jpg",
     "readTime": "8 min read",
-    "content": "Finalize budget first, study candid vs traditional styles, shortlist 4–5 studios, request full galleries (not only highlights), and book 6–12 months ahead. Discuss deliverables, taxes, travel and pre-wedding bundling before you pay a token."
+    "content": "<p>Finalize budget first, study candid vs traditional styles, shortlist 4–5 studios, request full galleries (not only highlights), and book 6–12 months ahead. Discuss deliverables, taxes, travel and pre-wedding bundling before you pay a token.</p>\n<h2>Why this matters for couples</h2>\n<p>Budget, style, shortlist and questions — a WeddingSutra-informed checklist for couples booking DisplayAvenue or any premium studio.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "How to Hire the Best Wedding Photographer in Mumbai (2026 Guide) | DisplayAvenue Studios",
+    "seoDescription": "Budget, style, shortlist and questions — a WeddingSutra-informed checklist for couples booking DisplayAvenue or any premium studio.",
+    "keyword": "wedding photographer mumbai"
   },
   {
     "slug": "candid-vs-traditional-wedding-photography",
@@ -87,9 +119,13 @@ export const blogs = [
     "excerpt": "WeddingSutra breaks down both styles — here’s how Mumbai couples combine them for heirloom albums.",
     "category": "Education",
     "date": "2026-02-18",
-    "image": "/images/indian/wedding-03.jpg",
+    "image": "/images/indian/w2-alt.jpg",
     "readTime": "6 min read",
-    "content": "Candid captures raw emotion; traditional secures family groups. The premium choice is a hybrid crew that delivers both without making elders or couples compromise."
+    "content": "<p>Candid captures raw emotion; traditional secures family groups. The premium choice is a hybrid crew that delivers both without making elders or couples compromise.</p>\n<h2>Why this matters for couples</h2>\n<p>WeddingSutra breaks down both styles — here’s how Mumbai couples combine them for heirloom albums.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "Candid vs Traditional Wedding Photography: Which Do You Need? | DisplayAvenue Studios",
+    "seoDescription": "WeddingSutra breaks down both styles — here’s how Mumbai couples combine them for heirloom albums.",
+    "keyword": "candid wedding photography"
   },
   {
     "slug": "pre-wedding-shoot-ideas-mumbai",
@@ -97,9 +133,13 @@ export const blogs = [
     "excerpt": "Golden hour locations, outfit tips and guided candid prompts for cinematic chemistry frames.",
     "category": "Pre-Wedding",
     "date": "2026-02-05",
-    "image": "/images/indian/couple-02.jpg",
+    "image": "/images/indian/wedding-07.jpg",
     "readTime": "7 min read",
-    "content": "Marine Drive, Bandra sea face, heritage hotels and Lonavala hills remain classics. Shoot at golden hour, pack two outfits, and prioritise movement prompts over stiff poses."
+    "content": "<p>Marine Drive, Bandra sea face, heritage hotels and Lonavala hills remain classics. Shoot at golden hour, pack two outfits, and prioritise movement prompts over stiff poses.</p>\n<h2>Why this matters for couples</h2>\n<p>Golden hour locations, outfit tips and guided candid prompts for cinematic chemistry frames.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "Pre-Wedding Shoot Ideas in Mumbai & Lonavala | DisplayAvenue Studios",
+    "seoDescription": "Golden hour locations, outfit tips and guided candid prompts for cinematic chemistry frames.",
+    "keyword": "pre wedding shoot mumbai"
   },
   {
     "slug": "wedding-photography-packages-cost-india",
@@ -109,7 +149,11 @@ export const blogs = [
     "date": "2026-01-22",
     "image": "/images/indian/film-01.jpg",
     "readTime": "9 min read",
-    "content": "India packages range from budget single-shooter days to celebrity-tier multi-crew productions. Our Essential starts at ₹75,000; Signature photo+film at ₹1,85,000; Luxury destination from ₹3,50,000."
+    "content": "<p>India packages range from budget single-shooter days to celebrity-tier multi-crew productions. Our Essential starts at ₹75,000; Signature photo+film at ₹1,85,000; Luxury destination from ₹3,50,000.</p>\n<h2>Why this matters for couples</h2>\n<p>What Essential, mid-tier and luxury wedding photo-film packages usually include — and how DisplayAvenue prices Mumbai coverage.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "Wedding Photography Packages & Cost in India 2026 | DisplayAvenue Studios",
+    "seoDescription": "What Essential, mid-tier and luxury wedding photo-film packages usually include — and how DisplayAvenue prices Mumbai coverage.",
+    "keyword": "wedding photography packages"
   },
   {
     "slug": "maternity-photoshoot-tips",
@@ -119,7 +163,11 @@ export const blogs = [
     "date": "2026-01-10",
     "image": "/images/indian/maternity-01.jpg",
     "readTime": "5 min read",
-    "content": "Comfort is everything. Soft light, gentle bump cradles, forehead touches and profile silhouettes create elegant maternity galleries without stress."
+    "content": "<p>Comfort is everything. Soft light, gentle bump cradles, forehead touches and profile silhouettes create elegant maternity galleries without stress.</p>\n<h2>Why this matters for couples</h2>\n<p>Book weeks 28–34, choose flowing solids, and use partner connection poses for heirloom frames.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "Maternity Photoshoot Tips: Timing, Outfits & Poses | DisplayAvenue Studios",
+    "seoDescription": "Book weeks 28–34, choose flowing solids, and use partner connection poses for heirloom frames.",
+    "keyword": "maternity photographer"
   },
   {
     "slug": "destination-wedding-photography-checklist",
@@ -127,9 +175,13 @@ export const blogs = [
     "excerpt": "Permissions, drone rules, golden-hour slots and crew travel — plan like a production, not a guest.",
     "category": "Destination",
     "date": "2025-12-12",
-    "image": "/images/indian/wedding-05.jpg",
+    "image": "/images/indian/wedding-04.jpg",
     "readTime": "8 min read",
-    "content": "Confirm venue drone policy, share full multi-day run-of-show, lock crew stay near the venue, and protect 20–30 minutes for couple portraits at sunset."
+    "content": "<p>Confirm venue drone policy, share full multi-day run-of-show, lock crew stay near the venue, and protect 20–30 minutes for couple portraits at sunset.</p>\n<h2>Why this matters for couples</h2>\n<p>Permissions, drone rules, golden-hour slots and crew travel — plan like a production, not a guest.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "Destination Wedding Photography Checklist (Goa, Udaipur, Jaipur) | DisplayAvenue Studios",
+    "seoDescription": "Permissions, drone rules, golden-hour slots and crew travel — plan like a production, not a guest.",
+    "keyword": "destination wedding photographer"
   },
   {
     "slug": "cinematic-wedding-films-what-to-expect",
@@ -139,7 +191,11 @@ export const blogs = [
     "date": "2025-11-28",
     "image": "/images/indian/film-01.jpg",
     "readTime": "6 min read",
-    "content": "Most couples love a 3–5 minute highlight for sharing plus a longer film for family. Vertical reels are now standard for Instagram within the wedding week."
+    "content": "<p>Most couples love a 3–5 minute highlight for sharing plus a longer film for family. Vertical reels are now standard for Instagram within the wedding week.</p>\n<h2>Why this matters for couples</h2>\n<p>Highlight length, feature films, reels and audio — demystifying wedding videography for 2026 couples.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "Cinematic Wedding Films: What Couples Should Expect | DisplayAvenue Studios",
+    "seoDescription": "Highlight length, feature films, reels and audio — demystifying wedding videography for 2026 couples.",
+    "keyword": "cinematic wedding films"
   },
   {
     "slug": "birthday-and-event-photography-mumbai",
@@ -149,7 +205,11 @@ export const blogs = [
     "date": "2025-11-10",
     "image": "/images/indian/birthday-01.jpg",
     "readTime": "5 min read",
-    "content": "First birthdays, 50ths and anniversaries deserve calm, luxury coverage — not rushed party shooters. Ask for social selects and a short reel."
+    "content": "<p>First birthdays, 50ths and anniversaries deserve calm, luxury coverage — not rushed party shooters. Ask for social selects and a short reel.</p>\n<h2>Why this matters for couples</h2>\n<p>Why milestone birthdays and family events deserve the same premium crew as weddings.</p>\n<h2>How DisplayAvenue Studios approaches it</h2>\n<p>Based in Mira Road East, Mumbai, DisplayAvenue Studios covers weddings, pre-weddings, engagement, maternity, birthdays and destination celebrations across India. Couples get clear packages, candid + traditional coverage options, and WhatsApp-first coordination from enquiry to gallery delivery.</p>\n<h2>Practical next steps</h2>\n<ul><li>Share your date, city and preferred style (candid, traditional or hybrid).</li><li>Ask for full galleries — not only highlight reels.</li><li>Confirm deliverables in writing: edited count, film length, reels, album credit.</li><li>Book 6–12 months ahead for peak season Saturdays.</li></ul>\n<p><a href=\"/book-now\">Book a consultation</a> · <a href=\"/pricing\">Compare packages</a> · <a href=\"/services\">Browse services</a></p>",
+    "status": "published",
+    "seoTitle": "Birthday & Event Photography in Mumbai Worth Booking | DisplayAvenue Studios",
+    "seoDescription": "Why milestone birthdays and family events deserve the same premium crew as weddings.",
+    "keyword": "birthday photographer mumbai"
   }
 ];
 

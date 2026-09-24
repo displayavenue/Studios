@@ -1,0 +1,12 @@
+{
+    "enabled": true,
+    "timezone": "Asia/Kolkata",
+    "lastPublishDate": "2026-09-25",
+    "lastSlug": "destination-wedding-drone-rules-india",
+    "nextIndex": 1,
+    "totalPublished": 1,
+    "postsPerDay": 1,
+    "lastTitle": "Destination Wedding Drone Rules Couples Should Know",
+    "cronHint": "Hostinger cron: 0 7 * * * curl -fsS \"https://displayavenuestudios.com/admin/auto-blog.php?key=YOUR_SECRET\"",
+    "updatedAt": "2026-09-25T05:00:59+05:30"
+}

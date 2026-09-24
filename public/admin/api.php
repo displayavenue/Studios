@@ -67,6 +67,7 @@ function writeJson(string $path, $data): void {
 }
 
 require_once __DIR__ . '/seo-sync.php';
+require_once __DIR__ . '/blog-engine.php';
 
 $body = [];
 $raw = file_get_contents('php://input');
@@ -76,6 +77,27 @@ if ($raw) {
 }
 
 $action = $_GET['action'] ?? ($body['action'] ?? '');
+
+function automationPath(array $config): string {
+  return rtrim($config['content_dir'], '/\\') . '/blog-automation.json';
+}
+
+function readAutomation(array $config): array {
+  $path = automationPath($config);
+  $defaults = [
+    'enabled' => true,
+    'timezone' => 'Asia/Kolkata',
+    'postsPerDay' => 1,
+    'lastPublishDate' => '',
+    'lastSlug' => '',
+    'lastTitle' => '',
+    'nextIndex' => 0,
+    'totalPublished' => 0,
+  ];
+  if (!is_file($path)) return $defaults;
+  $data = json_decode((string)file_get_contents($path), true);
+  return is_array($data) ? array_merge($defaults, $data) : $defaults;
+}
 
 switch ($action) {
   case 'status':
@@ -137,6 +159,43 @@ switch ($action) {
     $seo = da_sync_seo_artifacts($contentDir, $publicDir);
     if (!$seo['ok']) respond(500, ['ok' => false, 'error' => $seo['error'] ?? 'SEO sync failed']);
     respond(200, ['ok' => true, 'seo' => $seo]);
+
+  case 'blog-automation':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $auto = readAutomation($config);
+    $topics = count(da_blog_topic_bank());
+    respond(200, [
+      'ok' => true,
+      'automation' => $auto,
+      'topicBankSize' => $topics,
+      'cronUrl' => '/admin/auto-blog.php?key=' . urlencode((string)$config['blog_cron_secret']),
+      'cronSecretSet' => !empty($config['blog_cron_secret']),
+    ]);
+
+  case 'save-blog-automation':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $incoming = $body['automation'] ?? null;
+    if (!is_array($incoming)) respond(400, ['ok' => false, 'error' => 'Missing automation']);
+    $current = readAutomation($config);
+    $merged = array_merge($current, [
+      'enabled' => !empty($incoming['enabled']),
+      'timezone' => (string)($incoming['timezone'] ?? $current['timezone'] ?? 'Asia/Kolkata'),
+      'postsPerDay' => max(1, min(3, (int)($incoming['postsPerDay'] ?? 1))),
+      'nextIndex' => max(0, (int)($incoming['nextIndex'] ?? $current['nextIndex'] ?? 0)),
+    ]);
+    writeJson(automationPath($config), $merged);
+    respond(200, ['ok' => true, 'automation' => $merged]);
+
+  case 'publish-blog-now':
+    if (!isAuthed($config)) respond(401, ['ok' => false, 'error' => 'Login required']);
+    $force = !empty($body['force']);
+    $contentDir = rtrim($config['content_dir'], '/\\');
+    $publicDir = dirname($contentDir);
+    $result = da_blog_publish_one($contentDir, $publicDir, $force);
+    if (empty($result['ok'])) {
+      respond(409, ['ok' => false, 'error' => $result['error'] ?? 'Publish failed', 'result' => $result]);
+    }
+    respond(200, ['ok' => true, 'result' => $result]);
 
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);

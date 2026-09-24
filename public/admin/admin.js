@@ -6,6 +6,9 @@ const state = {
   current: null,
   data: null,
   dirty: false,
+  blogAutomation: null,
+  topicBankSize: 0,
+  cronUrl: "",
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -57,14 +60,23 @@ function showLogin(show) {
   document.body.classList.toggle("is-authed", !show);
 }
 
-function field(label, path, value, type = "text") {
+function field(label, path, value, type = "text", options = null) {
   const id = path.replace(/[^a-z0-9]/gi, "_");
-  const isArea = type === "textarea" || (typeof value === "string" && value.length > 80);
-  const control = isArea
-    ? `<textarea data-path="${path}" id="${id}">${escapeHtml(value ?? "")}</textarea>`
-    : type === "checkbox"
-      ? `<input type="checkbox" data-path="${path}" id="${id}" ${value ? "checked" : ""} />`
-      : `<input type="${type}" data-path="${path}" id="${id}" value="${escapeAttr(value ?? "")}" />`;
+  const isArea = type === "textarea" || (typeof value === "string" && value.length > 80 && type !== "select");
+  let control;
+  if (type === "select" && Array.isArray(options)) {
+    control = `<select data-path="${path}" id="${id}">${options.map((o) => {
+      const v = typeof o === "object" ? o.value : o;
+      const l = typeof o === "object" ? o.label : o;
+      return `<option value="${escapeAttr(v)}" ${String(value) === String(v) ? "selected" : ""}>${escapeHtml(l)}</option>`;
+    }).join("")}</select>`;
+  } else if (isArea) {
+    control = `<textarea data-path="${path}" id="${id}">${escapeHtml(value ?? "")}</textarea>`;
+  } else if (type === "checkbox") {
+    control = `<input type="checkbox" data-path="${path}" id="${id}" ${value ? "checked" : ""} />`;
+  } else {
+    control = `<input type="${type}" data-path="${path}" id="${id}" value="${escapeAttr(value ?? "")}" />`;
+  }
   return `<div class="field ${isArea ? "full" : ""}"><label for="${id}">${label}</label>${control}</div>`;
 }
 
@@ -132,6 +144,16 @@ async function loadCollection(key) {
     state.current = key;
     state.data = r.data;
     setDirty(false);
+    if (key === "settings") {
+      try {
+        const a = await api("blog-automation");
+        state.blogAutomation = a.automation || {};
+        state.topicBankSize = a.topicBankSize || 0;
+        state.cronUrl = a.cronUrl || "";
+      } catch (_) {
+        state.blogAutomation = { enabled: true, timezone: "Asia/Kolkata", postsPerDay: 1 };
+      }
+    }
     $("#panel-title").textContent = state.collections[key] || key;
     $("#panel-sub").textContent = `Editing /content/${key}.json — save to update the live website.`;
     $("#nav").querySelectorAll("button").forEach((b) =>
@@ -704,8 +726,48 @@ function renderListSection(title, path, items, fields, addAction, delAction) {
             if (f.array) {
               return `<div class="field full"><label>${f.label}</label><textarea data-path="${path}.${i}.${f.key}" data-array="true">${escapeHtml((item[f.key] || []).join("\n"))}</textarea></div>`;
             }
-            return field(f.label, `${path}.${i}.${f.key}`, item[f.key], f.type || "text");
+            return field(f.label, `${path}.${i}.${f.key}`, item[f.key], f.type || "text", f.options || null);
           }).join("")}
+        </div>
+      </details>
+    `).join("")}
+  </div>`;
+}
+
+function renderBlogsSection(blogs) {
+  const items = blogs || [];
+  return `
+  <div class="card">
+    <div class="card-head">
+      <h3>Blog posts (${items.length})</h3>
+      <button type="button" class="btn btn-gold btn-sm" data-action="add-blog">Add post</button>
+    </div>
+    <p class="help-banner">
+      Edit full article HTML in <strong>Body content</strong>. Use &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;, &lt;a&gt; tags.
+      Set status to <strong>draft</strong> to hide from the public blog and sitemap. Daily auto-posts appear here as published.
+    </p>
+    ${items.map((item, i) => `
+      <details class="item-card" ${i < 1 ? "open" : ""}>
+        <summary>
+          <span>${escapeHtml(item.title || item.slug || `Post ${i + 1}`)}${item.status === "draft" ? " (draft)" : ""}</span>
+          <button type="button" class="btn btn-danger btn-sm" data-action="del-blog" data-index="${i}">Delete</button>
+        </summary>
+        <div class="grid-2" style="margin-top:1rem">
+          ${field("Slug (URL)", `blogs.${i}.slug`, item.slug)}
+          ${field("Status", `blogs.${i}.status`, item.status || "published", "select", [
+            { value: "published", label: "Published" },
+            { value: "draft", label: "Draft" },
+          ])}
+          ${field("Title", `blogs.${i}.title`, item.title)}
+          ${field("Category", `blogs.${i}.category`, item.category)}
+          ${field("Date (YYYY-MM-DD)", `blogs.${i}.date`, item.date)}
+          ${field("Read time", `blogs.${i}.readTime`, item.readTime)}
+          ${field("Image URL", `blogs.${i}.image`, item.image)}
+          ${field("Focus keyword", `blogs.${i}.keyword`, item.keyword || "")}
+          ${field("SEO title", `blogs.${i}.seoTitle`, item.seoTitle || "")}
+          ${field("Excerpt", `blogs.${i}.excerpt`, item.excerpt, "textarea")}
+          ${field("SEO description", `blogs.${i}.seoDescription`, item.seoDescription || item.excerpt || "", "textarea")}
+          ${field("Body content (HTML)", `blogs.${i}.content`, item.content || "", "textarea")}
         </div>
       </details>
     `).join("")}
@@ -719,15 +781,7 @@ function renderContent(d) {
       { label: "Question", key: "question" },
       { label: "Answer", key: "answer", type: "textarea" },
     ], "add-faq", "del-faq"),
-    renderListSection("Blog posts", "blogs", d.blogs || [], [
-      { label: "Slug", key: "slug" },
-      { label: "Title", key: "title" },
-      { label: "Category", key: "category" },
-      { label: "Date", key: "date" },
-      { label: "Read time", key: "readTime" },
-      { label: "Excerpt", key: "excerpt", type: "textarea" },
-      { label: "Image URL", key: "image" },
-    ], "add-blog", "del-blog"),
+    renderBlogsSection(d.blogs || []),
     renderListSection("Testimonials", "testimonials", d.testimonials || [], [
       { label: "Name", key: "name" },
       { label: "Role", key: "role" },
@@ -963,6 +1017,8 @@ function renderExtras(d) {
 }
 
 function renderSettings(d) {
+  const auto = state.blogAutomation || {};
+  const cronPath = state.cronUrl || "/admin/auto-blog.php?key=YOUR_SECRET";
 
   return `
   <div class="card">
@@ -974,6 +1030,47 @@ function renderSettings(d) {
       Change the CMS login password in <code>/admin/config.php</code> on the server.<br/>
       Make sure the <code>/content</code> folder is writable (chmod 755/775).
     </p>
+  </div>
+  <div class="card">
+    <h3>Daily auto-blog (SEO)</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
+      Publishes one unique wedding/celebration SEO article every day from a ${state.topicBankSize || 180}+ topic bank.
+      Uses Hostinger cron — no external AI API required. New posts appear under
+      <strong>FAQs, Blog, Team…</strong> → Blog posts, and rebuild sitemap/llms automatically.
+    </p>
+    <div class="grid-2">
+      <div class="field">
+        <label for="auto_enabled">Auto-publish enabled</label>
+        <input type="checkbox" id="auto_enabled" data-auto="enabled" ${auto.enabled !== false ? "checked" : ""} />
+      </div>
+      <div class="field">
+        <label for="auto_tz">Timezone</label>
+        <input type="text" id="auto_tz" data-auto="timezone" value="${escapeAttr(auto.timezone || "Asia/Kolkata")}" />
+      </div>
+      <div class="field">
+        <label for="auto_ppd">Posts per day (1–3)</label>
+        <input type="number" id="auto_ppd" data-auto="postsPerDay" min="1" max="3" value="${escapeAttr(String(auto.postsPerDay || 1))}" />
+      </div>
+      <div class="field">
+        <label for="auto_next">Next topic index</label>
+        <input type="number" id="auto_next" data-auto="nextIndex" min="0" value="${escapeAttr(String(auto.nextIndex || 0))}" />
+      </div>
+    </div>
+    <p style="font-size:.9rem;margin:1rem 0">
+      Last published: <strong>${escapeHtml(auto.lastPublishDate || "never")}</strong>
+      ${auto.lastTitle ? ` — ${escapeHtml(auto.lastTitle)}` : ""}<br/>
+      Total auto-published: <strong>${escapeHtml(String(auto.totalPublished ?? 0))}</strong>
+    </p>
+    <p style="font-size:.85rem;color:var(--muted);margin:0 0 1rem;word-break:break-all">
+      Hostinger cron (daily 7:00 IST):<br/>
+      <code>0 7 * * * curl -fsS "https://displayavenuestudios.com${escapeHtml(cronPath)}"</code><br/>
+      Change the secret in <code>/admin/config.php</code> → <code>blog_cron_secret</code>.
+    </p>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <button type="button" class="btn btn-gold btn-sm" data-action="save-blog-automation">Save auto-blog settings</button>
+      <button type="button" class="btn btn-sm" data-action="publish-blog-now">Publish one post now</button>
+      <button type="button" class="btn btn-sm" data-action="publish-blog-force">Force publish (ignore daily limit)</button>
+    </div>
   </div>
   <div class="card">
     <h3>Automatic SEO sync</h3>
@@ -1064,7 +1161,20 @@ function handleAction(action, btn) {
       d.packageGroups.splice(i, 1); setDirty(true); renderEditor(); break;
     case "add-faq": add("faqs", { category: "General", question: "New question?", answer: "" }); break;
     case "del-faq": del("faqs"); break;
-    case "add-blog": add("blogs", { slug: "new-post", title: "New blog post", excerpt: "", category: "General", date: "", image: "", readTime: "5 min read" }); break;
+    case "add-blog": add("blogs", {
+      slug: "new-post",
+      title: "New blog post",
+      excerpt: "",
+      category: "Planning",
+      date: new Date().toISOString().slice(0, 10),
+      image: "/images/indian/wedding-01.jpg",
+      readTime: "7 min read",
+      content: "<p>Write your article HTML here…</p>",
+      status: "draft",
+      keyword: "",
+      seoTitle: "",
+      seoDescription: "",
+    }); break;
     case "del-blog": del("blogs"); break;
     case "add-testimonial": add("testimonials", { name: "Client Name", role: "Role", quote: "", image: "" }); break;
     case "del-testimonial": del("testimonials"); break;
@@ -1188,6 +1298,41 @@ function handleAction(action, btn) {
           if (state.current === "settings") loadCollection("settings");
         } catch (e) {
           toast(e.message || "SEO sync failed", "err");
+        }
+      })();
+      break;
+    case "save-blog-automation":
+      (async () => {
+        try {
+          const root = $("#editor-wrap");
+          const automation = { ...(state.blogAutomation || {}) };
+          root.querySelectorAll("[data-auto]").forEach((el) => {
+            const key = el.getAttribute("data-auto");
+            if (el.type === "checkbox") automation[key] = el.checked;
+            else if (el.type === "number") automation[key] = Number(el.value);
+            else automation[key] = el.value;
+          });
+          const res = await api("save-blog-automation", { automation });
+          state.blogAutomation = res.automation || automation;
+          toast("Auto-blog settings saved");
+          renderEditor();
+        } catch (e) {
+          toast(e.message || "Failed to save auto-blog settings", "err");
+        }
+      })();
+      break;
+    case "publish-blog-now":
+    case "publish-blog-force":
+      (async () => {
+        try {
+          const force = action === "publish-blog-force";
+          const res = await api("publish-blog-now", { force });
+          const title = res?.result?.post?.title || "Post";
+          toast(`Published: ${title}`);
+          state.blogAutomation = res?.result?.automation || state.blogAutomation;
+          if (state.current === "settings") loadCollection("settings");
+        } catch (e) {
+          toast(e.message || "Publish failed", "err");
         }
       })();
       break;

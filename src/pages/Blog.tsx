@@ -6,6 +6,27 @@ import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
 
+function escapeText(text: string): string {
+  return text
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+/** Render CMS body: trust HTML when present, else wrap plain paragraphs. */
+function toArticleHtml(content: string | undefined): string {
+  const raw = (content || "").trim();
+  if (!raw) {
+    return "<p>This article is being updated. Check back soon, or book a consultation for tailored advice.</p>";
+  }
+  if (/<[a-z][\s\S]*>/i.test(raw)) return raw;
+  return raw
+    .split(/\n\n+/)
+    .map((block) => `<p>${escapeText(block).replaceAll("\n", "<br/>")}</p>`)
+    .join("\n");
+}
+
 export function Blog() {
   const ref = useReveal<HTMLDivElement>();
   const { blogs, company } = useCms();
@@ -13,8 +34,8 @@ export function Blog() {
   return (
     <div ref={ref}>
       <SEO
-        title={`Blog | Photography & Film Guides | ${company.name}`}
-        description={`Expert guides on wedding photography, product shoots, brand films, drones and booking tips from ${company.name}.`}
+        title={`Blog | Wedding Photography & Film Guides | ${company.name}`}
+        description={`Expert guides on wedding photography, cinematic films, pre-wedding shoots and booking tips from ${company.name} — Mumbai & pan-India.`}
         path="/blog"
       />
       <BreadcrumbSchema
@@ -32,10 +53,10 @@ export function Blog() {
             <span>Blog</span>
           </nav>
           <p className="eyebrow">Blog</p>
-          <h1>Guides built for planning, SEO and better bookings</h1>
+          <h1>Wedding photography & film guides for Indian couples</h1>
           <p>
-            High-intent guides for couples, brands and local search — updated
-            from the CMS whenever you publish.
+            High-intent planning guides — updated from the CMS and auto-published
+            daily for clearer booking decisions.
           </p>
         </div>
       </section>
@@ -85,11 +106,15 @@ export function BlogPost() {
     );
   }
 
+  const seoTitle = post.seoTitle || `${post.title} | ${company.name} Blog`;
+  const seoDesc = post.seoDescription || post.excerpt;
+  const bodyHtml = toArticleHtml(post.content);
+
   return (
     <div ref={ref}>
       <SEO
-        title={`${post.title} | ${company.name} Blog`}
-        description={post.excerpt}
+        title={seoTitle}
+        description={seoDesc}
         path={`/blog/${post.slug}`}
         image={post.image}
         type="article"
@@ -103,7 +128,7 @@ export function BlogPost() {
       />
       <ArticleSchema
         title={post.title}
-        description={post.excerpt}
+        description={seoDesc}
         image={post.image}
         path={`/blog/${post.slug}`}
         datePublished={post.date}
@@ -135,35 +160,16 @@ export function BlogPost() {
               src={post.image}
               alt={post.title}
             />
-            <div className="article-body">
-              <p>
-                At DisplayAvenue Studios, we speak with couples, marketing
-                teams and venue partners every week. The patterns are clear:
-                the best visual outcomes come from early clarity — on style,
-                scope, timeline and usage.
-              </p>
-              <h2>Start with the outcome, not the gear</h2>
-              <p>
-                Before comparing cameras or package names, define what success
-                looks like. For weddings, that may be an heirloom album and a
-                cinematic highlight film. For brands, it may be marketplace
-                conversion and a launch film that feels premium on every screen.
-              </p>
-              <h2>Ask for process, not only portfolio</h2>
-              <p>
-                Beautiful images matter. So does the operating system behind
-                them — contracts, shot lists, backup media, delivery portals and
-                revision rounds. A luxury studio should feel calm on the day and
-                precise after it.
-              </p>
-              <h2>How DisplayAvenue can help</h2>
-              <p>
-                Share your date, city and goals. We will recommend a package,
-                outline deliverables and reserve your production team with a
-                clear booking agreement.
-              </p>
+            <div
+              className="article-body"
+              dangerouslySetInnerHTML={{ __html: bodyHtml }}
+            />
+            <div className="article-cta">
               <Link to="/book-now" className="btn btn--gold">
                 Book a Consultation
+              </Link>
+              <Link to="/pricing" className="btn btn--outline">
+                View Packages
               </Link>
             </div>
           </div>

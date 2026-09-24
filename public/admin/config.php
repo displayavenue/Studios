@@ -13,6 +13,9 @@ return [
   // Content directory (relative to this file's parent: /admin -> /content)
   'content_dir' => dirname(__DIR__) . '/content',
 
+  // Secret for /admin/auto-blog.php daily cron (change on server)
+  'blog_cron_secret' => 'da-blog-seo-2026-mumbai',
+
   // Allowed content files (without .json)
   'collections' => [
     'home' => 'Homepage',

@@ -184,7 +184,9 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         testimonials:
           (content?.testimonials as CmsState["testimonials"]) ||
           fallbackTestimonials,
-        blogs: (content?.blogs as CmsState["blogs"]) || fallbackBlogs,
+        blogs: ((content?.blogs as CmsState["blogs"]) || fallbackBlogs).filter(
+          (b) => !b.status || b.status === "published",
+        ),
         industries:
           (content?.industries as CmsState["industries"]) || fallbackIndustries,
         locations:

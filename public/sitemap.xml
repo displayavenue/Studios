@@ -1,603 +1,1023 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://displayavenuestudios.com</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/about</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/packages</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/pricing</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/portfolio</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/industries</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/locations</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/blog</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/faqs</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/case-studies</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/careers</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/client-gallery</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/availability</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/book-now</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/contact</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/pages</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/wedding-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/wedding-videography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/services/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/services/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/pre-wedding-shoot</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/engagement-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/services/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/services/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/services/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/haldi-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/mehendi-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/sangeet-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/reception-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/destination-weddings</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/wedding-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/corporate-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/wedding-films</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/corporate-videography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/destination-wedding-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/industrial-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/pre-wedding-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/factory-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/engagement-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/manufacturing-videos</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/maternity-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/product-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/product-videography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/amazon-product-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/flipkart-product-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/food-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/restaurant-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/hotel-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/fashion-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/model-portfolio</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/architecture-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/interior-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/real-estate-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/drone-photography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/drone-videography</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/event-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/birthday-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/services/event-videography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/school-photography</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/haldi-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/college-events</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/mehendi-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/award-shows</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/sangeet-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/conferences</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/reception-videography</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/services/live-streaming</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/podcast-production</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/interview-videos</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/social-media-reels</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/instagram-content-creation</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/youtube-videos</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/video-editing</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/photo-editing</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/wedding-film-editing</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/color-grading</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/motion-graphics</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/album-design</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/commercial-ad-films</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/services/brand-story-videos</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/services/wedding-drone-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/packages/wedding</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/packages/corporate</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/packages/pre-wedding-engagement</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/packages/product</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/packages/maternity-birthday-events</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/packages/monthly-content</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/industries/hindu-weddings</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/industries/manufacturing</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/industries/destination-weddings</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/industries/healthcare</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/industries/intimate-weddings</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/industries/hotels</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/industries/christian-weddings</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/industries/restaurants</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/industries/muslim-weddings</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/industries/education</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/industries/construction</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/industries/automobile</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/industries/fashion</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/industries/government</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/industries/ngos</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/industries/real-estate</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/industries/sikh-weddings</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/locations/wedding-photographer-mumbai</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/locations/candid-wedding-photographer-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/locations/pre-wedding-shoot-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/locations/wedding-photographer-delhi</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/locations/wedding-photographer-goa</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/locations/wedding-photographer-udaipur</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/locations/wedding-photographer-jaipur</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/locations/wedding-photographer-bangalore</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/locations/wedding-photographer-pune</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/locations/corporate-photographer-hyderabad</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/locations/maternity-photographer-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/locations/product-photographer-ahmedabad</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/locations/birthday-photographer-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/locations/wedding-videographer-goa</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://displayavenuestudios.com/locations/drone-photographer-jaipur</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/locations/engagement-photographer-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://displayavenuestudios.com/portfolio/udaipur-palace-wedding</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/mumbai-heritage-ceremony</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/portfolio/mumbai-candid-wedding</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/fintech-brand-film</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/portfolio/cinematic-wedding-film</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/jewellery-campaign</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/portfolio/lonavala-pre-wedding</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/hospitality-goa-resort</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/portfolio/marine-drive-engagement</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/restaurant-launch-bandra</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/portfolio/maternity-heirloom</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/industrial-plant-story</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/portfolio/first-birthday-film</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/luxury-villa-aerials</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/portfolio/jaipur-sangeet-night</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/award-night-delhi</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://displayavenuestudios.com/blog/destination-wedding-drone-rules-india</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/portfolio/south-mumbai-residence</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://displayavenuestudios.com/blog/how-to-hire-wedding-photographer-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/blog/how-to-choose-wedding-photographer-mumbai</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://displayavenuestudios.com/blog/candid-vs-traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/blog/product-photography-tips-ecommerce-india</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://displayavenuestudios.com/blog/pre-wedding-shoot-ideas-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/blog/destination-wedding-film-checklist</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://displayavenuestudios.com/blog/wedding-photography-packages-cost-india</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/blog/corporate-brand-film-brief</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://displayavenuestudios.com/blog/maternity-photoshoot-tips</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/blog/drone-rules-wedding-india</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://displayavenuestudios.com/blog/destination-wedding-photography-checklist</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://displayavenuestudios.com/blog/real-estate-photography-sells-faster</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://displayavenuestudios.com/blog/cinematic-wedding-films-what-to-expect</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/blog/birthday-and-event-photography-mumbai</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/case-studies/udaipur-destination-wedding-film</loc>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/case-studies/mumbai-candid-banquet-wedding</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/case-studies/lonavala-pre-wedding-story</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/case-studies/maternity-heirloom-session</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/pre-wedding-shoot</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/engagement-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/haldi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/mehendi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/mumbai/sangeet-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/pre-wedding-shoot</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/engagement-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/haldi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/mehendi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/delhi/sangeet-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/pre-wedding-shoot</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/engagement-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/haldi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/mehendi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/goa/sangeet-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/pre-wedding-shoot</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/engagement-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/haldi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/mehendi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/udaipur/sangeet-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/pre-wedding-shoot</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/engagement-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/haldi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/mehendi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/jaipur/sangeet-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/pre-wedding-shoot</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/engagement-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/haldi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/mehendi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/bangalore/sangeet-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/candid-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/traditional-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/destination-wedding-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/pre-wedding-shoot</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/engagement-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/maternity-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/birthday-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/event-coverage</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/haldi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/mehendi-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>https://displayavenuestudios.com/hire/pune/sangeet-photography</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.55</priority>
   </url>
 </urlset>
