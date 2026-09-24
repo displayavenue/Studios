@@ -1,0 +1,62 @@
+name: HomeopathyPharma CI
+
+on:
+  push:
+    branches: [main, master, develop, "cursor/**"]
+    paths:
+      - "homeopathypharma/**"
+      - ".github/workflows/homeopathypharma-ci.yml"
+  pull_request:
+    paths:
+      - "homeopathypharma/**"
+      - ".github/workflows/homeopathypharma-ci.yml"
+
+defaults:
+  run:
+    working-directory: homeopathypharma
+
+concurrency:
+  group: hp-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, typecheck, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+          cache-dependency-path: homeopathypharma/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        run: pnpm db:generate
+        env:
+          DATABASE_URL: postgresql://hp:hp_dev_password@localhost:5432/homeopathypharma?schema=public
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
