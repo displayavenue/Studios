@@ -5,6 +5,12 @@
   --app-font-body: var(--font-body, var(--hp-font-body));
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
   max-width: 100%;
@@ -275,13 +281,17 @@ body::before {
   right: 0;
   bottom: 0;
   z-index: 40;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   min-height: var(--hp-mobile-nav-height);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   background: rgb(255 255 255 / 96%);
   border-top: 1px solid var(--hp-color-border);
   backdrop-filter: blur(10px);
+  overflow: hidden;
 }
 
 @media (min-width: 900px) {
@@ -294,11 +304,15 @@ body::before {
   display: grid;
   place-items: center;
   gap: 0.15rem;
+  min-width: 0;
+  max-width: 100%;
   padding: 0.45rem 0.2rem;
   text-decoration: none;
   color: var(--hp-color-text-muted);
   font-size: 0.68rem;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mobile-nav__item.is-active {
