@@ -10,10 +10,12 @@ export function Container({ narrow, children, style, className = "", ...props }:
     <div
       className={className}
       style={{
+        boxSizing: "border-box",
         width: "100%",
         maxWidth: narrow ? "var(--hp-container-narrow)" : "var(--hp-container-max)",
         marginInline: "auto",
         paddingInline: "clamp(0.75rem, 3vw, var(--hp-space-4))",
+        minWidth: 0,
         ...style,
       }}
       {...props}

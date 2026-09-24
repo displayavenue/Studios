@@ -24,6 +24,9 @@ function BaseShell({ header, nav, children, footer, mainId = "main-content", cla
             backgroundColor: "var(--hp-color-surface-elevated)",
             borderBottom: "1px solid var(--hp-color-border)",
             minHeight: "var(--hp-header-height)",
+            maxWidth: "100%",
+            overflowX: "clip",
+            minWidth: 0,
           }}
         >
           <Container>{header}</Container>
