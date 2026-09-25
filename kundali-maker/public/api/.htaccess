@@ -1,0 +1,10 @@
+# Deny direct access to secrets file
+<Files "config.php">
+  Require all denied
+</Files>
+<Files "config.sample.php">
+  Require all denied
+</Files>
+<Files "_bootstrap.php">
+  Require all denied
+</Files>
