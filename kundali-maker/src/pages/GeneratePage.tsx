@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import type { BirthDetails } from '../astrology/types'
 import { useLanguage } from '../hooks/useLanguage'
 import { CITIES } from '../lib/cities'
-import { createDraftOrder } from '../lib/orders'
+import { generateUnlockedKundali } from '../lib/orders'
 
 const empty = {
   name: '',
@@ -22,6 +22,7 @@ export function GeneratePage() {
   const [step, setStep] = useState(1)
   const [form, setForm] = useState(empty)
   const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
 
   const cityOptions = useMemo(
     () =>
@@ -66,26 +67,33 @@ export function GeneratePage() {
     setStep(2)
   }
 
-  function confirmAndPay() {
-    const details: BirthDetails = {
-      ...form,
-      name: form.name.trim(),
-      language: lang,
+  function confirmAndGenerate() {
+    setBusy(true)
+    setError('')
+    try {
+      const details: BirthDetails = {
+        ...form,
+        name: form.name.trim(),
+        language: lang,
+      }
+      const order = generateUnlockedKundali(details)
+      navigate(`/result/${order.id}`)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Generation failed')
+      setBusy(false)
     }
-    const order = createDraftOrder(details)
-    navigate(`/pay/${order.id}`)
   }
 
   return (
     <div className="page-wrap">
       <div className="container">
         <h1 className="page-title">
-          {lang === 'hi' ? 'अपनी वैदिक कुंडली मँगवाएँ' : 'Order your Vedic kundali'}
+          {lang === 'hi' ? 'अपनी वैदिक कुंडली बनाएँ' : 'Generate your Vedic kundali'}
         </h1>
         <p className="page-sub">
           {lang === 'hi'
-            ? 'सटीक जन्म समय और स्थान सही लग्न देते हैं—परिवार की पुरानी डायरी से जाँच लें।'
-            : 'Exact birth time and place give a true lagna—check an old family record if unsure.'}
+            ? 'जन्म विवरण भरें—पूर्ण ~२० पृष्ठ PDF तुरंत डाउनलोड। अभी भुगतान नहीं।'
+            : 'Enter birth details—download the full ~20 page PDF instantly. No payment for now.'}
         </p>
 
         <div className="steps-bar">
@@ -95,8 +103,7 @@ export function GeneratePage() {
           <span className={step === 2 ? 'active' : ''}>
             2. {lang === 'hi' ? 'पुष्टि' : 'Confirm'}
           </span>
-          <span>3. {lang === 'hi' ? 'भुगतान' : 'Pay'}</span>
-          <span>4. {lang === 'hi' ? 'कुंडली' : 'Kundali'}</span>
+          <span>3. {lang === 'hi' ? 'कुंडली + PDF' : 'Kundali + PDF'}</span>
         </div>
 
         {step === 1 && (
@@ -186,7 +193,7 @@ export function GeneratePage() {
 
         {step === 2 && (
           <div className="panel">
-            <h3>{lang === 'hi' ? 'पुष्टि करें' : 'Confirm before payment'}</h3>
+            <h3>{lang === 'hi' ? 'पुष्टि करें' : 'Confirm details'}</h3>
             <div className="kv">
               <div>
                 <span>{lang === 'hi' ? 'नाम' : 'Name'}</span>
@@ -209,12 +216,24 @@ export function GeneratePage() {
                 <span>{lang === 'hi' ? 'हिन्दी' : 'English'}</span>
               </div>
             </div>
+            {error && <p className="alert">{error}</p>}
             <div className="form-actions">
-              <button type="button" className="btn btn-ghost" onClick={() => setStep(1)}>
+              <button type="button" className="btn btn-ghost" onClick={() => setStep(1)} disabled={busy}>
                 {lang === 'hi' ? 'वापस' : 'Back'}
               </button>
-              <button type="button" className="btn btn-primary" onClick={confirmAndPay}>
-                {lang === 'hi' ? 'भुगतान कर कुंडली लें' : 'Pay & get my kundali'}
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={confirmAndGenerate}
+                disabled={busy}
+              >
+                {busy
+                  ? lang === 'hi'
+                    ? 'बना रहे हैं…'
+                    : 'Generating…'
+                  : lang === 'hi'
+                    ? 'कुंडली बनाएँ व PDF लें'
+                    : 'Generate kundali & get PDF'}
               </button>
             </div>
           </div>

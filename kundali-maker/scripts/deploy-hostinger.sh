@@ -4,6 +4,7 @@
 # Required: SSH_PASS
 # Optional: SSH_HOST, SSH_PORT, SSH_DOC, VITE_BASE
 # Optional Razorpay: RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET
+#   If unset, existing server api/config.php keys are preserved when present.
 
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -21,7 +22,7 @@ if [[ "$BASE" != "/" && "$BASE" != */ ]]; then
 fi
 
 echo "Building with base=${BASE} …"
-VITE_BASE="$BASE" npx vite build --base "$BASE"
+VITE_BASE="$BASE" npm run build
 
 REWRITE_BASE="$BASE"
 cat > dist/.htaccess <<EOF
@@ -47,19 +48,33 @@ DirectoryIndex index.html index.php
 </IfModule>
 EOF
 
-# Write Razorpay config into dist (not committed)
+# Prefer env keys; else pull existing live config so we do not wipe Razorpay
 KEY_ID="${RAZORPAY_KEY_ID:-}"
 KEY_SECRET="${RAZORPAY_KEY_SECRET:-}"
-ALLOW_DEMO="false"
 if [[ -z "$KEY_ID" || -z "$KEY_SECRET" ]]; then
-  ALLOW_DEMO="true"
-  echo "WARN: RAZORPAY_KEY_ID/SECRET not set — demo pay allowed until keys are added."
+  echo "No RAZORPAY_* env — trying to preserve server api/config.php …"
+  EXISTING="$(sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
+    "test -f $DOC/api/config.php && cat $DOC/api/config.php || true" || true)"
+  if [[ -n "$EXISTING" ]]; then
+    KEY_ID="$(printf '%s' "$EXISTING" | sed -n "s/.*'key_id' => '\\([^']*\\)'.*/\\1/p" | head -1)"
+    KEY_SECRET="$(printf '%s' "$EXISTING" | sed -n "s/.*'key_secret' => '\\([^']*\\)'.*/\\1/p" | head -1)"
+  fi
+fi
+
+ALLOW_DEMO="true"
+if [[ -n "$KEY_ID" && -n "$KEY_SECRET" ]]; then
+  ALLOW_DEMO="false"
+  echo "Razorpay keys available — writing api/config.php (allow_demo=false; checkout still unused in free preview)"
 else
-  echo "Razorpay keys detected — writing api/config.php (allow_demo=false)"
+  echo "WARN: No Razorpay keys — allow_demo=true (payment UI still paused in app)"
 fi
 
 mkdir -p dist/api
-# Escape for PHP single-quoted strings
+# Keep existing PHP API endpoints from public/api if present
+if [[ -d public/api ]]; then
+  cp -a public/api/. dist/api/
+fi
+
 php_escape() {
   printf "%s" "$1" | sed "s/'/\\\\'/g"
 }
@@ -75,15 +90,14 @@ return [
 ];
 EOF
 
-echo "Uploading to $HOST:$DOC …"
+echo "Uploading to $HOST:$DOC (preserving varnikya/ if present)…"
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
-  "mkdir -p $DOC && find $DOC -mindepth 1 -maxdepth 1 -exec rm -rf {} +"
+  "mkdir -p $DOC && find $DOC -mindepth 1 -maxdepth 1 ! -name varnikya -exec rm -rf {} +"
 
 sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" -r dist/. "$HOST:$DOC/"
 
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
-  "chmod 755 $DOC $DOC/api; chmod 644 $DOC/index.html $DOC/.htaccess $DOC/api/*.php 2>/dev/null; chmod 600 $DOC/api/config.php 2>/dev/null; test -f $DOC/index.html && test -f $DOC/api/razorpay-status.php && echo DEPLOY_OK"
+  "chmod 755 $DOC $DOC/api; chmod 644 $DOC/index.html $DOC/.htaccess $DOC/api/*.php 2>/dev/null; chmod 600 $DOC/api/config.php 2>/dev/null; test -f $DOC/index.html && echo DEPLOY_OK"
 
 echo "Deployed to $DOC"
 echo "Site: https://jyotishkundali.com/"
-echo "Razorpay status: https://jyotishkundali.com/api/razorpay-status.php"

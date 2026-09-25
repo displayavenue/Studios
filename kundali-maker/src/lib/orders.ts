@@ -53,6 +53,20 @@ export function updateOrder(order: KundaliOrder): KundaliOrder {
   return order
 }
 
+/**
+ * Free preview mode: create order, generate full chart, unlock PDF download.
+ * Razorpay is intentionally skipped until payment is re-enabled.
+ */
+export function generateUnlockedKundali(details: BirthDetails): KundaliOrder {
+  const order = createDraftOrder(details)
+  order.chart = generateKundali(order.details)
+  order.status = 'kundali_paid'
+  order.kundaliPaidAt = new Date().toISOString()
+  order.kundaliPaymentId = `free_${Date.now()}`
+  updateOrder(order)
+  return order
+}
+
 /** Unlocks kundali after successful payment (Razorpay or approved demo) */
 export function payForKundali(
   orderId: string,

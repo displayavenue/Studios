@@ -1,6 +1,8 @@
 # Jyotish Kundali
 
-Vedic kundali maker: enter birth details → pay → view chart + PDF → optional paid remedies add-on.
+Vedic kundali maker: enter birth details → generate chart → download full ~20 page PDF.
+
+**Current mode:** free generation preview (Razorpay paused). Payment will be added after generation is verified.
 
 ## Run locally
 
@@ -20,10 +22,7 @@ SSH_PASS='…' npm run deploy:hostinger
 ```
 
 Deploys to `domains/jyotishkundali.com/public_html` with `base=/`.
-
-**First-time setup:** In Hostinger hPanel, connect `jyotishkundali.com` to this hosting account and enable SSL. Until then DNS may show a parked page.
-
-The old mirror at `displayavenuestudios.com/kundali-maker/` was removed; that path 301-redirects to https://jyotishkundali.com/.
+Preserves `varnikya/` subdirectory and existing Razorpay `api/config.php` keys when env secrets are unset.
 
 ## Scripts
 
@@ -31,14 +30,15 @@ The old mirror at `displayavenuestudios.com/kundali-maker/` was removed; that pa
 - `npm run build` — production build to `dist/`
 - `npm run preview` — preview production build
 - `npm run test:astrology` — smoke-test chart generation
+- `npm run test:pdf` — build sample complete PDF + page count check
 - `npm run deploy:hostinger` — build + SSH upload to Hostinger
 
-## Pricing (MVP)
+## Flow (preview)
 
-- Kundali PDF: ₹299
-- Kundali Milan: ₹399
-- Remedies add-on: ₹199 (after kundali, optional)
-- Free SAMPLE PDF at `/sample`
+1. Landing → Generate
+2. Enter birth details → confirm
+3. Chart unlocks instantly (no payment)
+4. Download complete ~20 page PDF
 
 ## Stack
 

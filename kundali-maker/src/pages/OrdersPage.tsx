@@ -76,16 +76,11 @@ export function OrdersPage() {
             <div className="form-actions">
               {found.status === 'draft' ? (
                 <Link className="btn btn-primary" to={`/pay/${found.id}`}>
-                  {lang === 'hi' ? 'भुगतान पूरा करें' : 'Complete payment'}
+                  {lang === 'hi' ? 'कुंडली खोलें' : 'Unlock kundali'}
                 </Link>
               ) : (
                 <Link className="btn btn-primary" to={`/result/${found.id}`}>
                   {lang === 'hi' ? 'कुंडली खोलें' : 'Open kundali'}
-                </Link>
-              )}
-              {found.status !== 'draft' && (
-                <Link className="btn btn-ghost" to={`/remedies/${found.id}`}>
-                  {lang === 'hi' ? 'उपाय' : 'Remedies'}
                 </Link>
               )}
             </div>

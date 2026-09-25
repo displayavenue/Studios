@@ -5,11 +5,10 @@ import type { Language } from '../astrology/types'
 import { useLanguage } from '../hooks/useLanguage'
 
 const NAV = [
-  { to: '/features', en: 'Features', hi: 'विशेषताएँ' },
-  { to: '/services', en: 'Services', hi: 'सेवाएँ' },
-  { to: '/milan', en: 'Milan', hi: 'मिलान' },
+  { to: '/generate', en: 'Generate', hi: 'बनाएँ' },
   { to: '/sample', en: 'Sample', hi: 'नमूना' },
-  { to: '/pricing', en: 'Pricing', hi: 'मूल्य' },
+  { to: '/features', en: 'Features', hi: 'विशेषताएँ' },
+  { to: '/whats-inside', en: "What's inside", hi: 'अंदर क्या है' },
   { to: '/faq', en: 'FAQ', hi: 'FAQ' },
 ] as const
 
@@ -95,16 +94,14 @@ export function Layout() {
             <strong>{copy.brand(lang)}</strong>
             <p>
               {lang === 'hi'
-                ? 'स्वयं-सेवा वैदिक कुंडली · PDF · कोई कॉल नहीं'
-                : 'Self-serve Vedic kundali · PDF · no calls required'}
+                ? 'स्वयं-सेवा वैदिक कुंडली · पूर्ण PDF · मुफ़्त पूर्वावलोकन'
+                : 'Self-serve Vedic kundali · full PDF · free preview'}
             </p>
           </div>
           <div className="footer-links">
-            <Link to="/features">{lang === 'hi' ? '१०० विशेषताएँ' : '100 features'}</Link>
-            <Link to="/services">{lang === 'hi' ? 'सेवाएँ' : 'Services'}</Link>
-            <Link to="/milan">{lang === 'hi' ? 'कुंडली मिलान' : 'Kundali Milan'}</Link>
+            <Link to="/generate">{lang === 'hi' ? 'कुंडली बनाएँ' : 'Generate'}</Link>
             <Link to="/sample">{lang === 'hi' ? 'नमूना PDF' : 'Sample PDF'}</Link>
-            <Link to="/pricing">{lang === 'hi' ? 'मूल्य' : 'Pricing'}</Link>
+            <Link to="/features">{lang === 'hi' ? 'विशेषताएँ' : 'Features'}</Link>
             <Link to="/whats-inside">{lang === 'hi' ? 'कुंडली में क्या' : "What's inside"}</Link>
             <Link to="/faq">FAQ</Link>
             <Link to="/about">{lang === 'hi' ? 'परिचय' : 'About'}</Link>

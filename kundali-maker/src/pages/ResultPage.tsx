@@ -4,7 +4,6 @@ import { ChartNorthIndian } from '../components/ChartNorthIndian'
 import { useLanguage } from '../hooks/useLanguage'
 import { getOrder } from '../lib/orders'
 import { downloadKundaliPdf } from '../lib/pdf'
-import { formatInr } from '../lib/pricing'
 
 export function ResultPage() {
   const { orderId = '' } = useParams()
@@ -20,7 +19,9 @@ export function ResultPage() {
             {lang === 'hi' ? 'कुंडली अभी तैयार नहीं' : 'Kundali not ready'}
           </h1>
           <p className="page-sub">
-            {lang === 'hi' ? 'पहले विवरण भरकर भुगतान करें।' : 'Complete details and payment first.'}
+            {lang === 'hi'
+              ? 'पहले जन्म विवरण भरकर कुंडली बनाएँ।'
+              : 'Enter birth details and generate your kundali first.'}
           </p>
           <Link className="btn btn-primary" to="/generate">
             {lang === 'hi' ? 'शुरू करें' : 'Start'}
@@ -33,9 +34,6 @@ export function ResultPage() {
   const chart = order.chart
   const reportLang = order.details.language
   const hasRemedies = order.status === 'remedies_paid'
-  const showUpsell = !hasRemedies && chart.doshas.some((d) => d.id !== 'general' || d.severity !== 'low')
-    ? true
-    : !hasRemedies
 
   function onPdf(withRemedies: boolean) {
     setPdfError('')
@@ -58,11 +56,11 @@ export function ResultPage() {
 
         <div className="delivery-banner">
           <div>
-            <strong>{lang === 'hi' ? 'तुरंत PDF' : 'Instant PDF'}</strong>
+            <strong>{lang === 'hi' ? 'पूर्ण कुंडली तैयार' : 'Full kundali ready'}</strong>
             <p>
               {lang === 'hi'
-                ? `ऑर्डर ${order.id} — PDF अभी डाउनलोड करें। बाद में Order lookup से फिर खोलें। कोई कॉल/चैट आवश्यक नहीं।`
-                : `Order ${order.id} — download your PDF now. Re-open later via Order lookup. No call or chat required.`}
+                ? `रेफरेंस ${order.id} — पूर्ण विस्तृत PDF अभी डाउनलोड करें। बाद में Order lookup से फिर खोलें।`
+                : `Reference ${order.id} — download the full detailed PDF now. Re-open later via Order lookup.`}
             </p>
           </div>
           <Link className="btn btn-ghost" to="/orders">
@@ -72,7 +70,7 @@ export function ResultPage() {
 
         <div className="form-actions" style={{ marginTop: 0, marginBottom: '1.5rem' }}>
           <button type="button" className="btn btn-primary" onClick={() => onPdf(false)}>
-            {lang === 'hi' ? 'पूर्ण ~२० पृष्ठ PDF' : 'Download complete ~20 page PDF'}
+            {lang === 'hi' ? 'पूर्ण ~२० पृष्ठ PDF डाउनलोड' : 'Download complete ~20 page PDF'}
           </button>
           {hasRemedies && (
             <button type="button" className="btn btn-gold" onClick={() => onPdf(true)}>
@@ -163,26 +161,6 @@ export function ResultPage() {
             ))}
           </div>
         </div>
-
-        {showUpsell && (
-          <div className="remedy-lock">
-            <h3>
-              {lang === 'hi'
-                ? 'उपाय चाहिए? अतिरिक्त भुगतान से अनलॉक करें'
-                : 'Need remedies? Unlock with an extra payment'}
-            </h3>
-            <p>
-              {lang === 'hi'
-                ? `आपकी कुंडली के संकेतों के अनुसार व्यक्तिगत उपाय — ${formatInr(order.amountRemedies)} अतिरिक्त।`
-                : `Personalized remedies mapped to your flags — ${formatInr(order.amountRemedies)} extra.`}
-            </p>
-            <div className="form-actions">
-              <Link className="btn btn-gold" to={`/remedies/${order.id}`}>
-                {lang === 'hi' ? 'उपाय देखें / खरीदें' : 'View / buy remedies'}
-              </Link>
-            </div>
-          </div>
-        )}
 
         {hasRemedies && (
           <p className="success-note">
