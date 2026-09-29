@@ -1,5 +1,5 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync } from "fs";
+import { join } from "path";
 import type { HomepageContent } from "../../../../data/cms/homepage-types";
 
 export type { HomeBanner, HomeCategoryChip, HomepageContent } from "../../../../data/cms/homepage-types";

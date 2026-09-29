@@ -1,0 +1,24 @@
+[
+  {
+    "id": "page-about",
+    "slug": "about",
+    "title": "About HomeopathyPharma",
+    "excerpt": "India’s labelled homeopathy pharmacy and doctor network.",
+    "bodyHtml": "<p>HomeopathyPharma stocks SBL, Dr. Reckeweg, and Schwabe medicines with clear pack labels, and connects patients to listed BHMS doctors.</p>",
+    "status": "published",
+    "seoTitle": "About · HomeopathyPharma",
+    "seoDescription": "Learn about HomeopathyPharma — medicines, brands, and listed doctors.",
+    "updatedAt": "2026-09-29T07:34:35.210Z"
+  },
+  {
+    "id": "page-contact",
+    "slug": "contact",
+    "title": "Contact us",
+    "excerpt": "Support for orders, consultations, and catalogue questions.",
+    "bodyHtml": "<p>Email <a href=\"mailto:support@homeopathypharma.com\">support@homeopathypharma.com</a> or call +91 22 4000 0000 (Mon–Sat, 10am–7pm IST).</p>",
+    "status": "published",
+    "seoTitle": "Contact · HomeopathyPharma",
+    "seoDescription": "Contact HomeopathyPharma support.",
+    "updatedAt": "2026-09-29T07:34:35.210Z"
+  }
+]

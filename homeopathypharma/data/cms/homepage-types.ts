@@ -6,6 +6,7 @@ export type HomeBanner = {
   ctaLabel: string;
   ctaHref: string;
   tone: "teal" | "amber" | "sage";
+  imageUrl?: string;
 };
 
 export type HomeCategoryChip = {

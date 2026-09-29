@@ -85,20 +85,24 @@ export async function getQueue(queue: string): Promise<QueueItem[]> {
 export async function loginAdmin(
   email: string,
   password: string,
-  mfaCode?: string,
+  _mfaCode?: string,
 ): Promise<{ ok: boolean; mfaRequired?: boolean }> {
   try {
-    await adminFetch("/admin/auth/login", {
+    const res = await fetch("/api/cms/auth", {
       method: "POST",
-      body: JSON.stringify({ email, password, mfaCode }),
+      credentials: "include",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ email, password }),
     });
-    return { ok: true };
-  } catch (err) {
-    if (err instanceof ApiError && err.status === 428) {
-      return { ok: false, mfaRequired: true };
-    }
+    if (res.ok) return { ok: true };
+    return { ok: false };
+  } catch {
     return { ok: false };
   }
+}
+
+export async function logoutAdmin(): Promise<void> {
+  await fetch("/api/cms/auth", { method: "DELETE", credentials: "include" });
 }
 
 export interface AuditLogEntry {

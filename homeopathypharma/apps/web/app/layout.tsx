@@ -4,6 +4,7 @@ import { buildOrganizationJsonLd, buildWebSiteJsonLd, serializeJsonLd } from "@h
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WebAppShell } from "@/components/web-app-shell";
+import { MENUS } from "@/lib/content/menus";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -59,6 +60,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     }),
   );
 
+  const mobileNavItems = [...(MENUS.mobile ?? [])]
+    .sort((a, b) => a.order - b.order)
+    .map((item) => ({ href: item.href, label: item.label }));
+
   return (
     <html lang="en" className={`${fraunces.variable} ${manrope.variable}`}>
       <head>
@@ -66,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: siteJsonLd }} />
       </head>
       <body className="font-body">
-        <WebAppShell header={<SiteHeader />} footer={<SiteFooter />}>
+        <WebAppShell header={<SiteHeader />} footer={<SiteFooter />} mobileNavItems={mobileNavItems}>
           {children}
         </WebAppShell>
       </body>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "media-banner-medicines",
+    "url": "/images/banners/banner-medicines.png",
+    "alt": "Homeopathy medicines",
+    "filename": "banner-medicines.png",
+    "mimeType": "image/png",
+    "uploadedAt": "2026-09-29T07:34:35.210Z"
+  },
+  {
+    "id": "media-banner-consult",
+    "url": "/images/banners/banner-consult.png",
+    "alt": "Doctor consultation",
+    "filename": "banner-consult.png",
+    "mimeType": "image/png",
+    "uploadedAt": "2026-09-29T07:34:35.210Z"
+  },
+  {
+    "id": "media-banner-brands",
+    "url": "/images/banners/banner-brands.png",
+    "alt": "Trusted brands",
+    "filename": "banner-brands.png",
+    "mimeType": "image/png",
+    "uploadedAt": "2026-09-29T07:34:35.210Z"
+  },
+  {
+    "id": "media-product-dilution",
+    "url": "/images/products/product-dilution.png",
+    "alt": "Dilution bottle",
+    "filename": "product-dilution.png",
+    "mimeType": "image/png",
+    "uploadedAt": "2026-09-29T07:34:35.210Z"
+  },
+  {
+    "id": "media-product-globules",
+    "url": "/images/products/product-globules.png",
+    "alt": "Globules",
+    "filename": "product-globules.png",
+    "mimeType": "image/png",
+    "uploadedAt": "2026-09-29T07:34:35.210Z"
+  }
+]

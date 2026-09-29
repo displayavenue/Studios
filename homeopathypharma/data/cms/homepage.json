@@ -2,13 +2,34 @@
   "searchPlaceholder": "Search for Medicines and Health Products",
   "banners": [
     {
-      "id": "banner-hero",
+      "id": "banner-medicines",
       "eyebrow": "",
       "title": "Shop homeopathy medicines",
       "subtitle": "SBL · Reckeweg · Schwabe with clear pack labels",
       "ctaLabel": "Browse medicines",
       "ctaHref": "/shop/",
-      "tone": "teal"
+      "tone": "teal",
+      "imageUrl": "/images/banners/banner-medicines.png"
+    },
+    {
+      "id": "banner-consult",
+      "eyebrow": "",
+      "title": "Consult listed BHMS doctors",
+      "subtitle": "Online video or clinic visits in Mumbai",
+      "ctaLabel": "Find a doctor",
+      "ctaHref": "/doctors/city/mumbai/",
+      "tone": "sage",
+      "imageUrl": "/images/banners/banner-consult.png"
+    },
+    {
+      "id": "banner-brands",
+      "eyebrow": "",
+      "title": "Trusted brands in stock",
+      "subtitle": "Full Reckeweg R1–R89 · SBL · Schwabe catalogues",
+      "ctaLabel": "Shop by brand",
+      "ctaHref": "/brands/",
+      "tone": "amber",
+      "imageUrl": "/images/banners/banner-brands.png"
     }
   ],
   "categories": [
