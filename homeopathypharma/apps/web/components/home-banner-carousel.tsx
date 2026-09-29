@@ -13,8 +13,46 @@ export type HomeBannerSlide = {
 };
 
 export function HomeBannerCarousel({ slides }: { slides: HomeBannerSlide[] }) {
+  const [liveSlides, setLiveSlides] = useState(slides);
   const [index, setIndex] = useState(0);
-  const total = slides.length;
+  const total = liveSlides.length;
+
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const res = await fetch("/cms-data/homepage.json", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as {
+          banners?: {
+            id: string;
+            title: string;
+            subtitle: string;
+            ctaLabel: string;
+            ctaHref: string;
+            imageUrl?: string;
+          }[];
+        };
+        if (cancelled || !data.banners?.length) return;
+        setLiveSlides(
+          data.banners.map((b, i) => ({
+            id: b.id,
+            image: b.imageUrl || slides[i % Math.max(slides.length, 1)]?.image || "/images/banners/banner-medicines.png",
+            title: b.title,
+            subtitle: b.subtitle,
+            ctaLabel: b.ctaLabel,
+            ctaHref: b.ctaHref,
+          })),
+        );
+        setIndex(0);
+      } catch {
+        // keep build-time slides
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [slides]);
 
   useEffect(() => {
     if (total < 2) return;
@@ -24,8 +62,8 @@ export function HomeBannerCarousel({ slides }: { slides: HomeBannerSlide[] }) {
     return () => window.clearInterval(id);
   }, [total]);
 
-  if (!slides.length) return null;
-  const banner = slides[index]!;
+  if (!liveSlides.length) return null;
+  const banner = liveSlides[index]!;
 
   return (
     <section className="home-banner" aria-roledescription="carousel" aria-label="Offers and highlights">
@@ -43,7 +81,7 @@ export function HomeBannerCarousel({ slides }: { slides: HomeBannerSlide[] }) {
       </div>
       {total > 1 ? (
         <div className="home-banner__dots" role="tablist" aria-label="Banner slides">
-          {slides.map((item, i) => (
+          {liveSlides.map((item, i) => (
             <button
               key={item.id}
               type="button"
