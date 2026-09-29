@@ -1,0 +1,26 @@
+{
+  "name": "@homeopathypharma/worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HomeopathyPharma BullMQ worker — async job processors for commerce and healthcare domains",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
+    "start:prod": "node dist/main.js",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "bullmq": "^5.44.0",
+    "ioredis": "^5.6.0",
+    "reflect-metadata": "^0.2.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

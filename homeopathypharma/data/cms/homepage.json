@@ -1,0 +1,56 @@
+{
+  "searchPlaceholder": "Search for Medicines and Health Products",
+  "banners": [
+    {
+      "id": "banner-medicines",
+      "eyebrow": "",
+      "title": "Shop homeopathy medicines",
+      "subtitle": "SBL · Reckeweg · Schwabe with clear pack labels",
+      "ctaLabel": "Browse medicines",
+      "ctaHref": "/shop/",
+      "tone": "teal",
+      "imageUrl": "/images/banners/banner-medicines.png"
+    },
+    {
+      "id": "banner-consult",
+      "eyebrow": "",
+      "title": "Consult listed BHMS doctors",
+      "subtitle": "Online video or clinic visits in Mumbai",
+      "ctaLabel": "Find a doctor",
+      "ctaHref": "/doctors/city/mumbai/",
+      "tone": "sage",
+      "imageUrl": "/images/banners/banner-consult.png"
+    },
+    {
+      "id": "banner-brands",
+      "eyebrow": "",
+      "title": "Trusted brands in stock",
+      "subtitle": "Full Reckeweg R1–R89 · SBL · Schwabe catalogues",
+      "ctaLabel": "Shop by brand",
+      "ctaHref": "/brands/",
+      "tone": "amber",
+      "imageUrl": "/images/banners/banner-brands.png"
+    }
+  ],
+  "categories": [
+    { "label": "Head & Hair", "href": "/shop/categories/head-and-hair/", "seed": "hair" },
+    { "label": "Face & Skin", "href": "/shop/categories/face-and-skin/", "seed": "skin" },
+    { "label": "Digestive", "href": "/shop/categories/digestive-health/", "seed": "digestive" },
+    { "label": "Respiratory", "href": "/shop/categories/respiratory-health/", "seed": "respiratory" },
+    { "label": "Women's Health", "href": "/shop/categories/womens-health/", "seed": "women" },
+    { "label": "Men's Health", "href": "/shop/categories/mens-health/", "seed": "men" },
+    { "label": "Children", "href": "/shop/categories/childrens-health/", "seed": "child" },
+    { "label": "Senior Health", "href": "/shop/categories/senior-health/", "seed": "senior" },
+    { "label": "Sleep", "href": "/shop/categories/sleep-health/", "seed": "sleep" },
+    { "label": "Immunity", "href": "/shop/categories/immunity-and-general-wellness/", "seed": "immunity" },
+    { "label": "Joints", "href": "/shop/categories/bone-joint-and-muscle-care/", "seed": "joints" },
+    { "label": "All categories", "href": "/shop/categories/", "seed": "all" }
+  ],
+  "rails": {
+    "bestsellersTitle": "Popular medicines",
+    "consultTitle": "Consult a listed BHMS doctor",
+    "consultBody": "Online video or clinic visits with practitioners listed for Mumbai — no fake verified badges.",
+    "brandsTitle": "Featured brands",
+    "doctorsTitle": "Doctors in Mumbai"
+  }
+}
