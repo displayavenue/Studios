@@ -37,16 +37,17 @@
 
 .re-hero__brand {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 600;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 650;
   color: var(--brass);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
   animation: fadeUp 0.9s var(--ease) both;
 }
 
 .re-hero h1 {
   color: white;
-  max-width: 14ch;
+  max-width: 16ch;
+  font-size: clamp(2rem, 4vw, 3.15rem);
   animation: fadeUp 1s 0.08s var(--ease) both;
 }
 
