@@ -78,7 +78,7 @@ export function Sell() {
                 ],
               },
               {
-                name: "type",
+                name: "property_type",
                 label: "Property type",
                 required: true,
                 options: [

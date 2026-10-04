@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Deploy dist/ to Hostinger via FTP (lftp).
+# Deploy DisplayAvenue Real Estate to Hostinger via FTP (lftp).
 # Required env: HOSTINGER_FTP_HOST, HOSTINGER_FTP_USERNAME, HOSTINGER_FTP_PASSWORD
-# Optional: HOSTINGER_FTP_REMOTE_PATH (default: public_html)
+# Optional: HOSTINGER_FTP_REMOTE_PATH (default: domains/displayavenuerealestate.com/public_html)
 
 set -euo pipefail
 
 HOST="${HOSTINGER_FTP_HOST:?Missing HOSTINGER_FTP_HOST}"
 USER="${HOSTINGER_FTP_USERNAME:?Missing HOSTINGER_FTP_USERNAME}"
 PASS="${HOSTINGER_FTP_PASSWORD:?Missing HOSTINGER_FTP_PASSWORD}"
-REMOTE="${HOSTINGER_FTP_REMOTE_PATH:-public_html}"
+REMOTE="${HOSTINGER_FTP_REMOTE_PATH:-domains/displayavenuerealestate.com/public_html}"
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
@@ -29,4 +29,4 @@ mirror -R --delete --verbose --exclude-glob .git* dist/ $REMOTE/
 bye
 EOF
 
-echo "Deployed. Visit https://displayavenuestudios.com"
+echo "Deployed. Visit https://displayavenuerealestate.com (after domain is attached in hPanel)"

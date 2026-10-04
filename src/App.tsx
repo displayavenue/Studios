@@ -13,8 +13,10 @@ import { Contact } from "./pages/Contact";
 import { PrivacyPolicy, TermsOfService } from "./pages/Legal";
 
 export default function App() {
+  const basename = (import.meta.env.BASE_URL || "/").replace(/\/$/, "") || "/";
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename === "/" ? undefined : basename}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />

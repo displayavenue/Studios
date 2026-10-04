@@ -33,7 +33,15 @@ if (!empty($body['company_website'])) {
 }
 
 $type = (string)($body['type'] ?? '');
-$allowed = ['contact', 'book-now', 'newsletter'];
+$allowed = [
+  'contact',
+  'newsletter',
+  'property',
+  'sell',
+  'redevelopment',
+  'valuation',
+  'visit',
+];
 if (!in_array($type, $allowed, true)) {
   respond(400, ['ok' => false, 'error' => 'Unknown inquiry type']);
 }
@@ -54,7 +62,7 @@ function loadRecipientEmail(): string {
       return (string)$data['email'];
     }
   }
-  return 'hello@displayavenuestudios.com';
+  return 'hello@displayavenuerealestate.com';
 }
 
 $ip = (string)($_SERVER['REMOTE_ADDR'] ?? 'unknown');
@@ -78,8 +86,8 @@ $record = [
   'ip' => $ip,
 ];
 
-$subject = 'DisplayAvenue Studios — Website inquiry';
-$lines = ["New {$type} inquiry from displayavenuestudios.com", ''];
+$subject = 'DisplayAvenue Real Estate — Website inquiry';
+$lines = ["New {$type} inquiry from displayavenuerealestate.com", ''];
 
 if ($type === 'newsletter') {
   $email = clean((string)($body['email'] ?? ''), 120);
@@ -87,58 +95,66 @@ if ($type === 'newsletter') {
     respond(400, ['ok' => false, 'error' => 'Please enter a valid email address.']);
   }
   $record['email'] = $email;
-  $subject = 'Newsletter signup — DisplayAvenue Studios';
+  $subject = 'Listing alerts signup — DisplayAvenue Real Estate';
   $lines[] = "Email: {$email}";
-} elseif ($type === 'contact') {
-  $name = clean((string)($body['name'] ?? ''), 120);
-  $phone = clean((string)($body['phone'] ?? ''), 40);
-  $email = clean((string)($body['email'] ?? ''), 120);
-  $message = clean((string)($body['message'] ?? ''), 4000);
-  if ($name === '' || $phone === '' || $email === '' || $message === '') {
-    respond(400, ['ok' => false, 'error' => 'Please fill in all required fields.']);
-  }
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    respond(400, ['ok' => false, 'error' => 'Please enter a valid email address.']);
-  }
-  $record += compact('name', 'phone', 'email', 'message');
-  $subject = "Contact form — {$name}";
-  $lines = array_merge($lines, [
-    "Name: {$name}",
-    "Phone: {$phone}",
-    "Email: {$email}",
-    '',
-    'Message:',
-    $message,
-  ]);
 } else {
   $name = clean((string)($body['name'] ?? ''), 120);
   $phone = clean((string)($body['phone'] ?? ''), 40);
   $email = clean((string)($body['email'] ?? ''), 120);
-  $city = clean((string)($body['city'] ?? ''), 80);
-  $date = clean((string)($body['date'] ?? ''), 40);
-  $package = clean((string)($body['package'] ?? ''), 120);
-  $service = clean((string)($body['service'] ?? ''), 120);
   $message = clean((string)($body['message'] ?? ''), 4000);
-  if ($name === '' || $phone === '' || $email === '' || $city === '' || $date === '') {
-    respond(400, ['ok' => false, 'error' => 'Please fill in all required fields.']);
+  $interest = clean((string)($body['interest'] ?? ''), 120);
+  $locality = clean((string)($body['locality'] ?? ''), 80);
+  $propertyType = clean((string)($body['type'] ?? ($body['propertyType'] ?? '')), 80);
+  // body type is inquiry type; property type field may collide — read extras
+  $extras = [];
+  foreach (['property', 'slug', 'price', 'society', 'units', 'role', 'intent'] as $key) {
+    if (!empty($body[$key])) {
+      $extras[$key] = clean((string)$body[$key], 200);
+    }
   }
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  // For property-type select on sell form the field is also named "type" in JSON
+  // but inquiry type is already separate. Prefer explicit keys.
+  if (!empty($body['property_type'])) {
+    $extras['property_type'] = clean((string)$body['property_type'], 80);
+  }
+
+  if ($name === '' || $phone === '') {
+    respond(400, ['ok' => false, 'error' => 'Please fill in name and phone.']);
+  }
+  if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(400, ['ok' => false, 'error' => 'Please enter a valid email address.']);
   }
-  $record += compact('name', 'phone', 'email', 'city', 'date', 'package', 'service', 'message');
-  $subject = "Booking request — {$name} ({$date})";
+
+  $record += [
+    'name' => $name,
+    'phone' => $phone,
+    'email' => $email,
+    'message' => $message,
+    'interest' => $interest,
+    'locality' => $locality,
+  ] + $extras;
+
+  $subject = match ($type) {
+    'valuation' => "Valuation request — {$name}",
+    'sell' => "List property — {$name}",
+    'redevelopment' => "Redevelopment enquiry — {$name}",
+    'property', 'visit' => "Property enquiry — {$name}",
+    default => "Contact — {$name}",
+  };
+
   $lines = array_merge($lines, [
     "Name: {$name}",
     "Phone: {$phone}",
-    "Email: {$email}",
-    "City: {$city}",
-    "Preferred date: {$date}",
-    "Package: {$package}",
-    "Service: {$service}",
-    '',
-    'Details:',
-    $message !== '' ? $message : '(none)',
+    "Email: " . ($email !== '' ? $email : '(not provided)'),
+    "Interest: " . ($interest !== '' ? $interest : '(n/a)'),
+    "Locality: " . ($locality !== '' ? $locality : '(n/a)'),
   ]);
+  foreach ($extras as $k => $v) {
+    $lines[] = ucfirst(str_replace('_', ' ', $k)) . ": {$v}";
+  }
+  $lines[] = '';
+  $lines[] = 'Message:';
+  $lines[] = $message !== '' ? $message : '(none)';
 }
 
 $logPath = __DIR__ . '/content/inquiries-log.jsonl';
@@ -148,12 +164,12 @@ if ($logLine !== false) {
 }
 
 $to = loadRecipientEmail();
-$replyTo = $type === 'newsletter' ? $to : ($record['email'] ?? $to);
+$replyTo = !empty($record['email']) ? $record['email'] : $to;
 $bodyText = implode("\n", $lines);
 $headers = [
   'MIME-Version: 1.0',
   'Content-Type: text/plain; charset=UTF-8',
-  'From: DisplayAvenue Website <noreply@displayavenuestudios.com>',
+  'From: DisplayAvenue Real Estate <noreply@displayavenue.com>',
   'Reply-To: ' . $replyTo,
   'X-Mailer: PHP/' . phpversion(),
 ];
@@ -161,16 +177,11 @@ $headers = [
 $sent = @mail($to, $subject, $bodyText, implode("\r\n", $headers));
 
 if (!$sent) {
-  // Inquiry is still logged — don't fail the user if mail is delayed
   respond(200, [
     'ok' => true,
-    'message' => 'Received — our team will contact you shortly.',
     'mail' => false,
+    'message' => 'Thanks — we received your enquiry. If you need a faster reply, WhatsApp us.',
   ]);
 }
 
-respond(200, [
-  'ok' => true,
-  'message' => 'Thank you — we received your message and will reply soon.',
-  'mail' => true,
-]);
+respond(200, ['ok' => true, 'mail' => true, 'message' => 'Thank you — we will get back shortly.']);

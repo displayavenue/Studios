@@ -1,26 +1,19 @@
-# DisplayAvenue Studios — SPA routing for Hostinger/Apache
+# DisplayAvenue Real Estate — SPA routing for Hostinger/Apache
 DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Prefer React homepage over WordPress index.php when both exist
   RewriteRule ^$ index.html [L]
 
-  # Always-fresh SEO sitemap from CMS JSON
-  RewriteRule ^sitemap\.xml$ sitemap.php [L]
-
-  # Pass existing files/directories through
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Everything else → index.html (React Router)
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Security / caching helpers
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
