@@ -1,133 +1,99 @@
-export type HomeSection = {
-  eyebrow: string;
-  title: string;
-  text: string;
-  ctaLabel?: string;
-  ctaPath?: string;
-  secondaryCtaLabel?: string;
-  secondaryCtaPath?: string;
-};
+import { img } from "./images";
 
 export type HomeContent = {
-  seo: {
-    title: string;
-    description: string;
-  };
+  seo: { title: string; description: string };
   hero: {
     brand: string;
-    eyebrow: string;
     headline: string;
-    description: string;
-    primaryCtaLabel: string;
-    primaryCtaPath: string;
-    secondaryCtaLabel: string;
-    secondaryCtaPath: string;
+    support: string;
+    primaryCta: string;
+    primaryPath: string;
+    secondaryCta: string;
+    secondaryPath: string;
     image: string;
-    imageAlt: string;
   };
-  brands: {
-    label: string;
-  };
-  services: HomeSection;
-  portfolio: HomeSection;
-  packages: HomeSection & {
-    featuredBadge: string;
-  };
-  whyChoose: HomeSection;
-  process: HomeSection;
-  testimonials: HomeSection;
-  faqs: HomeSection;
-  blogs: HomeSection;
+  services: { eyebrow: string; title: string; text: string };
+  featured: { eyebrow: string; title: string; text: string };
+  localities: { eyebrow: string; title: string; text: string };
+  whyChoose: { eyebrow: string; title: string; text: string };
+  process: { eyebrow: string; title: string; text: string };
+  testimonials: { eyebrow: string; title: string; text: string };
+  faqs: { eyebrow: string; title: string; text: string };
+  blogs: { eyebrow: string; title: string; text: string };
   ctaBanner: {
-    eyebrow: string;
     title: string;
     text: string;
-    primaryLabel: string;
+    primaryCta: string;
     primaryPath: string;
+    secondaryCta: string;
+    secondaryHref: string;
   };
 };
 
 export const homeContent: HomeContent = {
   seo: {
-    title: "DisplayAvenue Studios | India's Premium Visual Production Studio",
+    title:
+      "DisplayAvenue Real Estate | Dahisar, Mira Road & Bhayandar Property",
     description:
-      "Luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India. Book DisplayAvenue Studios.",
+      "Buy, sell or rent residential & commercial property in Dahisar, Mira Road and Bhayandar. Redevelopment advisory, site visits and WhatsApp-first support.",
   },
   hero: {
-    brand: "DisplayAvenue Studios",
-    eyebrow: "Premium Photography • Videography • Film Production",
-    headline: "India's Premium Visual Production Studio",
-    description:
-      "Luxury wedding photography, cinematic films, commercial productions, product photography and visual storytelling across India.",
-    primaryCtaLabel: "Book Your Shoot",
-    primaryCtaPath: "/book-now",
-    secondaryCtaLabel: "View Portfolio",
-    secondaryCtaPath: "/portfolio",
-    image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80",
-    imageAlt:
-      "Indian bride and groom at a luxury wedding photographed by DisplayAvenue Studios",
-  },
-  brands: {
-    label: "Trusted by Brands",
+    brand: "DisplayAvenue Real Estate",
+    headline: "Find your next address in Mira Road, Dahisar & Bhayandar",
+    support:
+      "Residential · Commercial · Redevelopment — local listings, honest advice, faster site visits.",
+    primaryCta: "Search properties",
+    primaryPath: "/buy",
+    secondaryCta: "List your property",
+    secondaryPath: "/sell",
+    image: img.heroLocal,
   },
   services: {
-    eyebrow: "Services",
-    title: "Visual production for every celebration and brand",
-    text: "From luxury weddings to commercial campaigns, our Mumbai-based studio delivers pan-India photography, videography and post production.",
-    ctaLabel: "View All Services",
-    ctaPath: "/services",
+    eyebrow: "What we do",
+    title: "One team for every property move",
+    text: "Whether you are buying your first home, placing a tenant, leasing a shop or exploring society redevelopment — we stay local and practical.",
   },
-  portfolio: {
-    eyebrow: "Featured Portfolio",
-    title: "Work that feels expensive on purpose",
-    text: "A selection of weddings, brand films, hospitality and commercial projects produced by DisplayAvenue Studios.",
-    ctaLabel: "Explore Portfolio",
-    ctaPath: "/portfolio",
+  featured: {
+    eyebrow: "Featured listings",
+    title: "Homes and spaces worth a visit",
+    text: "A rotating shortlist across our three core localities. WhatsApp us for the latest availability.",
   },
-  packages: {
-    eyebrow: "Packages",
-    title: "Essential · Signature · Luxury",
-    text: "Transparent wedding packages designed for intimate ceremonies and destination celebrations. Compare and customise with our team.",
-    featuredBadge: "Most Popular",
-    ctaLabel: "Wedding Package Page",
-    ctaPath: "/packages/wedding",
-    secondaryCtaLabel: "All Packages",
-    secondaryCtaPath: "/packages",
+  localities: {
+    eyebrow: "Where we specialise",
+    title: "Three localities. Deep coverage.",
+    text: "Hyperlocal pages for buyers, tenants and investors who want clarity — not pan-city noise.",
   },
   whyChoose: {
-    eyebrow: "Why Choose Us",
-    title: "Why Choose DisplayAvenue Studios",
-    text: "Built for premium clients who expect cinema-grade craft, reliable coordination and a luxury experience from inquiry to delivery.",
+    eyebrow: "Why DisplayAvenue",
+    title: "Local trust, clear deals",
+    text: "We are based in Mira Road East and work these markets daily.",
   },
   process: {
-    eyebrow: "How We Work",
-    title: "A clear path from inquiry to delivery",
-    text: "",
+    eyebrow: "How it works",
+    title: "From enquiry to keys",
+    text: "A simple path designed for busy Mumbai schedules.",
   },
   testimonials: {
-    eyebrow: "Testimonials",
-    title: "Loved by couples, brands and hotels",
-    text: "Google-ready reviews from weddings, product launches and hospitality projects across India.",
+    eyebrow: "Client stories",
+    title: "People we’ve helped move",
+    text: "Buyers, tenants, shop owners and society committees.",
   },
   faqs: {
     eyebrow: "FAQs",
-    title: "Questions couples and brands ask first",
-    text: "Clear answers on booking, pricing, travel and delivery. Browse the full FAQ library for more.",
-    ctaLabel: "View All FAQs",
-    ctaPath: "/faqs",
+    title: "Questions we hear every week",
+    text: "Straight answers before you call.",
   },
   blogs: {
-    eyebrow: "Latest Blogs",
-    title: "Guides for planning, booking and better visuals",
-    text: "",
-    ctaLabel: "Read the Blog",
-    ctaPath: "/blog",
+    eyebrow: "Insights",
+    title: "Guides for local decisions",
+    text: "Market notes and checklists for Dahisar, Mira Road and Bhayandar.",
   },
   ctaBanner: {
-    eyebrow: "Book Consultation",
-    title: "Ready to Capture Your Story?",
-    text: "Book a consultation with DisplayAvenue Studios — India's Premium Visual Production Studio for weddings, brands and events.",
-    primaryLabel: "Book Consultation",
-    primaryPath: "/book-now",
+    title: "Tell us your budget and locality — we’ll shortlist today",
+    text: "Call, WhatsApp or send an enquiry. Most active listings can be visited within 24–48 hours.",
+    primaryCta: "WhatsApp us",
+    primaryPath: "whatsapp",
+    secondaryCta: "Contact form",
+    secondaryHref: "/contact",
   },
 };

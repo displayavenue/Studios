@@ -1,53 +1,34 @@
 export type TrackingSettings = {
-  /** Master switch for all marketing / analytics tags */
   enabled?: boolean;
-  googleTagManagerId?: string;
   googleAnalyticsId?: string;
-  /** Google Ads tag ID, e.g. AW-123456789 */
+  googleTagManagerId?: string;
   googleAdsId?: string;
-  /** Meta (Facebook) Pixel ID */
+  facebookPixelId?: string;
   metaPixelId?: string;
   googleSiteVerification?: string;
-  /** Paste full script tags from Google Ads, LinkedIn, AI ad platforms, etc. */
   headScripts?: string;
-  /** Paste noscript / iframe snippets (GTM noscript, Meta fallback, etc.) */
   bodyStartHtml?: string;
 };
 
 export type SiteSettings = {
   siteName?: string;
-  adminNote?: string;
-  updatedAt?: string;
-  seoSyncedAt?: string;
-  sitemapUrlCount?: number;
   tracking?: TrackingSettings;
 };
 
-export const defaultTracking: Required<
-  Pick<
-    TrackingSettings,
-    | "enabled"
-    | "googleTagManagerId"
-    | "googleAnalyticsId"
-    | "googleAdsId"
-    | "metaPixelId"
-    | "googleSiteVerification"
-    | "headScripts"
-    | "bodyStartHtml"
-  >
-> = {
+export const defaultTracking: TrackingSettings = {
   enabled: true,
-  googleTagManagerId: "GTM-WDC2ZZBG",
-  googleAnalyticsId: "G-WQD9K577DF",
+  googleAnalyticsId: "",
+  googleTagManagerId: "",
   googleAdsId: "",
+  facebookPixelId: "",
   metaPixelId: "",
-  googleSiteVerification: "80ZVa9R1VjKZnfedwtUgfAYvfs1WsncTMsAwiSeSTBM",
+  googleSiteVerification: "",
   headScripts: "",
   bodyStartHtml: "",
 };
 
 export function mergeTracking(
   partial?: TrackingSettings | null,
-): typeof defaultTracking {
+): TrackingSettings {
   return { ...defaultTracking, ...(partial || {}) };
 }

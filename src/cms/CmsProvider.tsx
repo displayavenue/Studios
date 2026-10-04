@@ -11,23 +11,15 @@ import {
   trustBadges as fallbackBadges,
   brandLogos as fallbackBrands,
 } from "../data/company";
-import {
-  services as fallbackServices,
-  homeServices as fallbackHomeServices,
-} from "../data/services";
-import { packageGroups as fallbackPackages } from "../data/packages";
-import {
-  portfolio as fallbackPortfolio,
-  portfolioCategories as fallbackPortfolioCats,
-} from "../data/portfolio";
+import { services as fallbackServices } from "../data/services";
+import { properties as fallbackProperties, type Property } from "../data/properties";
+import { localities as fallbackLocalities } from "../data/localities";
 import {
   faqs as fallbackFaqs,
   whyChoose as fallbackWhy,
   processSteps as fallbackProcess,
   testimonials as fallbackTestimonials,
   blogs as fallbackBlogs,
-  industries as fallbackIndustries,
-  locations as fallbackLocations,
   team as fallbackTeam,
 } from "../data/content";
 import { homeContent as fallbackHome, type HomeContent } from "../data/home";
@@ -47,17 +39,13 @@ export type CmsState = {
   };
   home: HomeContent;
   services: typeof fallbackServices;
-  homeServices: typeof fallbackHomeServices;
-  packageGroups: typeof fallbackPackages;
-  portfolio: typeof fallbackPortfolio;
-  portfolioCategories: typeof fallbackPortfolioCats;
+  properties: Property[];
+  localities: typeof fallbackLocalities;
   faqs: typeof fallbackFaqs;
   whyChoose: typeof fallbackWhy;
   processSteps: typeof fallbackProcess;
   testimonials: typeof fallbackTestimonials;
   blogs: typeof fallbackBlogs;
-  industries: typeof fallbackIndustries;
-  locations: typeof fallbackLocations;
   team: typeof fallbackTeam;
   settings: SiteSettings;
   tracking: typeof defaultTracking;
@@ -69,10 +57,9 @@ function mergeHome(partial: Partial<HomeContent> | null | undefined): HomeConten
   return {
     seo: { ...fallbackHome.seo, ...(p.seo || {}) },
     hero: { ...fallbackHome.hero, ...(p.hero || {}) },
-    brands: { ...fallbackHome.brands, ...(p.brands || {}) },
     services: { ...fallbackHome.services, ...(p.services || {}) },
-    portfolio: { ...fallbackHome.portfolio, ...(p.portfolio || {}) },
-    packages: { ...fallbackHome.packages, ...(p.packages || {}) },
+    featured: { ...fallbackHome.featured, ...(p.featured || {}) },
+    localities: { ...fallbackHome.localities, ...(p.localities || {}) },
     whyChoose: { ...fallbackHome.whyChoose, ...(p.whyChoose || {}) },
     process: { ...fallbackHome.process, ...(p.process || {}) },
     testimonials: { ...fallbackHome.testimonials, ...(p.testimonials || {}) },
@@ -92,21 +79,15 @@ const defaults: CmsState = {
   },
   home: fallbackHome,
   services: fallbackServices,
-  homeServices: fallbackHomeServices,
-  packageGroups: fallbackPackages,
-  portfolio: fallbackPortfolio,
-  portfolioCategories: fallbackPortfolioCats,
+  properties: fallbackProperties,
+  localities: fallbackLocalities,
   faqs: fallbackFaqs,
   whyChoose: fallbackWhy,
   processSteps: fallbackProcess,
   testimonials: fallbackTestimonials,
   blogs: fallbackBlogs,
-  industries: fallbackIndustries,
-  locations: fallbackLocations,
   team: fallbackTeam,
-  settings: {
-    siteName: "DisplayAvenue Studios",
-  },
+  settings: { siteName: "DisplayAvenue Real Estate" },
   tracking: defaultTracking,
   ready: false,
 };
@@ -129,21 +110,12 @@ export function CmsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [company, home, services, packages, portfolio, content, settingsJson, trackingJson] =
+      const [company, home, content, propertiesJson, settingsJson, trackingJson] =
         await Promise.all([
           fetchJson<Record<string, unknown>>("/content/company.json"),
           fetchJson<Partial<HomeContent>>("/content/home.json"),
-          fetchJson<{ services?: CmsState["services"]; homeServices?: string[] }>(
-            "/content/services.json",
-          ),
-          fetchJson<{ packageGroups?: CmsState["packageGroups"] }>(
-            "/content/packages.json",
-          ),
-          fetchJson<{
-            portfolio?: CmsState["portfolio"];
-            portfolioCategories?: string[];
-          }>("/content/portfolio.json"),
           fetchJson<Record<string, unknown>>("/content/content.json"),
+          fetchJson<{ properties?: Property[] }>("/content/properties.json"),
           fetchJson<SiteSettings>("/content/settings.json"),
           fetchJson<TrackingSettings>("/content/tracking.json"),
         ]);
@@ -171,12 +143,9 @@ export function CmsProvider({ children }: { children: ReactNode }) {
           },
         },
         home: mergeHome(home),
-        services: services?.services || fallbackServices,
-        homeServices: services?.homeServices || fallbackHomeServices,
-        packageGroups: packages?.packageGroups || fallbackPackages,
-        portfolio: portfolio?.portfolio || fallbackPortfolio,
-        portfolioCategories:
-          portfolio?.portfolioCategories || fallbackPortfolioCats,
+        services: fallbackServices,
+        properties: propertiesJson?.properties || fallbackProperties,
+        localities: fallbackLocalities,
         faqs: (content?.faqs as CmsState["faqs"]) || fallbackFaqs,
         whyChoose: (content?.whyChoose as CmsState["whyChoose"]) || fallbackWhy,
         processSteps:
@@ -185,12 +154,8 @@ export function CmsProvider({ children }: { children: ReactNode }) {
           (content?.testimonials as CmsState["testimonials"]) ||
           fallbackTestimonials,
         blogs: (content?.blogs as CmsState["blogs"]) || fallbackBlogs,
-        industries:
-          (content?.industries as CmsState["industries"]) || fallbackIndustries,
-        locations:
-          (content?.locations as CmsState["locations"]) || fallbackLocations,
         team: (content?.team as CmsState["team"]) || fallbackTeam,
-        settings: settingsJson || {},
+        settings: settingsJson || { siteName: "DisplayAvenue Real Estate" },
         tracking: mergeTracking(trackingJson || settingsJson?.tracking),
         ready: true,
       });
@@ -207,7 +172,7 @@ export function useCms() {
   return useContext(CmsContext);
 }
 
-export function useService(slug: string) {
-  const { services } = useCms();
-  return services.find((s) => s.slug === slug);
+export function useProperty(slug: string) {
+  const { properties } = useCms();
+  return properties.find((p) => p.slug === slug);
 }

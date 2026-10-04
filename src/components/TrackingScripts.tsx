@@ -107,7 +107,8 @@ export function TrackingScripts() {
       injectGoogleAnalytics("cms-ga", adsId, adsId);
     }
 
-    const metaId = tracking.metaPixelId?.trim();
+    const metaId =
+      tracking.metaPixelId?.trim() || tracking.facebookPixelId?.trim();
     if (metaId) injectMetaPixel("cms-meta", metaId);
 
     injectHtmlFragment(tracking.headScripts || "", document.head, "cms-head-custom");

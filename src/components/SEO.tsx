@@ -45,7 +45,7 @@ export function SEO({
   description,
   path = "/",
   type = "website",
-  image = img.indianBrideGroom,
+  image = img.heroLocal,
   noindex = false,
 }: SEOProps) {
   const { company, tracking } = useCms();
@@ -66,11 +66,13 @@ export function SEO({
     setMeta(
       'meta[name="robots"]',
       "content",
-      noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      noindex
+        ? "noindex,nofollow"
+        : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
     );
     setMeta('meta[name="author"]', "content", company.name);
     setMeta('meta[name="geo.region"]', "content", "IN-MH");
-    setMeta('meta[name="geo.placename"]', "content", "Mumbai");
+    setMeta('meta[name="geo.placename"]', "content", "Mira Road");
     setMeta('meta[property="og:site_name"]', "content", company.name);
     setMeta('meta[property="og:title"]', "content", title);
     setMeta('meta[property="og:description"]', "content", description);
@@ -92,7 +94,17 @@ export function SEO({
       document.head.appendChild(canonical);
     }
     canonical.href = url;
-  }, [title, description, path, type, image, noindex, company.website, company.name, siteVerification]);
+  }, [
+    title,
+    description,
+    path,
+    type,
+    image,
+    noindex,
+    company.website,
+    company.name,
+    siteVerification,
+  ]);
 
   return null;
 }
@@ -115,7 +127,7 @@ export function LocalBusinessSchema() {
 
     upsertJsonLd("schema-local-business", {
       "@context": "https://schema.org",
-      "@type": ["LocalBusiness", "ProfessionalService"],
+      "@type": ["RealEstateAgent", "LocalBusiness"],
       "@id": `${company.website}/#business`,
       name: company.name,
       alternateName: "DisplayAvenue",
@@ -123,20 +135,14 @@ export function LocalBusinessSchema() {
       url: company.website,
       telephone: company.phone,
       email: company.email,
-      image: [
-        img.indianBrideGroom,
-      ],
+      image: [img.heroLocal],
       logo: `${company.website}/favicon.svg`,
-      priceRange: "₹₹₹",
+      priceRange: "₹₹",
       currenciesAccepted: "INR",
-      paymentAccepted: "Cash, UPI, Bank Transfer, Card",
-      foundingDate: "2018",
       address: {
         "@type": "PostalAddress",
-        streetAddress:
-          addr.streetAddress ||
-          "Office No. 44, D Wing, Shree Sharanam CHS, Unique Garden, Kanakia",
-        addressLocality: addr.addressLocality || "Mumbai",
+        streetAddress: addr.streetAddress,
+        addressLocality: addr.addressLocality || "Mira Road East",
         addressRegion: addr.addressRegion || "Maharashtra",
         postalCode: addr.postalCode || "401107",
         addressCountry: addr.addressCountry || "IN",
@@ -146,12 +152,12 @@ export function LocalBusinessSchema() {
         latitude: addr.geo?.latitude ?? 19.2952,
         longitude: addr.geo?.longitude ?? 72.8679,
       },
-      hasMap: addr.mapEmbed,
       areaServed: [
-        { "@type": "Country", name: "India" },
-        { "@type": "City", name: company.primaryFocus || "Mumbai" },
+        { "@type": "Place", name: "Mira Road" },
+        { "@type": "Place", name: "Dahisar" },
+        { "@type": "Place", name: "Bhayandar" },
       ],
-      knowsAbout: services.slice(0, 12).map((s) => s.title),
+      knowsAbout: services.map((s) => s.title),
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -167,18 +173,7 @@ export function LocalBusinessSchema() {
           closes: "19:00",
         },
       ],
-      contactPoint: [
-        {
-          "@type": "ContactPoint",
-          telephone: company.phone,
-          contactType: "customer service",
-          areaServed: "IN",
-          availableLanguage: ["English", "Hindi"],
-        },
-      ],
-      sameAs: socials.length
-        ? socials
-        : [company.whatsappHref].filter(Boolean),
+      sameAs: socials.length ? socials : [company.whatsappHref],
       review: reviews,
     });
   }, [company, testimonials, services]);
@@ -186,7 +181,6 @@ export function LocalBusinessSchema() {
   return null;
 }
 
-/** @deprecated use LocalBusinessSchema */
 export function OrganizationSchema() {
   return <LocalBusinessSchema />;
 }
@@ -204,6 +198,11 @@ export function WebSiteSchema() {
       description: company.tagline,
       publisher: { "@id": `${company.website}/#business` },
       inLanguage: "en-IN",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${company.website}/buy?q={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
     });
   }, [company]);
 
@@ -226,54 +225,11 @@ export function FAQPageSchema({
       mainEntity: faqs.map((f) => ({
         "@type": "Question",
         name: f.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: f.answer,
-        },
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
       })),
     });
     return () => upsertJsonLd("schema-faq", null);
   }, [faqs]);
-
-  return null;
-}
-
-export function ServiceSchema({
-  name,
-  description,
-  image,
-  path,
-  category,
-}: {
-  name: string;
-  description: string;
-  image: string;
-  path: string;
-  category?: string;
-}) {
-  const { company } = useCms();
-
-  useEffect(() => {
-    upsertJsonLd("schema-service", {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name,
-      description,
-      image,
-      url: `${company.website}${path}`,
-      serviceType: category || name,
-      provider: { "@id": `${company.website}/#business` },
-      areaServed: {
-        "@type": "Country",
-        name: "India",
-      },
-      brand: {
-        "@type": "Brand",
-        name: company.name,
-      },
-    });
-    return () => upsertJsonLd("schema-service", null);
-  }, [name, description, image, path, category, company]);
 
   return null;
 }
@@ -341,6 +297,48 @@ export function ArticleSchema({
     });
     return () => upsertJsonLd("schema-article", null);
   }, [title, description, image, path, datePublished, category, company]);
+
+  return null;
+}
+
+export function RealEstateListingSchema({
+  name,
+  description,
+  image,
+  path,
+  price,
+  locality,
+}: {
+  name: string;
+  description: string;
+  image: string;
+  path: string;
+  price: number;
+  locality: string;
+}) {
+  const { company } = useCms();
+
+  useEffect(() => {
+    upsertJsonLd("schema-listing", {
+      "@context": "https://schema.org",
+      "@type": "RealEstateListing",
+      name,
+      description,
+      image,
+      url: `${company.website}${path}`,
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price,
+      },
+      contentLocation: {
+        "@type": "Place",
+        name: locality,
+      },
+      broker: { "@id": `${company.website}/#business` },
+    });
+    return () => upsertJsonLd("schema-listing", null);
+  }, [name, description, image, path, price, locality, company]);
 
   return null;
 }
