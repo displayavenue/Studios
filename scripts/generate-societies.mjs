@@ -3,8 +3,9 @@
  * Generate unique detailed Mira Road society pages for DisplayAvenue Realty.
  * Output: public/content/societies.json
  *
- * Images: curated Unsplash residential exteriors/interiors assigned uniquely
- * per society (representative stock until on-ground photos are uploaded in CMS).
+ * Images: local Wikimedia Commons CC photos under
+ * public/content/uploads/societies/_shared/ (see attribution.json).
+ * Google / portal listing photos are not scraped (copyright).
  */
 import { createHash } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -14,41 +15,27 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = join(root, "public/content");
 
-const u = (id, w = 1400) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+const localPhoto = (name) => `/content/uploads/societies/_shared/${name}`;
 
 const PHOTO_POOL = [
-  "photo-1545324418-cc1a3fa10c00",
-  "photo-1486406146926-c627a92ad1ab",
-  "photo-1600596542815-ffad4c1539a9",
-  "photo-1600585154340-be6161a56a0c",
-  "photo-1600607687939-ce8a6c25118c",
-  "photo-1600566753190-17f0baa2a6c3",
-  "photo-1600047509807-ba8f99d2cd0c",
-  "photo-1600585154526-990dced4db0d",
-  "photo-1613490493576-7fde63acd811",
-  "photo-1512917774080-9991f1c4c750",
-  "photo-1560448204-e02f11c3d0e2",
-  "photo-1502672260266-1c1ef2d93688",
-  "photo-1522708323590-d24dbb6b0267",
-  "photo-1493809842364-78817add7ffb",
-  "photo-1570129477492-45c003edd2be",
-  "photo-1600047509358-9dc435629748",
-  "photo-1600573472592-401b489a3cdc",
-  "photo-1600210492486-724fe5c67fb0",
-  "photo-1600607687644-c7171b42498f",
-  "photo-1605146768851-eda79da39897",
-  "photo-1460317442991-0ec209397118",
-  "photo-1451976426598-a7593bd6d0b2",
-  "photo-1554995207-c18c203602cb",
-  "photo-1564013799919-ab600027ffc6",
-  "photo-1580587771525-78b9dba3b914",
-  "photo-1605276374104-dee2a0ed3cd6",
-  "photo-1600047509807-ba8f99d2cd0c",
-  "photo-1593696140826-c58b021acf8b",
-  "photo-1574362848149-11496d93a7c7",
-  "photo-1582268611958-ebfd161ef9cf",
+  "tower-blocks-mira-east.jpg",
+  "mira-skyline-poonam.jpg",
+  "srishti-area.jpg",
+  "kalpataru-mira.jpg",
+  "mira-residential.jpg",
+  "mhada-mira.jpg",
+  "rna-courtyard.jpg",
+  "s-gardens.jpg",
+  "prem-nagar-1.jpg",
+  "prem-nagar-2.jpg",
+  "mira-bhayandar-aerial.jpg",
+  "mira-station.jpg",
+  "bhayandar-jesal-park.jpg",
+  "shanti-gardens.jpg",
 ];
+
+const IMAGE_NOTE =
+  "Photos: Wikimedia Commons contributors (CC BY-SA / CC BY-SA 2.0 / CC BY-SA 4.0). Real Mira Road / Mira-Bhayandar area imagery hosted locally. Exact wing facades may differ; request a live visit for current inventory.";
 
 function slugify(s) {
   return s
@@ -269,11 +256,21 @@ function imagesFor(slug, i) {
   const a = PHOTO_POOL[i % PHOTO_POOL.length];
   const b = PHOTO_POOL[(i * 3 + 5) % PHOTO_POOL.length];
   const c = PHOTO_POOL[(i * 7 + 11) % PHOTO_POOL.length];
+  const gallery = [];
+  for (const name of [a, b, c]) {
+    const path = localPhoto(name);
+    if (!gallery.includes(path)) gallery.push(path);
+  }
+  let j = 0;
+  while (gallery.length < 3) {
+    const path = localPhoto(PHOTO_POOL[(i + j) % PHOTO_POOL.length]);
+    if (!gallery.includes(path)) gallery.push(path);
+    j += 1;
+  }
   return {
-    hero: u(a, 1600),
-    gallery: [u(a, 1200), u(b, 1200), u(c, 1200)],
-    imageNote:
-      "Hero and gallery photos are high-quality residential reference images used for page presentation. For current wing exteriors, interiors and exact inventory, request a live visit with DisplayAvenue Realty.",
+    hero: localPhoto(a),
+    gallery,
+    imageNote: IMAGE_NOTE,
   };
 }
 
