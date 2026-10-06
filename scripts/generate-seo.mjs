@@ -129,6 +129,16 @@ const sitemap =
 
 writeFileSync(join(publicDir, "sitemap.xml"), sitemap);
 
+const sitemapIndex =
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+  `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+  `  <sitemap>\n` +
+  `    <loc>${base}/sitemap.xml</loc>\n` +
+  `    <lastmod>${lastmod}</lastmod>\n` +
+  `  </sitemap>\n` +
+  `</sitemapindex>\n`;
+writeFileSync(join(publicDir, "sitemap_index.xml"), sitemapIndex);
+
 const phone = company.phone || "";
 const email = company.email || "";
 const addr = (company.address?.lines || []).join(" ");
@@ -183,6 +193,7 @@ Disallow: /admin/
 Disallow: /admin
 
 Sitemap: ${base}/sitemap.xml
+Sitemap: ${base}/sitemap.php
 `;
 writeFileSync(join(publicDir, "robots.txt"), robots);
 

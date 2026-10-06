@@ -219,7 +219,7 @@ function da_sync_seo_artifacts(string $contentDir, ?string $publicDir = null): a
     return ['ok' => false, 'error' => 'Could not write llms.txt'];
   }
 
-  $robots = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /admin\n\nSitemap: {$base}/sitemap.xml\n";
+  $robots = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /admin\n\nSitemap: {$base}/sitemap.xml\nSitemap: {$base}/sitemap.php\n";
   @file_put_contents($robotsPath, $robots);
 
   $settingsPath = $contentDir . '/settings.json';
