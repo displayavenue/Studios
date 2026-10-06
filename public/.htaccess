@@ -6,7 +6,7 @@ DirectoryIndex index.html index.php
   RewriteBase /
 
   # Never rewrite SEO / static discovery files to the SPA
-  RewriteRule ^(sitemap\.xml|sitemap_index\.xml|sitemap\.php|robots\.txt|llms\.txt|favicon\.svg)$ - [L]
+  RewriteRule ^(sitemap\.xml|sitemap_index\.xml|sitemap-basic\.xml|sitemap\.php|robots\.txt|llms\.txt|favicon\.svg)$ - [L]
 
   RewriteRule ^$ index.html [L]
 
@@ -26,9 +26,10 @@ DirectoryIndex index.html index.php
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   # Force correct type for sitemaps; do not set Content-Length or noindex
-  <FilesMatch "^(sitemap\.xml|sitemap_index\.xml)$">
+  <FilesMatch "^(sitemap\.xml|sitemap_index\.xml|sitemap-basic\.xml)$">
     Header set Content-Type "application/xml; charset=utf-8"
     Header unset Content-Length
+    Header unset X-Robots-Tag
   </FilesMatch>
   <FilesMatch "^(robots\.txt|llms\.txt)$">
     Header set Content-Type "text/plain; charset=utf-8"

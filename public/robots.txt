@@ -4,4 +4,3 @@ Disallow: /admin/
 Disallow: /admin
 
 Sitemap: https://displayavenuerealty.com/sitemap.xml
-Sitemap: https://displayavenuerealty.com/sitemap.php
