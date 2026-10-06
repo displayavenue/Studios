@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Deploy DisplayAvenue Realty to Hostinger over SSH.
 # Usage: SSH_PASS='...' ./scripts/deploy-ssh.sh
-# Optional: SSH_DOC=domains/displayavenuerealestate.com/public_html
+# Optional: SSH_DOC=domains/displayavenuerealty.com/public_html
 #           VITE_BASE=/realestate/  (subdirectory deploy)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -10,7 +10,7 @@ cd "$ROOT"
 PASS="${SSH_PASS:?Set SSH_PASS}"
 HOST="${SSH_HOST:-u452926742@195.35.44.93}"
 PORT="${SSH_PORT:-65002}"
-DOC="${SSH_DOC:-domains/displayavenuerealestate.com/public_html}"
+DOC="${SSH_DOC:-domains/displayavenuerealty.com/public_html}"
 SSH_OPTS=(-o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no)
 
 echo "Building (VITE_BASE=${VITE_BASE:-/})…"

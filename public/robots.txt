@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://displayavenuerealestate.com/sitemap.xml
+Sitemap: https://displayavenuerealty.com/sitemap.xml

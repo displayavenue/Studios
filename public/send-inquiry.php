@@ -62,7 +62,7 @@ function loadRecipientEmail(): string {
       return (string)$data['email'];
     }
   }
-  return 'hello@displayavenuerealestate.com';
+  return 'hello@displayavenuerealty.com';
 }
 
 $ip = (string)($_SERVER['REMOTE_ADDR'] ?? 'unknown');
@@ -87,7 +87,7 @@ $record = [
 ];
 
 $subject = 'DisplayAvenue Realty — Website inquiry';
-$lines = ["New {$type} inquiry from displayavenuerealestate.com", ''];
+$lines = ["New {$type} inquiry from displayavenuerealty.com", ''];
 
 if ($type === 'newsletter') {
   $email = clean((string)($body['email'] ?? ''), 120);

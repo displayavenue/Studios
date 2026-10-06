@@ -34,10 +34,10 @@ SSH_PASS='…' ./scripts/deploy-ssh.sh
 SSH_PASS='…' SSH_DOC='domains/displayavenue.com/public_html/realestate' VITE_BASE='/realestate/' ./scripts/deploy-ssh.sh
 ```
 
-Default remote path: `domains/displayavenuerealestate.com/public_html`
+Default remote path: `domains/displayavenuerealty.com/public_html`
 
 ## Pages
 
 Home, Buy, Rent, Commercial, Property detail, Sell / valuation, Redevelopment, Localities, About, Blog, FAQs, Contact, Privacy, Terms.
 
-Company: [displayavenuerealestate.com](https://displayavenuerealestate.com) · Mira Road East
+Company: [displayavenuerealty.com](https://displayavenuerealty.com) · Mira Road East

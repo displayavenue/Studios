@@ -38,7 +38,7 @@ export function PrivacyPolicy() {
       </p>
       <p>
         You may request correction or deletion of your enquiry data by emailing
-        hello@displayavenuerealestate.com.
+        hello@displayavenuerealty.com.
       </p>
     </LegalPage>
   );
