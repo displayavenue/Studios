@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
 import { PropertyCard } from "../components/PropertyCard";
-import { PropertySearch } from "../components/PropertySearch";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
@@ -34,9 +33,6 @@ export function Home() {
             <Link className="btn btn--ghost" to={home.hero.secondaryPath}>
               {home.hero.secondaryCta}
             </Link>
-          </div>
-          <div className="re-hero__search">
-            <PropertySearch />
           </div>
         </div>
       </section>

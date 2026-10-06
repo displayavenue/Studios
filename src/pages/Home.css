@@ -67,12 +67,6 @@
   animation: fadeUp 1s 0.24s var(--ease) both;
 }
 
-.re-hero__search {
-  margin-top: 2rem;
-  max-width: 920px;
-  animation: fadeUp 1s 0.32s var(--ease) both;
-}
-
 .trust-strip__grid {
   display: flex;
   flex-wrap: wrap;

@@ -42,7 +42,7 @@ export const homeContent: HomeContent = {
     headline: "Find your next address in Mira Road, Dahisar & Bhayandar",
     support:
       "Residential · Commercial · Redevelopment. Local listings, honest advice, faster site visits.",
-    primaryCta: "Search properties",
+    primaryCta: "Browse homes",
     primaryPath: "/buy",
     secondaryCta: "List your property",
     secondaryPath: "/sell",
