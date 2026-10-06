@@ -52,10 +52,11 @@ function da_collect_urls(string $contentDir): array {
     '/about' => '0.7',
     '/blog' => '0.7',
     '/guides' => '0.8',
+    '/societies' => '0.8',
     '/faqs' => '0.7',
   ];
   foreach ($staticMid as $path => $priority) {
-    da_add_url($urls, $path, $priority, 'monthly');
+    da_add_url($urls, $path, $priority, $path === '/guides' || $path === '/societies' ? 'weekly' : 'monthly');
   }
 
   $staticLow = [
@@ -92,6 +93,13 @@ function da_collect_urls(string $contentDir): array {
   foreach (($guides['guides'] ?? []) as $g) {
     if (!empty($g['slug'])) {
       da_add_url($urls, '/guides/' . $g['slug'], '0.7', 'weekly');
+    }
+  }
+
+  $societies = da_read_json_file($contentDir . '/societies.json');
+  foreach (($societies['societies'] ?? []) as $s) {
+    if (!empty($s['slug'])) {
+      da_add_url($urls, '/societies/' . $s['slug'], '0.75', 'weekly');
     }
   }
 

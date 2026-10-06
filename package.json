@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-guides.mjs && node scripts/generate-seo.mjs && tsc -b && vite build",
-    "seo": "node scripts/generate-guides.mjs && node scripts/generate-seo.mjs",
+    "build": "node scripts/generate-societies.mjs && node scripts/generate-guides.mjs && node scripts/generate-seo.mjs && tsc -b && vite build",
+    "seo": "node scripts/generate-societies.mjs && node scripts/generate-guides.mjs && node scripts/generate-seo.mjs",
     "guides": "node scripts/generate-guides.mjs",
+    "societies": "node scripts/generate-societies.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "deploy:hostinger": "bash scripts/deploy-hostinger.sh"

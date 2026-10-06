@@ -62,6 +62,7 @@ export const navLinks = [
   { label: "About", path: "/about" },
   { label: "Insights", path: "/blog" },
   { label: "Guides", path: "/guides" },
+  { label: "Societies", path: "/societies" },
   { label: "Contact", path: "/contact" },
 ];
 

@@ -67,6 +67,10 @@
       "path": "/guides"
     },
     {
+      "label": "Societies",
+      "path": "/societies"
+    },
+    {
       "label": "Contact",
       "path": "/contact"
     }

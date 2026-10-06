@@ -97,6 +97,7 @@ add("/contact", "0.8", "weekly");
 add("/about", "0.7", "monthly");
 add("/blog", "0.7", "monthly");
 add("/guides", "0.8", "weekly");
+add("/societies", "0.8", "weekly");
 add("/faqs", "0.7", "monthly");
 add("/privacy", "0.3", "yearly");
 add("/terms", "0.3", "yearly");
@@ -110,6 +111,11 @@ for (const p of properties) {
 const guidesJson = readJson(join(contentDir, "guides.json"), { guides: [] });
 for (const g of guidesJson.guides || []) {
   if (g?.slug) add(`/guides/${g.slug}`, "0.7", "weekly");
+}
+
+const societiesJson = readJson(join(contentDir, "societies.json"), { societies: [] });
+for (const s of societiesJson.societies || []) {
+  if (s?.slug) add(`/societies/${s.slug}`, "0.75", "weekly");
 }
 
 const seen = new Set();
