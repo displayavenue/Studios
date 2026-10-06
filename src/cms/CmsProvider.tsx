@@ -144,7 +144,13 @@ export function CmsProvider({ children }: { children: ReactNode }) {
         },
         home: mergeHome(home),
         services: fallbackServices,
-        properties: propertiesJson?.properties || fallbackProperties,
+        properties:
+          Array.isArray(propertiesJson?.properties) &&
+          propertiesJson.properties.some(
+            (p) => Boolean(p?.slug) && Boolean(p?.description) && Boolean(p?.images?.length),
+          )
+            ? propertiesJson.properties
+            : fallbackProperties,
         localities: fallbackLocalities,
         faqs: (content?.faqs as CmsState["faqs"]) || fallbackFaqs,
         whyChoose: (content?.whyChoose as CmsState["whyChoose"]) || fallbackWhy,

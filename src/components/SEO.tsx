@@ -123,7 +123,18 @@ export function LocalBusinessSchema() {
       author: { "@type": "Person", name: t.name },
       reviewBody: t.quote,
       name: t.role,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
+      },
     }));
+
+    const ratingValue = String(company.googleRating || "").replace(/[^\d.]/g, "");
+    const reviewCount = String(company.googleReviewCount || "").replace(
+      /[^\d]/g,
+      "",
+    );
 
     upsertJsonLd("schema-local-business", {
       "@context": "https://schema.org",
@@ -174,6 +185,17 @@ export function LocalBusinessSchema() {
         },
       ],
       sameAs: socials.length ? socials : [company.whatsappHref],
+      ...(ratingValue && reviewCount
+        ? {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue,
+              reviewCount,
+              bestRating: "5",
+              worstRating: "1",
+            },
+          }
+        : {}),
       review: reviews,
     });
   }, [company, testimonials, services]);

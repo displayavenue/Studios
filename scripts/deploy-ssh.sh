@@ -25,8 +25,10 @@ cp -a public/content/. /tmp/da-re-deploy/content/
 cp -f public/llms.txt /tmp/da-re-deploy/llms.txt 2>/dev/null || true
 cp -f public/robots.txt /tmp/da-re-deploy/robots.txt 2>/dev/null || true
 cp -f public/sitemap.xml /tmp/da-re-deploy/sitemap.xml 2>/dev/null || true
+cp -f public/sitemap.php /tmp/da-re-deploy/sitemap.php 2>/dev/null || true
 cp -f public/send-inquiry.php /tmp/da-re-deploy/send-inquiry.php 2>/dev/null || true
 cp -f public/.htaccess /tmp/da-re-deploy/.htaccess 2>/dev/null || true
+cp -a public/admin/seo-sync.php /tmp/da-re-deploy/admin/seo-sync.php 2>/dev/null || true
 
 echo "Ensuring remote path $DOC …"
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
