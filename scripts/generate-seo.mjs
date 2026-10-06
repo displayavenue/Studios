@@ -192,10 +192,14 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
-Sitemap: ${base}/sitemap.xml
 Sitemap: ${base}/sitemap.php
+Sitemap: ${base}/sitemaps/realty.xml
 `;
 writeFileSync(join(publicDir, "robots.txt"), robots);
+
+// Keep a clean alternate path that is not CDN-poisoned by old noindex headers
+mkdirSync(join(publicDir, "sitemaps"), { recursive: true });
+writeFileSync(join(publicDir, "sitemaps/realty.xml"), sitemap);
 
 const settingsPath = join(contentDir, "settings.json");
 const settings = readJson(settingsPath, {});

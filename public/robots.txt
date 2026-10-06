@@ -3,4 +3,5 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
-Sitemap: https://displayavenuerealty.com/sitemap.xml
+Sitemap: https://displayavenuerealty.com/sitemap.php
+Sitemap: https://displayavenuerealty.com/sitemaps/realty.xml
