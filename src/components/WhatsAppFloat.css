@@ -22,3 +22,9 @@ body.menu-open .wa-float {
   opacity: 0;
   pointer-events: none;
 }
+
+@media (max-width: 980px) {
+  .wa-float {
+    bottom: 4.75rem;
+  }
+}

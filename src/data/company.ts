@@ -67,10 +67,10 @@ export const navLinks = [
 ];
 
 export const trustBadges = [
-  "Local to Mira Road",
-  "Verified listings",
-  "WhatsApp-first support",
-  "Buy · Sell · Rent · Redevelop",
+  "Hyperlocal Expertise",
+  "Verified Shortlists",
+  "Site Visit Support",
+  "WhatsApp First",
 ];
 
 export const brandLogos: string[] = [];

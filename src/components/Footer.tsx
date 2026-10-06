@@ -1,31 +1,9 @@
-import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
-import { submitInquiry } from "../utils/submitInquiry";
 import "./Footer.css";
 
 export function Footer() {
-  const { company, localities } = useCms();
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setError("");
-    setLoading(true);
-    try {
-      await submitInquiry("newsletter", { email: email.trim() });
-      setDone(true);
-      setEmail("");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not subscribe.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { company } = useCms();
 
   return (
     <footer className="site-footer">
@@ -38,11 +16,7 @@ export function Footer() {
               <small>Realty</small>
             </span>
           </Link>
-          <p>
-            Local property advisors for Dahisar, Mira Road and Bhayandar.
-            Residential, commercial and redevelopment support with clear
-            communication.
-          </p>
+          <p>Buy, Sell, Rent, Redevelop in Dahisar, Mira Road and Bhayandar.</p>
           <div className="footer-social">
             <a href={company.whatsappHref} target="_blank" rel="noreferrer">
               WhatsApp
@@ -53,65 +27,57 @@ export function Footer() {
         </div>
 
         <div>
+          <h4>Properties</h4>
+          <ul>
+            <li>
+              <Link to="/buy">Buy</Link>
+            </li>
+            <li>
+              <Link to="/rent">Rent</Link>
+            </li>
+            <li>
+              <Link to="/commercial">Commercial</Link>
+            </li>
+            <li>
+              <Link to="/sell">Sell</Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
           <h4>Explore</h4>
           <ul>
-            {company.navLinks.map((l) => (
-              <li key={l.path}>
-                <Link to={l.path}>{l.label}</Link>
-              </li>
-            ))}
             <li>
-              <Link to="/faqs">FAQs</Link>
+              <Link to="/localities">Localities</Link>
+            </li>
+            <li>
+              <Link to="/societies">Societies</Link>
             </li>
             <li>
               <Link to="/guides">Guides</Link>
             </li>
             <li>
-              <Link to="/societies">Societies</Link>
+              <Link to="/blog">Insights</Link>
+            </li>
+            <li>
+              <Link to="/faqs">FAQs</Link>
             </li>
           </ul>
         </div>
 
         <div>
-          <h4>Localities</h4>
-          <ul>
-            {localities.map((l) => (
-              <li key={l.slug}>
-                <Link to={`/localities/${l.slug}`}>{l.name}</Link>
-              </li>
-            ))}
+          <h4>Contact</h4>
+          <ul className="footer-contact">
             <li>
-              <Link to="/buy">Homes for sale</Link>
+              <a href={company.phoneHref}>{company.phone}</a>
             </li>
             <li>
-              <Link to="/rent">Homes for rent</Link>
+              <a href={company.emailHref}>{company.email}</a>
+            </li>
+            <li>
+              <span>Mira Road East, Mumbai</span>
             </li>
           </ul>
-        </div>
-
-        <div>
-          <h4>New listing alerts</h4>
-          <p className="footer-note">
-            Get Mira-Bhayandar & Dahisar updates in your inbox.
-          </p>
-          {done ? (
-            <p className="form-note form-note--ok">You&apos;re on the list.</p>
-          ) : (
-            <form onSubmit={onSubmit} className="footer-form">
-              <input
-                type="email"
-                required
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                aria-label="Email for listing alerts"
-              />
-              <button className="btn btn--brass" type="submit" disabled={loading}>
-                {loading ? "…" : "Notify me"}
-              </button>
-            </form>
-          )}
-          {error ? <p className="form-note form-note--err">{error}</p> : null}
           <address>
             {company.address.lines.map((line) => (
               <span key={line}>{line}</span>

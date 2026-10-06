@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { WhatsAppFloat } from "./WhatsAppFloat";
+import { MobileBottomNav } from "./MobileBottomNav";
 import { LocalBusinessSchema, WebSiteSchema } from "./SEO";
 import { TrackingScripts } from "./TrackingScripts";
 
@@ -24,6 +25,7 @@ export function Layout() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <MobileBottomNav />
     </>
   );
 }
