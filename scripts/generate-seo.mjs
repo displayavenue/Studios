@@ -96,6 +96,7 @@ add("/localities", "0.8", "weekly");
 add("/contact", "0.8", "weekly");
 add("/about", "0.7", "monthly");
 add("/blog", "0.7", "monthly");
+add("/guides", "0.8", "weekly");
 add("/faqs", "0.7", "monthly");
 add("/privacy", "0.3", "yearly");
 add("/terms", "0.3", "yearly");
@@ -104,6 +105,11 @@ for (const l of localities) add(`/localities/${l.slug}`, "0.8", "weekly");
 for (const b of blogs) add(`/blog/${b.slug}`, "0.6", "monthly");
 for (const p of properties) {
   if (p.status !== "sold") add(`/property/${p.slug}`, "0.7", "weekly");
+}
+
+const guidesJson = readJson(join(contentDir, "guides.json"), { guides: [] });
+for (const g of guidesJson.guides || []) {
+  if (g?.slug) add(`/guides/${g.slug}`, "0.7", "weekly");
 }
 
 const seen = new Set();

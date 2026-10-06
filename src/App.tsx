@@ -8,6 +8,7 @@ import { Redevelopment } from "./pages/Redevelopment";
 import { Localities, LocalityDetail } from "./pages/Localities";
 import { About } from "./pages/About";
 import { Blog, BlogPost } from "./pages/Blog";
+import { GuidesIndex, GuideDetail } from "./pages/Guides";
 import { FAQs } from "./pages/FAQs";
 import { Contact } from "./pages/Contact";
 import { PrivacyPolicy, TermsOfService } from "./pages/Legal";
@@ -31,6 +32,8 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
+          <Route path="guides" element={<GuidesIndex />} />
+          <Route path="guides/:slug" element={<GuideDetail />} />
           <Route path="faqs" element={<FAQs />} />
           <Route path="contact" element={<Contact />} />
           <Route path="privacy" element={<PrivacyPolicy />} />

@@ -63,6 +63,9 @@ export function Footer() {
             <li>
               <Link to="/faqs">FAQs</Link>
             </li>
+            <li>
+              <Link to="/guides">Guides</Link>
+            </li>
           </ul>
         </div>
 

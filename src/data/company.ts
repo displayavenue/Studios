@@ -61,6 +61,7 @@ export const navLinks = [
   { label: "Sell", path: "/sell" },
   { label: "About", path: "/about" },
   { label: "Insights", path: "/blog" },
+  { label: "Guides", path: "/guides" },
   { label: "Contact", path: "/contact" },
 ];
 

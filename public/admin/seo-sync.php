@@ -51,6 +51,7 @@ function da_collect_urls(string $contentDir): array {
   $staticMid = [
     '/about' => '0.7',
     '/blog' => '0.7',
+    '/guides' => '0.8',
     '/faqs' => '0.7',
   ];
   foreach ($staticMid as $path => $priority) {
@@ -84,6 +85,13 @@ function da_collect_urls(string $contentDir): array {
   foreach (($content['blogs'] ?? []) as $b) {
     if (!empty($b['slug'])) {
       da_add_url($urls, '/blog/' . $b['slug'], '0.6', 'monthly');
+    }
+  }
+
+  $guides = da_read_json_file($contentDir . '/guides.json');
+  foreach (($guides['guides'] ?? []) as $g) {
+    if (!empty($g['slug'])) {
+      da_add_url($urls, '/guides/' . $g['slug'], '0.7', 'weekly');
     }
   }
 
