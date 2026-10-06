@@ -252,12 +252,68 @@ const REVIEWERS = [
   ["Arjun Nair", "Investor"],
 ];
 
-function imagesFor(slug, i) {
-  const a = PHOTO_POOL[i % PHOTO_POOL.length];
+function matchPhotoRules(text, rules) {
+  for (const [kws, file] of rules) {
+    if (kws.some((k) => text.includes(k))) return file;
+  }
+  return null;
+}
+
+function imagesFor(s, i) {
+  const nameKey = `${s.name || ""} ${s.slug || ""}`.toLowerCase();
+  const tagKey = (s.tags || []).join(" ").toLowerCase();
+  const pocketKey = (s.pocket || "").toLowerCase();
+
+  const nameRules = [
+    [["kalpataru", "srishti-namaah", "srishti namaah"], "kalpataru-mira.jpg"],
+    [["shanti"], "shanti-gardens.jpg"],
+    [["srishti"], "srishti-area.jpg"],
+    [["poonam"], "mira-skyline-poonam.jpg"],
+    [["unique"], "s-gardens.jpg"],
+    [["salasar-courtyard", "salasar courtyard"], "rna-courtyard.jpg"],
+    [["mhada", "vistas"], "mhada-mira.jpg"],
+    [
+      [
+        "jp-",
+        "lodha",
+        "sunteck",
+        "prestige",
+        "starlife",
+        "palace",
+        "highpark",
+        "orbit",
+        "elanza",
+        "the-address",
+        "the-empress",
+        "sky-park",
+        "casa-maxima",
+        "beverly",
+      ],
+      "tower-blocks-mira-east.jpg",
+    ],
+  ];
+  const tagRules = [
+    [["mhada"], "mhada-mira.jpg"],
+    [["tower", "premium"], "tower-blocks-mira-east.jpg"],
+  ];
+  const pocketRules = [
+    [["poonam"], "mira-skyline-poonam.jpg"],
+    [["shanti park / srishti"], "srishti-area.jpg"],
+    [["kanakia / unique"], "s-gardens.jpg"],
+    [["jp infra"], "tower-blocks-mira-east.jpg"],
+    [["lodha / prestige"], "tower-blocks-mira-east.jpg"],
+  ];
+
+  const heroFile =
+    matchPhotoRules(nameKey, nameRules) ||
+    matchPhotoRules(tagKey, tagRules) ||
+    matchPhotoRules(pocketKey, pocketRules) ||
+    PHOTO_POOL[i % PHOTO_POOL.length];
+
   const b = PHOTO_POOL[(i * 3 + 5) % PHOTO_POOL.length];
   const c = PHOTO_POOL[(i * 7 + 11) % PHOTO_POOL.length];
   const gallery = [];
-  for (const name of [a, b, c]) {
+  for (const name of [heroFile, b, c]) {
     const path = localPhoto(name);
     if (!gallery.includes(path)) gallery.push(path);
   }
@@ -268,7 +324,7 @@ function imagesFor(slug, i) {
     j += 1;
   }
   return {
-    hero: localPhoto(a),
+    hero: localPhoto(heroFile),
     gallery,
     imageNote: IMAGE_NOTE,
   };
@@ -387,7 +443,7 @@ function reviews(s) {
 const societies = SOCIETIES.map((s, i) => {
   const slug = slugify(s.name);
   const profileData = profile(s, i);
-  const imgs = imagesFor(slug, i);
+  const imgs = imagesFor({ ...s, slug }, i);
   const serviceIds = ["buy", "rent", "sell", "visit"];
   if ((s.tags || []).includes("mixed-use")) serviceIds.push("commercial");
   if ((s.tags || []).includes("chs") || (s.tags || []).includes("township")) serviceIds.push("redevelopment");
