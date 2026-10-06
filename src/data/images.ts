@@ -1,4 +1,4 @@
-/** Property & locality imagery for DisplayAvenue Real Estate */
+/** Property & locality imagery for DisplayAvenue Realty */
 const u = (id: string, w = 1200) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 

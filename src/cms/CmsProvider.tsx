@@ -87,7 +87,7 @@ const defaults: CmsState = {
   testimonials: fallbackTestimonials,
   blogs: fallbackBlogs,
   team: fallbackTeam,
-  settings: { siteName: "DisplayAvenue Real Estate" },
+  settings: { siteName: "DisplayAvenue Realty" },
   tracking: defaultTracking,
   ready: false,
 };
@@ -155,7 +155,7 @@ export function CmsProvider({ children }: { children: ReactNode }) {
           fallbackTestimonials,
         blogs: (content?.blogs as CmsState["blogs"]) || fallbackBlogs,
         team: (content?.team as CmsState["team"]) || fallbackTeam,
-        settings: settingsJson || { siteName: "DisplayAvenue Real Estate" },
+        settings: settingsJson || { siteName: "DisplayAvenue Realty" },
         tracking: mergeTracking(trackingJson || settingsJson?.tracking),
         ready: true,
       });

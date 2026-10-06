@@ -9,7 +9,7 @@ export function FAQs() {
   return (
     <div>
       <SEO
-        title="FAQs | DisplayAvenue Real Estate"
+        title="FAQs | DisplayAvenue Realty"
         description="Common questions about buying, selling, renting and redevelopment in Dahisar, Mira Road and Bhayandar."
         path="/faqs"
       />

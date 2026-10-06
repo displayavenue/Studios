@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy DisplayAvenue Real Estate to Hostinger via FTP (lftp).
+# Deploy DisplayAvenue Realty to Hostinger via FTP (lftp).
 # Required env: HOSTINGER_FTP_HOST, HOSTINGER_FTP_USERNAME, HOSTINGER_FTP_PASSWORD
 # Optional: HOSTINGER_FTP_REMOTE_PATH (default: domains/displayavenuerealestate.com/public_html)
 

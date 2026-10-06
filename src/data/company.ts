@@ -1,5 +1,5 @@
 export const company = {
-  name: "DisplayAvenue Real Estate",
+  name: "DisplayAvenue Realty",
   shortName: "DisplayAvenue",
   tagline: "Buy · Sell · Rent · Redevelop in Dahisar, Mira Road & Bhayandar",
   website: "https://displayavenuerealestate.com",

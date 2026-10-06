@@ -86,7 +86,7 @@ $record = [
   'ip' => $ip,
 ];
 
-$subject = 'DisplayAvenue Real Estate — Website inquiry';
+$subject = 'DisplayAvenue Realty — Website inquiry';
 $lines = ["New {$type} inquiry from displayavenuerealestate.com", ''];
 
 if ($type === 'newsletter') {
@@ -95,7 +95,7 @@ if ($type === 'newsletter') {
     respond(400, ['ok' => false, 'error' => 'Please enter a valid email address.']);
   }
   $record['email'] = $email;
-  $subject = 'Listing alerts signup — DisplayAvenue Real Estate';
+  $subject = 'Listing alerts signup — DisplayAvenue Realty';
   $lines[] = "Email: {$email}";
 } else {
   $name = clean((string)($body['name'] ?? ''), 120);
@@ -169,7 +169,7 @@ $bodyText = implode("\n", $lines);
 $headers = [
   'MIME-Version: 1.0',
   'Content-Type: text/plain; charset=UTF-8',
-  'From: DisplayAvenue Real Estate <noreply@displayavenue.com>',
+  'From: DisplayAvenue Realty <noreply@displayavenue.com>',
   'Reply-To: ' . $replyTo,
   'X-Mailer: PHP/' . phpversion(),
 ];

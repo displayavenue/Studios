@@ -145,7 +145,7 @@ export const blogs = [
     content: [
       "Redevelopment is a multi-year journey. Owners should align on goals: extra carpet, corpus, rent during construction, and quality of the incoming developer.",
       "Committees benefit from a clear process: feasibility mindset, member education, professional advice, then shortlisting — not the other way around.",
-      "DisplayAvenue Real Estate supports early-stage consultations so societies ask sharper questions before signing anything.",
+      "DisplayAvenue Realty supports early-stage consultations so societies ask sharper questions before signing anything.",
     ],
   },
 ];

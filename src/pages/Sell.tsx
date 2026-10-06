@@ -11,7 +11,7 @@ export function Sell() {
     <div>
       <SEO
         title="Sell or list your property | Free valuation | DisplayAvenue"
-        description="List your flat or shop in Dahisar, Mira Road or Bhayandar. Free valuation, buyer matching and WhatsApp-first support from DisplayAvenue Real Estate."
+        description="List your flat or shop in Dahisar, Mira Road or Bhayandar. Free valuation, buyer matching and WhatsApp-first support from DisplayAvenue Realty."
         path="/sell"
         image={img.handshake}
       />

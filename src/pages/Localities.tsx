@@ -12,7 +12,7 @@ export function Localities() {
     <div>
       <SEO
         title="Localities | Dahisar, Mira Road & Bhayandar property guides"
-        description="Hyperlocal guides for buying, renting and investing in Dahisar, Mira Road and Bhayandar with DisplayAvenue Real Estate."
+        description="Hyperlocal guides for buying, renting and investing in Dahisar, Mira Road and Bhayandar with DisplayAvenue Realty."
         path="/localities"
       />
       <section className="page-hero">

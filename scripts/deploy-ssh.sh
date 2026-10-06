@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy DisplayAvenue Real Estate to Hostinger over SSH.
+# Deploy DisplayAvenue Realty to Hostinger over SSH.
 # Usage: SSH_PASS='...' ./scripts/deploy-ssh.sh
 # Optional: SSH_DOC=domains/displayavenuerealestate.com/public_html
 #           VITE_BASE=/realestate/  (subdirectory deploy)

@@ -37,9 +37,9 @@ export const localities: Locality[] = [
     ],
     avgSaleHint: "1–3 BHK resale commonly from ~₹45L to ₹1.5Cr+ depending on society & carpet",
     avgRentHint: "1BHK from ~₹15–22k · 2BHK from ~₹25–40k (furnishing varies)",
-    seoTitle: "Flats for Sale & Rent in Mira Road | DisplayAvenue Real Estate",
+    seoTitle: "Flats for Sale & Rent in Mira Road | DisplayAvenue Realty",
     seoDescription:
-      "Buy, sell or rent residential & commercial property in Mira Road East. Local listings, site visits and WhatsApp support from DisplayAvenue Real Estate.",
+      "Buy, sell or rent residential & commercial property in Mira Road East. Local listings, site visits and WhatsApp support from DisplayAvenue Realty.",
   },
   {
     slug: "dahisar",
@@ -64,7 +64,7 @@ export const localities: Locality[] = [
     avgRentHint: "2BHK rentals typically mid-₹20ks depending on West vs East",
     seoTitle: "Property in Dahisar East & West | Buy · Rent · Commercial",
     seoDescription:
-      "Explore flats, shops and offices in Dahisar. Local advisory for sale, rent and society redevelopment with DisplayAvenue Real Estate.",
+      "Explore flats, shops and offices in Dahisar. Local advisory for sale, rent and society redevelopment with DisplayAvenue Realty.",
   },
   {
     slug: "bhayandar",
@@ -87,9 +87,9 @@ export const localities: Locality[] = [
     ],
     avgSaleHint: "Competitive 2–3 BHK pricing vs inner suburbs; project-dependent",
     avgRentHint: "1–2 BHK rentals popular with working families & bachelors (as society rules allow)",
-    seoTitle: "Flats & Shops in Bhayandar | DisplayAvenue Real Estate",
+    seoTitle: "Flats & Shops in Bhayandar | DisplayAvenue Realty",
     seoDescription:
-      "Find homes, shops and warehouses in Bhayandar East & West. Local site visits and clear deal support from DisplayAvenue Real Estate.",
+      "Find homes, shops and warehouses in Bhayandar East & West. Local site visits and clear deal support from DisplayAvenue Realty.",
   },
 ];
 

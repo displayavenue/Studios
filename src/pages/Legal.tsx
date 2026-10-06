@@ -13,7 +13,7 @@ function LegalPage({
 }) {
   return (
     <div>
-      <SEO title={`${title} | DisplayAvenue Real Estate`} description={title} path={path} />
+      <SEO title={`${title} | DisplayAvenue Realty`} description={title} path={path} />
       <section className="page-hero">
         <div className="container page-hero__inner">
           <h1>{title}</h1>
@@ -30,7 +30,7 @@ export function PrivacyPolicy() {
   return (
     <LegalPage title="Privacy Policy" path="/privacy">
       <p>
-        DisplayAvenue Real Estate collects contact details you submit via forms
+        DisplayAvenue Realty collects contact details you submit via forms
         or WhatsApp to respond to property enquiries. We do not sell your
         personal data. Information is shared only with team members or partners
         needed to fulfil your request (for example loan facilitators you opt
@@ -50,7 +50,7 @@ export function TermsOfService() {
       <p>
         Listings on this website are indicative and subject to availability,
         owner confirmation and documentation. Prices may change without notice.
-        DisplayAvenue Real Estate acts as a facilitator; transactions are between
+        DisplayAvenue Realty acts as a facilitator; transactions are between
         the parties to the deal.
       </p>
       <p>

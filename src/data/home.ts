@@ -33,12 +33,12 @@ export type HomeContent = {
 export const homeContent: HomeContent = {
   seo: {
     title:
-      "DisplayAvenue Real Estate | Dahisar, Mira Road & Bhayandar Property",
+      "DisplayAvenue Realty | Dahisar, Mira Road & Bhayandar Property",
     description:
       "Buy, sell or rent residential & commercial property in Dahisar, Mira Road and Bhayandar. Redevelopment advisory, site visits and WhatsApp-first support.",
   },
   hero: {
-    brand: "DisplayAvenue Real Estate",
+    brand: "DisplayAvenue Realty",
     headline: "Find your next address in Mira Road, Dahisar & Bhayandar",
     support:
       "Residential · Commercial · Redevelopment — local listings, honest advice, faster site visits.",

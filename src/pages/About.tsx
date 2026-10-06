@@ -9,8 +9,8 @@ export function About() {
   return (
     <div>
       <SEO
-        title="About DisplayAvenue Real Estate | Mira Road based advisors"
-        description="DisplayAvenue Real Estate helps families and businesses buy, sell, rent and redevelop property across Dahisar, Mira Road and Bhayandar."
+        title="About DisplayAvenue Realty | Mira Road based advisors"
+        description="DisplayAvenue Realty helps families and businesses buy, sell, rent and redevelop property across Dahisar, Mira Road and Bhayandar."
         path="/about"
         image={img.teamOffice}
       />
@@ -28,7 +28,7 @@ export function About() {
           <div>
             <h2>Based in Mira Road East</h2>
             <p>
-              DisplayAvenue Real Estate focuses on the markets we live and work
+              DisplayAvenue Realty focuses on the markets we live and work
               in — Dahisar, Mira Road and Bhayandar. That means sharper pricing
               sense, faster visits, and advice rooted in how these societies
               actually transact.
@@ -40,7 +40,7 @@ export function About() {
             </p>
           </div>
           <div className="about-story__media">
-            <img src={img.teamOffice} alt="DisplayAvenue Real Estate desk" />
+            <img src={img.teamOffice} alt="DisplayAvenue Realty desk" />
           </div>
         </div>
       </section>

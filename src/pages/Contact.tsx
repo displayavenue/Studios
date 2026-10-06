@@ -9,8 +9,8 @@ export function Contact() {
   return (
     <div>
       <SEO
-        title="Contact DisplayAvenue Real Estate | Mira Road"
-        description="Call, WhatsApp or write to DisplayAvenue Real Estate in Mira Road East for Dahisar, Mira Road and Bhayandar property needs."
+        title="Contact DisplayAvenue Realty | Mira Road"
+        description="Call, WhatsApp or write to DisplayAvenue Realty in Mira Road East for Dahisar, Mira Road and Bhayandar property needs."
         path="/contact"
       />
 

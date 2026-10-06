@@ -47,11 +47,11 @@ export function Header() {
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
       <div className="container site-header__bar">
-        <Link to="/" className="logo" aria-label="DisplayAvenue Real Estate home">
+        <Link to="/" className="logo" aria-label="DisplayAvenue Realty home">
           <span className="logo__mark">DA</span>
           <span className="logo__text">
             DisplayAvenue
-            <small>Real Estate</small>
+            <small>Realty</small>
           </span>
         </Link>
 

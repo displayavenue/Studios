@@ -35,7 +35,7 @@ export function Footer() {
             <span className="logo__mark">DA</span>
             <span className="logo__text">
               DisplayAvenue
-              <small>Real Estate</small>
+              <small>Realty</small>
             </span>
           </Link>
           <p>
@@ -115,7 +115,7 @@ export function Footer() {
       </div>
 
       <div className="container site-footer__bottom">
-        <p>© {new Date().getFullYear()} DisplayAvenue Real Estate</p>
+        <p>© {new Date().getFullYear()} DisplayAvenue Realty</p>
         <div>
           <Link to="/privacy">Privacy</Link>
           <Link to="/terms">Terms</Link>

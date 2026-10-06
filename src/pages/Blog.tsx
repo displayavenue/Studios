@@ -48,7 +48,7 @@ export function BlogPost() {
   return (
     <div>
       <SEO
-        title={`${post.title} | DisplayAvenue Real Estate`}
+        title={`${post.title} | DisplayAvenue Realty`}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
         image={post.image}
