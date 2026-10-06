@@ -1,13 +1,11 @@
-import { useState } from "react";
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import { submitInquiry } from "../utils/submitInquiry";
 import "./Footer.css";
 
 export function Footer() {
-  const { company, homeServices, services, locations } = useCms();
-  const navLinks = company.navLinks;
+  const { company, localities } = useCms();
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -37,139 +35,97 @@ export function Footer() {
             <span className="logo__mark">DA</span>
             <span className="logo__text">
               DisplayAvenue
-              <small>Studios</small>
+              <small>Realty</small>
             </span>
           </Link>
           <p>
-            India&apos;s Premium Visual Production Studio — luxury wedding
-            photography, cinematic films, commercial productions and visual
-            storytelling across India.
+            Local property advisors for Dahisar, Mira Road and Bhayandar.
+            Residential, commercial and redevelopment support with clear
+            communication.
           </p>
           <div className="footer-social">
-            {(company.socials || []).map((url) => {
-              const label = url.includes("instagram")
-                ? "Instagram"
-                : url.includes("youtube")
-                  ? "YouTube"
-                  : url.includes("linkedin")
-                    ? "LinkedIn"
-                    : "Social";
-              return (
-                <a key={url} href={url} target="_blank" rel="noreferrer">
-                  {label}
-                </a>
-              );
-            })}
             <a href={company.whatsappHref} target="_blank" rel="noreferrer">
               WhatsApp
             </a>
+            <a href={company.phoneHref}>Call</a>
+            <a href={company.emailHref}>Email</a>
           </div>
         </div>
 
         <div>
-          <h4>Quick Links</h4>
+          <h4>Explore</h4>
           <ul>
-            {navLinks.slice(0, 8).map((l) => (
+            {company.navLinks.map((l) => (
               <li key={l.path}>
                 <Link to={l.path}>{l.label}</Link>
               </li>
             ))}
             <li>
-              <Link to="/book-now">Book Now</Link>
+              <Link to="/faqs">FAQs</Link>
             </li>
             <li>
-              <Link to="/pages">All Pages</Link>
+              <Link to="/guides">Guides</Link>
+            </li>
+            <li>
+              <Link to="/societies">Societies</Link>
             </li>
           </ul>
         </div>
 
         <div>
-          <h4>Services</h4>
+          <h4>Localities</h4>
           <ul>
-            {homeServices.map((slug) => {
-              const s = services.find((svc) => svc.slug === slug);
-              if (!s) return null;
-              return (
-                <li key={slug}>
-                  <Link to={`/services/${slug}`}>{s.title}</Link>
-                </li>
-              );
-            })}
+            {localities.map((l) => (
+              <li key={l.slug}>
+                <Link to={`/localities/${l.slug}`}>{l.name}</Link>
+              </li>
+            ))}
+            <li>
+              <Link to="/buy">Homes for sale</Link>
+            </li>
+            <li>
+              <Link to="/rent">Homes for rent</Link>
+            </li>
           </ul>
         </div>
 
         <div>
-          <h4>Locations</h4>
-          <ul>
-            {locations.slice(0, 6).map((loc) => (
-              <li key={loc.slug}>
-                <Link to={`/locations/${loc.slug}`}>{loc.city}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="site-footer__contact">
-          <h4>Contact</h4>
+          <h4>New listing alerts</h4>
+          <p className="footer-note">
+            Get Mira-Bhayandar & Dahisar updates in your inbox.
+          </p>
+          {done ? (
+            <p className="form-note form-note--ok">You&apos;re on the list.</p>
+          ) : (
+            <form onSubmit={onSubmit} className="footer-form">
+              <input
+                type="email"
+                required
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                aria-label="Email for listing alerts"
+              />
+              <button className="btn btn--brass" type="submit" disabled={loading}>
+                {loading ? "…" : "Notify me"}
+              </button>
+            </form>
+          )}
+          {error ? <p className="form-note form-note--err">{error}</p> : null}
           <address>
             {company.address.lines.map((line) => (
               <span key={line}>{line}</span>
             ))}
           </address>
-          <p>
-            <a href={company.phoneHref}>{company.phone}</a>
-          </p>
-          <p>
-            <a href={company.emailHref}>{company.email}</a>
-          </p>
-          <form className="newsletter" onSubmit={onSubmit}>
-            <label htmlFor="newsletter-email">Newsletter</label>
-            <div className="newsletter__row">
-              <input
-                id="newsletter-email"
-                type="email"
-                name="email"
-                placeholder="Your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={loading}
-              />
-              <button type="submit" className="btn btn--gold" disabled={loading}>
-                {loading ? "…" : "Join"}
-              </button>
-            </div>
-            {error && <p className="form-error" role="alert">{error}</p>}
-            {done && (
-              <p className="newsletter__ok">
-                Thank you — you&apos;re on the list.
-              </p>
-            )}
-          </form>
         </div>
       </div>
 
-      <div className="container site-footer__map">
-        <iframe
-          title="DisplayAvenue Studios location map"
-          src={company.address.mapEmbed}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
-      </div>
-
       <div className="container site-footer__bottom">
-        <p>
-          © {new Date().getFullYear()} DisplayAvenue Studios. All rights
-          reserved.
-        </p>
-        <nav className="footer-legal" aria-label="Legal">
+        <p>© {new Date().getFullYear()} DisplayAvenue Realty</p>
+        <div>
           <Link to="/privacy">Privacy</Link>
           <Link to="/terms">Terms</Link>
-          <Link to="/booking-policy">Booking Policy</Link>
-        </nav>
-        <p>Headquartered in Mumbai · Serving Pan India</p>
+        </div>
       </div>
     </footer>
   );

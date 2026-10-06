@@ -35,4 +35,4 @@ if (broken.length) {
   process.exit(1);
 }
 
-console.log(`OK — ${urls.size} image URLs verified`);
+console.log(`OK, ${urls.size} image URLs verified`);

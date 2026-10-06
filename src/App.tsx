@@ -1,54 +1,46 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
+import { Buy, Rent, Commercial } from "./pages/Listings";
+import { PropertyDetail } from "./pages/PropertyDetail";
+import { Sell } from "./pages/Sell";
+import { Redevelopment } from "./pages/Redevelopment";
+import { Localities, LocalityDetail } from "./pages/Localities";
 import { About } from "./pages/About";
-import { Services } from "./pages/Services";
-import { ServiceDetail } from "./pages/ServiceDetail";
-import { Packages } from "./pages/Packages";
-import { PackageDetail } from "./pages/PackageDetail";
-import { Pricing } from "./pages/Pricing";
-import { Portfolio } from "./pages/Portfolio";
-import { PortfolioDetail } from "./pages/PortfolioDetail";
-import { Industries } from "./pages/Industries";
-import { IndustryDetail } from "./pages/IndustryDetail";
-import { Locations, LocationDetail } from "./pages/Locations";
 import { Blog, BlogPost } from "./pages/Blog";
+import { GuidesIndex, GuideDetail } from "./pages/Guides";
+import { SocietiesIndex, SocietyDetail } from "./pages/Societies";
 import { FAQs } from "./pages/FAQs";
-import { BookNow } from "./pages/BookNow";
 import { Contact } from "./pages/Contact";
-import { AllPages } from "./pages/AllPages";
-import { PrivacyPolicy, TermsOfService, BookingPolicy } from "./pages/Legal";
-import { AcademyCourse } from "./pages/AcademyCourse";
+import { PrivacyPolicy, TermsOfService } from "./pages/Legal";
 
 export default function App() {
+  const basename = (import.meta.env.BASE_URL || "/").replace(/\/$/, "") || "/";
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename === "/" ? undefined : basename}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="buy" element={<Buy />} />
+          <Route path="rent" element={<Rent />} />
+          <Route path="commercial" element={<Commercial />} />
+          <Route path="property/:slug" element={<PropertyDetail />} />
+          <Route path="sell" element={<Sell />} />
+          <Route path="redevelopment" element={<Redevelopment />} />
+          <Route path="localities" element={<Localities />} />
+          <Route path="localities/:slug" element={<LocalityDetail />} />
           <Route path="about" element={<About />} />
-          <Route path="services" element={<Services />} />
-          <Route path="services/:slug" element={<ServiceDetail />} />
-          <Route path="packages" element={<Packages />} />
-          <Route path="packages/:slug" element={<PackageDetail />} />
-          <Route path="pricing" element={<Pricing />} />
-          <Route path="portfolio" element={<Portfolio />} />
-          <Route path="portfolio/:slug" element={<PortfolioDetail />} />
-          <Route path="industries" element={<Industries />} />
-          <Route path="industries/:slug" element={<IndustryDetail />} />
-          <Route path="locations" element={<Locations />} />
-          <Route path="locations/:slug" element={<LocationDetail />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
+          <Route path="guides" element={<GuidesIndex />} />
+          <Route path="guides/:slug" element={<GuideDetail />} />
+          <Route path="societies" element={<SocietiesIndex />} />
+          <Route path="societies/:slug" element={<SocietyDetail />} />
           <Route path="faqs" element={<FAQs />} />
-          <Route path="book-now" element={<BookNow />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="academy/courses/computer-fundamentals" element={<AcademyCourse />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<TermsOfService />} />
-          <Route path="booking-policy" element={<BookingPolicy />} />
-          <Route path="package" element={<Navigate to="/packages" replace />} />
-          <Route path="pages" element={<AllPages />} />
         </Route>
       </Routes>
     </BrowserRouter>

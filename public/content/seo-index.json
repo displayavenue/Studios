@@ -1,0 +1,79 @@
+{
+  "properties": [
+    {
+      "slug": "2bhk-kanakia-mira-road-east-sale",
+      "title": "Spacious 2BHK in Kanakia, Mira Road East",
+      "status": "available"
+    },
+    {
+      "slug": "3bhk-dahisar-east-sale",
+      "title": "Sunlit 3BHK Society Flat, Dahisar East",
+      "status": "available"
+    },
+    {
+      "slug": "1bhk-bhayandar-west-rent",
+      "title": "1BHK Semi-Furnished Rental, Bhayandar West",
+      "status": "available"
+    },
+    {
+      "slug": "2bhk-mira-road-east-rent",
+      "title": "2BHK Fully Furnished, Mira Road East",
+      "status": "available"
+    },
+    {
+      "slug": "shop-mira-road-station-rent",
+      "title": "Ground Floor Shop near Mira Road Station",
+      "status": "available"
+    },
+    {
+      "slug": "office-dahisar-east-sale",
+      "title": "Furnished Office Cabin, Dahisar East",
+      "status": "available"
+    },
+    {
+      "slug": "3bhk-bhayandar-east-sale",
+      "title": "Vast 3BHK with Balcony, Bhayandar East",
+      "status": "available"
+    },
+    {
+      "slug": "warehouse-bhayandar-rent",
+      "title": "Warehouse / Godown Space, Bhayandar",
+      "status": "available"
+    },
+    {
+      "slug": "2bhk-dahisar-west-rent",
+      "title": "Quiet 2BHK Rental, Dahisar West",
+      "status": "available"
+    },
+    {
+      "slug": "shop-bhayandar-west-sale",
+      "title": "Corner Retail Shop for Sale, Bhayandar West",
+      "status": "available"
+    },
+    {
+      "slug": "1bhk-mira-road-sale",
+      "title": "Compact 1BHK Investment Flat, Mira Road",
+      "status": "available"
+    },
+    {
+      "slug": "office-mira-road-rent",
+      "title": "Plug-and-Play Office, Mira Road East",
+      "status": "available"
+    }
+  ],
+  "localities": [
+    {
+      "slug": "mira-road",
+      "title": "Mira Road"
+    },
+    {
+      "slug": "dahisar",
+      "title": "Dahisar"
+    },
+    {
+      "slug": "bhayandar",
+      "title": "Bhayandar"
+    }
+  ],
+  "updatedAt": "2026-10-06T15:45:52.976Z"
+}

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./FAQAccordion.css";
 
-type Item = { question: string; answer: string };
-
-export function FAQAccordion({ items }: { items: Item[] }) {
+export function FAQAccordion({
+  items,
+}: {
+  items: { question: string; answer: string }[];
+}) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -11,7 +13,7 @@ export function FAQAccordion({ items }: { items: Item[] }) {
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div key={item.question} className={`faq-item ${isOpen ? "is-open" : ""}`}>
+          <div className={`faq-item ${isOpen ? "is-open" : ""}`} key={item.question}>
             <button
               type="button"
               className="faq-item__q"
@@ -23,9 +25,7 @@ export function FAQAccordion({ items }: { items: Item[] }) {
                 {isOpen ? "−" : "+"}
               </span>
             </button>
-            <div className="faq-item__a" hidden={!isOpen}>
-              <p>{item.answer}</p>
-            </div>
+            {isOpen ? <div className="faq-item__a">{item.answer}</div> : null}
           </div>
         );
       })}
