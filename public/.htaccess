@@ -1,4 +1,4 @@
-# DisplayAvenue Real Estate — SPA routing for Hostinger/Apache
+# DisplayAvenue Real Estate - SPA routing for Hostinger/Apache
 DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>

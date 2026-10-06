@@ -1,4 +1,4 @@
-# CMS JSON — always fetch fresh content (images update without hard refresh)
+# CMS JSON - always fetch fresh content (images update without hard refresh)
 <IfModule mod_headers.c>
   <FilesMatch "\.json$">
     Header set Cache-Control "no-cache, must-revalidate"
