@@ -21,7 +21,7 @@ export function Sell() {
           <span className="eyebrow">For owners</span>
           <h1>Sell smarter in Mira Road, Dahisar & Bhayandar</h1>
           <p>
-            Correct pricing, serious buyer outreach, and clear updates — from
+            Correct pricing, serious buyer outreach, and clear updates from
             listing to token.
           </p>
         </div>
@@ -38,7 +38,7 @@ export function Sell() {
             <ul className="check-list">
               <li>Free local valuation based on recent comps</li>
               <li>Listing presentation guidance (photos, facts, pricing)</li>
-              <li>Screened enquiries — fewer time-wasters</li>
+              <li>Screened enquiries with fewer time-wasters</li>
               <li>Negotiation and paperwork checklist support</li>
             </ul>
             <a className="btn btn--brass" href={company.whatsappHref} target="_blank" rel="noreferrer">

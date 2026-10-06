@@ -21,8 +21,8 @@ export function Redevelopment() {
           <span className="eyebrow">Advisory</span>
           <h1>Redevelopment, explained for owners</h1>
           <p>
-            We help societies understand the journey before anyone signs — corpus,
-            carpet, rent, consent and builder fit.
+            We help societies understand the journey before anyone signs:
+            corpus, carpet, rent, consent and builder fit.
           </p>
         </div>
       </section>
@@ -53,7 +53,7 @@ export function Redevelopment() {
             <span className="eyebrow">Society enquiry</span>
             <h2>Start a redevelopment conversation</h2>
             <p>
-              Share society basics — we&apos;ll schedule a call with your
+              Share society basics and we&apos;ll schedule a call with your
               committee representative.
             </p>
           </div>

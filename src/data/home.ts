@@ -41,7 +41,7 @@ export const homeContent: HomeContent = {
     brand: "DisplayAvenue Realty",
     headline: "Find your next address in Mira Road, Dahisar & Bhayandar",
     support:
-      "Residential · Commercial · Redevelopment — local listings, honest advice, faster site visits.",
+      "Residential · Commercial · Redevelopment. Local listings, honest advice, faster site visits.",
     primaryCta: "Search properties",
     primaryPath: "/buy",
     secondaryCta: "List your property",
@@ -51,7 +51,7 @@ export const homeContent: HomeContent = {
   services: {
     eyebrow: "What we do",
     title: "One team for every property move",
-    text: "Whether you are buying your first home, placing a tenant, leasing a shop or exploring society redevelopment — we stay local and practical.",
+    text: "Whether you are buying your first home, placing a tenant, leasing a shop or exploring society redevelopment, we stay local and practical.",
   },
   featured: {
     eyebrow: "Featured listings",
@@ -61,7 +61,7 @@ export const homeContent: HomeContent = {
   localities: {
     eyebrow: "Where we specialise",
     title: "Three localities. Deep coverage.",
-    text: "Hyperlocal pages for buyers, tenants and investors who want clarity — not pan-city noise.",
+    text: "Hyperlocal pages for buyers, tenants and investors who want clarity, not pan-city noise.",
   },
   whyChoose: {
     eyebrow: "Why DisplayAvenue",
@@ -89,7 +89,7 @@ export const homeContent: HomeContent = {
     text: "Market notes and checklists for Dahisar, Mira Road and Bhayandar.",
   },
   ctaBanner: {
-    title: "Tell us your budget and locality — we’ll shortlist today",
+    title: "Tell us your budget and locality. We’ll shortlist today",
     text: "Call, WhatsApp or send an enquiry. Most active listings can be visited within 24–48 hours.",
     primaryCta: "WhatsApp us",
     primaryPath: "whatsapp",

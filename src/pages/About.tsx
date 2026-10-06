@@ -29,7 +29,7 @@ export function About() {
             <h2>Based in Mira Road East</h2>
             <p>
               DisplayAvenue Realty focuses on the markets we live and work
-              in — Dahisar, Mira Road and Bhayandar. That means sharper pricing
+              in: Dahisar, Mira Road and Bhayandar. That means sharper pricing
               sense, faster visits, and advice rooted in how these societies
               actually transact.
             </p>

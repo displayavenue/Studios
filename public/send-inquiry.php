@@ -27,7 +27,7 @@ if (!is_array($body)) {
   respond(400, ['ok' => false, 'error' => 'Invalid JSON body']);
 }
 
-// Honeypot — bots fill hidden fields
+// Honeypot, bots fill hidden fields
 if (!empty($body['company_website'])) {
   respond(200, ['ok' => true, 'message' => 'Thank you']);
 }
@@ -86,7 +86,7 @@ $record = [
   'ip' => $ip,
 ];
 
-$subject = 'DisplayAvenue Realty — Website inquiry';
+$subject = 'DisplayAvenue Realty: Website inquiry';
 $lines = ["New {$type} inquiry from displayavenuerealty.com", ''];
 
 if ($type === 'newsletter') {
@@ -95,7 +95,7 @@ if ($type === 'newsletter') {
     respond(400, ['ok' => false, 'error' => 'Please enter a valid email address.']);
   }
   $record['email'] = $email;
-  $subject = 'Listing alerts signup — DisplayAvenue Realty';
+  $subject = 'Listing alerts signup: DisplayAvenue Realty';
   $lines[] = "Email: {$email}";
 } else {
   $name = clean((string)($body['name'] ?? ''), 120);
@@ -105,7 +105,7 @@ if ($type === 'newsletter') {
   $interest = clean((string)($body['interest'] ?? ''), 120);
   $locality = clean((string)($body['locality'] ?? ''), 80);
   $propertyType = clean((string)($body['type'] ?? ($body['propertyType'] ?? '')), 80);
-  // body type is inquiry type; property type field may collide — read extras
+  // body type is inquiry type; property type field may collide, read extras
   $extras = [];
   foreach (['property', 'slug', 'price', 'society', 'units', 'role', 'intent'] as $key) {
     if (!empty($body[$key])) {
@@ -135,11 +135,11 @@ if ($type === 'newsletter') {
   ] + $extras;
 
   $subject = match ($type) {
-    'valuation' => "Valuation request — {$name}",
-    'sell' => "List property — {$name}",
-    'redevelopment' => "Redevelopment enquiry — {$name}",
-    'property', 'visit' => "Property enquiry — {$name}",
-    default => "Contact — {$name}",
+    'valuation' => "Valuation request: {$name}",
+    'sell' => "List property: {$name}",
+    'redevelopment' => "Redevelopment enquiry: {$name}",
+    'property', 'visit' => "Property enquiry: {$name}",
+    default => "Contact: {$name}",
   };
 
   $lines = array_merge($lines, [
@@ -180,8 +180,8 @@ if (!$sent) {
   respond(200, [
     'ok' => true,
     'mail' => false,
-    'message' => 'Thanks — we received your enquiry. If you need a faster reply, WhatsApp us.',
+    'message' => 'Thanks, we received your enquiry. If you need a faster reply, WhatsApp us.',
   ]);
 }
 
-respond(200, ['ok' => true, 'mail' => true, 'message' => 'Thank you — we will get back shortly.']);
+respond(200, ['ok' => true, 'mail' => true, 'message' => 'Thank you, we will get back shortly.']);

@@ -3,7 +3,7 @@ import { img } from "./images";
 export const whyChoose = [
   {
     title: "Hyperlocal focus",
-    text: "We specialise in Dahisar, Mira Road and Bhayandar — not pan-India noise. Local pricing sense, local societies, local visits.",
+    text: "We specialise in Dahisar, Mira Road and Bhayandar, not pan-India noise. Local pricing sense, local societies, local visits.",
   },
   {
     title: "Clear communication",
@@ -11,7 +11,7 @@ export const whyChoose = [
   },
   {
     title: "End-to-end help",
-    text: "Buy, sell, rent, commercial and redevelopment — one team that understands how deals actually close in these suburbs.",
+    text: "Buy, sell, rent, commercial and redevelopment, one team that understands how deals actually close in these suburbs.",
   },
   {
     title: "Serious matchmaking",
@@ -23,7 +23,7 @@ export const processSteps = [
   {
     step: "01",
     title: "Tell us what you need",
-    text: "Budget, BHK, locality preference, sale or rent — via form, call or WhatsApp.",
+    text: "Budget, BHK, locality preference, sale or rent, via form, call or WhatsApp.",
   },
   {
     step: "02",
@@ -78,7 +78,7 @@ export const faqs = [
   {
     question: "Do you charge buyers or tenants a fee?",
     answer:
-      "Brokerage depends on the transaction type and who engages us. We disclose fees upfront before you commit to visits or negotiations — no hidden surprises.",
+      "Brokerage depends on the transaction type and who engages us. We disclose fees upfront before you commit to visits or negotiations, no hidden surprises.",
   },
   {
     question: "Can I list my flat or shop with you?",
@@ -93,7 +93,7 @@ export const faqs = [
   {
     question: "How does society redevelopment advisory work?",
     answer:
-      "We start with a consultation on your society’s stage, plot realities and owner questions. Then we outline next steps and, if relevant, introduce builder options — without forcing a decision.",
+      "We start with a consultation on your society’s stage, plot realities and owner questions. Then we outline next steps and, if relevant, introduce builder options, without forcing a decision.",
   },
   {
     question: "How fast can I schedule a site visit?",
@@ -105,7 +105,7 @@ export const faqs = [
 export const blogs = [
   {
     slug: "mira-road-vs-dahisar-vs-bhayandar-2026",
-    title: "Mira Road vs Dahisar vs Bhayandar — where should you buy in 2026?",
+    title: "Mira Road vs Dahisar vs Bhayandar: where should you buy in 2026?",
     excerpt:
       "A practical comparison of budgets, commute, society stock and rental demand across the three localities we know best.",
     category: "Locality guide",
@@ -113,24 +113,24 @@ export const blogs = [
     image: img.blogCompare,
     content: [
       "If you are shortlisting Western suburb homes, the choice often collapses to Dahisar, Mira Road and Bhayandar. Each rewards a different buyer profile.",
-      "Mira Road East offers dense society inventory and strong rental absorption — ideal for first homes and investors who want liquidity.",
+      "Mira Road East offers dense society inventory and strong rental absorption, ideal for first homes and investors who want liquidity.",
       "Dahisar appeals to buyers who want municipal-limit familiarity, WEH access, and a mix of older plus upgraded stock. Redevelopment conversations are more common in ageing societies.",
       "Bhayandar frequently wins on carpet-for-budget, especially for growing families, with newer amenity-led towers and practical commercial demand.",
-      "The right answer depends on commute, school belt, and whether you prioritise resale liquidity or space. Tell us your constraints — we’ll map societies accordingly.",
+      "The right answer depends on commute, school belt, and whether you prioritise resale liquidity or space. Tell us your constraints, we’ll map societies accordingly.",
     ],
   },
   {
     slug: "documents-checklist-resale-flat-mumbai",
     title: "Documents checklist for buying a resale flat in Mumbai suburbs",
     excerpt:
-      "Title chain, society NOC, occupancy certificate and more — a plain-English starter list before you pay token.",
+      "Title chain, society NOC, occupancy certificate and more, a plain-English starter list before you pay token.",
     category: "Buyer guide",
     date: "2026-08-28",
     image: img.blogDocs,
     content: [
       "Resale purchases move smoothly when documents are reviewed early. Your advocate should lead, but knowing the basics helps you ask better questions.",
       "Typically expect: title documents / previous agreements, share certificate & society records, occupancy certificate where applicable, property tax receipts, and NOCs required for transfer.",
-      "For loan cases, your bank’s legal and technical valuation adds another layer — build that timeline into your negotiation.",
+      "For loan cases, your bank’s legal and technical valuation adds another layer. Build that timeline into your negotiation.",
       "We help coordinate what sellers usually need ready so visits convert into serious offers faster.",
     ],
   },
@@ -138,13 +138,13 @@ export const blogs = [
     slug: "redevelopment-basics-for-society-owners",
     title: "Redevelopment basics for society owners in Mira Road & Dahisar",
     excerpt:
-      "What committees should clarify before inviting builder presentations — consent, corpus, carpet and timelines.",
+      "What committees should clarify before inviting builder presentations: consent, corpus, carpet and timelines.",
     category: "Redevelopment",
     date: "2026-07-20",
     image: img.redevelopment,
     content: [
       "Redevelopment is a multi-year journey. Owners should align on goals: extra carpet, corpus, rent during construction, and quality of the incoming developer.",
-      "Committees benefit from a clear process: feasibility mindset, member education, professional advice, then shortlisting — not the other way around.",
+      "Committees benefit from a clear process: feasibility mindset, member education, professional advice, then shortlisting, not the other way around.",
       "DisplayAvenue Realty supports early-stage consultations so societies ask sharper questions before signing anything.",
     ],
   },
@@ -154,7 +154,7 @@ export const team = [
   {
     name: "DisplayAvenue Desk",
     role: "Local property advisors",
-    bio: "Based in Mira Road East — helping families and businesses across Dahisar, Mira Road and Bhayandar.",
+    bio: "Based in Mira Road East, helping families and businesses across Dahisar, Mira Road and Bhayandar.",
     image: img.teamOffice,
   },
 ];

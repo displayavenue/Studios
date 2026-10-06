@@ -18,7 +18,7 @@ export const services: Service[] = [
     title: "Buy residential property",
     short: "Shortlists matched to budget, society and commute.",
     description:
-      "From 1BHK starter homes to family 3BHKs across Dahisar, Mira Road and Bhayandar — we verify listings, arrange visits and support negotiation through documentation.",
+      "From 1BHK starter homes to family 3BHKs across Dahisar, Mira Road and Bhayandar, we verify listings, arrange visits and support negotiation through documentation.",
     image: img.apartmentModern,
     bullets: [
       "Curated society shortlists",
@@ -86,7 +86,7 @@ export const services: Service[] = [
     title: "Society redevelopment advisory",
     short: "Owner-first guidance for ageing societies.",
     description:
-      "We help societies understand the redevelopment journey — feasibility conversations, builder shortlists, and owner questions answered in plain language.",
+      "We help societies understand the redevelopment journey, feasibility conversations, builder shortlists, and owner questions answered in plain language.",
     image: img.redevelopment,
     bullets: [
       "Society consultation",
@@ -103,7 +103,7 @@ export const services: Service[] = [
     title: "Free property valuation",
     short: "Know your number before you list or negotiate.",
     description:
-      "Local comparable-based valuation for flats and shops in our core localities — a fast lead-in to a confident sale or purchase.",
+      "Local comparable-based valuation for flats and shops in our core localities, a fast lead-in to a confident sale or purchase.",
     image: img.valuation,
     bullets: [
       "Local comps",

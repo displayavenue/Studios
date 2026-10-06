@@ -113,7 +113,7 @@ export function InquiryForm({
         {loading ? "Sending…" : submitLabel}
       </button>
       <p className="form-note">
-        Prefer faster? WhatsApp us — we usually reply quicker there.
+        Prefer faster? WhatsApp us, we usually reply quicker there.
       </p>
     </form>
   );

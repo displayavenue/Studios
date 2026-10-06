@@ -22,7 +22,7 @@ export const localities: Locality[] = [
     shortName: "Mira Road",
     tagline: "Family suburbs, strong rental demand, growing commercial strips.",
     summary:
-      "Mira Road East remains one of Western Mumbai’s most active residential markets — societies near Kanakia, Beverly Park, and station corridors see steady end-user and investor interest.",
+      "Mira Road East remains one of Western Mumbai’s most active residential markets, societies near Kanakia, Beverly Park, and station corridors see steady end-user and investor interest.",
     image: img.miraRoadFeel,
     highlights: [
       "Dense society inventory (1–3 BHK)",
@@ -47,7 +47,7 @@ export const localities: Locality[] = [
     shortName: "Dahisar",
     tagline: "Gateway suburb with established societies and WEH access.",
     summary:
-      "Dahisar East & West offer a mix of older societies and upgraded inventory — preferred by buyers who want Mumbai municipal limits feel with strong Borivali connectivity.",
+      "Dahisar East & West offer a mix of older societies and upgraded inventory, preferred by buyers who want Mumbai municipal limits feel with strong Borivali connectivity.",
     image: img.societyExterior,
     highlights: [
       "East–West pockets for different budgets",

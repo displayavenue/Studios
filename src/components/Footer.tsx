@@ -39,8 +39,8 @@ export function Footer() {
             </span>
           </Link>
           <p>
-            Local property advisors for Dahisar, Mira Road and Bhayandar —
-            residential, commercial and redevelopment support with clear
+            Local property advisors for Dahisar, Mira Road and Bhayandar.
+            Residential, commercial and redevelopment support with clear
             communication.
           </p>
           <div className="footer-social">

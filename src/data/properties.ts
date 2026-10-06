@@ -164,7 +164,7 @@ export const properties: Property[] = [
     highlights: ["Ready furniture", "High floor view", "Power backup"],
     amenities: ["Gym", "Pool", "Clubhouse", "Security", "Visitor parking"],
     description:
-      "Move-in ready 2BHK with appliances — suited for relocating families and corporate transfers.",
+      "Move-in ready 2BHK with appliances, suited for relocating families and corporate transfers.",
     nearby: ["Mira-Bhayandar Road", "Malls & multiplex", "Hospitals"],
     images: propertyGallery.flatA,
     featured: true,

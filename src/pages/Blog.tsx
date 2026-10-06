@@ -17,7 +17,7 @@ export function Blog() {
         <div className="container page-hero__inner">
           <span className="eyebrow">Insights</span>
           <h1>Guides for local decisions</h1>
-          <p>Practical notes from the ground — not generic city-wide fluff.</p>
+          <p>Practical notes from the ground, not generic city-wide fluff.</p>
         </div>
       </section>
       <section className="section">

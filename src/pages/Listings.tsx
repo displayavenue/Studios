@@ -124,7 +124,7 @@ function ListingsPage({
           ) : (
             <div className="empty-state">
               <h3>No matches right now</h3>
-              <p>WhatsApp us your brief — we often have off-market options.</p>
+              <p>WhatsApp us your brief, we often have off-market options.</p>
               <Link className="btn btn--brass" to="/contact">
                 Contact us
               </Link>

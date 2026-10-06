@@ -1,5 +1,5 @@
 # DisplayAvenue Realty
-Website for **DisplayAvenue Realty** — buy, sell, rent, commercial and redevelopment across **Dahisar, Mira Road & Bhayandar**.
+Website for **DisplayAvenue Realty**, buy, sell, rent, commercial and redevelopment across **Dahisar, Mira Road & Bhayandar**.
 
 ## Stack
 
