@@ -1,0 +1,86 @@
+{
+  "header": [
+    {
+      "id": "h-shop",
+      "label": "Shop",
+      "href": "/shop/",
+      "order": 1
+    },
+    {
+      "id": "h-brands",
+      "label": "Brands",
+      "href": "/brands/",
+      "order": 2
+    },
+    {
+      "id": "h-doctors",
+      "label": "Doctors",
+      "href": "/doctors/",
+      "order": 3
+    },
+    {
+      "id": "h-health",
+      "label": "Health library",
+      "href": "/health/",
+      "order": 4
+    }
+  ],
+  "footer": [
+    {
+      "id": "f-about",
+      "label": "About",
+      "href": "/p/about/",
+      "order": 1
+    },
+    {
+      "id": "f-contact",
+      "label": "Contact",
+      "href": "/p/contact/",
+      "order": 2
+    },
+    {
+      "id": "f-shipping",
+      "label": "Shipping",
+      "href": "/shipping-policy/",
+      "order": 3
+    },
+    {
+      "id": "f-returns",
+      "label": "Returns",
+      "href": "/return-policy/",
+      "order": 4
+    }
+  ],
+  "mobile": [
+    {
+      "id": "m-home",
+      "label": "Home",
+      "href": "/",
+      "order": 1
+    },
+    {
+      "id": "m-shop",
+      "label": "Shop",
+      "href": "/shop/",
+      "order": 2
+    },
+    {
+      "id": "m-brands",
+      "label": "Brands",
+      "href": "/brands/",
+      "order": 3
+    },
+    {
+      "id": "m-cart",
+      "label": "Cart",
+      "href": "/cart/",
+      "order": 4
+    },
+    {
+      "id": "m-account",
+      "label": "Account",
+      "href": "/login/",
+      "order": 5
+    }
+  ]
+}
