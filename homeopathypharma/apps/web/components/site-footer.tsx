@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_CONTACT } from "@/lib/content/site-contact";
 
 const trustLinks = [
   { href: "/legal/privacy", label: "Privacy policy" },
@@ -43,6 +44,16 @@ export function SiteFooter() {
         <p style={{ margin: 0, fontSize: "var(--hp-text-sm)", lineHeight: "var(--hp-leading-relaxed)" }}>
           Educational resources and pharmacy services for thoughtful homeopathic care. Not a substitute for
           professional medical advice.
+        </p>
+        <p style={{ margin: "var(--hp-space-3) 0 0", fontSize: "var(--hp-text-sm)" }}>
+          Call{" "}
+          <a
+            className="hp-focus-ring"
+            href={`tel:${SITE_CONTACT.phoneTel}`}
+            style={{ color: "var(--hp-color-sage-100)", fontWeight: 650 }}
+          >
+            {SITE_CONTACT.phoneDisplay}
+          </a>
         </p>
       </div>
 

@@ -4,6 +4,7 @@ import { buildOrganizationJsonLd, buildWebSiteJsonLd, serializeJsonLd } from "@h
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WebAppShell } from "@/components/web-app-shell";
+import { SITE_CONTACT } from "@/lib/content/site-contact";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -49,6 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       url: siteUrl,
       logoUrl: `${siteUrl}/brand/logo.svg`,
       description: "Homeopathic pharmacy and healthcare education platform.",
+      contactEmail: SITE_CONTACT.email,
+      contactPhone: SITE_CONTACT.phoneTel,
     }),
   );
   const siteJsonLd = serializeJsonLd(

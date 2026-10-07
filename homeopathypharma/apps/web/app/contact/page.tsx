@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Button } from "@homeopathypharma/ui";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
+import { SITE_CONTACT } from "@/lib/content/site-contact";
 
 export const metadata: Metadata = buildPageMetadata(
   "Contact us",
@@ -14,9 +15,15 @@ export default function Page() {
     <ContentPage title="Contact us" description="Reach our support and editorial teams." path="/contact">
       <ul className="detail-meta">
         <li>
+          <strong>Phone</strong>
+          <a className="hp-link" href={`tel:${SITE_CONTACT.phoneTel}`}>
+            {SITE_CONTACT.phoneDisplay}
+          </a>
+        </li>
+        <li>
           <strong>Email</strong>
-          <a className="hp-link" href="mailto:support@homeopathypharma.com">
-            support@homeopathypharma.com
+          <a className="hp-link" href={`mailto:${SITE_CONTACT.email}`}>
+            {SITE_CONTACT.email}
           </a>
         </li>
         <li>
@@ -33,7 +40,7 @@ export default function Page() {
         </li>
         <li>
           <strong>Hours</strong>
-          <span>Mon–Sat, 10:00–19:00 IST</span>
+          <span>{SITE_CONTACT.hours}</span>
         </li>
       </ul>
 

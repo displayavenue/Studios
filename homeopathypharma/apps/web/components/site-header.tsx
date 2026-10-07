@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HOMEPAGE } from "@/lib/content/homepage";
+import { SITE_CONTACT } from "@/lib/content/site-contact";
 
 const categoryNav = [
   { href: "/shop/", label: "Medicines" },
@@ -42,6 +43,9 @@ export function SiteHeader() {
         </form>
 
         <div className="mg-header__actions">
+          <a href={`tel:${SITE_CONTACT.phoneTel}`} className="mg-header__link hp-focus-ring">
+            {SITE_CONTACT.phoneDisplay}
+          </a>
           <Link href="/shop/offers/" className="mg-header__link hp-focus-ring">
             Offers
           </Link>

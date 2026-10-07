@@ -25,8 +25,16 @@ export function buildOrganizationJsonLd(input: OrganizationInput): JsonLdDocumen
     logo: input.logoUrl,
     description: input.description,
     ...(input.sameAs?.length ? { sameAs: input.sameAs } : {}),
-    ...(input.contactEmail
-      ? { contactPoint: { "@type": "ContactPoint", email: input.contactEmail, contactType: "customer support" } }
+    ...(input.contactEmail || input.contactPhone
+      ? {
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            ...(input.contactEmail ? { email: input.contactEmail } : {}),
+            ...(input.contactPhone ? { telephone: input.contactPhone } : {}),
+            availableLanguage: ["English", "Hindi"],
+          },
+        }
       : {}),
   };
 }

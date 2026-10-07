@@ -124,9 +124,33 @@ export function brandImageSrc(slug: string): string {
   return BRAND_IMAGES[slug] ?? "/images/brands/brand-sbl.png";
 }
 
-export function doctorAvatarSrc(fullName: string): string {
-  const femaleHints = /\b(aisha|ananya|aditi|priya|neha|riya|sara|shruti|meera|kavya|isha|pooja|divya|nisha|swati|sonali|aarti|aarohi|aanya)\b/i;
-  return femaleHints.test(fullName) ? "/images/doctors/doctor-female.png" : "/images/doctors/doctor-male.png";
+const DOCTOR_AVATARS = [
+  "/images/doctors/doctor-01.png",
+  "/images/doctors/doctor-02.png",
+  "/images/doctors/doctor-03.png",
+  "/images/doctors/doctor-04.png",
+  "/images/doctors/doctor-05.png",
+  "/images/doctors/doctor-06.png",
+  "/images/doctors/doctor-07.png",
+  "/images/doctors/doctor-08.png",
+  "/images/doctors/doctor-09.png",
+  "/images/doctors/doctor-10.png",
+  "/images/doctors/doctor-11.png",
+  "/images/doctors/doctor-12.png",
+] as const;
+
+function hashKey(input: string): number {
+  let h = 0;
+  for (let i = 0; i < input.length; i += 1) {
+    h = (h * 31 + input.charCodeAt(i)) >>> 0;
+  }
+  return h;
+}
+
+/** Distinct portrait per doctor — stable hash of slug/name into a 12-image pool. */
+export function doctorAvatarSrc(fullNameOrSlug: string, slug?: string): string {
+  const key = (slug || fullNameOrSlug).toLowerCase().trim();
+  return DOCTOR_AVATARS[hashKey(key) % DOCTOR_AVATARS.length]!;
 }
 
 /** @deprecated Use doctorAvatarSrc */

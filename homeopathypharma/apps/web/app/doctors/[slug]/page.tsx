@@ -4,6 +4,7 @@ import { Button } from "@homeopathypharma/ui";
 import { buildPageMetadata, ContentPage } from "@/components/content-page";
 import { getDoctorBySlug, listAllDoctorSlugs } from "@/lib/content/doctors";
 import { doctorAvatarSrc } from "@/lib/content/images";
+import { SITE_CONTACT } from "@/lib/content/site-contact";
 import { toParams } from "@/lib/static-params";
 
 export function generateStaticParams() {
@@ -52,7 +53,7 @@ export default async function DoctorProfilePage({ params }: DoctorProfilePagePro
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={doctorAvatarSrc(doctor.fullName)}
+        src={doctorAvatarSrc(doctor.fullName, doctor.slug)}
         alt=""
         width={160}
         height={160}
@@ -107,6 +108,9 @@ export default async function DoctorProfilePage({ params }: DoctorProfilePagePro
         <Link href={`/consult/book/${doctor.slug}/`}>
           <Button variant="accent">Request consultation</Button>
         </Link>
+        <a href={`tel:${SITE_CONTACT.phoneTel}`}>
+          <Button variant="secondary">Call {SITE_CONTACT.phoneDisplay}</Button>
+        </a>
         <Link href="/doctors/city/mumbai/">
           <Button variant="secondary">More Mumbai doctors</Button>
         </Link>

@@ -8,6 +8,7 @@ import { DOCTORS } from "@/lib/content/doctors";
 import { HOMEPAGE } from "@/lib/content/homepage";
 import { brandImageSrc, categoryImageSrc } from "@/lib/content/images";
 import { PRODUCTS } from "@/lib/content/products";
+import { SITE_CONTACT } from "@/lib/content/site-contact";
 
 export default function HomePage() {
   const bestsellers = PRODUCTS.filter((p) =>
@@ -87,12 +88,25 @@ export default function HomePage() {
               {HOMEPAGE.rails.consultTitle}
             </h2>
             <p>{HOMEPAGE.rails.consultBody}</p>
+            <p style={{ margin: "0.65rem 0 0" }}>
+              Call{" "}
+              <a href={`tel:${SITE_CONTACT.phoneTel}`} className="hp-link" style={{ color: "#fff", fontWeight: 700 }}>
+                {SITE_CONTACT.phoneDisplay}
+              </a>
+            </p>
           </div>
-          <Link href="/doctors/city/mumbai/">
-            <Button variant="accent" size="lg">
-              Browse Mumbai doctors
-            </Button>
-          </Link>
+          <div style={{ display: "grid", gap: "0.65rem" }}>
+            <Link href="/doctors/city/mumbai/">
+              <Button variant="accent" size="lg">
+                Browse Mumbai doctors
+              </Button>
+            </Link>
+            <a href={`tel:${SITE_CONTACT.phoneTel}`}>
+              <Button variant="secondary" size="lg">
+                Call now
+              </Button>
+            </a>
+          </div>
         </section>
 
         <section className="home-section" aria-labelledby="offers-heading">

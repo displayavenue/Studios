@@ -25,7 +25,7 @@ export function DoctorGrid({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="doctor-card__avatar"
-              src={doctorAvatarSrc(doctor.fullName)}
+              src={doctorAvatarSrc(doctor.fullName, doctor.slug)}
               alt=""
               width={96}
               height={96}
