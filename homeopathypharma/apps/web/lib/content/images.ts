@@ -147,7 +147,7 @@ function hashKey(input: string): number {
   return h;
 }
 
-/** Distinct portrait per doctor — stable hash of slug/name into a 12-image pool. */
+/** Professional doctor icon per listing — stable hash of slug/name into a 12-icon pool. */
 export function doctorAvatarSrc(fullNameOrSlug: string, slug?: string): string {
   const key = (slug || fullNameOrSlug).toLowerCase().trim();
   return DOCTOR_AVATARS[hashKey(key) % DOCTOR_AVATARS.length]!;
