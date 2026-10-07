@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Input, Label } from "@homeopathypharma/ui";
 import { loginAdmin } from "@/lib/api";
 
-export default function AdminLoginPage() {
+function LoginForm() {
   const router = useRouter();
-  const [mfaRequired, setMfaRequired] = useState(false);
+  const search = useSearchParams();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -16,22 +16,15 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError(null);
     const form = new FormData(e.currentTarget);
-    const result = await loginAdmin(
-      String(form.get("email")),
-      String(form.get("password")),
-      mfaRequired ? String(form.get("mfaCode")) : undefined,
-    );
+    const result = await loginAdmin(String(form.get("email")), String(form.get("password")));
     setLoading(false);
 
     if (result.ok) {
-      router.push("/dashboard");
+      router.push(search.get("next") || "/dashboard");
+      router.refresh();
       return;
     }
-    if (result.mfaRequired) {
-      setMfaRequired(true);
-      return;
-    }
-    setError("Sign-in failed. Check your credentials and try again.");
+    setError("Sign-in failed. Use the admin password (default: admin123).");
   }
 
   return (
@@ -40,14 +33,22 @@ export default function AdminLoginPage() {
         Admin sign in
       </h1>
       <p style={{ color: "var(--hp-color-text-muted)", fontSize: "var(--hp-text-sm)" }}>
-        Authorised staff only. Enter your MFA code when prompted.
+        WordPress-style CMS for homepage, pages, products, media, menus, and settings. Set{" "}
+        <code>ADMIN_PASSWORD</code> in production.
       </p>
       <form onSubmit={onSubmit} style={{ display: "grid", gap: "var(--hp-space-4)", marginTop: "var(--hp-space-6)" }}>
         <div>
           <Label htmlFor="email" required>
             Email
           </Label>
-          <Input id="email" name="email" type="email" autoComplete="username" required />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="username"
+            defaultValue="admin@homeopathypharma.com"
+            required
+          />
         </div>
         <div>
           <Label htmlFor="password" required>
@@ -55,14 +56,6 @@ export default function AdminLoginPage() {
           </Label>
           <Input id="password" name="password" type="password" autoComplete="current-password" required />
         </div>
-        {mfaRequired ? (
-          <div>
-            <Label htmlFor="mfaCode" required>
-              MFA code
-            </Label>
-            <Input id="mfaCode" name="mfaCode" inputMode="numeric" autoComplete="one-time-code" required />
-          </div>
-        ) : null}
         {error ? (
           <p role="alert" style={{ color: "var(--hp-color-error)", fontSize: "var(--hp-text-sm)", margin: 0 }}>
             {error}
@@ -73,5 +66,13 @@ export default function AdminLoginPage() {
         </Button>
       </form>
     </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={<div className="login-card">Loading…</div>}>
+      <LoginForm />
+    </Suspense>
   );
 }

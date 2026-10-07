@@ -1,17 +1,23 @@
 import Link from "next/link";
 import { HOMEPAGE } from "@/lib/content/homepage";
+import { MENUS } from "@/lib/content/menus";
 import { SITE_CONTACT } from "@/lib/content/site-contact";
 
-const categoryNav = [
-  { href: "/shop/", label: "Medicines" },
-  { href: "/shop/categories/", label: "Categories" },
-  { href: "/brands/sbl/", label: "SBL" },
-  { href: "/brands/dr-reckeweg/", label: "Reckeweg" },
-  { href: "/brands/schwabe/", label: "Schwabe" },
-  { href: "/consult/", label: "Consult doctors" },
-  { href: "/shop/offers/", label: "Offers" },
-  { href: "/health/", label: "Health library" },
-];
+const categoryNav =
+  MENUS.header?.length > 0
+    ? [...MENUS.header]
+        .sort((a, b) => a.order - b.order)
+        .map((item) => ({ href: item.href, label: item.label }))
+    : [
+        { href: "/shop/", label: "Medicines" },
+        { href: "/shop/categories/", label: "Categories" },
+        { href: "/brands/sbl/", label: "SBL" },
+        { href: "/brands/dr-reckeweg/", label: "Reckeweg" },
+        { href: "/brands/schwabe/", label: "Schwabe" },
+        { href: "/consult/", label: "Consult doctors" },
+        { href: "/shop/offers/", label: "Offers" },
+        { href: "/health/", label: "Health library" },
+      ];
 
 export function SiteHeader() {
   return (

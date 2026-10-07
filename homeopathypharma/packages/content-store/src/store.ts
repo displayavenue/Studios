@@ -78,3 +78,5 @@ export function getCmsSummary() {
     doctorOverrideCount: Object.keys(getDoctorOverrides()).length,
   };
 }
+
+export { ensureCmsDefaults } from "./cms-entities.js";

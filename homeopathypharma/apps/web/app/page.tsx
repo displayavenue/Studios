@@ -6,7 +6,7 @@ import { ProductGrid } from "@/components/product-grid";
 import { featuredBrands } from "@/lib/content/brands";
 import { DOCTORS } from "@/lib/content/doctors";
 import { HOMEPAGE } from "@/lib/content/homepage";
-import { brandImageSrc, categoryImageSrc } from "@/lib/content/images";
+import { brandImageSrc, categoryImageSrc, HOME_BANNERS } from "@/lib/content/images";
 import { PRODUCTS } from "@/lib/content/products";
 import { SITE_CONTACT } from "@/lib/content/site-contact";
 
@@ -20,9 +20,28 @@ export default function HomePage() {
   const doctors = DOCTORS.slice(0, 8);
   const majorBrands = featuredBrands();
 
+  const bannerSlides =
+    HOMEPAGE.banners?.length > 0
+      ? HOMEPAGE.banners.map((b, i) => ({
+          id: b.id,
+          image: b.imageUrl || HOME_BANNERS[i % HOME_BANNERS.length]!.image,
+          title: b.title,
+          subtitle: b.subtitle,
+          ctaLabel: b.ctaLabel,
+          ctaHref: b.ctaHref,
+        }))
+      : HOME_BANNERS.map((b) => ({
+          id: b.id,
+          image: b.image,
+          title: b.title,
+          subtitle: b.subtitle,
+          ctaLabel: b.ctaLabel,
+          ctaHref: b.ctaHref,
+        }));
+
   return (
     <div className="home home--mg">
-      <HomeBannerCarousel />
+      <HomeBannerCarousel slides={bannerSlides} />
 
       <div className="home-shell">
         <section className="home-section" aria-labelledby="concerns-heading">

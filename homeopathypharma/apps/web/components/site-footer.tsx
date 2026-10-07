@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MENUS } from "@/lib/content/menus";
 import { SITE_CONTACT } from "@/lib/content/site-contact";
 
 const trustLinks = [
@@ -9,17 +10,18 @@ const trustLinks = [
   { href: "/return-policy", label: "Return policy" },
 ];
 
-const exploreLinks = [
-  { href: "/shop", label: "Shop" },
-  { href: "/remedies", label: "Remedies" },
-  { href: "/brands", label: "Brands" },
-  { href: "/bundles", label: "Bundles" },
-  { href: "/consult", label: "Consult" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/health", label: "Health knowledge hub" },
-  { href: "/doctors", label: "Find a doctor" },
-  { href: "/pets", label: "Pet care" },
-];
+const exploreLinks =
+  MENUS.footer?.length > 0
+    ? [...MENUS.footer]
+        .sort((a, b) => a.order - b.order)
+        .map((item) => ({ href: item.href, label: item.label }))
+    : [
+        { href: "/shop", label: "Shop" },
+        { href: "/brands", label: "Brands" },
+        { href: "/consult", label: "Consult" },
+        { href: "/health", label: "Health knowledge hub" },
+        { href: "/doctors", label: "Find a doctor" },
+      ];
 
 export function SiteFooter() {
   return (

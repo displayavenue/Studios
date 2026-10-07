@@ -15,33 +15,48 @@ interface NavGroup {
   items: NavItem[];
 }
 
-/** Role-based menu — visibility is UI-only; API enforces authorization. */
+/** WordPress-style CMS + operations nav. API enforces authorization. */
 const navigation: NavGroup[] = [
   {
     title: "Command",
     items: [{ href: "/dashboard", label: "Dashboard" }],
   },
   {
+    title: "Content",
+    items: [
+      { href: "/homepage", label: "Homepage", roles: ["super-admin", "catalog-manager"] },
+      { href: "/pages", label: "Pages", roles: ["super-admin", "catalog-manager"] },
+      { href: "/media", label: "Media library", roles: ["super-admin", "catalog-manager"] },
+      { href: "/menus", label: "Menus", roles: ["super-admin", "catalog-manager"] },
+      { href: "/settings", label: "Site settings", roles: ["super-admin", "catalog-manager"] },
+    ],
+  },
+  {
+    title: "Catalogue",
+    items: [
+      { href: "/catalog", label: "Products", roles: ["super-admin", "catalog-manager"] },
+      { href: "/brands", label: "Brands", roles: ["super-admin", "catalog-manager"] },
+      { href: "/doctors", label: "Doctors", roles: ["super-admin", "medical-reviewer", "catalog-manager"] },
+      { href: "/inventory", label: "Inventory", roles: ["super-admin", "catalog-manager"] },
+    ],
+  },
+  {
+    title: "Commerce",
+    items: [
+      { href: "/orders", label: "Orders", roles: ["super-admin", "support"] },
+      { href: "/shipments", label: "Shipments", roles: ["super-admin", "support"] },
+      { href: "/coupons", label: "Coupons", roles: ["super-admin", "catalog-manager"] },
+    ],
+  },
+  {
     title: "Queues",
     items: [
       { href: "/queues/doctor-verification", label: "Doctor verification", roles: ["super-admin", "medical-reviewer"] },
-      { href: "/queues/content-review", label: "Content medical review", roles: ["super-admin", "medical-reviewer"] },
+      { href: "/queues/content-review", label: "Content review", roles: ["super-admin", "medical-reviewer"] },
       { href: "/queues/product-publish", label: "Product publish", roles: ["super-admin", "catalog-manager"] },
       { href: "/queues/review-moderation", label: "Review moderation", roles: ["super-admin", "support"] },
       { href: "/queues/refunds", label: "Refunds", roles: ["super-admin", "support"] },
       { href: "/queues/payouts", label: "Payouts", roles: ["super-admin"] },
-    ],
-  },
-  {
-    title: "Operations",
-    items: [
-      { href: "/homepage", label: "Homepage CMS", roles: ["super-admin", "catalog-manager"] },
-      { href: "/catalog", label: "Catalog", roles: ["super-admin", "catalog-manager"] },
-      { href: "/doctors", label: "Doctors", roles: ["super-admin", "medical-reviewer", "catalog-manager"] },
-      { href: "/inventory", label: "Inventory", roles: ["super-admin", "catalog-manager"] },
-      { href: "/orders", label: "Orders", roles: ["super-admin", "support"] },
-      { href: "/shipments", label: "Shipments", roles: ["super-admin", "support"] },
-      { href: "/coupons", label: "Coupons", roles: ["super-admin", "catalog-manager"] },
     ],
   },
   {
@@ -90,7 +105,7 @@ export function AdminNav({ roles = ["super-admin"] }: AdminNavProps) {
           </div>
         );
       })}
-      <p className="role-note">Menu filtered for demo roles. API enforces access.</p>
+      <p className="role-note">WordPress-style CMS — edits save to data/cms. Rebuild storefront to publish on Hostinger.</p>
     </nav>
   );
 }

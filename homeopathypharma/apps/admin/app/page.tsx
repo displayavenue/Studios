@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
-import { getAdminSession } from "@/lib/api";
+import { readAdminSession } from "@/lib/cms-auth";
 
 export default async function AdminIndexPage() {
-  const session = await getAdminSession();
+  const session = await readAdminSession();
   redirect(session ? "/dashboard" : "/login");
 }

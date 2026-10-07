@@ -1,5 +1,5 @@
 # HomeopathyPharma — Hostinger Apache / LiteSpeed
-# Static Next.js export with cache cutover from WordPress
+# Static Next.js export with PHP CMS backend
 
 DirectoryIndex index.php index.html
 Options -Indexes
@@ -23,6 +23,11 @@ RewriteRule ^ https://homeopathypharma.com%{REQUEST_URI} [L,R=301]
 
 # Homepage via PHP so no-cache headers are always set
 RewriteRule ^$ index.php [L]
+
+# CMS pages — dynamic PHP when no static export exists
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^p/([^/]+)/?$ /p/cms.php?slug=$1 [L,QSA]
 
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"

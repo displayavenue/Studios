@@ -25,6 +25,24 @@ pnpm --filter @homeopathypharma/web build
 OUT="$ROOT/apps/web/out"
 test -f "$OUT/index.html" || { echo "Missing $OUT/index.html"; exit 1; }
 
+echo "==> Syncing CMS data + PHP backend into static export"
+mkdir -p "$OUT/cms-data" "$OUT/images/uploads" "$OUT/backend" "$OUT/p"
+cp -f "$ROOT/data/cms/"*.json "$OUT/cms-data/" 2>/dev/null || true
+# Ensure PHP backend from public/ is present (Next export copies public/, but force-refresh)
+if [ -d "$ROOT/apps/web/public/backend" ]; then
+  cp -a "$ROOT/apps/web/public/backend/." "$OUT/backend/"
+fi
+if [ -f "$ROOT/apps/web/public/p/cms.php" ]; then
+  mkdir -p "$OUT/p"
+  cp -f "$ROOT/apps/web/public/p/cms.php" "$OUT/p/cms.php"
+fi
+cp -f "$ROOT/apps/web/public/index.php" "$OUT/index.php"
+cp -f "$ROOT/apps/web/public/.htaccess" "$OUT/.htaccess"
+# Placeholder so uploads dir deploys
+touch "$OUT/images/uploads/.gitkeep"
+test -f "$OUT/backend/index.php" && echo "PHP admin ready at /backend/"
+test -f "$OUT/cms-data/homepage.json" && echo "CMS data synced"
+
 STAMP="$(date +%Y%m%d-%H%M%S)"
 TAR="/tmp/hp-web-${STAMP}.tar.gz"
 echo "==> Packing static export → $TAR"
@@ -42,4 +60,4 @@ sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
   "tar -xzf backups/hp-web-latest.tar.gz -C $DOC && find $DOC -type d -exec chmod 755 {} +; find $DOC -type f -exec chmod 644 {} +; test -f $DOC/index.html && echo DEPLOY_OK"
 
 rm -f "$TAR"
-echo "==> Done. Visit https://homeopathypharma.com"
+echo "==> Done. Site: https://homeopathypharma.com  Admin: https://homeopathypharma.com/backend/"
