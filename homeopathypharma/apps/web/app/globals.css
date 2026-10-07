@@ -755,7 +755,11 @@ body::before {
 }
 
 .doctor-card__avatar {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  background: #edf5f2;
+  padding: 0.35rem;
+  box-sizing: border-box;
 }
 
 .product-card__badge {

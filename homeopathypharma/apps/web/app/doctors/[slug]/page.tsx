@@ -57,7 +57,16 @@ export default async function DoctorProfilePage({ params }: DoctorProfilePagePro
         alt=""
         width={160}
         height={160}
-        style={{ width: "8rem", height: "8rem", borderRadius: "1rem", objectFit: "cover", marginBottom: "1rem" }}
+        style={{
+          width: "8rem",
+          height: "8rem",
+          borderRadius: "1rem",
+          objectFit: "contain",
+          background: "#edf5f2",
+          padding: "0.5rem",
+          boxSizing: "border-box",
+          marginBottom: "1rem",
+        }}
       />
       <ul className="detail-meta">
         <li>
