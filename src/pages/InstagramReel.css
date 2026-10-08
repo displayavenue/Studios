@@ -378,15 +378,19 @@
 
 .reel-toast {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 5.5rem;
   left: 50%;
-  transform: translateX(-50%) translateY(120%);
+  transform: translateX(-50%) translateY(160%);
   background: var(--black);
   color: #fff;
-  padding: 0.7rem 1.2rem;
+  padding: 0.85rem 1.35rem;
   border-radius: 999px;
-  font-size: 0.85rem;
-  z-index: 40;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  z-index: 80;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(201, 162, 39, 0.45);
   transition: transform 0.35s var(--ease);
   pointer-events: none;
 }

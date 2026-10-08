@@ -37,7 +37,19 @@ export function InstagramReel() {
 
   const copyText = async (label: string, value: string) => {
     try {
-      await navigator.clipboard.writeText(value);
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const area = document.createElement("textarea");
+        area.value = value;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        document.body.removeChild(area);
+      }
       setToast(`${label} copied`);
     } catch {
       setToast("Could not copy — select the text manually");
