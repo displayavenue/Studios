@@ -1,0 +1,332 @@
+{
+  "voice": "en-IN-NeerjaNeural",
+  "rate": "-10%",
+  "totalVisualSeconds": 1200.12,
+  "totalAudioSeconds": 1200.168,
+  "segments": [
+    {
+      "id": "01_cold_open",
+      "chapter": "Hook",
+      "title": "What your business actually needs",
+      "text": "Most businesses don't need more marketing noise. You need a system that gets you found online... turns interest into real enquiries... and turns those enquiries into paying customers.",
+      "file": "audio/segments/01_cold_open.mp3",
+      "audioDuration": 14.568,
+      "visualDuration": 20.568
+    },
+    {
+      "id": "02_brand_intro",
+      "chapter": "Who we are",
+      "title": "Meet DisplayAvenue",
+      "text": "This is DisplayAvenue. We are an AI-powered digital company based in Mumbai. We help business owners across India grow online - with clear plans, plain English, and results you can measure. We are not a one-service shop. We are not a slide-deck agency. We are your complete digital partner - strategy, websites, creatives, marketing, software, and AI - under one roof.",
+      "file": "audio/segments/02_brand_intro.mp3",
+      "audioDuration": 34.104,
+      "visualDuration": 40.104
+    },
+    {
+      "id": "03_trust_stats",
+      "chapter": "Who we are",
+      "title": "Numbers that build trust",
+      "text": "Over eight years, we have delivered more than eight hundred fifty projects for five hundred plus clients, across twenty-five plus industries. Our work has influenced over ten million leads, with an average ROI of three hundred twenty percent, and ninety-eight percent client satisfaction. That is the track record behind DisplayAvenue.",
+      "file": "audio/segments/03_trust_stats.mp3",
+      "audioDuration": 25.56,
+      "visualDuration": 31.56
+    },
+    {
+      "id": "04_360_promise",
+      "chapter": "360 Digital",
+      "title": "What 360 really means for you",
+      "text": "Here is what three-hundred-sixty degree really means for your business. We don't hand you a website and disappear. We don't run ads without a page that converts. We don't create content without a funnel to catch demand. We connect your full journey: brand, website or app, traffic, conversion, CRM follow-up, automation, creative, and reporting. One team. One plan. One accountable partner.",
+      "file": "audio/segments/04_360_promise.mp3",
+      "audioDuration": 36.84,
+      "visualDuration": 42.84
+    },
+    {
+      "id": "05_pain",
+      "chapter": "Your challenges",
+      "title": "If this sounds familiar",
+      "text": "If this sounds familiar, you are not alone. You are spending on ads, but the leads are weak. Your website looks fine, but nobody enquires. You are posting on Instagram, but it is not turning into calls. You hired three different vendors, and still don't get one clear report. DisplayAvenue was built for that exact gap. We replace scattered vendors with one growth system - explained in language a business owner can actually use.",
+      "file": "audio/segments/05_pain.mp3",
+      "audioDuration": 37.128,
+      "visualDuration": 43.128
+    },
+    {
+      "id": "06_process_intro",
+      "chapter": "How we work",
+      "title": "A clear process you can follow",
+      "text": "Here is how we work with you - simply and clearly. Four steps: Discover, Plan, Build and Launch, then Optimize and Scale.",
+      "file": "audio/segments/06_process_intro.mp3",
+      "audioDuration": 11.952,
+      "visualDuration": 17.952
+    },
+    {
+      "id": "07_discover",
+      "chapter": "How we work",
+      "title": "Step 1 - Discover",
+      "text": "First, Discover. We audit your current digital presence, your competitors, your channels, and where enquiries are leaking. No assumptions. Evidence first - so you know exactly where you stand.",
+      "file": "audio/segments/07_discover.mp3",
+      "audioDuration": 17.784,
+      "visualDuration": 23.784
+    },
+    {
+      "id": "08_plan",
+      "chapter": "How we work",
+      "title": "Step 2 - Plan",
+      "text": "Next, Plan. We define goals, messaging, tech stack, timeline, and success metrics with you. You leave the kickoff knowing exactly what success looks like for your business.",
+      "file": "audio/segments/08_plan.mp3",
+      "audioDuration": 15.696,
+      "visualDuration": 21.696
+    },
+    {
+      "id": "09_build",
+      "chapter": "How we work",
+      "title": "Step 3 - Build and Launch",
+      "text": "Then we Build and Launch. With quality checks, tracking installed correctly, and staged rollouts - so nothing breaks when real customers start arriving.",
+      "file": "audio/segments/09_build.mp3",
+      "audioDuration": 12.816,
+      "visualDuration": 18.816
+    },
+    {
+      "id": "10_optimize",
+      "chapter": "How we work",
+      "title": "Step 4 - Optimize and Scale",
+      "text": "And then the part most agencies skip: Optimize and Scale. We iterate from your data - improve conversion, cut wasted spend, and grow what already works. You get a roadmap, weekly updates, monthly performance reports, and ongoing optimization sprints.",
+      "file": "audio/segments/10_optimize.mp3",
+      "audioDuration": 22.032,
+      "visualDuration": 28.032
+    },
+    {
+      "id": "11_services_intro",
+      "chapter": "Services",
+      "title": "Everything under one roof",
+      "text": "Now, what we can do for your business. DisplayAvenue covers the full digital stack - so you don't need five different companies to grow online.",
+      "file": "audio/segments/11_services_intro.mp3",
+      "audioDuration": 12.024,
+      "visualDuration": 18.024
+    },
+    {
+      "id": "12_digital_marketing",
+      "chapter": "Services",
+      "title": "Digital marketing that brings customers",
+      "text": "Digital marketing with us is full-funnel - not random campaigns. SEO that compounds traffic and revenue over time. Local SEO so you show up on Google and Maps when buyers near you search. AI SEO and Answer Engine Optimisation - so AI assistants can find and cite your expertise. Google Ads, Meta Ads, and LinkedIn Ads - engineered for profitable demand, not just clicks. Social, content, influencers, email, automation, and reputation - orchestrated as one system that serves your sales goal.",
+      "file": "audio/segments/12_digital_marketing.mp3",
+      "audioDuration": 44.424,
+      "visualDuration": 50.424
+    },
+    {
+      "id": "13_websites",
+      "chapter": "Services",
+      "title": "Websites that win enquiries",
+      "text": "Your website is not a brochure. It is a sales asset. We build high-performance corporate sites, startup sites, and landing pages - fast, secure, SEO-ready, and designed to convert visitors into enquiries. WordPress, Webflow, Framer, Wix, Drupal - or fully custom. Whatever fits your stage, built for clarity and speed.",
+      "file": "audio/segments/13_websites.mp3",
+      "audioDuration": 30.24,
+      "visualDuration": 36.24
+    },
+    {
+      "id": "14_ecommerce",
+      "chapter": "Services",
+      "title": "Ecommerce that sells",
+      "text": "If you sell online, we build and grow ecommerce systems for you - Shopify, WooCommerce, Magento, and custom ecommerce. Store design, migrations, product systems, and conversion - so traffic turns into orders, not bounce rates. We also support marketplace growth on Amazon, Flipkart, IndiaMART, and more.",
+      "file": "audio/segments/14_ecommerce.mp3",
+      "audioDuration": 27.288,
+      "visualDuration": 33.288
+    },
+    {
+      "id": "15_branding",
+      "chapter": "Services",
+      "title": "Branding and design that builds trust",
+      "text": "Before people trust your offer, they trust your brand. We create logos, brand identity, packaging, and guidelines. UI and UX, wireframes, prototypes, and design systems. So your business looks as strong as it operates - consistent across website, ads, packaging, and product.",
+      "file": "audio/segments/15_branding.mp3",
+      "audioDuration": 26.184,
+      "visualDuration": 32.184
+    },
+    {
+      "id": "16_apps_software",
+      "chapter": "Services",
+      "title": "Apps and software that run your business",
+      "text": "When your growth needs a product, we build the product. Mobile apps on Android, iOS, Flutter, React Native, and Progressive Web Apps. CRM systems, ERP, SaaS products, and admin dashboards. Custom software, HRMS, and POS. This is how DisplayAvenue goes beyond a marketing agency - into real digital infrastructure for your company.",
+      "file": "audio/segments/16_apps_software.mp3",
+      "audioDuration": 32.136,
+      "visualDuration": 38.136
+    },
+    {
+      "id": "17_ai",
+      "chapter": "Services",
+      "title": "AI that works for your customers",
+      "text": "AI at DisplayAvenue is not a buzzword slide. We build custom chat and WhatsApp bots trained on your business - connected to your CRM and calendars. AI agents, automation, and workflows that qualify leads, answer FAQs, and follow up when your team is busy. Our AI platform also speeds research, content, quality checks, and reporting - with human judgment still in control.",
+      "file": "audio/segments/17_ai.mp3",
+      "audioDuration": 32.904,
+      "visualDuration": 38.904
+    },
+    {
+      "id": "18_cloud",
+      "chapter": "Services",
+      "title": "Cloud that stays reliable",
+      "text": "Behind every reliable digital product is solid infrastructure. We work with AWS, Azure, and Google Cloud - plus Docker, containers, and server management. Secure, scalable foundations - so your campaigns and products don't collapse when demand spikes.",
+      "file": "audio/segments/18_cloud.mp3",
+      "audioDuration": 22.848,
+      "visualDuration": 28.848
+    },
+    {
+      "id": "19_creative",
+      "chapter": "Services",
+      "title": "Creative that feeds your funnel",
+      "text": "And because growth needs storytelling: photography, videography, drone, product shoots, brand films, animation, motion graphics, and editing. Creative that feeds your ads, website, social, and sales - produced by the same company running your funnel. That is what three-hundred-sixty degree looks like.",
+      "file": "audio/segments/19_creative.mp3",
+      "audioDuration": 25.728,
+      "visualDuration": 31.728
+    },
+    {
+      "id": "20_industries",
+      "chapter": "Industries",
+      "title": "Built for your industry",
+      "text": "We have delivered across twenty-five plus industries - including manufacturing, healthcare, education, real estate, hospitality, food and beverage, ecommerce, SaaS, finance, automotive, construction, travel, fashion, jewellery, wellness, B two B services, NGOs, and startups. Whether you need lead generation, ecommerce growth, brand awareness, app installs, or revenue growth - we design the solution around your outcome, not a generic package. You can also try our free tools - ROI calculator, SEO checklist, local SEO score, and citation directory - on displayavenue.com.",
+      "file": "audio/segments/20_industries.mp3",
+      "audioDuration": 49.392,
+      "visualDuration": 55.392
+    },
+    {
+      "id": "21_cases_intro",
+      "chapter": "Results",
+      "title": "Real clients. Real growth.",
+      "text": "Let us show you what this looks like for real clients - in plain results you can understand.",
+      "file": "audio/segments/21_cases_intro.mp3",
+      "audioDuration": 6.936,
+      "visualDuration": 12.936
+    },
+    {
+      "id": "22_case_vaidraj",
+      "chapter": "Results",
+      "title": "Vaidraj Ayurvedic - SEO growth",
+      "text": "Vaidraj Ayurvedic needed organic growth that compounds. DisplayAvenue rebuilt their SEO and full-funnel execution - so search demand became consistent enquiries, not occasional traffic spikes. Their CEO, Rahul Sharma, said: DisplayAvenue rebuilt our entire digital engine. Lead quality improved and revenue followed within one quarter.",
+      "file": "audio/segments/22_case_vaidraj.mp3",
+      "audioDuration": 29.232,
+      "visualDuration": 35.232
+    },
+    {
+      "id": "23_case_bpg",
+      "chapter": "Results",
+      "title": "Bhaskar Patil Group - Google Ads",
+      "text": "For Bhaskar Patil Group, paid search had to mean pipeline - not wasted spend. We structured Google Ads around cost per acquisition, return on ad spend, and enquiry quality. Director Karan Mehta said: From website to paid media, they operate like an extension of our team - fast, accountable, and ROI-focused.",
+      "file": "audio/segments/23_case_bpg.mp3",
+      "audioDuration": 27.048,
+      "visualDuration": 33.048
+    },
+    {
+      "id": "24_case_royal",
+      "chapter": "Results",
+      "title": "Royal Mouth Fresheners - Ecommerce",
+      "text": "Royal Mouth Fresheners needed ecommerce that sells and scales. We aligned store experience, product presentation, and growth systems - so digital shelf space turned into orders.",
+      "file": "audio/segments/24_case_royal.mp3",
+      "audioDuration": 14.76,
+      "visualDuration": 20.76
+    },
+    {
+      "id": "25_case_island",
+      "chapter": "Results",
+      "title": "Island360 Adventure - Meta Ads",
+      "text": "Island360 Adventure needed social attention that becomes bookings. Meta Ads, creative, and conversion working together - not vanity reach. Founder Neha Kapoor said: The best agency partnership we have had. Clear process, creative excellence, and measurable growth.",
+      "file": "audio/segments/25_case_island.mp3",
+      "audioDuration": 24.6,
+      "visualDuration": 30.6
+    },
+    {
+      "id": "26_testimonial_rak",
+      "chapter": "Results",
+      "title": "What marketing leaders say",
+      "text": "Anita Desai, Marketing Head at RAK Ceramics, shared: Transparent reporting, sharp strategy, and an AI toolkit that actually saves our team hours every week. Brands that trust us include names like TATA, Jio, RAK Ceramics, Vaidraj, Island three sixty, Bhaskar Patil Group, and Royal Mouth Fresheners.",
+      "file": "audio/segments/26_testimonial_rak.mp3",
+      "audioDuration": 27.072,
+      "visualDuration": 33.072
+    },
+    {
+      "id": "27_why_us",
+      "chapter": "Why DisplayAvenue",
+      "title": "Why business owners stay with us",
+      "text": "Why do growing businesses choose DisplayAvenue? Because we speak plain English. Because we report what matters to you. Because strategy and execution live in one team. Because AI makes us faster - without removing accountability. And because we measure success the way owners do: enquiries, customers, and ROI. Eight plus years. Fifty plus experts. Ninety-eight percent client satisfaction. Trusted by growing businesses across India - and beyond.",
+      "file": "audio/segments/27_why_us.mp3",
+      "audioDuration": 42.72,
+      "visualDuration": 48.72
+    },
+    {
+      "id": "27b_compare",
+      "chapter": "Why DisplayAvenue",
+      "title": "Scattered vendors vs one partner",
+      "text": "Here is the client difference, simply. With scattered vendors, your website team, ads team, and creative team rarely talk. You pay more meetings, get conflicting advice, and still miss enquiries. With DisplayAvenue, one partner owns the system. Your brand, website, traffic, conversion, follow-up, and reporting stay connected. That is how you get clarity - and better ROI.",
+      "file": "audio/segments/27b_compare.mp3",
+      "audioDuration": 33.96,
+      "visualDuration": 39.96
+    },
+    {
+      "id": "27c_first30",
+      "chapter": "Getting started",
+      "title": "Your first thirty days",
+      "text": "Wondering what happens after you say yes? In the first week, we discover and audit. In week two, we finalize your plan and KPIs in plain English. Then we start building and launching - website fixes, tracking, creatives, or campaigns - based on your roadmap. By day thirty, you should see a working system taking shape: clear reporting, cleaner follow-up, and the first measurable improvements. You are never left guessing what we are doing this week.",
+      "file": "audio/segments/27c_first30.mp3",
+      "audioDuration": 38.208,
+      "visualDuration": 44.208
+    },
+    {
+      "id": "27d_packages",
+      "chapter": "Getting started",
+      "title": "Packages that match your stage",
+      "text": "You can start with a focused package - digital marketing, SEO, Google Ads, social media, website development, ecommerce, branding, or creative production - or ask for a custom plan around your goal. Every plan includes strategy, execution, reporting, and optimization. You choose the stage. We build the system.",
+      "file": "audio/segments/27d_packages.mp3",
+      "audioDuration": 28.632,
+      "visualDuration": 34.632
+    },
+    {
+      "id": "27e_tools",
+      "chapter": "Getting started",
+      "title": "Free tools before you buy",
+      "text": "Not ready to talk yet? Start with free tools on displayavenue.com. Use the ROI calculator to estimate growth potential. Use the SEO checklist to spot quick wins. Check your local SEO score and citation directory health. These tools help you understand gaps - before you invest. When you are ready, book a free growth call and we will turn those gaps into a plan.",
+      "file": "audio/segments/27e_tools.mp3",
+      "audioDuration": 32.904,
+      "visualDuration": 38.904
+    },
+    {
+      "id": "27f_objections",
+      "chapter": "Getting started",
+      "title": "Common questions owners ask",
+      "text": "Will this work for a small business? Yes - we design for your stage, not enterprise theatre. Do I need every service? No. We start with the bottleneck that is costing you customers. How do I know it is working? You get weekly updates and monthly ROI reviews in plain language. What if I already have a website? Perfect. We improve what you have, or rebuild only if needed. What if I already run ads? We fix tracking, creative, and conversion so spend becomes pipeline.",
+      "file": "audio/segments/27f_objections.mp3",
+      "audioDuration": 46.392,
+      "visualDuration": 52.392
+    },
+    {
+      "id": "27g_promise",
+      "chapter": "Trust",
+      "title": "Our promise to you",
+      "text": "Our promise is simple. We will speak clearly. We will show you the numbers that matter. We will connect your digital pieces into one system. And we will stay accountable for progress - week after week. That is how DisplayAvenue earns trust.",
+      "file": "audio/segments/27g_promise.mp3",
+      "audioDuration": 22.128,
+      "visualDuration": 28.128
+    },
+    {
+      "id": "27h_reporting",
+      "chapter": "Trust",
+      "title": "Reporting you can actually use",
+      "text": "Every month, you get a performance report in plain English. What we did. What improved. What we will do next. You will see enquiries, cost per lead, conversion, and ROI - not a pile of vanity charts. If something is not working, we say so - and we change it. That honesty is part of the partnership.",
+      "file": "audio/segments/27h_reporting.mp3",
+      "audioDuration": 29.208,
+      "visualDuration": 35.208
+    },
+    {
+      "id": "28_recap",
+      "chapter": "Next step",
+      "title": "Your 360 digital partner",
+      "text": "DisplayAvenue is your three-hundred-sixty degree digital company: marketing, websites, ecommerce, branding, apps, software, AI, cloud, and creative. One partner to get you found online... turn interest into enquiries... and grow with a clear plan.",
+      "file": "audio/segments/28_recap.mp3",
+      "audioDuration": 21.504,
+      "visualDuration": 27.504
+    },
+    {
+      "id": "29_cta",
+      "chapter": "Next step",
+      "title": "Book your free growth call",
+      "text": "If you are a business owner ready for a digital system that actually works - book a free growth call. Visit displayavenue.com. WhatsApp or call plus ninety-one, nine two two two, one two two, three three three. Email info at displayavenue dot com. DisplayAvenue. Get more customers online.",
+      "file": "audio/segments/29_cta.mp3",
+      "audioDuration": 27.168,
+      "visualDuration": 33.168
+    }
+  ]
+}

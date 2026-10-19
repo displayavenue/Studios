@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DisplayAvenue - Complete Digital Partner</title>
+  <style>
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("./assets/PlusJakartaSans-Regular.ttf") format("truetype"); font-weight: 400; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("./assets/PlusJakartaSans-SemiBold.ttf") format("truetype"); font-weight: 600; }
+    @font-face { font-family: "Plus Jakarta Sans"; src: url("./assets/PlusJakartaSans-Bold.ttf") format("truetype"); font-weight: 700; }
+    @font-face { font-family: "Sora"; src: url("./assets/Sora-SemiBold.ttf") format("truetype"); font-weight: 600; }
+    @font-face { font-family: "Sora"; src: url("./assets/Sora-Bold.ttf") format("truetype"); font-weight: 700; }
+
+    :root {
+      --navy: #0B1F3A;
+      --navy-2: #102a4d;
+      --blue: #0056ff;
+      --blue-soft: #3d7cff;
+      --sky: #e8f0ff;
+      --white: #ffffff;
+      --ink: #0f172a;
+      --muted: rgba(255,255,255,0.78);
+      --gold: #f5b942;
+      --ok: #22c55e;
+      --bad: #ef4444;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1920px; height: 1080px; overflow: hidden; cursor: none;
+      background: var(--navy); color: var(--white);
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+
+    .stage { position: relative; width: 1920px; height: 1080px; background: var(--navy); }
+
+    .bg-mesh {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(0,86,255,0.35), transparent 50%),
+        radial-gradient(ellipse at 85% 80%, rgba(61,124,255,0.22), transparent 45%),
+        linear-gradient(145deg, #071526 0%, #0B1F3A 45%, #0e2748 100%);
+    }
+    .bg-mesh::after {
+      content: ""; position: absolute; inset: -20%;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      animation: drift 40s linear infinite;
+      opacity: 0.5;
+    }
+    @keyframes drift { to { transform: translate(-64px, -64px); } }
+
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.45;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .orb.a { width: 420px; height: 420px; background: #0056ff; top: -80px; right: 120px; }
+    .orb.b { width: 320px; height: 320px; background: #3d7cff; bottom: 40px; left: 80px; animation-delay: -3s; }
+    @keyframes float { to { transform: translate(30px, -24px) scale(1.08); } }
+
+    .chrome {
+      position: absolute; z-index: 20; left: 72px; right: 72px; top: 36px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55);
+    }
+    .logo {
+      font-family: "Sora", sans-serif; font-weight: 700; font-size: 28px;
+      letter-spacing: 0; text-transform: none; color: #fff;
+    }
+    .logo span { color: #3d7cff; }
+    .chapter-tag {
+      padding: 8px 16px; border: 1px solid rgba(61,124,255,0.45);
+      border-radius: 999px; background: rgba(0,86,255,0.15); color: #cfe0ff;
+      letter-spacing: 0.08em; font-size: 13px;
+    }
+
+    .slide {
+      position: absolute; inset: 0; opacity: 0; pointer-events: none;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 100px 100px;
+      z-index: 5;
+    }
+    .slide.active { opacity: 1; }
+
+    .eyebrow {
+      font-size: 18px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #8eb6ff; margin-bottom: 18px; opacity: 0; transform: translateY(18px);
+    }
+    .title {
+      font-family: "Sora", sans-serif; font-weight: 700;
+      font-size: 64px; line-height: 1.12; max-width: 1400px;
+      margin-bottom: 22px; opacity: 0; transform: translateY(28px);
+    }
+    .title.lg { font-size: 76px; }
+    .title.sm { font-size: 52px; }
+    .lead {
+      font-size: 28px; line-height: 1.45; color: var(--muted); max-width: 1200px;
+      font-weight: 400; opacity: 0; transform: translateY(22px);
+    }
+    .lead strong { color: #fff; font-weight: 600; }
+
+    .slide.active .eyebrow { animation: rise 0.7s var(--ease) 0.15s forwards; }
+    .slide.active .title { animation: rise 0.85s var(--ease) 0.28s forwards; }
+    .slide.active .lead,
+    .slide.active .cards,
+    .slide.active .stats,
+    .slide.active .chips,
+    .slide.active .steps,
+    .slide.active .quote,
+    .slide.active .cta-row,
+    .slide.active .flow,
+    .slide.active .pain-grid,
+    .slide.active .logo-wall { animation: rise 0.9s var(--ease) 0.48s forwards; }
+
+    @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+      margin-top: 48px; max-width: 1500px; opacity: 0; transform: translateY(24px);
+    }
+    .stat {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px; padding: 28px 24px; backdrop-filter: blur(8px);
+    }
+    .stat b {
+      display: block; font-family: "Sora", sans-serif; font-size: 48px; color: #7eb0ff;
+      margin-bottom: 8px; line-height: 1;
+    }
+    .stat span { font-size: 16px; color: rgba(255,255,255,0.7); letter-spacing: 0.04em; }
+
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;
+      max-width: 1400px; opacity: 0; transform: translateY(24px);
+    }
+    .chip {
+      padding: 12px 18px; border-radius: 999px; font-size: 18px; font-weight: 600;
+      background: rgba(0,86,255,0.18); border: 1px solid rgba(125,176,255,0.35); color: #e8f0ff;
+    }
+
+    .cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-top: 40px; max-width: 1600px; opacity: 0; transform: translateY(24px);
+    }
+    .card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px; padding: 28px; min-height: 180px;
+    }
+    .card h3 { font-family: "Sora", sans-serif; font-size: 26px; margin-bottom: 12px; }
+    .card p { font-size: 18px; line-height: 1.45; color: var(--muted); }
+    .card .you {
+      display: inline-block; margin-top: 14px; font-size: 15px; font-weight: 700;
+      color: #f5b942; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    .pain-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+      margin-top: 36px; max-width: 1500px; opacity: 0; transform: translateY(24px);
+    }
+    .pain, .gain {
+      border-radius: 18px; padding: 22px 26px; font-size: 22px; line-height: 1.4;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .pain { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.35); }
+    .gain { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); }
+    .pain i, .gain i { font-style: normal; font-weight: 800; margin-top: 2px; }
+    .pain i { color: #fca5a5; }
+    .gain i { color: #86efac; }
+
+    .steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+      margin-top: 40px; opacity: 0; transform: translateY(24px);
+    }
+    .step {
+      position: relative; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 26px;
+      min-height: 220px;
+    }
+    .step.active-step {
+      border-color: rgba(61,124,255,0.8);
+      box-shadow: 0 0 0 1px rgba(0,86,255,0.35), 0 20px 50px rgba(0,86,255,0.2);
+      background: rgba(0,86,255,0.18);
+    }
+    .step .num {
+      font-family: "Sora", sans-serif; font-size: 14px; letter-spacing: 0.14em;
+      color: #8eb6ff; margin-bottom: 14px;
+    }
+    .step h3 { font-family: "Sora", sans-serif; font-size: 26px; margin-bottom: 12px; }
+    .step p { font-size: 17px; color: var(--muted); line-height: 1.45; }
+
+    .flow {
+      display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+      margin-top: 40px; max-width: 1600px; opacity: 0; transform: translateY(24px);
+    }
+    .flow .node {
+      padding: 14px 20px; border-radius: 12px; background: #fff; color: var(--navy);
+      font-weight: 700; font-size: 18px;
+      animation: pulseNode 2.4s ease-in-out infinite;
+    }
+    .flow .node:nth-child(odd) { animation-delay: 0.2s; }
+    .flow .arrow { color: #8eb6ff; font-size: 24px; font-weight: 700; }
+    @keyframes pulseNode {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .quote {
+      margin-top: 36px; max-width: 1300px; opacity: 0; transform: translateY(24px);
+      background: rgba(255,255,255,0.06); border-left: 5px solid #3d7cff;
+      border-radius: 0 18px 18px 0; padding: 28px 32px;
+    }
+    .quote p { font-size: 28px; line-height: 1.45; font-weight: 500; margin-bottom: 16px; }
+    .quote cite { font-style: normal; color: #8eb6ff; font-size: 18px; }
+
+    .logo-wall {
+      display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px;
+      opacity: 0; transform: translateY(24px);
+    }
+    .logo-wall span {
+      padding: 14px 22px; border-radius: 12px; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14); font-weight: 700; font-size: 18px;
+    }
+
+    .cta-row {
+      display: flex; gap: 18px; align-items: center; margin-top: 42px;
+      opacity: 0; transform: translateY(24px);
+    }
+    .btn {
+      background: #0056ff; color: #fff; font-weight: 700; font-size: 20px;
+      padding: 18px 32px; border-radius: 14px; letter-spacing: 0.02em;
+      box-shadow: 0 16px 40px rgba(0,86,255,0.35);
+    }
+    .cta-meta { font-size: 22px; color: rgba(255,255,255,0.85); }
+
+    .caption {
+      position: absolute; z-index: 30; left: 100px; right: 100px; bottom: 56px;
+      background: rgba(7, 21, 38, 0.72); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 16px 22px; font-size: 22px; line-height: 1.4;
+      color: rgba(255,255,255,0.92); min-height: 64px;
+      backdrop-filter: blur(10px);
+    }
+
+    .progress {
+      position: absolute; z-index: 40; left: 0; right: 0; bottom: 0; height: 6px;
+      background: rgba(255,255,255,0.1);
+    }
+    .progress > i {
+      display: block; height: 100%; width: 0%;
+      background: linear-gradient(90deg, #0056ff, #7eb0ff);
+    }
+
+    .client-badge {
+      position: absolute; z-index: 25; right: 72px; bottom: 140px;
+      padding: 12px 18px; border-radius: 999px; font-size: 14px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(245,185,66,0.15); border: 1px solid rgba(245,185,66,0.45); color: #ffe4a3;
+    }
+
+    .two-col {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center;
+      margin-top: 8px;
+    }
+    .visual-panel {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px; padding: 28px; min-height: 420px;
+      position: relative; overflow: hidden;
+    }
+    .visual-panel .fake-ui {
+      background: #fff; color: var(--ink); border-radius: 16px; padding: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      animation: uiIn 0.9s var(--ease) both;
+    }
+    @keyframes uiIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } }
+    .fake-ui .bar { height: 12px; background: #e2e8f0; border-radius: 8px; margin-bottom: 12px; }
+    .fake-ui .bar.short { width: 55%; }
+    .fake-ui .metric {
+      display: flex; justify-content: space-between; padding: 14px 0;
+      border-bottom: 1px solid #eef2f7; font-size: 16px; font-weight: 600;
+    }
+    .fake-ui .metric em { font-style: normal; color: #16a34a; }
+    .ring {
+      width: 220px; height: 220px; margin: 40px auto 0; border-radius: 50%;
+      border: 8px solid rgba(0,86,255,0.25); border-top-color: #0056ff;
+      animation: spin 3.5s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .ring-label {
+      text-align: center; margin-top: -130px; font-family: "Sora", sans-serif;
+      font-size: 28px; font-weight: 700;
+    }
+
+    .end-card { text-align: center; align-items: center; }
+    .end-card .title { max-width: none; }
+    .end-card .lead { max-width: 1000px; margin: 0 auto; }
+
+    .fade { position: absolute; inset: 0; z-index: 50; background: #071526; opacity: 0; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="bg-mesh"><div class="orb a"></div><div class="orb b"></div></div>
+    <div class="chrome">
+      <div class="logo">Display<span>Avenue</span></div>
+      <div class="chapter-tag" id="chapterTag">For business owners</div>
+    </div>
+    <div class="client-badge">Client view · Plain English</div>
+    <div id="slides"></div>
+    <div class="caption" id="caption"></div>
+    <div class="progress"><i id="progressBar"></i></div>
+    <div class="fade" id="fade"></div>
+  </div>
+
+  <script>
+    // timeline injected / loaded
+    let TIMELINE = null;
+    const EMBEDDED_TIMELINE = {
+  "voice": "en-IN-NeerjaNeural",
+  "rate": "-10%",
+  "totalVisualSeconds": 1200.12,
+  "totalAudioSeconds": 1200.168,
+  "segments": [
+    {
+      "id": "01_cold_open",
+      "chapter": "Hook",
+      "title": "What your business actually needs",
+      "text": "Most businesses don't need more marketing noise. You need a system that gets you found online... turns interest into real enquiries... and turns those enquiries into paying customers.",
+      "file": "audio/segments/01_cold_open.mp3",
+      "audioDuration": 14.568,
+      "visualDuration": 20.568
+    },
+    {
+      "id": "02_brand_intro",
+      "chapter": "Who we are",
+      "title": "Meet DisplayAvenue",
+      "text": "This is DisplayAvenue. We are an AI-powered digital company based in Mumbai. We help business owners across India grow online - with clear plans, plain English, and results you can measure. We are not a one-service shop. We are not a slide-deck agency. We are your complete digital partner - strategy, websites, creatives, marketing, software, and AI - under one roof.",
+      "file": "audio/segments/02_brand_intro.mp3",
+      "audioDuration": 34.104,
+      "visualDuration": 40.104
+    },
+    {
+      "id": "03_trust_stats",
+      "chapter": "Who we are",
+      "title": "Numbers that build trust",
+      "text": "Over eight years, we have delivered more than eight hundred fifty projects for five hundred plus clients, across twenty-five plus industries. Our work has influenced over ten million leads, with an average ROI of three hundred twenty percent, and ninety-eight percent client satisfaction. That is the track record behind DisplayAvenue.",
+      "file": "audio/segments/03_trust_stats.mp3",
+      "audioDuration": 25.56,
+      "visualDuration": 31.56
+    },
+    {
+      "id": "04_360_promise",
+      "chapter": "360 Digital",
+      "title": "What 360 really means for you",
+      "text": "Here is what three-hundred-sixty degree really means for your business. We don't hand you a website and disappear. We don't run ads without a page that converts. We don't create content without a funnel to catch demand. We connect your full journey: brand, website or app, traffic, conversion, CRM follow-up, automation, creative, and reporting. One team. One plan. One accountable partner.",
+      "file": "audio/segments/04_360_promise.mp3",
+      "audioDuration": 36.84,
+      "visualDuration": 42.84
+    },
+    {
+      "id": "05_pain",
+      "chapter": "Your challenges",
+      "title": "If this sounds familiar",
+      "text": "If this sounds familiar, you are not alone. You are spending on ads, but the leads are weak. Your website looks fine, but nobody enquires. You are posting on Instagram, but it is not turning into calls. You hired three different vendors, and still don't get one clear report. DisplayAvenue was built for that exact gap. We replace scattered vendors with one growth system - explained in language a business owner can actually use.",
+      "file": "audio/segments/05_pain.mp3",
+      "audioDuration": 37.128,
+      "visualDuration": 43.128
+    },
+    {
+      "id": "06_process_intro",
+      "chapter": "How we work",
+      "title": "A clear process you can follow",
+      "text": "Here is how we work with you - simply and clearly. Four steps: Discover, Plan, Build and Launch, then Optimize and Scale.",
+      "file": "audio/segments/06_process_intro.mp3",
+      "audioDuration": 11.952,
+      "visualDuration": 17.952
+    },
+    {
+      "id": "07_discover",
+      "chapter": "How we work",
+      "title": "Step 1 - Discover",
+      "text": "First, Discover. We audit your current digital presence, your competitors, your channels, and where enquiries are leaking. No assumptions. Evidence first - so you know exactly where you stand.",
+      "file": "audio/segments/07_discover.mp3",
+      "audioDuration": 17.784,
+      "visualDuration": 23.784
+    },
+    {
+      "id": "08_plan",
+      "chapter": "How we work",
+      "title": "Step 2 - Plan",
+      "text": "Next, Plan. We define goals, messaging, tech stack, timeline, and success metrics with you. You leave the kickoff knowing exactly what success looks like for your business.",
+      "file": "audio/segments/08_plan.mp3",
+      "audioDuration": 15.696,
+      "visualDuration": 21.696
+    },
+    {
+      "id": "09_build",
+      "chapter": "How we work",
+      "title": "Step 3 - Build and Launch",
+      "text": "Then we Build and Launch. With quality checks, tracking installed correctly, and staged rollouts - so nothing breaks when real customers start arriving.",
+      "file": "audio/segments/09_build.mp3",
+      "audioDuration": 12.816,
+      "visualDuration": 18.816
+    },
+    {
+      "id": "10_optimize",
+      "chapter": "How we work",
+      "title": "Step 4 - Optimize and Scale",
+      "text": "And then the part most agencies skip: Optimize and Scale. We iterate from your data - improve conversion, cut wasted spend, and grow what already works. You get a roadmap, weekly updates, monthly performance reports, and ongoing optimization sprints.",
+      "file": "audio/segments/10_optimize.mp3",
+      "audioDuration": 22.032,
+      "visualDuration": 28.032
+    },
+    {
+      "id": "11_services_intro",
+      "chapter": "Services",
+      "title": "Everything under one roof",
+      "text": "Now, what we can do for your business. DisplayAvenue covers the full digital stack - so you don't need five different companies to grow online.",
+      "file": "audio/segments/11_services_intro.mp3",
+      "audioDuration": 12.024,
+      "visualDuration": 18.024
+    },
+    {
+      "id": "12_digital_marketing",
+      "chapter": "Services",
+      "title": "Digital marketing that brings customers",
+      "text": "Digital marketing with us is full-funnel - not random campaigns. SEO that compounds traffic and revenue over time. Local SEO so you show up on Google and Maps when buyers near you search. AI SEO and Answer Engine Optimisation - so AI assistants can find and cite your expertise. Google Ads, Meta Ads, and LinkedIn Ads - engineered for profitable demand, not just clicks. Social, content, influencers, email, automation, and reputation - orchestrated as one system that serves your sales goal.",
+      "file": "audio/segments/12_digital_marketing.mp3",
+      "audioDuration": 44.424,
+      "visualDuration": 50.424
+    },
+    {
+      "id": "13_websites",
+      "chapter": "Services",
+      "title": "Websites that win enquiries",
+      "text": "Your website is not a brochure. It is a sales asset. We build high-performance corporate sites, startup sites, and landing pages - fast, secure, SEO-ready, and designed to convert visitors into enquiries. WordPress, Webflow, Framer, Wix, Drupal - or fully custom. Whatever fits your stage, built for clarity and speed.",
+      "file": "audio/segments/13_websites.mp3",
+      "audioDuration": 30.24,
+      "visualDuration": 36.24
+    },
+    {
+      "id": "14_ecommerce",
+      "chapter": "Services",
+      "title": "Ecommerce that sells",
+      "text": "If you sell online, we build and grow ecommerce systems for you - Shopify, WooCommerce, Magento, and custom ecommerce. Store design, migrations, product systems, and conversion - so traffic turns into orders, not bounce rates. We also support marketplace growth on Amazon, Flipkart, IndiaMART, and more.",
+      "file": "audio/segments/14_ecommerce.mp3",
+      "audioDuration": 27.288,
+      "visualDuration": 33.288
+    },
+    {
+      "id": "15_branding",
+      "chapter": "Services",
+      "title": "Branding and design that builds trust",
+      "text": "Before people trust your offer, they trust your brand. We create logos, brand identity, packaging, and guidelines. UI and UX, wireframes, prototypes, and design systems. So your business looks as strong as it operates - consistent across website, ads, packaging, and product.",
+      "file": "audio/segments/15_branding.mp3",
+      "audioDuration": 26.184,
+      "visualDuration": 32.184
+    },
+    {
+      "id": "16_apps_software",
+      "chapter": "Services",
+      "title": "Apps and software that run your business",
+      "text": "When your growth needs a product, we build the product. Mobile apps on Android, iOS, Flutter, React Native, and Progressive Web Apps. CRM systems, ERP, SaaS products, and admin dashboards. Custom software, HRMS, and POS. This is how DisplayAvenue goes beyond a marketing agency - into real digital infrastructure for your company.",
+      "file": "audio/segments/16_apps_software.mp3",
+      "audioDuration": 32.136,
+      "visualDuration": 38.136
+    },
+    {
+      "id": "17_ai",
+      "chapter": "Services",
+      "title": "AI that works for your customers",
+      "text": "AI at DisplayAvenue is not a buzzword slide. We build custom chat and WhatsApp bots trained on your business - connected to your CRM and calendars. AI agents, automation, and workflows that qualify leads, answer FAQs, and follow up when your team is busy. Our AI platform also speeds research, content, quality checks, and reporting - with human judgment still in control.",
+      "file": "audio/segments/17_ai.mp3",
+      "audioDuration": 32.904,
+      "visualDuration": 38.904
+    },
+    {
+      "id": "18_cloud",
+      "chapter": "Services",
+      "title": "Cloud that stays reliable",
+      "text": "Behind every reliable digital product is solid infrastructure. We work with AWS, Azure, and Google Cloud - plus Docker, containers, and server management. Secure, scalable foundations - so your campaigns and products don't collapse when demand spikes.",
+      "file": "audio/segments/18_cloud.mp3",
+      "audioDuration": 22.848,
+      "visualDuration": 28.848
+    },
+    {
+      "id": "19_creative",
+      "chapter": "Services",
+      "title": "Creative that feeds your funnel",
+      "text": "And because growth needs storytelling: photography, videography, drone, product shoots, brand films, animation, motion graphics, and editing. Creative that feeds your ads, website, social, and sales - produced by the same company running your funnel. That is what three-hundred-sixty degree looks like.",
+      "file": "audio/segments/19_creative.mp3",
+      "audioDuration": 25.728,
+      "visualDuration": 31.728
+    },
+    {
+      "id": "20_industries",
+      "chapter": "Industries",
+      "title": "Built for your industry",
+      "text": "We have delivered across twenty-five plus industries - including manufacturing, healthcare, education, real estate, hospitality, food and beverage, ecommerce, SaaS, finance, automotive, construction, travel, fashion, jewellery, wellness, B two B services, NGOs, and startups. Whether you need lead generation, ecommerce growth, brand awareness, app installs, or revenue growth - we design the solution around your outcome, not a generic package. You can also try our free tools - ROI calculator, SEO checklist, local SEO score, and citation directory - on displayavenue.com.",
+      "file": "audio/segments/20_industries.mp3",
+      "audioDuration": 49.392,
+      "visualDuration": 55.392
+    },
+    {
+      "id": "21_cases_intro",
+      "chapter": "Results",
+      "title": "Real clients. Real growth.",
+      "text": "Let us show you what this looks like for real clients - in plain results you can understand.",
+      "file": "audio/segments/21_cases_intro.mp3",
+      "audioDuration": 6.936,
+      "visualDuration": 12.936
+    },
+    {
+      "id": "22_case_vaidraj",
+      "chapter": "Results",
+      "title": "Vaidraj Ayurvedic - SEO growth",
+      "text": "Vaidraj Ayurvedic needed organic growth that compounds. DisplayAvenue rebuilt their SEO and full-funnel execution - so search demand became consistent enquiries, not occasional traffic spikes. Their CEO, Rahul Sharma, said: DisplayAvenue rebuilt our entire digital engine. Lead quality improved and revenue followed within one quarter.",
+      "file": "audio/segments/22_case_vaidraj.mp3",
+      "audioDuration": 29.232,
+      "visualDuration": 35.232
+    },
+    {
+      "id": "23_case_bpg",
+      "chapter": "Results",
+      "title": "Bhaskar Patil Group - Google Ads",
+      "text": "For Bhaskar Patil Group, paid search had to mean pipeline - not wasted spend. We structured Google Ads around cost per acquisition, return on ad spend, and enquiry quality. Director Karan Mehta said: From website to paid media, they operate like an extension of our team - fast, accountable, and ROI-focused.",
+      "file": "audio/segments/23_case_bpg.mp3",
+      "audioDuration": 27.048,
+      "visualDuration": 33.048
+    },
+    {
+      "id": "24_case_royal",
+      "chapter": "Results",
+      "title": "Royal Mouth Fresheners - Ecommerce",
+      "text": "Royal Mouth Fresheners needed ecommerce that sells and scales. We aligned store experience, product presentation, and growth systems - so digital shelf space turned into orders.",
+      "file": "audio/segments/24_case_royal.mp3",
+      "audioDuration": 14.76,
+      "visualDuration": 20.76
+    },
+    {
+      "id": "25_case_island",
+      "chapter": "Results",
+      "title": "Island360 Adventure - Meta Ads",
+      "text": "Island360 Adventure needed social attention that becomes bookings. Meta Ads, creative, and conversion working together - not vanity reach. Founder Neha Kapoor said: The best agency partnership we have had. Clear process, creative excellence, and measurable growth.",
+      "file": "audio/segments/25_case_island.mp3",
+      "audioDuration": 24.6,
+      "visualDuration": 30.6
+    },
+    {
+      "id": "26_testimonial_rak",
+      "chapter": "Results",
+      "title": "What marketing leaders say",
+      "text": "Anita Desai, Marketing Head at RAK Ceramics, shared: Transparent reporting, sharp strategy, and an AI toolkit that actually saves our team hours every week. Brands that trust us include names like TATA, Jio, RAK Ceramics, Vaidraj, Island three sixty, Bhaskar Patil Group, and Royal Mouth Fresheners.",
+      "file": "audio/segments/26_testimonial_rak.mp3",
+      "audioDuration": 27.072,
+      "visualDuration": 33.072
+    },
+    {
+      "id": "27_why_us",
+      "chapter": "Why DisplayAvenue",
+      "title": "Why business owners stay with us",
+      "text": "Why do growing businesses choose DisplayAvenue? Because we speak plain English. Because we report what matters to you. Because strategy and execution live in one team. Because AI makes us faster - without removing accountability. And because we measure success the way owners do: enquiries, customers, and ROI. Eight plus years. Fifty plus experts. Ninety-eight percent client satisfaction. Trusted by growing businesses across India - and beyond.",
+      "file": "audio/segments/27_why_us.mp3",
+      "audioDuration": 42.72,
+      "visualDuration": 48.72
+    },
+    {
+      "id": "27b_compare",
+      "chapter": "Why DisplayAvenue",
+      "title": "Scattered vendors vs one partner",
+      "text": "Here is the client difference, simply. With scattered vendors, your website team, ads team, and creative team rarely talk. You pay more meetings, get conflicting advice, and still miss enquiries. With DisplayAvenue, one partner owns the system. Your brand, website, traffic, conversion, follow-up, and reporting stay connected. That is how you get clarity - and better ROI.",
+      "file": "audio/segments/27b_compare.mp3",
+      "audioDuration": 33.96,
+      "visualDuration": 39.96
+    },
+    {
+      "id": "27c_first30",
+      "chapter": "Getting started",
+      "title": "Your first thirty days",
+      "text": "Wondering what happens after you say yes? In the first week, we discover and audit. In week two, we finalize your plan and KPIs in plain English. Then we start building and launching - website fixes, tracking, creatives, or campaigns - based on your roadmap. By day thirty, you should see a working system taking shape: clear reporting, cleaner follow-up, and the first measurable improvements. You are never left guessing what we are doing this week.",
+      "file": "audio/segments/27c_first30.mp3",
+      "audioDuration": 38.208,
+      "visualDuration": 44.208
+    },
+    {
+      "id": "27d_packages",
+      "chapter": "Getting started",
+      "title": "Packages that match your stage",
+      "text": "You can start with a focused package - digital marketing, SEO, Google Ads, social media, website development, ecommerce, branding, or creative production - or ask for a custom plan around your goal. Every plan includes strategy, execution, reporting, and optimization. You choose the stage. We build the system.",
+      "file": "audio/segments/27d_packages.mp3",
+      "audioDuration": 28.632,
+      "visualDuration": 34.632
+    },
+    {
+      "id": "27e_tools",
+      "chapter": "Getting started",
+      "title": "Free tools before you buy",
+      "text": "Not ready to talk yet? Start with free tools on displayavenue.com. Use the ROI calculator to estimate growth potential. Use the SEO checklist to spot quick wins. Check your local SEO score and citation directory health. These tools help you understand gaps - before you invest. When you are ready, book a free growth call and we will turn those gaps into a plan.",
+      "file": "audio/segments/27e_tools.mp3",
+      "audioDuration": 32.904,
+      "visualDuration": 38.904
+    },
+    {
+      "id": "27f_objections",
+      "chapter": "Getting started",
+      "title": "Common questions owners ask",
+      "text": "Will this work for a small business? Yes - we design for your stage, not enterprise theatre. Do I need every service? No. We start with the bottleneck that is costing you customers. How do I know it is working? You get weekly updates and monthly ROI reviews in plain language. What if I already have a website? Perfect. We improve what you have, or rebuild only if needed. What if I already run ads? We fix tracking, creative, and conversion so spend becomes pipeline.",
+      "file": "audio/segments/27f_objections.mp3",
+      "audioDuration": 46.392,
+      "visualDuration": 52.392
+    },
+    {
+      "id": "27g_promise",
+      "chapter": "Trust",
+      "title": "Our promise to you",
+      "text": "Our promise is simple. We will speak clearly. We will show you the numbers that matter. We will connect your digital pieces into one system. And we will stay accountable for progress - week after week. That is how DisplayAvenue earns trust.",
+      "file": "audio/segments/27g_promise.mp3",
+      "audioDuration": 22.128,
+      "visualDuration": 28.128
+    },
+    {
+      "id": "27h_reporting",
+      "chapter": "Trust",
+      "title": "Reporting you can actually use",
+      "text": "Every month, you get a performance report in plain English. What we did. What improved. What we will do next. You will see enquiries, cost per lead, conversion, and ROI - not a pile of vanity charts. If something is not working, we say so - and we change it. That honesty is part of the partnership.",
+      "file": "audio/segments/27h_reporting.mp3",
+      "audioDuration": 29.208,
+      "visualDuration": 35.208
+    },
+    {
+      "id": "28_recap",
+      "chapter": "Next step",
+      "title": "Your 360 digital partner",
+      "text": "DisplayAvenue is your three-hundred-sixty degree digital company: marketing, websites, ecommerce, branding, apps, software, AI, cloud, and creative. One partner to get you found online... turn interest into enquiries... and grow with a clear plan.",
+      "file": "audio/segments/28_recap.mp3",
+      "audioDuration": 21.504,
+      "visualDuration": 27.504
+    },
+    {
+      "id": "29_cta",
+      "chapter": "Next step",
+      "title": "Book your free growth call",
+      "text": "If you are a business owner ready for a digital system that actually works - book a free growth call. Visit displayavenue.com. WhatsApp or call plus ninety-one, nine two two two, one two two, three three three. Email info at displayavenue dot com. DisplayAvenue. Get more customers online.",
+      "file": "audio/segments/29_cta.mp3",
+      "audioDuration": 27.168,
+      "visualDuration": 33.168
+    }
+  ]
+};
+
+
+    const SCENE_UI = {
+      "01_cold_open": {
+        eyebrow: "For business owners",
+        title: "You don't need more noise.<br/>You need customers.",
+        lead: "A clear system to get found online, win enquiries, and grow - explained simply.",
+        caption: "What your business actually needs",
+        extra: `
+          <div class="chips">
+            <div class="chip">Get found</div>
+            <div class="chip">Win enquiries</div>
+            <div class="chip">Convert customers</div>
+          </div>`
+      },
+      "02_brand_intro": {
+        eyebrow: "Who we are",
+        title: "DisplayAvenue -<br/>your complete digital partner",
+        lead: "AI-powered digital company in <strong>Mumbai</strong>. Clear plans. Plain English. Measurable results.",
+        caption: "Strategy, websites, marketing, software & AI - under one roof",
+        extra: `
+          <div class="cards">
+            <div class="card"><h3>Not a one-service shop</h3><p>Marketing alone is not enough if your website and follow-up are weak.</p><span class="you">What you get: one team</span></div>
+            <div class="card"><h3>Not slide-deck theatre</h3><p>We build and run the system with you - weekly, accountable, clear.</p><span class="you">What you get: execution</span></div>
+            <div class="card"><h3>One accountable partner</h3><p>Strategy + build + creatives + ads + AI connected together.</p><span class="you">What you get: clarity</span></div>
+          </div>`
+      },
+      "03_trust_stats": {
+        eyebrow: "Trusted track record",
+        title: "Numbers that matter to owners",
+        lead: "Proof before promises - so you can decide with confidence.",
+        caption: "8+ years · 500+ clients · 320% average ROI · 98% satisfaction",
+        extra: `
+          <div class="stats">
+            <div class="stat"><b>850+</b><span>Projects delivered</span></div>
+            <div class="stat"><b>500+</b><span>Clients served</span></div>
+            <div class="stat"><b>320%</b><span>Average ROI</span></div>
+            <div class="stat"><b>98%</b><span>Client satisfaction</span></div>
+          </div>
+          <div class="stats" style="margin-top:18px;grid-template-columns:repeat(4,1fr)">
+            <div class="stat"><b>10M+</b><span>Leads influenced</span></div>
+            <div class="stat"><b>25+</b><span>Industries</span></div>
+            <div class="stat"><b>50+</b><span>Experts</span></div>
+            <div class="stat"><b>18+</b><span>Countries</span></div>
+          </div>`
+      },
+      "04_360_promise": {
+        eyebrow: "360° digital system",
+        title: "What 360 really means for you",
+        lead: "We connect every step - so nothing you pay for works in isolation.",
+        caption: "Brand → Website/App → Traffic → Conversion → CRM → Automation → Creative → Reporting",
+        extra: `
+          <div class="flow">
+            <div class="node">Brand</div><div class="arrow">→</div>
+            <div class="node">Website / App</div><div class="arrow">→</div>
+            <div class="node">Traffic</div><div class="arrow">→</div>
+            <div class="node">Conversion</div><div class="arrow">→</div>
+            <div class="node">CRM follow-up</div><div class="arrow">→</div>
+            <div class="node">Automation</div><div class="arrow">→</div>
+            <div class="node">Creative</div><div class="arrow">→</div>
+            <div class="node">Reporting</div>
+          </div>
+          <div class="chips" style="margin-top:28px">
+            <div class="chip">No orphan website</div>
+            <div class="chip">No ads without conversion</div>
+            <div class="chip">No content without a funnel</div>
+          </div>`
+      },
+      "05_pain": {
+        eyebrow: "Your challenges",
+        title: "If this sounds familiar…",
+        lead: "Most owners are stuck between vendors - not stuck without effort.",
+        caption: "We replace vendor ping-pong with one clear growth system",
+        extra: `
+          <div class="pain-grid">
+            <div class="pain"><i>✗</i><div>Spending on ads, but leads are weak</div></div>
+            <div class="pain"><i>✗</i><div>Website looks fine, but nobody enquires</div></div>
+            <div class="pain"><i>✗</i><div>Posting on Instagram, but no calls</div></div>
+            <div class="pain"><i>✗</i><div>3 vendors, still no clear report</div></div>
+            <div class="gain"><i>✓</i><div>One roadmap you understand</div></div>
+            <div class="gain"><i>✓</i><div>Weekly updates + monthly ROI review</div></div>
+          </div>`
+      },
+      "06_process_intro": {
+        eyebrow: "How we work with you",
+        title: "Four clear steps. No confusion.",
+        lead: "Discover → Plan → Build & Launch → Optimize & Scale",
+        caption: "A process designed for business owners - not technical jargon",
+        extra: `
+          <div class="steps" id="processSteps">
+            <div class="step"><div class="num">STEP 01</div><h3>Discover</h3><p>Where you stand today - evidence first.</p></div>
+            <div class="step"><div class="num">STEP 02</div><h3>Plan</h3><p>Goals, timeline, and what success means.</p></div>
+            <div class="step"><div class="num">STEP 03</div><h3>Build & Launch</h3><p>Ship with tracking and quality checks.</p></div>
+            <div class="step"><div class="num">STEP 04</div><h3>Optimize & Scale</h3><p>Improve from your real data.</p></div>
+          </div>`
+      },
+      "07_discover": {
+        eyebrow: "Step 1",
+        title: "Discover - evidence before action",
+        lead: "We audit your presence, competitors, channels, and enquiry leaks.",
+        caption: "You know exactly where you stand before spending more",
+        highlightStep: 0
+      },
+      "08_plan": {
+        eyebrow: "Step 2",
+        title: "Plan - success defined with you",
+        lead: "Goals, messaging, tech stack, timeline, and KPIs - in plain English.",
+        caption: 'You leave kickoff knowing what good looks like',
+        highlightStep: 1
+      },
+      "09_build": {
+        eyebrow: "Step 3",
+        title: "Build & Launch - ready for real customers",
+        lead: "Quality checks, correct tracking, staged rollouts.",
+        caption: "So nothing breaks when traffic arrives",
+        highlightStep: 2
+      },
+      "10_optimize": {
+        eyebrow: "Step 4",
+        title: "Optimize & Scale - the part most skip",
+        lead: "Improve conversion, cut waste, grow what works.",
+        caption: "Roadmap · weekly updates · monthly reports · optimization sprints",
+        highlightStep: 3
+      },
+      "11_services_intro": {
+        eyebrow: "Services",
+        title: "Everything under one roof",
+        lead: "So you don't need five different companies to grow online.",
+        caption: "One partner for the full digital stack",
+        extra: `
+          <div class="chips">
+            <div class="chip">Marketing</div><div class="chip">Websites</div><div class="chip">Ecommerce</div>
+            <div class="chip">Branding</div><div class="chip">Apps</div><div class="chip">Software</div>
+            <div class="chip">AI</div><div class="chip">Cloud</div><div class="chip">Creative</div>
+          </div>`
+      },
+      "12_digital_marketing": {
+        eyebrow: "Digital marketing",
+        title: "Marketing that brings customers - not vanity metrics",
+        lead: "Full-funnel growth: SEO, Local SEO, AI SEO, Ads, Social, Content, Email, Automation.",
+        caption: "Built around enquiries, sales, and ROI - for your business",
+        extra: `
+          <div class="chips">
+            <div class="chip">SEO</div><div class="chip">Local SEO</div><div class="chip">AI SEO / GEO</div>
+            <div class="chip">Google Ads</div><div class="chip">Meta Ads</div><div class="chip">LinkedIn Ads</div>
+            <div class="chip">Social</div><div class="chip">Content</div><div class="chip">Email</div>
+            <div class="chip">Automation</div><div class="chip">CRO</div><div class="chip">Analytics</div>
+          </div>`
+      },
+      "13_websites": {
+        eyebrow: "Websites",
+        title: "Your website should win enquiries",
+        lead: "Fast, secure, SEO-ready sites and landing pages designed to convert.",
+        caption: "Corporate · Startup · Landing pages · WordPress · Webflow · Custom",
+        extra: `
+          <div class="two-col">
+            <div>
+              <div class="cards" style="grid-template-columns:1fr 1fr">
+                <div class="card"><h3>Looks professional</h3><p>Clear offer, trust, and next step.</p><span class="you">For your visitors</span></div>
+                <div class="card"><h3>Works as a sales asset</h3><p>Forms, WhatsApp, tracking, speed.</p><span class="you">For your sales team</span></div>
+              </div>
+            </div>
+            <div class="visual-panel">
+              <div class="fake-ui">
+                <div class="bar"></div><div class="bar short"></div>
+                <div class="metric"><span>Enquiry rate</span><em>+38%</em></div>
+                <div class="metric"><span>Page speed</span><em>Fast</em></div>
+                <div class="metric"><span>Mobile conversion</span><em>Up</em></div>
+              </div>
+            </div>
+          </div>`
+      },
+      "14_ecommerce": {
+        eyebrow: "Ecommerce",
+        title: "Stores that sell - and scale",
+        lead: "Shopify, WooCommerce, Magento, custom ecommerce + marketplaces.",
+        caption: "Traffic should become orders - not bounce rates",
+        extra: `
+          <div class="chips">
+            <div class="chip">Shopify</div><div class="chip">WooCommerce</div><div class="chip">Magento</div>
+            <div class="chip">Custom ecommerce</div><div class="chip">Amazon</div><div class="chip">Flipkart</div><div class="chip">IndiaMART</div>
+          </div>`
+      },
+      "15_branding": {
+        eyebrow: "Branding & design",
+        title: "Look as strong as you operate",
+        lead: "Logo, identity, packaging, UI/UX, prototypes, design systems.",
+        caption: "Trust starts before the sale - across every touchpoint",
+        extra: `
+          <div class="cards">
+            <div class="card"><h3>Brand identity</h3><p>Logo, colours, guidelines your team can use.</p><span class="you">Consistent everywhere</span></div>
+            <div class="card"><h3>UI / UX</h3><p>Screens that feel simple for your customers.</p><span class="you">Higher conversion</span></div>
+            <div class="card"><h3>Packaging & assets</h3><p>Design that supports retail and digital.</p><span class="you">Stronger recall</span></div>
+          </div>`
+      },
+      "16_apps_software": {
+        eyebrow: "Apps & software",
+        title: "Digital infrastructure for your company",
+        lead: "Apps, CRM, ERP, SaaS, dashboards, HRMS, POS - beyond marketing.",
+        caption: "When growth needs product, we build product",
+        extra: `
+          <div class="chips">
+            <div class="chip">Android</div><div class="chip">iOS</div><div class="chip">Flutter</div>
+            <div class="chip">React Native</div><div class="chip">PWA</div><div class="chip">CRM</div>
+            <div class="chip">ERP</div><div class="chip">SaaS</div><div class="chip">Dashboards</div>
+          </div>`
+      },
+      "17_ai": {
+        eyebrow: "AI solutions",
+        title: "AI that helps your customers - and your team",
+        lead: "WhatsApp/chat bots, AI agents, automation - connected to CRM.",
+        caption: "Faster follow-up. 24/7 answers. Humans still in control.",
+        extra: `
+          <div class="two-col">
+            <div class="cards" style="grid-template-columns:1fr">
+              <div class="card"><h3>Qualify leads automatically</h3><p>Bots trained on your business, calendar, and CRM.</p><span class="you">Fewer missed enquiries</span></div>
+              <div class="card"><h3>Save team hours weekly</h3><p>Research, content, QA, reporting - accelerated.</p><span class="you">More time for sales</span></div>
+            </div>
+            <div class="visual-panel">
+              <div class="ring"></div>
+              <div class="ring-label">DA Growth AI</div>
+            </div>
+          </div>`
+      },
+      "18_cloud": {
+        eyebrow: "Cloud & DevOps",
+        title: "Reliable when demand spikes",
+        lead: "AWS, Azure, Google Cloud, Docker, servers - secure foundations.",
+        caption: "So campaigns and products stay up when customers arrive",
+      },
+      "19_creative": {
+        eyebrow: "Creative studio",
+        title: "Creatives that feed your funnel",
+        lead: "Photo, video, drone, product shoots, brand films, animation, motion.",
+        caption: "Same company running ads also produces the creative - that's 360",
+        extra: `
+          <div class="chips">
+            <div class="chip">Photography</div><div class="chip">Videography</div><div class="chip">Drone</div>
+            <div class="chip">Product shoots</div><div class="chip">Brand films</div>
+            <div class="chip">Animation</div><div class="chip">Motion graphics</div>
+          </div>`
+      },
+      "20_industries": {
+        eyebrow: "Industries",
+        title: "Built around your industry outcome",
+        lead: "25+ industries - solutions for leads, sales, awareness, apps, revenue.",
+        caption: "Free tools on displayavenue.com: ROI · SEO checklist · Local SEO score",
+        extra: `
+          <div class="chips">
+            <div class="chip">Manufacturing</div><div class="chip">Healthcare</div><div class="chip">Education</div>
+            <div class="chip">Real Estate</div><div class="chip">Hospitality</div><div class="chip">Ecommerce</div>
+            <div class="chip">SaaS</div><div class="chip">Finance</div><div class="chip">Startups</div>
+            <div class="chip">Jewellery</div><div class="chip">Automotive</div><div class="chip">B2B</div>
+          </div>`
+      },
+      "21_cases_intro": {
+        eyebrow: "Results",
+        title: "Real clients. Real growth.",
+        lead: "Plain results you can understand - before you invest.",
+        caption: "Case studies from SEO, Ads, Ecommerce, and Meta growth"
+      },
+      "22_case_vaidraj": {
+        eyebrow: "Case study · SEO",
+        title: "Vaidraj Ayurvedic",
+        lead: "Organic growth rebuilt into consistent enquiries - not traffic spikes.",
+        caption: "Client result story",
+        extra: `
+          <div class="quote">
+            <p>"DisplayAvenue rebuilt our entire digital engine. Lead quality improved and revenue followed within one quarter."</p>
+            <cite>Rahul Sharma · CEO, Vaidraj Ayurvedic</cite>
+          </div>`
+      },
+      "23_case_bpg": {
+        eyebrow: "Case study · Google Ads",
+        title: "Bhaskar Patil Group",
+        lead: "Paid search structured for pipeline - CPA, ROAS, enquiry quality.",
+        caption: "Client result story",
+        extra: `
+          <div class="quote">
+            <p>"From website to paid media, they operate like an extension of our team - fast, accountable, and ROI-focused."</p>
+            <cite>Karan Mehta · Director, Bhaskar Patil Group</cite>
+          </div>`
+      },
+      "24_case_royal": {
+        eyebrow: "Case study · Ecommerce",
+        title: "Royal Mouth Fresheners",
+        lead: "Store experience + product presentation + growth systems = orders.",
+        caption: "Digital shelf space turned into sales"
+      },
+      "25_case_island": {
+        eyebrow: "Case study · Meta Ads",
+        title: "Island360 Adventure",
+        lead: "Social attention engineered into bookings - not vanity reach.",
+        caption: "Client result story",
+        extra: `
+          <div class="quote">
+            <p>"The best agency partnership we've had. Clear process, creative excellence, and measurable growth."</p>
+            <cite>Neha Kapoor · Founder, Island360 Adventure</cite>
+          </div>`
+      },
+      "26_testimonial_rak": {
+        eyebrow: "Trusted by brands",
+        title: "What marketing leaders say",
+        lead: "Transparent reporting. Sharp strategy. AI that saves real hours.",
+        caption: "TATA · Jio · RAK Ceramics · Vaidraj · Island360 · Bhaskar Patil Group · Royal",
+        extra: `
+          <div class="quote">
+            <p>"Transparent reporting, sharp strategy, and an AI toolkit that actually saves our team hours every week."</p>
+            <cite>Anita Desai · Marketing Head, RAK Ceramics</cite>
+          </div>
+          <div class="logo-wall">
+            <span>TATA</span><span>Jio</span><span>RAK Ceramics</span><span>Vaidraj</span>
+            <span>Island360</span><span>Bhaskar Patil Group</span><span>Royal Mouth Fresheners</span>
+          </div>`
+      },
+      "27_why_us": {
+        eyebrow: "Why DisplayAvenue",
+        title: "Why owners stay with us",
+        lead: "Plain English. Real reporting. One team. ROI that owners understand.",
+        caption: "8+ years · 50+ experts · 98% satisfaction · India & beyond",
+        extra: `
+          <div class="cards">
+            <div class="card"><h3>Plain English</h3><p>You always understand the plan and the numbers.</p><span class="you">Less confusion</span></div>
+            <div class="card"><h3>One team</h3><p>Strategy and execution together - no finger pointing.</p><span class="you">More accountability</span></div>
+            <div class="card"><h3>Owner metrics</h3><p>Enquiries, customers, ROI - not vanity charts.</p><span class="you">Clear decisions</span></div>
+          </div>`
+      },
+
+      "27b_compare": {
+        eyebrow: "Client difference",
+        title: "Scattered vendors vs one partner",
+        lead: "Less meetings. Less confusion. More connected growth.",
+        caption: "One partner owns brand, website, traffic, conversion, follow-up & reporting",
+        extra: `
+          <div class="pain-grid">
+            <div class="pain"><i>✗</i><div>Website, ads, creative teams rarely talk</div></div>
+            <div class="pain"><i>✗</i><div>Conflicting advice + missed enquiries</div></div>
+            <div class="gain"><i>✓</i><div>One DisplayAvenue system</div></div>
+            <div class="gain"><i>✓</i><div>Clear ROI ownership</div></div>
+          </div>`
+      },
+      "27c_first30": {
+        eyebrow: "Getting started",
+        title: "Your first 30 days - mapped",
+        lead: "Week 1 audit → Week 2 plan → Build & launch → Clear reporting by day 30.",
+        caption: "You always know what we are doing this week",
+        extra: `
+          <div class="steps">
+            <div class="step active-step"><div class="num">WEEK 1</div><h3>Discover</h3><p>Audit and evidence.</p></div>
+            <div class="step"><div class="num">WEEK 2</div><h3>Plan</h3><p>KPIs in plain English.</p></div>
+            <div class="step"><div class="num">WEEK 3-4</div><h3>Build</h3><p>Launch the roadmap.</p></div>
+            <div class="step"><div class="num">DAY 30</div><h3>Report</h3><p>First measurable gains.</p></div>
+          </div>`
+      },
+      "27d_packages": {
+        eyebrow: "Packages",
+        title: "Start focused - or go custom",
+        lead: "Marketing, SEO, Ads, Social, Website, Ecommerce, Branding, Creative.",
+        caption: "Every plan includes strategy, execution, reporting, and optimization",
+        extra: `
+          <div class="chips">
+            <div class="chip">Digital Marketing</div><div class="chip">SEO</div><div class="chip">Google Ads</div>
+            <div class="chip">Social</div><div class="chip">Website</div><div class="chip">Ecommerce</div>
+            <div class="chip">Branding</div><div class="chip">Creative</div><div class="chip">Custom plan</div>
+          </div>`
+      },
+      "27e_tools": {
+        eyebrow: "Free tools",
+        title: "Understand your gaps before you invest",
+        lead: "ROI calculator · SEO checklist · Local SEO score · Citation directory",
+        caption: "Try them free on displayavenue.com - then book a growth call",
+        extra: `
+          <div class="cards">
+            <div class="card"><h3>ROI Calculator</h3><p>Estimate growth potential.</p><span class="you">Before you spend</span></div>
+            <div class="card"><h3>SEO Checklist</h3><p>Spot quick wins fast.</p><span class="you">DIY clarity</span></div>
+            <div class="card"><h3>Local SEO Score</h3><p>See Maps & listing health.</p><span class="you">Local demand</span></div>
+          </div>`
+      },
+      "27f_objections": {
+        eyebrow: "Owner questions",
+        title: "Straight answers",
+        lead: "Small business friendly. Start at the bottleneck. Measure in plain language.",
+        caption: "You do not need every service on day one",
+        extra: `
+          <div class="cards">
+            <div class="card"><h3>Small business?</h3><p>Yes - sized to your stage.</p><span class="you">Practical plans</span></div>
+            <div class="card"><h3>Already have a site?</h3><p>Improve first, rebuild only if needed.</p><span class="you">Protect budget</span></div>
+            <div class="card"><h3>Already running ads?</h3><p>Fix tracking + conversion.</p><span class="you">Spend → pipeline</span></div>
+          </div>`
+      },
+      "27g_promise": {
+        eyebrow: "Our promise",
+        title: "Clear. Measured. Accountable.",
+        lead: "We speak clearly, show owner metrics, connect your system, and stay accountable weekly.",
+        caption: "That is how DisplayAvenue earns trust",
+      },
+      "27h_reporting": {
+        eyebrow: "Reporting",
+        title: "Reports you can actually use",
+        lead: "What we did · What improved · What is next - in plain English.",
+        caption: "Enquiries, cost per lead, conversion, ROI - not vanity charts",
+        extra: `
+          <div class="visual-panel" style="max-width:900px">
+            <div class="fake-ui">
+              <div class="bar"></div><div class="bar short"></div>
+              <div class="metric"><span>Enquiries this month</span><em>+42%</em></div>
+              <div class="metric"><span>Cost per lead</span><em>Down</em></div>
+              <div class="metric"><span>Conversion rate</span><em>Up</em></div>
+              <div class="metric"><span>ROI</span><em>On target</em></div>
+            </div>
+          </div>`
+      },
+      "28_recap": {
+        eyebrow: "Your next step",
+        title: "Your 360° digital partner",
+        lead: "Marketing. Websites. Ecommerce. Branding. Apps. Software. AI. Cloud. Creative.",
+        caption: "One partner to get found, win enquiries, and grow with a clear plan",
+        extra: `
+          <div class="chips">
+            <div class="chip">Get found online</div>
+            <div class="chip">Turn interest into enquiries</div>
+            <div class="chip">Grow with a clear plan</div>
+          </div>`
+      },
+      "29_cta": {
+        eyebrow: "Book free growth call",
+        title: "Ready for a system that works?",
+        lead: "Visit displayavenue.com · Call / WhatsApp +91 9222 122333 · info@displayavenue.com",
+        caption: "DisplayAvenue · Get more customers online · Mumbai",
+        end: true,
+        extra: `
+          <div class="cta-row" style="justify-content:center">
+            <div class="btn">Book a free growth call</div>
+            <div class="cta-meta">displayavenue.com</div>
+          </div>
+          <div class="lead" style="margin-top:28px;text-align:center">Mon-Sat · 10:00 AM - 7:00 PM IST · Mumbai</div>`
+      }
+    };
+
+    function buildSlides(segments) {
+      const root = document.getElementById("slides");
+      root.innerHTML = "";
+      segments.forEach((seg, idx) => {
+        const ui = SCENE_UI[seg.id] || { title: seg.title, lead: "", eyebrow: seg.chapter, caption: seg.title };
+        const el = document.createElement("section");
+        el.className = "slide" + (ui.end ? " end-card" : "");
+        el.dataset.id = seg.id;
+        el.dataset.index = String(idx);
+        const processClone = (ui.highlightStep !== undefined)
+          ? `<div class="steps">${[0,1,2,3].map((i) => {
+              const names = ["Discover","Plan","Build & Launch","Optimize & Scale"];
+              const descs = [
+                "Audit presence, competitors, leaks.",
+                "Goals, messaging, timeline, KPIs.",
+                "Ship with tracking & quality checks.",
+                "Improve conversion and scale winners."
+              ];
+              return `<div class="step ${i===ui.highlightStep?"active-step":""}"><div class="num">STEP 0${i+1}</div><h3>${names[i]}</h3><p>${descs[i]}</p></div>`;
+            }).join("")}</div>`
+          : (ui.extra || "");
+        el.innerHTML = `
+          <div class="eyebrow">${ui.eyebrow || seg.chapter}</div>
+          <h1 class="title ${ui.end ? "lg" : ""}">${ui.title || seg.title}</h1>
+          <p class="lead">${ui.lead || ""}</p>
+          ${processClone}
+        `;
+        el.dataset.caption = ui.caption || seg.title;
+        root.appendChild(el);
+      });
+    }
+
+    function wait(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+    async function play(timeline) {
+      const slides = [...document.querySelectorAll(".slide")];
+      const fade = document.getElementById("fade");
+      const caption = document.getElementById("caption");
+      const chapterTag = document.getElementById("chapterTag");
+      const bar = document.getElementById("progressBar");
+      const total = timeline.totalVisualSeconds;
+      let elapsed = 0;
+
+      document.body.dataset.ready = "1";
+      for (let i = 0; i < slides.length; i++) {
+        const seg = timeline.segments[i];
+        slides.forEach((s, n) => s.classList.toggle("active", n === i));
+        chapterTag.textContent = seg.chapter;
+        caption.textContent = slides[i].dataset.caption || seg.title;
+        fade.style.transition = "opacity 350ms ease";
+        fade.style.opacity = "0";
+
+        const dur = seg.visualDuration * 1000;
+        const start = performance.now();
+        while (performance.now() - start < dur - 350) {
+          const local = (performance.now() - start) / dur;
+          const global = (elapsed + (performance.now() - start) / 1000) / total;
+          bar.style.width = `${Math.min(100, global * 100)}%`;
+          await wait(40);
+        }
+        elapsed += seg.visualDuration;
+        if (i < slides.length - 1) {
+          fade.style.opacity = "1";
+          await wait(350);
+        }
+      }
+      bar.style.width = "100%";
+      document.body.dataset.done = "1";
+    }
+
+    async function boot() {
+      try {
+        const res = await fetch("./timeline.json");
+        TIMELINE = await res.json();
+      } catch (e) {
+        TIMELINE = EMBEDDED_TIMELINE;
+      }
+      if (!TIMELINE) TIMELINE = EMBEDDED_TIMELINE;
+      buildSlides(TIMELINE.segments);
+      const params = new URLSearchParams(location.search);
+      const delay = Number(params.get("delay") || 1500);
+      window.__film = { play: () => play(TIMELINE), timeline: TIMELINE };
+      window.addEventListener("load", () => setTimeout(() => play(TIMELINE), delay));
+    }
+    boot();
+  </script>
+</body>
+</html>
