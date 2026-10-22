@@ -6,8 +6,10 @@
 @section('content')
 <section class="hp-page">
     <div class="hp-container">
-        <h1>Health Library</h1>
-        <p class="hp-section__lead">Educational articles appear after review and publication. This is general information, not personal medical advice.</p>
+        <div class="hp-page__intro">
+            <h1>Health Library</h1>
+            <p class="hp-section__lead">Educational articles appear after review and publication. This is general information, not personal medical advice.</p>
+        </div>
 
         <form class="hp-filters" method="get" action="{{ route('health-library.index') }}">
             <label class="hp-label">Search
@@ -59,7 +61,7 @@
                     </article>
                 @endforeach
             </div>
-            <div style="margin-top:1.5rem;">{{ $articles->links() }}</div>
+            <div style="margin-top:1.75rem;">{{ $articles->links() }}</div>
         @endif
     </div>
 </section>
