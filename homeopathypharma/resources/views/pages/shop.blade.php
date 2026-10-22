@@ -5,8 +5,10 @@
 @section('content')
 <section class="hp-page">
     <div class="hp-container">
-        <h1>Shop</h1>
-        <p class="hp-section__lead">Published products from the catalogue.</p>
+        <div class="hp-page__intro">
+            <h1>Shop</h1>
+            <p class="hp-section__lead">Published products from the catalogue.</p>
+        </div>
 
         <form method="get" class="hp-filters" action="{{ route('shop.index') }}">
             <input class="hp-input" type="search" name="q" value="{{ $q }}" placeholder="Search name or SKU">
@@ -32,13 +34,13 @@
             <a class="hp-btn hp-btn--secondary" href="{{ route('shop.index') }}">Clear</a>
         </form>
 
-        <p style="color:var(--hp-muted);">{{ $products->total() }} product(s)</p>
+        <p class="hp-muted" style="margin-bottom:1.25rem;">{{ $products->total() }} product(s)</p>
 
         @if ($products->isEmpty())
             <div class="hp-empty">No published products match these filters.</div>
         @else
             @include('partials.product-grid', ['products' => $products])
-            <div style="margin-top:1.5rem;">{{ $products->links() }}</div>
+            <div style="margin-top:1.75rem;">{{ $products->links() }}</div>
         @endif
     </div>
 </section>

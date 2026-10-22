@@ -6,12 +6,12 @@
         <div class="hp-footer__grid">
             <div>
                 <p class="hp-footer__brand">{{ $settings->brandName() }}</p>
-                <p>{{ $settings->tagline() }}</p>
-                <p style="margin-top:1rem;">
+                <p class="hp-footer__intro">{{ $settings->tagline() }}</p>
+                <div class="hp-footer__contact">
                     <a href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
-                </p>
-                <p>{{ $settings->address() }}</p>
-                <p class="hp-footer__social" style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;">
+                    <span>{{ $settings->address() }}</span>
+                </div>
+                <p class="hp-footer__social">
                     @if ($settings->facebookUrl())
                         <a href="{{ $settings->facebookUrl() }}" target="_blank" rel="noopener">Facebook</a>
                     @endif
