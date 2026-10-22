@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessage;
+use App\Services\Notifications\NotificationService;
 use App\Services\SiteSettings;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,19 +18,33 @@ class ContactController extends Controller
         ]);
     }
 
-    public function store(Request $request, SiteSettings $settings): RedirectResponse
+    public function store(Request $request, SiteSettings $settings, NotificationService $notifications): RedirectResponse
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'contact' => ['required', 'string', 'max:190'],
             'message' => ['required', 'string', 'max:5000'],
             'consent' => ['accepted'],
         ]);
 
-        // Phase 1: no mail provider configured — do not claim email was sent.
+        ContactMessage::query()->create([
+            'name' => $data['name'],
+            'contact' => $data['contact'],
+            'message' => $data['message'],
+            'consent' => true,
+            'ip_address' => $request->ip(),
+        ]);
+
+        $notify = $notifications->notify(
+            'contact.received',
+            null,
+            'Contact form submission from '.$data['name'],
+            ['contact' => $data['contact']]
+        );
+
         return back()->with(
             'status',
-            'Thank you. Your message was validated. Email delivery is not configured yet — for urgent matters please call '.$settings->phoneDisplay().'.'
+            'Thank you. Your message was saved. '.$notify['message'].' For urgent matters please call '.$settings->phoneDisplay().'.'
         );
     }
 }

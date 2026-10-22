@@ -1,3 +1,6 @@
+@php
+    $policyPages = \App\Models\PolicyPage::query()->published()->orderBy('title')->get(['title', 'slug']);
+@endphp
 <footer class="hp-footer">
     <div class="hp-container">
         <div class="hp-footer__grid">
@@ -25,6 +28,9 @@
                     <li><a href="{{ route('contact.show') }}">Contact</a></li>
                     <li><a href="{{ route('cart') }}">Cart</a></li>
                     <li><a href="{{ route('account.dashboard') }}">Account</a></li>
+                    @foreach ($policyPages as $policyPage)
+                        <li><a href="{{ route('policies.show', $policyPage->slug) }}">{{ $policyPage->title }}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>

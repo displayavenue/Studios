@@ -13,6 +13,22 @@
 @endforeach
 </ul>
 </div>
+
+@if ($order->shipments->isNotEmpty())
+<div class="admin-card" style="margin-bottom:1rem;">
+<h3 style="margin-top:0;">Shipments</h3>
+<ul>
+@foreach ($order->shipments as $shipment)
+<li>
+{{ $shipment->provider }} · {{ $shipment->status }}
+@if ($shipment->courier) · {{ $shipment->courier }}@endif
+@if ($shipment->tracking_number) · tracking {{ $shipment->tracking_number }}@endif
+</li>
+@endforeach
+</ul>
+</div>
+@endif
+
 <form method="post" action="{{ route('admin.orders.update', $order) }}" class="admin-form admin-card">
 @csrf @method('PUT')
 <label>Fulfilment status
@@ -22,7 +38,9 @@
 @endforeach
 </select>
 </label>
-<p style="color:#68746D;font-size:0.9rem;">Payment status cannot be set to paid from admin — only verified provider responses / webhooks can.</p>
+<label>Courier (optional) <input name="courier" value="{{ old('courier', $order->shipment?->courier) }}"></label>
+<label>Tracking number (optional) <input name="tracking_number" value="{{ old('tracking_number', $order->shipment?->tracking_number) }}"></label>
+<p style="color:#68746D;font-size:0.9rem;">Moving to processing/shipped creates a shipment via Manual or Shiprocket (when configured). Payment status cannot be set to paid from admin — only verified provider responses / webhooks can.</p>
 <button class="btn btn-primary" type="submit">Update fulfilment</button>
 </form>
 @endsection

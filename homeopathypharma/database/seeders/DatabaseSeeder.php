@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             SiteSettingsSeeder::class,
             HomepageSectionSeeder::class,
             AdminUserSeeder::class,
+            PolicyPageSeeder::class,
         ]);
     }
 }

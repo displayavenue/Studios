@@ -58,6 +58,16 @@ class Order extends Model
         return $this->hasMany(Payment::class);
     }
 
+    public function shipments(): HasMany
+    {
+        return $this->hasMany(Shipment::class);
+    }
+
+    public function shipment(): HasOne
+    {
+        return $this->hasOne(Shipment::class)->latestOfMany();
+    }
+
     public function formattedTotal(): string
     {
         return '₹'.number_format($this->total_paise / 100, 2);

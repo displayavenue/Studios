@@ -603,6 +603,74 @@ a:hover {
   }
 }
 
+.hp-subhead {
+  font-family: var(--hp-serif);
+  color: var(--hp-deep);
+  font-size: 1.25rem;
+  margin: 1.75rem 0 0.85rem;
+}
+
+.hp-article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+
+.hp-article-card {
+  background: var(--hp-white);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--hp-shadow);
+}
+
+.hp-article-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  font-family: var(--hp-serif);
+  color: var(--hp-deep);
+}
+
+.hp-article-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hp-article-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.hp-article-card p {
+  margin: 0.35rem 0 0;
+  color: var(--hp-muted);
+  font-size: 0.92rem;
+}
+
+.hp-article {
+  max-width: 44rem;
+}
+
+.hp-prose {
+  margin-top: 1.25rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.hp-disclaimer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--hp-mint);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius);
+  color: var(--hp-muted);
+  font-size: 0.92rem;
+}
+
+.hp-related ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

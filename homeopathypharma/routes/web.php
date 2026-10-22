@@ -5,6 +5,9 @@ use App\Http\Controllers\Account\AuthController as AccountAuthController;
 use App\Http\Controllers\Account\OrderController as AccountOrderController;
 use App\Http\Controllers\Account\ProfileController;
 use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
+use App\Http\Controllers\Admin\ArticleCategoryController as AdminArticleCategoryController;
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Admin\AuditLogController as AdminAuditLogController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -13,7 +16,9 @@ use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\PolicyPageController as AdminPolicyPageController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
 use App\Http\Controllers\Admin\TeamMemberController as AdminTeamMemberController;
 use App\Http\Controllers\AppointmentController;
@@ -22,15 +27,21 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ConsultController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentWebhookController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ShopController;
 use App\Models\Appointment;
 use App\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
+
+Route::get('/robots.txt', [SeoController::class, 'robots'])->name('seo.robots');
+Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{slug}', [ShopController::class, 'category'])->name('shop.category');
@@ -42,7 +53,12 @@ Route::get('/consult', ConsultController::class)->name('consult');
 Route::get('/doctors/{slug}/book', [AppointmentController::class, 'create'])->name('appointments.create');
 Route::post('/doctors/{slug}/book', [AppointmentController::class, 'store'])->name('appointments.store');
 Route::get('/appointments/{appointment}/confirmation', [AppointmentController::class, 'confirmation'])->name('appointments.confirmation');
-Route::get('/health-library', fn () => view('pages.health-library'))->name('health-library.index');
+
+Route::get('/health-library', [HealthLibraryController::class, 'index'])->name('health-library.index');
+Route::get('/health-library/{slug}', [HealthLibraryController::class, 'show'])->name('health-library.show');
+
+Route::get('/policies/{slug}', [PolicyController::class, 'show'])->name('policies.show');
+
 Route::get('/about', fn () => view('pages.about'))->name('about');
 Route::get('/about/founders', function () {
     $members = TeamMember::query()->published()->orderBy('sort_order')->orderBy('name')->with('photo')->get();
@@ -117,6 +133,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
         Route::put('orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
+
+        Route::resource('articles', AdminArticleController::class)->except(['show']);
+        Route::resource('article-categories', AdminArticleCategoryController::class)->except(['show']);
+        Route::get('policies', [AdminPolicyPageController::class, 'index'])->name('policies.index');
+        Route::get('policies/{policy}/edit', [AdminPolicyPageController::class, 'edit'])->name('policies.edit');
+        Route::put('policies/{policy}', [AdminPolicyPageController::class, 'update'])->name('policies.update');
+        Route::get('audit-logs', AdminAuditLogController::class)->name('audit-logs.index');
+        Route::get('reports', AdminReportController::class)->name('reports.index');
+
         Route::get('homepage', [AdminHomepageSectionController::class, 'index'])->name('homepage.index');
         Route::get('homepage/{homepage}/edit', [AdminHomepageSectionController::class, 'edit'])->name('homepage.edit');
         Route::put('homepage/{homepage}', [AdminHomepageSectionController::class, 'update'])->name('homepage.update');
