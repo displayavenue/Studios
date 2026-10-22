@@ -47,8 +47,8 @@ Reasons: matches Hostinger capabilities, Composer available, MySQL supported, ze
 | **2** | Catalogue + admin media/products/categories/homepage/team | CRUD from DB; all images via media library |
 | **3** | Auth, cart, checkout, payment adapter, inventory | Server-verified prices; no fake paid status |
 | **4** | Doctors + appointments | No invented practitioners; slot conflict prevention |
-| **5** | Health library, policies, shipping/notifications adapters | Draft content stays private |
-| **6** | Tests, security review, Hostinger deploy docs, smoke tests | Matches real hosting |
+| **5** | Health library, policies, shipping/notifications adapters | Draft content stays private — **done in repo** |
+| **6** | Tests, security review, Hostinger deploy docs, smoke tests | Matches real hosting — next |
 
 ## Risks checklist
 
