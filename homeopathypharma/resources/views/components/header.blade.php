@@ -27,7 +27,7 @@
 
         <div class="hp-header__meta">
             <a class="hp-header__phone" href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
-            <a href="{{ route('account') }}">Account</a>
+            <a href="{{ auth()->check() ? route('account.dashboard') : route('account.login') }}">Account</a>
             <a href="{{ route('cart') }}">Cart</a>
         </div>
     </div>

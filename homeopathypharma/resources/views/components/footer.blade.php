@@ -24,7 +24,7 @@
                 <ul>
                     <li><a href="{{ route('contact.show') }}">Contact</a></li>
                     <li><a href="{{ route('cart') }}">Cart</a></li>
-                    <li><a href="{{ route('account') }}">Account</a></li>
+                    <li><a href="{{ route('account.dashboard') }}">Account</a></li>
                 </ul>
             </div>
         </div>

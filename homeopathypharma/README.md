@@ -10,7 +10,7 @@ Professional homeopathy product store + practitioner discovery platform.
 
 - [x] Phase 1 — Foundation (design tokens, settings, homepage shell, docs)
 - [x] Phase 2 — Catalogue & admin (products, categories, brands, media, team, homepage, settings)
-- [ ] Phase 3 — Accounts & ecommerce
+- [x] Phase 3 — Accounts, cart, checkout, Razorpay/test payment adapter, admin orders
 - [ ] Phase 4 — Doctors & appointments
 - [ ] Phase 5 — Content & operations
 - [ ] Phase 6 — Testing & launch

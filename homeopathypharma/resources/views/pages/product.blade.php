@@ -34,7 +34,18 @@
                 @if ($product->short_description)
                     <p>{{ $product->short_description }}</p>
                 @endif
-                <p class="hp-muted">Add to cart will be available when checkout is configured (Phase 3).</p>
+                @if ($product->isPurchasable())
+                    <form method="post" action="{{ route('cart.add', $product) }}" class="hp-btn-row" style="margin-top:1rem;">
+                        @csrf
+                        <label class="hp-label" style="margin:0;">
+                            Qty
+                            <input class="hp-input" type="number" name="quantity" value="1" min="1" max="{{ $product->stock_qty }}" style="width:5rem;">
+                        </label>
+                        <button class="hp-btn hp-btn--primary" type="submit">Add to Cart</button>
+                    </form>
+                @else
+                    <p class="hp-muted">This product cannot be purchased right now.</p>
+                @endif
             </div>
         </div>
 
