@@ -104,20 +104,20 @@ class HomepageContentSeeder extends Seeder
     {
         $members = [
             [
-                'name' => 'Founder (update name in Admin)',
+                'name' => 'Akash Yadav',
                 'slug' => 'founder',
                 'designation' => 'Founder',
                 'role_key' => 'founder',
                 'sort_order' => 1,
-                'biography' => 'Add founder biography, photo, and qualifications from Admin → Founders & Team.',
+                'biography' => 'Akash founded HOMEOPATHY PHARMA to make genuine homeopathic medicines and doctor guidance easy to access for every household — starting from Mira Road, Mumbai, and serving patients online across India.',
             ],
             [
-                'name' => 'Co-founder (update name in Admin)',
+                'name' => 'Poonam Yadav',
                 'slug' => 'co-founder',
                 'designation' => 'Co-founder',
                 'role_key' => 'co_founder',
                 'sort_order' => 2,
-                'biography' => 'Add co-founder biography, photo, and qualifications from Admin → Founders & Team.',
+                'biography' => 'Poonam leads customer experience and community care at HOMEOPATHY PHARMA, ensuring every consult request and order feels personal, clear, and trustworthy.',
             ],
         ];
 

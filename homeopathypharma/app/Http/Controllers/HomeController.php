@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\DoctorProfile;
 use App\Models\HomepageSection;
@@ -28,14 +29,36 @@ class HomeController extends Controller
             ->with('image')
             ->orderBy('sort_order')
             ->orderBy('name')
+            ->limit(10)
+            ->get();
+
+        $navCategories = Category::query()
+            ->published()
+            ->orderBy('sort_order')
+            ->orderBy('name')
             ->limit(12)
+            ->get();
+
+        $homepageBrands = Brand::query()
+            ->published()
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->limit(6)
             ->get();
 
         $featuredProducts = Product::query()
             ->published()
             ->where('is_featured', true)
-            ->with(['images.media'])
+            ->with(['images.media', 'brand'])
             ->latest('published_at')
+            ->limit(8)
+            ->get();
+
+        $dealProducts = Product::query()
+            ->published()
+            ->whereNotNull('sale_price_paise')
+            ->with(['images.media', 'brand'])
+            ->orderBy('sale_price_paise')
             ->limit(8)
             ->get();
 
@@ -58,14 +81,6 @@ class HomeController extends Controller
             ->limit(6)
             ->get();
 
-        $homepageCaseStudies = Article::query()
-            ->published()
-            ->caseStudies()
-            ->where('show_on_homepage', true)
-            ->latest('published_at')
-            ->limit(20)
-            ->get();
-
         $homepageBlog = Article::query()
             ->published()
             ->blog()
@@ -73,7 +88,7 @@ class HomeController extends Controller
                 $q->where('show_on_homepage', true)->orWhere('is_featured', true);
             })
             ->latest('published_at')
-            ->limit(3)
+            ->limit(5)
             ->get();
 
         if ($homepageBlog->isEmpty()) {
@@ -81,7 +96,7 @@ class HomeController extends Controller
                 ->published()
                 ->blog()
                 ->latest('published_at')
-                ->limit(3)
+                ->limit(5)
                 ->get();
         }
 
@@ -89,11 +104,13 @@ class HomeController extends Controller
             'settings' => $settings,
             'sections' => $sections,
             'homepageCategories' => $homepageCategories,
+            'navCategories' => $navCategories,
+            'homepageBrands' => $homepageBrands,
             'featuredProducts' => $featuredProducts,
+            'dealProducts' => $dealProducts,
             'homepageDoctors' => $homepageDoctors,
             'homepageFounders' => $homepageFounders,
             'homepageTestimonials' => $homepageTestimonials,
-            'homepageCaseStudies' => $homepageCaseStudies,
             'homepageBlog' => $homepageBlog,
         ]);
     }
