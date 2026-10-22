@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Article extends Model
 {
     protected $fillable = [
-        'article_category_id', 'title', 'slug', 'excerpt', 'body', 'cover_media_id',
-        'author_name', 'seo_title', 'seo_description', 'is_featured', 'status',
+        'article_category_id', 'title', 'slug', 'content_type', 'excerpt', 'body', 'cover_media_id',
+        'author_name', 'seo_title', 'seo_description', 'is_featured', 'show_on_homepage', 'status',
         'published_at', 'created_by',
     ];
 
@@ -18,8 +18,19 @@ class Article extends Model
     {
         return [
             'is_featured' => 'boolean',
+            'show_on_homepage' => 'boolean',
             'published_at' => 'datetime',
         ];
+    }
+
+    public function scopeCaseStudies(Builder $query): Builder
+    {
+        return $query->where('content_type', 'case_study');
+    }
+
+    public function scopeBlog(Builder $query): Builder
+    {
+        return $query->whereIn('content_type', ['blog', 'article']);
     }
 
     public function category(): BelongsTo

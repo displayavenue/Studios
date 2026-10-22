@@ -65,4 +65,28 @@ class SiteSettings
 
         return is_string($text) && trim($text) !== '' ? $text : null;
     }
+
+    public function facebookUrl(): ?string
+    {
+        $url = $this->get('facebook_url');
+
+        return is_string($url) && trim($url) !== '' ? $url : null;
+    }
+
+    public function instagramUrl(): ?string
+    {
+        $url = $this->get('instagram_url');
+
+        return is_string($url) && trim($url) !== '' ? $url : null;
+    }
+
+    public function consultationFeePaise(): int
+    {
+        return (int) $this->get('consultation_fee_paise', 99900);
+    }
+
+    public function consultationFeeDisplay(): string
+    {
+        return '₹'.number_format($this->consultationFeePaise() / 100, 0);
+    }
 }

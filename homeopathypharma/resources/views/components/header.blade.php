@@ -20,6 +20,8 @@
             <a href="{{ route('shop.index') }}">Shop</a>
             <a href="{{ route('shop.index') }}">Categories</a>
             <a href="{{ route('doctors.index') }}">Consult a Doctor</a>
+            <a href="{{ route('blog.index') }}">Blog</a>
+            <a href="{{ route('gallery') }}">Gallery</a>
             <a href="{{ route('health-library.index') }}">Health Library</a>
             <a href="{{ route('about') }}">About</a>
             <a href="{{ route('contact.show') }}">Contact</a>
@@ -27,6 +29,12 @@
 
         <div class="hp-header__meta">
             <a class="hp-header__phone" href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
+            @if ($settings->instagramUrl())
+                <a href="{{ $settings->instagramUrl() }}" target="_blank" rel="noopener">IG</a>
+            @endif
+            @if ($settings->facebookUrl())
+                <a href="{{ $settings->facebookUrl() }}" target="_blank" rel="noopener">FB</a>
+            @endif
             <a href="{{ auth()->check() ? route('account.dashboard') : route('account.login') }}">Account</a>
             <a href="{{ route('cart') }}">Cart</a>
         </div>

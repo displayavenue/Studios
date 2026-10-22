@@ -22,7 +22,7 @@ class TeamMemberController extends Controller
     public function create(): View
     {
         return view('admin.team.form', [
-            'member' => new TeamMember(['status' => 'draft', 'designation' => 'Team member']),
+            'member' => new TeamMember(['status' => 'draft', 'designation' => 'Team member', 'show_on_homepage' => false]),
             'media' => MediaAsset::query()->latest()->limit(50)->get(),
         ]);
     }
@@ -62,6 +62,7 @@ class TeamMemberController extends Controller
             'name' => ['required', 'string', 'max:190'],
             'slug' => ['nullable', 'string', 'max:190'],
             'designation' => ['required', 'string', 'max:120'],
+            'role_key' => ['nullable', 'in:founder,co_founder,team'],
             'photo_media_id' => ['nullable', 'exists:media_assets,id'],
             'biography' => ['nullable', 'string'],
             'responsibilities' => ['nullable', 'string'],
@@ -69,6 +70,7 @@ class TeamMemberController extends Controller
             'link_url' => ['nullable', 'url', 'max:255'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'status' => ['required', 'in:draft,published,archived'],
+            'show_on_homepage' => ['sometimes', 'boolean'],
             'started_on' => ['nullable', 'date'],
             'seo_title' => ['nullable', 'string', 'max:190'],
             'seo_description' => ['nullable', 'string', 'max:500'],
@@ -76,6 +78,8 @@ class TeamMemberController extends Controller
 
         $data['slug'] = Str::slug($data['slug'] ?: $data['name']);
         $data['sort_order'] = $data['sort_order'] ?? 0;
+        $data['show_on_homepage'] = $request->boolean('show_on_homepage');
+        $data['role_key'] = $data['role_key'] ?? null;
 
         if ($data['status'] === 'published' && empty($member?->published_at)) {
             $data['published_at'] = now();

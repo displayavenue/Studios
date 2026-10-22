@@ -21,6 +21,9 @@ class SiteSettingController extends Controller
             'currency',
             'locale',
             'timezone',
+            'consultation_fee_paise',
+            'facebook_url',
+            'instagram_url',
             'announcement_enabled',
             'announcement_text',
         ];
@@ -41,37 +44,55 @@ class SiteSettingController extends Controller
             'currency' => ['required', 'string', 'max:10'],
             'locale' => ['required', 'string', 'max:20'],
             'timezone' => ['required', 'string', 'max:64'],
+            'consultation_fee_inr' => ['required', 'numeric', 'min:0'],
+            'facebook_url' => ['nullable', 'url', 'max:255'],
+            'instagram_url' => ['nullable', 'url', 'max:255'],
             'announcement_enabled' => ['sometimes', 'boolean'],
             'announcement_text' => ['nullable', 'string', 'max:500'],
         ]);
 
         $map = [
-            'brand_name' => 'string',
-            'tagline' => 'string',
-            'phone_display' => 'string',
-            'phone_tel' => 'string',
-            'address' => 'text',
-            'currency' => 'string',
-            'locale' => 'string',
-            'timezone' => 'string',
-            'announcement_enabled' => 'boolean',
-            'announcement_text' => 'text',
+            'brand_name' => ['string', 'brand'],
+            'tagline' => ['string', 'brand'],
+            'phone_display' => ['string', 'contact'],
+            'phone_tel' => ['string', 'contact'],
+            'address' => ['text', 'contact'],
+            'currency' => ['string', 'commerce'],
+            'locale' => ['string', 'commerce'],
+            'timezone' => ['string', 'commerce'],
+            'facebook_url' => ['string', 'social'],
+            'instagram_url' => ['string', 'social'],
+            'announcement_text' => ['text', 'homepage'],
         ];
 
-        foreach ($map as $key => $type) {
-            $value = $key === 'announcement_enabled'
-                ? ($request->boolean('announcement_enabled') ? '1' : '0')
-                : ($data[$key] ?? null);
-
+        foreach ($map as $key => [$type, $group]) {
             SiteSetting::query()->updateOrCreate(
                 ['key' => $key],
                 [
-                    'group' => str_starts_with($key, 'announcement') ? 'homepage' : (str_contains($key, 'phone') || $key === 'address' ? 'contact' : 'brand'),
-                    'value' => $value,
+                    'group' => $group,
+                    'value' => $data[$key] ?? '',
                     'type' => $type,
                 ]
             );
         }
+
+        SiteSetting::query()->updateOrCreate(
+            ['key' => 'consultation_fee_paise'],
+            [
+                'group' => 'commerce',
+                'value' => (string) (int) round(((float) $data['consultation_fee_inr']) * 100),
+                'type' => 'string',
+            ]
+        );
+
+        SiteSetting::query()->updateOrCreate(
+            ['key' => 'announcement_enabled'],
+            [
+                'group' => 'homepage',
+                'value' => $request->boolean('announcement_enabled') ? '1' : '0',
+                'type' => 'boolean',
+            ]
+        );
 
         SiteSetting::forgetCache();
 

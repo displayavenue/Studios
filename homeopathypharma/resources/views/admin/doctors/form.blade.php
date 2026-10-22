@@ -7,7 +7,8 @@
 @if($doctor->exists) @method('PUT') @endif
 <label>Full name <input name="full_name" value="{{ old('full_name', $doctor->full_name) }}" required></label>
 <label>Slug <input name="slug" value="{{ old('slug', $doctor->slug) }}"></label>
-<label>Designation <input name="designation" value="{{ old('designation', $doctor->designation) }}"></label>
+<label>Designation <input name="designation" value="{{ old('designation', $doctor->designation) }}" placeholder="BHMS"></label>
+<label>Registration no. <input name="registration_number" value="{{ old('registration_number', $doctor->registration_number) }}"></label>
 <label>Photo media
 <select name="photo_media_id">
 <option value="">—</option>
@@ -19,10 +20,11 @@
 <label>Years experience <input type="number" min="0" name="years_experience" value="{{ old('years_experience', $doctor->years_experience) }}"></label>
 <label>Languages (comma-separated) <input name="languages" value="{{ old('languages', implode(', ', $doctor->languages ?? [])) }}"></label>
 <label>Specializations (comma-separated) <input name="specializations" value="{{ old('specializations', implode(', ', $doctor->specializations ?? [])) }}"></label>
+<label>Expertise summary <input name="expertise_summary" value="{{ old('expertise_summary', $doctor->expertise_summary) }}"></label>
 <label style="font-weight:600;">Consultation modes</label>
 <label style="display:flex;gap:0.4rem;font-weight:500;"><input type="checkbox" name="consultation_modes[]" value="online" @checked(in_array('online', old('consultation_modes', $doctor->consultation_modes ?? []), true))> Online</label>
 <label style="display:flex;gap:0.4rem;font-weight:500;"><input type="checkbox" name="consultation_modes[]" value="clinic" @checked(in_array('clinic', old('consultation_modes', $doctor->consultation_modes ?? []), true))> Clinic</label>
-<label>Fee (INR) <input type="number" step="0.01" min="0" name="fee_inr" value="{{ old('fee_inr', $doctor->fee_paise !== null ? number_format($doctor->fee_paise/100, 2, '.', '') : '') }}"></label>
+<label>Fee (INR) <input type="number" step="0.01" min="0" name="fee_inr" value="{{ old('fee_inr', $doctor->fee_paise !== null ? number_format($doctor->fee_paise/100, 2, '.', '') : '999') }}"></label>
 <label>City <input name="city" value="{{ old('city', $doctor->city) }}"></label>
 <label>Locality <input name="locality" value="{{ old('locality', $doctor->locality) }}"></label>
 <label>Bio <textarea name="bio">{{ old('bio', $doctor->bio) }}</textarea></label>
@@ -40,6 +42,9 @@
 @endforeach
 </select>
 </label>
+<label>Homepage sort <input type="number" min="0" name="homepage_sort_order" value="{{ old('homepage_sort_order', $doctor->homepage_sort_order ?? 0) }}"></label>
+<label style="display:flex;gap:.5rem;align-items:center;font-weight:500;"><input type="checkbox" name="show_on_homepage" value="1" @checked(old('show_on_homepage', $doctor->show_on_homepage))> Show on homepage (top doctors)</label>
+<label style="display:flex;gap:.5rem;align-items:center;font-weight:500;"><input type="checkbox" name="team_schedules_meet" value="1" @checked(old('team_schedules_meet', $doctor->team_schedules_meet ?? true))> Team schedules Google Meet</label>
 <button class="btn btn-primary" type="submit">Save profile</button>
 </form>
 

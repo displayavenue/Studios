@@ -14,10 +14,12 @@ class DoctorProfile extends Model
         'full_name',
         'slug',
         'designation',
+        'registration_number',
         'photo_media_id',
         'years_experience',
         'languages',
         'specializations',
+        'expertise_summary',
         'consultation_modes',
         'fee_paise',
         'city',
@@ -26,6 +28,9 @@ class DoctorProfile extends Model
         'verification_status',
         'verified_at',
         'status',
+        'show_on_homepage',
+        'homepage_sort_order',
+        'team_schedules_meet',
         'published_at',
     ];
 
@@ -37,7 +42,17 @@ class DoctorProfile extends Model
             'consultation_modes' => 'array',
             'verified_at' => 'datetime',
             'published_at' => 'datetime',
+            'show_on_homepage' => 'boolean',
+            'team_schedules_meet' => 'boolean',
         ];
+    }
+
+    public function scopeHomepageFeatured(Builder $query): Builder
+    {
+        return $query->publiclyListed()
+            ->where('show_on_homepage', true)
+            ->orderBy('homepage_sort_order')
+            ->orderBy('full_name');
     }
 
     public function photo(): BelongsTo

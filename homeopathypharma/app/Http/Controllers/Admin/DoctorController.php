@@ -35,6 +35,9 @@ class DoctorController extends Controller
                 'status' => 'draft',
                 'verification_status' => 'unverified',
                 'consultation_modes' => ['online'],
+                'fee_paise' => 99900,
+                'team_schedules_meet' => true,
+                'show_on_homepage' => false,
             ]),
             'media' => MediaAsset::query()->latest()->limit(50)->get(),
         ]);
@@ -139,10 +142,12 @@ class DoctorController extends Controller
             'full_name' => ['required', 'string', 'max:190'],
             'slug' => ['nullable', 'string', 'max:190'],
             'designation' => ['nullable', 'string', 'max:120'],
+            'registration_number' => ['nullable', 'string', 'max:120'],
             'photo_media_id' => ['nullable', 'exists:media_assets,id'],
             'years_experience' => ['nullable', 'integer', 'min:0', 'max:80'],
             'languages' => ['nullable', 'string'],
             'specializations' => ['nullable', 'string'],
+            'expertise_summary' => ['nullable', 'string', 'max:255'],
             'consultation_modes' => ['nullable', 'array'],
             'consultation_modes.*' => ['in:online,clinic'],
             'fee_inr' => ['nullable', 'numeric', 'min:0'],
@@ -151,6 +156,9 @@ class DoctorController extends Controller
             'bio' => ['nullable', 'string'],
             'verification_status' => ['required', 'in:unverified,pending,verified,rejected'],
             'status' => ['required', 'in:draft,published,suspended,archived'],
+            'show_on_homepage' => ['sometimes', 'boolean'],
+            'homepage_sort_order' => ['nullable', 'integer', 'min:0'],
+            'team_schedules_meet' => ['sometimes', 'boolean'],
         ]);
 
         if ($data['status'] === 'published' && $data['verification_status'] !== 'verified') {
@@ -163,9 +171,12 @@ class DoctorController extends Controller
         $data['languages'] = $this->csvToArray($data['languages'] ?? null);
         $data['specializations'] = $this->csvToArray($data['specializations'] ?? null);
         $data['consultation_modes'] = $data['consultation_modes'] ?? [];
+        $data['show_on_homepage'] = $request->boolean('show_on_homepage');
+        $data['team_schedules_meet'] = $request->boolean('team_schedules_meet', true);
+        $data['homepage_sort_order'] = $data['homepage_sort_order'] ?? 0;
         $data['fee_paise'] = isset($data['fee_inr']) && $data['fee_inr'] !== ''
             ? (int) round(((float) $data['fee_inr']) * 100)
-            : null;
+            : 99900;
         unset($data['fee_inr']);
 
         if ($data['verification_status'] === 'verified' && empty($doctor?->verified_at)) {

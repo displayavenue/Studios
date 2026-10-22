@@ -35,6 +35,8 @@ class SeoController extends Controller
             ['loc' => route('doctors.index'), 'changefreq' => 'weekly', 'priority' => '0.8'],
             ['loc' => route('consult'), 'changefreq' => 'weekly', 'priority' => '0.7'],
             ['loc' => route('health-library.index'), 'changefreq' => 'weekly', 'priority' => '0.7'],
+            ['loc' => route('blog.index'), 'changefreq' => 'weekly', 'priority' => '0.7'],
+            ['loc' => route('gallery'), 'changefreq' => 'daily', 'priority' => '0.5'],
             ['loc' => route('about'), 'changefreq' => 'monthly', 'priority' => '0.5'],
             ['loc' => route('about.founders'), 'changefreq' => 'monthly', 'priority' => '0.5'],
             ['loc' => route('contact.show'), 'changefreq' => 'monthly', 'priority' => '0.5'],

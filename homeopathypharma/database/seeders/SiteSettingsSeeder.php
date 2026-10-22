@@ -20,6 +20,9 @@ class SiteSettingsSeeder extends Seeder
             ['group' => 'commerce', 'key' => 'timezone', 'value' => 'Asia/Kolkata', 'type' => 'string'],
             ['group' => 'homepage', 'key' => 'announcement_enabled', 'value' => '0', 'type' => 'boolean'],
             ['group' => 'homepage', 'key' => 'announcement_text', 'value' => null, 'type' => 'text'],
+            ['group' => 'commerce', 'key' => 'consultation_fee_paise', 'value' => '99900', 'type' => 'string'],
+            ['group' => 'social', 'key' => 'facebook_url', 'value' => '', 'type' => 'string'],
+            ['group' => 'social', 'key' => 'instagram_url', 'value' => '', 'type' => 'string'],
             // Support email intentionally omitted until confirmed by the business.
         ];
 

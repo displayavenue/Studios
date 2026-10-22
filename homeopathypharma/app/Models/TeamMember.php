@@ -12,12 +12,14 @@ class TeamMember extends Model
         'name',
         'slug',
         'designation',
+        'role_key',
         'photo_media_id',
         'biography',
         'responsibilities',
         'qualifications',
         'link_url',
         'sort_order',
+        'show_on_homepage',
         'status',
         'started_on',
         'seo_title',
@@ -30,7 +32,13 @@ class TeamMember extends Model
         return [
             'started_on' => 'date',
             'published_at' => 'datetime',
+            'show_on_homepage' => 'boolean',
         ];
+    }
+
+    public function scopeHomepage(Builder $query): Builder
+    {
+        return $query->published()->where('show_on_homepage', true)->orderBy('sort_order')->orderBy('name');
     }
 
     public function photo(): BelongsTo

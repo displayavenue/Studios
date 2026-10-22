@@ -74,6 +74,7 @@ class Phase5ContentOpsTest extends TestCase
 
         $this->actingAs($admin)->post(route('admin.articles.store'), [
             'title' => 'Cold Care Basics',
+            'content_type' => 'article',
             'article_category_id' => $category->id,
             'excerpt' => 'General tips',
             'body' => 'Educational content',

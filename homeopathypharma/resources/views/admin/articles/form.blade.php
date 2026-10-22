@@ -7,6 +7,13 @@
 @if($article->exists) @method('PUT') @endif
 <label>Title <input name="title" value="{{ old('title', $article->title) }}" required></label>
 <label>Slug <input name="slug" value="{{ old('slug', $article->slug) }}" placeholder="auto from title"></label>
+<label>Content type
+<select name="content_type">
+@foreach(['article'=>'Article','blog'=>'Blog','case_study'=>'Case study'] as $k=>$label)
+<option value="{{ $k }}" @selected(old('content_type', $article->content_type ?? 'article')===$k)>{{ $label }}</option>
+@endforeach
+</select>
+</label>
 <label>Category
 <select name="article_category_id">
 <option value="">—</option>
@@ -35,6 +42,9 @@
 </label>
 <label style="display:flex;gap:0.5rem;align-items:center;font-weight:500;">
 <input type="checkbox" name="is_featured" value="1" @checked(old('is_featured', $article->is_featured))> Featured
+</label>
+<label style="display:flex;gap:0.5rem;align-items:center;font-weight:500;">
+<input type="checkbox" name="show_on_homepage" value="1" @checked(old('show_on_homepage', $article->show_on_homepage))> Show on homepage
 </label>
 <label>SEO title <input name="seo_title" value="{{ old('seo_title', $article->seo_title) }}"></label>
 <label>SEO description <textarea name="seo_description">{{ old('seo_description', $article->seo_description) }}</textarea></label>

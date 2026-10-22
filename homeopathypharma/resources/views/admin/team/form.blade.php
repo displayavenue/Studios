@@ -8,6 +8,14 @@
 <label>Name <input name="name" value="{{ old('name', $member->name) }}" required></label>
 <label>Slug <input name="slug" value="{{ old('slug', $member->slug) }}"></label>
 <label>Designation <input name="designation" value="{{ old('designation', $member->designation) }}" required></label>
+<label>Role
+<select name="role_key">
+<option value="">—</option>
+@foreach(['founder'=>'Founder','co_founder'=>'Co-founder','team'=>'Team'] as $k=>$label)
+<option value="{{ $k }}" @selected(old('role_key', $member->role_key)===$k)>{{ $label }}</option>
+@endforeach
+</select>
+</label>
 <label>Photo media
 <select name="photo_media_id">
 <option value="">—</option>
@@ -28,6 +36,7 @@
 @endforeach
 </select>
 </label>
+<label style="display:flex;gap:.5rem;align-items:center;font-weight:500;"><input type="checkbox" name="show_on_homepage" value="1" @checked(old('show_on_homepage', $member->show_on_homepage))> Show on homepage</label>
 <label>Started on <input type="date" name="started_on" value="{{ old('started_on', optional($member->started_on)->format('Y-m-d')) }}"></label>
 <div class="admin-actions"><button class="btn btn-primary" type="submit">Save</button><a class="btn btn-secondary" href="{{ route('admin.team.index') }}">Cancel</a></div>
 </form>

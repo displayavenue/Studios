@@ -11,13 +11,23 @@
                     <a href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
                 </p>
                 <p>{{ $settings->address() }}</p>
+                <p class="hp-footer__social" style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;">
+                    @if ($settings->facebookUrl())
+                        <a href="{{ $settings->facebookUrl() }}" target="_blank" rel="noopener">Facebook</a>
+                    @endif
+                    @if ($settings->instagramUrl())
+                        <a href="{{ $settings->instagramUrl() }}" target="_blank" rel="noopener">Instagram</a>
+                    @endif
+                </p>
             </div>
             <div>
                 <h3>Explore</h3>
                 <ul>
                     <li><a href="{{ route('shop.index') }}">Shop</a></li>
                     <li><a href="{{ route('doctors.index') }}">Consult a Doctor</a></li>
+                    <li><a href="{{ route('blog.index') }}">Blog</a></li>
                     <li><a href="{{ route('health-library.index') }}">Health Library</a></li>
+                    <li><a href="{{ route('gallery') }}">Gallery</a></li>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('about.founders') }}">Founders</a></li>
                 </ul>

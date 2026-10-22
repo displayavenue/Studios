@@ -24,7 +24,7 @@ class ArticleController extends Controller
     public function create(): View
     {
         return view('admin.articles.form', [
-            'article' => new Article(['status' => 'draft']),
+            'article' => new Article(['status' => 'draft', 'content_type' => 'article']),
             'categories' => ArticleCategory::query()->orderBy('name')->get(),
             'media' => MediaAsset::query()->latest()->limit(50)->get(),
         ]);
@@ -68,6 +68,7 @@ class ArticleController extends Controller
         $data = $request->validate([
             'title' => ['required', 'string', 'max:190'],
             'slug' => ['nullable', 'string', 'max:190'],
+            'content_type' => ['required', 'in:article,blog,case_study'],
             'article_category_id' => ['nullable', 'exists:article_categories,id'],
             'excerpt' => ['nullable', 'string', 'max:500'],
             'body' => ['nullable', 'string'],
@@ -76,11 +77,13 @@ class ArticleController extends Controller
             'seo_title' => ['nullable', 'string', 'max:190'],
             'seo_description' => ['nullable', 'string', 'max:500'],
             'is_featured' => ['sometimes', 'boolean'],
+            'show_on_homepage' => ['sometimes', 'boolean'],
             'status' => ['required', 'in:draft,published,archived'],
         ]);
 
         $data['slug'] = Str::slug(($data['slug'] ?? '') ?: $data['title']);
         $data['is_featured'] = $request->boolean('is_featured');
+        $data['show_on_homepage'] = $request->boolean('show_on_homepage');
         $data['created_by'] = $article?->created_by ?? $request->user()?->id;
         if ($data['status'] === 'published' && empty($article?->published_at)) {
             $data['published_at'] = now();

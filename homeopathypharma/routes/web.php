@@ -11,8 +11,10 @@ use App\Http\Controllers\Admin\AuditLogController as AdminAuditLogController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\ConsultationRequestController as AdminConsultationRequestController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
+use App\Http\Controllers\Admin\GalleryItemController as AdminGalleryItemController;
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -21,12 +23,16 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
 use App\Http\Controllers\Admin\TeamMemberController as AdminTeamMemberController;
+use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ConsultController;
+use App\Http\Controllers\ConsultationRequestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentWebhookController;
@@ -58,6 +64,15 @@ Route::get('/appointments/{appointment}/confirmation', [AppointmentController::c
 
 Route::get('/health-library', [HealthLibraryController::class, 'index'])->name('health-library.index');
 Route::get('/health-library/{slug}', [HealthLibraryController::class, 'show'])->name('health-library.show');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/gallery', GalleryController::class)->name('gallery');
+
+Route::get('/doctors/{slug}/request', [ConsultationRequestController::class, 'create'])->name('consultations.create');
+Route::post('/doctors/{slug}/request', [ConsultationRequestController::class, 'store'])
+    ->middleware('throttle:20,1')
+    ->name('consultations.store');
+Route::get('/consultations/{consultation}/confirmation', [ConsultationRequestController::class, 'confirmation'])
+    ->name('consultations.confirmation');
 
 Route::get('/policies/{slug}', [PolicyController::class, 'show'])->name('policies.show');
 
@@ -144,12 +159,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('appointments', [AdminAppointmentController::class, 'index'])->name('appointments.index');
         Route::get('appointments/{appointment}', [AdminAppointmentController::class, 'show'])->name('appointments.show');
         Route::put('appointments/{appointment}', [AdminAppointmentController::class, 'update'])->name('appointments.update');
+        Route::get('consultations', [AdminConsultationRequestController::class, 'index'])->name('consultations.index');
+        Route::get('consultations/{consultation}', [AdminConsultationRequestController::class, 'show'])->name('consultations.show');
+        Route::put('consultations/{consultation}', [AdminConsultationRequestController::class, 'update'])->name('consultations.update');
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
         Route::put('orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
 
         Route::resource('articles', AdminArticleController::class)->except(['show']);
         Route::resource('article-categories', AdminArticleCategoryController::class)->except(['show']);
+        Route::resource('testimonials', AdminTestimonialController::class)->except(['show']);
+        Route::resource('gallery', AdminGalleryItemController::class)->except(['show']);
+        Route::post('gallery/sync-instagram', [AdminGalleryItemController::class, 'syncInstagram'])->name('gallery.sync-instagram');
         Route::get('policies', [AdminPolicyPageController::class, 'index'])->name('policies.index');
         Route::get('policies/{policy}/edit', [AdminPolicyPageController::class, 'edit'])->name('policies.edit');
         Route::put('policies/{policy}', [AdminPolicyPageController::class, 'update'])->name('policies.update');

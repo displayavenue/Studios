@@ -48,5 +48,11 @@ return [
         'webhook_secret' => env('SHIPROCKET_WEBHOOK_SECRET'),
     ],
 
+    'instagram' => [
+        'access_token' => env('INSTAGRAM_ACCESS_TOKEN'),
+        'user_id' => env('INSTAGRAM_USER_ID'),
+        'graph_url' => env('INSTAGRAM_GRAPH_URL', 'https://graph.instagram.com'),
+    ],
+
 ];
 

@@ -22,8 +22,11 @@
             <a href="{{ route('admin.media.index') }}" class="{{ str_starts_with($route, 'admin.media') ? 'is-active' : '' }}">Media Library</a>
             <a href="{{ route('admin.orders.index') }}" class="{{ str_starts_with($route, 'admin.orders') ? 'is-active' : '' }}">Orders</a>
             <a href="{{ route('admin.doctors.index') }}" class="{{ str_starts_with($route, 'admin.doctors') ? 'is-active' : '' }}">Doctors</a>
+            <a href="{{ route('admin.consultations.index') }}" class="{{ str_starts_with($route, 'admin.consultations') ? 'is-active' : '' }}">Consult requests</a>
             <a href="{{ route('admin.appointments.index') }}" class="{{ str_starts_with($route, 'admin.appointments') ? 'is-active' : '' }}">Appointments</a>
-            <a href="{{ route('admin.articles.index') }}" class="{{ str_starts_with($route, 'admin.articles') || str_starts_with($route, 'admin.article-categories') ? 'is-active' : '' }}">Health Library</a>
+            <a href="{{ route('admin.articles.index') }}" class="{{ str_starts_with($route, 'admin.articles') || str_starts_with($route, 'admin.article-categories') ? 'is-active' : '' }}">Blog &amp; Library</a>
+            <a href="{{ route('admin.testimonials.index') }}" class="{{ str_starts_with($route, 'admin.testimonials') ? 'is-active' : '' }}">Testimonials</a>
+            <a href="{{ route('admin.gallery.index') }}" class="{{ str_starts_with($route, 'admin.gallery') ? 'is-active' : '' }}">Gallery</a>
             <a href="{{ route('admin.policies.index') }}" class="{{ str_starts_with($route, 'admin.policies') ? 'is-active' : '' }}">Policies</a>
             <a href="{{ route('admin.team.index') }}" class="{{ str_starts_with($route, 'admin.team') ? 'is-active' : '' }}">Founders &amp; Team</a>
             <a href="{{ route('admin.homepage.index') }}" class="{{ str_starts_with($route, 'admin.homepage') ? 'is-active' : '' }}">Homepage</a>

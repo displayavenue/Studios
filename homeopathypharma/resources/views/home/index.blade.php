@@ -22,8 +22,8 @@
                         <a class="hp-btn hp-btn--primary" href="{{ $hero->payload['primary_cta_href'] ?? route('shop.index') }}">
                             {{ $hero->payload['primary_cta_label'] ?? 'Shop Products' }}
                         </a>
-                        <a class="hp-btn hp-btn--secondary" href="{{ $hero->payload['secondary_cta_href'] ?? route('doctors.index') }}">
-                            {{ $hero->payload['secondary_cta_label'] ?? 'Consult a Doctor' }}
+                        <a class="hp-btn hp-btn--secondary" href="#homepage-doctors">
+                            Book doctor · {{ $settings->consultationFeeDisplay() }}
                         </a>
                     </div>
                 </div>
@@ -34,8 +34,142 @@
         </section>
     @endif
 
+    <section class="hp-section" id="homepage-doctors">
+        <div class="hp-container">
+            <h2>Consult our doctors</h2>
+            <p class="hp-section__lead">{{ $settings->consultationFeeDisplay() }} per session. Our team schedules your Google Meet call with the doctor after you book.</p>
+            @if ($homepageDoctors->isEmpty())
+                <div class="hp-empty">Featured doctors appear here once published and marked “Show on homepage” in Admin → Doctors.</div>
+            @else
+                <div class="hp-doctor-grid">
+                    @foreach ($homepageDoctors as $doctor)
+                        <article class="hp-doctor-card">
+                            <div class="hp-doctor-card__photo">
+                                @if ($doctor->photo)
+                                    <img src="{{ $doctor->photo->publicUrl() }}" alt="{{ $doctor->full_name }}">
+                                @else
+                                    <span aria-hidden="true">{{ collect(explode(' ', $doctor->full_name))->map(fn ($p) => mb_substr($p, 0, 1))->take(2)->implode('') }}</span>
+                                @endif
+                            </div>
+                            <h3>{{ $doctor->full_name }}</h3>
+                            <p class="hp-muted">{{ $doctor->designation ?: 'BHMS' }}@if($doctor->years_experience) · {{ $doctor->years_experience }}+ yrs @endif</p>
+                            @if ($doctor->expertise_summary)
+                                <p>{{ $doctor->expertise_summary }}</p>
+                            @elseif ($doctor->specializations)
+                                <p>{{ implode(' · ', $doctor->specializations) }}</p>
+                            @endif
+                            <ul class="hp-doctor-meta">
+                                @if ($doctor->registration_number)
+                                    <li><strong>Reg. no.</strong> {{ $doctor->registration_number }}</li>
+                                @else
+                                    <li><strong>Reg. no.</strong> Update in admin</li>
+                                @endif
+                                <li><strong>Location</strong> {{ trim(($doctor->locality ? $doctor->locality.', ' : '').($doctor->city ?: 'Mumbai')) }}</li>
+                                <li><strong>Session</strong> {{ $doctor->formattedFee() ?: $settings->consultationFeeDisplay() }} · Google Meet</li>
+                            </ul>
+                            <a class="hp-btn hp-btn--primary" href="{{ route('consultations.create', $doctor->slug) }}">Book session</a>
+                            <a class="hp-text-link" href="{{ route('doctors.show', $doctor->slug) }}">View profile</a>
+                        </article>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </section>
+
+    <section class="hp-section hp-section--alt" id="homepage-founders">
+        <div class="hp-container">
+            <h2>Founders</h2>
+            <p class="hp-section__lead">Leadership behind {{ $settings->brandName() }}. Edit names, photos, and bios in Admin → Founders &amp; Team.</p>
+            @if ($homepageFounders->isEmpty())
+                <div class="hp-empty">Publish founder profiles with “Show on homepage” enabled to display them here.</div>
+            @else
+                <div class="hp-people-grid">
+                    @foreach ($homepageFounders as $member)
+                        <article class="hp-person-card">
+                            <div class="hp-person-card__photo">
+                                @if ($member->photo)
+                                    <img src="{{ $member->photo->publicUrl() }}" alt="{{ $member->name }}">
+                                @else
+                                    <span aria-hidden="true">{{ mb_substr($member->name, 0, 1) }}</span>
+                                @endif
+                            </div>
+                            <h3>{{ $member->name }}</h3>
+                            <p class="hp-muted">{{ $member->designation }}</p>
+                            @if ($member->biography)
+                                <p>{{ \Illuminate\Support\Str::limit($member->biography, 160) }}</p>
+                            @endif
+                        </article>
+                    @endforeach
+                </div>
+                <p style="margin-top:1rem;"><a href="{{ route('about.founders') }}">Full founders &amp; team</a></p>
+            @endif
+        </div>
+    </section>
+
+    <section class="hp-section" id="homepage-testimonials">
+        <div class="hp-container">
+            <h2>Testimonials</h2>
+            <p class="hp-section__lead">Words from people who booked through {{ $settings->brandName() }}. Manage quotes in Admin → Testimonials.</p>
+            @if ($homepageTestimonials->isEmpty())
+                <div class="hp-empty">No published testimonials yet.</div>
+            @else
+                <div class="hp-quote-grid">
+                    @foreach ($homepageTestimonials as $item)
+                        <blockquote class="hp-quote">
+                            <p>“{{ $item->quote }}”</p>
+                            <footer>
+                                <strong>{{ $item->author_name }}</strong>
+                                @if ($item->author_role)<span class="hp-muted"> · {{ $item->author_role }}</span>@endif
+                            </footer>
+                        </blockquote>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </section>
+
+    <section class="hp-section hp-section--alt" id="homepage-case-studies">
+        <div class="hp-container">
+            <h2>Case studies</h2>
+            <p class="hp-section__lead">Educational briefs on common concerns and how homeopathy approaches them — not personal medical advice.</p>
+            @if ($homepageCaseStudies->isEmpty())
+                <div class="hp-empty">Case studies appear after publishing articles with type “case study”.</div>
+            @else
+                <div class="hp-article-grid">
+                    @foreach ($homepageCaseStudies as $study)
+                        <article class="hp-article-card">
+                            <h3><a href="{{ route('health-library.show', $study->slug) }}">{{ $study->title }}</a></h3>
+                            @if ($study->excerpt)<p>{{ $study->excerpt }}</p>@endif
+                        </article>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </section>
+
+    <section class="hp-section" id="homepage-blog">
+        <div class="hp-container">
+            <h2>Blog</h2>
+            <p class="hp-section__lead">Guides and updates from our health library.</p>
+            @if ($homepageBlog->isEmpty())
+                <div class="hp-empty">No blog posts published yet.</div>
+            @else
+                <div class="hp-article-grid">
+                    @foreach ($homepageBlog as $post)
+                        <article class="hp-article-card">
+                            <h3><a href="{{ route('health-library.show', $post->slug) }}">{{ $post->title }}</a></h3>
+                            @if ($post->excerpt)<p>{{ $post->excerpt }}</p>@endif
+                        </article>
+                    @endforeach
+                </div>
+                <p style="margin-top:1rem;"><a class="hp-btn hp-btn--secondary" href="{{ route('blog.index') }}">View all posts</a>
+                    <a class="hp-btn hp-btn--secondary" href="{{ route('gallery') }}">Instagram gallery</a></p>
+            @endif
+        </div>
+    </section>
+
     @if ($trust)
-        <section class="hp-section">
+        <section class="hp-section hp-section--alt">
             <div class="hp-container">
                 <h2>{{ $trust->title }}</h2>
                 <div class="hp-trust">
@@ -51,12 +185,12 @@
     @endif
 
     @if ($categories)
-        <section class="hp-section hp-section--alt">
+        <section class="hp-section">
             <div class="hp-container">
                 <h2>{{ $categories->title }}</h2>
                 <p class="hp-section__lead">{{ $categories->subtitle }}</p>
                 @if ($homepageCategories->isEmpty())
-                    <div class="hp-empty">No published categories yet. Categories will load from the database after catalogue setup.</div>
+                    <div class="hp-empty">No published categories yet.</div>
                 @else
                     <div class="hp-product-grid">
                         @foreach ($homepageCategories as $category)
@@ -74,12 +208,12 @@
     @endif
 
     @if ($featured)
-        <section class="hp-section">
+        <section class="hp-section hp-section--alt">
             <div class="hp-container">
                 <h2>{{ $featured->title }}</h2>
                 <p class="hp-section__lead">{{ $featured->subtitle }}</p>
                 @if ($featuredProducts->isEmpty())
-                    <div class="hp-empty">No featured products yet. An administrator must publish and feature products before they appear here.</div>
+                    <div class="hp-empty">No featured products yet.</div>
                 @else
                     @include('partials.product-grid', ['products' => $featuredProducts])
                 @endif
@@ -88,26 +222,14 @@
     @endif
 
     @if ($consult)
-        <section class="hp-section hp-section--alt">
+        <section class="hp-section">
             <div class="hp-container hp-consult">
                 <div>
                     <h2>{{ $consult->title }}</h2>
                     <p class="hp-section__lead">{{ $consult->subtitle }}</p>
-                    <a class="hp-btn hp-btn--primary" href="{{ $consult->payload['cta_href'] ?? route('doctors.index') }}">
-                        {{ $consult->payload['cta_label'] ?? 'Find a Doctor' }}
-                    </a>
+                    <a class="hp-btn hp-btn--primary" href="#homepage-doctors">Book {{ $settings->consultationFeeDisplay() }} session</a>
                 </div>
-                <div class="hp-consult__panel">Consultation media managed via the media library</div>
-            </div>
-        </section>
-    @endif
-
-    @if ($library)
-        <section class="hp-section">
-            <div class="hp-container">
-                <h2>{{ $library->title }}</h2>
-                <p class="hp-section__lead">{{ $library->subtitle }}</p>
-                <div class="hp-empty">No published articles yet.</div>
+                <div class="hp-consult__panel">Google Meet · scheduled by our team</div>
             </div>
         </section>
     @endif
