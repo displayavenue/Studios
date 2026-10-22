@@ -1,7 +1,8 @@
 # Homeopathy Pharma — Master Build Plan (inspection)
 
-> Status: **blocked on Hostinger plan confirmation** before destructive rebuild.  
-> Production files on Hostinger will **not** be overwritten until you explicitly approve a deploy.
+> Status: **Hostinger checked** — shared CloudLinux web hosting (PHP + MySQL capable; **no Node**).  
+> Recommended stack: **Laravel (PHP 8.3) + MySQL/MariaDB** on this Hostinger account.  
+> Production files will **not** be overwritten until you explicitly approve a deploy.
 
 ## What exists today
 
@@ -18,23 +19,25 @@
 | Contact already used | `+91 8169122333` (will standardize to **+91 8169 122333**) |
 | Design reference image | **Not found** in the workspace / attachments at inspection time |
 
-## Hosting constraint (critical)
+## Hosting check (SSH probe — 2026-10-22)
 
-Evidence from deploy scripts and prior live deploys:
+| Check | Result |
+|-------|--------|
+| Host | `in-mum-web1188.main-hosting.eu` (CloudLinux shared web hosting) |
+| Account | `u452926742` |
+| Site path | `domains/homeopathypharma.com/public_html` |
+| PHP | **8.3.35** CLI + Composer **2.9** |
+| PHP extensions | mysqli, pdo_mysql, pdo_sqlite, gd, curl, mbstring, openssl, zip, fileinfo |
+| MySQL/MariaDB | Client **11.8** present; `pdo_mysql=yes`; DB credentials **not** in `~/.my.cnf` (create/use DB in hPanel) |
+| Node in SSH PATH | **Not available** (`node` / `npm` missing) |
+| alt-nodejs packages | Present on server (`alt-nodejs18`…`24`) but not activated for this shell — do **not** rely on Node for the primary app |
+| Current live site | Static Next export + PHP `/backend` CMS (last deploy ~ Oct 7) |
 
-- Hostinger serves **static files + PHP** under `domains/homeopathypharma.com/public_html`.
-- There is **no running Node.js API, PostgreSQL, Redis, or Docker** on that deploy path.
-- The monorepo’s full stack (NestJS + Postgres + Redis) **cannot run as designed on conventional shared Hostinger** without a VPS/Cloud Node plan or an external database/host.
+### Chosen architecture (from check)
 
-Therefore stack choice **must** wait on your Hostinger plan type.
+**Laravel 11 (PHP 8.3) + MySQL/MariaDB on Hostinger shared hosting**, Blade (or Inertia later), file storage on disk, Redis optional later if available.
 
-### Candidate architectures (after you confirm)
-
-| Hostinger plan | Recommended stack | Notes |
-|----------------|-------------------|--------|
-| **Shared / Web hosting** (PHP + MySQL) | Laravel (or PHP app) + MySQL/MariaDB + Blade/Inertia, or Next static + PHP/MySQL API | Fits current deploy; zero extra infra cost |
-| **VPS / Cloud with Node** | Next.js + NestJS (or Next full-stack) + PostgreSQL/MySQL on the VPS | Closest to existing monorepo; needs VPS management |
-| **Shared + external free/low-cost DB** | Static/SSR frontend + backend elsewhere | Usually introduces paid or fragile free-tier dependencies — avoid unless you approve |
+Reasons: matches Hostinger capabilities, Composer available, MySQL supported, zero extra hosting cost, real admin/auth/orders possible. The existing NestJS + Postgres + Redis monorepo **cannot** be the production runtime on this plan.
 
 ## Phased plan (from master prompt)
 
