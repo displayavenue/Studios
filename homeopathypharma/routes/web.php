@@ -33,6 +33,7 @@ use App\Http\Controllers\ConsultationRequestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HealthConditionController;
 use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentWebhookController;
@@ -48,6 +49,10 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/robots.txt', [SeoController::class, 'robots'])->name('seo.robots');
 Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
+Route::get('/llms.txt', [HealthConditionController::class, 'llms'])->name('seo.llms');
+
+Route::get('/conditions', [HealthConditionController::class, 'index'])->name('conditions.index');
+Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{slug}', [ShopController::class, 'category'])->name('shop.category');

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             PolicyPageSeeder::class,
             HomepageContentSeeder::class,
+            HealthConditionSeeder::class,
         ]);
     }
 }

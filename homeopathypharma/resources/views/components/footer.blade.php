@@ -25,6 +25,7 @@
                 <ul>
                     <li><a href="{{ route('shop.index') }}">Shop</a></li>
                     <li><a href="{{ route('doctors.index') }}">Consult a Doctor</a></li>
+                    <li><a href="{{ route('conditions.index') }}">Conditions</a></li>
                     <li><a href="{{ route('blog.index') }}">Blog</a></li>
                     <li><a href="{{ route('health-library.index') }}">Health Library</a></li>
                     <li><a href="{{ route('gallery') }}">Gallery</a></li>
