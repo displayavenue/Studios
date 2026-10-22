@@ -71,10 +71,12 @@ class Phase6SecuritySmokeTest extends TestCase
             $mock->shouldReceive('isConfigured')->andReturn(false);
         });
 
+        $manager = app(PaymentGatewayManager::class);
+        $this->assertNull($manager->gatewayOrNull());
+
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('No live payment gateway is configured');
-
-        app(PaymentGatewayManager::class)->gateway();
+        $manager->gateway();
     }
 
     public function test_test_confirm_is_forbidden_in_production(): void

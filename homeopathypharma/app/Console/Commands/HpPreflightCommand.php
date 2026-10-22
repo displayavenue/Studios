@@ -33,7 +33,11 @@ class HpPreflightCommand extends Command
         }
 
         if (config('database.default') === 'sqlite' && app()->environment('production')) {
-            $errors[] = 'Production should use MySQL (DB_CONNECTION=mysql), not SQLite.';
+            if (filter_var(env('ALLOW_SQLITE_PRODUCTION', false), FILTER_VALIDATE_BOOLEAN)) {
+                $warnings[] = 'Production is using SQLite (ALLOW_SQLITE_PRODUCTION=true). Migrate to MySQL in hPanel when ready.';
+            } else {
+                $errors[] = 'Production should use MySQL (DB_CONNECTION=mysql), not SQLite.';
+            }
         }
 
         $adminEmail = (string) env('ADMIN_EMAIL', 'admin@localhost.invalid');
@@ -47,7 +51,11 @@ class HpPreflightCommand extends Command
         }
 
         if (! env('RAZORPAY_KEY_ID') || ! env('RAZORPAY_KEY_SECRET')) {
-            $warnings[] = 'Razorpay not configured — checkout will use clearly marked test payment mode.';
+            if (app()->environment('production')) {
+                $warnings[] = 'Razorpay not configured — online checkout is disabled in production until keys are set.';
+            } else {
+                $warnings[] = 'Razorpay not configured — checkout will use clearly marked test payment mode.';
+            }
         } elseif (! env('RAZORPAY_WEBHOOK_SECRET')) {
             $warnings[] = 'RAZORPAY_WEBHOOK_SECRET is empty — webhooks cannot be verified safely.';
         }

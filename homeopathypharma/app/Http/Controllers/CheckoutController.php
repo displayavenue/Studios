@@ -20,16 +20,29 @@ class CheckoutController extends Controller
             return redirect()->route('cart')->withErrors(['cart' => 'Your cart is empty.']);
         }
 
+        $gateway = $payments->gatewayOrNull();
+        if (! $gateway) {
+            return redirect()->route('cart')->withErrors([
+                'cart' => 'Online checkout is not enabled yet. Please call '.$settings->phoneDisplay().' to place an order.',
+            ]);
+        }
+
         return view('pages.checkout', [
             'settings' => $settings,
             'cart' => $cart,
-            'gatewayName' => $payments->gateway()->name(),
-            'razorpayConfigured' => app(\App\Services\Payments\RazorpayGateway::class)->isConfigured(),
+            'gatewayName' => $gateway->name(),
+            'razorpayConfigured' => $payments->isLiveReady(),
         ]);
     }
 
-    public function store(Request $request, CartService $carts, CheckoutService $checkout): RedirectResponse|View
+    public function store(Request $request, CartService $carts, CheckoutService $checkout, PaymentGatewayManager $payments, SiteSettings $settings): RedirectResponse|View
     {
+        if (! $payments->gatewayOrNull()) {
+            return redirect()->route('cart')->withErrors([
+                'cart' => 'Online checkout is not enabled yet. Please call '.$settings->phoneDisplay().' to place an order.',
+            ]);
+        }
+
         $customer = $request->validate([
             'customer_name' => ['required', 'string', 'max:120'],
             'customer_phone' => ['required', 'string', 'max:30'],
