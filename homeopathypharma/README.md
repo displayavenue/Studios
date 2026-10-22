@@ -9,11 +9,17 @@ Professional homeopathy product store + practitioner discovery platform.
 ## Phase status
 
 - [x] Phase 1 — Foundation (design tokens, settings, homepage shell, docs)
-- [ ] Phase 2 — Catalogue & admin
+- [x] Phase 2 — Catalogue & admin (products, categories, brands, media, team, homepage, settings)
 - [ ] Phase 3 — Accounts & ecommerce
 - [ ] Phase 4 — Doctors & appointments
 - [ ] Phase 5 — Content & operations
 - [ ] Phase 6 — Testing & launch
+
+### Admin (local)
+
+- URL: http://127.0.0.1:8000/admin/login
+- Default local credentials (override via `.env`): `ADMIN_EMAIL=admin@localhost.invalid` / `ADMIN_PASSWORD=ChangeMeNow!123`
+- This is **not** a business email — change before any production deploy.
 
 ## Local setup
 

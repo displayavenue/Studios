@@ -55,7 +55,20 @@
             <div class="hp-container">
                 <h2>{{ $categories->title }}</h2>
                 <p class="hp-section__lead">{{ $categories->subtitle }}</p>
-                <div class="hp-empty">No published categories yet. Categories will load from the database after catalogue setup.</div>
+                @if ($homepageCategories->isEmpty())
+                    <div class="hp-empty">No published categories yet. Categories will load from the database after catalogue setup.</div>
+                @else
+                    <div class="hp-product-grid">
+                        @foreach ($homepageCategories as $category)
+                            <a class="hp-product-card" href="{{ route('shop.category', $category->slug) }}">
+                                @if ($category->image)
+                                    <img src="{{ $category->image->publicUrl() }}" alt="{{ $category->image->alt_text ?: $category->name }}">
+                                @endif
+                                <h3>{{ $category->name }}</h3>
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </section>
     @endif
@@ -65,7 +78,11 @@
             <div class="hp-container">
                 <h2>{{ $featured->title }}</h2>
                 <p class="hp-section__lead">{{ $featured->subtitle }}</p>
-                <div class="hp-empty">No featured products yet. An administrator must publish and feature products before they appear here.</div>
+                @if ($featuredProducts->isEmpty())
+                    <div class="hp-empty">No featured products yet. An administrator must publish and feature products before they appear here.</div>
+                @else
+                    @include('partials.product-grid', ['products' => $featuredProducts])
+                @endif
             </div>
         </section>
     @endif

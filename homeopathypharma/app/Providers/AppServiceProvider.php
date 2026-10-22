@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\HomepageSection;
+use App\Models\MediaAsset;
+use App\Models\TeamMember;
 use App\Services\SiteSettings;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,8 +19,13 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Route::bind('medium', fn (string $value) => MediaAsset::query()->findOrFail($value));
+        Route::bind('team', fn (string $value) => TeamMember::query()->findOrFail($value));
+        Route::bind('homepage', fn (string $value) => HomepageSection::query()->findOrFail($value));
+
         View::composer(['layouts.app', 'components.*'], function ($view) {
             $view->with('settings', app(SiteSettings::class));
         });
     }
 }
+

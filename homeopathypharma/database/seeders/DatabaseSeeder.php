@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SiteSettingsSeeder::class,
             HomepageSectionSeeder::class,
+            AdminUserSeeder::class,
         ]);
     }
 }
