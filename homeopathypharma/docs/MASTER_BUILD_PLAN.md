@@ -1,7 +1,7 @@
 # Homeopathy Pharma — Master Build Plan (inspection)
 
-> Status: **Hostinger checked** — shared CloudLinux web hosting (PHP + MySQL capable; **no Node**).  
-> Recommended stack: **Laravel (PHP 8.3) + MySQL/MariaDB** on this Hostinger account.  
+> Status: **Phase 1 in progress / completed locally** — Laravel app scaffolded.  
+> Hostinger: shared CloudLinux (PHP 8.3 + MySQL; no Node runtime).  
 > Production files will **not** be overwritten until you explicitly approve a deploy.
 
 ## What exists today

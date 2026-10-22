@@ -1,119 +1,47 @@
-> **Repository note:** This monorepo lives in the `homeopathypharma/` directory alongside an unrelated **DisplayAvenue** project at the workspace root. All HomeopathyPharma work stays inside this folder — do not modify DisplayAvenue root files.
+# HOMEOPATHY PHARMA
 
-# HomeopathyPharma.com
+Professional homeopathy product store + practitioner discovery platform.
 
-Premium healthcare and ecommerce platform for homeopathic products, verified doctor consultations, and medically reviewed educational content. India-first (INR, Razorpay, Shiprocket) with architecture ready for 100k+ product URLs.
+**Stack (Hostinger-compatible):** Laravel (PHP 8.3) · MySQL/MariaDB (production) · SQLite (local) · Blade
 
-## Quick start
+> Production on Hostinger is **not** overwritten automatically. Deploy only after explicit approval.
 
-**Prerequisites:** Node 22+, pnpm 9+, Docker
+## Phase status
+
+- [x] Phase 1 — Foundation (design tokens, settings, homepage shell, docs)
+- [ ] Phase 2 — Catalogue & admin
+- [ ] Phase 3 — Accounts & ecommerce
+- [ ] Phase 4 — Doctors & appointments
+- [ ] Phase 5 — Content & operations
+- [ ] Phase 6 — Testing & launch
+
+## Local setup
 
 ```bash
 cd homeopathypharma
-./scripts/dev-bootstrap.sh
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+php artisan serve
 ```
 
-Or step by step:
+Open http://127.0.0.1:8000
 
-```bash
-cp .env.example .env          # edit secrets as needed
-pnpm docker:up                # Postgres, Redis, OpenSearch, MinIO
-pnpm install
-pnpm db:generate
-pnpm db:migrate
-pnpm db:seed                  # RBAC + taxonomy shells only (no fake production data)
-pnpm dev                      # all apps + API + worker
-```
+Seed data includes **only** verified business settings (brand, tagline, phone, address) and homepage section shells. No invented products, doctors, founders, or emails.
 
-### Local URLs
+## Business defaults (editable via `site_settings`)
 
-| Service | URL |
-|---------|-----|
-| Storefront | http://localhost:3000 |
-| Doctor portal | http://localhost:3001 |
-| Admin console | http://localhost:3002 |
-| API (`/v1`) | http://localhost:4000 |
-| MinIO console | http://localhost:9001 |
-| Prisma Studio | `pnpm db:studio` |
+- Phone: +91 8169 122333
+- Address: No. 44, D Wing, Shree Sharanam CHS, Kanakia, Near Fire Station, Unique Garden, Mira Road East, Mumbai – 401107, Maharashtra, India.
+- Tagline: Natural wellness. Expert guidance.
 
-## Monorepo structure
+## Hostinger
 
-```
-homeopathypharma/
-├── apps/
-│   ├── web/              # Next.js storefront + health content
-│   ├── doctor/           # Doctor portal
-│   └── admin/            # Operations console
-├── services/
-│   ├── api/              # NestJS API — backend source of truth
-│   └── worker/           # BullMQ async jobs
-├── packages/
-│   ├── auth/             # Sessions, RBAC, Google token verification
-│   ├── config/           # Shared configuration
-│   ├── database/         # Prisma schema & migrations
-│   ├── integrations/     # Razorpay, Shiprocket, S3, state machines
-│   ├── seo/              # Sitemaps, JSON-LD, robots
-│   ├── ui/               # Shared React components
-│   └── validation/       # Zod API schemas
-├── docs/                 # Architecture, security, compliance
-├── infrastructure/       # Docker, nginx, k8s, terraform notes
-├── tests/                # e2e, unit, integration, contract
-└── scripts/              # Dev bootstrap
-```
-
-**Stack:** pnpm workspaces · Turborepo · TypeScript · PostgreSQL · Redis · OpenSearch · S3
-
-## Common commands
-
-```bash
-pnpm dev:web          # storefront only
-pnpm dev:api          # API only
-pnpm dev:worker       # worker only
-pnpm lint             # ESLint across packages
-pnpm typecheck        # TypeScript
-pnpm test             # unit tests (Vitest)
-pnpm test:e2e         # Playwright (when configured)
-pnpm build            # production build all packages
-pnpm ci               # lint + typecheck + test + build
-pnpm docker:logs      # infrastructure logs
-pnpm docker:down      # stop containers
-pnpm deploy:hostinger # static storefront → Hostinger (requires SSH_PASS)
-```
-
-## Hostinger production (storefront)
-
-`homeopathypharma.com` is deployed as a **static Next.js export** to Hostinger shared hosting (`domains/homeopathypharma.com/public_html`). WordPress was removed; prior copies are kept under `~/backups/`.
-
-```bash
-export SSH_PASS='…'
-pnpm deploy:hostinger
-```
-
-This hosting path serves the customer storefront shell only. NestJS API, Postgres, Redis, and workers require a Node.js Web App / VPS plan before checkout, auth, and consultations go live.
+See [docs/HOSTINGER.md](docs/HOSTINGER.md).
 
 ## Documentation
 
-| Document | Description |
-|----------|-------------|
-| [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) | System design, scaling, ADRs |
-| [docs/DATA_MODEL.md](./docs/DATA_MODEL.md) | Domain model & integrity rules |
-| [docs/WORKFLOWS.md](./docs/WORKFLOWS.md) | Auth, checkout, shipping, booking flows |
-| [docs/SECURITY_THREAT_MODEL.md](./docs/SECURITY_THREAT_MODEL.md) | OWASP controls & threat closure |
-| [docs/SEO.md](./docs/SEO.md) | URLs, sitemaps, schema.org policy |
-| [docs/COMPLIANCE.md](./docs/COMPLIANCE.md) | Regulatory placeholders & disclaimers |
-| [docs/ROADMAP.md](./docs/ROADMAP.md) | Phases 1–6 delivery plan |
-| [docs/ASSUMPTIONS.md](./docs/ASSUMPTIONS.md) | Default decisions |
-
-## Positioning
-
-HomeopathyPharma combines **regulated-commerce discipline** (immutable order snapshots, inventory batch tracking, payment webhook verification) with **healthcare trust** (doctor credential verification, medical content review, verified-purchase reviews only). We do not publish unsupported medical claims; health content follows editorial and medical review workflows described in the docs.
-
-## CI
-
-GitHub Actions workflow: [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) — lint, typecheck, test, build on Node 22.
-
-If the git repository root is the parent workspace (DisplayAvenue), copy or symlink this workflow to the root `.github/workflows/` and keep `working-directory: homeopathypharma`.
-
-## License
-
-Proprietary — All rights reserved.
+- [docs/MASTER_BUILD_PLAN.md](docs/MASTER_BUILD_PLAN.md)
+- [docs/SETUP.md](docs/SETUP.md)
+- [docs/HOSTINGER.md](docs/HOSTINGER.md)
