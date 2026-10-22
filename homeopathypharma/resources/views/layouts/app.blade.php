@@ -30,6 +30,12 @@
                 var open = nav.classList.toggle('is-open');
                 btn.setAttribute('aria-expanded', open ? 'true' : 'false');
             });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 980 && nav.classList.contains('is-open')) {
+                    nav.classList.remove('is-open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
         })();
     </script>
     @stack('scripts')
