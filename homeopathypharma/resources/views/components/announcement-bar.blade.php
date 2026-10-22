@@ -6,11 +6,11 @@
 <div class="hp-topbar">
     <div class="hp-container hp-topbar__inner">
         <div class="hp-topbar__left">
-            <span>{{ $announcement }}</span>
-            <span class="hp-topbar__dot" aria-hidden="true">·</span>
-            <span>100% Genuine Products</span>
-            <span class="hp-topbar__dot" aria-hidden="true">·</span>
-            <span>Fast Delivery</span>
+            <span class="hp-topbar__announce">{{ $announcement }}</span>
+            <span class="hp-topbar__dot hp-hide-sm" aria-hidden="true">·</span>
+            <span class="hp-hide-sm">100% Genuine Products</span>
+            <span class="hp-topbar__dot hp-hide-sm" aria-hidden="true">·</span>
+            <span class="hp-hide-sm">Fast Delivery</span>
         </div>
         <div class="hp-topbar__social">
             @if ($settings->facebookUrl())

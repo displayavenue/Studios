@@ -17,7 +17,7 @@
 
             <form class="hp-search" method="get" action="{{ route('shop.index') }}" role="search">
                 <label class="hp-sr-only" for="site-search">Search</label>
-                <input id="site-search" class="hp-search__input" type="search" name="q" placeholder="Search for medicines, brands or health concerns...">
+                <input id="site-search" class="hp-search__input" type="search" name="q" placeholder="Search medicines, brands, concerns…">
                 <button class="hp-search__btn" type="submit">Search</button>
             </form>
 
@@ -33,6 +33,13 @@
                         <span class="hp-cart-badge">{{ $cartCount > 99 ? '99+' : $cartCount }}</span>
                     @endif
                 </a>
+                <button
+                    type="button"
+                    class="hp-menu-toggle"
+                    data-menu-toggle
+                    aria-expanded="false"
+                    aria-controls="site-nav"
+                >Menu</button>
             </div>
         </div>
     </div>
@@ -51,14 +58,6 @@
                     </div>
                 </details>
 
-                <button
-                    type="button"
-                    class="hp-menu-toggle"
-                    data-menu-toggle
-                    aria-expanded="false"
-                    aria-controls="site-nav"
-                >Menu</button>
-
                 <nav id="site-nav" class="hp-primary-nav" data-nav aria-label="Primary">
                     <a href="{{ route('home') }}#trusted-brands">Brands</a>
                     <a href="{{ route('doctors.index') }}">Consult a Doctor</a>
@@ -66,6 +65,9 @@
                     <a href="{{ route('health-library.index') }}">Health Library</a>
                     <a href="{{ route('about') }}">About Us</a>
                     <a href="{{ route('contact.show') }}">Contact Us</a>
+                    <a class="hp-nav-mobile-only" href="{{ route('account.dashboard') }}">Track Order</a>
+                    <a class="hp-nav-mobile-only" href="{{ route('contact.show') }}">Need Help?</a>
+                    <a class="hp-nav-mobile-only" href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
                 </nav>
             </div>
             <div class="hp-nav-bar__right">
