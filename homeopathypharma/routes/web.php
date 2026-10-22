@@ -51,7 +51,9 @@ Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index'
 Route::get('/doctors/{slug}', [DoctorController::class, 'show'])->name('doctors.show');
 Route::get('/consult', ConsultController::class)->name('consult');
 Route::get('/doctors/{slug}/book', [AppointmentController::class, 'create'])->name('appointments.create');
-Route::post('/doctors/{slug}/book', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::post('/doctors/{slug}/book', [AppointmentController::class, 'store'])
+    ->middleware('throttle:20,1')
+    ->name('appointments.store');
 Route::get('/appointments/{appointment}/confirmation', [AppointmentController::class, 'confirmation'])->name('appointments.confirmation');
 
 Route::get('/health-library', [HealthLibraryController::class, 'index'])->name('health-library.index');
@@ -67,7 +69,9 @@ Route::get('/about/founders', function () {
 })->name('about.founders');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('contact.store');
 
 Route::get('/cart', [CartController::class, 'show'])->name('cart');
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
@@ -75,18 +79,26 @@ Route::patch('/cart/items/{item}', [CartController::class, 'update'])->name('car
 Route::delete('/cart/items/{item}', [CartController::class, 'remove'])->name('cart.remove');
 
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::post('/checkout', [CheckoutController::class, 'store'])
+    ->middleware('throttle:20,1')
+    ->name('checkout.store');
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/failed', [CheckoutController::class, 'failed'])->name('checkout.failed');
-Route::post('/checkout/confirm-test', [CheckoutController::class, 'confirmTest'])->name('checkout.confirm-test');
+Route::post('/checkout/confirm-test', [CheckoutController::class, 'confirmTest'])
+    ->middleware('throttle:10,1')
+    ->name('checkout.confirm-test');
 
 Route::post('/webhooks/payments', PaymentWebhookController::class)->name('webhooks.payments');
 
 Route::prefix('account')->name('account.')->group(function () {
     Route::get('/login', [AccountAuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AccountAuthController::class, 'login'])->name('login.submit');
+    Route::post('/login', [AccountAuthController::class, 'login'])
+        ->middleware('throttle:10,1')
+        ->name('login.submit');
     Route::get('/register', [AccountAuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AccountAuthController::class, 'register'])->name('register.submit');
+    Route::post('/register', [AccountAuthController::class, 'register'])
+        ->middleware('throttle:5,1')
+        ->name('register.submit');
 
     Route::middleware('auth')->group(function () {
         Route::post('/logout', [AccountAuthController::class, 'logout'])->name('logout');
@@ -112,7 +124,9 @@ Route::prefix('account')->name('account.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');
+    Route::post('/login', [AdminAuthController::class, 'login'])
+        ->middleware('throttle:5,1')
+        ->name('login.submit');
 
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');

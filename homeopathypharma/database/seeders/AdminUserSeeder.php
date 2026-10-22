@@ -15,6 +15,13 @@ class AdminUserSeeder extends Seeder
         $email = env('ADMIN_EMAIL', 'admin@localhost.invalid');
         $password = env('ADMIN_PASSWORD', 'ChangeMeNow!123');
 
+        if (app()->environment('production')
+            && (str_contains($email, 'localhost.invalid') || $password === 'ChangeMeNow!123')) {
+            throw new \RuntimeException(
+                'Refusing to seed default admin credentials in production. Set ADMIN_EMAIL and ADMIN_PASSWORD first.'
+            );
+        }
+
         User::query()->updateOrCreate(
             ['email' => $email],
             [

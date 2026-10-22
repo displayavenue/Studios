@@ -12,6 +12,7 @@ use App\Services\Notifications\Notifier;
 use App\Services\Video\NullVideoMeetingProvider;
 use App\Services\Video\VideoMeetingProvider;
 use App\Services\SiteSettings;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         Route::bind('medium', fn (string $value) => MediaAsset::query()->findOrFail($value));
         Route::bind('team', fn (string $value) => TeamMember::query()->findOrFail($value));
         Route::bind('homepage', fn (string $value) => HomepageSection::query()->findOrFail($value));

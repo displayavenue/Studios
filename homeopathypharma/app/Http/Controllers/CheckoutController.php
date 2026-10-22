@@ -97,6 +97,10 @@ class CheckoutController extends Controller
     /** Test-mode confirm button when Razorpay is not configured. */
     public function confirmTest(Request $request, CheckoutService $checkout): RedirectResponse
     {
+        if (app()->environment('production')) {
+            abort(403, 'Test confirm is disabled in production.');
+        }
+
         $data = $request->validate([
             'order_id' => ['required', 'integer', 'exists:orders,id'],
         ]);

@@ -16,6 +16,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\EnsureAdmin::class,
         ]);
 
+        $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
+
+        // Hostinger / shared hosting sits behind a reverse proxy for HTTPS.
+        $middleware->trustProxies(at: '*');
+
         $middleware->redirectGuestsTo(function ($request) {
             if ($request->is('admin') || $request->is('admin/*')) {
                 return route('admin.login');

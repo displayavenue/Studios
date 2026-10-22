@@ -12,8 +12,8 @@ Professional homeopathy product store + practitioner discovery platform.
 - [x] Phase 2 — Catalogue & admin (products, categories, brands, media, team, homepage, settings)
 - [x] Phase 3 — Accounts, cart, checkout, Razorpay/test payment adapter, admin orders
 - [x] Phase 4 — Doctors, verification gate, availability, conflict-safe booking, video adapter stub
-- [ ] Phase 5 — Content & operations
-- [ ] Phase 6 — Testing & launch
+- [x] Phase 5 — Health library, policies, shipping/notification adapters, audit, SEO
+- [x] Phase 6 — Security hardening, Hostinger deploy docs, smoke checklist, preflight command
 
 ### Admin (local)
 
@@ -34,7 +34,12 @@ php artisan serve
 
 Open http://127.0.0.1:8000
 
-Seed data includes **only** verified business settings (brand, tagline, phone, address) and homepage section shells. No invented products, doctors, founders, or emails.
+```bash
+php artisan test
+php artisan hp:preflight
+```
+
+Seed data includes **only** verified business settings (brand, tagline, phone, address), homepage shells, and draft policy templates. No invented products, doctors, founders, or emails.
 
 ## Business defaults (editable via `site_settings`)
 
@@ -44,10 +49,12 @@ Seed data includes **only** verified business settings (brand, tagline, phone, a
 
 ## Hostinger
 
-See [docs/HOSTINGER.md](docs/HOSTINGER.md).
+See [docs/HOSTINGER.md](docs/HOSTINGER.md), [docs/SMOKE_CHECKLIST.md](docs/SMOKE_CHECKLIST.md), and [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
 
 ## Documentation
 
 - [docs/MASTER_BUILD_PLAN.md](docs/MASTER_BUILD_PLAN.md)
 - [docs/SETUP.md](docs/SETUP.md)
 - [docs/HOSTINGER.md](docs/HOSTINGER.md)
+- [docs/SMOKE_CHECKLIST.md](docs/SMOKE_CHECKLIST.md)
+- [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md)
