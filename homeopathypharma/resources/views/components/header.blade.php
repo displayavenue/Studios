@@ -20,6 +20,7 @@
             <a href="{{ route('shop.index') }}">Shop</a>
             <a href="{{ route('shop.index') }}">Categories</a>
             <a href="{{ route('doctors.index') }}">Consult a Doctor</a>
+            <a href="{{ route('conditions.index') }}">Conditions</a>
             <a href="{{ route('blog.index') }}">Blog</a>
             <a href="{{ route('gallery') }}">Gallery</a>
             <a href="{{ route('health-library.index') }}">Health Library</a>

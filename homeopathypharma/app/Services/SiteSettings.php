@@ -89,4 +89,22 @@ class SiteSettings
     {
         return '₹'.number_format($this->consultationFeePaise() / 100, 0);
     }
+
+    public function whatsappNumber(): string
+    {
+        $raw = (string) $this->get('whatsapp_number', $this->phoneTel());
+        $digits = preg_replace('/\D+/', '', $raw) ?: '918169122333';
+
+        return $digits;
+    }
+
+    public function whatsappUrl(?string $prefill = null): string
+    {
+        $url = 'https://wa.me/'.$this->whatsappNumber();
+        if ($prefill !== null && trim($prefill) !== '') {
+            $url .= '?text='.rawurlencode($prefill);
+        }
+
+        return $url;
+    }
 }
