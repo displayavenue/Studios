@@ -21,6 +21,8 @@
             <a href="{{ route('admin.brands.index') }}" class="{{ str_starts_with($route, 'admin.brands') ? 'is-active' : '' }}">Brands</a>
             <a href="{{ route('admin.media.index') }}" class="{{ str_starts_with($route, 'admin.media') ? 'is-active' : '' }}">Media Library</a>
             <a href="{{ route('admin.orders.index') }}" class="{{ str_starts_with($route, 'admin.orders') ? 'is-active' : '' }}">Orders</a>
+            <a href="{{ route('admin.doctors.index') }}" class="{{ str_starts_with($route, 'admin.doctors') ? 'is-active' : '' }}">Doctors</a>
+            <a href="{{ route('admin.appointments.index') }}" class="{{ str_starts_with($route, 'admin.appointments') ? 'is-active' : '' }}">Appointments</a>
             <a href="{{ route('admin.team.index') }}" class="{{ str_starts_with($route, 'admin.team') ? 'is-active' : '' }}">Founders &amp; Team</a>
             <a href="{{ route('admin.homepage.index') }}" class="{{ str_starts_with($route, 'admin.homepage') ? 'is-active' : '' }}">Homepage</a>
             <a href="{{ route('admin.settings.edit') }}" class="{{ str_starts_with($route, 'admin.settings') ? 'is-active' : '' }}">Site Settings</a>

@@ -8,6 +8,7 @@
 <li><a href="{{ route('account.profile') }}">Profile</a></li>
 <li><a href="{{ route('account.addresses') }}">Addresses</a></li>
 <li><a href="{{ route('account.orders') }}">Orders</a></li>
+<li><a href="{{ route('account.appointments') }}">Appointments</a></li>
 </ul>
 <form method="post" action="{{ route('account.logout') }}">@csrf
 <button class="hp-btn hp-btn--secondary" type="submit">Log out</button>

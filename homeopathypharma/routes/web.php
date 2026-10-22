@@ -4,24 +4,29 @@ use App\Http\Controllers\Account\AddressController;
 use App\Http\Controllers\Account\AuthController as AccountAuthController;
 use App\Http\Controllers\Account\OrderController as AccountOrderController;
 use App\Http\Controllers\Account\ProfileController;
+use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
 use App\Http\Controllers\Admin\TeamMemberController as AdminTeamMemberController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ConsultController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
+use App\Models\Appointment;
 use App\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +37,11 @@ Route::get('/shop/category/{slug}', [ShopController::class, 'category'])->name('
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index');
+Route::get('/doctors/{slug}', [DoctorController::class, 'show'])->name('doctors.show');
+Route::get('/consult', ConsultController::class)->name('consult');
+Route::get('/doctors/{slug}/book', [AppointmentController::class, 'create'])->name('appointments.create');
+Route::post('/doctors/{slug}/book', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::get('/appointments/{appointment}/confirmation', [AppointmentController::class, 'confirmation'])->name('appointments.confirmation');
 Route::get('/health-library', fn () => view('pages.health-library'))->name('health-library.index');
 Route::get('/about', fn () => view('pages.about'))->name('about');
 Route::get('/about/founders', function () {
@@ -72,6 +82,15 @@ Route::prefix('account')->name('account.')->group(function () {
         Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
         Route::get('/orders', [AccountOrderController::class, 'index'])->name('orders');
         Route::get('/orders/{order}', [AccountOrderController::class, 'show'])->name('orders.show');
+        Route::get('/appointments', function () {
+            $appointments = Appointment::query()
+                ->where('user_id', auth()->id())
+                ->with('doctor')
+                ->latest('starts_at')
+                ->paginate(10);
+
+            return view('account.appointments', compact('appointments'));
+        })->name('appointments');
     });
 });
 
@@ -88,6 +107,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('brands', AdminBrandController::class)->except(['show']);
         Route::resource('media', AdminMediaController::class)->only(['index', 'store', 'update', 'destroy']);
         Route::resource('team', AdminTeamMemberController::class)->except(['show']);
+        Route::resource('doctors', AdminDoctorController::class)->except(['show']);
+        Route::post('doctors/{doctor}/credentials', [AdminDoctorController::class, 'storeCredential'])->name('doctors.credentials.store');
+        Route::post('doctors/{doctor}/availability', [AdminDoctorController::class, 'storeAvailability'])->name('doctors.availability.store');
+        Route::post('doctors/{doctor}/leaves', [AdminDoctorController::class, 'storeLeave'])->name('doctors.leaves.store');
+        Route::get('appointments', [AdminAppointmentController::class, 'index'])->name('appointments.index');
+        Route::get('appointments/{appointment}', [AdminAppointmentController::class, 'show'])->name('appointments.show');
+        Route::put('appointments/{appointment}', [AdminAppointmentController::class, 'update'])->name('appointments.update');
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
         Route::put('orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
