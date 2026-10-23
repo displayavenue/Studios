@@ -15,8 +15,10 @@ You are editing a Laravel 13 storefront + admin that deploys to Hostinger.
 ## GitHub (source of truth)
 
 - Remote: `https://github.com/displayavenue/Studios`
-- Live Hostinger folder is **not** a git checkout (rsync deploy only).
-- Always edit in git first, then sync to Hostinger.
+- Live `laravel/` is **not** a git working tree. Prefer edit-in-git → rsync, or:
+  - `./scripts/init-hostinger-git.sh` — sparse mirror at `domains/…/Studios`
+  - `./scripts/sync-hostinger-from-git.sh` — dry-run; add `--apply` only when asked to deploy
+- Always keep production `.env` untracked / excluded from sync.
 
 ## Hostinger SSH (production)
 

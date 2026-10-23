@@ -11,6 +11,8 @@ Claude cannot log into Hostinger by itself. You grant access in one of these way
 
 No Hostinger password needed in Claude for code edits — only when you ask to deploy live.
 
+`CLAUDE.md` in this folder is the project brief Claude should follow.
+
 ## Option B — Claude Code on your computer
 
 1. Install [Claude Code](https://claude.ai/code) and log in with your Anthropic account.
@@ -41,15 +43,54 @@ export SSH_PASS='YOUR_SSH_PASSWORD'
 
 Claude.ai cannot SSH to Hostinger unless you paste outputs into a machine that has `SSH_PASS`.
 
-## Option D — Live server git (optional, advanced)
+## Option D — Live server git mirror (ready on Hostinger)
 
-Hostinger’s `laravel/` folder is currently **not** a git repo. If you want Claude to `git pull` on the server:
+Hostinger keeps a **sparse git mirror** next to the live app (does not replace `laravel/` until you sync):
 
-1. Create a GitHub deploy key (read-only) or use a private access token.
-2. Ask Cursor/Claude: “Initialize git on Hostinger and track branch X.”
-3. Keep `.env` untracked forever.
+| Path | Role |
+|------|------|
+| `~/domains/homeopathypharma.com/Studios` | Sparse clone (`homeopathypharma/` only) |
+| `~/domains/homeopathypharma.com/laravel` | Live Laravel app (`.env` stays here) |
 
-Only do this if you explicitly want production to be git-based.
+### One-time init / re-init
+
+```bash
+export SSH_PASS='…'   # hPanel → Advanced → SSH Access
+cd homeopathypharma
+./scripts/init-hostinger-git.sh
+# optional branch:
+./scripts/init-hostinger-git.sh cursor/homeopathy-pharma-master-rebuild-846f
+```
+
+Repo is currently **public**, so HTTPS clone works with no deploy key.
+
+### Pull + sync into live (safe defaults)
+
+```bash
+./scripts/sync-hostinger-from-git.sh              # dry-run only
+./scripts/sync-hostinger-from-git.sh --apply       # write files, keep .env, clear view cache
+```
+
+Excludes always: `.env`, `vendor/`, `storage/` runtime dirs, `tests/`.
+
+### If the GitHub repo becomes private
+
+A read-only deploy keypair already exists on Hostinger:
+
+- Private key: `~/.ssh/hp_github_deploy`
+- Public key (add in GitHub → **Settings → Deploy keys** → Allow read-only):
+
+```
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDwR56y0doRL8bSZpOW9IiVwikchWROrrX43wahJWzBe homeopathypharma-hostinger-deploy
+```
+
+Then point the mirror remote at SSH:
+
+```bash
+./scripts/ssh-hostinger.sh 'cd ~/domains/homeopathypharma.com/Studios && git remote set-url origin git@github.com:displayavenue/Studios.git'
+```
+
+(Cursor’s GitHub token cannot add deploy keys via API — paste the public key in the GitHub UI once.)
 
 ## What to share with Claude (safe)
 

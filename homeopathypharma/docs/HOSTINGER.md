@@ -32,6 +32,18 @@ cd homeopathypharma
 ./scripts/ssh-hostinger.sh 'php artisan --version'
 ```
 
+### Git mirror on Hostinger (optional)
+
+Sparse clone lives at `domains/homeopathypharma.com/Studios` (only `homeopathypharma/`).
+
+```bash
+./scripts/init-hostinger-git.sh                 # one-time
+./scripts/sync-hostinger-from-git.sh            # dry-run
+./scripts/sync-hostinger-from-git.sh --apply     # only after explicit deploy approval
+```
+
+See [GIVE_CLAUDE_ACCESS.md](GIVE_CLAUDE_ACCESS.md) Option D.
+
 Manual SSH without `sshpass`:
 
 ```bash
