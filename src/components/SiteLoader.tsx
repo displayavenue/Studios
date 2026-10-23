@@ -9,7 +9,7 @@ export function SiteLoader({ children }: { children: ReactNode }) {
     return (
       <div className="site-loader" role="status" aria-live="polite">
         <div className="site-loader__mark">DA</div>
-        <p>Loading DisplayAvenue Studios…</p>
+        <p>Loading DisplayAvenue Realty…</p>
       </div>
     );
   }

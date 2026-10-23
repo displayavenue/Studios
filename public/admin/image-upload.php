@@ -9,7 +9,7 @@ function da_process_image_upload(string $tmpPath, string $mime, string $destPath
     return ['ok' => false, 'error' => 'Uploaded file not found'];
   }
   if (!function_exists('imagewebp')) {
-    return ['ok' => false, 'error' => 'WebP conversion is not available — enable PHP GD with WebP support on the server'];
+    return ['ok' => false, 'error' => 'WebP conversion is not available, enable PHP GD with WebP support on the server'];
   }
 
   $quality = max(1, min(100, (int)($cfg['webp_quality'] ?? 82)));
@@ -17,7 +17,7 @@ function da_process_image_upload(string $tmpPath, string $mime, string $destPath
 
   $image = da_image_from_upload($tmpPath, $mime);
   if ($image === false) {
-    return ['ok' => false, 'error' => 'Could not read image — file may be corrupted or unsupported'];
+    return ['ok' => false, 'error' => 'Could not read image, file may be corrupted or unsupported'];
   }
 
   if ($maxEdge > 0) {
@@ -30,7 +30,7 @@ function da_process_image_upload(string $tmpPath, string $mime, string $destPath
 
   if (!imagewebp($image, $destPath, $quality)) {
     imagedestroy($image);
-    return ['ok' => false, 'error' => 'Could not save WebP image — check /content/uploads permissions'];
+    return ['ok' => false, 'error' => 'Could not save WebP image, check /content/uploads permissions'];
   }
 
   imagedestroy($image);
@@ -92,9 +92,9 @@ function da_image_resize_to_max_edge($image, int $maxEdge) {
 function da_upload_error_message(int $code): string {
   return match ($code) {
     UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE =>
-      'File exceeds the server upload limit — ask your host to raise upload_max_filesize and post_max_size',
-    UPLOAD_ERR_PARTIAL => 'Upload was interrupted — please try again',
+      'File exceeds the server upload limit, ask your host to raise upload_max_filesize and post_max_size',
+    UPLOAD_ERR_PARTIAL => 'Upload was interrupted, please try again',
     UPLOAD_ERR_NO_FILE => 'No file uploaded',
-    default => 'Upload failed — please try again',
+    default => 'Upload failed, please try again',
   };
 }

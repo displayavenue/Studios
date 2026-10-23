@@ -14,14 +14,14 @@ Edit it in: `/admin/config.php` → `admin_password`
 
 ## What you can edit
 
-- **Homepage** — hero headline, image, CTAs, and every section title/copy
+- **Homepage**, hero headline, image, CTAs, and every section title/copy
 - Company name, phone, WhatsApp, email, address, badges, logos
 - All services (text + image URLs)
 - Packages & prices
 - Portfolio projects & gallery images
 - FAQs, blog posts, testimonials, team, industries, locations
 - Process steps & “Why choose us”
-- **Settings & Tracking** — GTM, Google Analytics, Google Ads, Meta Pixel, custom ad/AI scripts
+- **Settings & Tracking**, GTM, Google Analytics, Google Ads, Meta Pixel, custom ad/AI scripts
 
 ## Marketing & tracking codes
 
@@ -32,10 +32,10 @@ In **Settings & Tracking** you can manage:
 - Google Ads conversion tag (`AW-…`)
 - Meta (Facebook) Pixel ID
 - Google Search Console verification code
-- **Additional head scripts** — paste full `<script>` tags from any ad platform (Google Ads, LinkedIn, Microsoft, AI ad tools, etc.)
-- **Additional body snippets** — noscript fallbacks or pixel HTML
+- **Additional head scripts**, paste full `<script>` tags from any ad platform (Google Ads, LinkedIn, Microsoft, AI ad tools, etc.)
+- **Additional body snippets**, noscript fallbacks or pixel HTML
 
-Save changes — tags load on the live site without rebuilding the website.
+Save changes, tags load on the live site without rebuilding the website.
 
 ## Automatic SEO
 
@@ -64,11 +64,11 @@ Paste a full YouTube link (watch / youtu.be / shorts). If set, the service page 
 
 Every image field in the CMS (homepage hero, services, portfolio, blog, team, etc.) has an **Upload image** button.
 
-- Supported formats: JPG, PNG, WebP, GIF — **any size** (no CMS limit)
+- Supported formats: JPG, PNG, WebP, GIF, **any size** (no CMS limit)
 - All uploads are **auto-converted to WebP** and saved under `/content/uploads/`
 - Files are served at `/content/uploads/your-file.webp`
 - You can still paste an external image URL instead of uploading
-- Portfolio galleries support **Upload to gallery** — each upload adds a new line to the gallery list
+- Portfolio galleries support **Upload to gallery**, each upload adds a new line to the gallery list
 
 On Hostinger, ensure **`content/uploads`** is writable (chmod **755** or **775**). The deploy script sets this automatically.
 

@@ -59,7 +59,7 @@ function writeJson(string $path, $data): void {
   if ($json === false) respond(500, ['ok' => false, 'error' => 'Encode failed']);
   $tmp = $path . '.tmp';
   if (file_put_contents($tmp, $json . "\n") === false) {
-    respond(500, ['ok' => false, 'error' => 'Write failed — check folder permissions on /content']);
+    respond(500, ['ok' => false, 'error' => 'Write failed, check folder permissions on /content']);
   }
   rename($tmp, $path);
 }
@@ -163,7 +163,7 @@ switch ($action) {
 
     if ($maxBytes > 0 && ($file['size'] ?? 0) > $maxBytes) {
       $mb = max(1, (int)round($maxBytes / (1024 * 1024)));
-      respond(400, ['ok' => false, 'error' => "Image too large — maximum {$mb} MB"]);
+      respond(400, ['ok' => false, 'error' => "Image too large, maximum {$mb} MB"]);
     }
 
     $finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -175,7 +175,7 @@ switch ($action) {
     $contentDir = rtrim($config['content_dir'], '/\\');
     $uploadsDir = $contentDir . '/uploads';
     if (!is_dir($uploadsDir) && !mkdir($uploadsDir, 0755, true)) {
-      respond(500, ['ok' => false, 'error' => 'Could not create uploads folder — check /content permissions']);
+      respond(500, ['ok' => false, 'error' => 'Could not create uploads folder, check /content permissions']);
     }
 
     $base = preg_replace('/[^a-z0-9-]+/i', '-', pathinfo((string)($file['name'] ?? 'image'), PATHINFO_FILENAME));

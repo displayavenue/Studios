@@ -5,8 +5,8 @@
 
 .faq-item {
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--white);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.7);
   overflow: hidden;
 }
 
@@ -17,35 +17,20 @@
   gap: 1rem;
   align-items: center;
   text-align: left;
-  padding: 1.15rem 1.25rem;
+  padding: 1.1rem 1.2rem;
   background: transparent;
   border: 0;
   cursor: pointer;
-  font-weight: 500;
-  color: var(--black);
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .faq-item__icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--bg-light);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  color: var(--gold);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
+  color: var(--brass);
 }
 
 .faq-item__a {
-  padding: 0 1.25rem 1.25rem;
-}
-
-.faq-item__a p {
-  max-width: 70ch;
-}
-
-.faq-item.is-open {
-  border-color: rgba(201, 162, 39, 0.45);
-  box-shadow: var(--shadow);
+  padding: 0 1.2rem 1.2rem;
+  color: var(--text-muted);
 }

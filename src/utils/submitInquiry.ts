@@ -1,4 +1,11 @@
-export type InquiryType = "contact" | "book-now" | "newsletter";
+export type InquiryType =
+  | "contact"
+  | "property"
+  | "sell"
+  | "redevelopment"
+  | "valuation"
+  | "visit"
+  | "newsletter";
 
 export type SubmitInquiryResult = {
   ok: boolean;
@@ -24,8 +31,16 @@ export async function submitInquiry(
   const data = (await res.json().catch(() => ({}))) as SubmitInquiryResult;
 
   if (!res.ok || data.ok === false) {
-    throw new Error(data.error || "Could not send your message. Please call or WhatsApp us.");
+    throw new Error(
+      data.error || "Could not send your message. Please call or WhatsApp us.",
+    );
   }
 
   return data;
+}
+
+export function whatsappLink(baseHref: string, message: string) {
+  const url = new URL(baseHref);
+  url.searchParams.set("text", message);
+  return url.toString();
 }

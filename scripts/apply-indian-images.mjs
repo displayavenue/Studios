@@ -185,7 +185,7 @@ const portfolio = [
     category: "Wedding",
     location: "Jaipur",
     description:
-      "Vibrant pre-wedding celebrations at a heritage haveli — haldi colours, mehendi details and a high-energy sangeet night.",
+      "Vibrant pre-wedding celebrations at a heritage haveli, haldi colours, mehendi details and a high-energy sangeet night.",
     image: u("photo-1578662996442-48f60103fc96", 1400),
     gallery: [
       u("photo-1708963738411-74ab1cd5eafb", 1000),
@@ -264,7 +264,7 @@ const portfolio = [
     category: "Hotels",
     location: "Goa",
     description:
-      "Hospitality photography and drone coverage for a coastal resort — rooms, dining and experiential lifestyle.",
+      "Hospitality photography and drone coverage for a coastal resort, rooms, dining and experiential lifestyle.",
     image: u("photo-1566073771259-6a8506099945", 1400),
     gallery: [
       u("photo-1596176530529-78163a4f7af2", 1000),
@@ -526,4 +526,4 @@ contentData.team = [
 
 writeJson("public/content/content.json", contentData);
 
-console.log("Done — services:", servicesData.services.length, "portfolio:", portfolio.length);
+console.log("Done, services:", servicesData.services.length, "portfolio:", portfolio.length);
