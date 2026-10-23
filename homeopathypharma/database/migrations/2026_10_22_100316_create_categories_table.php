@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->foreignId('image_media_id')->nullable()->constrained('media_assets')->nullOnDelete();
+            $table->string('status')->default('draft');
+            $table->boolean('show_on_homepage')->default(false);
+            $table->unsignedInteger('sort_order')->default(0);
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('categories');
+    }
+};
