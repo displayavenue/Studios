@@ -1,47 +1,57 @@
-<laravel-boost-guidelines>
-# Laravel Application
+# HOMEOPATHY PHARMA — notes for Claude
 
-This repository contains a Laravel application. Complete the following setup before working on the user's request.
+You are editing a Laravel 13 storefront + admin that deploys to Hostinger.
 
-## Prerequisites
+## Repo layout
 
-Verify that PHP and Composer are available:
+- App root: `homeopathypharma/`
+- Public CSS: `public/css/app.css`, `public/css/storefront.css`
+- Homepage: `resources/views/home/index.blade.php`
+- Header/footer: `resources/views/components/`
+- Condition SEO pages: `resources/views/conditions/`, model `HealthCondition`
+- Deploy helper: `scripts/deploy-hostinger-laravel.sh` (full) and rsync of changed files
+- SSH helper: `scripts/ssh-hostinger.sh`
 
-```sh
-php -v
-composer -V
+## GitHub (source of truth)
+
+- Remote: `https://github.com/displayavenue/Studios`
+- Live Hostinger folder is **not** a git checkout (rsync deploy only).
+- Always edit in git first, then sync to Hostinger.
+
+## Hostinger SSH (production)
+
+| Item | Value |
+|------|--------|
+| SSH | `ssh -p 65002 u452926742@195.35.44.93` |
+| App | `~/domains/homeopathypharma.com/laravel` |
+| Web | `~/domains/homeopathypharma.com/public_html` |
+| Site | https://homeopathypharma.com |
+| Admin | https://homeopathypharma.com/admin/login |
+
+Password: **never commit**. Use env `SSH_PASS` from Hostinger hPanel → Advanced → SSH Access.
+
+```bash
+export SSH_PASS='…'   # from hPanel only
+./scripts/ssh-hostinger.sh
+./scripts/ssh-hostinger.sh 'php artisan view:clear && php artisan view:cache'
 ```
 
-If either command is unavailable, detect the user's operating system and install the prerequisites with the appropriate command:
+## Safe deploy pattern (preferred)
 
-macOS:
+1. Change files in this repo on a `cursor/…-846f` branch.
+2. Commit + push to GitHub.
+3. Rsync only needed paths to Hostinger (keep remote `.env`).
+4. On server: `php artisan view:clear && php artisan view:cache` (and `migrate` / seed only when required).
 
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.5)"
-```
+Do **not** re-run the full deploy script unless asked — it regenerates `APP_KEY` / admin password.
 
-Windows PowerShell:
+## Admin content (no code)
 
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.5'))
-```
+Products, doctors, founders, testimonials, conditions copy: use Admin UI when possible.
 
-Linux:
+## Verified business facts
 
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.5)"
-```
-
-After installation, ask the user to restart their terminal. If the agent needs the restarted shell to continue, ask the user to reopen their terminal and rerun their original prompt.
-
-## Agent Setup
-
-Install Laravel Boost from the application root before making application changes:
-
-```sh
-composer require laravel/boost --dev
-php artisan boost:install
-```
-
-Boost replaces these bootstrap instructions with guidelines tailored to the application. After installation, read `AGENTS.md` again and continue with the user's original request using the generated guidelines.
-</laravel-boost-guidelines>
+- Brand: HOMEOPATHY PHARMA
+- Phone: +91 8169 122333
+- Address: Mira Road East, Mumbai (full string in Site Settings)
+- Do not invent emails, medical claims, or cure promises.
