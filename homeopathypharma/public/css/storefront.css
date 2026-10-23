@@ -336,36 +336,50 @@ body {
   }
 }
 
-/* Hero */
+/* Hero — split layout so doctor/image is never cropped short */
 .hp-hero-banner {
   position: relative;
-  min-height: clamp(22rem, 48vw, 30rem);
-  display: grid;
-  align-items: center;
   overflow: hidden;
   color: var(--hp-deep);
+  background:
+    radial-gradient(ellipse 70% 80% at 85% 40%, rgba(215, 235, 225, 0.65), transparent 60%),
+    linear-gradient(180deg, #f3f8f5 0%, var(--hp-canvas) 100%);
+  border-bottom: 1px solid var(--hp-border);
 }
 
-.hp-hero-banner__bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
-}
-
-.hp-hero-banner__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(247, 250, 248, 0.96) 0%, rgba(247, 250, 248, 0.82) 42%, rgba(247, 250, 248, 0.25) 72%, rgba(247, 250, 248, 0.05) 100%);
+.hp-hero-banner__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: center;
+  min-height: clamp(28rem, 52vw, 36rem);
+  padding-block: clamp(2rem, 4vw, 3.25rem);
 }
 
 .hp-hero-banner__content {
   position: relative;
   z-index: 1;
-  padding: 3.5rem 0;
   max-width: 36rem;
+  padding: 0.5rem 0;
+}
+
+.hp-hero-banner__media {
+  position: relative;
+  border-radius: 1.15rem;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(11, 81, 67, 0.12);
+  background: #e7f1eb;
+  aspect-ratio: 4 / 3;
+  max-height: 28rem;
+  justify-self: stretch;
+}
+
+.hp-hero-banner__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% 18%;
+  display: block;
 }
 
 .hp-hero-banner__eyebrow {
@@ -1001,23 +1015,24 @@ img, video, svg {
   .hp-founders-grid { grid-template-columns: 1fr; }
   .hp-consult-banner__grid { grid-template-columns: 1fr; }
   .hp-footer__grid--5 { grid-template-columns: 1fr 1fr; }
-  .hp-hero-banner {
+  .hp-hero-banner__grid {
+    grid-template-columns: 1fr;
     min-height: 0;
+    padding-block: 1.75rem 2rem;
+    gap: 1.25rem;
   }
   .hp-hero-banner__content {
-    padding: 2.5rem 0 2.75rem;
     max-width: 100%;
+    order: 1;
   }
-  .hp-hero-banner__bg {
-    background-position: 70% center;
+  .hp-hero-banner__media {
+    order: 0;
+    max-height: none;
+    aspect-ratio: 16 / 10;
+    border-radius: 0.9rem;
   }
-  .hp-hero-banner__bg::after {
-    background: linear-gradient(
-      180deg,
-      rgba(247, 250, 248, 0.94) 0%,
-      rgba(247, 250, 248, 0.88) 55%,
-      rgba(247, 250, 248, 0.55) 100%
-    );
+  .hp-hero-banner__media img {
+    object-position: 70% 15%;
   }
 }
 

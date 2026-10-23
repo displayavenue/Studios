@@ -11,19 +11,30 @@
     @php($consult = $sections->get('consult'))
     @php($library = $sections->get('health_library'))
 
-    <section class="hp-hero-banner">
-        <div class="hp-hero-banner__bg" style="background-image:url('{{ asset('images/home/hero-banner.jpg') }}')"></div>
-        <div class="hp-container hp-hero-banner__content">
-            <p class="hp-hero-banner__eyebrow">{{ $hero->title ?? 'NATURAL. SAFE. EFFECTIVE.' }}</p>
-            <h1>{{ $hero->subtitle ?? 'Your Everyday Homeopathy Essentials, Made Easier.' }}</h1>
-            <p class="hp-hero-banner__lead">Genuine medicines, trusted brands, and {{ $settings->consultationFeeDisplay() }} online doctor consults — from Mira Road to your home.</p>
-            <div class="hp-btn-row">
-                <a class="hp-btn hp-btn--primary" href="{{ $hero->payload['primary_cta_href'] ?? route('shop.index') }}">
-                    {{ $hero->payload['primary_cta_label'] ?? 'Shop Medicines' }} →
-                </a>
-                <a class="hp-btn hp-btn--ghost-light" href="{{ $hero->payload['secondary_cta_href'] ?? route('doctors.index') }}">
-                    {{ $hero->payload['secondary_cta_label'] ?? 'Consult a Doctor' }} →
-                </a>
+    <section class="hp-hero-banner" aria-label="Homeopathy essentials">
+        <div class="hp-container hp-hero-banner__grid">
+            <div class="hp-hero-banner__content">
+                <p class="hp-hero-banner__eyebrow">{{ $hero->title ?? 'NATURAL. SAFE. EFFECTIVE.' }}</p>
+                <h1>{{ $hero->subtitle ?? 'Your Everyday Homeopathy Essentials, Made Easier.' }}</h1>
+                <p class="hp-hero-banner__lead">Genuine medicines, trusted brands, and {{ $settings->consultationFeeDisplay() }} online doctor consults — from Mira Road to your home.</p>
+                <div class="hp-btn-row">
+                    <a class="hp-btn hp-btn--primary" href="{{ $hero->payload['primary_cta_href'] ?? route('shop.index') }}">
+                        {{ $hero->payload['primary_cta_label'] ?? 'Shop Medicines' }} →
+                    </a>
+                    <a class="hp-btn hp-btn--ghost-light" href="{{ $hero->payload['secondary_cta_href'] ?? route('doctors.index') }}">
+                        {{ $hero->payload['secondary_cta_label'] ?? 'Consult a Doctor' }} →
+                    </a>
+                </div>
+            </div>
+            <div class="hp-hero-banner__media">
+                <img
+                    src="{{ asset('images/home/hero-banner.jpg') }}"
+                    alt="{{ $hero->payload['image_alt'] ?? 'Homeopathy doctor with natural medicines' }}"
+                    width="1280"
+                    height="720"
+                    decoding="async"
+                    fetchpriority="high"
+                >
             </div>
         </div>
     </section>
