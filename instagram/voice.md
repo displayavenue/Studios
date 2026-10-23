@@ -1,57 +1,55 @@
 # voice.md — DisplayAvenue
 
-Drafted by Claude from the DisplayAvenue Studios website copy. Lines marked
-(check) are best guesses; change anything that doesn't sound like you.
+Drafted by Claude from displayavenue.com. Lines marked (check) are best
+guesses; change anything that doesn't sound like you.
 
 ---
 
 ## Who I am
 
-- **Name:** DisplayAvenue Studios
+- **Name:** DisplayAvenue
 - **Handle:** @displayavenue
-- **What I do, in one sentence:** We shoot and edit photos and films for weddings, brands, products and events, based in Mira Road, Mumbai, working pan-India.
-- **Who I am talking to:** Couples in Mumbai planning a wedding in the next 6–12 months, and small-to-mid brand owners (D2C, restaurants, factories, real estate) who need photos, reels or ad films that actually sell.
-- **What I sell:** Wedding photography and films (packages from ₹75,000), pre-wedding shoots, product and marketplace photography (Amazon/Flipkart), corporate and industrial shoots, social media reels, ad films, editing and colour grading.
+- **What I do, in one sentence:** We help business owners get more customers online: found on Google and Instagram, and turning visitors into enquiries.
+- **Who I am talking to:** Owners of small and mid-size businesses in Mumbai and across India (clinics, coaches, real estate, restaurants, D2C, startups) who know they need to be online but don't know what's working.
+- **What I sell:** Websites built to get enquiries, Google Ads, Meta (Instagram/Facebook) Ads, SEO, social media management and reel editing. Video and photo production through DisplayAvenue Studios.
 
 ## What I sound like
 
-- **Three of my own reels or captions that sound most like me:** (add 3 real captions when you have them; until then the skills work from the lines below)
-- **On camera I am:** calm, confident, a little premium. Shows the work, then explains the craft in plain words. (check)
-- **Words I actually use:** frame, film, story, crew, edit, colour grade, behind the scenes, shoot day, selects, Mumbai, baraat, haldi, sangeet
-- **Words I would never say out loud:** "elevate", "unleash", "game-changer", "stunning visuals", "capturing memories that last forever", "dream wedding", "stop scrolling", "follow for more"
+- **Three of my own reels or captions that sound most like me:** (add 3 real captions when you have them)
+- **On camera I am:** direct, practical, no jargon. Explains one fix per reel. (check)
+- **Words I actually use:** enquiries, leads, customers, Google, Instagram, website, ad spend, plan, results, plain English
+- **Words I would never say out loud:** "elevate your brand", "unlock growth", "synergy", "game-changer", "10x", "skyrocket", "stop scrolling", "follow for more", "digital transformation"
 - **Do I swear:** no
 - **Emoji in captions:** one, rarely
-- **Face on camera:** sometimes (mostly BTS and the work itself) (check)
-- **Voiceover or to-camera:** mostly voiceover over BTS and final footage (check)
-- **Pace:** ~160 words per minute (check)
-- **Language:** English, with Hindi words where they're natural (check)
+- **Face on camera:** sometimes (check)
+- **Voiceover or to-camera:** to-camera for advice, screen recordings for how-tos (check)
+- **Pace:** ~165 words per minute (check)
+- **Language:** English, with Hindi phrases where natural (check)
 
 ## My positions
 
-1. Your wedding photographer matters more than your decorator. Decor lasts one night; the film lasts fifty years.
-2. Cheap product photos cost you more than good ones. A bad main image loses the sale before the price is even seen.
-3. Most brand reels fail in the first two seconds, not because of the camera.
-4. You don't need raw files. The edit is the work.
-5. Factories and warehouses can look as good on camera as a five-star hotel if you light them properly.
+1. Followers don't pay your bills. Enquiries do.
+2. Most business websites look fine and get zero leads, because there's no clear next step.
+3. Boosting a post is not running ads.
+4. A Google Business Profile with reviews beats a fancy website for most local businesses.
+5. If your agency can't explain the plan in plain English, they don't have one.
 
 ## Off limits
 
-- **Topics I do not post about:** politics, religion debates, competitor call-outs
-- **Clients, numbers or names I cannot say publicly:** no client names, logos or results without written permission; no proposal pricing for agency clients
-- **Claims I am not allowed to make:** no "best in India", no guaranteed views, sales or followers
+- **Topics I do not post about:** politics, religion, competitor call-outs
+- **Clients, numbers or names I cannot say publicly:** no client names, results or proposal pricing without written permission
+- **Claims I am not allowed to make:** no guaranteed rankings, leads, sales or followers; no "best agency in India"
 
 ## Proof I can use
 
 Only real, permissioned numbers go here. Until filled, drafts will show `{{your number}}`.
 
-- Social selects delivered in 24–72 hours
-- Full wedding galleries in 4–8 weeks
-- {{weddings shot so far}}
-- {{brands / products shot so far}}
-- {{one client result you're allowed to share}}
+- {{businesses worked with}}
+- {{one lead or sales result a client has allowed you to share}}
+- {{years in business}}
 
 ## The ask
 
-- **My keyword CTA:** RATES (check)
-- **What the keyword sends them:** the package PDF and a WhatsApp link to check their date
-- **Where my link goes:** https://displayavenuestudios.com (Book Now) / WhatsApp +91 7400303493
+- **My keyword CTA:** AUDIT (check)
+- **What the keyword sends them:** a free check of their Google profile, website and Instagram, with 3 fixes
+- **Where my link goes:** https://displayavenue.com
