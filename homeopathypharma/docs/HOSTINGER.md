@@ -7,12 +7,49 @@
 
 | Item | Value |
 |------|--------|
-| Host | `in-mum-web1188.main-hosting.eu` (CloudLinux shared) |
+| Host / IP | `195.35.44.93` (`in-mum-web1188.main-hosting.eu`) |
 | Account | `u452926742` |
+| SSH port | `65002` |
+| Password | Hostinger hPanel → **Advanced → SSH Access** |
+| Laravel app | `domains/homeopathypharma.com/laravel` |
 | Document root | `domains/homeopathypharma.com/public_html` |
 | PHP | 8.3 + Composer 2.9 |
 | Database | MySQL/MariaDB via hPanel (`pdo_mysql`) |
 | Node | Not required (static CSS in `public/css`) |
+
+### Connect (you or Claude/Cursor)
+
+```bash
+# 1) Copy password from hPanel → Advanced → SSH Access
+export SSH_PASS='YOUR_SSH_PASSWORD'
+
+# 2a) One-liner shell
+sshpass -e ssh -p 65002 u452926742@195.35.44.93
+
+# 2b) Or use the helper (lands in the Laravel app folder)
+cd homeopathypharma
+./scripts/ssh-hostinger.sh
+./scripts/ssh-hostinger.sh 'php artisan --version'
+```
+
+### Git mirror on Hostinger (optional)
+
+Sparse clone lives at `domains/homeopathypharma.com/Studios` (only `homeopathypharma/`).
+
+```bash
+./scripts/init-hostinger-git.sh                 # one-time
+./scripts/sync-hostinger-from-git.sh            # dry-run
+./scripts/sync-hostinger-from-git.sh --apply     # only after explicit deploy approval
+```
+
+See [GIVE_CLAUDE_ACCESS.md](GIVE_CLAUDE_ACCESS.md) Option D.
+
+Manual SSH without `sshpass`:
+
+```bash
+ssh -p 65002 u452926742@195.35.44.93
+cd ~/domains/homeopathypharma.com/laravel
+```
 
 ## Recommended filesystem layout
 

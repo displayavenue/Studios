@@ -11,6 +11,8 @@ use App\Services\Notifications\LogNotifier;
 use App\Services\Notifications\Notifier;
 use App\Services\Video\NullVideoMeetingProvider;
 use App\Services\Video\VideoMeetingProvider;
+use App\Models\Category;
+use App\Services\CartService;
 use App\Services\SiteSettings;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +41,24 @@ class AppServiceProvider extends ServiceProvider
         Route::bind('policy', fn (string $value) => PolicyPage::query()->findOrFail($value));
 
         View::composer(['layouts.app', 'components.*'], function ($view) {
-            $view->with('settings', app(SiteSettings::class));
+            $settings = app(SiteSettings::class);
+            $cartCount = 0;
+            try {
+                $cartCount = (int) app(CartService::class)->current()->items->sum('quantity');
+            } catch (\Throwable) {
+                $cartCount = 0;
+            }
+
+            $view->with([
+                'settings' => $settings,
+                'cartCount' => $cartCount,
+                'navCategories' => Category::query()
+                    ->published()
+                    ->orderBy('sort_order')
+                    ->orderBy('name')
+                    ->limit(12)
+                    ->get(),
+            ]);
         });
     }
 }
