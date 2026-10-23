@@ -20,7 +20,6 @@ export const computerFundamentalsCourse = {
   level: "Beginner",
   passingScore: 70,
   finalExamQuestions: 100,
-  certificate: true,
   modules: [
     {
       title: "Understanding Computers",

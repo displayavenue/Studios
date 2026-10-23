@@ -19,6 +19,7 @@ import { Contact } from "./pages/Contact";
 import { AllPages } from "./pages/AllPages";
 import { PrivacyPolicy, TermsOfService, BookingPolicy } from "./pages/Legal";
 import { AcademyCourse } from "./pages/AcademyCourse";
+import { InstagramReel } from "./pages/InstagramReel";
 
 export default function App() {
   return (
@@ -44,6 +45,10 @@ export default function App() {
           <Route path="book-now" element={<BookNow />} />
           <Route path="contact" element={<Contact />} />
           <Route path="academy/courses/computer-fundamentals" element={<AcademyCourse />} />
+          <Route
+            path="reel/sendable-content-trend"
+            element={<InstagramReel />}
+          />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<TermsOfService />} />
           <Route path="booking-policy" element={<BookingPolicy />} />
