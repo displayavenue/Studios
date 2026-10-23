@@ -1,0 +1,216 @@
+@import "@homeopathypharma/ui/styles.css";
+
+:root {
+  --app-font-display: var(--font-display, var(--hp-font-display));
+  --app-font-body: var(--font-body, var(--hp-font-body));
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--app-font-body);
+  color: var(--hp-color-text);
+  background: var(--hp-color-charcoal-900);
+}
+
+.hp-admin-shell .hp-root {
+  background: linear-gradient(165deg, #0f1413 0%, var(--hp-color-charcoal-900) 40%, #0b3d3a 120%);
+  color: var(--hp-color-ivory-50);
+}
+
+.hp-admin-shell main {
+  color: var(--hp-color-charcoal-900);
+  background: var(--hp-gradient-surface);
+  border-radius: var(--hp-radius-lg) var(--hp-radius-lg) 0 0;
+  margin-top: var(--hp-space-2);
+}
+
+.font-display {
+  font-family: var(--app-font-display);
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: minmax(12rem, 16rem) 1fr;
+  gap: var(--hp-space-6);
+  min-height: calc(100dvh - 8rem);
+}
+
+@media (max-width: 768px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-sidebar {
+  padding: var(--hp-space-4);
+}
+
+.admin-sidebar nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-sidebar nav li {
+  margin-bottom: var(--hp-space-1);
+}
+
+.admin-sidebar nav a {
+  display: block;
+  padding: var(--hp-space-2) var(--hp-space-3);
+  border-radius: var(--hp-radius-md);
+  text-decoration: none;
+  color: var(--hp-color-sage-100);
+  font-size: var(--hp-text-sm);
+}
+
+.admin-sidebar nav a:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+.admin-sidebar nav a[aria-current="page"] {
+  background: rgb(217 119 6 / 20%);
+  color: var(--hp-color-amber-400);
+}
+
+.admin-sidebar nav .nav-group {
+  margin-top: var(--hp-space-4);
+  margin-bottom: var(--hp-space-2);
+  font-size: var(--hp-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hp-color-charcoal-300);
+  padding-inline: var(--hp-space-3);
+}
+
+.admin-content {
+  padding: var(--hp-space-6);
+  background: var(--hp-color-surface-elevated);
+  border-radius: var(--hp-radius-lg);
+  border: 1px solid var(--hp-color-border);
+  box-shadow: var(--hp-shadow-md);
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--hp-space-4);
+}
+
+.metric-card {
+  padding: var(--hp-space-5);
+  border: 1px solid var(--hp-color-border);
+  border-radius: var(--hp-radius-md);
+  background: var(--hp-color-ivory-50);
+}
+
+.metric-card strong {
+  display: block;
+  font-size: var(--hp-text-2xl);
+  font-family: var(--app-font-display);
+  color: var(--hp-color-teal-900);
+}
+
+.login-card {
+  max-width: 26rem;
+  margin: var(--hp-space-16) auto;
+  padding: var(--hp-space-8);
+  background: var(--hp-color-surface-elevated);
+  border: 1px solid var(--hp-color-border);
+  border-radius: var(--hp-radius-lg);
+}
+
+.queue-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.queue-list li {
+  padding: var(--hp-space-4);
+  border-bottom: 1px solid var(--hp-color-border);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--hp-space-4);
+}
+
+.stub-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--hp-text-sm);
+}
+
+.stub-table th,
+.stub-table td {
+  text-align: left;
+  padding: var(--hp-space-3);
+  border-bottom: 1px solid var(--hp-color-border);
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--hp-radius-full);
+  font-size: var(--hp-text-xs);
+  background: var(--hp-color-sage-100);
+  color: var(--hp-color-teal-900);
+}
+
+.role-note {
+  font-size: var(--hp-text-xs);
+  color: var(--hp-color-text-muted);
+  margin-top: var(--hp-space-4);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.75rem 0.65rem;
+  border-bottom: 1px solid var(--hp-color-border);
+  vertical-align: top;
+}
+
+.admin-table th {
+  color: var(--hp-color-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-input {
+  width: 100%;
+  min-width: 5rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--hp-color-border);
+  border-radius: 0.4rem;
+  font: inherit;
+  background: #fff;
+}
+
+.admin-field {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.admin-fieldset {
+  border: 1px solid var(--hp-color-border);
+  border-radius: 0.65rem;
+  padding: 0.85rem 1rem 1rem;
+  margin: 1rem 0;
+}
+
+.admin-fieldset legend {
+  padding: 0 0.35rem;
+  font-weight: 700;
+  color: var(--hp-color-teal-900);
+}

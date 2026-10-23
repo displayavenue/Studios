@@ -1,0 +1,4 @@
+# Protect include-only helpers
+<FilesMatch "^_">
+  Require all denied
+</FilesMatch>
