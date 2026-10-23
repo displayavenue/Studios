@@ -2,6 +2,8 @@
 
 Premium website for **DisplayAvenue Studios** — India's Premium Visual Production Studio.
 
+> **Agency demo (separate):** see [`agency/`](agency/) for the **DisplayAvenue** digital growth agency site targeting [displayavenue.com](https://displayavenue.com). Run with `cd agency && npm install && npm run dev`.
+
 ## Stack
 
 - React 19 + TypeScript + Vite + React Router
