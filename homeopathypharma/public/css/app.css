@@ -786,3 +786,180 @@ a:hover {
   font-size: 0.85rem;
   color: var(--hp-muted);
 }
+
+/* Conditions SEO pages */
+.hp-conditions-index .hp-condition-group {
+  margin: 2rem 0 1.5rem;
+}
+
+.hp-conditions-index .hp-condition-group h2 {
+  font-family: var(--hp-serif);
+  color: var(--hp-deep);
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--hp-border);
+}
+
+.hp-condition-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.35rem 1rem;
+}
+
+.hp-condition-list a {
+  text-decoration: none;
+  color: var(--hp-text);
+  font-weight: 500;
+}
+
+.hp-condition-list a:hover {
+  color: var(--hp-primary);
+  text-decoration: underline;
+}
+
+.hp-condition-hero {
+  max-width: 46rem;
+  margin-bottom: 1.5rem;
+}
+
+.hp-condition-snippet {
+  font-size: 1.08rem;
+  color: var(--hp-muted);
+  line-height: 1.55;
+}
+
+.hp-condition-rating {
+  margin: 0.75rem 0 1.25rem;
+  color: var(--hp-deep);
+  font-size: 0.95rem;
+}
+
+.hp-condition-media {
+  margin: 0 0 1.5rem;
+  border-radius: var(--hp-radius);
+  overflow: hidden;
+  border: 1px solid var(--hp-border);
+  background: var(--hp-mint);
+}
+
+.hp-condition-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 12 / 7;
+  object-fit: cover;
+}
+
+.hp-condition-short {
+  font-size: 1.05rem;
+  max-width: 46rem;
+  margin: 0 0 1.5rem;
+}
+
+.hp-condition-body {
+  max-width: 46rem;
+}
+
+.hp-condition-body h2 {
+  font-family: var(--hp-serif);
+  color: var(--hp-deep);
+  font-size: 1.35rem;
+  margin: 1.75rem 0 0.65rem;
+}
+
+.hp-condition-cta {
+  margin: 2.5rem 0;
+  padding: 1.5rem 1.35rem;
+  background: var(--hp-deep);
+  color: var(--hp-mint);
+  border-radius: var(--hp-radius);
+}
+
+.hp-condition-cta h2 {
+  margin: 0 0 0.5rem;
+  color: var(--hp-white);
+  font-family: var(--hp-serif);
+  font-size: 1.4rem;
+}
+
+.hp-condition-cta p {
+  margin: 0 0 1rem;
+  max-width: 36rem;
+}
+
+.hp-condition-cta .hp-btn-row,
+.hp-condition-cta .hp-btn {
+  margin-right: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.hp-btn--whatsapp {
+  background: #128c7e;
+  border-color: #128c7e;
+  color: #fff;
+}
+
+.hp-btn--whatsapp:hover {
+  background: #0e6e63;
+  color: #fff;
+}
+
+.hp-condition-faqs,
+.hp-condition-reviews,
+.hp-condition-related {
+  margin: 2.5rem 0;
+}
+
+.hp-faq-list {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 46rem;
+}
+
+.hp-faq-item {
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius);
+  background: var(--hp-white);
+  padding: 0.85rem 1rem;
+}
+
+.hp-faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--hp-deep);
+}
+
+.hp-faq-item p {
+  margin: 0.65rem 0 0;
+  color: var(--hp-muted);
+}
+
+.hp-review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+
+.hp-review-card {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  background: var(--hp-white);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius);
+  box-shadow: var(--hp-shadow);
+}
+
+.hp-review-card p {
+  margin: 0 0 0.75rem;
+  font-family: var(--hp-serif);
+  color: var(--hp-deep);
+  line-height: 1.45;
+}
+
+.hp-page__intro {
+  margin-bottom: 1.5rem;
+  max-width: 40rem;
+}
