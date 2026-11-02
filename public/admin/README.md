@@ -4,13 +4,18 @@
 
 Open: **https://displayavenuestudios.com/admin/**
 
-Default password (change immediately):
+There is **no default password** — login is disabled until you set one.
 
-```
-DisplayAdmin@2026
-```
+1. Generate a hash (Hostinger SSH, or any machine with PHP):
 
-Edit it in: `/admin/config.php` → `admin_password`
+   ```
+   php -r "echo password_hash('YourLongUniquePassword', PASSWORD_DEFAULT), PHP_EOL;"
+   ```
+
+2. Paste the result into `/admin/config.php` → `admin_password_hash`
+   **on the server only**. Never commit a real password or hash to Git.
+
+After 5 wrong passwords an IP is locked out for 15 minutes.
 
 ## What you can edit
 
@@ -58,7 +63,7 @@ Paste a full YouTube link (watch / youtu.be / shorts). If set, the service page 
 1. Upload the latest site zip into `public_html` (include `admin/` and `content/`)
 2. In File Manager, set **`content`** and **`content/uploads`** folder permissions to **755** or **775** (must be writable for CMS saves and image uploads)
 3. Visit `/admin/` and log in
-4. Change the password in `admin/config.php`
+4. Set `admin_password_hash` in `admin/config.php` (see above) before first login
 
 ## Image uploads
 

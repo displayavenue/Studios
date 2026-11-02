@@ -778,7 +778,7 @@ function renderSettings(d) {
     ${field("Site name", "siteName", d.siteName)}
     ${field("Admin note", "adminNote", d.adminNote, "textarea")}
     <p style="color:var(--muted);font-size:.9rem;margin-top:1rem">
-      Change the CMS login password in <code>/admin/config.php</code> on the server.<br/>
+      Change the CMS login password via <code>admin_password_hash</code> in <code>/admin/config.php</code> on the server.<br/>
       Make sure the <code>/content</code> folder is writable (chmod 755/775).<br/>
       Marketing tags are under <strong>Tracking &amp; Pixels</strong> in the sidebar.
     </p>

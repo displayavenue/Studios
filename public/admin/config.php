@@ -1,11 +1,26 @@
 <?php
 /**
  * DisplayAvenue Studios — CMS config
- * Change ADMIN_PASSWORD below, then delete or protect this file's visibility.
+ *
+ * Never commit a real password here. Set ONE of these on the server only:
+ *   - 'admin_password_hash' (recommended): generate with
+ *       php -r "echo password_hash('YourLongPassword', PASSWORD_DEFAULT), PHP_EOL;"
+ *   - environment variable DA_ADMIN_PASSWORD_HASH (same format)
+ * If neither is set, admin login is disabled.
  */
 return [
-  // Login password for /admin
-  'admin_password' => 'DisplayAdmin@2026',
+  // bcrypt/argon hash of the /admin login password (see note above)
+  'admin_password_hash' => getenv('DA_ADMIN_PASSWORD_HASH') ?: '',
+
+  // Brute-force protection: lock an IP after this many failed logins
+  'login_max_attempts' => 5,
+  'login_lockout_seconds' => 15 * 60,
+
+  // Origins allowed to call the admin API from a browser (same-site only)
+  'allowed_origins' => [
+    'https://displayavenue.com',
+    'https://www.displayavenue.com',
+  ],
 
   // Session lifetime (seconds)
   'session_ttl' => 60 * 60 * 8,

@@ -2,21 +2,32 @@
 declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: ' . (isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '*'));
-header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('X-Content-Type-Options: nosniff');
+header('Cache-Control: no-store');
+
+$config = require __DIR__ . '/config.php';
+
+// CORS: only echo back origins we trust (never reflect arbitrary origins)
+$origin = (string)($_SERVER['HTTP_ORIGIN'] ?? '');
+if ($origin !== '' && in_array($origin, $config['allowed_origins'] ?? [], true)) {
+  header('Access-Control-Allow-Origin: ' . $origin);
+  header('Access-Control-Allow-Credentials: true');
+  header('Access-Control-Allow-Headers: Content-Type');
+  header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+  header('Vary: Origin');
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   http_response_code(204);
   exit;
 }
 
-$config = require __DIR__ . '/config.php';
 session_name('da_admin');
 session_start([
   'cookie_httponly' => true,
-  'cookie_samesite' => 'Lax',
+  'cookie_secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'),
+  'cookie_samesite' => 'Strict',
+  'use_strict_mode' => true,
 ]);
 
 function respond(int $code, array $payload): void {
@@ -64,6 +75,31 @@ function writeJson(string $path, $data): void {
   rename($tmp, $path);
 }
 
+/** File-based failed-login counter per IP (works on shared hosting). */
+function loginRatePath(): string {
+  $dir = sys_get_temp_dir() . '/da-admin-login';
+  if (!is_dir($dir)) @mkdir($dir, 0700, true);
+  $ip = (string)($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+  return $dir . '/' . hash('sha256', $ip) . '.json';
+}
+
+function loginRateRead(): array {
+  $path = loginRatePath();
+  if (!is_file($path)) return ['fails' => 0, 'first' => 0];
+  $data = json_decode((string)@file_get_contents($path), true);
+  return is_array($data) ? $data + ['fails' => 0, 'first' => 0] : ['fails' => 0, 'first' => 0];
+}
+
+function verifyAdminPassword(array $config, string $password): bool {
+  if ($password === '') return false;
+  $hash = (string)($config['admin_password_hash'] ?? '');
+  if ($hash !== '') return password_verify($password, $hash);
+  // Legacy plain-text password (discouraged) — still constant-time compared
+  $plain = (string)($config['admin_password'] ?? '');
+  if ($plain !== '') return hash_equals($plain, $password);
+  return false; // no password configured → login disabled
+}
+
 require_once __DIR__ . '/seo-sync.php';
 require_once __DIR__ . '/image-upload.php';
 
@@ -85,10 +121,29 @@ switch ($action) {
     ]);
 
   case 'login':
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+      respond(405, ['ok' => false, 'error' => 'POST required']);
+    }
+    $maxAttempts = (int)($config['login_max_attempts'] ?? 5);
+    $lockout = (int)($config['login_lockout_seconds'] ?? 900);
+    $rate = loginRateRead();
+    if ($rate['first'] && (time() - (int)$rate['first']) > $lockout) {
+      $rate = ['fails' => 0, 'first' => 0];
+    }
+    if ((int)$rate['fails'] >= $maxAttempts) {
+      $wait = max(1, (int)ceil(($lockout - (time() - (int)$rate['first'])) / 60));
+      respond(429, ['ok' => false, 'error' => "Too many failed attempts. Try again in {$wait} min."]);
+    }
     $password = (string)($body['password'] ?? '');
-    if ($password === '' || !hash_equals((string)$config['admin_password'], $password)) {
+    if (!verifyAdminPassword($config, $password)) {
+      $rate['fails'] = (int)$rate['fails'] + 1;
+      if (!$rate['first']) $rate['first'] = time();
+      @file_put_contents(loginRatePath(), json_encode($rate), LOCK_EX);
+      usleep(500000);
       respond(401, ['ok' => false, 'error' => 'Incorrect password']);
     }
+    @unlink(loginRatePath());
+    session_regenerate_id(true);
     $_SESSION['da_auth'] = true;
     $_SESSION['da_auth_at'] = time();
     respond(200, ['ok' => true, 'authenticated' => true]);

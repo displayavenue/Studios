@@ -26,7 +26,7 @@ npm run preview
 
 1. Deploy the build to Hostinger `public_html`
 2. Open `https://displayavenuestudios.com/admin/`
-3. Login — default password in `admin/config.php`: `DisplayAdmin@2026` (**change it**)
+3. Login — set `admin_password_hash` in `admin/config.php` **on the server only** (never commit a password; see `public/admin/README.md`)
 4. Edit company info, services, packages, portfolio, blogs, FAQs, team, etc.
 5. Click **Save changes** — refresh the website to see updates
 
