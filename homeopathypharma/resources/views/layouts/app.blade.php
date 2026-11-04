@@ -12,8 +12,8 @@
     @php
         $hpCssApp = public_path('css/app.css');
         $hpCssStore = public_path('css/storefront.css');
-        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-doctor-lead-full';
-        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-doctor-lead-full';
+        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-lead-bleed';
+        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-lead-bleed';
     @endphp
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ $hpCssAppV }}">
     <link rel="stylesheet" href="{{ asset('css/storefront.css') }}?v={{ $hpCssStoreV }}">
