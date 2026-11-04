@@ -59,6 +59,7 @@
                     <a href="{{ route('home') }}#trusted-brands">Brands</a>
                     <a href="{{ route('doctors.index') }}">Consult a Doctor</a>
                     <a href="{{ route('conditions.index') }}">Conditions</a>
+                    <a href="{{ route('health-explorer') }}">Health Explorer</a>
                     <a href="{{ route('health-library.index') }}">Health Library</a>
                     <a href="{{ route('about') }}">About Us</a>
                     <a href="{{ route('contact.show') }}">Contact Us</a>

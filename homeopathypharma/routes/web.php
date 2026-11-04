@@ -33,7 +33,9 @@ use App\Http\Controllers\ConsultationRequestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\Admin\HealthExplorerController as AdminHealthExplorerController;
 use App\Http\Controllers\HealthConditionController;
+use App\Http\Controllers\HealthExplorerController;
 use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentWebhookController;
@@ -53,6 +55,9 @@ Route::get('/llms.txt', [HealthConditionController::class, 'llms'])->name('seo.l
 
 Route::get('/conditions', [HealthConditionController::class, 'index'])->name('conditions.index');
 Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
+
+Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');
+Route::get('/api/health-explorer/catalog', [HealthExplorerController::class, 'catalog'])->name('health-explorer.catalog');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{slug}', [ShopController::class, 'category'])->name('shop.category');
@@ -185,6 +190,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('homepage', [AdminHomepageSectionController::class, 'index'])->name('homepage.index');
         Route::get('homepage/{homepage}/edit', [AdminHomepageSectionController::class, 'edit'])->name('homepage.edit');
         Route::put('homepage/{homepage}', [AdminHomepageSectionController::class, 'update'])->name('homepage.update');
+        Route::get('health-explorer', [AdminHealthExplorerController::class, 'index'])->name('health-explorer.index');
+        Route::get('health-explorer/organs/{slug}/edit', [AdminHealthExplorerController::class, 'editOrgan'])->name('health-explorer.organs.edit');
+        Route::put('health-explorer/organs/{slug}', [AdminHealthExplorerController::class, 'updateOrgan'])->name('health-explorer.organs.update');
+        Route::get('health-explorer/products/{slug}/edit', [AdminHealthExplorerController::class, 'editProduct'])->name('health-explorer.products.edit');
+        Route::put('health-explorer/products/{slug}', [AdminHealthExplorerController::class, 'updateProduct'])->name('health-explorer.products.update');
         Route::get('settings', [AdminSiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('settings.update');
     });

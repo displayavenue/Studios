@@ -30,6 +30,7 @@
             <a href="{{ route('admin.policies.index') }}" class="{{ str_starts_with($route, 'admin.policies') ? 'is-active' : '' }}">Policies</a>
             <a href="{{ route('admin.team.index') }}" class="{{ str_starts_with($route, 'admin.team') ? 'is-active' : '' }}">Founders &amp; Team</a>
             <a href="{{ route('admin.homepage.index') }}" class="{{ str_starts_with($route, 'admin.homepage') ? 'is-active' : '' }}">Homepage</a>
+            <a href="{{ route('admin.health-explorer.index') }}" class="{{ str_starts_with($route, 'admin.health-explorer') ? 'is-active' : '' }}">Health Explorer</a>
             <a href="{{ route('admin.reports.index') }}" class="{{ str_starts_with($route, 'admin.reports') ? 'is-active' : '' }}">Reports</a>
             <a href="{{ route('admin.audit-logs.index') }}" class="{{ str_starts_with($route, 'admin.audit-logs') ? 'is-active' : '' }}">Audit log</a>
             <a href="{{ route('admin.settings.edit') }}" class="{{ str_starts_with($route, 'admin.settings') ? 'is-active' : '' }}">Site Settings</a>

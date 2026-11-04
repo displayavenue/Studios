@@ -1,0 +1,3806 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-11-04",
+  "disclaimer": "Educational information only \u2014 not a diagnosis or prescription. Homeopathic product notes describe traditional use and product labelling; they are not a claim that homeopathy cures disease. Always seek advice from a qualified clinician for personal medical decisions.",
+  "systems": [
+    {
+      "id": "cardiovascular",
+      "name": "Cardiovascular",
+      "description": "Heart and blood vessels that circulate blood."
+    },
+    {
+      "id": "respiratory",
+      "name": "Respiratory",
+      "description": "Lungs and airways for gas exchange."
+    },
+    {
+      "id": "digestive",
+      "name": "Digestive",
+      "description": "Organs that break down food and absorb nutrients."
+    },
+    {
+      "id": "nervous",
+      "name": "Nervous",
+      "description": "Brain, spinal cord and peripheral nerves."
+    },
+    {
+      "id": "musculoskeletal",
+      "name": "Musculoskeletal",
+      "description": "Bones, joints, muscles and connective tissue."
+    },
+    {
+      "id": "endocrine",
+      "name": "Endocrine",
+      "description": "Hormone-producing glands."
+    },
+    {
+      "id": "urinary",
+      "name": "Urinary",
+      "description": "Kidneys and urinary tract."
+    },
+    {
+      "id": "reproductive",
+      "name": "Reproductive",
+      "description": "Male and female reproductive organs."
+    },
+    {
+      "id": "integumentary",
+      "name": "Skin & Sensory",
+      "description": "Skin, eyes, ears and related structures."
+    },
+    {
+      "id": "lymphatic",
+      "name": "Lymphatic & Immune",
+      "description": "Lymph nodes, spleen and immune tissues."
+    },
+    {
+      "id": "mental",
+      "name": "Mental Health",
+      "description": "Emotional and cognitive wellbeing."
+    }
+  ],
+  "organs": [
+    {
+      "id": "brain",
+      "slug": "brain",
+      "name": "Brain",
+      "system_id": "nervous",
+      "gender": "both",
+      "summary": "Central organ of the nervous system that coordinates thought, movement and vital functions.",
+      "function": "Processes sensory input, controls voluntary and involuntary actions, and supports cognition, emotion and memory.",
+      "description": "The brain sits within the skull and connects to the spinal cord. Major regions include the cerebrum, cerebellum and brainstem.",
+      "diseases": [
+        "migraine",
+        "stroke-risk-awareness",
+        "epilepsy-overview"
+      ],
+      "symptoms": [
+        "Headache",
+        "Confusion",
+        "Weakness",
+        "Seizures",
+        "Vision changes"
+      ],
+      "causes": [
+        "Vascular events",
+        "Infection",
+        "Trauma",
+        "Metabolic imbalance",
+        "Degenerative disease"
+      ],
+      "risk_factors": [
+        "Hypertension",
+        "Smoking",
+        "Diabetes",
+        "Family history",
+        "Sedentary lifestyle"
+      ],
+      "diagnostics": [
+        "Neurological exam",
+        "MRI / CT",
+        "EEG",
+        "Blood tests"
+      ],
+      "treatments": [
+        "Specialist neurology care",
+        "Medicines as prescribed",
+        "Rehabilitation",
+        "Lifestyle risk reduction"
+      ],
+      "specialists": [
+        "Neurologist",
+        "Neurosurgeon",
+        "GP / Family physician"
+      ],
+      "prevention": [
+        "Blood pressure control",
+        "Sleep hygiene",
+        "Helmet safety",
+        "Limit alcohol",
+        "Regular activity"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-gelsemium"
+      ],
+      "related_organ_ids": [
+        "spine",
+        "eyes"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 11,
+            "r": 4.2
+          },
+          "back": {
+            "cx": 50,
+            "cy": 11,
+            "r": 4.2
+          }
+        },
+        "female": {
+          "front": {
+            "cx": 50,
+            "cy": 11,
+            "r": 4.2
+          },
+          "back": {
+            "cx": 50,
+            "cy": 11,
+            "r": 4.2
+          }
+        }
+      }
+    },
+    {
+      "id": "thyroid",
+      "slug": "thyroid",
+      "name": "Thyroid",
+      "system_id": "endocrine",
+      "gender": "both",
+      "summary": "Butterfly-shaped gland in the neck that regulates metabolism through hormones.",
+      "function": "Produces thyroxine (T4) and triiodothyronine (T3), influencing energy use, temperature and growth.",
+      "description": "Located at the front of the neck below the Adam's apple. Disorders may present with weight, mood or heart-rate changes.",
+      "diseases": [
+        "hypothyroidism-overview",
+        "hyperthyroidism-overview"
+      ],
+      "symptoms": [
+        "Fatigue",
+        "Weight change",
+        "Palpitations",
+        "Neck swelling",
+        "Temperature intolerance"
+      ],
+      "causes": [
+        "Autoimmune thyroiditis",
+        "Iodine imbalance",
+        "Nodules",
+        "Medications",
+        "Surgery / radiation"
+      ],
+      "risk_factors": [
+        "Family history",
+        "Female sex",
+        "Autoimmune disease",
+        "Pregnancy",
+        "Iodine deficiency"
+      ],
+      "diagnostics": [
+        "TSH / Free T4",
+        "Antibody tests",
+        "Ultrasound",
+        "Specialist review"
+      ],
+      "treatments": [
+        "Hormone replacement when indicated",
+        "Antithyroid therapy",
+        "Surgery in selected cases",
+        "Monitoring"
+      ],
+      "specialists": [
+        "Endocrinologist",
+        "ENT specialist",
+        "GP"
+      ],
+      "prevention": [
+        "Adequate iodine intake",
+        "Regular check-ups if at risk",
+        "Medication adherence"
+      ],
+      "homeopathy_product_ids": [
+        "hp-thyroidinum"
+      ],
+      "related_organ_ids": [
+        "heart",
+        "brain"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 18,
+            "r": 2.6
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 50,
+            "cy": 18.5,
+            "r": 2.6
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "heart",
+      "slug": "heart",
+      "name": "Heart",
+      "system_id": "cardiovascular",
+      "gender": "both",
+      "summary": "Muscular pump that circulates blood through the body.",
+      "function": "Maintains blood flow delivering oxygen and nutrients and removing waste.",
+      "description": "Located in the chest slightly left of centre. Four chambers and valves coordinate each heartbeat.",
+      "diseases": [
+        "hypertension-overview",
+        "angina-overview",
+        "arrhythmia-overview"
+      ],
+      "symptoms": [
+        "Chest discomfort",
+        "Shortness of breath",
+        "Palpitations",
+        "Fatigue",
+        "Swelling in legs"
+      ],
+      "causes": [
+        "Atherosclerosis",
+        "High blood pressure",
+        "Valve disease",
+        "Cardiomyopathy",
+        "Infection"
+      ],
+      "risk_factors": [
+        "Smoking",
+        "High cholesterol",
+        "Diabetes",
+        "Obesity",
+        "Family history"
+      ],
+      "diagnostics": [
+        "ECG",
+        "Echocardiogram",
+        "Blood pressure",
+        "Stress test",
+        "Blood lipids"
+      ],
+      "treatments": [
+        "Lifestyle therapy",
+        "Prescribed cardiac medicines",
+        "Procedures when indicated",
+        "Cardiac rehab"
+      ],
+      "specialists": [
+        "Cardiologist",
+        "Cardiac surgeon",
+        "GP"
+      ],
+      "prevention": [
+        "Heart-healthy diet",
+        "Exercise",
+        "No tobacco",
+        "Stress management",
+        "BP control"
+      ],
+      "homeopathy_product_ids": [
+        "hp-crataegus",
+        "hp-digitalis"
+      ],
+      "related_organ_ids": [
+        "lungs",
+        "kidneys"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 46,
+            "cy": 32,
+            "r": 3.4
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 46,
+            "cy": 33,
+            "r": 3.4
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "lungs",
+      "slug": "lungs",
+      "name": "Lungs",
+      "system_id": "respiratory",
+      "gender": "both",
+      "summary": "Paired organs of gas exchange that oxygenate blood.",
+      "function": "Move oxygen into the bloodstream and remove carbon dioxide.",
+      "description": "Occupy most of the chest cavity on either side of the heart, connected to airways and the diaphragm.",
+      "diseases": [
+        "asthma-overview",
+        "copd-awareness",
+        "bronchitis-overview"
+      ],
+      "symptoms": [
+        "Cough",
+        "Wheeze",
+        "Breathlessness",
+        "Chest tightness",
+        "Recurrent infections"
+      ],
+      "causes": [
+        "Infection",
+        "Allergy",
+        "Smoking",
+        "Pollution",
+        "Occupational dusts"
+      ],
+      "risk_factors": [
+        "Tobacco",
+        "Air pollution",
+        "Family asthma history",
+        "Occupational exposure"
+      ],
+      "diagnostics": [
+        "Spirometry",
+        "Chest X-ray",
+        "Allergy tests",
+        "Pulse oximetry"
+      ],
+      "treatments": [
+        "Inhalers as prescribed",
+        "Pulmonary rehab",
+        "Smoking cessation",
+        "Vaccination"
+      ],
+      "specialists": [
+        "Pulmonologist",
+        "Allergist",
+        "GP"
+      ],
+      "prevention": [
+        "Avoid smoke",
+        "Vaccines",
+        "Indoor air quality",
+        "Hand hygiene"
+      ],
+      "homeopathy_product_ids": [
+        "hp-antimonium-tart",
+        "hp-bryonia"
+      ],
+      "related_organ_ids": [
+        "heart",
+        "spine"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 58,
+            "cy": 33,
+            "r": 3.6
+          },
+          "back": {
+            "cx": 50,
+            "cy": 33,
+            "r": 3.8
+          }
+        },
+        "female": {
+          "front": {
+            "cx": 58,
+            "cy": 34,
+            "r": 3.6
+          },
+          "back": {
+            "cx": 50,
+            "cy": 34,
+            "r": 3.8
+          }
+        }
+      }
+    },
+    {
+      "id": "liver",
+      "slug": "liver",
+      "name": "Liver",
+      "system_id": "digestive",
+      "gender": "both",
+      "summary": "Largest internal organ; processes nutrients, toxins and produces bile.",
+      "function": "Metabolises nutrients, detoxifies substances, stores glycogen and synthesises proteins.",
+      "description": "Located mainly in the upper right abdomen under the ribcage.",
+      "diseases": [
+        "fatty-liver-overview",
+        "hepatitis-awareness"
+      ],
+      "symptoms": [
+        "Fatigue",
+        "Abdominal discomfort",
+        "Jaundice",
+        "Dark urine",
+        "Itching"
+      ],
+      "causes": [
+        "Viral hepatitis",
+        "Alcohol",
+        "Metabolic syndrome",
+        "Medicines",
+        "Autoimmune disease"
+      ],
+      "risk_factors": [
+        "Obesity",
+        "Diabetes",
+        "Heavy alcohol use",
+        "Viral exposure"
+      ],
+      "diagnostics": [
+        "Liver enzymes",
+        "Ultrasound",
+        "Viral serology",
+        "Specialist referral"
+      ],
+      "treatments": [
+        "Address cause",
+        "Lifestyle change",
+        "Antivirals when indicated",
+        "Avoid hepatotoxins"
+      ],
+      "specialists": [
+        "Hepatologist",
+        "Gastroenterologist",
+        "GP"
+      ],
+      "prevention": [
+        "Limit alcohol",
+        "Healthy weight",
+        "Hepatitis vaccination",
+        "Safe medicine use"
+      ],
+      "homeopathy_product_ids": [
+        "hp-carduus",
+        "hp-chelidonium"
+      ],
+      "related_organ_ids": [
+        "stomach",
+        "pancreas"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 58,
+            "cy": 42,
+            "r": 3.2
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 58,
+            "cy": 43,
+            "r": 3.2
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "stomach",
+      "slug": "stomach",
+      "name": "Stomach",
+      "system_id": "digestive",
+      "gender": "both",
+      "summary": "Muscular sac that begins chemical digestion of food.",
+      "function": "Mixes food with acid and enzymes and regulates emptying into the intestine.",
+      "description": "Lies in the upper abdomen, mostly left of midline.",
+      "diseases": [
+        "gastritis-overview",
+        "acid-reflux-overview",
+        "peptic-ulcer-overview"
+      ],
+      "symptoms": [
+        "Burning pain",
+        "Nausea",
+        "Bloating",
+        "Indigestion",
+        "Early satiety"
+      ],
+      "causes": [
+        "H. pylori",
+        "NSAIDs",
+        "Diet triggers",
+        "Stress-related acid",
+        "Infection"
+      ],
+      "risk_factors": [
+        "NSAID use",
+        "Smoking",
+        "H. pylori",
+        "Spicy/fatty meals for some people"
+      ],
+      "diagnostics": [
+        "Clinical review",
+        "H. pylori test",
+        "Endoscopy when needed"
+      ],
+      "treatments": [
+        "Acid suppression when prescribed",
+        "H. pylori eradication",
+        "Diet adjustment",
+        "Avoid NSAIDs if advised"
+      ],
+      "specialists": [
+        "Gastroenterologist",
+        "GP"
+      ],
+      "prevention": [
+        "Mindful eating",
+        "Limit alcohol/tobacco",
+        "Review long-term NSAID use"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-robinia"
+      ],
+      "related_organ_ids": [
+        "liver",
+        "intestines"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 44,
+            "cy": 44,
+            "r": 3
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 44,
+            "cy": 45,
+            "r": 3
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "intestines",
+      "slug": "intestines",
+      "name": "Intestines",
+      "system_id": "digestive",
+      "gender": "both",
+      "summary": "Small and large bowel for nutrient absorption and waste formation.",
+      "function": "Absorb nutrients and water; host microbiome activity; form stool.",
+      "description": "Fill much of the abdominal cavity from stomach outlet to rectum.",
+      "diseases": [
+        "ibs-overview",
+        "constipation-overview",
+        "ibd-awareness"
+      ],
+      "symptoms": [
+        "Cramps",
+        "Diarrhoea",
+        "Constipation",
+        "Bloating",
+        "Blood in stool (urgent)"
+      ],
+      "causes": [
+        "Diet",
+        "Infection",
+        "Inflammation",
+        "Motility disorders",
+        "Medicines"
+      ],
+      "risk_factors": [
+        "Low fibre",
+        "Stress",
+        "Family IBD history",
+        "Sedentary lifestyle"
+      ],
+      "diagnostics": [
+        "Stool tests",
+        "Blood tests",
+        "Colonoscopy when indicated"
+      ],
+      "treatments": [
+        "Diet therapy",
+        "Prescribed medicines",
+        "Hydration",
+        "Specialist IBD care"
+      ],
+      "specialists": [
+        "Gastroenterologist",
+        "Dietitian",
+        "GP"
+      ],
+      "prevention": [
+        "Fibre-rich diet",
+        "Fluids",
+        "Activity",
+        "Screening as advised"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-aloe"
+      ],
+      "related_organ_ids": [
+        "stomach",
+        "liver"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 52,
+            "r": 3.6
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 50,
+            "cy": 53,
+            "r": 3.6
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "kidneys",
+      "slug": "kidneys",
+      "name": "Kidneys",
+      "system_id": "urinary",
+      "gender": "both",
+      "summary": "Paired organs that filter blood and regulate fluid and electrolytes.",
+      "function": "Remove waste as urine, balance salts and blood pressure, and support vitamin D activation.",
+      "description": "Retroperitoneal organs on either side of the spine at mid-back level.",
+      "diseases": [
+        "uti-overview",
+        "kidney-stone-overview",
+        "ckd-awareness"
+      ],
+      "symptoms": [
+        "Flank pain",
+        "Urinary changes",
+        "Swelling",
+        "Fatigue",
+        "Fever with UTI"
+      ],
+      "causes": [
+        "Infection",
+        "Stones",
+        "Hypertension",
+        "Diabetes",
+        "Obstruction"
+      ],
+      "risk_factors": [
+        "Diabetes",
+        "High BP",
+        "Dehydration",
+        "Family stone history"
+      ],
+      "diagnostics": [
+        "Urinalysis",
+        "Blood creatinine",
+        "Ultrasound",
+        "CT when needed"
+      ],
+      "treatments": [
+        "Antibiotics when indicated",
+        "Stone management",
+        "BP/diabetes control",
+        "Nephrology care"
+      ],
+      "specialists": [
+        "Nephrologist",
+        "Urologist",
+        "GP"
+      ],
+      "prevention": [
+        "Hydration",
+        "BP control",
+        "Diabetes care",
+        "Avoid nephrotoxic misuse"
+      ],
+      "homeopathy_product_ids": [
+        "hp-berberis",
+        "hp-cantharis"
+      ],
+      "related_organ_ids": [
+        "bladder",
+        "heart"
+      ],
+      "hotspots": {
+        "male": {
+          "front": null,
+          "back": {
+            "cx": 42,
+            "cy": 46,
+            "r": 3
+          }
+        },
+        "female": {
+          "front": null,
+          "back": {
+            "cx": 42,
+            "cy": 47,
+            "r": 3
+          }
+        }
+      }
+    },
+    {
+      "id": "bladder",
+      "slug": "bladder",
+      "name": "Bladder",
+      "system_id": "urinary",
+      "gender": "both",
+      "summary": "Muscular reservoir that stores urine before voiding.",
+      "function": "Stores urine and coordinates emptying with urethral sphincters.",
+      "description": "Pelvic organ behind the pubic bone.",
+      "diseases": [
+        "uti-overview",
+        "overactive-bladder-overview"
+      ],
+      "symptoms": [
+        "Frequency",
+        "Urgency",
+        "Burning",
+        "Pelvic discomfort",
+        "Incontinence"
+      ],
+      "causes": [
+        "Infection",
+        "Irritants",
+        "Neurological issues",
+        "Obstruction"
+      ],
+      "risk_factors": [
+        "Female anatomy for UTI",
+        "Catheter use",
+        "Prostate enlargement (male)"
+      ],
+      "diagnostics": [
+        "Urinalysis",
+        "Culture",
+        "Bladder diary",
+        "Ultrasound"
+      ],
+      "treatments": [
+        "Antibiotics when indicated",
+        "Bladder training",
+        "Medicines",
+        "Pelvic floor therapy"
+      ],
+      "specialists": [
+        "Urologist",
+        "Urogynaecologist",
+        "GP"
+      ],
+      "prevention": [
+        "Hydration",
+        "Hygiene",
+        "Do not delay voiding unduly"
+      ],
+      "homeopathy_product_ids": [
+        "hp-cantharis"
+      ],
+      "related_organ_ids": [
+        "kidneys"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 62,
+            "r": 2.6
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 50,
+            "cy": 63,
+            "r": 2.6
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "pancreas",
+      "slug": "pancreas",
+      "name": "Pancreas",
+      "system_id": "digestive",
+      "gender": "both",
+      "summary": "Gland with digestive enzymes and blood-sugar hormones.",
+      "function": "Releases enzymes into the intestine and insulin/glucagon into blood.",
+      "description": "Lies across the upper abdomen behind the stomach.",
+      "diseases": [
+        "diabetes-overview",
+        "pancreatitis-awareness"
+      ],
+      "symptoms": [
+        "Thirst",
+        "Frequent urination",
+        "Abdominal pain",
+        "Weight change",
+        "Fatty stools"
+      ],
+      "causes": [
+        "Insulin resistance",
+        "Autoimmune beta-cell loss",
+        "Gallstones",
+        "Alcohol",
+        "Idiopathic"
+      ],
+      "risk_factors": [
+        "Obesity",
+        "Family diabetes",
+        "Gallstones",
+        "Heavy alcohol"
+      ],
+      "diagnostics": [
+        "Blood glucose / HbA1c",
+        "Lipase",
+        "Imaging when needed"
+      ],
+      "treatments": [
+        "Diabetes education",
+        "Medicines/insulin as prescribed",
+        "Diet",
+        "Acute pancreatitis care"
+      ],
+      "specialists": [
+        "Endocrinologist",
+        "Gastroenterologist",
+        "GP"
+      ],
+      "prevention": [
+        "Healthy weight",
+        "Limit alcohol",
+        "Screening if at risk"
+      ],
+      "homeopathy_product_ids": [
+        "hp-syzygium"
+      ],
+      "related_organ_ids": [
+        "liver",
+        "stomach"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 46,
+            "r": 2.4
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 50,
+            "cy": 47,
+            "r": 2.4
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "spleen",
+      "slug": "spleen",
+      "name": "Spleen",
+      "system_id": "lymphatic",
+      "gender": "both",
+      "summary": "Lymphoid organ that filters blood and supports immune responses.",
+      "function": "Removes aged blood cells and helps fight certain infections.",
+      "description": "Soft organ in the upper left abdomen under the ribcage.",
+      "diseases": [
+        "splenomegaly-awareness"
+      ],
+      "symptoms": [
+        "Left upper abdominal fullness",
+        "Easy bruising (related disease)",
+        "Infection susceptibility after removal"
+      ],
+      "causes": [
+        "Infection",
+        "Blood disorders",
+        "Portal hypertension",
+        "Trauma"
+      ],
+      "risk_factors": [
+        "Haematologic disease",
+        "Liver disease",
+        "Trauma risk sports"
+      ],
+      "diagnostics": [
+        "Exam",
+        "Ultrasound",
+        "Blood counts"
+      ],
+      "treatments": [
+        "Treat underlying cause",
+        "Vaccination if asplenic",
+        "Trauma protocols"
+      ],
+      "specialists": [
+        "Haematologist",
+        "Surgeon",
+        "GP"
+      ],
+      "prevention": [
+        "Seatbelts",
+        "Vaccines when indicated"
+      ],
+      "homeopathy_product_ids": [
+        "hp-ceano"
+      ],
+      "related_organ_ids": [
+        "liver",
+        "lungs"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 38,
+            "cy": 42,
+            "r": 2.4
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 38,
+            "cy": 43,
+            "r": 2.4
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "spine",
+      "slug": "spine",
+      "name": "Spine",
+      "system_id": "musculoskeletal",
+      "gender": "both",
+      "summary": "Column of vertebrae protecting the spinal cord and supporting posture.",
+      "function": "Provides structural support, flexibility and a protected path for nerves.",
+      "description": "Runs from the skull to the pelvis along the back midline.",
+      "diseases": [
+        "back-pain-overview",
+        "disc-problem-awareness",
+        "sciatica-overview"
+      ],
+      "symptoms": [
+        "Back pain",
+        "Stiffness",
+        "Radiating leg/arm pain",
+        "Numbness",
+        "Weakness"
+      ],
+      "causes": [
+        "Strain",
+        "Disc degeneration",
+        "Poor ergonomics",
+        "Trauma",
+        "Inflammatory disease"
+      ],
+      "risk_factors": [
+        "Heavy lifting",
+        "Sedentary work",
+        "Obesity",
+        "Smoking"
+      ],
+      "diagnostics": [
+        "Exam",
+        "X-ray / MRI when indicated",
+        "Neuro tests"
+      ],
+      "treatments": [
+        "Physiotherapy",
+        "Pain strategies",
+        "Ergonomics",
+        "Surgery in selected cases"
+      ],
+      "specialists": [
+        "Orthopaedist",
+        "Neurologist",
+        "Physiotherapist",
+        "GP"
+      ],
+      "prevention": [
+        "Core strength",
+        "Lift safely",
+        "Workstation setup",
+        "Stay active"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ],
+      "related_organ_ids": [
+        "brain",
+        "joints"
+      ],
+      "hotspots": {
+        "male": {
+          "front": null,
+          "back": {
+            "cx": 50,
+            "cy": 42,
+            "r": 2.8
+          }
+        },
+        "female": {
+          "front": null,
+          "back": {
+            "cx": 50,
+            "cy": 43,
+            "r": 2.8
+          }
+        }
+      }
+    },
+    {
+      "id": "joints",
+      "slug": "joints",
+      "name": "Joints",
+      "system_id": "musculoskeletal",
+      "gender": "both",
+      "summary": "Connections between bones allowing movement.",
+      "function": "Enable motion while distributing load across cartilage and ligaments.",
+      "description": "Major joints include shoulders, elbows, hips, knees and ankles.",
+      "diseases": [
+        "osteoarthritis-overview",
+        "rheumatoid-awareness",
+        "sprain-overview"
+      ],
+      "symptoms": [
+        "Pain",
+        "Swelling",
+        "Stiffness",
+        "Reduced range",
+        "Warmth"
+      ],
+      "causes": [
+        "Wear and tear",
+        "Autoimmune inflammation",
+        "Injury",
+        "Overuse"
+      ],
+      "risk_factors": [
+        "Age",
+        "Obesity",
+        "Prior injury",
+        "Family autoimmunity"
+      ],
+      "diagnostics": [
+        "Exam",
+        "X-ray",
+        "Blood markers",
+        "MRI"
+      ],
+      "treatments": [
+        "Physio",
+        "Weight management",
+        "Medicines",
+        "Joint injection/surgery when needed"
+      ],
+      "specialists": [
+        "Rheumatologist",
+        "Orthopaedist",
+        "Physiotherapist"
+      ],
+      "prevention": [
+        "Strength training",
+        "Healthy weight",
+        "Warm-ups",
+        "Protective gear"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ],
+      "related_organ_ids": [
+        "spine",
+        "muscles"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 28,
+            "cy": 48,
+            "r": 2.6
+          },
+          "back": {
+            "cx": 28,
+            "cy": 48,
+            "r": 2.6
+          }
+        },
+        "female": {
+          "front": {
+            "cx": 27,
+            "cy": 49,
+            "r": 2.6
+          },
+          "back": {
+            "cx": 27,
+            "cy": 49,
+            "r": 2.6
+          }
+        }
+      }
+    },
+    {
+      "id": "muscles",
+      "slug": "muscles",
+      "name": "Muscles",
+      "system_id": "musculoskeletal",
+      "gender": "both",
+      "summary": "Contractile tissue that powers movement and posture.",
+      "function": "Generate force, stabilise joints and support metabolism.",
+      "description": "Skeletal muscles attach via tendons across the body.",
+      "diseases": [
+        "strain-overview",
+        "myalgia-overview"
+      ],
+      "symptoms": [
+        "Soreness",
+        "Weakness",
+        "Cramp",
+        "Limited motion"
+      ],
+      "causes": [
+        "Overuse",
+        "Injury",
+        "Electrolyte imbalance",
+        "Systemic illness"
+      ],
+      "risk_factors": [
+        "Sudden intensity jumps",
+        "Dehydration",
+        "Poor conditioning"
+      ],
+      "diagnostics": [
+        "Exam",
+        "CK blood test if needed",
+        "Imaging rarely"
+      ],
+      "treatments": [
+        "Rest/relative rest",
+        "Physio",
+        "Hydration",
+        "Gradual return"
+      ],
+      "specialists": [
+        "Sports medicine",
+        "Physiotherapist",
+        "GP"
+      ],
+      "prevention": [
+        "Progressive training",
+        "Warm-up",
+        "Protein-adequate diet",
+        "Sleep"
+      ],
+      "homeopathy_product_ids": [
+        "hp-arnica",
+        "hp-rhus-tox"
+      ],
+      "related_organ_ids": [
+        "joints",
+        "spine"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 35,
+            "cy": 38,
+            "r": 2.8
+          },
+          "back": {
+            "cx": 62,
+            "cy": 38,
+            "r": 2.8
+          }
+        },
+        "female": {
+          "front": {
+            "cx": 34,
+            "cy": 39,
+            "r": 2.8
+          },
+          "back": {
+            "cx": 63,
+            "cy": 39,
+            "r": 2.8
+          }
+        }
+      }
+    },
+    {
+      "id": "eyes",
+      "slug": "eyes",
+      "name": "Eyes",
+      "system_id": "integumentary",
+      "gender": "both",
+      "summary": "Sensory organs of vision.",
+      "function": "Focus light onto the retina and send signals via the optic nerve.",
+      "description": "Protected by eyelids, tears and orbital bones.",
+      "diseases": [
+        "dry-eye-overview",
+        "conjunctivitis-overview",
+        "refractive-error-overview"
+      ],
+      "symptoms": [
+        "Blur",
+        "Redness",
+        "Pain",
+        "Discharge",
+        "Light sensitivity"
+      ],
+      "causes": [
+        "Infection",
+        "Allergy",
+        "Strain",
+        "Refractive error",
+        "Systemic disease"
+      ],
+      "risk_factors": [
+        "Screen time",
+        "Contact lenses",
+        "Diabetes",
+        "UV exposure"
+      ],
+      "diagnostics": [
+        "Eye exam",
+        "Visual acuity",
+        "Slit lamp",
+        "Retinal check"
+      ],
+      "treatments": [
+        "Corrective lenses",
+        "Drops as prescribed",
+        "Infection care",
+        "Surgery when indicated"
+      ],
+      "specialists": [
+        "Ophthalmologist",
+        "Optometrist"
+      ],
+      "prevention": [
+        "UV protection",
+        "20-20-20 screen breaks",
+        "Diabetes control"
+      ],
+      "homeopathy_product_ids": [
+        "hp-euphrasia"
+      ],
+      "related_organ_ids": [
+        "brain"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 44,
+            "cy": 13.5,
+            "r": 1.8
+          },
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 44,
+            "cy": 13.5,
+            "r": 1.8
+          },
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "skin",
+      "slug": "skin",
+      "name": "Skin",
+      "system_id": "integumentary",
+      "gender": "both",
+      "summary": "Largest organ; barrier, sensory and temperature regulator.",
+      "function": "Protects against injury and microbes, senses touch and helps thermoregulate.",
+      "description": "Covers the entire body surface with epidermis, dermis and hypodermis layers.",
+      "diseases": [
+        "eczema-overview",
+        "acne-overview",
+        "psoriasis-awareness"
+      ],
+      "symptoms": [
+        "Itch",
+        "Rash",
+        "Dryness",
+        "Redness",
+        "Lesions"
+      ],
+      "causes": [
+        "Allergy",
+        "Infection",
+        "Autoimmune",
+        "Irritants",
+        "Hormones"
+      ],
+      "risk_factors": [
+        "Atopy",
+        "Harsh soaps",
+        "UV",
+        "Stress"
+      ],
+      "diagnostics": [
+        "Dermatology exam",
+        "Patch tests",
+        "Biopsy when needed"
+      ],
+      "treatments": [
+        "Moisturisers",
+        "Topicals as prescribed",
+        "Photoprotection",
+        "Systemic therapy when needed"
+      ],
+      "specialists": [
+        "Dermatologist",
+        "GP"
+      ],
+      "prevention": [
+        "Gentle cleansing",
+        "SPF",
+        "Moisturise",
+        "Avoid known triggers"
+      ],
+      "homeopathy_product_ids": [
+        "hp-graphites",
+        "hp-sulphur"
+      ],
+      "related_organ_ids": [
+        "eyes"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 68,
+            "cy": 55,
+            "r": 2.4
+          },
+          "back": {
+            "cx": 68,
+            "cy": 55,
+            "r": 2.4
+          }
+        },
+        "female": {
+          "front": {
+            "cx": 68,
+            "cy": 56,
+            "r": 2.4
+          },
+          "back": {
+            "cx": 68,
+            "cy": 56,
+            "r": 2.4
+          }
+        }
+      }
+    },
+    {
+      "id": "male-reproductive",
+      "slug": "male-reproductive",
+      "name": "Male reproductive system",
+      "system_id": "reproductive",
+      "gender": "male",
+      "summary": "Testes, prostate and related structures for hormone and sperm production.",
+      "function": "Produces sperm and testosterone; supports sexual and reproductive function.",
+      "description": "Includes testes, epididymis, vas deferens, prostate and penis.",
+      "diseases": [
+        "bph-overview",
+        "prostatitis-awareness",
+        "erectile-concerns-overview"
+      ],
+      "symptoms": [
+        "Urinary hesitancy",
+        "Pelvic discomfort",
+        "Sexual dysfunction",
+        "Scrotal pain"
+      ],
+      "causes": [
+        "Age-related prostate change",
+        "Infection",
+        "Vascular factors",
+        "Hormonal imbalance"
+      ],
+      "risk_factors": [
+        "Age",
+        "Obesity",
+        "Diabetes",
+        "Smoking"
+      ],
+      "diagnostics": [
+        "Exam",
+        "PSA when appropriate",
+        "Ultrasound",
+        "STI tests"
+      ],
+      "treatments": [
+        "Medicines",
+        "Lifestyle",
+        "Antibiotics when indicated",
+        "Urology procedures"
+      ],
+      "specialists": [
+        "Urologist",
+        "Andrologist",
+        "GP"
+      ],
+      "prevention": [
+        "Healthy weight",
+        "No tobacco",
+        "Safe sex",
+        "Screening as advised"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sabal"
+      ],
+      "related_organ_ids": [
+        "bladder",
+        "kidneys"
+      ],
+      "hotspots": {
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 68,
+            "r": 2.8
+          },
+          "back": null
+        },
+        "female": {
+          "front": null,
+          "back": null
+        }
+      }
+    },
+    {
+      "id": "female-reproductive",
+      "slug": "female-reproductive",
+      "name": "Female reproductive system",
+      "system_id": "reproductive",
+      "gender": "female",
+      "summary": "Ovaries, uterus and related structures supporting hormones, fertility and pregnancy.",
+      "function": "Produces eggs and hormones; supports menstruation, conception and pregnancy.",
+      "description": "Includes ovaries, fallopian tubes, uterus, cervix and vagina.",
+      "diseases": [
+        "pcos-overview",
+        "endometriosis-awareness",
+        "dysmenorrhoea-overview"
+      ],
+      "symptoms": [
+        "Pelvic pain",
+        "Irregular cycles",
+        "Heavy bleeding",
+        "Infertility concerns"
+      ],
+      "causes": [
+        "Hormonal imbalance",
+        "Endometrial tissue outside uterus",
+        "Infection",
+        "Structural issues"
+      ],
+      "risk_factors": [
+        "Family history",
+        "Obesity",
+        "Early menarche",
+        "Never pregnant (endo risk context)"
+      ],
+      "diagnostics": [
+        "Exam",
+        "Ultrasound",
+        "Hormones",
+        "Laparoscopy when needed"
+      ],
+      "treatments": [
+        "Hormonal therapies",
+        "Pain management",
+        "Surgery when indicated",
+        "Fertility care"
+      ],
+      "specialists": [
+        "Gynaecologist",
+        "Reproductive endocrinologist",
+        "GP"
+      ],
+      "prevention": [
+        "Routine gynaecology care",
+        "Healthy weight",
+        "Track cycles",
+        "Safe sex"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sepia",
+        "hp-pulsatilla"
+      ],
+      "related_organ_ids": [
+        "bladder",
+        "thyroid"
+      ],
+      "hotspots": {
+        "male": {
+          "front": null,
+          "back": null
+        },
+        "female": {
+          "front": {
+            "cx": 50,
+            "cy": 58,
+            "r": 3
+          },
+          "back": null
+        }
+      }
+    }
+  ],
+  "diseases": [
+    {
+      "id": "migraine",
+      "slug": "migraine",
+      "name": "Migraine",
+      "organ_ids": [
+        "brain"
+      ],
+      "summary": "Recurrent headache disorder often with sensory sensitivity.",
+      "symptoms": [
+        "Throbbing head pain",
+        "Nausea",
+        "Light/sound sensitivity"
+      ],
+      "causes": [
+        "Genetics",
+        "Triggers (sleep, food, stress)"
+      ],
+      "treatments": [
+        "Acute relief medicines",
+        "Preventive therapy",
+        "Trigger management"
+      ],
+      "specialists": [
+        "Neurologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-gelsemium"
+      ]
+    },
+    {
+      "id": "stroke-risk-awareness",
+      "slug": "stroke-risk-awareness",
+      "name": "Stroke risk awareness",
+      "organ_ids": [
+        "brain",
+        "heart"
+      ],
+      "summary": "Emergency brain blood-flow interruption; know FAST signs.",
+      "symptoms": [
+        "Face droop",
+        "Arm weakness",
+        "Speech difficulty"
+      ],
+      "causes": [
+        "Clot or bleed",
+        "Hypertension",
+        "AF"
+      ],
+      "treatments": [
+        "Emergency care",
+        "Risk-factor control"
+      ],
+      "specialists": [
+        "Neurologist",
+        "Cardiologist",
+        "Emergency"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-gelsemium",
+        "hp-crataegus"
+      ]
+    },
+    {
+      "id": "epilepsy-overview",
+      "slug": "epilepsy-overview",
+      "name": "Epilepsy (overview)",
+      "organ_ids": [
+        "brain"
+      ],
+      "summary": "Tendency to recurrent unprovoked seizures.",
+      "symptoms": [
+        "Seizures",
+        "Aura",
+        "Confusion after events"
+      ],
+      "causes": [
+        "Structural",
+        "Genetic",
+        "Metabolic",
+        "Unknown"
+      ],
+      "treatments": [
+        "Anti-seizure medicines",
+        "Safety planning",
+        "Specialist care"
+      ],
+      "specialists": [
+        "Neurologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-gelsemium"
+      ]
+    },
+    {
+      "id": "hypothyroidism-overview",
+      "slug": "hypothyroidism-overview",
+      "name": "Hypothyroidism (overview)",
+      "organ_ids": [
+        "thyroid"
+      ],
+      "summary": "Underactive thyroid with low hormone output.",
+      "symptoms": [
+        "Fatigue",
+        "Weight gain",
+        "Cold intolerance"
+      ],
+      "causes": [
+        "Hashimoto",
+        "Iodine",
+        "Post-surgery"
+      ],
+      "treatments": [
+        "Levothyroxine when prescribed",
+        "Monitoring"
+      ],
+      "specialists": [
+        "Endocrinologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-thyroidinum"
+      ]
+    },
+    {
+      "id": "hyperthyroidism-overview",
+      "slug": "hyperthyroidism-overview",
+      "name": "Hyperthyroidism (overview)",
+      "organ_ids": [
+        "thyroid"
+      ],
+      "summary": "Overactive thyroid with excess hormone.",
+      "symptoms": [
+        "Palpitations",
+        "Weight loss",
+        "Heat intolerance"
+      ],
+      "causes": [
+        "Graves",
+        "Nodules"
+      ],
+      "treatments": [
+        "Antithyroid drugs",
+        "Radioiodine",
+        "Surgery"
+      ],
+      "specialists": [
+        "Endocrinologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-thyroidinum"
+      ]
+    },
+    {
+      "id": "hypertension-overview",
+      "slug": "hypertension-overview",
+      "name": "Hypertension (overview)",
+      "organ_ids": [
+        "heart",
+        "kidneys"
+      ],
+      "summary": "Persistently elevated blood pressure.",
+      "symptoms": [
+        "Often silent",
+        "Headache",
+        "Vision changes if severe"
+      ],
+      "causes": [
+        "Lifestyle",
+        "Kidney disease",
+        "Idiopathic"
+      ],
+      "treatments": [
+        "Lifestyle",
+        "Antihypertensives",
+        "Monitoring"
+      ],
+      "specialists": [
+        "Cardiologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-crataegus",
+        "hp-digitalis",
+        "hp-berberis"
+      ]
+    },
+    {
+      "id": "angina-overview",
+      "slug": "angina-overview",
+      "name": "Angina (overview)",
+      "organ_ids": [
+        "heart"
+      ],
+      "summary": "Chest discomfort from reduced heart blood flow.",
+      "symptoms": [
+        "Exertional chest pressure",
+        "Breathlessness"
+      ],
+      "causes": [
+        "Coronary artery disease"
+      ],
+      "treatments": [
+        "Medicines",
+        "Risk reduction",
+        "Revascularisation"
+      ],
+      "specialists": [
+        "Cardiologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-crataegus",
+        "hp-digitalis"
+      ]
+    },
+    {
+      "id": "arrhythmia-overview",
+      "slug": "arrhythmia-overview",
+      "name": "Arrhythmia (overview)",
+      "organ_ids": [
+        "heart"
+      ],
+      "summary": "Irregular or abnormal heart rhythm.",
+      "symptoms": [
+        "Palpitations",
+        "Dizziness",
+        "Syncope"
+      ],
+      "causes": [
+        "AF",
+        "Electrolytes",
+        "Structural heart disease"
+      ],
+      "treatments": [
+        "Rate/rhythm control",
+        "Anticoagulation when indicated"
+      ],
+      "specialists": [
+        "Cardiologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-crataegus",
+        "hp-digitalis"
+      ]
+    },
+    {
+      "id": "asthma-overview",
+      "slug": "asthma-overview",
+      "name": "Asthma (overview)",
+      "organ_ids": [
+        "lungs"
+      ],
+      "summary": "Reversible airway inflammation and narrowing.",
+      "symptoms": [
+        "Wheeze",
+        "Cough",
+        "Breathlessness"
+      ],
+      "causes": [
+        "Allergy",
+        "Triggers",
+        "Genetics"
+      ],
+      "treatments": [
+        "Inhalers",
+        "Trigger control",
+        "Action plan"
+      ],
+      "specialists": [
+        "Pulmonologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-antimonium-tart",
+        "hp-bryonia"
+      ]
+    },
+    {
+      "id": "copd-awareness",
+      "slug": "copd-awareness",
+      "name": "COPD awareness",
+      "organ_ids": [
+        "lungs"
+      ],
+      "summary": "Progressive airflow limitation often linked to smoking.",
+      "symptoms": [
+        "Chronic cough",
+        "Breathlessness",
+        "Sputum"
+      ],
+      "causes": [
+        "Smoking",
+        "Pollution"
+      ],
+      "treatments": [
+        "Smoking cessation",
+        "Inhalers",
+        "Rehab"
+      ],
+      "specialists": [
+        "Pulmonologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-antimonium-tart",
+        "hp-bryonia"
+      ]
+    },
+    {
+      "id": "bronchitis-overview",
+      "slug": "bronchitis-overview",
+      "name": "Bronchitis (overview)",
+      "organ_ids": [
+        "lungs"
+      ],
+      "summary": "Airway inflammation, often after infection.",
+      "symptoms": [
+        "Cough",
+        "Mucus",
+        "Chest discomfort"
+      ],
+      "causes": [
+        "Viral",
+        "Irritants"
+      ],
+      "treatments": [
+        "Supportive care",
+        "Review if prolonged"
+      ],
+      "specialists": [
+        "GP",
+        "Pulmonologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-antimonium-tart",
+        "hp-bryonia"
+      ]
+    },
+    {
+      "id": "fatty-liver-overview",
+      "slug": "fatty-liver-overview",
+      "name": "Fatty liver (overview)",
+      "organ_ids": [
+        "liver"
+      ],
+      "summary": "Fat accumulation in liver tissue.",
+      "symptoms": [
+        "Often silent",
+        "Fatigue",
+        "Discomfort"
+      ],
+      "causes": [
+        "Metabolic syndrome",
+        "Alcohol"
+      ],
+      "treatments": [
+        "Weight loss",
+        "Alcohol reduction",
+        "Metabolic care"
+      ],
+      "specialists": [
+        "Hepatologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-carduus",
+        "hp-chelidonium"
+      ]
+    },
+    {
+      "id": "hepatitis-awareness",
+      "slug": "hepatitis-awareness",
+      "name": "Hepatitis awareness",
+      "organ_ids": [
+        "liver"
+      ],
+      "summary": "Liver inflammation from viruses or other causes.",
+      "symptoms": [
+        "Jaundice",
+        "Fatigue",
+        "Nausea"
+      ],
+      "causes": [
+        "Viruses A\u2013E",
+        "Alcohol",
+        "Autoimmune"
+      ],
+      "treatments": [
+        "Antivirals when indicated",
+        "Supportive care",
+        "Vaccination"
+      ],
+      "specialists": [
+        "Hepatologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-carduus",
+        "hp-chelidonium"
+      ]
+    },
+    {
+      "id": "gastritis-overview",
+      "slug": "gastritis-overview",
+      "name": "Gastritis (overview)",
+      "organ_ids": [
+        "stomach"
+      ],
+      "summary": "Stomach lining inflammation.",
+      "symptoms": [
+        "Burning pain",
+        "Nausea"
+      ],
+      "causes": [
+        "H. pylori",
+        "NSAIDs",
+        "Alcohol"
+      ],
+      "treatments": [
+        "Acid suppression",
+        "Eradicate H. pylori"
+      ],
+      "specialists": [
+        "Gastroenterologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-robinia"
+      ]
+    },
+    {
+      "id": "acid-reflux-overview",
+      "slug": "acid-reflux-overview",
+      "name": "Acid reflux (overview)",
+      "organ_ids": [
+        "stomach"
+      ],
+      "summary": "Stomach contents irritating the oesophagus.",
+      "symptoms": [
+        "Heartburn",
+        "Regurgitation"
+      ],
+      "causes": [
+        "LES dysfunction",
+        "Meals",
+        "Obesity"
+      ],
+      "treatments": [
+        "Lifestyle",
+        "Acid suppressants"
+      ],
+      "specialists": [
+        "Gastroenterologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-robinia"
+      ]
+    },
+    {
+      "id": "peptic-ulcer-overview",
+      "slug": "peptic-ulcer-overview",
+      "name": "Peptic ulcer (overview)",
+      "organ_ids": [
+        "stomach"
+      ],
+      "summary": "Break in stomach or duodenal lining.",
+      "symptoms": [
+        "Epigastric pain",
+        "Bleeding signs"
+      ],
+      "causes": [
+        "H. pylori",
+        "NSAIDs"
+      ],
+      "treatments": [
+        "Eradication",
+        "Acid suppression",
+        "Avoid NSAIDs"
+      ],
+      "specialists": [
+        "Gastroenterologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-robinia"
+      ]
+    },
+    {
+      "id": "ibs-overview",
+      "slug": "ibs-overview",
+      "name": "IBS (overview)",
+      "organ_ids": [
+        "intestines"
+      ],
+      "summary": "Functional bowel disorder with pain and stool change.",
+      "symptoms": [
+        "Cramps",
+        "Diarrhoea/constipation",
+        "Bloating"
+      ],
+      "causes": [
+        "Gut-brain axis",
+        "Diet",
+        "Stress"
+      ],
+      "treatments": [
+        "Diet (e.g. guided fibre/FODMAP)",
+        "Medicines",
+        "Stress care"
+      ],
+      "specialists": [
+        "Gastroenterologist",
+        "Dietitian"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-aloe"
+      ]
+    },
+    {
+      "id": "constipation-overview",
+      "slug": "constipation-overview",
+      "name": "Constipation (overview)",
+      "organ_ids": [
+        "intestines"
+      ],
+      "summary": "Infrequent or difficult stool passage.",
+      "symptoms": [
+        "Hard stools",
+        "Straining",
+        "Bloating"
+      ],
+      "causes": [
+        "Low fibre",
+        "Medicines",
+        "Dehydration"
+      ],
+      "treatments": [
+        "Fibre",
+        "Fluids",
+        "Laxatives when advised"
+      ],
+      "specialists": [
+        "GP",
+        "Gastroenterologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-aloe"
+      ]
+    },
+    {
+      "id": "ibd-awareness",
+      "slug": "ibd-awareness",
+      "name": "IBD awareness",
+      "organ_ids": [
+        "intestines"
+      ],
+      "summary": "Chronic inflammatory bowel diseases (Crohn/UC).",
+      "symptoms": [
+        "Bloody diarrhoea",
+        "Pain",
+        "Weight loss"
+      ],
+      "causes": [
+        "Immune dysregulation",
+        "Genetics"
+      ],
+      "treatments": [
+        "Anti-inflammatory / biologic therapy",
+        "Surgery"
+      ],
+      "specialists": [
+        "Gastroenterologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-aloe"
+      ]
+    },
+    {
+      "id": "uti-overview",
+      "slug": "uti-overview",
+      "name": "Urinary tract infection (overview)",
+      "organ_ids": [
+        "bladder",
+        "kidneys"
+      ],
+      "summary": "Infection of urinary tract.",
+      "symptoms": [
+        "Dysuria",
+        "Frequency",
+        "Fever if upper"
+      ],
+      "causes": [
+        "Bacteria ascending"
+      ],
+      "treatments": [
+        "Antibiotics when indicated",
+        "Fluids"
+      ],
+      "specialists": [
+        "GP",
+        "Urologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-berberis",
+        "hp-cantharis"
+      ]
+    },
+    {
+      "id": "kidney-stone-overview",
+      "slug": "kidney-stone-overview",
+      "name": "Kidney stones (overview)",
+      "organ_ids": [
+        "kidneys"
+      ],
+      "summary": "Crystal concretions in urinary tract.",
+      "symptoms": [
+        "Severe flank pain",
+        "Haematuria",
+        "Nausea"
+      ],
+      "causes": [
+        "Dehydration",
+        "Diet",
+        "Metabolic"
+      ],
+      "treatments": [
+        "Pain control",
+        "Hydration",
+        "Urology procedures"
+      ],
+      "specialists": [
+        "Urologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-berberis",
+        "hp-cantharis"
+      ]
+    },
+    {
+      "id": "ckd-awareness",
+      "slug": "ckd-awareness",
+      "name": "Chronic kidney disease awareness",
+      "organ_ids": [
+        "kidneys"
+      ],
+      "summary": "Gradual loss of kidney function.",
+      "symptoms": [
+        "Fatigue",
+        "Swelling",
+        "Urine changes"
+      ],
+      "causes": [
+        "Diabetes",
+        "Hypertension"
+      ],
+      "treatments": [
+        "Cause control",
+        "Nephrology care"
+      ],
+      "specialists": [
+        "Nephrologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-berberis",
+        "hp-cantharis"
+      ]
+    },
+    {
+      "id": "overactive-bladder-overview",
+      "slug": "overactive-bladder-overview",
+      "name": "Overactive bladder (overview)",
+      "organ_ids": [
+        "bladder"
+      ],
+      "summary": "Urgency with or without incontinence.",
+      "symptoms": [
+        "Urgency",
+        "Frequency",
+        "Nocturia"
+      ],
+      "causes": [
+        "Idiopathic",
+        "Neurologic"
+      ],
+      "treatments": [
+        "Bladder training",
+        "Medicines",
+        "Pelvic floor"
+      ],
+      "specialists": [
+        "Urologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-cantharis"
+      ]
+    },
+    {
+      "id": "diabetes-overview",
+      "slug": "diabetes-overview",
+      "name": "Diabetes (overview)",
+      "organ_ids": [
+        "pancreas"
+      ],
+      "summary": "Disordered blood glucose regulation.",
+      "symptoms": [
+        "Thirst",
+        "Polyuria",
+        "Fatigue"
+      ],
+      "causes": [
+        "Insulin resistance",
+        "Autoimmune"
+      ],
+      "treatments": [
+        "Education",
+        "Medicines/insulin",
+        "Lifestyle"
+      ],
+      "specialists": [
+        "Endocrinologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-syzygium"
+      ]
+    },
+    {
+      "id": "pancreatitis-awareness",
+      "slug": "pancreatitis-awareness",
+      "name": "Pancreatitis awareness",
+      "organ_ids": [
+        "pancreas"
+      ],
+      "summary": "Inflammation of the pancreas \u2014 can be acute emergency.",
+      "symptoms": [
+        "Severe upper abdominal pain",
+        "Vomiting"
+      ],
+      "causes": [
+        "Gallstones",
+        "Alcohol"
+      ],
+      "treatments": [
+        "Hospital care",
+        "Address cause"
+      ],
+      "specialists": [
+        "Gastroenterologist",
+        "Emergency"
+      ],
+      "homeopathy_product_ids": [
+        "hp-syzygium"
+      ]
+    },
+    {
+      "id": "splenomegaly-awareness",
+      "slug": "splenomegaly-awareness",
+      "name": "Splenomegaly awareness",
+      "organ_ids": [
+        "spleen"
+      ],
+      "summary": "Enlarged spleen from varied causes.",
+      "symptoms": [
+        "Fullness",
+        "Early satiety"
+      ],
+      "causes": [
+        "Infection",
+        "Blood disease",
+        "Portal HTN"
+      ],
+      "treatments": [
+        "Treat cause",
+        "Caution with contact sports"
+      ],
+      "specialists": [
+        "Haematologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-ceano"
+      ]
+    },
+    {
+      "id": "back-pain-overview",
+      "slug": "back-pain-overview",
+      "name": "Back pain (overview)",
+      "organ_ids": [
+        "spine"
+      ],
+      "summary": "Common musculoskeletal symptom with many causes.",
+      "symptoms": [
+        "Ache",
+        "Stiffness",
+        "Radiation"
+      ],
+      "causes": [
+        "Strain",
+        "Disc",
+        "Posture"
+      ],
+      "treatments": [
+        "Activity as tolerated",
+        "Physio",
+        "Red-flag review"
+      ],
+      "specialists": [
+        "Orthopaedist",
+        "Physio",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ]
+    },
+    {
+      "id": "disc-problem-awareness",
+      "slug": "disc-problem-awareness",
+      "name": "Disc problem awareness",
+      "organ_ids": [
+        "spine"
+      ],
+      "summary": "Disc degeneration or herniation affecting nerves.",
+      "symptoms": [
+        "Back/leg pain",
+        "Numbness"
+      ],
+      "causes": [
+        "Age",
+        "Load",
+        "Genetics"
+      ],
+      "treatments": [
+        "Conservative care",
+        "Injection/surgery selected"
+      ],
+      "specialists": [
+        "Spine specialist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ]
+    },
+    {
+      "id": "sciatica-overview",
+      "slug": "sciatica-overview",
+      "name": "Sciatica (overview)",
+      "organ_ids": [
+        "spine"
+      ],
+      "summary": "Pain along sciatic nerve distribution.",
+      "symptoms": [
+        "Leg pain",
+        "Tingling"
+      ],
+      "causes": [
+        "Disc herniation",
+        "Stenosis"
+      ],
+      "treatments": [
+        "Physio",
+        "Medicines",
+        "Specialist review"
+      ],
+      "specialists": [
+        "Orthopaedist",
+        "Neurologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ]
+    },
+    {
+      "id": "osteoarthritis-overview",
+      "slug": "osteoarthritis-overview",
+      "name": "Osteoarthritis (overview)",
+      "organ_ids": [
+        "joints"
+      ],
+      "summary": "Degenerative joint disease.",
+      "symptoms": [
+        "Activity pain",
+        "Stiffness",
+        "Crepitus"
+      ],
+      "causes": [
+        "Age",
+        "Load",
+        "Injury"
+      ],
+      "treatments": [
+        "Exercise",
+        "Weight loss",
+        "Analgesia",
+        "Joint replacement"
+      ],
+      "specialists": [
+        "Orthopaedist",
+        "Rheumatologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ]
+    },
+    {
+      "id": "rheumatoid-awareness",
+      "slug": "rheumatoid-awareness",
+      "name": "Rheumatoid arthritis awareness",
+      "organ_ids": [
+        "joints"
+      ],
+      "summary": "Autoimmune inflammatory arthritis.",
+      "symptoms": [
+        "Symmetrical joint pain",
+        "Morning stiffness"
+      ],
+      "causes": [
+        "Autoimmune"
+      ],
+      "treatments": [
+        "DMARDs",
+        "Physio",
+        "Monitoring"
+      ],
+      "specialists": [
+        "Rheumatologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ]
+    },
+    {
+      "id": "sprain-overview",
+      "slug": "sprain-overview",
+      "name": "Sprain (overview)",
+      "organ_ids": [
+        "joints"
+      ],
+      "summary": "Ligament injury from stretch or tear.",
+      "symptoms": [
+        "Pain",
+        "Swelling",
+        "Instability"
+      ],
+      "causes": [
+        "Twist injury"
+      ],
+      "treatments": [
+        "PRICE principles",
+        "Rehab"
+      ],
+      "specialists": [
+        "Sports medicine",
+        "Physio"
+      ],
+      "homeopathy_product_ids": [
+        "hp-rhus-tox",
+        "hp-arnica"
+      ]
+    },
+    {
+      "id": "strain-overview",
+      "slug": "strain-overview",
+      "name": "Muscle strain (overview)",
+      "organ_ids": [
+        "muscles"
+      ],
+      "summary": "Muscle fibre stretch or tear.",
+      "symptoms": [
+        "Pain",
+        "Weakness",
+        "Spasm"
+      ],
+      "causes": [
+        "Overload"
+      ],
+      "treatments": [
+        "Relative rest",
+        "Rehab"
+      ],
+      "specialists": [
+        "Physio",
+        "Sports medicine"
+      ],
+      "homeopathy_product_ids": [
+        "hp-arnica",
+        "hp-rhus-tox"
+      ]
+    },
+    {
+      "id": "myalgia-overview",
+      "slug": "myalgia-overview",
+      "name": "Myalgia (overview)",
+      "organ_ids": [
+        "muscles"
+      ],
+      "summary": "Muscle pain from varied causes.",
+      "symptoms": [
+        "Aches",
+        "Tenderness"
+      ],
+      "causes": [
+        "Viral",
+        "Overuse",
+        "Medicines"
+      ],
+      "treatments": [
+        "Cause-directed care"
+      ],
+      "specialists": [
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-arnica",
+        "hp-rhus-tox"
+      ]
+    },
+    {
+      "id": "dry-eye-overview",
+      "slug": "dry-eye-overview",
+      "name": "Dry eye (overview)",
+      "organ_ids": [
+        "eyes"
+      ],
+      "summary": "Inadequate tear film quality or quantity.",
+      "symptoms": [
+        "Gritty eyes",
+        "Blur",
+        "Burning"
+      ],
+      "causes": [
+        "Screen use",
+        "Environment",
+        "Autoimmune"
+      ],
+      "treatments": [
+        "Lubricants",
+        "Environment changes"
+      ],
+      "specialists": [
+        "Ophthalmologist",
+        "Optometrist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-euphrasia"
+      ]
+    },
+    {
+      "id": "conjunctivitis-overview",
+      "slug": "conjunctivitis-overview",
+      "name": "Conjunctivitis (overview)",
+      "organ_ids": [
+        "eyes"
+      ],
+      "summary": "Inflammation of the conjunctiva.",
+      "symptoms": [
+        "Redness",
+        "Discharge",
+        "Itch"
+      ],
+      "causes": [
+        "Virus",
+        "Bacteria",
+        "Allergy"
+      ],
+      "treatments": [
+        "Hygiene",
+        "Drops as advised"
+      ],
+      "specialists": [
+        "GP",
+        "Ophthalmologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-euphrasia"
+      ]
+    },
+    {
+      "id": "refractive-error-overview",
+      "slug": "refractive-error-overview",
+      "name": "Refractive error (overview)",
+      "organ_ids": [
+        "eyes"
+      ],
+      "summary": "Focusing problem (myopia, hyperopia, astigmatism).",
+      "symptoms": [
+        "Blur",
+        "Squinting",
+        "Eye strain"
+      ],
+      "causes": [
+        "Eye shape",
+        "Genetics"
+      ],
+      "treatments": [
+        "Glasses/contacts",
+        "Refractive surgery"
+      ],
+      "specialists": [
+        "Optometrist",
+        "Ophthalmologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-euphrasia"
+      ]
+    },
+    {
+      "id": "eczema-overview",
+      "slug": "eczema-overview",
+      "name": "Eczema (overview)",
+      "organ_ids": [
+        "skin"
+      ],
+      "summary": "Atopic inflammatory skin condition.",
+      "symptoms": [
+        "Itch",
+        "Dry patches"
+      ],
+      "causes": [
+        "Barrier dysfunction",
+        "Allergy"
+      ],
+      "treatments": [
+        "Moisturise",
+        "Topical anti-inflammatories"
+      ],
+      "specialists": [
+        "Dermatologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-graphites",
+        "hp-sulphur"
+      ]
+    },
+    {
+      "id": "acne-overview",
+      "slug": "acne-overview",
+      "name": "Acne (overview)",
+      "organ_ids": [
+        "skin"
+      ],
+      "summary": "Pilosebaceous unit disorder common in adolescence.",
+      "symptoms": [
+        "Comedones",
+        "Pustules"
+      ],
+      "causes": [
+        "Hormones",
+        "Bacteria",
+        "Genetics"
+      ],
+      "treatments": [
+        "Topicals",
+        "Systemic when needed"
+      ],
+      "specialists": [
+        "Dermatologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-graphites",
+        "hp-sulphur"
+      ]
+    },
+    {
+      "id": "psoriasis-awareness",
+      "slug": "psoriasis-awareness",
+      "name": "Psoriasis awareness",
+      "organ_ids": [
+        "skin"
+      ],
+      "summary": "Immune-mediated scaly plaques.",
+      "symptoms": [
+        "Silvery plaques",
+        "Itch"
+      ],
+      "causes": [
+        "Immune dysregulation",
+        "Triggers"
+      ],
+      "treatments": [
+        "Topicals",
+        "Phototherapy",
+        "Systemics"
+      ],
+      "specialists": [
+        "Dermatologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-graphites",
+        "hp-sulphur"
+      ]
+    },
+    {
+      "id": "bph-overview",
+      "slug": "bph-overview",
+      "name": "BPH (overview)",
+      "organ_ids": [
+        "male-reproductive"
+      ],
+      "summary": "Benign prostate enlargement affecting urine flow.",
+      "symptoms": [
+        "Weak stream",
+        "Nocturia",
+        "Hesitancy"
+      ],
+      "causes": [
+        "Age-related"
+      ],
+      "treatments": [
+        "Medicines",
+        "Procedures"
+      ],
+      "specialists": [
+        "Urologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sabal"
+      ]
+    },
+    {
+      "id": "prostatitis-awareness",
+      "slug": "prostatitis-awareness",
+      "name": "Prostatitis awareness",
+      "organ_ids": [
+        "male-reproductive"
+      ],
+      "summary": "Prostate inflammation/infection spectrum.",
+      "symptoms": [
+        "Pelvic pain",
+        "Urinary symptoms"
+      ],
+      "causes": [
+        "Infection",
+        "Inflammatory"
+      ],
+      "treatments": [
+        "Antibiotics when indicated",
+        "Pain strategies"
+      ],
+      "specialists": [
+        "Urologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sabal"
+      ]
+    },
+    {
+      "id": "erectile-concerns-overview",
+      "slug": "erectile-concerns-overview",
+      "name": "Erectile concerns (overview)",
+      "organ_ids": [
+        "male-reproductive"
+      ],
+      "summary": "Difficulty achieving/maintaining erection \u2014 often multifactorial.",
+      "symptoms": [
+        "Erectile difficulty"
+      ],
+      "causes": [
+        "Vascular",
+        "Psychogenic",
+        "Hormonal",
+        "Medicines"
+      ],
+      "treatments": [
+        "Lifestyle",
+        "Medicines",
+        "Counselling"
+      ],
+      "specialists": [
+        "Urologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sabal"
+      ]
+    },
+    {
+      "id": "pcos-overview",
+      "slug": "pcos-overview",
+      "name": "PCOS (overview)",
+      "organ_ids": [
+        "female-reproductive"
+      ],
+      "summary": "Hormonal condition with cycle and metabolic features.",
+      "symptoms": [
+        "Irregular cycles",
+        "Acne",
+        "Weight gain"
+      ],
+      "causes": [
+        "Insulin resistance",
+        "Hormones"
+      ],
+      "treatments": [
+        "Lifestyle",
+        "Hormonal therapy",
+        "Metabolic care"
+      ],
+      "specialists": [
+        "Gynaecologist",
+        "Endocrinologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sepia",
+        "hp-pulsatilla"
+      ]
+    },
+    {
+      "id": "endometriosis-awareness",
+      "slug": "endometriosis-awareness",
+      "name": "Endometriosis awareness",
+      "organ_ids": [
+        "female-reproductive"
+      ],
+      "summary": "Endometrial-like tissue outside the uterus.",
+      "symptoms": [
+        "Pelvic pain",
+        "Painful periods",
+        "Infertility"
+      ],
+      "causes": [
+        "Not fully known"
+      ],
+      "treatments": [
+        "Pain care",
+        "Hormones",
+        "Surgery"
+      ],
+      "specialists": [
+        "Gynaecologist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sepia",
+        "hp-pulsatilla"
+      ]
+    },
+    {
+      "id": "dysmenorrhoea-overview",
+      "slug": "dysmenorrhoea-overview",
+      "name": "Dysmenorrhoea (overview)",
+      "organ_ids": [
+        "female-reproductive"
+      ],
+      "summary": "Painful menstruation.",
+      "symptoms": [
+        "Cramps",
+        "Nausea"
+      ],
+      "causes": [
+        "Prostaglandins",
+        "Secondary causes"
+      ],
+      "treatments": [
+        "Heat",
+        "NSAIDs if suitable",
+        "Hormonal options"
+      ],
+      "specialists": [
+        "Gynaecologist",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-sepia",
+        "hp-pulsatilla"
+      ]
+    }
+  ],
+  "mental_conditions": [
+    {
+      "id": "anxiety",
+      "slug": "anxiety",
+      "name": "Anxiety",
+      "summary": "Excessive worry or fear that interferes with daily life.",
+      "symptoms": [
+        "Restlessness",
+        "Racing thoughts",
+        "Muscle tension",
+        "Avoidance"
+      ],
+      "causes": [
+        "Stress",
+        "Genetics",
+        "Trauma",
+        "Medical conditions"
+      ],
+      "treatments": [
+        "CBT",
+        "Medicines when prescribed",
+        "Breathing skills",
+        "Lifestyle routines"
+      ],
+      "support": [
+        "Talk to a clinician",
+        "Crisis helplines if in danger",
+        "Peer support groups"
+      ],
+      "homeopathy_product_ids": [
+        "hp-gelsemium",
+        "hp-arsenicum"
+      ]
+    },
+    {
+      "id": "depression",
+      "slug": "depression",
+      "name": "Depression",
+      "summary": "Persistent low mood and loss of interest lasting weeks or more.",
+      "symptoms": [
+        "Low mood",
+        "Anhedonia",
+        "Sleep change",
+        "Hopelessness"
+      ],
+      "causes": [
+        "Biology",
+        "Life events",
+        "Medical illness",
+        "Medicines"
+      ],
+      "treatments": [
+        "Psychotherapy",
+        "Antidepressants when prescribed",
+        "Activity scheduling",
+        "Social support"
+      ],
+      "support": [
+        "GP / psychiatrist",
+        "Trusted contacts",
+        "Emergency services if suicidal"
+      ],
+      "homeopathy_product_ids": [
+        "hp-aurum",
+        "hp-ignatia"
+      ]
+    },
+    {
+      "id": "stress",
+      "slug": "stress",
+      "name": "Stress",
+      "summary": "Body and mind response to demands that can become harmful when chronic.",
+      "symptoms": [
+        "Irritability",
+        "Sleep issues",
+        "Tension",
+        "Concentration difficulty"
+      ],
+      "causes": [
+        "Workload",
+        "Relationships",
+        "Financial pressure",
+        "Health worries"
+      ],
+      "treatments": [
+        "Problem-solving",
+        "Relaxation",
+        "Exercise",
+        "Professional counselling"
+      ],
+      "support": [
+        "Employee assistance",
+        "Counsellor",
+        "GP"
+      ],
+      "homeopathy_product_ids": [
+        "hp-nux-vomica",
+        "hp-kali-phos"
+      ]
+    },
+    {
+      "id": "ocd",
+      "slug": "ocd",
+      "name": "OCD",
+      "summary": "Obsessive thoughts and compulsive behaviours aimed at reducing distress.",
+      "symptoms": [
+        "Intrusive thoughts",
+        "Rituals",
+        "Checking",
+        "Avoidance"
+      ],
+      "causes": [
+        "Neurobiology",
+        "Genetics",
+        "Stress onset"
+      ],
+      "treatments": [
+        "ERP therapy",
+        "SSRIs when prescribed",
+        "Specialist OCD programmes"
+      ],
+      "support": [
+        "Clinical psychologist",
+        "Psychiatrist",
+        "Support organisations"
+      ],
+      "homeopathy_product_ids": [
+        "hp-arsenicum"
+      ]
+    },
+    {
+      "id": "panic",
+      "slug": "panic",
+      "name": "Panic disorders",
+      "summary": "Recurrent panic attacks with intense physical fear symptoms.",
+      "symptoms": [
+        "Sudden fear",
+        "Palpitations",
+        "Chest tightness",
+        "Derealisation"
+      ],
+      "causes": [
+        "Anxiety sensitivity",
+        "Stress",
+        "Medical mimics to rule out"
+      ],
+      "treatments": [
+        "CBT",
+        "Breathing retraining",
+        "Medicines when prescribed",
+        "Medical workup if needed"
+      ],
+      "support": [
+        "GP",
+        "Therapist",
+        "Emergency care for first severe episode"
+      ],
+      "homeopathy_product_ids": [
+        "hp-aconite",
+        "hp-gelsemium"
+      ]
+    },
+    {
+      "id": "sleep",
+      "slug": "sleep",
+      "name": "Sleep disorders",
+      "summary": "Problems initiating, maintaining or experiencing restorative sleep.",
+      "symptoms": [
+        "Insomnia",
+        "Daytime sleepiness",
+        "Snoring / pauses (OSA concern)"
+      ],
+      "causes": [
+        "Hygiene",
+        "Anxiety",
+        "Apnoea",
+        "Shift work",
+        "Medicines"
+      ],
+      "treatments": [
+        "CBT-I",
+        "Sleep hygiene",
+        "Treat apnoea",
+        "Short-term aids only under advice"
+      ],
+      "support": [
+        "GP",
+        "Sleep clinic",
+        "Therapist"
+      ],
+      "homeopathy_product_ids": [
+        "hp-coffea",
+        "hp-passiflora"
+      ]
+    },
+    {
+      "id": "adhd",
+      "slug": "adhd",
+      "name": "ADHD",
+      "summary": "Neurodevelopmental pattern of inattention and/or hyperactivity-impulsivity.",
+      "symptoms": [
+        "Distractibility",
+        "Restlessness",
+        "Organisation difficulty",
+        "Impulsivity"
+      ],
+      "causes": [
+        "Neurodevelopmental",
+        "Genetics",
+        "Environmental contributors"
+      ],
+      "treatments": [
+        "Behavioural strategies",
+        "Coaching",
+        "Medicines when prescribed",
+        "Accommodations"
+      ],
+      "support": [
+        "Psychiatrist",
+        "Psychologist",
+        "Educational supports"
+      ],
+      "homeopathy_product_ids": [
+        "hp-kali-phos"
+      ]
+    },
+    {
+      "id": "trauma",
+      "slug": "trauma",
+      "name": "Trauma-related conditions",
+      "summary": "Distress following traumatic events, including PTSD spectrum.",
+      "symptoms": [
+        "Intrusions",
+        "Avoidance",
+        "Hyperarousal",
+        "Mood change"
+      ],
+      "causes": [
+        "Exposure to trauma",
+        "Cumulative stress"
+      ],
+      "treatments": [
+        "Trauma-focused therapies",
+        "Medicines when prescribed",
+        "Safety planning"
+      ],
+      "support": [
+        "Trauma-informed clinician",
+        "Crisis lines",
+        "Trusted supports"
+      ],
+      "homeopathy_product_ids": [
+        "hp-ignatia",
+        "hp-aconite"
+      ]
+    }
+  ],
+  "homeopathy_products": [
+    {
+      "id": "hp-nux-vomica",
+      "slug": "nux-vomica",
+      "name": "Nux vomica",
+      "ingredients": "Strychnos nux-vomica",
+      "potency": "As labelled (e.g. 30C)",
+      "manufacturer": "Multi-brand (SBL / Schwabe / others)",
+      "description": "Widely stocked homeopathic preparation traditionally associated with digestive irritability and stress-related patterns.",
+      "traditional_claims": "Traditionally used in homeopathy for digestive upset and overindulgence-related complaints.",
+      "evidence_status": "High-quality clinical evidence that homeopathy treats specific diseases is lacking. Any benefit is unproven beyond placebo for most indications.",
+      "safety_warnings": "Not a substitute for emergency or specialist care. Follow labelled dose. Keep away from children.",
+      "contraindications": "Discuss with a clinician if pregnant, breastfeeding, or on critical medicines. Seek urgent care for severe abdominal pain, vomiting blood, or neurological red flags.",
+      "organ_ids": [
+        "stomach",
+        "intestines",
+        "brain"
+      ],
+      "disease_ids": [
+        "gastritis-overview",
+        "ibs-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-gelsemium",
+      "slug": "gelsemium",
+      "name": "Gelsemium",
+      "ingredients": "Gelsemium sempervirens",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Homeopathic preparation traditionally linked with anticipatory anxiety and flu-like weakness patterns.",
+      "traditional_claims": "Traditionally used for trembling anxiety and heaviness.",
+      "evidence_status": "No robust evidence that it cures anxiety disorders or infections.",
+      "safety_warnings": "Educational listing only. Do not delay evidence-based mental health care.",
+      "contraindications": "Not for severe psychiatric crisis \u2014 seek emergency help if unsafe.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [
+        "migraine"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-thyroidinum",
+      "slug": "thyroidinum",
+      "name": "Thyroidinum",
+      "ingredients": "Thyroidinum (homeopathic)",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Homeopathic thyroid preparation found in some catalogues.",
+      "traditional_claims": "Traditionally discussed in homeopathy for thyroid-related symptom pictures.",
+      "evidence_status": "Does not replace thyroid hormone testing or prescribed thyroxine/antithyroid therapy.",
+      "safety_warnings": "Never stop prescribed thyroid medicine without endocrinology advice.",
+      "contraindications": "Known thyroid disease requires conventional monitoring.",
+      "organ_ids": [
+        "thyroid"
+      ],
+      "disease_ids": [
+        "hypothyroidism-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-crataegus",
+      "slug": "crataegus",
+      "name": "Crataegus",
+      "ingredients": "Crataegus oxyacantha",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Hawthorn preparation used in herbal and homeopathic traditions for heart-related symptom pictures.",
+      "traditional_claims": "Traditional cardiac tonic associations in naturopathic literature.",
+      "evidence_status": "Not a proven treatment for coronary disease; urgent cardiac symptoms need emergency care.",
+      "safety_warnings": "Chest pain, fainting or severe breathlessness = emergency services.",
+      "contraindications": "May interact with cardiac medicines \u2014 ask a pharmacist/clinician.",
+      "organ_ids": [
+        "heart"
+      ],
+      "disease_ids": [
+        "hypertension-overview",
+        "angina-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-digitalis",
+      "slug": "digitalis",
+      "name": "Digitalis",
+      "ingredients": "Digitalis purpurea (homeopathic)",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Homeopathic digitalis preparation; distinct from prescription digoxin.",
+      "traditional_claims": "Historically associated with heart symptom pictures in homeopathic materia medica.",
+      "evidence_status": "Homeopathic digitalis is not equivalent to monitored digoxin therapy.",
+      "safety_warnings": "Do not confuse with prescription digitalis glycosides.",
+      "contraindications": "Heart failure and arrhythmia need cardiology care.",
+      "organ_ids": [
+        "heart"
+      ],
+      "disease_ids": [
+        "arrhythmia-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-antimonium-tart",
+      "slug": "antimonium-tartaricum",
+      "name": "Antimonium tartaricum",
+      "ingredients": "Antimonium tartaricum",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditional homeopathic remedy sometimes discussed for rattling cough pictures.",
+      "traditional_claims": "Traditionally used for loose, rattling cough patterns.",
+      "evidence_status": "Not proven to treat pneumonia or COPD; seek medical care for breathing difficulty.",
+      "safety_warnings": "Difficulty breathing, blue lips, high fever in children \u2014 urgent care.",
+      "contraindications": "Not a substitute for inhalers or oxygen therapy.",
+      "organ_ids": [
+        "lungs"
+      ],
+      "disease_ids": [
+        "bronchitis-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-bryonia",
+      "slug": "bryonia",
+      "name": "Bryonia",
+      "ingredients": "Bryonia alba",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Homeopathic remedy traditionally linked with dry cough and motion-aggravated pains.",
+      "traditional_claims": "Traditional dry cough / stitching pain pictures.",
+      "evidence_status": "Insufficient evidence for disease-specific efficacy.",
+      "safety_warnings": "Persistent cough >3 weeks needs clinical review.",
+      "contraindications": "Chest pain with breathlessness needs urgent assessment.",
+      "organ_ids": [
+        "lungs"
+      ],
+      "disease_ids": [
+        "bronchitis-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-carduus",
+      "slug": "carduus-marianus",
+      "name": "Carduus marianus",
+      "ingredients": "Silybum marianum",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Milk thistle related preparation appearing in homeopathic and herbal contexts.",
+      "traditional_claims": "Traditionally associated with liver support narratives.",
+      "evidence_status": "Does not cure hepatitis or replace hepatology care.",
+      "safety_warnings": "Jaundice and severe abdominal pain need medical review.",
+      "contraindications": "Allergy to Asteraceae; check interactions.",
+      "organ_ids": [
+        "liver"
+      ],
+      "disease_ids": [
+        "fatty-liver-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-chelidonium",
+      "slug": "chelidonium",
+      "name": "Chelidonium",
+      "ingredients": "Chelidonium majus",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Homeopathic preparation traditionally linked with right-sided liver/gallbladder pictures.",
+      "traditional_claims": "Traditional hepatic/biliary symptom associations.",
+      "evidence_status": "Not a proven treatment for biliary colic or hepatitis.",
+      "safety_warnings": "Severe RUQ pain may be surgical emergency.",
+      "contraindications": "Pregnancy caution \u2014 clinician advice.",
+      "organ_ids": [
+        "liver"
+      ],
+      "disease_ids": [
+        "hepatitis-awareness"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-robinia",
+      "slug": "robinia",
+      "name": "Robinia",
+      "ingredients": "Robinia pseudoacacia",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally discussed for acidic eructation pictures.",
+      "traditional_claims": "Traditional acid reflux symptom pictures.",
+      "evidence_status": "Unproven for GORD; alarm features need endoscopy pathways.",
+      "safety_warnings": "Black stools / vomiting blood = emergency.",
+      "contraindications": "Long-term reflux needs medical evaluation.",
+      "organ_ids": [
+        "stomach"
+      ],
+      "disease_ids": [
+        "acid-reflux-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-aloe",
+      "slug": "aloe",
+      "name": "Aloe",
+      "ingredients": "Aloe socotrina",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Homeopathic aloe preparation sometimes linked with urgency diarrhoea pictures.",
+      "traditional_claims": "Traditional bowel urgency associations.",
+      "evidence_status": "Not a treatment for IBD or infection.",
+      "safety_warnings": "Bloody diarrhoea needs prompt assessment.",
+      "contraindications": "Dehydration risk \u2014 medical care if severe.",
+      "organ_ids": [
+        "intestines"
+      ],
+      "disease_ids": [
+        "ibs-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-berberis",
+      "slug": "berberis-vulgaris",
+      "name": "Berberis vulgaris",
+      "ingredients": "Berberis vulgaris",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally associated with radiating kidney-region pains in materia medica.",
+      "traditional_claims": "Traditional renal colic-like pictures.",
+      "evidence_status": "Does not dissolve stones; severe flank pain needs urgent care.",
+      "safety_warnings": "Fever with flank pain may be pyelonephritis.",
+      "contraindications": "Not a substitute for urology care.",
+      "organ_ids": [
+        "kidneys"
+      ],
+      "disease_ids": [
+        "kidney-stone-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-cantharis",
+      "slug": "cantharis",
+      "name": "Cantharis",
+      "ingredients": "Cantharis vesicatoria",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally linked with burning urinary symptoms.",
+      "traditional_claims": "Traditional cystitis-like burning pictures.",
+      "evidence_status": "UTIs often need culture-guided antibiotics \u2014 do not delay.",
+      "safety_warnings": "Fever, back pain, pregnancy UTI \u2014 urgent care.",
+      "contraindications": "Not for pyelonephritis management alone.",
+      "organ_ids": [
+        "bladder",
+        "kidneys"
+      ],
+      "disease_ids": [
+        "uti-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-syzygium",
+      "slug": "syzygium",
+      "name": "Syzygium jambolanum",
+      "ingredients": "Syzygium jambolanum",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Appears in some catalogues around glucose-related traditional narratives.",
+      "traditional_claims": "Traditional metabolic symptom associations in homeopathy/herbal lore.",
+      "evidence_status": "Does not replace diabetes medicines, insulin or monitoring.",
+      "safety_warnings": "Hypo/hyperglycaemia emergencies need medical care.",
+      "contraindications": "Never stop insulin/oral agents without clinician advice.",
+      "organ_ids": [
+        "pancreas"
+      ],
+      "disease_ids": [
+        "diabetes-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-ceano",
+      "slug": "ceanothus",
+      "name": "Ceanothus",
+      "ingredients": "Ceanothus americanus",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally mentioned for spleen-region discomfort pictures.",
+      "traditional_claims": "Traditional splenic associations.",
+      "evidence_status": "Unproven; splenomegaly needs medical diagnosis.",
+      "safety_warnings": "Trauma to enlarged spleen can bleed \u2014 urgent care.",
+      "contraindications": "Asplenic patients need vaccine protocols.",
+      "organ_ids": [
+        "spleen"
+      ],
+      "disease_ids": [
+        "splenomegaly-awareness"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-rhus-tox",
+      "slug": "rhus-toxicodendron",
+      "name": "Rhus toxicodendron",
+      "ingredients": "Rhus toxicodendron",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Commonly stocked remedy traditionally linked with stiffness improving with motion.",
+      "traditional_claims": "Traditional rheumatic/stiffness pictures.",
+      "evidence_status": "Not disease-modifying for rheumatoid arthritis.",
+      "safety_warnings": "Hot swollen joints need rheumatology pathways.",
+      "contraindications": "Do not delay DMARD therapy when indicated.",
+      "organ_ids": [
+        "joints",
+        "muscles",
+        "spine"
+      ],
+      "disease_ids": [
+        "osteoarthritis-overview",
+        "sprain-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-arnica",
+      "slug": "arnica",
+      "name": "Arnica montana",
+      "ingredients": "Arnica montana",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Popular homeopathic preparation traditionally used around bruises and sore muscles.",
+      "traditional_claims": "Traditional trauma/bruise associations.",
+      "evidence_status": "Evidence for meaningful clinical benefit is limited/mixed; not for open wounds (topical herbal arnica).",
+      "safety_warnings": "Serious injury needs medical assessment. Topical herbal arnica \u2260 homeopathic pellet.",
+      "contraindications": "Allergy to Asteraceae.",
+      "organ_ids": [
+        "muscles",
+        "joints",
+        "spine"
+      ],
+      "disease_ids": [
+        "strain-overview",
+        "sprain-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-euphrasia",
+      "slug": "euphrasia",
+      "name": "Euphrasia",
+      "ingredients": "Euphrasia officinalis",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally associated with eye irritation pictures.",
+      "traditional_claims": "Traditional watery/irritable eye associations.",
+      "evidence_status": "Not proven for conjunctivitis; red flags need eye care.",
+      "safety_warnings": "Vision loss / severe pain = urgent ophthalmology.",
+      "contraindications": "Contact lens related red eye needs professional care.",
+      "organ_ids": [
+        "eyes"
+      ],
+      "disease_ids": [
+        "conjunctivitis-overview",
+        "dry-eye-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-graphites",
+      "slug": "graphites",
+      "name": "Graphites",
+      "ingredients": "Graphites",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally linked with cracked, oozing skin pictures.",
+      "traditional_claims": "Traditional eczema-like associations.",
+      "evidence_status": "Does not replace dermatology care for severe eczema.",
+      "safety_warnings": "Infected skin needs medical review.",
+      "contraindications": "Steroid/emollient plans should not be abandoned abruptly.",
+      "organ_ids": [
+        "skin"
+      ],
+      "disease_ids": [
+        "eczema-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-sulphur",
+      "slug": "sulphur",
+      "name": "Sulphur",
+      "ingredients": "Sulphur",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Polychrest remedy traditionally linked with burning, itchy skin pictures.",
+      "traditional_claims": "Traditional itchy skin associations.",
+      "evidence_status": "Unproven disease-specific efficacy.",
+      "safety_warnings": "Widespread rash with systemic symptoms needs review.",
+      "contraindications": "Avoid self-treating suspected cellulitis.",
+      "organ_ids": [
+        "skin"
+      ],
+      "disease_ids": [
+        "eczema-overview",
+        "psoriasis-awareness"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-sabal",
+      "slug": "sabal-serrulata",
+      "name": "Sabal serrulata",
+      "ingredients": "Serenoa repens / Sabal",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Saw palmetto related preparation appearing in prostate-support narratives.",
+      "traditional_claims": "Traditional prostate symptom associations.",
+      "evidence_status": "Does not replace urology assessment for retention or cancer pathways.",
+      "safety_warnings": "Acute retention / blood in urine \u2014 urgent care.",
+      "contraindications": "Discuss with clinician before combining with hormones.",
+      "organ_ids": [
+        "male-reproductive"
+      ],
+      "disease_ids": [
+        "bph-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-sepia",
+      "slug": "sepia",
+      "name": "Sepia",
+      "ingredients": "Sepia officinalis",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally discussed for hormonal and pelvic symptom pictures in women.",
+      "traditional_claims": "Traditional menstrual/hormonal associations.",
+      "evidence_status": "Not a cure for endometriosis or PCOS.",
+      "safety_warnings": "Heavy bleeding / severe pelvic pain needs gynaecology review.",
+      "contraindications": "Pregnancy concerns \u2014 clinician first.",
+      "organ_ids": [
+        "female-reproductive"
+      ],
+      "disease_ids": [
+        "dysmenorrhoea-overview",
+        "pcos-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-pulsatilla",
+      "slug": "pulsatilla",
+      "name": "Pulsatilla",
+      "ingredients": "Pulsatilla nigricans",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Polychrest traditionally linked with changeable mood and hormonal pictures.",
+      "traditional_claims": "Traditional menstrual and mild catarrhal associations.",
+      "evidence_status": "Insufficient evidence for disease treatment claims.",
+      "safety_warnings": "Educational use only.",
+      "contraindications": "Seek care for abnormal bleeding.",
+      "organ_ids": [
+        "female-reproductive"
+      ],
+      "disease_ids": [
+        "dysmenorrhoea-overview"
+      ],
+      "image_url": null
+    },
+    {
+      "id": "hp-arsenicum",
+      "slug": "arsenicum-album",
+      "name": "Arsenicum album",
+      "ingredients": "Arsenicum album",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally associated with anxiety, restlessness and burning pains in materia medica.",
+      "traditional_claims": "Traditional anxiety/restlessness pictures.",
+      "evidence_status": "Not a treatment for clinical anxiety disorders.",
+      "safety_warnings": "Mental health crises need evidence-based care.",
+      "contraindications": "Not for suicidal ideation management.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [],
+      "image_url": null
+    },
+    {
+      "id": "hp-aurum",
+      "slug": "aurum-metallicum",
+      "name": "Aurum metallicum",
+      "ingredients": "Aurum metallicum",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally linked with profound low mood pictures in classical texts.",
+      "traditional_claims": "Traditional depressive symptom associations.",
+      "evidence_status": "Does not treat clinical depression; antidepressants/therapy follow clinical guidelines.",
+      "safety_warnings": "If suicidal, contact emergency services / local crisis lines immediately.",
+      "contraindications": "Not a substitute for psychiatric care.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [],
+      "image_url": null
+    },
+    {
+      "id": "hp-ignatia",
+      "slug": "ignatia",
+      "name": "Ignatia amara",
+      "ingredients": "Ignatia amara",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally associated with grief and emotional shock pictures.",
+      "traditional_claims": "Traditional grief/sighing associations.",
+      "evidence_status": "Unproven; trauma needs trauma-informed therapy.",
+      "safety_warnings": "Persistent depression after loss needs professional support.",
+      "contraindications": "Crisis = emergency help.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [],
+      "image_url": null
+    },
+    {
+      "id": "hp-kali-phos",
+      "slug": "kali-phosphoricum",
+      "name": "Kali phosphoricum",
+      "ingredients": "Kali phosphoricum",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Tissue salt traditionally marketed for nervous fatigue.",
+      "traditional_claims": "Traditional mental fatigue associations.",
+      "evidence_status": "Not proven for ADHD or clinical anxiety.",
+      "safety_warnings": "Educational listing only.",
+      "contraindications": "Seek assessment for impairing attention/mood symptoms.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [],
+      "image_url": null
+    },
+    {
+      "id": "hp-aconite",
+      "slug": "aconitum",
+      "name": "Aconitum napellus",
+      "ingredients": "Aconitum napellus",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally linked with sudden fright and panic-like pictures.",
+      "traditional_claims": "Traditional sudden fear associations.",
+      "evidence_status": "Not a treatment for panic disorder.",
+      "safety_warnings": "First panic attack may need medical rule-out of cardiac causes.",
+      "contraindications": "Emergency symptoms need ER assessment.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [],
+      "image_url": null
+    },
+    {
+      "id": "hp-coffea",
+      "slug": "coffea-cruda",
+      "name": "Coffea cruda",
+      "ingredients": "Coffea cruda",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Traditionally associated with overactive mind and sleeplessness.",
+      "traditional_claims": "Traditional insomnia-from-ideas associations.",
+      "evidence_status": "Not a substitute for CBT-I or apnoea evaluation.",
+      "safety_warnings": "Loud snoring with pauses needs sleep apnoea screening.",
+      "contraindications": "Long-term hypnotic self-medication risks \u2014 clinician advice.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [],
+      "image_url": null
+    },
+    {
+      "id": "hp-passiflora",
+      "slug": "passiflora",
+      "name": "Passiflora",
+      "ingredients": "Passiflora incarnata",
+      "potency": "As labelled",
+      "manufacturer": "Multi-brand",
+      "description": "Passionflower appears in herbal and homeopathic sleep/calm narratives.",
+      "traditional_claims": "Traditional calming/sleep associations.",
+      "evidence_status": "Evidence limited; not proven for chronic insomnia disorders.",
+      "safety_warnings": "May cause drowsiness \u2014 care with driving.",
+      "contraindications": "Check interactions with sedatives.",
+      "organ_ids": [
+        "brain"
+      ],
+      "disease_ids": [],
+      "image_url": null
+    }
+  ]
+}
