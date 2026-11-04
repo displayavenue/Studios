@@ -49,8 +49,8 @@
     @endif
 
     <section class="hp-doctor-lead" id="talk-to-doctor" aria-label="Talk to a doctor">
-        <div class="hp-container">
-            <div class="hp-doctor-lead__card">
+        <div class="hp-doctor-lead__card">
+            <div class="hp-doctor-lead__inner">
                 <h2>Talk to a Doctor, Understand Your Health Better</h2>
                 <p class="hp-doctor-lead__sub">Personalised guidance, thoughtful care.</p>
 

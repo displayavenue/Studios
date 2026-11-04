@@ -417,18 +417,32 @@ body {
   width: 100%;
 }
 
-/* Homepage doctor lead banner (above health concerns) */
+/* Homepage doctor lead banner (above health concerns) — full-bleed */
 .hp-doctor-lead {
-  padding: clamp(1.25rem, 3vw, 2rem) 0 clamp(0.5rem, 2vw, 1rem);
+  /* Extra space under hero / trust strip so the banner sits lower */
+  padding: clamp(2.5rem, 6vw, 4.25rem) 0 clamp(1.25rem, 3vw, 2rem);
   background: transparent;
+  width: 100%;
 }
 
 .hp-doctor-lead__card {
   background: var(--hp-deep);
   color: #f4efe4;
-  border-radius: 1.35rem;
-  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 4vw, 2.5rem) clamp(1.5rem, 3.5vw, 2.25rem);
+  /* Edge to edge — no side inset */
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  padding: clamp(2rem, 4.5vw, 3rem) 0 clamp(1.75rem, 4vw, 2.5rem);
   text-align: center;
+  box-sizing: border-box;
+}
+
+.hp-doctor-lead__inner {
+  width: min(100% - 2 * var(--hp-gutter), 58rem);
+  margin-inline: auto;
+  padding-inline: 0;
+  box-sizing: border-box;
 }
 
 .hp-doctor-lead__card h2 {
@@ -451,7 +465,7 @@ body {
   display: grid;
   gap: 0.95rem;
   justify-items: center;
-  max-width: 58rem;
+  width: 100%;
   margin: 0 auto;
 }
 
