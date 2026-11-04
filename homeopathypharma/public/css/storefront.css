@@ -417,6 +417,130 @@ body {
   width: 100%;
 }
 
+/* Homepage doctor lead banner (above health concerns) */
+.hp-doctor-lead {
+  padding: clamp(1.25rem, 3vw, 2rem) 0 clamp(0.5rem, 2vw, 1rem);
+  background: transparent;
+}
+
+.hp-doctor-lead__card {
+  background: var(--hp-deep);
+  color: #f4efe4;
+  border-radius: 1.35rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 4vw, 2.5rem) clamp(1.5rem, 3.5vw, 2.25rem);
+  text-align: center;
+}
+
+.hp-doctor-lead__card h2 {
+  margin: 0 0 0.55rem;
+  font-family: var(--hp-serif);
+  font-weight: 700;
+  font-size: clamp(1.55rem, 3.2vw, 2.35rem);
+  line-height: 1.2;
+  color: #f7f2e8;
+}
+
+.hp-doctor-lead__sub {
+  margin: 0 0 1.45rem;
+  font-family: var(--hp-font);
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  color: rgba(247, 242, 232, 0.88);
+}
+
+.hp-doctor-lead__form {
+  display: grid;
+  gap: 0.95rem;
+  justify-items: center;
+  max-width: 58rem;
+  margin: 0 auto;
+}
+
+.hp-doctor-lead__fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.hp-doctor-lead__input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid rgba(247, 242, 232, 0.55);
+  background: transparent;
+  color: #f7f2e8;
+  font: inherit;
+  font-size: 0.98rem;
+  box-sizing: border-box;
+}
+
+.hp-doctor-lead__input::placeholder {
+  color: rgba(247, 242, 232, 0.62);
+}
+
+.hp-doctor-lead__input:focus {
+  outline: 2px solid rgba(247, 242, 232, 0.85);
+  outline-offset: 1px;
+}
+
+.hp-doctor-lead__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  text-align: left;
+  font-size: 0.82rem;
+  color: rgba(247, 242, 232, 0.82);
+  max-width: 36rem;
+}
+
+.hp-doctor-lead__consent input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.hp-doctor-lead__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0.7rem 1.6rem;
+  border: 0;
+  border-radius: 0.65rem;
+  background: #f4efe4;
+  color: var(--hp-deep);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hp-doctor-lead__submit:hover {
+  background: #fff;
+}
+
+.hp-doctor-lead__status,
+.hp-doctor-lead__error {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+}
+
+.hp-doctor-lead__status { color: #d7ebe1; }
+.hp-doctor-lead__error { color: #ffd0c8; }
+
+@media (max-width: 820px) {
+  .hp-doctor-lead__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .hp-doctor-lead__consent {
+    max-width: 100%;
+  }
+
+  .hp-doctor-lead__submit {
+    width: 100%;
+  }
+}
+
 /* Trust strip */
 .hp-trust-strip {
   background: #fff;

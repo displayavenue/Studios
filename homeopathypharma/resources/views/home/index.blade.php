@@ -48,6 +48,70 @@
         </section>
     @endif
 
+    <section class="hp-doctor-lead" id="talk-to-doctor" aria-label="Talk to a doctor">
+        <div class="hp-container">
+            <div class="hp-doctor-lead__card">
+                <h2>Talk to a Doctor, Understand Your Health Better</h2>
+                <p class="hp-doctor-lead__sub">Personalised guidance, thoughtful care.</p>
+
+                @if (session('status') && session('lead_form') === 'doctor')
+                    <p class="hp-doctor-lead__status" role="status">{{ session('status') }}</p>
+                @endif
+
+                <form class="hp-doctor-lead__form" method="post" action="{{ route('contact.store') }}">
+                    @csrf
+                    <input type="hidden" name="context" value="Homepage doctor lead">
+                    <input type="hidden" name="lead_form" value="doctor">
+                    <div class="hp-doctor-lead__fields">
+                        <label class="hp-sr-only" for="doctor-lead-name">Your Full Name</label>
+                        <input
+                            id="doctor-lead-name"
+                            class="hp-doctor-lead__input"
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            placeholder="Your Full Name"
+                            autocomplete="name"
+                            required
+                            maxlength="120"
+                        >
+                        <label class="hp-sr-only" for="doctor-lead-mobile">Mobile Number</label>
+                        <input
+                            id="doctor-lead-mobile"
+                            class="hp-doctor-lead__input"
+                            type="tel"
+                            name="contact"
+                            value="{{ old('contact') }}"
+                            placeholder="Mobile Number"
+                            autocomplete="tel"
+                            required
+                            maxlength="190"
+                        >
+                        <label class="hp-sr-only" for="doctor-lead-concern">Your Health Concern</label>
+                        <input
+                            id="doctor-lead-concern"
+                            class="hp-doctor-lead__input"
+                            type="text"
+                            name="message"
+                            value="{{ old('message') }}"
+                            placeholder="Your Health Concern"
+                            required
+                            maxlength="5000"
+                        >
+                    </div>
+                    <label class="hp-doctor-lead__consent">
+                        <input type="checkbox" name="consent" value="1" required @checked(old('consent'))>
+                        <span>I agree to be contacted about this enquiry. This is not emergency care.</span>
+                    </label>
+                    @if ($errors->any() && old('lead_form') === 'doctor')
+                        <p class="hp-doctor-lead__error" role="alert">{{ $errors->first() }}</p>
+                    @endif
+                    <button class="hp-doctor-lead__submit" type="submit">Talk to a Doctor</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <section class="hp-section" id="health-concerns">
         <div class="hp-container">
             <div class="hp-section-head">
