@@ -366,8 +366,8 @@ body {
   margin: 0;
   object-fit: unset;
   object-position: unset;
-  /* Keep intrinsic 1670×849 ratio so phone/tablet/desktop show the same frame */
-  aspect-ratio: 1670 / 849;
+  /* Keep intrinsic 2000×751 ratio so phone/tablet/desktop show the same frame */
+  aspect-ratio: 2000 / 751;
 }
 
 .hp-hero-banner__hit {

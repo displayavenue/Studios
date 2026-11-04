@@ -14,10 +14,10 @@
     <section class="hp-hero-banner hp-hero-banner--art" aria-label="Homeopathy Pharma">
         <img
             class="hp-hero-banner__art"
-            src="{{ asset('images/home/hero-personal-doctors-v2.jpg') }}?v=20261104-doctors-v2"
+            src="{{ asset('images/home/hero-personal-doctors-v3.jpg') }}?v=20261104-doctors-v3"
             alt="Homeopathy Pharma — A More Personal Approach to Healthcare. Thoughtful consultations, quality-focused products and care centred around you."
-            width="1670"
-            height="849"
+            width="2000"
+            height="751"
             decoding="async"
             fetchpriority="high"
         >
@@ -29,7 +29,7 @@
         <a
             class="hp-hero-banner__hit hp-hero-banner__hit--shop"
             href="{{ $hero->payload['secondary_cta_href'] ?? route('shop.index') }}"
-        >{{ $hero->payload['secondary_cta_label'] ?? 'Explore Our Products' }}</a>
+        >{{ $hero->payload['secondary_cta_label'] ?? 'Explore Remedies' }}</a>
     </section>
 
     @if ($trust)
