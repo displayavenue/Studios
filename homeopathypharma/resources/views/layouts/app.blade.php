@@ -12,11 +12,12 @@
     @php
         $hpCssApp = public_path('css/app.css');
         $hpCssStore = public_path('css/storefront.css');
-        $hpCssAppV = is_file($hpCssApp) ? filemtime($hpCssApp) : time();
-        $hpCssStoreV = is_file($hpCssStore) ? filemtime($hpCssStore) : time();
+        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-personal';
+        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-personal';
     @endphp
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ $hpCssAppV }}">
     <link rel="stylesheet" href="{{ asset('css/storefront.css') }}?v={{ $hpCssStoreV }}">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     @stack('head')
 </head>
 <body>

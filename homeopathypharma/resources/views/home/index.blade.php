@@ -11,33 +11,25 @@
     @php($consult = $sections->get('consult'))
     @php($library = $sections->get('health_library'))
 
-    <section class="hp-hero-banner" aria-label="HomeopathyPharma">
-        <div class="hp-hero-banner__media" aria-hidden="true">
-            <img
-                src="{{ asset('images/home/hero-banner.jpg') }}"
-                alt=""
-                width="1280"
-                height="720"
-                decoding="async"
-                fetchpriority="high"
-            >
-        </div>
-        <div class="hp-hero-banner__shade" aria-hidden="true"></div>
-        <div class="hp-hero-banner__content">
-            <p class="hp-hero-banner__brand">HomeopathyPharma</p>
-            <h1>{{ $hero->subtitle ?? 'Your Everyday Homeopathy Essentials, Made Easier.' }}</h1>
-            <p class="hp-hero-banner__lead">
-                {{ $hero->payload['lead'] ?? ('Genuine homeopathic medicines, trusted brands, and '.$settings->consultationFeeDisplay().' online doctor consults — from Mira Road to your home.') }}
-            </p>
-            <div class="hp-btn-row">
-                <a class="hp-btn hp-btn--hero" href="{{ $hero->payload['primary_cta_href'] ?? route('shop.index') }}">
-                    {{ $hero->payload['primary_cta_label'] ?? 'Shop Medicines' }} →
-                </a>
-                <a class="hp-btn hp-btn--hero-ghost" href="{{ $hero->payload['secondary_cta_href'] ?? route('doctors.index') }}">
-                    {{ $hero->payload['secondary_cta_label'] ?? 'Consult a Doctor' }} →
-                </a>
-            </div>
-        </div>
+    <section class="hp-hero-banner hp-hero-banner--art" aria-label="Homeopathy Pharma">
+        <img
+            class="hp-hero-banner__art"
+            src="{{ asset('images/home/hero-personal-approach.jpg') }}?v=20261104-personal"
+            alt="Homeopathy Pharma — A More Personal Approach to Healthcare. Thoughtful consultations, quality-focused products and care centred around you."
+            width="1670"
+            height="941"
+            decoding="async"
+            fetchpriority="high"
+        >
+        <h1 class="hp-sr-only">A More Personal Approach to Healthcare.</h1>
+        <a
+            class="hp-hero-banner__hit hp-hero-banner__hit--consult"
+            href="{{ $hero->payload['primary_cta_href'] ?? route('doctors.index') }}"
+        >{{ $hero->payload['primary_cta_label'] ?? 'Consult Our Experts' }}</a>
+        <a
+            class="hp-hero-banner__hit hp-hero-banner__hit--shop"
+            href="{{ $hero->payload['secondary_cta_href'] ?? route('shop.index') }}"
+        >{{ $hero->payload['secondary_cta_label'] ?? 'Explore Our Products' }}</a>
     </section>
 
     @if ($trust)
