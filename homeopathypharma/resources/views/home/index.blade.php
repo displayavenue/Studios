@@ -14,7 +14,7 @@
     <section class="hp-hero-banner hp-hero-banner--art" aria-label="Homeopathy Pharma">
         <img
             class="hp-hero-banner__art"
-            src="{{ asset('images/home/hero-personal-approach.jpg') }}?v=20261104-personal"
+            src="{{ asset('images/home/hero-personal-doctors.jpg') }}?v=20261104-doctors"
             alt="Homeopathy Pharma — A More Personal Approach to Healthcare. Thoughtful consultations, quality-focused products and care centred around you."
             width="1670"
             height="941"
