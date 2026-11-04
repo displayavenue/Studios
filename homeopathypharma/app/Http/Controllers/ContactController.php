@@ -25,12 +25,19 @@ class ContactController extends Controller
             'contact' => ['required', 'string', 'max:190'],
             'message' => ['required', 'string', 'max:5000'],
             'consent' => ['accepted'],
+            'context' => ['nullable', 'string', 'max:80'],
+            'lead_form' => ['nullable', 'string', 'max:40'],
         ]);
+
+        $message = $data['message'];
+        if (! empty($data['context'])) {
+            $message = '['.$data['context'].'] '.$message;
+        }
 
         ContactMessage::query()->create([
             'name' => $data['name'],
             'contact' => $data['contact'],
-            'message' => $data['message'],
+            'message' => $message,
             'consent' => true,
             'ip_address' => $request->ip(),
         ]);
@@ -42,9 +49,11 @@ class ContactController extends Controller
             ['contact' => $data['contact']]
         );
 
-        return back()->with(
-            'status',
-            'Thank you. Your message was saved. '.$notify['message'].' For urgent matters please call '.$settings->phoneDisplay().'.'
-        );
+        return back()
+            ->with('lead_form', $data['lead_form'] ?? null)
+            ->with(
+                'status',
+                'Thank you. Your message was saved. '.$notify['message'].' For urgent matters please call '.$settings->phoneDisplay().'.'
+            );
     }
 }

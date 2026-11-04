@@ -11,32 +11,25 @@
     @php($consult = $sections->get('consult'))
     @php($library = $sections->get('health_library'))
 
-    <section class="hp-hero-banner" aria-label="Homeopathy essentials">
-        <div class="hp-container hp-hero-banner__grid">
-            <div class="hp-hero-banner__content">
-                <p class="hp-hero-banner__eyebrow">{{ $hero->title ?? 'NATURAL. SAFE. EFFECTIVE.' }}</p>
-                <h1>{{ $hero->subtitle ?? 'Your Everyday Homeopathy Essentials, Made Easier.' }}</h1>
-                <p class="hp-hero-banner__lead">Genuine medicines, trusted brands, and {{ $settings->consultationFeeDisplay() }} online doctor consults — from Mira Road to your home.</p>
-                <div class="hp-btn-row">
-                    <a class="hp-btn hp-btn--primary" href="{{ $hero->payload['primary_cta_href'] ?? route('shop.index') }}">
-                        {{ $hero->payload['primary_cta_label'] ?? 'Shop Medicines' }} →
-                    </a>
-                    <a class="hp-btn hp-btn--ghost-light" href="{{ $hero->payload['secondary_cta_href'] ?? route('doctors.index') }}">
-                        {{ $hero->payload['secondary_cta_label'] ?? 'Consult a Doctor' }} →
-                    </a>
-                </div>
-            </div>
-            <div class="hp-hero-banner__media">
-                <img
-                    src="{{ asset('images/home/hero-banner.jpg') }}"
-                    alt="{{ $hero->payload['image_alt'] ?? 'Homeopathy doctor with natural medicines' }}"
-                    width="1280"
-                    height="720"
-                    decoding="async"
-                    fetchpriority="high"
-                >
-            </div>
-        </div>
+    <section class="hp-hero-banner hp-hero-banner--art" aria-label="Homeopathy Pharma">
+        <img
+            class="hp-hero-banner__art"
+            src="{{ asset('images/home/hero-personal-doctors-v3.jpg') }}?v=20261104-doctors-v3"
+            alt="Homeopathy Pharma — A More Personal Approach to Healthcare. Thoughtful consultations, quality-focused products and care centred around you."
+            width="2000"
+            height="751"
+            decoding="async"
+            fetchpriority="high"
+        >
+        <h1 class="hp-sr-only">A More Personal Approach to Healthcare.</h1>
+        <a
+            class="hp-hero-banner__hit hp-hero-banner__hit--consult"
+            href="{{ $hero->payload['primary_cta_href'] ?? route('doctors.index') }}"
+        >{{ $hero->payload['primary_cta_label'] ?? 'Consult a Doctor' }}</a>
+        <a
+            class="hp-hero-banner__hit hp-hero-banner__hit--shop"
+            href="{{ $hero->payload['secondary_cta_href'] ?? route('shop.index') }}"
+        >{{ $hero->payload['secondary_cta_label'] ?? 'Explore Remedies' }}</a>
     </section>
 
     @if ($trust)
@@ -54,6 +47,70 @@
             </div>
         </section>
     @endif
+
+    <section class="hp-doctor-lead" id="talk-to-doctor" aria-label="Talk to a doctor">
+        <div class="hp-doctor-lead__card">
+            <div class="hp-doctor-lead__inner">
+                <h2>Talk to a Doctor, Understand Your Health Better</h2>
+                <p class="hp-doctor-lead__sub">Personalised guidance, thoughtful care.</p>
+
+                @if (session('status') && session('lead_form') === 'doctor')
+                    <p class="hp-doctor-lead__status" role="status">{{ session('status') }}</p>
+                @endif
+
+                <form class="hp-doctor-lead__form" method="post" action="{{ route('contact.store') }}">
+                    @csrf
+                    <input type="hidden" name="context" value="Homepage doctor lead">
+                    <input type="hidden" name="lead_form" value="doctor">
+                    <div class="hp-doctor-lead__fields">
+                        <label class="hp-sr-only" for="doctor-lead-name">Your Full Name</label>
+                        <input
+                            id="doctor-lead-name"
+                            class="hp-doctor-lead__input"
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            placeholder="Your Full Name"
+                            autocomplete="name"
+                            required
+                            maxlength="120"
+                        >
+                        <label class="hp-sr-only" for="doctor-lead-mobile">Mobile Number</label>
+                        <input
+                            id="doctor-lead-mobile"
+                            class="hp-doctor-lead__input"
+                            type="tel"
+                            name="contact"
+                            value="{{ old('contact') }}"
+                            placeholder="Mobile Number"
+                            autocomplete="tel"
+                            required
+                            maxlength="190"
+                        >
+                        <label class="hp-sr-only" for="doctor-lead-concern">Your Health Concern</label>
+                        <input
+                            id="doctor-lead-concern"
+                            class="hp-doctor-lead__input"
+                            type="text"
+                            name="message"
+                            value="{{ old('message') }}"
+                            placeholder="Your Health Concern"
+                            required
+                            maxlength="5000"
+                        >
+                    </div>
+                    <label class="hp-doctor-lead__consent">
+                        <input type="checkbox" name="consent" value="1" required @checked(old('consent'))>
+                        <span>I agree to be contacted about this enquiry. This is not emergency care.</span>
+                    </label>
+                    @if ($errors->any() && old('lead_form') === 'doctor')
+                        <p class="hp-doctor-lead__error" role="alert">{{ $errors->first() }}</p>
+                    @endif
+                    <button class="hp-doctor-lead__submit" type="submit">Talk to a Doctor</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <section class="hp-section" id="health-concerns">
         <div class="hp-container">

@@ -60,8 +60,11 @@ a:hover {
 }
 
 .hp-container {
-  width: min(100% - 2rem, var(--hp-max));
-  margin-inline: auto;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: clamp(1rem, 3.2vw, 2.75rem);
+  box-sizing: border-box;
 }
 
 .hp-skip {

@@ -2,17 +2,14 @@
     <div class="hp-header-main">
         <div class="hp-container hp-header-main__row">
             <a class="hp-brand" href="{{ route('home') }}">
-                <span class="hp-brand__mark" aria-hidden="true">
-                    <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 3c-2.8 5.2-8 8.4-8 14a8 8 0 0016 0c0-5.6-5.2-8.8-8-14z" fill="currentColor"/>
-                        <path d="M16 14v11" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-                        <path d="M12.5 19.5h7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-                    </svg>
-                </span>
-                <span class="hp-brand__text">
-                    <span class="hp-brand__name">HomeopathyPharma</span>
-                    <span class="hp-brand__tag">{{ $settings->tagline() }}</span>
-                </span>
+                <img
+                    class="hp-brand__logo"
+                    src="{{ asset('images/brand/logo-hp.png') }}?v=20261104-hp-lockup"
+                    alt="{{ $settings->brandName() }}"
+                    width="480"
+                    height="230"
+                    decoding="async"
+                >
             </a>
 
             <form class="hp-search" method="get" action="{{ route('shop.index') }}" role="search">
