@@ -12,7 +12,7 @@
     @php($library = $sections->get('health_library'))
 
     <section class="hp-hero-banner" aria-label="Homeopathy essentials">
-        <div class="hp-container hp-hero-banner__grid">
+        <div class="hp-hero-banner__grid">
             <div class="hp-hero-banner__content">
                 <p class="hp-hero-banner__eyebrow">{{ $hero->title ?? 'NATURAL. SAFE. EFFECTIVE.' }}</p>
                 <h1>{{ $hero->subtitle ?? 'Your Everyday Homeopathy Essentials, Made Easier.' }}</h1>
