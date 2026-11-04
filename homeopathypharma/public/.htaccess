@@ -30,3 +30,10 @@
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"
 </IfModule>
+
+# Keep CSS/JS cache short so Hostinger CDN + browsers pick up storefront updates.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+</IfModule>
