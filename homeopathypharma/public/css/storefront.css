@@ -143,45 +143,117 @@ body {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  flex-shrink: 0;
 }
 
-.hp-header-phone {
+/* Call / WhatsApp pill — sits in the logo header row without moving the brand */
+.hp-contact-pill {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1.5px solid #c4a574;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #fff;
+  min-height: 2.75rem;
   text-decoration: none;
   color: var(--hp-deep);
+  flex-shrink: 0;
+}
+
+.hp-contact-pill__icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 0.7rem;
+  background: var(--hp-deep);
+  color: #fff;
+}
+
+.hp-contact-pill__icon {
   display: grid;
+  place-items: center;
+  color: #fff;
+  width: 1.35rem;
+  height: 1.35rem;
+  text-decoration: none;
+}
+
+.hp-contact-pill__icon:hover,
+.hp-contact-pill__icon:focus-visible {
+  opacity: 0.88;
+  outline: none;
+}
+
+.hp-contact-pill__sep {
+  width: 1px;
+  height: 1rem;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.hp-contact-pill__text {
+  display: grid;
+  align-content: center;
+  padding: 0.35rem 0.95rem 0.35rem 0.75rem;
+  text-decoration: none;
+  color: var(--hp-deep);
   line-height: 1.15;
 }
 
-.hp-header-phone__label {
-  font-size: 0.7rem;
-  color: var(--hp-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.hp-contact-pill__label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--hp-deep);
 }
 
-.hp-header-phone__num { font-weight: 700; font-size: 0.92rem; }
+.hp-contact-pill__num {
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+}
+
+.hp-header-actions__rule {
+  width: 1px;
+  height: 1.65rem;
+  background: var(--hp-border);
+  flex-shrink: 0;
+}
 
 .hp-icon-link {
   text-decoration: none;
-  color: var(--hp-text);
+  color: var(--hp-deep);
   font-weight: 600;
   font-size: 0.9rem;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hp-icon-link__svg {
+  flex-shrink: 0;
+}
+
+.hp-icon-link__cart-wrap {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
 }
 
 .hp-cart-badge {
   position: absolute;
   top: -0.45rem;
-  right: -0.7rem;
-  background: var(--hp-sale);
+  right: -0.55rem;
+  background: var(--hp-deep);
   color: #fff;
   border-radius: 999px;
-  font-size: 0.65rem;
-  min-width: 1.1rem;
-  height: 1.1rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  min-width: 1.05rem;
+  height: 1.05rem;
   display: grid;
   place-items: center;
-  padding: 0 0.25rem;
+  padding: 0 0.2rem;
+  line-height: 1;
 }
 
 /* Nav bar */
@@ -316,7 +388,8 @@ body {
     justify-content: space-between;
   }
   .hp-nav-bar__right { display: none; }
-  .hp-header-phone { display: none; }
+  .hp-contact-pill { display: none; }
+  .hp-header-actions__rule { display: none; }
   .hp-cat-menu { flex: 1; }
   .hp-cat-menu__btn { width: 100%; text-align: center; }
   .hp-cat-menu__panel {
