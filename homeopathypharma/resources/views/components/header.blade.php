@@ -1,15 +1,16 @@
 <header class="hp-site-header">
     <div class="hp-header-main">
         <div class="hp-container hp-header-main__row">
-            <a class="hp-brand" href="{{ route('home') }}">
+            <a class="hp-brand" href="{{ route('home') }}" aria-label="{{ $settings->brandName() }} home">
                 <img
                     class="hp-brand__logo"
                     src="{{ asset('images/brand/logo-hp.png') }}?v=20261104-hp-lockup"
-                    alt="{{ $settings->brandName() }}"
+                    alt=""
                     width="480"
                     height="230"
                     decoding="async"
                 >
+                <span class="hp-brand__name">Homeopathy Pharma</span>
             </a>
 
             <form class="hp-search" method="get" action="{{ route('shop.index') }}" role="search">

@@ -94,19 +94,31 @@ body {
 .hp-brand {
   display: inline-flex;
   align-items: center;
+  gap: 0.7rem;
   text-decoration: none;
   color: var(--hp-deep);
-  line-height: 0;
+  line-height: 1.1;
   flex-shrink: 0;
+  max-width: 100%;
 }
 
 .hp-brand__logo {
   display: block;
   height: clamp(2.6rem, 4.5vw, 3.35rem);
   width: auto;
-  max-width: min(14.5rem, 42vw);
+  max-width: min(9.5rem, 28vw);
   object-fit: contain;
   object-position: left center;
+  flex-shrink: 0;
+}
+
+.hp-brand__name {
+  font-family: var(--hp-serif);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.1vw, 1.4rem);
+  color: var(--hp-deep);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .hp-search {
