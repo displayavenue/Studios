@@ -1,0 +1,412 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String?  @unique
+  name         String?
+  whatsapp     String?
+  passwordHash String?
+  role         String   @default("lead")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  leads        Lead[]
+  assessments  Assessment[]
+  payments     Payment[]
+  bookings     Booking[]
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         String   @default("admin")
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  auditLogs    AuditLog[]
+}
+
+model Lead {
+  id             String   @id @default(cuid())
+  userId         String?
+  user           User?    @relation(fields: [userId], references: [id])
+  name           String
+  email          String
+  whatsapp       String
+  company        String?
+  industry       String?
+  location       String?
+  status         String   @default("new")
+  source         String   @default("growth360")
+  qualification  String?
+  notes          String?
+  assessmentId   String?  @unique
+  assessment     Assessment? @relation(fields: [assessmentId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+}
+
+model Assessment {
+  id              String   @id @default(cuid())
+  publicId        String   @unique @default(cuid())
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+  status          String   @default("started")
+  currentStep     Int      @default(0)
+  company         String?
+  industry        String?
+  businessType    String?
+  product         String?
+  location        String?
+  targetCustomer  String?
+  avgCustomerValue Float?
+  marketingBudget Float?
+  currentChannels String[] @default([])
+  growthGoal      String?
+  contactName     String?
+  contactEmail    String?
+  contactWhatsapp String?
+  growthScore     Float?
+  scoreBreakdown  Json?
+  biggestOpportunity String?
+  recommendedChannels String[] @default([])
+  selectedCompetitorIds String[] @default([])
+  pricingResult   Json?
+  roiResult       Json?
+  plan90Day       Json?
+  unlocked        Boolean  @default(false)
+  completedAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  answers         AssessmentAnswer[]
+  lead            Lead?
+  analysis        Analysis?
+  report          Report?
+  aiGenerations   AiGeneration[]
+  payments        Payment[]
+  bookings        Booking[]
+
+  @@index([status])
+  @@index([publicId])
+}
+
+model AssessmentAnswer {
+  id           String     @id @default(cuid())
+  assessmentId String
+  assessment   Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  questionKey  String
+  answerValue  Json
+  createdAt    DateTime   @default(now())
+
+  @@unique([assessmentId, questionKey])
+}
+
+model Industry {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  competitors Competitor[]
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  state     String?
+  country   String   @default("India")
+  isActive  Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  competitors Competitor[]
+}
+
+model MarketingChannel {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  icon        String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Competitor {
+  id            String   @id @default(cuid())
+  name          String
+  website       String?
+  industryId    String?
+  industry      Industry? @relation(fields: [industryId], references: [id])
+  locationId    String?
+  location      Location? @relation(fields: [locationId], references: [id])
+  city          String?
+  description   String?
+  businessType  String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  scores        CompetitorScore?
+
+  @@index([industryId, locationId])
+  @@index([name])
+}
+
+model CompetitorScore {
+  id             String     @id @default(cuid())
+  competitorId   String     @unique
+  competitor     Competitor  @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  digitalScore   Float      @default(0)
+  marketingScore Float      @default(0)
+  seoScore       Float      @default(0)
+  socialScore    Float      @default(0)
+  overallScore   Float      @default(0)
+  notes          String?
+  updatedAt      DateTime   @updatedAt
+  createdAt      DateTime   @default(now())
+}
+
+model Pricing {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  description String?
+  valueInr    Float
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PricingRule {
+  id          String   @id @default(cuid())
+  name        String
+  industrySlug String?
+  budgetMin   Float?
+  budgetMax   Float?
+  adSpendPct  Float?
+  mgmtFeePct  Float?
+  setupFeeInr Float?
+  minAdSpend  Float?
+  maxAdSpend  Float?
+  priority    Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model StrategyRule {
+  id           String   @id @default(cuid())
+  name         String
+  industrySlug String?
+  growthGoal   String?
+  budgetMin    Float?
+  budgetMax    Float?
+  channels     String[]
+  priority     Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ScoreRule {
+  id          String   @id @default(cuid())
+  name        String
+  dimension   String
+  condition   Json
+  points      Float
+  maxPoints   Float?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model RoiAssumption {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  value       Float
+  unit        String?
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Analysis {
+  id                String   @id @default(cuid())
+  assessmentId      String   @unique
+  assessment        Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  executiveSummary  String?
+  businessOpportunity String?
+  keyChallenges     Json?
+  keyOpportunities  Json?
+  strategicPriorities Json?
+  channelExplanations Json?
+  competitorSummary Json?
+  coldCallScript    Json?
+  planNarrative     Json?
+  source            String   @default("rules")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model AiGeneration {
+  id              String   @id @default(cuid())
+  assessmentId    String?
+  assessment      Assessment? @relation(fields: [assessmentId], references: [id], onDelete: SetNull)
+  useCase         String
+  promptVersionId String?
+  promptVersion   AiPromptVersion? @relation(fields: [promptVersionId], references: [id])
+  model           String
+  status          String
+  inputTokens     Int      @default(0)
+  outputTokens    Int      @default(0)
+  estimatedCostUsd Float   @default(0)
+  requestPayload  Json?
+  responsePayload Json?
+  errorMessage    String?
+  createdAt       DateTime @default(now())
+
+  @@index([assessmentId, useCase])
+  @@index([createdAt])
+}
+
+model AiPromptVersion {
+  id          String   @id @default(cuid())
+  key         String
+  name        String
+  version     Int
+  content     String
+  isActive    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  generations AiGeneration[]
+
+  @@unique([key, version])
+  @@index([key, isActive])
+}
+
+model Report {
+  id           String   @id @default(cuid())
+  assessmentId String   @unique
+  assessment   Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  status       String   @default("draft")
+  pdfPath      String?
+  downloadCount Int     @default(0)
+  sections     ReportSection[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ReportSection {
+  id        String   @id @default(cuid())
+  reportId  String
+  report    Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  key       String
+  title     String
+  content   Json
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([reportId, key])
+}
+
+model Payment {
+  id                String   @id @default(cuid())
+  assessmentId      String?
+  assessment        Assessment? @relation(fields: [assessmentId], references: [id])
+  userId            String?
+  user              User?    @relation(fields: [userId], references: [id])
+  amountInr         Float
+  currency          String   @default("INR")
+  purpose           String   @default("strategy_call")
+  status            String   @default("created")
+  razorpayOrderId   String?  @unique
+  razorpayPaymentId String?
+  razorpaySignature String?
+  metadata          Json?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  booking           Booking?
+
+  @@index([status])
+}
+
+model Booking {
+  id           String   @id @default(cuid())
+  assessmentId String?
+  assessment   Assessment? @relation(fields: [assessmentId], references: [id])
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id])
+  paymentId    String?  @unique
+  payment      Payment? @relation(fields: [paymentId], references: [id])
+  name         String
+  email        String
+  whatsapp     String
+  preferredAt  DateTime?
+  timezone     String   @default("Asia/Kolkata")
+  status       String   @default("pending")
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  adminId   String?
+  admin     Admin?   @relation(fields: [adminId], references: [id])
+  action    String
+  entity    String?
+  entityId  String?
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model PlanTemplate {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  phase1Tasks Json
+  phase2Tasks Json
+  phase3Tasks Json
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ColdCallTemplate {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  name      String
+  content   Json
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
