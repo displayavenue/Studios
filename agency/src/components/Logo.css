@@ -1,0 +1,53 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.logo-text strong {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.logo-text small {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+  margin-top: 0.12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logo-light .logo-text strong {
+  color: #fff;
+}
+
+.logo-light .logo-text small {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 1099px) {
+  .logo {
+    flex: 1 1 auto;
+    max-width: calc(100% - 96px);
+  }
+  .logo-text strong {
+    font-size: 1.05rem;
+  }
+  .logo-text small {
+    display: none; /* keep brand name DisplayAvenue fully visible */
+  }
+}
