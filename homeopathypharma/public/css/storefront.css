@@ -982,7 +982,7 @@ body {
   height: 9.5%;
 }
 
-/* Interactive form panel over the painted field stack */
+/* Full consult card UI — covers painted form completely (no double look) */
 .hp-consult-banner__form {
   position: absolute;
   inset: 0;
@@ -994,28 +994,51 @@ body {
 
 .hp-consult-banner__panel {
   position: absolute;
-  /* Cover the full painted field stack + icons/labels + Book Now */
-  left: 68.4%;
-  top: 18.5%;
-  width: 29.2%;
-  height: 76.8%;
+  /* Oversized slightly so the painted card underneath never peeks through */
+  left: 67.55%;
+  top: 2.8%;
+  width: 30.9%;
+  height: 94.4%;
   z-index: 5;
   pointer-events: auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.32rem, 0.9vw, 0.58rem);
-  padding: clamp(0.45rem, 1vw, 0.7rem);
+  gap: clamp(0.28rem, 0.75vw, 0.48rem);
+  padding: clamp(0.75rem, 1.4vw, 1.15rem) clamp(0.75rem, 1.3vw, 1.05rem);
   box-sizing: border-box;
   background: #fff;
-  border-radius: clamp(0.65rem, 1.1vw, 1rem);
+  border-radius: clamp(0.95rem, 1.5vw, 1.35rem);
+  box-shadow: 0 12px 32px rgba(20, 40, 30, 0.1);
   line-height: normal;
   overflow: hidden;
+}
+
+.hp-consult-banner__intro {
+  flex: 0 0 auto;
+  margin-bottom: clamp(0.15rem, 0.45vw, 0.35rem);
+}
+
+.hp-consult-banner__title {
+  margin: 0;
+  color: #0b4a34;
+  font-family: var(--hp-serif, Georgia, serif);
+  font-size: clamp(1.05rem, 1.85vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.hp-consult-banner__lead {
+  margin: 0.3rem 0 0;
+  color: #2a2a2a;
+  font-family: var(--hp-sans, "Segoe UI", sans-serif);
+  font-size: clamp(0.62rem, 0.78vw, 0.78rem);
+  line-height: 1.35;
 }
 
 .hp-consult-banner__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(0.28rem, 0.85vw, 0.55rem);
+  gap: clamp(0.28rem, 0.75vw, 0.48rem);
   min-height: 0;
 }
 
@@ -1034,13 +1057,13 @@ body {
 
 .hp-consult-banner__icon {
   position: absolute;
-  left: clamp(0.45rem, 0.85vw, 0.7rem);
+  left: clamp(0.5rem, 0.9vw, 0.75rem);
   top: 50%;
   z-index: 1;
   display: inline-flex;
-  width: clamp(0.85rem, 1.35vw, 1.1rem);
-  height: clamp(0.85rem, 1.35vw, 1.1rem);
-  color: #5f5f5f;
+  width: clamp(0.9rem, 1.35vw, 1.15rem);
+  height: clamp(0.9rem, 1.35vw, 1.15rem);
+  color: #0b4a34;
   pointer-events: none;
   transform: translateY(-50%);
 }
@@ -1060,20 +1083,20 @@ body {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  border: 1px solid #d0d0d0;
+  border: 1px solid #d2d2d2;
   border-radius: clamp(0.45rem, 0.75vw, 0.65rem);
   background: #fff;
   color: #222;
   caret-color: #0b4a34;
   font-family: var(--hp-sans, "Segoe UI", sans-serif);
-  font-size: clamp(10px, 0.95vw, 14px);
+  font-size: clamp(10px, 0.92vw, 13.5px);
   line-height: 1.25;
-  padding: 0.5em 0.75em 0.5em clamp(1.85rem, 3vw, 2.35rem);
+  padding: 0.48em 0.75em 0.48em clamp(1.9rem, 3vw, 2.4rem);
   outline: none;
   -webkit-appearance: none;
   appearance: none;
   resize: none;
-  min-height: clamp(1.85rem, 3.4vw, 2.45rem);
+  min-height: clamp(1.75rem, 3.1vw, 2.3rem);
 }
 
 .hp-consult-banner__field::placeholder {
@@ -1084,14 +1107,14 @@ body {
 .hp-consult-banner__control:focus-within .hp-consult-banner__field,
 .hp-consult-banner__field:focus {
   border-color: #0b4a34;
-  box-shadow: 0 0 0 1.5px rgba(11, 74, 52, 0.2);
+  box-shadow: 0 0 0 1.5px rgba(11, 74, 52, 0.18);
 }
 
 .hp-consult-banner__field--select {
   color: #6a6a6a;
   cursor: pointer;
   padding-right: 1.7em;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236a6a6a' d='M1.1 1.2 6 6.1l4.9-4.9 1.1 1.1L6 8.3.01 2.3z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230b4a34' d='M1.1 1.2 6 6.1l4.9-4.9 1.1 1.1L6 8.3.01 2.3z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.65em center;
   background-size: 0.7em;
@@ -1103,10 +1126,102 @@ body {
 
 .hp-consult-banner__field--message {
   flex: 1 1 auto;
-  min-height: clamp(3.4rem, 7.2vw, 5.6rem);
+  min-height: clamp(2.8rem, 5.8vw, 4.4rem);
   height: 100%;
   padding-top: 0.55em;
   line-height: 1.35;
+}
+
+.hp-consult-banner__upload {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(0.35rem, 0.7vw, 0.55rem);
+  padding: clamp(0.4rem, 0.7vw, 0.55rem) clamp(0.45rem, 0.8vw, 0.65rem);
+  border: 1.5px dashed #0b4a34;
+  border-radius: clamp(0.45rem, 0.75vw, 0.65rem);
+  background: #fbfcfb;
+  min-height: clamp(2.2rem, 3.6vw, 2.7rem);
+}
+
+.hp-consult-banner__upload-icon {
+  display: inline-flex;
+  width: clamp(0.95rem, 1.35vw, 1.15rem);
+  height: clamp(0.95rem, 1.35vw, 1.15rem);
+  color: #0b4a34;
+}
+
+.hp-consult-banner__upload-icon svg,
+.hp-consult-banner__upload-btn svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hp-consult-banner__upload-copy {
+  min-width: 0;
+  color: #0b4a34;
+  font-family: var(--hp-sans, "Segoe UI", sans-serif);
+  font-size: clamp(0.58rem, 0.72vw, 0.74rem);
+  line-height: 1.25;
+}
+
+.hp-consult-banner__upload-copy strong {
+  font-weight: 700;
+}
+
+.hp-consult-banner__upload-copy span {
+  font-weight: 500;
+}
+
+.hp-consult-banner__upload-copy small {
+  display: block;
+  margin-top: 0.12rem;
+  color: #5a5a5a;
+  font-size: 0.92em;
+}
+
+.hp-consult-banner__upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  flex: 0 0 auto;
+  padding: 0.35em 0.75em;
+  border: 1.5px solid #0b4a34;
+  border-radius: 999px;
+  background: #fff;
+  color: #0b4a34;
+  font-family: var(--hp-sans, "Segoe UI", sans-serif);
+  font-size: clamp(0.62rem, 0.78vw, 0.78rem);
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.hp-consult-banner__upload-btn svg {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.hp-consult-banner__upload-btn:hover {
+  background: #f3f8f5;
+}
+
+.hp-consult-banner__upload-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hp-consult-banner__upload-name {
+  grid-column: 1 / -1;
+  color: #0b4a34;
+  font-size: clamp(0.58rem, 0.7vw, 0.72rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hp-consult-banner__submit {
@@ -1115,15 +1230,15 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: clamp(1.9rem, 3.6vw, 2.55rem);
-  margin: 0;
+  min-height: clamp(1.85rem, 3.3vw, 2.45rem);
+  margin: 0.1rem 0 0;
   border: 0;
   border-radius: 999px;
   background: #0b4a34;
   color: #fff;
   font-family: var(--hp-serif, Georgia, serif);
-  font-size: clamp(12px, 1.1vw, 16px);
-  font-weight: 600;
+  font-size: clamp(12px, 1.05vw, 16px);
+  font-weight: 700;
   cursor: pointer;
   line-height: 1;
 }
@@ -1134,9 +1249,9 @@ body {
 
 .hp-consult-banner__status {
   position: absolute;
-  left: 70.3%;
-  top: 14.5%;
-  width: 26.2%;
+  left: 68.2%;
+  top: 1.2%;
+  width: 29.4%;
   z-index: 6;
   margin: 0;
   padding: 0.35rem 0.55rem;
@@ -1163,12 +1278,29 @@ body {
   .hp-consult-banner__field {
     font-size: 16px;
     min-height: 2rem;
-    padding: 0.4em 0.5em 0.4em 1.85rem;
+    padding: 0.4em 0.5em 0.4em 1.9rem;
   }
 
   .hp-consult-banner__panel {
     gap: 0.28rem;
-    padding: 0.28rem;
+    padding: 0.45rem 0.4rem;
+  }
+
+  .hp-consult-banner__title {
+    font-size: 0.95rem;
+  }
+
+  .hp-consult-banner__lead {
+    font-size: 0.58rem;
+  }
+
+  .hp-consult-banner__upload-copy {
+    font-size: 0.55rem;
+  }
+
+  .hp-consult-banner__upload-btn {
+    font-size: 0.58rem;
+    padding: 0.3em 0.55em;
   }
 
   .hp-consult-banner__submit {

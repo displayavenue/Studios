@@ -180,7 +180,7 @@
              rewrites srcset picks via client hints; a plain img keeps the full 4000×1336 bytes. --}}
         <img
             class="hp-consult-banner__art"
-            src="{{ asset('img-raw.php') }}?f=consult-banner-fullbleed-2x.jpg&v=20261105-consult-crisp3"
+            src="{{ asset('img-raw.php') }}?f=consult-banner-fullbleed-2x.jpg&v=20261105-consult-nocard"
             alt="Online consultation — Consult certified homeopathic doctors. Book a consultation, browse doctors, or chat on WhatsApp."
             width="2000"
             height="668"
@@ -193,11 +193,12 @@
             <p class="hp-consult-banner__status" role="status">{{ session('status') }}</p>
         @endif
 
-        {{-- Real form panel over the painted field stack (title stays from artwork) --}}
+        {{-- Full card UI matching the approved consult form look (covers painted form completely) --}}
         <form
             class="hp-consult-banner__form"
             method="post"
             action="{{ route('contact.store') }}"
+            enctype="multipart/form-data"
             aria-label="Book a consultation"
         >
             @csrf
@@ -206,10 +207,15 @@
             <input type="hidden" name="consent" value="1">
 
             <div class="hp-consult-banner__panel">
+                <div class="hp-consult-banner__intro">
+                    <h2 class="hp-consult-banner__title">Book a Consultation</h2>
+                    <p class="hp-consult-banner__lead">Share your details and our team will get in touch to schedule your online consultation.</p>
+                </div>
+
                 <div class="hp-consult-banner__row">
                     <div class="hp-consult-banner__control">
                         <span class="hp-consult-banner__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.4-3.2 3.6-4.8 6.5-4.8s5.1 1.6 6.5 4.8"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.25"/><path d="M5.2 19.4c1.5-3.3 3.8-5 6.8-5s5.3 1.7 6.8 5"/></svg>
                         </span>
                         <label class="hp-sr-only" for="consult-banner-name">Full Name</label>
                         <input
@@ -228,7 +234,7 @@
 
                     <div class="hp-consult-banner__control">
                         <span class="hp-consult-banner__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 3.8c.5-.5 1.3-.5 1.8 0l1.7 1.7c.5.5.5 1.2.1 1.7L9.3 9.2c.7 1.5 2 2.8 3.5 3.5l2-1.5c.5-.4 1.2-.4 1.7.1l1.7 1.7c.5.5.5 1.3 0 1.8l-1.1 1.1c-.6.6-1.5.9-2.4.7-2.3-.4-4.5-1.8-6.5-3.8S5.3 9.1 4.9 6.8c-.2-.9.1-1.8.7-2.4l1.6-1.6z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M7.1 3.7c.5-.5 1.35-.5 1.85 0l1.75 1.75c.5.5.5 1.25.05 1.75L9.2 9.1c.75 1.55 2.1 2.9 3.65 3.65l2.05-1.55c.5-.4 1.25-.4 1.75.1l1.75 1.75c.5.5.5 1.35 0 1.85l-1.15 1.15c-.65.65-1.55.95-2.5.7-2.4-.45-4.7-1.9-6.75-3.95S5.15 9.05 4.7 6.65c-.25-.95.05-1.85.7-2.5l1.7-1.45z"/></svg>
                         </span>
                         <label class="hp-sr-only" for="consult-banner-contact">WhatsApp Number</label>
                         <input
@@ -249,7 +255,7 @@
 
                 <div class="hp-consult-banner__control">
                     <span class="hp-consult-banner__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7.5 7.5 6 7.5-6"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><rect x="3.4" y="5.4" width="17.2" height="13.2" rx="2.2"/><path d="m4.6 7.6 7.4 5.9 7.4-5.9"/></svg>
                     </span>
                     <label class="hp-sr-only" for="consult-banner-email">Email ID (Optional)</label>
                     <input
@@ -268,7 +274,7 @@
 
                 <div class="hp-consult-banner__control">
                     <span class="hp-consult-banner__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5v-3.2a2.3 2.3 0 0 1 2.3-2.3h.4"/><path d="M9.7 9h2.1a2.3 2.3 0 0 1 2.3 2.3V17"/><circle cx="7" cy="16.5" r="2.2"/><circle cx="14.1" cy="16.5" r="2.2"/><path d="M16.3 9.2V7.4a1.9 1.9 0 0 1 1.9-1.9h.3"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M6.8 14.6v-3.4a2.4 2.4 0 0 1 2.4-2.4h.5"/><path d="M9.7 8.8h2.2a2.4 2.4 0 0 1 2.4 2.4V17"/><circle cx="6.8" cy="16.7" r="2.3"/><circle cx="14.3" cy="16.7" r="2.3"/><path d="M16.6 9V7.2a2 2 0 0 1 2-2h.4"/></svg>
                     </span>
                     <label class="hp-sr-only" for="consult-banner-concern">Select Concern</label>
                     <select
@@ -291,7 +297,7 @@
 
                 <div class="hp-consult-banner__control">
                     <span class="hp-consult-banner__icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2 4.8 18.2h14.4L12 4.2z"/><path d="M12 9.2v4.4"/><circle cx="12" cy="16.2" r="0.7" fill="currentColor" stroke="none"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.8 4.5 18.4h15L12 3.8z"/><path d="M12 9v4.6"/><circle cx="12" cy="16.4" r="0.85" fill="currentColor" stroke="none"/></svg>
                     </span>
                     <label class="hp-sr-only" for="consult-banner-side-effects">Side Effects (if any)</label>
                     <input
@@ -308,7 +314,7 @@
 
                 <div class="hp-consult-banner__control hp-consult-banner__control--message">
                     <span class="hp-consult-banner__icon hp-consult-banner__icon--top" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.8h7.2L19 8.6V20.2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.8a1 1 0 0 1 1-1z"/><path d="M14 3.8v4.2H19"/><path d="M9 12.2h6M9 15.2h6"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.6h7.4L19.2 8.4V20a1.1 1.1 0 0 1-1.1 1.1H7A1.1 1.1 0 0 1 5.9 20V4.7A1.1 1.1 0 0 1 7 3.6z"/><path d="M14.2 3.6v4.4h4.9"/><path d="M9 12.2h6.2M9 15.4h6.2"/></svg>
                     </span>
                     <label class="hp-sr-only" for="consult-banner-message">Tell us more about your concern</label>
                     <textarea
@@ -321,6 +327,28 @@
                         placeholder="Tell us more about your concern*"
                         enterkeyhint="send"
                     >{{ old('lead_form') === 'consult_banner' ? old('message') : '' }}</textarea>
+                </div>
+
+                <div class="hp-consult-banner__upload">
+                    <span class="hp-consult-banner__upload-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="m15.2 7.2-6.5 6.5a2.3 2.3 0 1 0 3.25 3.25l7.1-7.1a3.7 3.7 0 0 0-5.23-5.23L6.7 11.75"/></svg>
+                    </span>
+                    <div class="hp-consult-banner__upload-copy">
+                        <strong>Add Medical Report or Diseased Photo</strong> <span>(Optional)</span>
+                        <small>JPG, PNG or PDF (Max 10 MB)</small>
+                    </div>
+                    <label class="hp-consult-banner__upload-btn" for="consult-banner-attachment">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16.5V5.2"/><path d="m7.8 9.2 4.2-4 4.2 4"/><path d="M5 18.8h14"/></svg>
+                        Upload
+                    </label>
+                    <input
+                        id="consult-banner-attachment"
+                        class="hp-consult-banner__upload-input"
+                        type="file"
+                        name="attachment"
+                        accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
+                    >
+                    <span class="hp-consult-banner__upload-name" id="consult-banner-attachment-name" hidden></span>
                 </div>
 
                 @if ($errors->any() && old('lead_form') === 'consult_banner')
@@ -342,6 +370,20 @@
                         if (!el.value) el.setAttribute('placeholder', ph);
                     });
                 });
+                var fileInput = document.getElementById('consult-banner-attachment');
+                var fileName = document.getElementById('consult-banner-attachment-name');
+                if (fileInput && fileName) {
+                    fileInput.addEventListener('change', function () {
+                        var file = fileInput.files && fileInput.files[0];
+                        if (!file) {
+                            fileName.hidden = true;
+                            fileName.textContent = '';
+                            return;
+                        }
+                        fileName.hidden = false;
+                        fileName.textContent = file.name;
+                    });
+                }
             })();
         </script>
 

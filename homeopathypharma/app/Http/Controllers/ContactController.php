@@ -30,6 +30,7 @@ class ContactController extends Controller
             'consent' => ['accepted'],
             'context' => ['nullable', 'string', 'max:80'],
             'lead_form' => ['nullable', 'string', 'max:40'],
+            'attachment' => ['nullable', 'file', 'max:10240', 'mimes:jpg,jpeg,png,pdf'],
         ]);
 
         $parts = [];
@@ -43,6 +44,10 @@ class ContactController extends Controller
             $parts[] = 'Side effects: '.$data['side_effects'];
         }
         $parts[] = $data['message'];
+        if ($request->hasFile('attachment')) {
+            $stored = $request->file('attachment')->store('consult-attachments', 'public');
+            $parts[] = 'Attachment: '.$stored;
+        }
         $message = implode("\n", $parts);
         if (! empty($data['context'])) {
             $message = '['.$data['context'].'] '.$message;
