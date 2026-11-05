@@ -175,150 +175,31 @@
         </div>
     </section>
 
-    <section class="hp-consult-banner" id="consult-doctors" aria-label="Online consultation">
-        <div class="hp-container hp-consult-banner__grid">
-            <div class="hp-consult-banner__copy">
-                <p class="hp-consult-banner__kicker">Online Consultation</p>
-                <h2>Consult Certified Homeopathic Doctors</h2>
-                <p class="hp-consult-banner__lead">
-                    Get personalised, safe and holistic guidance for your health concerns from our experienced doctors.
-                </p>
-
-                <ul class="hp-consult-banner__features">
-                    <li>
-                        <span class="hp-consult-banner__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="14" height="11" rx="1.5"/><path d="M8 19h4M10 16v3"/><circle cx="19" cy="9" r="2.2"/><path d="M19 11.2v2.3"/></svg>
-                        </span>
-                        <span>Online Consultation</span>
-                    </li>
-                    <li>
-                        <span class="hp-consult-banner__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c2.8 3.4 6 5.4 6 9.2a6 6 0 1 1-12 0C6 8.4 9.2 6.4 12 3z"/><path d="M12 13v4"/></svg>
-                        </span>
-                        <span>Personalised Treatment Plan</span>
-                    </li>
-                    <li>
-                        <span class="hp-consult-banner__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"/><path d="m9 12 2 2 4-4"/></svg>
-                        </span>
-                        <span>Safe</span>
-                    </li>
-                    <li>
-                        <span class="hp-consult-banner__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M8 3.5V7M16 3.5V7M3.5 10h17"/></svg>
-                        </span>
-                        <span>Flexible Scheduling</span>
-                    </li>
-                </ul>
-
-                <div class="hp-consult-banner__actions">
-                    <a class="hp-btn hp-btn--primary" href="{{ route('doctors.index') }}">Browse Doctors →</a>
-                    <a class="hp-btn hp-btn--whatsapp" href="{{ $settings->whatsappUrl('Hi, I want to book a doctor consult') }}" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.3-1.65a11.9 11.9 0 0 0 5.75 1.47h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.44-8.44zM12.06 21.15h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.64-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.98c0 5.45-4.44 9.88-9.89 9.88z"/></svg>
-                        Chat on WhatsApp
-                    </a>
-                </div>
-            </div>
-
-            <div class="hp-consult-banner__visual" aria-hidden="true">
-                <img
-                    src="{{ asset('images/home/consult-banner-art.jpg') }}?v=20261105-consult"
-                    alt=""
-                    width="1400"
-                    height="754"
-                    loading="lazy"
-                    decoding="async"
-                >
-            </div>
-
-            <div class="hp-consult-banner__form-card">
-                <h3>Book a Consultation</h3>
-                <p>Share your details and our team will get in touch to schedule your online consultation.</p>
-
-                @if (session('status') && session('lead_form') === 'consult')
-                    <p class="hp-consult-banner__status" role="status">{{ session('status') }}</p>
-                @endif
-
-                <form class="hp-consult-banner__form" method="post" action="{{ route('contact.store') }}">
-                    @csrf
-                    <input type="hidden" name="context" value="Homepage consult booking">
-                    <input type="hidden" name="lead_form" value="consult">
-
-                    <label class="hp-consult-field">
-                        <span class="hp-sr-only">Full Name</span>
-                        <span class="hp-consult-field__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 19a7 7 0 0 1 14 0"/></svg>
-                        </span>
-                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Full Name*" required maxlength="120" autocomplete="name">
-                    </label>
-
-                    <label class="hp-consult-field">
-                        <span class="hp-sr-only">WhatsApp Number</span>
-                        <span class="hp-consult-field__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-                        </span>
-                        <input type="tel" name="contact" value="{{ old('contact') }}" placeholder="WhatsApp Number*" required maxlength="190" autocomplete="tel">
-                    </label>
-
-                    <label class="hp-consult-field">
-                        <span class="hp-sr-only">Email ID (Optional)</span>
-                        <span class="hp-consult-field__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
-                        </span>
-                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Email ID (Optional)" maxlength="190" autocomplete="email">
-                    </label>
-
-                    <label class="hp-consult-field">
-                        <span class="hp-sr-only">Select Concern</span>
-                        <span class="hp-consult-field__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4v7a3 3 0 0 0 6 0V4M9 4v16M15 9h4a2 2 0 0 1 0 4h-4"/></svg>
-                        </span>
-                        <select name="concern" required>
-                            <option value="" disabled @selected(! old('concern'))>Select Concern*</option>
-                            <option value="Migraine" @selected(old('concern') === 'Migraine')>Migraine</option>
-                            <option value="Acidity" @selected(old('concern') === 'Acidity')>Acidity</option>
-                            <option value="Hair fall" @selected(old('concern') === 'Hair fall')>Hair fall</option>
-                            <option value="PCOS" @selected(old('concern') === 'PCOS')>PCOS</option>
-                            <option value="Anxiety" @selected(old('concern') === 'Anxiety')>Anxiety</option>
-                            <option value="Other" @selected(old('concern') === 'Other')>Other</option>
-                        </select>
-                    </label>
-
-                    <label class="hp-consult-field">
-                        <span class="hp-sr-only">Side Effects (if any)</span>
-                        <span class="hp-consult-field__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2.5 20h19L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>
-                        </span>
-                        <select name="side_effects">
-                            <option value="">Side Effects (if any)</option>
-                            <option value="None" @selected(old('side_effects') === 'None')>None</option>
-                            <option value="Mild" @selected(old('side_effects') === 'Mild')>Mild</option>
-                            <option value="Moderate" @selected(old('side_effects') === 'Moderate')>Moderate</option>
-                            <option value="Severe" @selected(old('side_effects') === 'Severe')>Severe</option>
-                        </select>
-                    </label>
-
-                    <label class="hp-consult-field hp-consult-field--area">
-                        <span class="hp-sr-only">Tell us more about your concern</span>
-                        <span class="hp-consult-field__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
-                        </span>
-                        <textarea name="message" rows="3" placeholder="Tell us more about your concern*" required maxlength="5000">{{ old('message') }}</textarea>
-                    </label>
-
-                    <label class="hp-consult-consent">
-                        <input type="checkbox" name="consent" value="1" required @checked(old('consent'))>
-                        <span>I agree to be contacted about this consultation. This is not emergency care.</span>
-                    </label>
-
-                    @if ($errors->any() && old('lead_form') === 'consult')
-                        <p class="hp-consult-banner__error" role="alert">{{ $errors->first() }}</p>
-                    @endif
-
-                    <button class="hp-btn hp-btn--primary hp-btn--block" type="submit">Book Now</button>
-                </form>
-            </div>
-        </div>
+    <section class="hp-consult-banner hp-consult-banner--art" id="consult-doctors" aria-label="Online consultation">
+        <img
+            class="hp-consult-banner__art"
+            src="{{ asset('images/home/consult-banner-fullbleed.jpg') }}?v=20261105-consult-full"
+            alt="Online consultation — Consult certified homeopathic doctors. Book a consultation, browse doctors, or chat on WhatsApp."
+            width="2000"
+            height="668"
+            loading="lazy"
+            decoding="async"
+        >
+        {{-- Invisible hit targets over the artwork CTAs --}}
+        <a
+            class="hp-consult-banner__hit hp-consult-banner__hit--doctors"
+            href="{{ route('doctors.index') }}"
+        >Browse Doctors</a>
+        <a
+            class="hp-consult-banner__hit hp-consult-banner__hit--whatsapp"
+            href="{{ $settings->whatsappUrl('Hi, I want to book a doctor consult') }}"
+            target="_blank"
+            rel="noopener"
+        >Chat on WhatsApp</a>
+        <a
+            class="hp-consult-banner__hit hp-consult-banner__hit--book"
+            href="{{ route('consult') }}"
+        >Book Now</a>
     </section>
 
     <section class="hp-section" id="founders">
