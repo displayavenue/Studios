@@ -107,4 +107,12 @@ class SiteSettings
 
         return $url;
     }
+
+    /**
+     * Bumped from Admin → Clear cache & cookies to force CSS/JS refresh.
+     */
+    public function frontendCacheToken(): string
+    {
+        return (string) $this->get('frontend_cache_token', '1');
+    }
 }

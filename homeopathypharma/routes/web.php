@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\AuditLogController as AdminAuditLogController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
+use App\Http\Controllers\Admin\CacheController as AdminCacheController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ConsultationRequestController as AdminConsultationRequestController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -197,5 +198,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('health-explorer/products/{slug}', [AdminHealthExplorerController::class, 'updateProduct'])->name('health-explorer.products.update');
         Route::get('settings', [AdminSiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('settings.update');
+        Route::get('cache', [AdminCacheController::class, 'index'])->name('cache.index');
+        Route::post('cache/purge', [AdminCacheController::class, 'purge'])
+            ->middleware('throttle:10,1')
+            ->name('cache.purge');
     });
 });

@@ -25,3 +25,7 @@ php artisan homepage:sync-sections
 # optional: --force-payload to reset payloads to catalog defaults
 php artisan db:seed --class=ContentPageSeeder
 ```
+
+## After every content change
+
+Use **Admin → Clear cache & cookies** (or call the purge service) so views, settings cache, visitor sessions, and CSS/JS tokens refresh.

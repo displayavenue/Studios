@@ -35,6 +35,7 @@
             <a href="{{ route('admin.reports.index') }}" class="{{ str_starts_with($route, 'admin.reports') ? 'is-active' : '' }}">Reports</a>
             <a href="{{ route('admin.audit-logs.index') }}" class="{{ str_starts_with($route, 'admin.audit-logs') ? 'is-active' : '' }}">Audit log</a>
             <a href="{{ route('admin.settings.edit') }}" class="{{ str_starts_with($route, 'admin.settings') ? 'is-active' : '' }}">Site Settings</a>
+            <a href="{{ route('admin.cache.index') }}" class="{{ str_starts_with($route, 'admin.cache') ? 'is-active' : '' }}">Clear cache &amp; cookies</a>
             <a href="{{ route('home') }}" target="_blank" rel="noopener">View site</a>
         </nav>
         <form method="post" action="{{ route('admin.logout') }}" style="margin-top:1.5rem;">
