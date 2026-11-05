@@ -176,14 +176,17 @@
     </section>
 
     <section class="hp-consult-banner hp-consult-banner--art" id="consult-doctors" aria-label="Online consultation">
+        {{-- Single 2x source via img-raw.php (no srcset): Hostinger CDN downscales /images/* and also
+             rewrites srcset picks via client hints; a plain img keeps the full 4000×1336 bytes. --}}
         <img
             class="hp-consult-banner__art"
-            src="{{ asset('images/home/consult-banner-fullbleed.jpg') }}?v=20261105-consult-full"
+            src="{{ asset('img-raw.php') }}?f=consult-banner-fullbleed-2x.jpg&v=20261105-consult-crisp3"
             alt="Online consultation — Consult certified homeopathic doctors. Book a consultation, browse doctors, or chat on WhatsApp."
             width="2000"
             height="668"
-            loading="lazy"
+            loading="eager"
             decoding="async"
+            fetchpriority="high"
         >
         {{-- Invisible hit targets over the artwork CTAs --}}
         <a

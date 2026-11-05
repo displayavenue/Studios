@@ -945,6 +945,9 @@ body {
   object-position: unset;
   /* Keep full 2000×668 frame visible on every device */
   aspect-ratio: 2000 / 668;
+  /* Crisp edges from lossless PNG + retina srcset */
+  image-rendering: auto;
+  backface-visibility: hidden;
 }
 
 .hp-consult-banner__hit {
