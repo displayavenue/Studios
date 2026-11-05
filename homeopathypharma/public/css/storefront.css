@@ -923,29 +923,32 @@ body {
   .hp-product-rail { grid-template-columns: 1fr; }
 }
 
-/* Consult banner — artwork + single form card (no overlay / no double) */
+/* Consult banner — one cream shell, art left, single white form card right */
 .hp-consult-banner--split {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(20rem, 0.9fr);
   align-items: stretch;
-  gap: clamp(1rem, 2vw, 1.75rem);
+  gap: clamp(0.85rem, 1.8vw, 1.5rem);
   margin: 0;
-  padding: clamp(1rem, 2.2vw, 1.75rem) clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(0.85rem, 1.8vw, 1.35rem) clamp(0.85rem, 2.2vw, 1.5rem);
   background:
-    radial-gradient(ellipse at 20% 20%, rgba(255, 255, 255, 0.7), transparent 55%),
-    linear-gradient(90deg, #f7f1ea 0%, #f3ece3 55%, #efe7dc 100%);
+    radial-gradient(ellipse at 18% 22%, rgba(255, 255, 255, 0.55), transparent 52%),
+    linear-gradient(90deg, #f6efe6 0%, #f3ebe2 52%, #efe6db 100%);
   width: 100%;
   box-sizing: border-box;
+  border-radius: clamp(1rem, 1.8vw, 1.5rem);
+  overflow: hidden;
 }
 
 .hp-consult-banner__visual {
   position: relative;
   isolation: isolate;
   min-width: 0;
-  border-radius: clamp(0.85rem, 1.4vw, 1.25rem);
+  border-radius: 0;
   overflow: hidden;
-  background: #f3ece3;
+  background: transparent;
   line-height: 0;
+  box-shadow: none;
 }
 
 .hp-consult-banner__art {
@@ -955,7 +958,7 @@ body {
   margin: 0;
   object-fit: cover;
   object-position: left center;
-  aspect-ratio: 2800 / 1336;
+  aspect-ratio: 2420 / 1336;
   image-rendering: auto;
   backface-visibility: hidden;
 }
@@ -998,8 +1001,10 @@ body {
   margin: 0;
   padding: 0;
   min-width: 0;
-  display: flex;
-  align-items: stretch;
+  display: block;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .hp-consult-banner__panel {
@@ -1017,10 +1022,22 @@ body {
   padding: clamp(1rem, 1.8vw, 1.4rem);
   box-sizing: border-box;
   background: #fff;
-  border-radius: clamp(0.95rem, 1.5vw, 1.35rem);
-  box-shadow: 0 14px 36px rgba(20, 40, 30, 0.12);
+  border: 0;
+  border-radius: clamp(0.85rem, 1.4vw, 1.15rem);
+  box-shadow: 0 10px 28px rgba(20, 40, 30, 0.1);
   line-height: normal;
   overflow: hidden;
+}
+
+/* Kill any leftover absolute/ghost layers from older consult overlays */
+.hp-consult-banner--split::before,
+.hp-consult-banner--split::after,
+.hp-consult-banner__form::before,
+.hp-consult-banner__form::after,
+.hp-consult-banner__panel::before,
+.hp-consult-banner__panel::after {
+  content: none !important;
+  display: none !important;
 }
 
 .hp-consult-banner__intro {

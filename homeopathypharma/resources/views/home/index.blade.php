@@ -179,9 +179,9 @@
         <div class="hp-consult-banner__visual">
             <img
                 class="hp-consult-banner__art"
-                src="{{ asset('img-raw.php') }}?f=consult-banner-visual-2x.jpg&v=20261105-consult-split"
+                src="{{ asset('img-raw.php') }}?f=consult-banner-visual-2x.jpg&v=20261105-consult-one-card"
                 alt="Online consultation — clipboard, stethoscope, and homeopathy checklist."
-                width="2800"
+                width="2420"
                 height="1336"
                 loading="eager"
                 decoding="async"
