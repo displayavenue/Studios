@@ -36,7 +36,8 @@ class HomepageSectionCatalog
                     'secondary_cta_href' => '/shop',
                 ],
                 'fields' => [
-                    'image_path' => ['label' => 'Image path (under public/)', 'type' => 'text', 'help' => 'Example: images/home/hero.jpg'],
+                    'media_asset_id' => ['label' => 'Hero image (from Media Library)', 'type' => 'media', 'help' => 'Upload in Media Library first, then select it here. This is what the homepage shows.'],
+                    'image_path' => ['label' => 'Fallback image path (optional)', 'type' => 'text', 'help' => 'Used only if no Media Library image is selected. Example: images/home/hero.jpg'],
                     'image_alt' => ['label' => 'Image alt text', 'type' => 'text'],
                     'image_version' => ['label' => 'Cache-bust version', 'type' => 'text'],
                     'primary_cta_label' => ['label' => 'Primary CTA label', 'type' => 'text'],
@@ -126,7 +127,8 @@ class HomepageSectionCatalog
                     'concerns_text' => "Head & Hair\nFace & Skin\nDigestion\nWomen's Care\nChild Care\nImmunity\nStress & Sleep\nOther",
                 ],
                 'fields' => [
-                    'image_path' => ['label' => 'Visual image URL path', 'type' => 'text', 'help' => 'Relative to site root, e.g. img-raw.php?f=consult-banner-visual-2x.jpg&v=1'],
+                    'media_asset_id' => ['label' => 'Consult visual (from Media Library)', 'type' => 'media', 'help' => 'Upload in Media Library first, then select it here.'],
+                    'image_path' => ['label' => 'Fallback visual path (optional)', 'type' => 'text', 'help' => 'Used only if no Media Library image is selected.'],
                     'image_alt' => ['label' => 'Visual alt text', 'type' => 'text'],
                     'doctors_cta_label' => ['label' => 'Browse Doctors label', 'type' => 'text'],
                     'doctors_cta_href' => ['label' => 'Browse Doctors URL', 'type' => 'text'],

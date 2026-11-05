@@ -2,7 +2,13 @@
 @section('title', 'Media Library')
 @section('content')
 <div class="admin-top">
-    <h2>Media Library</h2>
+    <div>
+        <h2>Media Library</h2>
+        <p class="admin-muted" style="margin:0.35rem 0 0;max-width:42rem;">
+            Upload here, then attach the image on the product / doctor / team / homepage section form and save.
+            Homepage hero &amp; consult images: Admin → Homepage sections → edit Hero or Consult → choose media or upload.
+        </p>
+    </div>
 </div>
 <div class="admin-card" style="margin-bottom:1rem;">
     <form method="post" action="{{ route('admin.media.store') }}" enctype="multipart/form-data" class="admin-form">

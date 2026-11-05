@@ -26,8 +26,24 @@ class MediaAsset extends Model
         return $this->belongsTo(User::class, 'uploaded_by');
     }
 
+    /**
+     * Public URL for this asset.
+     *
+     * Hostinger often cannot serve storage/ symlinks (Apache treats them as
+     * missing and Laravel returns 404). Prefer real files under /uploads/.
+     */
     public function publicUrl(): string
     {
+        if ($this->path && is_file(public_path('uploads/'.$this->path))) {
+            return asset('uploads/'.$this->path);
+        }
+
+        // Sibling document root used on Hostinger (laravel/ + public_html/).
+        $publicHtml = base_path('../public_html/uploads/'.$this->path);
+        if ($this->path && is_file($publicHtml)) {
+            return url('uploads/'.$this->path);
+        }
+
         return asset('storage/'.$this->path);
     }
 }

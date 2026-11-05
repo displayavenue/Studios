@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\HomepageSection;
+use App\Models\MediaAsset;
+use App\Services\MediaUploader;
 use App\Support\HomepageSectionCatalog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -45,10 +47,11 @@ class HomepageSectionController extends Controller
             'fields' => $fields,
             'payload' => $payload,
             'label' => HomepageSectionCatalog::label($homepage->key),
+            'media' => MediaAsset::query()->latest('id')->limit(100)->get(),
         ]);
     }
 
-    public function update(Request $request, HomepageSection $homepage): RedirectResponse
+    public function update(Request $request, HomepageSection $homepage, MediaUploader $uploader): RedirectResponse
     {
         $data = $request->validate([
             'title' => ['nullable', 'string', 'max:190'],
@@ -57,14 +60,28 @@ class HomepageSectionController extends Controller
             'is_enabled' => ['sometimes', 'boolean'],
             'status' => ['required', 'in:draft,published'],
             'payload' => ['nullable', 'array'],
-            'payload.*' => ['nullable', 'string'],
+            'payload.*' => ['nullable'],
+            'image_upload' => ['nullable', 'file', 'max:5120'],
             'payload_json' => ['nullable', 'string'],
         ]);
 
         $payload = HomepageSectionCatalog::normalizePayload($homepage->key, $homepage->payload ?? []);
 
         foreach (($data['payload'] ?? []) as $key => $value) {
-            $payload[$key] = is_string($value) ? $value : (string) $value;
+            if ($key === 'media_asset_id') {
+                $payload[$key] = $value !== null && $value !== '' ? (int) $value : null;
+                continue;
+            }
+            $payload[$key] = is_string($value) ? $value : (is_null($value) ? null : (string) $value);
+        }
+
+        if ($request->hasFile('image_upload')) {
+            $asset = $uploader->upload(
+                $request->file('image_upload'),
+                $request->user()?->id,
+                $payload['image_alt'] ?? ($homepage->title.' image')
+            );
+            $payload['media_asset_id'] = $asset->id;
         }
 
         // Re-derive structured lists from textareas.

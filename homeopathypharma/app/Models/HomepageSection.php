@@ -54,4 +54,30 @@ class HomepageSection extends Model
     {
         return HomepageSectionCatalog::label($this->key);
     }
+
+    /**
+     * Resolve the public image URL for this section (Media Library first, then path fallback).
+     */
+    public function imageUrl(?string $fallbackPath = null): ?string
+    {
+        $data = $this->data();
+        $mediaId = $data['media_asset_id'] ?? null;
+        if ($mediaId) {
+            $asset = MediaAsset::query()->find($mediaId);
+            if ($asset) {
+                return $asset->publicUrl();
+            }
+        }
+
+        $path = trim((string) ($data['image_path'] ?? $fallbackPath ?? ''));
+        if ($path === '') {
+            return $fallbackPath ? asset($fallbackPath) : null;
+        }
+
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+            return $path;
+        }
+
+        return asset($path);
+    }
 }

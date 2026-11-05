@@ -29,10 +29,11 @@
     @php($footerTrustData = $footerTrust?->data() ?? [])
 
     @if ($hero)
+    @php($heroImageUrl = $hero->imageUrl('images/home/hero-personal-doctors-v3.jpg'))
     <section class="hp-hero-banner hp-hero-banner--art" aria-label="Homeopathy Pharma">
         <img
             class="hp-hero-banner__art"
-            src="{{ asset($heroData['image_path'] ?? 'images/home/hero-personal-doctors-v3.jpg') }}{{ !empty($heroData['image_version']) ? '?v='.$heroData['image_version'] : '' }}"
+            src="{{ $heroImageUrl }}{{ empty($heroData['media_asset_id']) && !empty($heroData['image_version']) ? '?v='.$heroData['image_version'] : '' }}"
             alt="{{ $heroData['image_alt'] ?? ($hero->title ?? 'Homeopathy Pharma') }}"
             width="2000"
             height="751"
@@ -203,11 +204,12 @@
     @endif
 
     @if ($consult)
+    @php($consultImageUrl = $consult->imageUrl('img-raw.php?f=consult-banner-visual-2x.jpg&v=20261105-consult-one-card'))
     <section class="hp-consult-banner hp-consult-banner--split" id="consult-doctors" aria-label="Online consultation">
         <div class="hp-consult-banner__visual">
             <img
                 class="hp-consult-banner__art"
-                src="{{ str_starts_with($consultData['image_path'] ?? '', 'http') ? $consultData['image_path'] : asset($consultData['image_path'] ?? 'img-raw.php?f=consult-banner-visual-2x.jpg&v=20261105-consult-one-card') }}"
+                src="{{ $consultImageUrl }}"
                 alt="{{ $consultData['image_alt'] ?? 'Online consultation' }}"
                 width="2420"
                 height="1336"

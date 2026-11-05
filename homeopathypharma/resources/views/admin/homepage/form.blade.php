@@ -7,7 +7,7 @@
         <p class="admin-muted" style="margin:0.35rem 0 0;">Key <code>{{ $section->key }}</code> — changes publish to the homepage when status is Published and Enabled.</p>
     </div>
 </div>
-<form method="post" action="{{ route('admin.homepage.update', $section) }}" class="admin-form admin-card">
+<form method="post" action="{{ route('admin.homepage.update', $section) }}" class="admin-form admin-card" enctype="multipart/form-data">
     @csrf @method('PUT')
 
     <label>Section title
@@ -35,17 +35,50 @@
         <h3 style="margin:0 0 0.75rem;font-size:1rem;">Section fields</h3>
         @foreach ($fields as $key => $field)
             @php($value = old('payload.'.$key, $payload[$key] ?? ''))
-            <label>
-                {{ $field['label'] }}
-                @if (($field['type'] ?? 'text') === 'textarea')
+            @if (($field['type'] ?? 'text') === 'media')
+                @php($selectedId = (int) old('payload.'.$key, $payload[$key] ?? 0))
+                @php($selected = ($media ?? collect())->firstWhere('id', $selectedId))
+                <label>
+                    {{ $field['label'] }}
+                    <select name="payload[{{ $key }}]">
+                        <option value="">— None —</option>
+                        @foreach (($media ?? []) as $item)
+                            <option value="{{ $item->id }}" @selected($selectedId === (int) $item->id)>
+                                #{{ $item->id }} — {{ $item->original_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if (!empty($field['help']))
+                        <small class="admin-muted">{{ $field['help'] }}</small>
+                    @endif
+                </label>
+                @if ($selected)
+                    <div style="margin:0.25rem 0 0.75rem;">
+                        <img src="{{ $selected->publicUrl() }}" alt="" style="max-width:220px;max-height:140px;border-radius:0.5rem;border:1px solid #e3e8e1;object-fit:cover;">
+                    </div>
+                @endif
+                <label>
+                    Or upload a new image for this section
+                    <input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp,image/gif">
+                    <small class="admin-muted">JPEG/PNG/WebP/GIF, max 5 MB. Uploading selects it automatically.</small>
+                </label>
+            @elseif (($field['type'] ?? 'text') === 'textarea')
+                <label>
+                    {{ $field['label'] }}
                     <textarea name="payload[{{ $key }}]" rows="{{ $field['rows'] ?? 4 }}">{{ $value }}</textarea>
-                @else
+                    @if (!empty($field['help']))
+                        <small class="admin-muted">{{ $field['help'] }}</small>
+                    @endif
+                </label>
+            @else
+                <label>
+                    {{ $field['label'] }}
                     <input type="text" name="payload[{{ $key }}]" value="{{ $value }}">
-                @endif
-                @if (!empty($field['help']))
-                    <small class="admin-muted">{{ $field['help'] }}</small>
-                @endif
-            </label>
+                    @if (!empty($field['help']))
+                        <small class="admin-muted">{{ $field['help'] }}</small>
+                    @endif
+                </label>
+            @endif
         @endforeach
     @endif
 
@@ -60,7 +93,7 @@
     <div class="admin-actions">
         <button class="btn btn-primary" type="submit">Save section</button>
         <a class="btn btn-secondary" href="{{ route('admin.homepage.index') }}">Cancel</a>
-        <a class="btn btn-secondary" href="{{ route('home') }}#{{ $section->key === 'consult' ? 'consult-doctors' : ($section->key === 'doctor_lead' ? 'talk-to-doctor' : '') }}" target="_blank" rel="noopener">Preview site</a>
+        <a class="btn btn-secondary" href="{{ route('admin.media.index') }}">Open Media Library</a>
     </div>
 </form>
 @endsection
