@@ -12,8 +12,8 @@
     @php
         $hpCssApp = public_path('css/app.css');
         $hpCssStore = public_path('css/storefront.css');
-        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-consult-crisp3';
-        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-consult-crisp3';
+        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-consult-form';
+        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-consult-form';
     @endphp
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ $hpCssAppV }}">
     <link rel="stylesheet" href="{{ asset('css/storefront.css') }}?v={{ $hpCssStoreV }}">

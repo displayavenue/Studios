@@ -959,6 +959,7 @@ body {
   border: 0;
   border-radius: 999px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .hp-consult-banner__hit:focus-visible {
@@ -982,11 +983,162 @@ body {
 }
 
 .hp-consult-banner__hit--book {
+  left: 70.8%;
+  top: 82.5%;
+  width: 24.4%;
+  height: 8.8%;
+  border-radius: 999px;
+  z-index: 5;
+}
+
+/* Interactive fields over the painted Book a Consultation card */
+.hp-consult-banner__form {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.hp-consult-banner__field {
+  position: absolute;
+  z-index: 5;
+  pointer-events: auto;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  border-radius: 0.55em;
+  background: transparent;
+  color: transparent;
+  caret-color: #0b4a34;
+  font-family: var(--hp-sans, "Segoe UI", sans-serif);
+  font-size: clamp(11px, 1.05vw, 15px);
+  line-height: 1.25;
+  padding: 0.35em 0.7em 0.35em 2.1em;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  resize: none;
+}
+
+.hp-consult-banner__field:focus,
+input.hp-consult-banner__field:not(:placeholder-shown),
+textarea.hp-consult-banner__field:not(:placeholder-shown) {
+  background: #fff;
+  color: #0b4a34;
+  box-shadow: inset 0 0 0 1.5px #0b4a34;
+}
+
+.hp-consult-banner__field--concern,
+.hp-consult-banner__field--side-effects {
+  padding-right: 1.8em;
+  cursor: pointer;
+  color: transparent;
+  background: transparent;
+}
+
+.hp-consult-banner__field--concern:focus,
+.hp-consult-banner__field--concern:valid,
+.hp-consult-banner__field--side-effects:focus,
+.hp-consult-banner__field--side-effects:has(option:checked:not([value=""])) {
+  background: #fff;
+  color: #0b4a34;
+  box-shadow: inset 0 0 0 1.5px #0b4a34;
+}
+
+.hp-consult-banner__field--message {
+  padding-top: 0.55em;
+  line-height: 1.35;
+}
+
+/* Field boxes — percentages match the 2000×668 artwork */
+.hp-consult-banner__field--name {
+  left: 70.85%;
+  top: 22.4%;
+  width: 11.9%;
+  height: 6.9%;
+}
+
+.hp-consult-banner__field--contact {
+  left: 83.55%;
+  top: 22.4%;
+  width: 12.0%;
+  height: 6.9%;
+}
+
+.hp-consult-banner__field--email {
+  left: 70.85%;
+  top: 31.6%;
+  width: 24.7%;
+  height: 6.9%;
+}
+
+.hp-consult-banner__field--concern {
+  left: 70.85%;
+  top: 40.9%;
+  width: 24.7%;
+  height: 6.5%;
+}
+
+.hp-consult-banner__field--side-effects {
+  left: 70.85%;
+  top: 50.0%;
+  width: 24.7%;
+  height: 6.7%;
+}
+
+.hp-consult-banner__field--message {
+  left: 70.85%;
+  top: 59.2%;
+  width: 24.7%;
+  height: 16.5%;
+}
+
+.hp-consult-banner__status,
+.hp-consult-banner__error {
+  position: absolute;
   left: 70.5%;
-  top: 84%;
-  width: 24%;
-  height: 8.5%;
-  border-radius: 0.65rem;
+  top: 16.5%;
+  width: 25%;
+  z-index: 6;
+  margin: 0;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.4rem;
+  font-size: clamp(10px, 0.95vw, 13px);
+  line-height: 1.3;
+  pointer-events: none;
+}
+
+.hp-consult-banner__status {
+  background: rgba(255, 255, 255, 0.96);
+  color: #0b4a34;
+  box-shadow: 0 4px 16px rgba(11, 74, 52, 0.12);
+}
+
+.hp-consult-banner__error {
+  top: auto;
+  bottom: 13%;
+  background: #fff5f5;
+  color: #8b1e1e;
+  box-shadow: 0 4px 16px rgba(139, 30, 30, 0.12);
+}
+
+@media (max-width: 720px) {
+  /* Keep fields tappable; 16px avoids iOS input zoom */
+  .hp-consult-banner__field {
+    font-size: 16px;
+    padding-left: 1.55em;
+    border-radius: 0.4em;
+  }
+
+  .hp-consult-banner__field--name,
+  .hp-consult-banner__field--contact,
+  .hp-consult-banner__field--email,
+  .hp-consult-banner__field--concern,
+  .hp-consult-banner__field--side-effects {
+    height: 7.4%;
+  }
 }
 
 /* Founders */

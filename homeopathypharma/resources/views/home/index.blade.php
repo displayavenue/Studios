@@ -188,7 +188,121 @@
             decoding="async"
             fetchpriority="high"
         >
-        {{-- Invisible hit targets over the artwork CTAs --}}
+
+        @if (session('status') && session('lead_form') === 'consult_banner')
+            <p class="hp-consult-banner__status" role="status">{{ session('status') }}</p>
+        @endif
+
+        {{-- Live form fields aligned to the painted “Book a Consultation” card --}}
+        <form
+            class="hp-consult-banner__form"
+            method="post"
+            action="{{ route('contact.store') }}"
+            aria-label="Book a consultation"
+        >
+            @csrf
+            <input type="hidden" name="context" value="Homepage consult banner">
+            <input type="hidden" name="lead_form" value="consult_banner">
+            <input type="hidden" name="consent" value="1">
+
+            <label class="hp-sr-only" for="consult-banner-name">Full Name</label>
+            <input
+                id="consult-banner-name"
+                class="hp-consult-banner__field hp-consult-banner__field--name"
+                type="text"
+                name="name"
+                value="{{ old('lead_form') === 'consult_banner' ? old('name') : '' }}"
+                autocomplete="name"
+                required
+                maxlength="120"
+                placeholder=" "
+                enterkeyhint="next"
+            >
+
+            <label class="hp-sr-only" for="consult-banner-contact">WhatsApp Number</label>
+            <input
+                id="consult-banner-contact"
+                class="hp-consult-banner__field hp-consult-banner__field--contact"
+                type="tel"
+                name="contact"
+                value="{{ old('lead_form') === 'consult_banner' ? old('contact') : '' }}"
+                autocomplete="tel"
+                inputmode="tel"
+                required
+                maxlength="190"
+                placeholder=" "
+                enterkeyhint="next"
+            >
+
+            <label class="hp-sr-only" for="consult-banner-email">Email ID (Optional)</label>
+            <input
+                id="consult-banner-email"
+                class="hp-consult-banner__field hp-consult-banner__field--email"
+                type="email"
+                name="email"
+                value="{{ old('lead_form') === 'consult_banner' ? old('email') : '' }}"
+                autocomplete="email"
+                inputmode="email"
+                maxlength="190"
+                placeholder=" "
+                enterkeyhint="next"
+            >
+
+            <label class="hp-sr-only" for="consult-banner-concern">Select Concern</label>
+            <select
+                id="consult-banner-concern"
+                class="hp-consult-banner__field hp-consult-banner__field--concern"
+                name="concern"
+                required
+            >
+                <option value="" @selected(old('lead_form') !== 'consult_banner' || old('concern') === null || old('concern') === '')></option>
+                <option value="Head & Hair" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Head & Hair')>Head &amp; Hair</option>
+                <option value="Face & Skin" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Face & Skin')>Face &amp; Skin</option>
+                <option value="Digestion" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Digestion')>Digestion</option>
+                <option value="Women's Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === "Women's Care")>Women's Care</option>
+                <option value="Child Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Child Care')>Child Care</option>
+                <option value="Immunity" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Immunity')>Immunity</option>
+                <option value="Stress & Sleep" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Stress & Sleep')>Stress &amp; Sleep</option>
+                <option value="Other" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Other')>Other</option>
+            </select>
+
+            <label class="hp-sr-only" for="consult-banner-side-effects">Side Effects (if any)</label>
+            <select
+                id="consult-banner-side-effects"
+                class="hp-consult-banner__field hp-consult-banner__field--side-effects"
+                name="side_effects"
+            >
+                <option value="" @selected(old('lead_form') !== 'consult_banner' || old('side_effects') === null || old('side_effects') === '')></option>
+                <option value="None" @selected(old('lead_form') === 'consult_banner' && old('side_effects') === 'None')>None</option>
+                <option value="Mild" @selected(old('lead_form') === 'consult_banner' && old('side_effects') === 'Mild')>Mild</option>
+                <option value="Moderate" @selected(old('lead_form') === 'consult_banner' && old('side_effects') === 'Moderate')>Moderate</option>
+                <option value="Severe" @selected(old('lead_form') === 'consult_banner' && old('side_effects') === 'Severe')>Severe</option>
+                <option value="Not sure" @selected(old('lead_form') === 'consult_banner' && old('side_effects') === 'Not sure')>Not sure</option>
+            </select>
+
+            <label class="hp-sr-only" for="consult-banner-message">Tell us more about your concern</label>
+            <textarea
+                id="consult-banner-message"
+                class="hp-consult-banner__field hp-consult-banner__field--message"
+                name="message"
+                required
+                maxlength="5000"
+                rows="3"
+                placeholder=" "
+                enterkeyhint="send"
+            >{{ old('lead_form') === 'consult_banner' ? old('message') : '' }}</textarea>
+
+            @if ($errors->any() && old('lead_form') === 'consult_banner')
+                <p class="hp-consult-banner__error" role="alert">{{ $errors->first() }}</p>
+            @endif
+
+            <button
+                class="hp-consult-banner__hit hp-consult-banner__hit--book"
+                type="submit"
+            >Book Now</button>
+        </form>
+
+        {{-- Invisible hit targets over the left artwork CTAs --}}
         <a
             class="hp-consult-banner__hit hp-consult-banner__hit--doctors"
             href="{{ route('doctors.index') }}"
@@ -199,10 +313,6 @@
             target="_blank"
             rel="noopener"
         >Chat on WhatsApp</a>
-        <a
-            class="hp-consult-banner__hit hp-consult-banner__hit--book"
-            href="{{ route('consult') }}"
-        >Book Now</a>
     </section>
 
     <section class="hp-section" id="founders">
