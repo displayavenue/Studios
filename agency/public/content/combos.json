@@ -1,0 +1,3868 @@
+{
+  "items": [
+    {
+      "slug": "real-estate-lead-generation",
+      "kind": "combo",
+      "title": "Real Estate Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Real Estate · Lead Generation",
+      "architecture": "real-estate",
+      "industrySlug": "real-estate",
+      "serviceSlug": "lead-generation",
+      "headline": "Generate Qualified Real Estate Enquiries - Then Automate Follow-up",
+      "summary": "Real estate lead generation systems that connect Meta/Google demand to qualification, WhatsApp and site-visit CRM.",
+      "quickAnswer": "Real estate lead generation systems that connect Meta/Google demand to qualification, WhatsApp and site-visit CRM.",
+      "ctaLabel": "Get a Real Estate Lead Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Real Estate Lead Generation | DisplayAvenue",
+      "seoDescription": "Real estate lead generation systems that connect Meta/Google demand to qualification, WhatsApp and site-visit CRM.",
+      "primaryKeyword": "real estate lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Real Estate businesses that need lead generation",
+      "uniqueAngle": "Built specifically for real estate buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore real estate sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in real estate and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how real estate buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Real Estate Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current real estate acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to real estate buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Real Estate overview",
+          "href": "/industries/real-estate"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "real-estate-meta-ads",
+      "kind": "combo",
+      "title": "Real Estate Meta Ads",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Real Estate · Meta Ads",
+      "architecture": "ads",
+      "industrySlug": "real-estate",
+      "serviceSlug": "meta-ads",
+      "headline": "Meta Ads for Real Estate Projects That Need Site Visits",
+      "summary": "Meta Ads creative, landing pages and WhatsApp routing for builders and developers focused on qualified visits.",
+      "quickAnswer": "Meta Ads creative, landing pages and WhatsApp routing for builders and developers focused on qualified visits.",
+      "ctaLabel": "Get My Real Estate Meta Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Real Estate Meta Ads | DisplayAvenue",
+      "seoDescription": "Meta Ads creative, landing pages and WhatsApp routing for builders and developers focused on qualified visits.",
+      "primaryKeyword": "real estate meta ads",
+      "searchIntent": "commercial",
+      "targetAudience": "Real Estate businesses that need meta ads",
+      "uniqueAngle": "Built specifically for real estate buying journeys - not a generic meta ads template.",
+      "painPoints": [
+        "Generic meta ads agencies ignore real estate sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in real estate and need a dedicated growth system",
+        "You already tried generic meta ads with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how real estate buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Meta Ads executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Real Estate Meta Ads strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current real estate acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement meta ads with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Meta Ads page?",
+          "a": "Yes. This page and plan are scoped to real estate buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Real Estate overview",
+          "href": "/industries/real-estate"
+        },
+        {
+          "label": "Meta Ads service",
+          "href": "/services/meta-ads"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "real-estate-seo",
+      "kind": "combo",
+      "title": "Real Estate Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Real Estate · Seo",
+      "architecture": "seo",
+      "industrySlug": "real-estate",
+      "serviceSlug": "seo",
+      "headline": "Real Estate SEO for Project and Locality Demand",
+      "summary": "SEO for project pages, locality intent and developer brand search - built for long sales cycles.",
+      "quickAnswer": "SEO for project pages, locality intent and developer brand search - built for long sales cycles.",
+      "ctaLabel": "Get Real Estate SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Real Estate Seo | DisplayAvenue",
+      "seoDescription": "SEO for project pages, locality intent and developer brand search - built for long sales cycles.",
+      "primaryKeyword": "real estate seo",
+      "searchIntent": "commercial",
+      "targetAudience": "Real Estate businesses that need seo",
+      "uniqueAngle": "Built specifically for real estate buying journeys - not a generic seo template.",
+      "painPoints": [
+        "Generic seo agencies ignore real estate sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in real estate and need a dedicated growth system",
+        "You already tried generic seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how real estate buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Real Estate Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current real estate acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Seo page?",
+          "a": "Yes. This page and plan are scoped to real estate buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Real Estate overview",
+          "href": "/industries/real-estate"
+        },
+        {
+          "label": "Seo service",
+          "href": "/services/seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "real-estate-marketing-automation",
+      "kind": "combo",
+      "title": "Real Estate Marketing Automation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Real Estate · Marketing Automation",
+      "architecture": "automation",
+      "industrySlug": "real-estate",
+      "serviceSlug": "marketing-automation",
+      "headline": "Real Estate Marketing Automation for Lead Follow-up",
+      "summary": "Automate acknowledgements, reminders and CRM stages so real estate leads do not go cold.",
+      "quickAnswer": "Automate acknowledgements, reminders and CRM stages so real estate leads do not go cold.",
+      "ctaLabel": "Automate My Real Estate Follow-up",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Real Estate Marketing Automation | DisplayAvenue",
+      "seoDescription": "Automate acknowledgements, reminders and CRM stages so real estate leads do not go cold.",
+      "primaryKeyword": "real estate marketing automation",
+      "searchIntent": "commercial",
+      "targetAudience": "Real Estate businesses that need marketing automation",
+      "uniqueAngle": "Built specifically for real estate buying journeys - not a generic marketing automation template.",
+      "painPoints": [
+        "Generic marketing automation agencies ignore real estate sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in real estate and need a dedicated growth system",
+        "You already tried generic marketing automation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how real estate buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Marketing Automation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Real Estate Marketing Automation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current real estate acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement marketing automation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Marketing Automation page?",
+          "a": "Yes. This page and plan are scoped to real estate buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Real Estate overview",
+          "href": "/industries/real-estate"
+        },
+        {
+          "label": "Marketing Automation service",
+          "href": "/services/marketing-automation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "real-estate-google-ads",
+      "kind": "combo",
+      "title": "Real Estate Google Ads",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Real Estate · Google Ads",
+      "architecture": "ads",
+      "industrySlug": "real-estate",
+      "serviceSlug": "google-ads",
+      "headline": "Google Ads for High-Intent Real Estate Searches",
+      "summary": "Search and Performance Max structures for project and locality keywords with conversion tracking.",
+      "quickAnswer": "Search and Performance Max structures for project and locality keywords with conversion tracking.",
+      "ctaLabel": "Get Real Estate Google Ads Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Real Estate Google Ads | DisplayAvenue",
+      "seoDescription": "Search and Performance Max structures for project and locality keywords with conversion tracking.",
+      "primaryKeyword": "real estate google ads",
+      "searchIntent": "commercial",
+      "targetAudience": "Real Estate businesses that need google ads",
+      "uniqueAngle": "Built specifically for real estate buying journeys - not a generic google ads template.",
+      "painPoints": [
+        "Generic google ads agencies ignore real estate sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in real estate and need a dedicated growth system",
+        "You already tried generic google ads with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how real estate buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Google Ads executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Real Estate Google Ads strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current real estate acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement google ads with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Google Ads page?",
+          "a": "Yes. This page and plan are scoped to real estate buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Real Estate overview",
+          "href": "/industries/real-estate"
+        },
+        {
+          "label": "Google Ads service",
+          "href": "/services/google-ads"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "manufacturing-lead-generation",
+      "kind": "combo",
+      "title": "Manufacturing Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Manufacturing · Lead Generation",
+      "architecture": "manufacturing",
+      "industrySlug": "manufacturing",
+      "serviceSlug": "lead-generation",
+      "headline": "Manufacturing Lead Generation for Qualified RFQs",
+      "summary": "B2B lead systems for manufacturers: SEO, Google Ads, RFQ pages and CRM quotation follow-up.",
+      "quickAnswer": "B2B lead systems for manufacturers: SEO, Google Ads, RFQ pages and CRM quotation follow-up.",
+      "ctaLabel": "Build My Manufacturing Lead System",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Manufacturing Lead Generation | DisplayAvenue",
+      "seoDescription": "B2B lead systems for manufacturers: SEO, Google Ads, RFQ pages and CRM quotation follow-up.",
+      "primaryKeyword": "manufacturing lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Manufacturing businesses that need lead generation",
+      "uniqueAngle": "Built specifically for manufacturing buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore manufacturing sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in manufacturing and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how manufacturing buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Manufacturing Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current manufacturing acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to manufacturing buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Manufacturing overview",
+          "href": "/industries/manufacturing"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "manufacturing-seo",
+      "kind": "combo",
+      "title": "Manufacturing Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Manufacturing · Seo",
+      "architecture": "seo",
+      "industrySlug": "manufacturing",
+      "serviceSlug": "seo",
+      "headline": "Manufacturing SEO for Product and Industrial Intent",
+      "summary": "Industrial SEO for machine, component and capability pages that attract procurement searches.",
+      "quickAnswer": "Industrial SEO for machine, component and capability pages that attract procurement searches.",
+      "ctaLabel": "Get Manufacturing SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Manufacturing Seo | DisplayAvenue",
+      "seoDescription": "Industrial SEO for machine, component and capability pages that attract procurement searches.",
+      "primaryKeyword": "manufacturing seo",
+      "searchIntent": "commercial",
+      "targetAudience": "Manufacturing businesses that need seo",
+      "uniqueAngle": "Built specifically for manufacturing buying journeys - not a generic seo template.",
+      "painPoints": [
+        "Generic seo agencies ignore manufacturing sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in manufacturing and need a dedicated growth system",
+        "You already tried generic seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how manufacturing buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Manufacturing Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current manufacturing acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Seo page?",
+          "a": "Yes. This page and plan are scoped to manufacturing buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Manufacturing overview",
+          "href": "/industries/manufacturing"
+        },
+        {
+          "label": "Seo service",
+          "href": "/services/seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "manufacturing-google-ads",
+      "kind": "combo",
+      "title": "Manufacturing Google Ads",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Manufacturing · Google Ads",
+      "architecture": "ads",
+      "industrySlug": "manufacturing",
+      "serviceSlug": "google-ads",
+      "headline": "Google Ads for Manufacturers Who Need RFQs",
+      "summary": "Paid search for industrial keywords with RFQ forms and sales handoff.",
+      "quickAnswer": "Paid search for industrial keywords with RFQ forms and sales handoff.",
+      "ctaLabel": "Get Manufacturing Ads Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Manufacturing Google Ads | DisplayAvenue",
+      "seoDescription": "Paid search for industrial keywords with RFQ forms and sales handoff.",
+      "primaryKeyword": "manufacturing google ads",
+      "searchIntent": "commercial",
+      "targetAudience": "Manufacturing businesses that need google ads",
+      "uniqueAngle": "Built specifically for manufacturing buying journeys - not a generic google ads template.",
+      "painPoints": [
+        "Generic google ads agencies ignore manufacturing sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in manufacturing and need a dedicated growth system",
+        "You already tried generic google ads with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how manufacturing buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Google Ads executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Manufacturing Google Ads strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current manufacturing acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement google ads with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Google Ads page?",
+          "a": "Yes. This page and plan are scoped to manufacturing buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Manufacturing overview",
+          "href": "/industries/manufacturing"
+        },
+        {
+          "label": "Google Ads service",
+          "href": "/services/google-ads"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "manufacturing-crm",
+      "kind": "combo",
+      "title": "Manufacturing Crm",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Manufacturing · Crm",
+      "architecture": "automation",
+      "industrySlug": "manufacturing",
+      "serviceSlug": "crm",
+      "headline": "Manufacturing CRM Automation for Quotation Follow-up",
+      "summary": "CRM stages, reminders and ownership so long manufacturing sales cycles stay organised.",
+      "quickAnswer": "CRM stages, reminders and ownership so long manufacturing sales cycles stay organised.",
+      "ctaLabel": "Build My Manufacturing CRM",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Manufacturing Crm | DisplayAvenue",
+      "seoDescription": "CRM stages, reminders and ownership so long manufacturing sales cycles stay organised.",
+      "primaryKeyword": "manufacturing crm",
+      "searchIntent": "commercial",
+      "targetAudience": "Manufacturing businesses that need crm",
+      "uniqueAngle": "Built specifically for manufacturing buying journeys - not a generic crm template.",
+      "painPoints": [
+        "Generic crm agencies ignore manufacturing sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in manufacturing and need a dedicated growth system",
+        "You already tried generic crm with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how manufacturing buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Crm executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Manufacturing Crm strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current manufacturing acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement crm with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Crm page?",
+          "a": "Yes. This page and plan are scoped to manufacturing buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Manufacturing overview",
+          "href": "/industries/manufacturing"
+        },
+        {
+          "label": "Crm service",
+          "href": "/services/crm"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "healthcare-seo",
+      "kind": "combo",
+      "title": "Healthcare Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Healthcare · Seo",
+      "architecture": "healthcare",
+      "industrySlug": "healthcare",
+      "serviceSlug": "seo",
+      "headline": "Healthcare SEO for Clinics and Hospitals",
+      "summary": "Local and service-page SEO that helps patients find you - without medical outcome claims.",
+      "quickAnswer": "Local and service-page SEO that helps patients find you - without medical outcome claims.",
+      "ctaLabel": "Get Healthcare SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Healthcare Seo | DisplayAvenue",
+      "seoDescription": "Local and service-page SEO that helps patients find you - without medical outcome claims.",
+      "primaryKeyword": "healthcare seo",
+      "searchIntent": "commercial",
+      "targetAudience": "Healthcare businesses that need seo",
+      "uniqueAngle": "Built specifically for healthcare buying journeys - not a generic seo template.",
+      "painPoints": [
+        "Generic seo agencies ignore healthcare sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in healthcare and need a dedicated growth system",
+        "You already tried generic seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how healthcare buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Healthcare Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current healthcare acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Seo page?",
+          "a": "Yes. This page and plan are scoped to healthcare buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Healthcare overview",
+          "href": "/industries/healthcare"
+        },
+        {
+          "label": "Seo service",
+          "href": "/services/seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "healthcare-lead-generation",
+      "kind": "combo",
+      "title": "Healthcare Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Healthcare · Lead Generation",
+      "architecture": "healthcare",
+      "industrySlug": "healthcare",
+      "serviceSlug": "lead-generation",
+      "headline": "Healthcare Lead Generation for Appointments",
+      "summary": "Responsible patient enquiry systems: local search, landing pages and appointment follow-up.",
+      "quickAnswer": "Responsible patient enquiry systems: local search, landing pages and appointment follow-up.",
+      "ctaLabel": "Get Healthcare Lead Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Healthcare Lead Generation | DisplayAvenue",
+      "seoDescription": "Responsible patient enquiry systems: local search, landing pages and appointment follow-up.",
+      "primaryKeyword": "healthcare lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Healthcare businesses that need lead generation",
+      "uniqueAngle": "Built specifically for healthcare buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore healthcare sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in healthcare and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how healthcare buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Healthcare Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current healthcare acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to healthcare buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Healthcare overview",
+          "href": "/industries/healthcare"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "healthcare-local-seo",
+      "kind": "combo",
+      "title": "Healthcare Local Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Healthcare · Local Seo",
+      "architecture": "seo",
+      "industrySlug": "healthcare",
+      "serviceSlug": "local-seo",
+      "headline": "Local SEO for Clinics and Multi-Location Healthcare",
+      "summary": "Google Business Profile and local pages that improve discovery for nearby patients.",
+      "quickAnswer": "Google Business Profile and local pages that improve discovery for nearby patients.",
+      "ctaLabel": "Get Clinic Local SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Healthcare Local Seo | DisplayAvenue",
+      "seoDescription": "Google Business Profile and local pages that improve discovery for nearby patients.",
+      "primaryKeyword": "healthcare local seo",
+      "searchIntent": "commercial",
+      "targetAudience": "Healthcare businesses that need local seo",
+      "uniqueAngle": "Built specifically for healthcare buying journeys - not a generic local seo template.",
+      "painPoints": [
+        "Generic local seo agencies ignore healthcare sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in healthcare and need a dedicated growth system",
+        "You already tried generic local seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how healthcare buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Local Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Healthcare Local Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current healthcare acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement local seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Local Seo page?",
+          "a": "Yes. This page and plan are scoped to healthcare buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Healthcare overview",
+          "href": "/industries/healthcare"
+        },
+        {
+          "label": "Local Seo service",
+          "href": "/services/local-seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "education-meta-ads",
+      "kind": "combo",
+      "title": "Education Meta Ads",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Education · Meta Ads",
+      "architecture": "ads",
+      "industrySlug": "education",
+      "serviceSlug": "meta-ads",
+      "headline": "Meta Ads for Schools and Coaching Admissions",
+      "summary": "Admission-focused Meta campaigns with counselling qualification and CRM follow-up.",
+      "quickAnswer": "Admission-focused Meta campaigns with counselling qualification and CRM follow-up.",
+      "ctaLabel": "Get Education Meta Ads Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Education Meta Ads | DisplayAvenue",
+      "seoDescription": "Admission-focused Meta campaigns with counselling qualification and CRM follow-up.",
+      "primaryKeyword": "education meta ads",
+      "searchIntent": "commercial",
+      "targetAudience": "Education businesses that need meta ads",
+      "uniqueAngle": "Built specifically for education buying journeys - not a generic meta ads template.",
+      "painPoints": [
+        "Generic meta ads agencies ignore education sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in education and need a dedicated growth system",
+        "You already tried generic meta ads with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how education buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Meta Ads executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Education Meta Ads strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current education acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement meta ads with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Meta Ads page?",
+          "a": "Yes. This page and plan are scoped to education buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Education overview",
+          "href": "/industries/education"
+        },
+        {
+          "label": "Meta Ads service",
+          "href": "/services/meta-ads"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "education-lead-generation",
+      "kind": "combo",
+      "title": "Education Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Education · Lead Generation",
+      "architecture": "education",
+      "industrySlug": "education",
+      "serviceSlug": "lead-generation",
+      "headline": "Education Lead Generation for Admissions Teams",
+      "summary": "Admission funnels from ad to counselling to application - with less lead leakage.",
+      "quickAnswer": "Admission funnels from ad to counselling to application - with less lead leakage.",
+      "ctaLabel": "Get Education Lead Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Education Lead Generation | DisplayAvenue",
+      "seoDescription": "Admission funnels from ad to counselling to application - with less lead leakage.",
+      "primaryKeyword": "education lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Education businesses that need lead generation",
+      "uniqueAngle": "Built specifically for education buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore education sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in education and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how education buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Education Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current education acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to education buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Education overview",
+          "href": "/industries/education"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "ecommerce-seo",
+      "kind": "combo",
+      "title": "Ecommerce Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Ecommerce · Seo",
+      "architecture": "ecommerce",
+      "industrySlug": "ecommerce",
+      "serviceSlug": "seo",
+      "headline": "Ecommerce SEO for Product Discovery and Revenue",
+      "summary": "Category and product SEO plus technical hygiene for online stores.",
+      "quickAnswer": "Category and product SEO plus technical hygiene for online stores.",
+      "ctaLabel": "Get Ecommerce SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Ecommerce Seo | DisplayAvenue",
+      "seoDescription": "Category and product SEO plus technical hygiene for online stores.",
+      "primaryKeyword": "ecommerce seo",
+      "searchIntent": "commercial",
+      "targetAudience": "Ecommerce businesses that need seo",
+      "uniqueAngle": "Built specifically for ecommerce buying journeys - not a generic seo template.",
+      "painPoints": [
+        "Generic seo agencies ignore ecommerce sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in ecommerce and need a dedicated growth system",
+        "You already tried generic seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how ecommerce buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Ecommerce Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current ecommerce acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Seo page?",
+          "a": "Yes. This page and plan are scoped to ecommerce buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Ecommerce overview",
+          "href": "/industries/ecommerce"
+        },
+        {
+          "label": "Seo service",
+          "href": "/services/seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "ecommerce-meta-ads",
+      "kind": "combo",
+      "title": "Ecommerce Meta Ads",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Ecommerce · Meta Ads",
+      "architecture": "ads",
+      "industrySlug": "ecommerce",
+      "serviceSlug": "meta-ads",
+      "headline": "Meta Ads for Ecommerce and D2C Brands",
+      "summary": "Prospecting and retargeting systems tied to product feed and ROAS discipline.",
+      "quickAnswer": "Prospecting and retargeting systems tied to product feed and ROAS discipline.",
+      "ctaLabel": "Get Ecommerce Meta Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Ecommerce Meta Ads | DisplayAvenue",
+      "seoDescription": "Prospecting and retargeting systems tied to product feed and ROAS discipline.",
+      "primaryKeyword": "ecommerce meta ads",
+      "searchIntent": "commercial",
+      "targetAudience": "Ecommerce businesses that need meta ads",
+      "uniqueAngle": "Built specifically for ecommerce buying journeys - not a generic meta ads template.",
+      "painPoints": [
+        "Generic meta ads agencies ignore ecommerce sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in ecommerce and need a dedicated growth system",
+        "You already tried generic meta ads with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how ecommerce buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Meta Ads executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Ecommerce Meta Ads strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current ecommerce acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement meta ads with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Meta Ads page?",
+          "a": "Yes. This page and plan are scoped to ecommerce buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Ecommerce overview",
+          "href": "/industries/ecommerce"
+        },
+        {
+          "label": "Meta Ads service",
+          "href": "/services/meta-ads"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "ecommerce-cro",
+      "kind": "combo",
+      "title": "Ecommerce Cro",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Ecommerce · Cro",
+      "architecture": "ecommerce",
+      "industrySlug": "ecommerce",
+      "serviceSlug": "cro",
+      "headline": "Ecommerce Conversion Rate Optimisation",
+      "summary": "PDP, cart and checkout experiments that lift revenue without only buying more traffic.",
+      "quickAnswer": "PDP, cart and checkout experiments that lift revenue without only buying more traffic.",
+      "ctaLabel": "Get Ecommerce CRO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Ecommerce Cro | DisplayAvenue",
+      "seoDescription": "PDP, cart and checkout experiments that lift revenue without only buying more traffic.",
+      "primaryKeyword": "ecommerce cro",
+      "searchIntent": "commercial",
+      "targetAudience": "Ecommerce businesses that need cro",
+      "uniqueAngle": "Built specifically for ecommerce buying journeys - not a generic cro template.",
+      "painPoints": [
+        "Generic cro agencies ignore ecommerce sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in ecommerce and need a dedicated growth system",
+        "You already tried generic cro with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how ecommerce buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Cro executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Ecommerce Cro strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current ecommerce acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement cro with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Cro page?",
+          "a": "Yes. This page and plan are scoped to ecommerce buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Ecommerce overview",
+          "href": "/industries/ecommerce"
+        },
+        {
+          "label": "Cro service",
+          "href": "/services/cro"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "automotive-lead-generation",
+      "kind": "combo",
+      "title": "Automotive Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Automotive · Lead Generation",
+      "architecture": "lead-gen",
+      "industrySlug": "automotive",
+      "serviceSlug": "lead-generation",
+      "headline": "Automotive Lead Generation for Dealers and Workshops",
+      "summary": "Lead systems for dealerships, EV dealers and detailing studios with WhatsApp follow-up.",
+      "quickAnswer": "Lead systems for dealerships, EV dealers and detailing studios with WhatsApp follow-up.",
+      "ctaLabel": "Get Automotive Lead Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Automotive Lead Generation | DisplayAvenue",
+      "seoDescription": "Lead systems for dealerships, EV dealers and detailing studios with WhatsApp follow-up.",
+      "primaryKeyword": "automotive lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Automotive businesses that need lead generation",
+      "uniqueAngle": "Built specifically for automotive buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore automotive sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in automotive and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how automotive buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Automotive Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current automotive acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to automotive buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Automotive overview",
+          "href": "/industries/automotive"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "hospitality-seo",
+      "kind": "combo",
+      "title": "Hospitality Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Hospitality · Seo",
+      "architecture": "seo",
+      "industrySlug": "hospitality",
+      "serviceSlug": "seo",
+      "headline": "Hotel and Hospitality SEO for Bookings Discovery",
+      "summary": "SEO for hotels, resorts and stays focused on discovery and booking intent.",
+      "quickAnswer": "SEO for hotels, resorts and stays focused on discovery and booking intent.",
+      "ctaLabel": "Get Hospitality SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Hospitality Seo | DisplayAvenue",
+      "seoDescription": "SEO for hotels, resorts and stays focused on discovery and booking intent.",
+      "primaryKeyword": "hospitality seo",
+      "searchIntent": "commercial",
+      "targetAudience": "Hospitality businesses that need seo",
+      "uniqueAngle": "Built specifically for hospitality buying journeys - not a generic seo template.",
+      "painPoints": [
+        "Generic seo agencies ignore hospitality sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in hospitality and need a dedicated growth system",
+        "You already tried generic seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how hospitality buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Hospitality Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current hospitality acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Seo page?",
+          "a": "Yes. This page and plan are scoped to hospitality buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Hospitality overview",
+          "href": "/industries/hospitality"
+        },
+        {
+          "label": "Seo service",
+          "href": "/services/seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "construction-lead-generation",
+      "kind": "combo",
+      "title": "Construction Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Construction · Lead Generation",
+      "architecture": "lead-gen",
+      "industrySlug": "construction",
+      "serviceSlug": "lead-generation",
+      "headline": "Construction Lead Generation for Builders and Contractors",
+      "summary": "B2B and project enquiry systems for construction and contracting businesses.",
+      "quickAnswer": "B2B and project enquiry systems for construction and contracting businesses.",
+      "ctaLabel": "Get Construction Lead Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Construction Lead Generation | DisplayAvenue",
+      "seoDescription": "B2B and project enquiry systems for construction and contracting businesses.",
+      "primaryKeyword": "construction lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Construction businesses that need lead generation",
+      "uniqueAngle": "Built specifically for construction buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore construction sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in construction and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how construction buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Construction Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current construction acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to construction buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Construction overview",
+          "href": "/industries/construction"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "finance-seo",
+      "kind": "combo",
+      "title": "Finance Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Finance · Seo",
+      "architecture": "seo",
+      "industrySlug": "finance",
+      "serviceSlug": "seo",
+      "headline": "SEO for CAs, Advisors and Financial Services",
+      "summary": "Compliant SEO for professional finance brands focused on trust and enquiry quality.",
+      "quickAnswer": "Compliant SEO for professional finance brands focused on trust and enquiry quality.",
+      "ctaLabel": "Get Finance SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Finance Seo | DisplayAvenue",
+      "seoDescription": "Compliant SEO for professional finance brands focused on trust and enquiry quality.",
+      "primaryKeyword": "finance seo",
+      "searchIntent": "commercial",
+      "targetAudience": "Finance businesses that need seo",
+      "uniqueAngle": "Built specifically for finance buying journeys - not a generic seo template.",
+      "painPoints": [
+        "Generic seo agencies ignore finance sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in finance and need a dedicated growth system",
+        "You already tried generic seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how finance buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Finance Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current finance acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Seo page?",
+          "a": "Yes. This page and plan are scoped to finance buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Finance overview",
+          "href": "/industries/finance"
+        },
+        {
+          "label": "Seo service",
+          "href": "/services/seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "travel-lead-generation",
+      "kind": "combo",
+      "title": "Travel Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Travel · Lead Generation",
+      "architecture": "lead-gen",
+      "industrySlug": "travel",
+      "serviceSlug": "lead-generation",
+      "headline": "Travel Lead Generation for Agencies and Tour Operators",
+      "summary": "Package enquiry systems with WhatsApp qualification and follow-up for travel brands.",
+      "quickAnswer": "Package enquiry systems with WhatsApp qualification and follow-up for travel brands.",
+      "ctaLabel": "Get Travel Lead Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Travel Lead Generation | DisplayAvenue",
+      "seoDescription": "Package enquiry systems with WhatsApp qualification and follow-up for travel brands.",
+      "primaryKeyword": "travel lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Travel businesses that need lead generation",
+      "uniqueAngle": "Built specifically for travel buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore travel sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in travel and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how travel buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Travel Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current travel acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to travel buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Travel overview",
+          "href": "/industries/travel"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "saas-lead-generation",
+      "kind": "combo",
+      "title": "Saas Lead Generation",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "Saas · Lead Generation",
+      "architecture": "lead-gen",
+      "industrySlug": "saas",
+      "serviceSlug": "lead-generation",
+      "headline": "B2B SaaS Lead Generation Systems",
+      "summary": "Demo and trial pipelines combining content, ads and CRM nurture for SaaS teams.",
+      "quickAnswer": "Demo and trial pipelines combining content, ads and CRM nurture for SaaS teams.",
+      "ctaLabel": "Get SaaS Lead Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "Saas Lead Generation | DisplayAvenue",
+      "seoDescription": "Demo and trial pipelines combining content, ads and CRM nurture for SaaS teams.",
+      "primaryKeyword": "saas lead generation",
+      "searchIntent": "commercial",
+      "targetAudience": "Saas businesses that need lead generation",
+      "uniqueAngle": "Built specifically for saas buying journeys - not a generic lead generation template.",
+      "painPoints": [
+        "Generic lead generation agencies ignore saas sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in saas and need a dedicated growth system",
+        "You already tried generic lead generation with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how saas buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Lead Generation executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "Saas Lead Generation strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current saas acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement lead generation with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Lead Generation page?",
+          "a": "Yes. This page and plan are scoped to saas buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "Saas overview",
+          "href": "/industries/saas"
+        },
+        {
+          "label": "Lead Generation service",
+          "href": "/services/lead-generation"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    },
+    {
+      "slug": "b2b-seo",
+      "kind": "combo",
+      "title": "B2B Seo",
+      "category": "Industry × Service",
+      "icon": "target",
+      "color": "#0056ff",
+      "eyebrow": "B2B · Seo",
+      "architecture": "seo",
+      "industrySlug": "b2b",
+      "serviceSlug": "seo",
+      "headline": "B2B SEO for Professional and Industrial Services",
+      "summary": "SEO that targets decision-makers researching vendors and service partners.",
+      "quickAnswer": "SEO that targets decision-makers researching vendors and service partners.",
+      "ctaLabel": "Get B2B SEO Plan",
+      "secondaryCtaLabel": "WhatsApp Us",
+      "secondaryCtaHref": "https://wa.me/919222122333",
+      "seoTitle": "B2B Seo | DisplayAvenue",
+      "seoDescription": "SEO that targets decision-makers researching vendors and service partners.",
+      "primaryKeyword": "b2b seo",
+      "searchIntent": "commercial",
+      "targetAudience": "B2B businesses that need seo",
+      "uniqueAngle": "Built specifically for b2b buying journeys - not a generic seo template.",
+      "painPoints": [
+        "Generic seo agencies ignore b2b sales reality",
+        "Leads arrive without qualification or follow-up ownership",
+        "Reporting stops at clicks instead of pipeline"
+      ],
+      "whenYouNeedThis": [
+        "You sell in b2b and need a dedicated growth system",
+        "You already tried generic seo with weak results",
+        "You want acquisition connected to CRM/WhatsApp follow-up"
+      ],
+      "benefits": [
+        {
+          "title": "Industry-specific messaging",
+          "desc": "Copy and offers match how b2b buyers decide."
+        },
+        {
+          "title": "Channel fit",
+          "desc": "Seo executed for this sector's intent patterns."
+        },
+        {
+          "title": "Conversion path",
+          "desc": "Landing pages and forms designed for mobile enquiry."
+        },
+        {
+          "title": "Follow-up system",
+          "desc": "WhatsApp/CRM routing so sales can act fast."
+        }
+      ],
+      "deliverables": [
+        "B2B Seo strategy brief",
+        "Channel and KPI plan",
+        "Landing page / form recommendations",
+        "Tracking and attribution setup",
+        "Follow-up workflow outline",
+        "Weekly optimisation notes"
+      ],
+      "process": [
+        {
+          "title": "Discover",
+          "desc": "Audit current b2b acquisition and sales handoff."
+        },
+        {
+          "title": "Design",
+          "desc": "Define offer, pages, tracking and qualification."
+        },
+        {
+          "title": "Launch",
+          "desc": "Implement seo with clear ownership."
+        },
+        {
+          "title": "Optimise",
+          "desc": "Improve quality using sales feedback."
+        }
+      ],
+      "funnelSteps": [
+        {
+          "title": "Attract",
+          "desc": "Reach high-intent buyers in this industry."
+        },
+        {
+          "title": "Capture",
+          "desc": "Convert to enquiry on a focused page."
+        },
+        {
+          "title": "Qualify",
+          "desc": "Filter for fit and urgency."
+        },
+        {
+          "title": "Convert",
+          "desc": "Sales follow-up with reminders and CRM."
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Is this different from your general Seo page?",
+          "a": "Yes. This page and plan are scoped to b2b buying cycles, objections and channels."
+        },
+        {
+          "q": "Do you guarantee results?",
+          "a": "No. We set measurable targets and optimise toward qualified conversations."
+        },
+        {
+          "q": "How fast can we start?",
+          "a": "Most engagements kick off within 5-7 business days after scope confirmation."
+        },
+        {
+          "q": "Can this connect to our CRM?",
+          "a": "Yes - HubSpot, Zoho, custom CRMs and WhatsApp workflows are common."
+        }
+      ],
+      "comparison": {
+        "traditional": [
+          "Posts and ads without a conversion system",
+          "Monthly vanity reports",
+          "Leads dumped into a spreadsheet",
+          "No CRM or follow-up discipline"
+        ],
+        "ours": [
+          "Strategy → acquisition → qualification",
+          "Landing pages and tracking that connect to outcomes",
+          "CRM + WhatsApp follow-up workflows",
+          "Weekly optimisation against pipeline metrics"
+        ]
+      },
+      "related": [
+        {
+          "label": "B2B overview",
+          "href": "/industries/b2b"
+        },
+        {
+          "label": "Seo service",
+          "href": "/services/seo"
+        },
+        {
+          "label": "All industries",
+          "href": "/industries"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ],
+      "metrics": [
+        {
+          "value": "Intent",
+          "label": "Commercial search"
+        },
+        {
+          "value": "CRM",
+          "label": "Follow-up ready"
+        },
+        {
+          "value": "Unique",
+          "label": "Industry-specific"
+        }
+      ],
+      "indexable": true
+    }
+  ]
+}
