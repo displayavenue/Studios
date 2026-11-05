@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap");
+
+.bc-page {
+  --bc-ink: #07111f;
+  --bc-muted: #5c6570;
+  --bc-paper: #f3f1ec;
+  --bc-card: #fff;
+  min-height: 100vh;
+  background: var(--bc-paper);
+  color: var(--bc-ink);
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  padding: 1.25rem 1rem 3rem;
+}
+
+.bc-print-sheet,
+.bc-hub {
+  max-width: 920px;
+  margin: 0 auto 2rem;
+}
+
+.bc-print-sheet h1,
+.bc-name {
+  font-family: "Libre Baskerville", Georgia, serif;
+  margin: 0 0 0.4rem;
+}
+
+.bc-print-sheet h1 {
+  font-size: 1.6rem;
+}
+
+.bc-print-sheet p {
+  color: var(--bc-muted);
+  line-height: 1.45;
+  margin: 0 0 1rem;
+}
+
+.bc-hint {
+  font-size: 0.9rem !important;
+}
+
+.bc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.85rem 0 1.25rem;
+}
+
+.bc-btn {
+  appearance: none;
+  border: 1px solid var(--bc-ink);
+  background: transparent;
+  color: var(--bc-ink);
+  padding: 0.55rem 0.9rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bc-btn--primary {
+  background: var(--bc-ink);
+  color: #fff;
+}
+
+.bc-phys-row {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .bc-phys-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Exact physical card preview (3.5 × 2 in) */
+.bc-phys {
+  width: 3.5in;
+  max-width: 100%;
+  aspect-ratio: 3.5 / 2;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(7, 17, 31, 0.12);
+  overflow: hidden;
+}
+
+.bc-phys img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bc-hub {
+  border-top: 1px solid rgba(7, 17, 31, 0.12);
+  padding-top: 1.75rem;
+}
+
+.bc-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bc-muted);
+  margin: 0 0 0.4rem;
+}
+
+.bc-name {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+}
+
+.bc-title {
+  margin: 0.25rem 0 0;
+  color: var(--bc-muted);
+}
+
+.bc-tag {
+  margin: 0.55rem 0 0;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-style: italic;
+}
+
+.bc-block {
+  margin-top: 1.5rem;
+}
+
+.bc-block h3 {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 1.2rem;
+  margin: 0 0 0.55rem;
+}
+
+.bc-lead {
+  color: var(--bc-muted);
+  margin: 0 0 0.75rem;
+}
+
+.bc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(7, 17, 31, 0.1);
+}
+
+.bc-list li {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.6rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(7, 17, 31, 0.08);
+}
+
+.bc-list span {
+  color: var(--bc-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bc-list a,
+.bc-list em {
+  color: var(--bc-ink);
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bc-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.bc-chip {
+  border: 1px solid rgba(7, 17, 31, 0.18);
+  padding: 0.4rem 0.7rem;
+  text-decoration: none;
+  color: var(--bc-ink);
+  font-weight: 600;
+  font-size: 0.88rem;
+  background: #fff;
+}
+
+.bc-block--cta {
+  background: #fff;
+  border: 1px solid rgba(7, 17, 31, 0.12);
+  padding: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .bc-list li {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+/* —— Stationery print: two pages, exact card size —— */
+@media print {
+  @page {
+    size: 3.5in 2in;
+    margin: 0;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .bc-print-sheet,
+  .bc-print-sheet * {
+    visibility: visible !important;
+  }
+
+  .bc-page {
+    background: #fff;
+    padding: 0;
+    margin: 0;
+  }
+
+  .bc-print-screen-only,
+  .bc-hub,
+  .bc-actions,
+  header,
+  footer,
+  .sticky-mcta,
+  .da-chat,
+  .wa-float,
+  nav {
+    display: none !important;
+  }
+
+  .bc-print-sheet {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .bc-phys-row {
+    display: block;
+  }
+
+  .bc-phys {
+    width: 3.5in;
+    height: 2in;
+    aspect-ratio: auto;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+    margin: 0;
+  }
+
+  .bc-phys--back {
+    page-break-after: auto;
+  }
+
+  .bc-phys img {
+    width: 3.5in;
+    height: 2in;
+    object-fit: fill;
+  }
+}

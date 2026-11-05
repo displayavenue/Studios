@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "notifyEmail": "info@displayavenue.com",
+  "ownerName": "DisplayAvenue",
+  "channels": {
+    "email": true,
+    "whatsapp": true,
+    "sms": false
+  },
+  "events": {
+    "contactForm": true,
+    "chatHotLead": true,
+    "trackPageviews": true
+  },
+  "messagePrefix": "[DA Lead]",
+  "includeJourney": true,
+  "updatedAt": "2026-08-18T17:00:00.000Z"
+}

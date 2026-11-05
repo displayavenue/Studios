@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DisplayAvenue Data | Industry Lead Extractor</title>
+    <meta
+      name="description"
+      content="Extract Indian business leads by industry and city. Score digital gaps, export CSV, and build outreach lists for DisplayAvenue sales."
+    />
+    <link rel="canonical" href="https://data.displayavenue.com/" />
+    <meta property="og:title" content="DisplayAvenue Data" />
+    <meta
+      property="og:description"
+      content="Industry-wise business lead extraction for targeting potential clients."
+    />
+    <meta property="og:url" content="https://data.displayavenue.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="./">
+        <span class="brand__mark">DA</span>
+        <span class="brand__text">
+          <strong>DisplayAvenue</strong>
+          <em>Data</em>
+        </span>
+      </a>
+      <nav class="topbar__nav">
+        <a href="#extractor">Extractor</a>
+        <a href="#playbooks">Playbooks</a>
+        <a href="#directories">Directories</a>
+        <a class="topbar__cta" href="https://displayavenue.com/contact" target="_blank" rel="noreferrer"
+          >Get strategy</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">DisplayAvenue Data · Lead intelligence</p>
+          <h1>DisplayAvenue <span>Data</span></h1>
+          <p class="hero__lead">
+            Extract businesses industry by industry, score who needs digital growth, and build your
+            next client target list.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn-primary" href="#extractor">Extract leads</a>
+            <a class="btn btn-ghost" href="#playbooks">Industry playbooks</a>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="radar">
+            <div class="radar__ring"></div>
+            <div class="radar__ring"></div>
+            <div class="radar__ring"></div>
+            <div class="radar__beam"></div>
+            <div class="radar__dot d1"></div>
+            <div class="radar__dot d2"></div>
+            <div class="radar__dot d3"></div>
+            <div class="radar__dot d4"></div>
+          </div>
+          <p class="radar__caption">Open map data · India metros · Digital-gap scoring</p>
+        </div>
+      </section>
+
+      <section id="extractor" class="panel extractor">
+        <div class="panel__head">
+          <h2>Industry lead extractor</h2>
+          <p>
+            Pull public business listings for a city, then prioritize prospects without a website or
+            with weak digital signals — ideal DisplayAvenue targets.
+          </p>
+        </div>
+
+        <form id="extract-form" class="extract-form">
+          <label>
+            <span>Industry</span>
+            <select id="industry" name="industry" required></select>
+          </label>
+          <label>
+            <span>City</span>
+            <select id="city" name="city" required></select>
+          </label>
+          <label>
+            <span>Radius (km)</span>
+            <select id="radius" name="radius">
+              <option value="5">5 km</option>
+              <option value="10" selected>10 km</option>
+              <option value="15">15 km</option>
+              <option value="25">25 km</option>
+            </select>
+          </label>
+          <label>
+            <span>Focus</span>
+            <select id="focus" name="focus">
+              <option value="all">All businesses</option>
+              <option value="no_website" selected>No website (hottest)</option>
+              <option value="has_phone">Has phone</option>
+              <option value="has_website">Has website</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-primary btn-wide" id="extract-btn">
+            Extract leads
+          </button>
+        </form>
+
+        <div class="stats" id="stats" hidden>
+          <div><strong id="stat-total">0</strong><span>Found</span></div>
+          <div><strong id="stat-hot">0</strong><span>Hot (no site)</span></div>
+          <div><strong id="stat-phone">0</strong><span>With phone</span></div>
+          <div><strong id="stat-avg">0</strong><span>Avg score</span></div>
+        </div>
+
+        <div class="toolbar" id="toolbar" hidden>
+          <input
+            type="search"
+            id="search"
+            placeholder="Filter by name or area…"
+            autocomplete="off"
+          />
+          <button type="button" class="btn btn-ghost" id="export-csv">Export CSV</button>
+          <button type="button" class="btn btn-ghost" id="copy-outreach">Copy outreach pack</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="results">
+            <thead>
+              <tr>
+                <th>Score</th>
+                <th>Business</th>
+                <th>Industry fit</th>
+                <th>Phone</th>
+                <th>Website</th>
+                <th>Area</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty">
+                <td colspan="7">Choose an industry and city, then extract leads.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fineprint" id="status-line">
+          Source: OpenStreetMap (open data). Use ethically for B2B outreach. Respect local laws and
+          Do-Not-Disturb preferences.
+        </p>
+      </section>
+
+      <section id="playbooks" class="panel">
+        <div class="panel__head">
+          <h2>Industry targeting playbooks</h2>
+          <p>Who to chase, what digital gap to sell, and where to find denser lists.</p>
+        </div>
+        <div class="playbook-grid" id="playbooks-grid"></div>
+      </section>
+
+      <section id="directories" class="panel">
+        <div class="panel__head">
+          <h2>Directory extract shortcuts</h2>
+          <p>
+            Open curated public directories pre-filtered by your selected industry and city — then
+            add winners to your CSV shortlist.
+          </p>
+        </div>
+        <div class="dir-grid" id="dir-grid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <strong>DisplayAvenue Data</strong>
+        <span>data.displayavenue.com</span>
+      </div>
+      <div class="footer__links">
+        <a href="https://displayavenue.com/">Main site</a>
+        <a href="https://displayavenue.com/strategy/">Strategy</a>
+        <a href="https://displayavenue.com/industries">Industries</a>
+        <a href="https://wa.me/919222122333">WhatsApp</a>
+      </div>
+    </footer>
+
+    <script src="./assets/data.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

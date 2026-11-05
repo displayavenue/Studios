@@ -1,0 +1,175 @@
+{
+  "enabled": true,
+  "seo": {
+    "title": "Personal Branding for Models & Actresses | DisplayAvenue",
+    "description": "Social media personal branding for models, actresses and female creators in India. Organic, ads, and PR plans with real growth playbooks."
+  },
+  "hero": {
+    "badge": "For models · actresses · female creators",
+    "title": "Build a personal brand that gets you castings, brand deals, and respect",
+    "lead": "DisplayAvenue runs your Instagram, content system, ads, and PR like a growth team — so you look premium online and convert attention into work.",
+    "primaryCta": "Book a private strategy call",
+    "primaryHref": "/contact",
+    "secondaryCta": "WhatsApp us",
+    "secondaryHref": "https://wa.me/919222122333?text=Hi%20DisplayAvenue%2C%20I%20want%20personal%20branding%20for%20my%20profile"
+  },
+  "whoFor": [
+    { "title": "Aspiring models", "text": "From first portfolio to castings, collaborations, and a clean professional feed." },
+    { "title": "Actresses & performers", "text": "Public image, reel strategy, press moments, and fan growth without looking spammy." },
+    { "title": "Female founders & creators", "text": "Authority branding that sells services, courses, or lifestyle partnerships." }
+  ],
+  "howWeWork": [
+    { "step": "01", "title": "Brand audit", "text": "We review your Instagram, photos, bio, highlights, and competitors in your city/niche." },
+    { "step": "02", "title": "Positioning & content system", "text": "We lock your look, message, posting pillars, and weekly content calendar." },
+    { "step": "03", "title": "Publish + engage", "text": "Reels, carousels, stories, and community replies — consistent, on-brand, India-ready." },
+    { "step": "04", "title": "Ads & PR (higher plans)", "text": "Meta ads for followers/enquiries + programmatic PR placements to look established fast." },
+    { "step": "05", "title": "Monthly growth review", "text": "Numbers, what worked, next month’s plan — clear reporting you can show managers/parents." }
+  ],
+  "resultsPromise": [
+    { "label": "Feed that looks casting-ready", "text": "Premium visual system, not random selfies." },
+    { "label": "Clear growth path", "text": "Organic first, then ads/PR when you are ready to scale." },
+    { "label": "India-market playbook", "text": "Built for Mumbai, Delhi, Hyderabad, Bengaluru talent ecosystems." },
+    { "label": "You stay in control", "text": "Approvals on content, private WhatsApp coordination, transparent monthly report." }
+  ],
+  "plans": [
+    {
+      "id": "organic",
+      "name": "Organic Growth",
+      "price": "₹18,000",
+      "period": "/ month",
+      "badge": "Most booked starter",
+      "summary": "Full organic social management to build a premium personal brand.",
+      "includes": [
+        "Instagram content calendar (reels + posts + stories)",
+        "Caption writing + hashtag research",
+        "Profile / bio / highlights cleanup",
+        "Community engagement support",
+        "Monthly analytics report",
+        "WhatsApp coordination with you / manager"
+      ],
+      "bestFor": "New or rebuilding profiles that need consistency and a polished look."
+    },
+    {
+      "id": "ads",
+      "name": "Organic + Ads",
+      "price": "₹35,000",
+      "period": "/ month",
+      "badge": "Growth",
+      "summary": "Everything in Organic, plus paid Meta ads to accelerate followers and enquiries.",
+      "includes": [
+        "Everything in Organic Growth",
+        "Meta ads setup (Instagram / Facebook)",
+        "Creative testing for profile visits & DMs",
+        "Audience targeting (city, interest, lookalikes)",
+        "Weekly ads optimisation",
+        "Ad spend is separate (client media budget)"
+      ],
+      "bestFor": "Talent ready to grow faster in Mumbai / metro cities with a media budget."
+    },
+    {
+      "id": "ads-pr",
+      "name": "Ads + Programmatic PR",
+      "price": "₹50,000",
+      "period": "/ month",
+      "badge": "Authority",
+      "summary": "Organic + ads + programmatic PR to look established and get brand/casting attention.",
+      "includes": [
+        "Everything in Organic + Ads",
+        "Programmatic PR placements & digital features",
+        "Press-style story angles for your profile",
+        "Authority content for collaborations",
+        "Priority support & strategy calls",
+        "Ad spend & some PR media costs may be extra"
+      ],
+      "bestFor": "Actresses, models, and creators who want visibility + credibility together."
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "cs-riya",
+      "name": "Riya M.",
+      "role": "Aspiring model · Mumbai",
+      "from": "1.2K followers · irregular posts · no casting enquiries",
+      "to": "18K+ followers · 40–80 DMs/week · 6 brand trials in 4 months",
+      "focus": "Organic plan → then Ads",
+      "story": "We rebuilt her grid around portfolio + lifestyle reels, fixed her bio for casting managers, and ran a weekly reel system. After 8 weeks of organic consistency we added light Meta ads for profile visits in Mumbai.",
+      "metrics": [
+        { "label": "Followers", "value": "1.2K → 18K+" },
+        { "label": "Avg reel views", "value": "800 → 25K+" },
+        { "label": "Brand DMs / week", "value": "0–2 → 40–80" }
+      ]
+    },
+    {
+      "id": "cs-ananya",
+      "name": "Ananya S.",
+      "role": "Theatre actress · Delhi NCR",
+      "from": "Personal account · mixed personal content · low discovery",
+      "to": "Casting-ready brand · press mentions · 3 paid collaborations",
+      "focus": "Ads + Programmatic PR",
+      "story": "We separated personal vs professional content, built a showreel-led Instagram system, and used programmatic PR features plus ads around her play premiere. Casting pages and directors started finding her through search and shares.",
+      "metrics": [
+        { "label": "Profile visits / mo", "value": "~900 → 12K+" },
+        { "label": "PR features", "value": "0 → 5" },
+        { "label": "Paid collabs", "value": "0 → 3" }
+      ]
+    },
+    {
+      "id": "cs-meera",
+      "name": "Meera K.",
+      "role": "Fitness creator → brand face · Bengaluru",
+      "from": "0 monetisation · random reels · no offer",
+      "to": "Stable brand deals · coaching waitlist · 50K+ community",
+      "focus": "Organic → Ads",
+      "story": "We positioned her as a premium fitness face (not only workout tips), built offer-led content, and used ads to grow women 22–35 in Bengaluru/Hyderabad. Within a quarter she had predictable brand inbound.",
+      "metrics": [
+        { "label": "Followers", "value": "6K → 52K+" },
+        { "label": "Brand enquiries", "value": "rare → weekly" },
+        { "label": "Content cadence", "value": "random → 5×/week system" }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "How Indian talent usually grows online",
+      "points": [
+        "Strong visuals + weekly reel system beats posting only when you feel like it.",
+        "Casting managers check Instagram first — bio, grid, and highlights must look professional.",
+        "Ads work after the profile looks premium; ads on a messy feed waste money.",
+        "PR and features help when you already have a clear story and portfolio."
+      ]
+    },
+    {
+      "title": "What “0 to good” looks like in 90 days",
+      "points": [
+        "Days 1–15: audit, positioning, grid cleanup, content pillars.",
+        "Days 16–60: consistent organic publishing + engagement.",
+        "Days 61–90: optional ads/PR to amplify what already works.",
+        "Outcome target: clearer brand, better quality DMs, measurable growth — not vanity only."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need to create all content myself?",
+      "a": "We guide the system. You (or your photographer) shoot; we plan, write, edit direction, schedule, and manage. Higher support can be arranged."
+    },
+    {
+      "q": "Is ad spend included in ₹35,000 / ₹50,000?",
+      "a": "No. Those fees are for management. Media budget for Meta ads (and some PR placements) is separate and agreed monthly."
+    },
+    {
+      "q": "Can my manager be on the WhatsApp group?",
+      "a": "Yes. Most talent accounts run with you + manager + DisplayAvenue on one private thread."
+    },
+    {
+      "q": "Is this only Instagram?",
+      "a": "Instagram is primary for models/actresses in India. We can extend to YouTube Shorts / LinkedIn for founders on request."
+    }
+  ],
+  "closing": {
+    "title": "Ready to look like the brand you want to become?",
+    "text": "Share your Instagram handle. We’ll tell you which plan fits — Organic ₹18,000, Ads ₹35,000, or Ads + PR ₹50,000.",
+    "cta": "Get my plan on WhatsApp",
+    "ctaHref": "https://wa.me/919222122333?text=Hi%20DisplayAvenue%2C%20here%20is%20my%20Instagram%20for%20talent%20branding%3A%20"
+  }
+}
