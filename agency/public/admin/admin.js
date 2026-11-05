@@ -1,0 +1,1342 @@
+const API = "./api.php";
+const TOKEN_KEY = "da_agency_admin_token";
+/** Quotation / payment platform (DisplayAvenue OS). Kept off the JSON CMS ledger. */
+const OS_BASE = "https://os.displayavenue.com";
+const QUOTE_NAV = {
+  quotations: "Quotations & Payments",
+};
+
+const state = {
+  authed: false,
+  token: localStorage.getItem(TOKEN_KEY) || "",
+  collections: {},
+  current: null,
+  data: null,
+  dirty: false,
+  quoteMode: false,
+};
+
+const $ = (sel) => document.querySelector(sel);
+
+function previewRouteFor(collection) {
+  const map = {
+    home: "/",
+    company: "/",
+    "google-reviews": "/",
+    awards: "/awards",
+    certifications: "/certifications",
+    contact: "/contact",
+    content: "/",
+    services: "/services",
+    industries: "/industries",
+    packages: "/packages",
+    solutions: "/solutions",
+    ai: "/ai-platform",
+    tools: "/free-tools",
+    cases: "/case-studies",
+    projects: "/portfolio",
+    resources: "/resources",
+    combos: "/industry-solutions",
+    tracking: "/",
+    settings: "/",
+  };
+  return map[collection] || "/";
+}
+
+function setPreview(path) {
+  const frame = $("#preview-frame");
+  const label = $("#preview-path");
+  const open = $("#preview-open");
+  if (!frame) return;
+  const clean = path || "/";
+  const url = `..${clean === "/" ? "/" : clean}?cms_preview=${Date.now()}`;
+  frame.src = url;
+  if (label) label.textContent = clean;
+  if (open) open.href = `..${clean === "/" ? "/" : clean}`;
+}
+
+function refreshPreview() {
+  setPreview(previewRouteFor(state.current || "home"));
+}
+
+async function api(action, payload = null) {
+  const headers = {};
+  if (payload) headers["Content-Type"] = "application/json";
+  if (state.token) {
+    headers.Authorization = `Bearer ${state.token}`;
+    headers["X-DA-Admin-Token"] = state.token;
+  }
+  const opts = {
+    method: payload ? "POST" : "GET",
+    credentials: "include",
+    headers,
+    body: payload ? JSON.stringify({ action, ...payload }) : undefined,
+  };
+  const url = payload
+    ? API
+    : `${API}?action=${encodeURIComponent(action)}${
+        payload?.collection
+          ? `&collection=${encodeURIComponent(payload.collection)}`
+          : ""
+      }`;
+  const res = await fetch(url, opts);
+  const json = await res.json().catch(() => ({ ok: false, error: "Invalid response" }));
+  if (res.status === 401 || json.code === "auth") {
+    state.authed = false;
+    state.token = "";
+    localStorage.removeItem(TOKEN_KEY);
+    showLogin(true);
+    const err = new Error(json.error || "Please log in again");
+    err.status = 401;
+    throw err;
+  }
+  if (!res.ok || json.ok === false) {
+    const err = new Error(json.error || "Request failed");
+    err.status = res.status;
+    throw err;
+  }
+  return json;
+}
+
+function toast(msg, type = "ok") {
+  const el = $("#toast");
+  el.hidden = false;
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => {
+    el.hidden = true;
+  }, 2800);
+}
+
+function setDirty(v) {
+  state.dirty = v;
+  const btn = $("#save-btn");
+  btn.disabled = !v;
+  btn.textContent = v ? "Update & preview *" : "Update & preview";
+  document.body.classList.toggle("is-dirty", !!v);
+}
+
+function showLogin(show) {
+  $("#login-view").hidden = !show;
+  $("#cms-view").hidden = show;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+function escapeAttr(s) {
+  return escapeHtml(s).replaceAll('"', "&quot;");
+}
+
+function getByPath(obj, path) {
+  return path.split(".").reduce((a, k) => (a == null ? a : a[k]), obj);
+}
+
+function setByPath(obj, path, value) {
+  const parts = path.split(".");
+  let cur = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    const k = parts[i];
+    if (cur[k] == null || typeof cur[k] !== "object") cur[k] = {};
+    cur = cur[k];
+  }
+  cur[parts[parts.length - 1]] = value;
+}
+
+function field(label, path, value, type = "text") {
+  const id = path.replace(/[^a-z0-9]/gi, "_");
+  const isArea =
+    type === "textarea" || (typeof value === "string" && value.length > 90);
+  const control = isArea
+    ? `<textarea data-path="${path}" id="${id}">${escapeHtml(value ?? "")}</textarea>`
+    : type === "checkbox"
+      ? `<input type="checkbox" data-path="${path}" id="${id}" ${value ? "checked" : ""} />`
+      : `<input type="${type}" data-path="${path}" id="${id}" value="${escapeAttr(value ?? "")}" />`;
+  return `<div class="field ${isArea ? "full" : ""}"><label for="${id}">${label}</label>${control}</div>`;
+}
+
+function bindFields(root = $("#editor-wrap")) {
+  root.querySelectorAll("[data-path]").forEach((el) => {
+    const handler = () => {
+      const path = el.getAttribute("data-path");
+      let value;
+      if (el.type === "checkbox") value = el.checked;
+      else if (el.getAttribute("data-array") === "true") {
+        value = el.value
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean);
+      } else if (el.getAttribute("data-json") === "true") {
+        try {
+          value = JSON.parse(el.value);
+          el.classList.remove("invalid");
+        } catch {
+          el.classList.add("invalid");
+          return;
+        }
+      } else value = el.value;
+      setByPath(state.data, path, value);
+      setDirty(true);
+    };
+    el.addEventListener("input", handler);
+    el.addEventListener("change", handler);
+  });
+}
+
+function allNavEntries() {
+  return {
+    ...QUOTE_NAV,
+    ...state.collections,
+  };
+}
+
+function setQuoteWorkspace(on) {
+  state.quoteMode = !!on;
+  document.body.classList.toggle("quote-workspace", state.quoteMode);
+  const saveBtn = $("#save-btn");
+  const reloadBtn = $("#reload-btn");
+  const previewBtn = $("#preview-btn");
+  const hint = document.querySelector(".shortcut-hint");
+  if (saveBtn) saveBtn.hidden = state.quoteMode;
+  if (reloadBtn) reloadBtn.hidden = state.quoteMode;
+  if (previewBtn) previewBtn.hidden = state.quoteMode;
+  if (hint) hint.hidden = state.quoteMode;
+}
+
+function renderNav() {
+  const nav = $("#nav");
+  const entries = allNavEntries();
+  nav.innerHTML = Object.entries(entries)
+    .map(
+      ([key, label]) =>
+        `<button type="button" data-key="${key}" class="${
+          state.current === key ? "active" : ""
+        }${key === "quotations" ? " nav-quote" : ""}">${escapeHtml(label)}</button>`,
+    )
+    .join("");
+  nav.querySelectorAll("button").forEach((btn) => {
+    btn.onclick = () => {
+      if (btn.dataset.key === "quotations") openQuotations();
+      else openCollection(btn.dataset.key);
+    };
+  });
+}
+
+function openQuotations() {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  state.current = "quotations";
+  state.data = null;
+  setDirty(false);
+  setQuoteWorkspace(true);
+  $("#panel-title").textContent = QUOTE_NAV.quotations;
+  $("#panel-sub").textContent =
+    "Create quotations, collect Razorpay payments, invoices & subscriptions — powered by DisplayAvenue OS.";
+  renderNav();
+  renderQuotationsHub();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+}
+
+function renderQuotationsHub() {
+  const wrap = $("#editor-wrap");
+  const links = [
+    { href: `${OS_BASE}/app/quotations`, label: "Quotations dashboard", desc: "Pipeline, status, advances due", primary: true },
+    { href: `${OS_BASE}/app/quotations/create`, label: "New quotation", desc: "GST-ready builder with line items" },
+    { href: `${OS_BASE}/app/quote-clients`, label: "Clients", desc: "GSTIN, state, billing contacts" },
+    { href: `${OS_BASE}/app/quote-services`, label: "Service catalog", desc: "Reusable priced line items" },
+    { href: `${OS_BASE}/app/quote-settings`, label: "Company & GST settings", desc: "Mediashouter / DisplayAvenue profile" },
+  ];
+  wrap.innerHTML = `
+    <div class="quote-hub">
+      <div class="help-banner">
+        <strong>Quotations &amp; Payments</strong> live inside DisplayAvenue OS
+        (secure Postgres ledger + Razorpay webhooks). Use these shortcuts from your
+        site admin — payment links you send clients stay on
+        <code>${OS_BASE}/q/…</code>.
+      </div>
+      <div class="quote-hero">
+        <div>
+          <h3>Launch quotation workspace</h3>
+          <p>
+            Create quotes, send WhatsApp / email links, collect advances, and issue
+            tax invoices. Sign in with your DisplayAvenue OS admin account
+            (same team login as the OS app).
+          </p>
+        </div>
+        <div class="quote-hero-actions">
+          <a class="btn btn-gold" href="${OS_BASE}/app/quotations" target="_blank" rel="noreferrer">Open quotations ↗</a>
+          <a class="btn btn-ghost" href="${OS_BASE}/app/quotations/create" target="_blank" rel="noreferrer">New quotation ↗</a>
+          <a class="btn btn-ghost" href="${OS_BASE}/login" target="_blank" rel="noreferrer">OS sign in ↗</a>
+        </div>
+      </div>
+      <div class="quote-actions">
+        ${links
+          .map(
+            (l) => `
+          <a class="quote-action${l.primary ? " quote-action--primary" : ""}" href="${escapeHtml(l.href)}" target="_blank" rel="noreferrer">
+            <strong>${escapeHtml(l.label)}</strong>
+            <span>${escapeHtml(l.desc)}</span>
+          </a>`,
+          )
+          .join("")}
+      </div>
+      <div class="card">
+        <h3>How it connects to this admin</h3>
+        <ul class="quote-notes">
+          <li>This Live Editor still manages website content (pages, SEO, reviews).</li>
+          <li>Money, GST invoices, receipts, and subscriptions stay on OS so webhooks and ledgers are durable.</li>
+          <li>After you send a quote, share the secure client link — they accept &amp; pay without logging into admin.</li>
+          <li>Company profile defaults: Mediashouter (legal) / DisplayAvenue (brand), GSTIN 27ALJPY9454C1ZJ, phone 9222122333 — edit under Quote settings.</li>
+        </ul>
+      </div>
+    </div>`;
+}
+
+async function openCollection(key) {
+  if (state.dirty) {
+    const leave = confirm("You have unpublished edits. Leave without Update?");
+    if (!leave) return;
+  }
+  try {
+    const headers = {};
+    if (state.token) {
+      headers.Authorization = `Bearer ${state.token}`;
+      headers["X-DA-Admin-Token"] = state.token;
+    }
+    const url = `${API}?action=get&collection=${encodeURIComponent(key)}`;
+    const r = await fetch(url, { credentials: "include", headers });
+    const json = await r.json().catch(() => ({ ok: false, error: "Load failed" }));
+    if (r.status === 401 || json.code === "auth") {
+      state.authed = false;
+      state.token = "";
+      localStorage.removeItem(TOKEN_KEY);
+      showLogin(true);
+      toast("Session expired - log in once to continue", "err");
+      return;
+    }
+    if (!r.ok || json.ok === false) throw new Error(json.error || "Load failed");
+    state.current = key;
+    state.data = json.data;
+    setDirty(false);
+    setQuoteWorkspace(false);
+    $("#panel-title").textContent = state.collections[key] || key;
+    $("#panel-sub").textContent = `Editing ${key}.json - Update publishes live. Preview refreshes automatically.`;
+    renderNav();
+    renderEditor();
+    setPreview(previewRouteFor(key));
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.querySelector(".main")?.scrollTo?.({ top: 0, behavior: "auto" });
+    if (key === "contact") loadContactLeads();
+  } catch (e) {
+    toast(e.message, "err");
+  }
+}
+
+function renderEditor() {
+  const wrap = $("#editor-wrap");
+  const d = state.data;
+  const key = state.current;
+  if (!d || !key) {
+    wrap.innerHTML = `<p class="empty">Select a collection from the left.</p>`;
+    return;
+  }
+  const map = {
+    company: renderCompany,
+    home: renderHome,
+    services: () => renderCatalog(d, "Service"),
+    industries: () => renderCatalog(d, "Industry"),
+    packages: () => renderCatalog(d, "Package"),
+    solutions: () => renderCatalog(d, "Solution"),
+    ai: () => renderCatalog(d, "AI Suite"),
+    tools: () => renderCatalog(d, "Tool category"),
+    cases: () => renderCatalog(d, "Case study"),
+    projects: () => renderCatalog(d, "Project"),
+    resources: () => renderCatalog(d, "Resource"),
+    combos: () => renderCatalog(d, "Industry × Service page"),
+    content: renderContent,
+    "google-reviews": renderGoogleReviews,
+    awards: renderAwards,
+    certifications: renderCertifications,
+    contact: renderContactForm,
+    citations: renderCitations,
+    backlinks: renderBacklinks,
+    tracking: renderTracking,
+    settings: renderSettings,
+  };
+  wrap.innerHTML = (map[key] || (() => `<pre>${escapeHtml(JSON.stringify(d, null, 2))}</pre>`))(d);
+  bindFields(wrap);
+  wrap.querySelectorAll("[data-action]").forEach((btn) => {
+    btn.onclick = () => handleAction(btn.dataset.action, btn.dataset.index);
+  });
+}
+
+function card(title, body) {
+  return `<section class="card"><h3>${title}</h3><div class="grid">${body}</div></section>`;
+}
+
+function renderCompany(d) {
+  const nav = (d.navItems || [])
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.label || "Nav item")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-nav" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Label", `navItems.${i}.label`, item.label)}
+          ${field("Href", `navItems.${i}.href`, item.href)}
+          ${field("Mega key (false or whatWeDo/industries/solutions/aiPlatform)", `navItems.${i}.mega`, item.mega === false ? "false" : item.mega || "")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  const stats = Object.keys(d.stats || {})
+    .map((k) => field(k, `stats.${k}`, d.stats[k]))
+    .join("");
+
+  return `
+    ${card(
+      "Brand & contact",
+      `
+      ${field("Name", "name", d.name)}
+      ${field("Short name", "shortName", d.shortName)}
+      ${field("Tagline", "tagline", d.tagline)}
+      ${field("Website", "website", d.website)}
+      ${field("Phone", "phone", d.phone)}
+      ${field("Phone href", "phoneHref", d.phoneHref)}
+      ${field("WhatsApp", "whatsapp", d.whatsapp)}
+      ${field("WhatsApp href", "whatsappHref", d.whatsappHref)}
+      ${field("Email", "email", d.email)}
+      ${field("Email href", "emailHref", d.emailHref)}
+      ${field("Client login URL", "clientLogin", d.clientLogin)}
+      ${field("Announcement bar", "announcement", d.announcement, "textarea")}
+    `,
+    )}
+    ${card(
+      "Address",
+      `
+      ${field("City", "address.city", d.address?.city)}
+      ${field("Hours", "address.hours", d.address?.hours)}
+      <div class="field full"><label>Address lines (one per line)</label>
+        <textarea data-path="address.lines" data-array="true">${escapeHtml((d.address?.lines || []).join("\n"))}</textarea>
+      </div>
+    `,
+    )}
+    ${card(
+      "Socials",
+      `
+      ${field("Facebook", "socials.facebook", d.socials?.facebook)}
+      ${field("Instagram", "socials.instagram", d.socials?.instagram)}
+      ${field("LinkedIn", "socials.linkedin", d.socials?.linkedin)}
+      ${field("YouTube", "socials.youtube", d.socials?.youtube)}
+    `,
+    )}
+    ${card(
+      "Google Maps / GMB",
+      `
+      ${field("Business name on Google", "googleMaps.name", d.googleMaps?.name || "")}
+      ${field("Share / GMB link", "googleMaps.shareUrl", d.googleMaps?.shareUrl || "")}
+      ${field("Google profile / search URL", "googleMaps.profileUrl", d.googleMaps?.profileUrl || "")}
+      ${field("Maps embed URL", "googleMaps.embedUrl", d.googleMaps?.embedUrl || "", "textarea")}
+      ${field("Knowledge Graph ID (kgmid)", "googleMaps.kgmid", d.googleMaps?.kgmid || "")}
+      ${field("Place ID (from Sync)", "googleMaps.placeId", d.googleMaps?.placeId || "")}
+      ${field("Place search query", "googleMaps.placeQuery", d.googleMaps?.placeQuery || "")}
+      <p class="hint">Use Google Reviews (GMB) in the sidebar to sync live reviews onto the homepage.</p>
+    `,
+    )}
+    ${card("Stats (header / trust)", stats)}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Header navigation</h3>
+        <button type="button" class="btn btn-gold" data-action="add-nav">Add nav item</button>
+      </div>
+      ${nav || "<p class='empty'>No nav items</p>"}
+    </section>
+  `;
+}
+
+function renderHome(d) {
+  return card(
+    "Hero",
+    `
+    ${field("Brand / eyebrow", "hero.eyebrow", d.hero?.eyebrow)}
+    ${field("Title (before accent)", "hero.titleBefore", d.hero?.titleBefore)}
+    ${field("Title accent", "hero.titleAccent", d.hero?.titleAccent)}
+    ${field("Lead", "hero.lead", d.hero?.lead, "textarea")}
+    ${field("Primary CTA", "hero.primaryCta", d.hero?.primaryCta)}
+    ${field("Secondary CTA", "hero.secondaryCta", d.hero?.secondaryCta)}
+    ${field("Hero image URL", "hero.image", d.hero?.image)}
+    ${field("Hero image alt", "hero.imageAlt", d.hero?.imageAlt)}
+    ${field("Trust label", "trustLabel", d.trustLabel)}
+    ${field("Services title", "servicesTitle", d.servicesTitle)}
+    ${field("Services subtitle", "servicesSub", d.servicesSub)}
+  `,
+  );
+}
+
+function blankCatalogItem(kind) {
+  const slug = `new-${kind.toLowerCase().replace(/\s+/g, "-")}-${Date.now().toString(36)}`;
+  return {
+    slug,
+    kind: kind.toLowerCase().includes("service")
+      ? "service"
+      : kind.toLowerCase().includes("industry")
+        ? "industry"
+        : "service",
+    title: `New ${kind}`,
+    category: kind,
+    icon: "grid",
+    color: "#0056ff",
+    eyebrow: kind,
+    headline: `New ${kind} headline`,
+    summary: "Edit this summary in the CMS.",
+    benefits: [
+      { title: "Benefit 1", desc: "Describe the benefit." },
+      { title: "Benefit 2", desc: "Describe the benefit." },
+    ],
+    deliverables: ["Deliverable 1", "Deliverable 2", "Deliverable 3"],
+    process: [
+      { title: "Discover", desc: "Step description" },
+      { title: "Plan", desc: "Step description" },
+      { title: "Launch", desc: "Step description" },
+      { title: "Optimize", desc: "Step description" },
+    ],
+    faqs: [{ q: "Sample question?", a: "Sample answer." }],
+    related: [
+      { label: "Contact", href: "/contact" },
+      { label: "Packages", href: "/packages" },
+    ],
+    metrics: [
+      { value: "850+", label: "Projects" },
+      { value: "98%", label: "Satisfaction" },
+    ],
+    ctaLabel: "Get Free Proposal",
+  };
+}
+
+function renderCatalog(d, kindLabel) {
+  if (!Array.isArray(d.items)) d.items = [];
+  const items = d.items
+    .map((item, i) => {
+      const benefits = (item.benefits || [])
+        .map(
+          (b, bi) => `
+        <div class="grid">
+          ${field("Benefit title", `items.${i}.benefits.${bi}.title`, b.title)}
+          ${field("Benefit desc", `items.${i}.benefits.${bi}.desc`, b.desc, "textarea")}
+        </div>`,
+        )
+        .join("");
+      const faqs = (item.faqs || [])
+        .map(
+          (f, fi) => `
+        <div class="grid">
+          ${field("FAQ question", `items.${i}.faqs.${fi}.q`, f.q)}
+          ${field("FAQ answer", `items.${i}.faqs.${fi}.a`, f.a, "textarea")}
+        </div>`,
+        )
+        .join("");
+      return `
+      <details class="list-item" ${i < 3 ? "open" : ""}>
+        <summary class="list-item-head">
+          <strong>${escapeHtml(item.title || item.slug || kindLabel)}</strong>
+          <span style="display:flex;gap:.5rem;align-items:center">
+            <code>${escapeHtml(item.slug || "")}</code>
+            <button type="button" class="btn btn-ghost" data-action="del-item" data-index="${i}">Delete</button>
+          </span>
+        </summary>
+        <div class="grid" style="margin-top:.75rem">
+          ${field("Slug (URL)", `items.${i}.slug`, item.slug)}
+          ${field("Title", `items.${i}.title`, item.title)}
+          ${field("Category", `items.${i}.category`, item.category)}
+          ${field("Icon key", `items.${i}.icon`, item.icon)}
+          ${field("Color", `items.${i}.color`, item.color, "color")}
+          ${field("Eyebrow", `items.${i}.eyebrow`, item.eyebrow)}
+          ${field("Headline", `items.${i}.headline`, item.headline, "textarea")}
+          ${field("Summary", `items.${i}.summary`, item.summary, "textarea")}
+          ${field("CTA label", `items.${i}.ctaLabel`, item.ctaLabel)}
+          <div class="field full"><label>Deliverables (one per line)</label>
+            <textarea data-path="items.${i}.deliverables" data-array="true">${escapeHtml((item.deliverables || []).join("\n"))}</textarea>
+          </div>
+        </div>
+        <h4 style="margin:1rem 0 .5rem">Benefits</h4>
+        ${benefits || "<p class='empty'>No benefits</p>"}
+        <button type="button" class="btn btn-ghost" data-action="add-benefit" data-index="${i}">+ Benefit</button>
+        <h4 style="margin:1rem 0 .5rem">FAQs</h4>
+        ${faqs || "<p class='empty'>No FAQs</p>"}
+        <button type="button" class="btn btn-ghost" data-action="add-faq" data-index="${i}">+ FAQ</button>
+        <div class="field full" style="margin-top:1rem"><label>Related links JSON</label>
+          <textarea data-path="items.${i}.related" data-json="true">${escapeHtml(JSON.stringify(item.related || [], null, 2))}</textarea>
+        </div>
+        <div class="field full"><label>Process JSON</label>
+          <textarea data-path="items.${i}.process" data-json="true">${escapeHtml(JSON.stringify(item.process || [], null, 2))}</textarea>
+        </div>
+        <div class="field full"><label>Metrics JSON</label>
+          <textarea data-path="items.${i}.metrics" data-json="true">${escapeHtml(JSON.stringify(item.metrics || [], null, 2))}</textarea>
+        </div>
+      </details>`;
+    })
+    .join("");
+
+  return `
+    <section class="card">
+      <div class="list-item-head">
+        <div>
+          <h3>${escapeHtml(kindLabel)} pages (${d.items.length})</h3>
+          <p class="hint">Each item is a full website page. Slug becomes the URL.</p>
+        </div>
+        <button type="button" class="btn btn-gold" data-action="add-item" data-index="${escapeAttr(kindLabel)}">Add ${escapeHtml(kindLabel)}</button>
+      </div>
+      ${items || "<p class='empty'>No items yet</p>"}
+    </section>
+  `;
+}
+
+function renderGoogleReviews(d) {
+  const reviews = (d.reviews || [])
+    .map(
+      (r, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>Review ${i + 1}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-google-review" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Author", `reviews.${i}.author`, r.author)}
+          ${field("Rating", `reviews.${i}.rating`, r.rating, "number")}
+          ${field("When", `reviews.${i}.relativeTime`, r.relativeTime)}
+          ${field("Photo URL", `reviews.${i}.profilePhotoUrl`, r.profilePhotoUrl || "")}
+          ${field("Author URL", `reviews.${i}.authorUrl`, r.authorUrl || "")}
+          ${field("Review text", `reviews.${i}.text`, r.text, "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    ${card(
+      "Google Business Profile sync",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Homepage shows these reviews <strong>above the explore directory</strong>.
+        Click <strong>Sync from Google</strong> to pull live rating + reviews via Places API
+        (needs <code>places_api_key</code> in <code>admin/config.php</code>).
+      </p>
+      ${field("Enabled (show on homepage)", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Section title", "title", d.title)}
+      ${field("Section subtitle", "sub", d.sub, "textarea")}
+      ${field("Business name", "businessName", d.businessName)}
+      ${field("Place ID", "placeId", d.placeId || "")}
+      ${field("Place search query", "placeQuery", d.placeQuery || "")}
+      ${field("Rating", "rating", d.rating, "number")}
+      ${field("Review count", "reviewCount", d.reviewCount, "number")}
+      ${field("Profile URL", "profileUrl", d.profileUrl || "")}
+      ${field("Write review URL", "writeReviewUrl", d.writeReviewUrl || "")}
+      ${field("Maps URL", "mapsUrl", d.mapsUrl || "")}
+      ${field("Last synced", "lastSyncedAt", d.lastSyncedAt || "")}
+      ${field("Sync source", "syncSource", d.syncSource || "")}
+      <div class="field full" style="display:flex;gap:.65rem;flex-wrap:wrap;align-items:center">
+        <button type="button" class="btn btn-gold" data-action="sync-google-reviews">Sync from Google</button>
+        <button type="button" class="btn btn-ghost" data-action="add-google-review">Add review manually</button>
+        <span class="hint" style="margin:0">Save after sync if you edit fields by hand.</span>
+      </div>
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Reviews on homepage</h3>
+      </div>
+      ${reviews || "<p class='empty'>No reviews yet - sync from Google or add manually.</p>"}
+    </section>
+  `;
+}
+
+function renderAwards(d) {
+  const items = (d.items || [])
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.title || `Award ${i + 1}`)}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-award" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("ID", `items.${i}.id`, item.id || "")}
+          ${field("Title", `items.${i}.title`, item.title || "")}
+          ${field("Issuer", `items.${i}.issuer`, item.issuer || "")}
+          ${field("Year", `items.${i}.year`, item.year || "")}
+          ${field("Category", `items.${i}.category`, item.category || "")}
+          ${field("Image URL", `items.${i}.image`, item.image || "")}
+          ${field("Featured on homepage", `items.${i}.featured`, item.featured !== false, "checkbox")}
+          ${field("Summary", `items.${i}.summary`, item.summary || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    ${card(
+      "Awards page & homepage section",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Homepage shows featured awards <strong>before the explore directory</strong>.
+        Upload images to <code>/images/awards/</code> or paste any image URL.
+      </p>
+      ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Page title", "title", d.title || "")}
+      ${field("Page subtitle", "sub", d.sub || "", "textarea")}
+      ${field("SEO title", "seo.title", d.seo?.title || "")}
+      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+      ${field("Homepage section title", "homeTitle", d.homeTitle || "")}
+      ${field("Homepage section subtitle", "homeSub", d.homeSub || "", "textarea")}
+      ${field("Homepage awards limit", "homeAwardsLimit", d.homeAwardsLimit ?? 6, "number")}
+      ${field("Homepage certs limit", "homeCertsLimit", d.homeCertsLimit ?? 8, "number")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Awards (${(d.items || []).length})</h3>
+        <button type="button" class="btn btn-gold" data-action="add-award">Add award</button>
+      </div>
+      ${items || "<p class='empty'>No awards yet</p>"}
+    </section>
+  `;
+}
+
+function renderCertifications(d) {
+  const items = (d.items || [])
+    .map(
+      (item, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(item.title || `Certificate ${i + 1}`)}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-cert" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("ID", `items.${i}.id`, item.id || "")}
+          ${field("Title", `items.${i}.title`, item.title || "")}
+          ${field("Issuer", `items.${i}.issuer`, item.issuer || "")}
+          ${field("Brand (Google, Meta…)", `items.${i}.brand`, item.brand || "")}
+          ${field("Category", `items.${i}.category`, item.category || "")}
+          ${field("Year", `items.${i}.year`, item.year || "")}
+          ${field("Image URL", `items.${i}.image`, item.image || "")}
+          ${field("Featured on homepage", `items.${i}.featured`, item.featured !== false, "checkbox")}
+          ${field("Credential / summary", `items.${i}.credential`, item.credential || "", "textarea")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    ${card(
+      "Certifications page",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Edit certificates here. Images live in <code>/images/certs/</code> (or any URL).
+        Featured items appear on the homepage awards &amp; certifications section.
+      </p>
+      ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Page title", "title", d.title || "")}
+      ${field("Page subtitle", "sub", d.sub || "", "textarea")}
+      ${field("SEO title", "seo.title", d.seo?.title || "")}
+      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Certificates (${(d.items || []).length})</h3>
+        <button type="button" class="btn btn-gold" data-action="add-cert">Add certificate</button>
+      </div>
+      ${items || "<p class='empty'>No certificates yet</p>"}
+    </section>
+  `;
+}
+
+function renderContactForm(d) {
+  const f = d.fields || {};
+  return `
+    ${card(
+      "Contact page & form",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Form submissions are saved under <code>admin/.leads/</code> and emailed to the notify address when the server mailer works.
+        Edit copy, labels, and notification email here.
+      </p>
+      ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Badge / title", "title", d.title || "")}
+      ${field("Headline", "headline", d.headline || "")}
+      ${field("Lead paragraph", "lead", d.lead || "", "textarea")}
+      ${field("Notify email (inbox for leads)", "notifyEmail", d.notifyEmail || "")}
+      ${field("Submit button label", "submitLabel", d.submitLabel || "")}
+      ${field("WhatsApp fallback if send fails", "whatsappFallback", d.whatsappFallback !== false, "checkbox")}
+      ${field("Success title", "successTitle", d.successTitle || "")}
+      ${field("Success message", "successMessage", d.successMessage || "", "textarea")}
+      ${field("SEO title", "seo.title", d.seo?.title || "")}
+      ${field("SEO description", "seo.description", d.seo?.description || "", "textarea")}
+    `,
+    )}
+    ${card(
+      "Form field labels",
+      `
+      ${field("Name label", "fields.nameLabel", f.nameLabel || "")}
+      ${field("Name placeholder", "fields.namePlaceholder", f.namePlaceholder || "")}
+      ${field("Phone label", "fields.phoneLabel", f.phoneLabel || "")}
+      ${field("Phone placeholder", "fields.phonePlaceholder", f.phonePlaceholder || "")}
+      ${field("Email label", "fields.emailLabel", f.emailLabel || "")}
+      ${field("Email placeholder", "fields.emailPlaceholder", f.emailPlaceholder || "")}
+      ${field("Business label", "fields.businessLabel", f.businessLabel || "")}
+      ${field("Business placeholder", "fields.businessPlaceholder", f.businessPlaceholder || "")}
+      ${field("Message label", "fields.messageLabel", f.messageLabel || "")}
+      ${field("Message placeholder", "fields.messagePlaceholder", f.messagePlaceholder || "", "textarea")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Recent leads</h3>
+        <button type="button" class="btn btn-ghost" data-action="refresh-leads">Refresh leads</button>
+      </div>
+      <div id="contact-leads-panel"><p class="hint">Click Refresh leads to load submissions.</p></div>
+    </section>
+  `;
+}
+
+function renderContent(d) {
+  const testimonials = (d.testimonials || [])
+    .map(
+      (t, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(t.name || "Testimonial")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-testimonial" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Quote", `testimonials.${i}.quote`, t.quote, "textarea")}
+          ${field("Name", `testimonials.${i}.name`, t.name)}
+          ${field("Title", `testimonials.${i}.title`, t.title)}
+          ${field("Rating", `testimonials.${i}.rating`, t.rating, "number")}
+        </div>
+      </div>`,
+    )
+    .join("");
+
+  return `
+    <section class="card">
+      <div class="list-item-head">
+        <h3>Testimonials</h3>
+        <button type="button" class="btn btn-gold" data-action="add-testimonial">Add testimonial</button>
+      </div>
+      ${testimonials}
+    </section>
+    ${card(
+      "Client logos & footer CTA",
+      `
+      <div class="field full"><label>Client logos (one per line)</label>
+        <textarea data-path="clientLogos" data-array="true">${escapeHtml((d.clientLogos || []).join("\n"))}</textarea>
+      </div>
+      ${field("Footer CTA title", "footerCta.title", d.footerCta?.title)}
+      ${field("Footer CTA sub", "footerCta.sub", d.footerCta?.sub, "textarea")}
+    `,
+    )}
+  `;
+}
+
+function renderTracking(d) {
+  return `
+  <div class="card">
+    <h3>Tracking &amp; ad pixels</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
+      Google Tag Manager, Google Analytics, Google Ads, Meta (Facebook) Pixel, and custom scripts from any ad or AI platform.
+      Leave IDs blank until you have them - then <strong>Save changes</strong> and refresh the website (no rebuild needed).
+    </p>
+    <div class="grid">
+      ${field("Enable all tracking", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Google Tag Manager ID (GTM-…)", "googleTagManagerId", d.googleTagManagerId || d.gtmId || "")}
+      ${field("Google Analytics ID (G-…)", "googleAnalyticsId", d.googleAnalyticsId || d.gaId || "")}
+      ${field("Google Ads tag ID (AW-…)", "googleAdsId", d.googleAdsId || "")}
+      ${field("Meta Pixel ID", "metaPixelId", d.metaPixelId || "")}
+      ${field("Google Search Console verification", "googleSiteVerification", d.googleSiteVerification || "")}
+    </div>
+    <div class="field full" style="margin-top:1rem">
+      <label for="tracking_head_scripts">Additional &lt;head&gt; scripts</label>
+      <textarea data-path="headScripts" id="tracking_head_scripts" rows="8" placeholder="Paste full &lt;script&gt; tags from Google Ads, LinkedIn, Microsoft, TikTok, AI ad platforms, etc.">${escapeHtml(d.headScripts || "")}</textarea>
+      <p class="hint" style="color:#888;font-size:.85rem;margin-top:.5rem">Paste complete <code>&lt;script&gt;…&lt;/script&gt;</code> blocks exactly as your platform provides.</p>
+    </div>
+    <div class="field full" style="margin-top:1rem">
+      <label for="tracking_body_html">Additional body snippets (noscript / pixels)</label>
+      <textarea data-path="bodyStartHtml" id="tracking_body_html" rows="6" placeholder="Paste &lt;noscript&gt; or pixel fallback HTML">${escapeHtml(d.bodyStartHtml || "")}</textarea>
+    </div>
+  </div>`;
+}
+
+function renderCitations(d) {
+  const dirs = (d.directories || [])
+    .map(
+      (row, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(row.name || "Directory")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-citation" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Name", `directories.${i}.name`, row.name)}
+          ${field("URL", `directories.${i}.url`, row.url)}
+          ${field("Category", `directories.${i}.category`, row.category)}
+          ${field("Priority", `directories.${i}.priority`, row.priority)}
+          ${field("Authority hint", `directories.${i}.daHint`, row.daHint)}
+          ${field("NAP / fields", `directories.${i}.napFields`, row.napFields)}
+          ${field("Notes", `directories.${i}.notes`, row.notes, "textarea")}
+          ${field("ID", `directories.${i}.id`, row.id)}
+        </div>
+      </div>`,
+    )
+    .join("");
+  const templates = (d.templates || [])
+    .map(
+      (row, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(row.name || "Template")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-outreach-template" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Name", `templates.${i}.name`, row.name)}
+          ${field("Subject", `templates.${i}.subject`, row.subject)}
+          ${field("Body", `templates.${i}.body`, row.body, "textarea")}
+          ${field("ID", `templates.${i}.id`, row.id)}
+        </div>
+      </div>`,
+    )
+    .join("");
+  return `
+  ${card(
+    "Citation kit settings",
+    `
+    ${field("Title", "title", d.title)}
+    ${field("Lead", "lead", d.lead, "textarea")}
+    ${field("Optional Google Sheet URL", "sheetUrl", d.sheetUrl || "")}
+  `,
+  )}
+  <div class="card">
+    <h3>Directories</h3>
+    <p class="hint">Public page: /free-tools/citation-directory</p>
+    ${dirs || `<p class="empty">No directories yet.</p>`}
+    <button type="button" class="btn btn-gold" data-action="add-citation">Add directory</button>
+  </div>
+  <div class="card">
+    <h3>Outreach templates</h3>
+    ${templates || `<p class="empty">No templates yet.</p>`}
+    <button type="button" class="btn btn-gold" data-action="add-outreach-template">Add template</button>
+  </div>`;
+}
+
+function renderBacklinks(d) {
+  const workflow = (d.workflow || []).join("\n");
+  const items = (d.items || [])
+    .map(
+      (row, i) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(row.domain || "Prospect")}</strong>
+          <button type="button" class="btn btn-ghost" data-action="del-backlink" data-index="${i}">Delete</button>
+        </div>
+        <div class="grid">
+          ${field("Domain", `items.${i}.domain`, row.domain)}
+          ${field("Live URL (when published)", `items.${i}.url`, row.url)}
+          ${field("Target URL on our site", `items.${i}.targetUrl`, row.targetUrl)}
+          ${field("Type", `items.${i}.type`, row.type)}
+          ${field("Status (prospect/outreach-sent/in-progress/live/lost/rejected)", `items.${i}.status`, row.status)}
+          ${field("Contact email", `items.${i}.contactEmail`, row.contactEmail)}
+          ${field("DA estimate", `items.${i}.daEstimate`, row.daEstimate)}
+          ${field("Anchor", `items.${i}.anchor`, row.anchor)}
+          ${field("Next action", `items.${i}.nextAction`, row.nextAction)}
+          ${field("Last touched (YYYY-MM-DD)", `items.${i}.lastTouched`, row.lastTouched)}
+          ${field("Notes", `items.${i}.notes`, row.notes, "textarea")}
+          ${field("ID", `items.${i}.id`, row.id)}
+        </div>
+      </div>`,
+    )
+    .join("");
+  return `
+  ${card(
+    "Backlink tracker",
+    `
+    ${field("Title", "title", d.title)}
+    ${field("Notes", "notes", d.notes, "textarea")}
+    ${field("Optional Google Sheet URL", "sheetUrl", d.sheetUrl || "")}
+    <div class="field full"><label>Workflow (one step per line)</label>
+      <textarea data-path="workflow" data-array="true">${escapeHtml(workflow)}</textarea>
+    </div>
+  `,
+  )}
+  <div class="card">
+    <h3>Outreach pipeline</h3>
+    <p class="hint">Admin-only tracker. Prefer citations, partners, and resource mentions over bought links.</p>
+    ${items || `<p class="empty">No prospects yet.</p>`}
+    <button type="button" class="btn btn-gold" data-action="add-backlink">Add prospect</button>
+  </div>`;
+}
+
+function renderSettings(d) {
+  const pingEngines = d.seoPings?.engines || {};
+  const pingRows = Object.keys(pingEngines)
+    .map((name) => {
+      const eng = pingEngines[name] || {};
+      const ok = eng.ok ? "OK" : "fail";
+      const status = eng.status ? ` HTTP ${eng.status}` : "";
+      return `<li><code>${escapeHtml(name)}</code>: ${ok}${status}</li>`;
+    })
+    .join("");
+  return `
+  ${card(
+    "Settings",
+    `
+    ${field("Site name", "siteName", d.siteName)}
+    ${field("Site URL", "siteUrl", d.siteUrl)}
+    ${field("Demo base path", "demoBasePath", d.demoBasePath)}
+    ${field("Notes", "notes", d.notes, "textarea")}
+  `,
+  )}
+  <div class="card">
+    <h3>Auto sitemap &amp; AI discovery</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 1rem">
+      Every CMS save rebuilds <code>sitemap.xml</code>, <code>llms.txt</code>, and <code>robots.txt</code>,
+      then notifies engines via <strong>IndexNow</strong> (Bing + partners) so Search Console and AI tools
+      (ChatGPT, Claude, Perplexity, etc.) can discover fresh URLs. Submit
+      <code>https://displayavenue.com/sitemap.xml</code> once in Google Search Console → Sitemaps if you have not already
+      (Google no longer supports the old public ping URL).
+    </p>
+    <p style="margin:0 0 .75rem;font-size:.9rem">
+      <strong>Last sync:</strong> ${escapeHtml(d.seoSyncedAt || "not yet")}<br />
+      <strong>URLs in sitemap:</strong> ${escapeHtml(String(d.sitemapUrlCount ?? "—"))}<br />
+      <strong>Sitemap:</strong> <a href="${escapeHtml(d.sitemapUrl || "https://displayavenue.com/sitemap.xml")}" target="_blank" rel="noreferrer">${escapeHtml(d.sitemapUrl || "https://displayavenue.com/sitemap.xml")}</a>
+    </p>
+    ${
+      pingRows
+        ? `<ul style="margin:0 0 1rem;padding-left:1.2rem;font-size:.88rem;color:var(--muted)">${pingRows}</ul>`
+        : ""
+    }
+    <button type="button" class="btn" data-action="sync-seo">Rebuild sitemap &amp; ping engines now</button>
+  </div>
+  <div class="card">
+    <h3>Marketing tags</h3>
+    <p style="color:var(--muted);font-size:.92rem;line-height:1.55;margin:0">
+      Add GTM, GA, Google Ads, Meta Pixel, and custom scripts under
+      <strong>Tracking &amp; Pixels</strong> in the left sidebar. You can fill them in anytime later.
+    </p>
+  </div>`;
+}
+
+function handleAction(action, index) {
+  const d = state.data;
+  if (action === "add-nav") {
+    d.navItems = d.navItems || [];
+    d.navItems.push({ label: "New Link", href: "/", mega: false });
+  } else if (action === "del-nav") {
+    d.navItems.splice(Number(index), 1);
+  } else if (action === "add-item") {
+    d.items = d.items || [];
+    d.items.unshift(blankCatalogItem(index || "Item"));
+  } else if (action === "del-item") {
+    if (!confirm("Delete this page item?")) return;
+    d.items.splice(Number(index), 1);
+  } else if (action === "add-benefit") {
+    const item = d.items[Number(index)];
+    item.benefits = item.benefits || [];
+    item.benefits.push({ title: "New benefit", desc: "" });
+  } else if (action === "add-faq") {
+    const item = d.items[Number(index)];
+    item.faqs = item.faqs || [];
+    item.faqs.push({ q: "New question?", a: "" });
+  } else if (action === "add-testimonial") {
+    d.testimonials = d.testimonials || [];
+    d.testimonials.push({ quote: "", name: "", title: "", rating: 5 });
+  } else if (action === "del-testimonial") {
+    d.testimonials.splice(Number(index), 1);
+  } else if (action === "add-google-review") {
+    d.reviews = d.reviews || [];
+    d.reviews.unshift({
+      author: "",
+      rating: 5,
+      relativeTime: "Recently",
+      text: "",
+      profilePhotoUrl: "",
+      authorUrl: "",
+    });
+  } else if (action === "del-google-review") {
+    d.reviews.splice(Number(index), 1);
+  } else if (action === "add-award") {
+    d.items = d.items || [];
+    const n = d.items.length + 1;
+    d.items.unshift({
+      id: `award-${String(n).padStart(2, "0")}`,
+      title: "New award",
+      issuer: "",
+      year: String(new Date().getFullYear()),
+      summary: "",
+      category: "",
+      image: "/images/awards/award-01.jpg",
+      featured: true,
+    });
+  } else if (action === "del-award") {
+    if (!confirm("Delete this award?")) return;
+    d.items.splice(Number(index), 1);
+  } else if (action === "add-cert") {
+    d.items = d.items || [];
+    const n = d.items.length + 1;
+    d.items.unshift({
+      id: `cert-${String(n).padStart(2, "0")}`,
+      title: "New certificate",
+      issuer: "",
+      credential: "",
+      year: String(new Date().getFullYear()),
+      brand: "Google",
+      category: "",
+      image: "/images/certs/cert-01.jpg",
+      featured: true,
+    });
+  } else if (action === "del-cert") {
+    if (!confirm("Delete this certificate?")) return;
+    d.items.splice(Number(index), 1);
+  } else if (action === "refresh-leads") {
+    loadContactLeads();
+    return;
+  } else if (action === "sync-google-reviews") {
+    syncGoogleReviews();
+    return;
+  } else if (action === "sync-seo") {
+    syncSeoArtifacts();
+    return;
+  } else if (action === "add-citation") {
+    d.directories = d.directories || [];
+    d.directories.unshift({
+      id: `dir-${Date.now()}`,
+      name: "New directory",
+      url: "https://",
+      category: "General",
+      daHint: "Medium",
+      napFields: "Name, address, phone, website",
+      notes: "",
+      priority: "Medium",
+    });
+  } else if (action === "del-citation") {
+    if (!confirm("Delete this directory?")) return;
+    d.directories.splice(Number(index), 1);
+  } else if (action === "add-outreach-template") {
+    d.templates = d.templates || [];
+    d.templates.unshift({
+      id: `tpl-${Date.now()}`,
+      name: "New outreach template",
+      subject: "Quick note about {{business_name}}",
+      body: "Hi {{name}},\n\n",
+    });
+  } else if (action === "del-outreach-template") {
+    if (!confirm("Delete this template?")) return;
+    d.templates.splice(Number(index), 1);
+  } else if (action === "add-backlink") {
+    d.items = d.items || [];
+    d.items.unshift({
+      id: `bl-${Date.now()}`,
+      domain: "example.com",
+      url: "",
+      targetUrl: "https://displayavenue.com/",
+      type: "Directory",
+      status: "prospect",
+      contactEmail: "",
+      daEstimate: "",
+      anchor: "DisplayAvenue",
+      notes: "",
+      nextAction: "Send outreach",
+      lastTouched: new Date().toISOString().slice(0, 10),
+    });
+  } else if (action === "del-backlink") {
+    if (!confirm("Delete this prospect?")) return;
+    d.items.splice(Number(index), 1);
+  } else return;
+
+  // Normalize mega fields on nav when typed as "false"
+  if (d.navItems) {
+    d.navItems.forEach((n) => {
+      if (n.mega === "false" || n.mega === "") n.mega = false;
+    });
+  }
+
+  setDirty(true);
+  renderEditor();
+}
+
+async function syncGoogleReviews() {
+  try {
+    toast("Syncing Google reviews…");
+    const res = await api("sync-google-reviews", {
+      placeId: state.data?.placeId || "",
+      placeQuery: state.data?.placeQuery || "",
+    });
+    if (res.data) {
+      state.data = res.data;
+      setDirty(false);
+      renderEditor();
+    }
+    toast(res.message || "Google reviews synced");
+  } catch (e) {
+    toast(e.message, "err");
+    // If sync wrote placeId but no reviews, reload collection
+    if (state.current === "google-reviews") {
+      try {
+        await openCollection("google-reviews");
+      } catch (_) {}
+    }
+  }
+}
+
+async function syncSeoArtifacts() {
+  try {
+    toast("Rebuilding sitemap and pinging Google / Bing / IndexNow…");
+    const res = await api("sync-seo", {});
+    if (state.current === "settings") {
+      await openCollection("settings");
+    }
+    const count = res.seo?.urlCount ?? "—";
+    toast(`Sitemap synced (${count} URLs) and search engines notified`);
+  } catch (e) {
+    toast(e.message, "err");
+  }
+}
+
+async function loadContactLeads() {
+  const panel = document.getElementById("contact-leads-panel");
+  if (!panel) return;
+  panel.innerHTML = `<p class="hint">Loading leads…</p>`;
+  try {
+    const res = await api("list-leads");
+    const leads = res.leads || [];
+    if (!leads.length) {
+      panel.innerHTML = `<p class="empty">No leads yet. Submit the contact form on the website to test.</p>`;
+      return;
+    }
+    panel.innerHTML = leads
+      .slice(0, 40)
+      .map(
+        (l) => `
+      <div class="list-item">
+        <div class="list-item-head">
+          <strong>${escapeHtml(l.name || "Lead")}</strong>
+          <span class="hint" style="margin:0">${escapeHtml(l.createdAt || "")}</span>
+        </div>
+        <p style="margin:.35rem 0;font-size:.9rem">
+          ${escapeHtml(l.phone || "")}${l.email ? " · " + escapeHtml(l.email) : ""}${l.business ? " · " + escapeHtml(l.business) : ""}
+        </p>
+        ${l.message ? `<p style="margin:0;color:var(--muted);font-size:.88rem">${escapeHtml(l.message)}</p>` : ""}
+      </div>`,
+      )
+      .join("");
+  } catch (e) {
+    panel.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load leads")}</p>`;
+  }
+}
+
+async function save() {
+  if (!state.current || !state.data) return;
+  if (state.data.navItems) {
+    state.data.navItems.forEach((n) => {
+      if (n.mega === "false" || n.mega === "") n.mega = false;
+    });
+  }
+  try {
+    await api("save", { collection: state.current, data: state.data });
+    setDirty(false);
+    refreshPreview();
+    toast("Live on the website - preview refreshed");
+  } catch (e) {
+    toast(e.message, "err");
+  }
+}
+
+async function enterApp(collections) {
+  state.authed = true;
+  state.collections = collections || {};
+  showLogin(false);
+  renderNav();
+  if (state.current === "quotations") {
+    openQuotations();
+    return;
+  }
+  const first = state.current || Object.keys(state.collections)[0];
+  if (first) await openCollection(first);
+  else setPreview("/");
+}
+
+async function init() {
+  $("#login-form").onsubmit = async (e) => {
+    e.preventDefault();
+    $("#login-error").hidden = true;
+    try {
+      const res = await api("login", { password: $("#password").value });
+      if (res.token) {
+        state.token = res.token;
+        localStorage.setItem(TOKEN_KEY, res.token);
+      }
+      const status = await api("status");
+      await enterApp(status.collections || {});
+    } catch (err) {
+      $("#login-error").hidden = false;
+      $("#login-error").textContent = err.message;
+    }
+  };
+
+  $("#logout-btn").onclick = async () => {
+    try {
+      await api("logout", {});
+    } catch (_) {}
+    state.authed = false;
+    state.token = "";
+    localStorage.removeItem(TOKEN_KEY);
+    state.current = null;
+    state.data = null;
+    setDirty(false);
+    showLogin(true);
+  };
+
+  $("#save-btn").onclick = save;
+  $("#reload-btn").onclick = () => {
+    if (state.current === "quotations") openQuotations();
+    else if (state.current) openCollection(state.current);
+  };
+  const previewBtn = $("#preview-btn");
+  if (previewBtn) previewBtn.onclick = refreshPreview;
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "s") {
+      e.preventDefault();
+      if (state.dirty) save();
+    }
+  });
+
+  try {
+    const status = await api("status");
+    if (status.authenticated) {
+      await enterApp(status.collections || {});
+    } else if (state.token) {
+      // Token may still be valid even if cookie session is cold
+      try {
+        const again = await api("status");
+        if (again.authenticated) await enterApp(again.collections || {});
+        else showLogin(true);
+      } catch {
+        showLogin(true);
+      }
+    } else showLogin(true);
+  } catch {
+    showLogin(true);
+  }
+}
+
+init();

@@ -1,0 +1,191 @@
+.acred {
+  padding: 2.5rem 0 3.5rem;
+  background:
+    linear-gradient(180deg, #f6f4ef 0%, #eef2f7 48%, #f8fafc 100%);
+  min-height: 60vh;
+}
+
+.acred__hero {
+  max-width: 42rem;
+  margin-bottom: 2rem;
+}
+
+.acred__kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a7040;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.acred__hero h1 {
+  font-family: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: #142033;
+  margin: 0 0 0.75rem;
+  line-height: 1.15;
+}
+
+.acred__hero p {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.acred__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.acred__meta strong {
+  color: #142033;
+}
+
+.acred__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1.5rem;
+}
+
+.acred__chip {
+  appearance: none;
+  border: 1px solid rgba(20, 32, 51, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  color: #334155;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.acred__chip:hover,
+.acred__chip.is-active {
+  background: #142033;
+  border-color: #142033;
+  color: #fff;
+}
+
+.acred__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.15rem;
+}
+
+.acred__grid--certs {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.acred__card {
+  background: transparent;
+}
+
+.acred__media {
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 14px 32px rgba(20, 32, 51, 0.12);
+  background: #fff;
+  border: 1px solid rgba(20, 32, 51, 0.06);
+}
+
+.acred__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.55s ease;
+}
+
+.acred__card:hover .acred__media img {
+  transform: scale(1.03);
+}
+
+.acred__body {
+  padding: 0.85rem 0.1rem 0;
+}
+
+.acred__body .acred__year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a7040;
+}
+
+.acred__body .acred__brand {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1e64a8;
+}
+
+.acred__body h2 {
+  margin: 0.3rem 0 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: #142033;
+  font-weight: 700;
+}
+
+.acred__body p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.acred__issuer {
+  margin-top: 0.35rem !important;
+  font-size: 0.82rem !important;
+  color: #475569 !important;
+}
+
+.acred__empty {
+  padding: 2rem;
+  color: #64748b;
+}
+
+.acred__footer-cta {
+  margin-top: 2.5rem;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid rgba(20, 32, 51, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.acred__footer-cta h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.15rem;
+  color: #142033;
+}
+
+.acred__footer-cta p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 960px) {
+  .acred__grid,
+  .acred__grid--certs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .acred__grid,
+  .acred__grid--certs {
+    grid-template-columns: 1fr;
+  }
+}
