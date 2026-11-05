@@ -179,9 +179,9 @@
         <div class="hp-container hp-consult-banner__grid">
             <div class="hp-consult-banner__copy">
                 <p class="hp-consult-banner__kicker">Online Consultation</p>
-                <h2>{{ $consult->title ?? 'Consult Certified Homeopathic Doctors' }}</h2>
+                <h2>Consult Certified Homeopathic Doctors</h2>
                 <p class="hp-consult-banner__lead">
-                    {{ $consult->subtitle ?? 'Get personalised, safe and holistic guidance for your health concerns from our experienced doctors.' }}
+                    Get personalised, safe and holistic guidance for your health concerns from our experienced doctors.
                 </p>
 
                 <ul class="hp-consult-banner__features">

@@ -58,7 +58,7 @@ class HomepageSectionSeeder extends Seeder
             ],
             [
                 'key' => 'consult',
-                'title' => 'Consult Certified Doctors',
+                'title' => 'Consult Certified Homeopathic Doctors',
                 'subtitle' => 'Personalised advice with online Google Meet sessions scheduled by our team.',
                 'payload' => [
                     'cta_label' => 'Browse Doctors',
