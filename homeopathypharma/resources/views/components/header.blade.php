@@ -4,10 +4,10 @@
             <a class="hp-brand" href="{{ route('home') }}" aria-label="{{ $settings->brandName() }} home">
                 <img
                     class="hp-brand__logo"
-                    src="{{ asset('images/brand/logo-hp.png') }}?v=20261104-hp-lockup"
+                    src="{{ asset('images/brand/logo-hp.png') }}?v=20261105-logo-crisp"
                     alt=""
-                    width="480"
-                    height="230"
+                    width="640"
+                    height="311"
                     decoding="async"
                 >
                 <span class="hp-brand__name">Homeopathy Pharma</span>

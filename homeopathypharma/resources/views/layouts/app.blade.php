@@ -12,8 +12,8 @@
     @php
         $hpCssApp = public_path('css/app.css');
         $hpCssStore = public_path('css/storefront.css');
-        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-brand-name';
-        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-brand-name';
+        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-logo-crisp';
+        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-logo-crisp';
     @endphp
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ $hpCssAppV }}">
     <link rel="stylesheet" href="{{ asset('css/storefront.css') }}?v={{ $hpCssStoreV }}">

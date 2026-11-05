@@ -104,18 +104,21 @@ body {
 
 .hp-brand__logo {
   display: block;
-  height: clamp(2.6rem, 4.5vw, 3.35rem);
+  height: clamp(2.05rem, 3.2vw, 2.55rem);
   width: auto;
-  max-width: min(9.5rem, 28vw);
+  max-width: min(7.75rem, 26vw);
   object-fit: contain;
   object-position: left center;
   flex-shrink: 0;
+  /* Keep logo crisp when scaled on retina displays */
+  image-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 .hp-brand__name {
   font-family: var(--hp-serif);
   font-weight: 700;
-  font-size: clamp(1.05rem, 2.1vw, 1.4rem);
+  font-size: clamp(0.98rem, 1.85vw, 1.22rem);
   color: var(--hp-deep);
   letter-spacing: 0.01em;
   white-space: nowrap;
