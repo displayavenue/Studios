@@ -1019,53 +1019,92 @@ body {
   min-height: 0;
 }
 
+.hp-consult-banner__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.hp-consult-banner__control--message {
+  flex: 1 1 auto;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.hp-consult-banner__icon {
+  position: absolute;
+  left: clamp(0.45rem, 0.85vw, 0.7rem);
+  top: 50%;
+  z-index: 1;
+  display: inline-flex;
+  width: clamp(0.85rem, 1.35vw, 1.1rem);
+  height: clamp(0.85rem, 1.35vw, 1.1rem);
+  color: #5f5f5f;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.hp-consult-banner__icon--top {
+  top: clamp(0.55rem, 1vw, 0.75rem);
+  transform: none;
+}
+
+.hp-consult-banner__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .hp-consult-banner__field {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  border: 1px solid #d5cdc4;
-  border-radius: clamp(0.4rem, 0.7vw, 0.55rem);
+  border: 1px solid #d0d0d0;
+  border-radius: clamp(0.45rem, 0.75vw, 0.65rem);
   background: #fff;
-  color: #1a1a1a;
+  color: #222;
   caret-color: #0b4a34;
   font-family: var(--hp-sans, "Segoe UI", sans-serif);
   font-size: clamp(10px, 0.95vw, 14px);
   line-height: 1.25;
-  padding: 0.45em 0.7em;
+  padding: 0.5em 0.75em 0.5em clamp(1.85rem, 3vw, 2.35rem);
   outline: none;
   -webkit-appearance: none;
   appearance: none;
   resize: none;
-  min-height: clamp(1.7rem, 3.2vw, 2.35rem);
+  min-height: clamp(1.85rem, 3.4vw, 2.45rem);
 }
 
 .hp-consult-banner__field::placeholder {
-  color: #6b6b6b;
+  color: #6a6a6a;
   opacity: 1;
 }
 
+.hp-consult-banner__control:focus-within .hp-consult-banner__field,
 .hp-consult-banner__field:focus {
   border-color: #0b4a34;
-  box-shadow: 0 0 0 1.5px rgba(11, 74, 52, 0.22);
+  box-shadow: 0 0 0 1.5px rgba(11, 74, 52, 0.2);
 }
 
 .hp-consult-banner__field--select {
-  color: #6b6b6b;
+  color: #6a6a6a;
   cursor: pointer;
-  padding-right: 1.5em;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b6b6b' d='M1.1 1.2 6 6.1l4.9-4.9 1.1 1.1L6 8.3.01 2.3z'/%3E%3C/svg%3E");
+  padding-right: 1.7em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236a6a6a' d='M1.1 1.2 6 6.1l4.9-4.9 1.1 1.1L6 8.3.01 2.3z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.65em center;
   background-size: 0.7em;
 }
 
 .hp-consult-banner__field--select:valid {
-  color: #1a1a1a;
+  color: #222;
 }
 
 .hp-consult-banner__field--message {
   flex: 1 1 auto;
-  min-height: clamp(3.2rem, 7vw, 5.5rem);
+  min-height: clamp(3.4rem, 7.2vw, 5.6rem);
+  height: 100%;
   padding-top: 0.55em;
   line-height: 1.35;
 }
@@ -1124,12 +1163,12 @@ body {
   .hp-consult-banner__field {
     font-size: 16px;
     min-height: 2rem;
-    padding: 0.4em 0.55em;
+    padding: 0.4em 0.5em 0.4em 1.85rem;
   }
 
   .hp-consult-banner__panel {
     gap: 0.28rem;
-    padding: 0.2rem;
+    padding: 0.28rem;
   }
 
   .hp-consult-banner__submit {

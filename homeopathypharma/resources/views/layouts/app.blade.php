@@ -12,8 +12,8 @@
     @php
         $hpCssApp = public_path('css/app.css');
         $hpCssStore = public_path('css/storefront.css');
-        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-consult-panel3';
-        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-consult-panel3';
+        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-consult-icons';
+        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-consult-icons';
     @endphp
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ $hpCssAppV }}">
     <link rel="stylesheet" href="{{ asset('css/storefront.css') }}?v={{ $hpCssStoreV }}">

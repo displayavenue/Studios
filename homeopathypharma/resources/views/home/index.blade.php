@@ -207,91 +207,121 @@
 
             <div class="hp-consult-banner__panel">
                 <div class="hp-consult-banner__row">
-                    <label class="hp-sr-only" for="consult-banner-name">Full Name</label>
-                    <input
-                        id="consult-banner-name"
-                        class="hp-consult-banner__field"
-                        type="text"
-                        name="name"
-                        value="{{ old('lead_form') === 'consult_banner' ? old('name') : '' }}"
-                        autocomplete="name"
-                        required
-                        maxlength="120"
-                        placeholder="Full Name*"
-                        enterkeyhint="next"
-                    >
+                    <div class="hp-consult-banner__control">
+                        <span class="hp-consult-banner__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.4-3.2 3.6-4.8 6.5-4.8s5.1 1.6 6.5 4.8"/></svg>
+                        </span>
+                        <label class="hp-sr-only" for="consult-banner-name">Full Name</label>
+                        <input
+                            id="consult-banner-name"
+                            class="hp-consult-banner__field"
+                            type="text"
+                            name="name"
+                            value="{{ old('lead_form') === 'consult_banner' ? old('name') : '' }}"
+                            autocomplete="name"
+                            required
+                            maxlength="120"
+                            placeholder="Full Name*"
+                            enterkeyhint="next"
+                        >
+                    </div>
 
-                    <label class="hp-sr-only" for="consult-banner-contact">WhatsApp Number</label>
+                    <div class="hp-consult-banner__control">
+                        <span class="hp-consult-banner__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 3.8c.5-.5 1.3-.5 1.8 0l1.7 1.7c.5.5.5 1.2.1 1.7L9.3 9.2c.7 1.5 2 2.8 3.5 3.5l2-1.5c.5-.4 1.2-.4 1.7.1l1.7 1.7c.5.5.5 1.3 0 1.8l-1.1 1.1c-.6.6-1.5.9-2.4.7-2.3-.4-4.5-1.8-6.5-3.8S5.3 9.1 4.9 6.8c-.2-.9.1-1.8.7-2.4l1.6-1.6z"/></svg>
+                        </span>
+                        <label class="hp-sr-only" for="consult-banner-contact">WhatsApp Number</label>
+                        <input
+                            id="consult-banner-contact"
+                            class="hp-consult-banner__field"
+                            type="tel"
+                            name="contact"
+                            value="{{ old('lead_form') === 'consult_banner' ? old('contact') : '' }}"
+                            autocomplete="tel"
+                            inputmode="tel"
+                            required
+                            maxlength="190"
+                            placeholder="WhatsApp Number*"
+                            enterkeyhint="next"
+                        >
+                    </div>
+                </div>
+
+                <div class="hp-consult-banner__control">
+                    <span class="hp-consult-banner__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7.5 7.5 6 7.5-6"/></svg>
+                    </span>
+                    <label class="hp-sr-only" for="consult-banner-email">Email ID (Optional)</label>
                     <input
-                        id="consult-banner-contact"
+                        id="consult-banner-email"
                         class="hp-consult-banner__field"
-                        type="tel"
-                        name="contact"
-                        value="{{ old('lead_form') === 'consult_banner' ? old('contact') : '' }}"
-                        autocomplete="tel"
-                        inputmode="tel"
-                        required
+                        type="email"
+                        name="email"
+                        value="{{ old('lead_form') === 'consult_banner' ? old('email') : '' }}"
+                        autocomplete="email"
+                        inputmode="email"
                         maxlength="190"
-                        placeholder="WhatsApp Number*"
+                        placeholder="Email ID (Optional)"
                         enterkeyhint="next"
                     >
                 </div>
 
-                <label class="hp-sr-only" for="consult-banner-email">Email ID (Optional)</label>
-                <input
-                    id="consult-banner-email"
-                    class="hp-consult-banner__field"
-                    type="email"
-                    name="email"
-                    value="{{ old('lead_form') === 'consult_banner' ? old('email') : '' }}"
-                    autocomplete="email"
-                    inputmode="email"
-                    maxlength="190"
-                    placeholder="Email ID (Optional)"
-                    enterkeyhint="next"
-                >
+                <div class="hp-consult-banner__control">
+                    <span class="hp-consult-banner__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14.5v-3.2a2.3 2.3 0 0 1 2.3-2.3h.4"/><path d="M9.7 9h2.1a2.3 2.3 0 0 1 2.3 2.3V17"/><circle cx="7" cy="16.5" r="2.2"/><circle cx="14.1" cy="16.5" r="2.2"/><path d="M16.3 9.2V7.4a1.9 1.9 0 0 1 1.9-1.9h.3"/></svg>
+                    </span>
+                    <label class="hp-sr-only" for="consult-banner-concern">Select Concern</label>
+                    <select
+                        id="consult-banner-concern"
+                        class="hp-consult-banner__field hp-consult-banner__field--select"
+                        name="concern"
+                        required
+                    >
+                        <option value="" disabled @selected(old('lead_form') !== 'consult_banner' || old('concern') === null || old('concern') === '')>Select Concern*</option>
+                        <option value="Head & Hair" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Head & Hair')>Head &amp; Hair</option>
+                        <option value="Face & Skin" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Face & Skin')>Face &amp; Skin</option>
+                        <option value="Digestion" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Digestion')>Digestion</option>
+                        <option value="Women's Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === "Women's Care")>Women's Care</option>
+                        <option value="Child Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Child Care')>Child Care</option>
+                        <option value="Immunity" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Immunity')>Immunity</option>
+                        <option value="Stress & Sleep" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Stress & Sleep')>Stress &amp; Sleep</option>
+                        <option value="Other" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Other')>Other</option>
+                    </select>
+                </div>
 
-                <label class="hp-sr-only" for="consult-banner-concern">Select Concern</label>
-                <select
-                    id="consult-banner-concern"
-                    class="hp-consult-banner__field hp-consult-banner__field--select"
-                    name="concern"
-                    required
-                >
-                    <option value="" disabled @selected(old('lead_form') !== 'consult_banner' || old('concern') === null || old('concern') === '')>Select Concern*</option>
-                    <option value="Head & Hair" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Head & Hair')>Head &amp; Hair</option>
-                    <option value="Face & Skin" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Face & Skin')>Face &amp; Skin</option>
-                    <option value="Digestion" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Digestion')>Digestion</option>
-                    <option value="Women's Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === "Women's Care")>Women's Care</option>
-                    <option value="Child Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Child Care')>Child Care</option>
-                    <option value="Immunity" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Immunity')>Immunity</option>
-                    <option value="Stress & Sleep" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Stress & Sleep')>Stress &amp; Sleep</option>
-                    <option value="Other" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Other')>Other</option>
-                </select>
+                <div class="hp-consult-banner__control">
+                    <span class="hp-consult-banner__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2 4.8 18.2h14.4L12 4.2z"/><path d="M12 9.2v4.4"/><circle cx="12" cy="16.2" r="0.7" fill="currentColor" stroke="none"/></svg>
+                    </span>
+                    <label class="hp-sr-only" for="consult-banner-side-effects">Side Effects (if any)</label>
+                    <input
+                        id="consult-banner-side-effects"
+                        class="hp-consult-banner__field"
+                        type="text"
+                        name="side_effects"
+                        value="{{ old('lead_form') === 'consult_banner' ? old('side_effects') : '' }}"
+                        maxlength="190"
+                        placeholder="Side Effects (if any)"
+                        enterkeyhint="next"
+                    >
+                </div>
 
-                <label class="hp-sr-only" for="consult-banner-side-effects">Side Effects (if any)</label>
-                <input
-                    id="consult-banner-side-effects"
-                    class="hp-consult-banner__field"
-                    type="text"
-                    name="side_effects"
-                    value="{{ old('lead_form') === 'consult_banner' ? old('side_effects') : '' }}"
-                    maxlength="190"
-                    placeholder="Side Effects (if any)"
-                    enterkeyhint="next"
-                >
-
-                <label class="hp-sr-only" for="consult-banner-message">Tell us more about your concern</label>
-                <textarea
-                    id="consult-banner-message"
-                    class="hp-consult-banner__field hp-consult-banner__field--message"
-                    name="message"
-                    required
-                    maxlength="5000"
-                    rows="3"
-                    placeholder="Tell us more about your concern*"
-                    enterkeyhint="send"
-                >{{ old('lead_form') === 'consult_banner' ? old('message') : '' }}</textarea>
+                <div class="hp-consult-banner__control hp-consult-banner__control--message">
+                    <span class="hp-consult-banner__icon hp-consult-banner__icon--top" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.8h7.2L19 8.6V20.2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.8a1 1 0 0 1 1-1z"/><path d="M14 3.8v4.2H19"/><path d="M9 12.2h6M9 15.2h6"/></svg>
+                    </span>
+                    <label class="hp-sr-only" for="consult-banner-message">Tell us more about your concern</label>
+                    <textarea
+                        id="consult-banner-message"
+                        class="hp-consult-banner__field hp-consult-banner__field--message"
+                        name="message"
+                        required
+                        maxlength="5000"
+                        rows="3"
+                        placeholder="Tell us more about your concern*"
+                        enterkeyhint="send"
+                    >{{ old('lead_form') === 'consult_banner' ? old('message') : '' }}</textarea>
+                </div>
 
                 @if ($errors->any() && old('lead_form') === 'consult_banner')
                     <p class="hp-consult-banner__error" role="alert">{{ $errors->first() }}</p>
