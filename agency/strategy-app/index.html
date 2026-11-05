@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DisplayAvenue Strategy | Digital Marketing & Lead Gen Planner</title>
+    <meta
+      name="description"
+      content="Build a digital marketing, lead generation and sales strategy for Google Ads, Meta Ads, SEO and every DisplayAvenue service."
+    />
+    <link rel="canonical" href="https://strategy.displayavenue.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="./">
+        <span class="brand__mark">DA</span>
+        <span class="brand__text">
+          <strong>DisplayAvenue</strong>
+          <em>Strategy</em>
+        </span>
+      </a>
+      <nav class="topbar__nav">
+        <a href="#builder">Builder</a>
+        <a href="#services">Services</a>
+        <a href="#plan">Plan</a>
+        <a class="topbar__cta" href="https://displayavenue.com/contact" target="_blank" rel="noreferrer"
+          >Book strategy call</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">DisplayAvenue Strategy · Growth OS</p>
+          <h1>DisplayAvenue <span>Strategy</span></h1>
+          <p class="hero__lead">
+            Build a digital marketing, lead generation, and sales plan for Google Ads, Meta Ads, and
+            every service on the DisplayAvenue website.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn-primary" href="#builder">Make my strategy</a>
+            <a class="btn btn-ghost" href="#services">Browse services</a>
+          </div>
+        </div>
+        <aside class="hero__board" aria-hidden="true">
+          <div class="board-card">
+            <span>01</span>
+            <strong>Attract</strong>
+            <p>Ads · SEO · Social</p>
+          </div>
+          <div class="board-card">
+            <span>02</span>
+            <strong>Convert</strong>
+            <p>Landing · CRO · Forms</p>
+          </div>
+          <div class="board-card">
+            <span>03</span>
+            <strong>Close</strong>
+            <p>WhatsApp · CRM · Sales</p>
+          </div>
+          <div class="board-card">
+            <span>04</span>
+            <strong>Retain</strong>
+            <p>Email · Reviews · Upsell</p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="builder" class="panel">
+        <div class="panel__head">
+          <h2>Strategy builder</h2>
+          <p>
+            Answer a few inputs. Get a channel mix, budget split, lead-gen funnel, sales cadence, and
+            a 90-day execution plan.
+          </p>
+        </div>
+
+        <form id="strategy-form" class="builder">
+          <label>
+            <span>Business / brand name</span>
+            <input id="business" name="business" type="text" placeholder="e.g. Mira Road Dental" required />
+          </label>
+          <label>
+            <span>Industry</span>
+            <select id="industry" name="industry" required></select>
+          </label>
+          <label>
+            <span>Primary goal</span>
+            <select id="goal" name="goal">
+              <option value="leads">Qualified leads</option>
+              <option value="sales">Direct sales / bookings</option>
+              <option value="pipeline">B2B pipeline</option>
+              <option value="brand">Brand awareness</option>
+              <option value="retention">Retention & LTV</option>
+            </select>
+          </label>
+          <label>
+            <span>Monthly marketing budget (₹)</span>
+            <select id="budget" name="budget">
+              <option value="25000">₹25,000</option>
+              <option value="50000" selected>₹50,000</option>
+              <option value="100000">₹1,00,000</option>
+              <option value="250000">₹2,50,000</option>
+              <option value="500000">₹5,00,000+</option>
+            </select>
+          </label>
+          <label>
+            <span>Sales cycle</span>
+            <select id="cycle" name="cycle">
+              <option value="instant">Same-day / walk-in</option>
+              <option value="short" selected>1–14 days</option>
+              <option value="medium">2–8 weeks</option>
+              <option value="long">2+ months (B2B)</option>
+            </select>
+          </label>
+          <label>
+            <span>Team capacity</span>
+            <select id="capacity" name="capacity">
+              <option value="founder">Founder-led sales</option>
+              <option value="small" selected>Small sales / front-desk team</option>
+              <option value="dedicated">Dedicated sales + CRM</option>
+            </select>
+          </label>
+
+          <fieldset class="channels">
+            <legend>Priority channels</legend>
+            <div id="channel-grid" class="chip-grid"></div>
+          </fieldset>
+
+          <fieldset class="services-pick">
+            <legend>DisplayAvenue services to include</legend>
+            <p class="hint">Pre-selected from your channels. Add website, creative, AI, or CRM stack as needed.</p>
+            <div id="service-grid" class="chip-grid chip-grid--services"></div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary btn-wide">Generate strategy</button>
+        </form>
+      </section>
+
+      <section id="plan" class="panel plan" hidden>
+        <div class="panel__head plan__toolbar">
+          <div>
+            <h2 id="plan-title">Your growth strategy</h2>
+            <p id="plan-sub"></p>
+          </div>
+          <div class="plan__actions">
+            <button type="button" class="btn btn-ghost" id="copy-plan">Copy plan</button>
+            <button type="button" class="btn btn-ghost" id="print-plan">Print / PDF</button>
+            <a class="btn btn-primary" id="wa-plan" href="#" target="_blank" rel="noreferrer">WhatsApp us</a>
+          </div>
+        </div>
+        <div id="plan-output" class="plan-output"></div>
+      </section>
+
+      <section id="services" class="panel">
+        <div class="panel__head">
+          <h2>All DisplayAvenue services</h2>
+          <p>Strategy maps to the full service catalogue on displayavenue.com.</p>
+        </div>
+        <div id="catalog" class="catalog"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <strong>DisplayAvenue Strategy</strong>
+        <span>strategy.displayavenue.com</span>
+      </div>
+      <div class="footer__links">
+        <a href="https://displayavenue.com/">Main site</a>
+        <a href="https://displayavenue.com/data/">Data</a>
+        <a href="https://displayavenue.com/services">Services</a>
+        <a href="https://wa.me/919222122333">WhatsApp</a>
+      </div>
+    </footer>
+
+    <script src="./assets/catalog.js"></script>
+    <script src="./assets/engine.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
+</html>

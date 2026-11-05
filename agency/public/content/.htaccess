@@ -1,0 +1,6 @@
+# Allow short browser cache for awards/certs JSON so grids load faster on repeat visits
+<IfModule mod_headers.c>
+  <FilesMatch "^(awards|certifications)\.json$">
+    Header set Cache-Control "public, max-age=300"
+  </FilesMatch>
+</IfModule>
