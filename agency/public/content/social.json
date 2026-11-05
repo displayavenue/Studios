@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "brandName": "DisplayAvenue",
+  "timezone": "Asia/Kolkata",
+  "autopilot": true,
+  "postsPerWeek": 5,
+  "defaultPlatforms": [
+    "facebook",
+    "instagram",
+    "gmb",
+    "linkedin",
+    "youtube",
+    "x",
+    "threads",
+    "pinterest",
+    "tiktok",
+    "telegram",
+    "whatsapp",
+    "reddit",
+    "bluesky",
+    "mastodon"
+  ],
+  "voice": "Plain English, helpful Indian growth agency. Short lines. Strong CTA to WhatsApp 9222 122333 or free Strategy Maker.",
+  "ctaUrl": "https://displayavenue.com/strategy/",
+  "whatsappUrl": "https://wa.me/919222122333",
+  "siteUrl": "https://displayavenue.com/",
+  "bestHoursIst": [9, 12, 18, 20],
+  "updatedAt": "2026-08-18T18:00:00.000Z"
+}
