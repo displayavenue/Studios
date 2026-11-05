@@ -3,6 +3,17 @@
 
 This repository contains a Laravel application. Complete the following setup before working on the user's request.
 
+## Storefront ↔ Admin CMS (required)
+
+Whenever frontend section copy/CTAs/images change, update the backend in the same change:
+
+1. Register fields in `app/Support/HomepageSectionCatalog.php`
+2. Read them from Blade via `$sections->get('key')->data()` — do not hardcode customer-facing copy
+3. Run `php artisan homepage:sync-sections` after deploy
+4. Static pages (About/Consult/Contact/Founders intro) use **Admin → Content pages**
+
+See `docs/CMS_FRONTEND_BACKEND_SYNC.md`.
+
 ## Prerequisites
 
 Verify that PHP and Composer are available:

@@ -1,14 +1,20 @@
 @extends('layouts.app')
 
 @php($settings = $settings ?? app(\App\Services\SiteSettings::class))
+@php($pageTitle = $page->title ?? 'Founders & team')
 
-@section('title', 'Founders & team — '.$settings->brandName())
+@section('title', $page->seo_title ?? ($pageTitle.' — '.$settings->brandName()))
+@section('meta_description', $page->seo_description ?? 'Meet the people behind '.$settings->brandName())
 
 @section('content')
 <section class="hp-page">
     <div class="hp-container">
-        <h1>Founders &amp; team</h1>
-        <p class="hp-section__lead">Profiles are managed in admin and only appear when published.</p>
+        <h1>{{ $pageTitle }}</h1>
+        @if (!empty($page?->body))
+            <div class="hp-prose" style="margin-bottom:1.5rem;">{!! $page->body !!}</div>
+        @else
+            <p class="hp-section__lead">Profiles are managed in admin and only appear when published.</p>
+        @endif
         @if (($members ?? collect())->isEmpty())
             <div class="hp-empty">No founder or team profiles are published yet.</div>
         @else

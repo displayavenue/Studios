@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactMessage;
+use App\Models\ContentPage;
 use App\Services\Notifications\NotificationService;
 use App\Services\SiteSettings;
 use Illuminate\Http\RedirectResponse;
@@ -15,6 +16,7 @@ class ContactController extends Controller
     {
         return view('pages.contact', [
             'settings' => $settings,
+            'page' => ContentPage::query()->published()->where('slug', 'contact')->first(),
         ]);
     }
 

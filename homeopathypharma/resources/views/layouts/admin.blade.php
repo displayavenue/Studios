@@ -28,8 +28,9 @@
             <a href="{{ route('admin.testimonials.index') }}" class="{{ str_starts_with($route, 'admin.testimonials') ? 'is-active' : '' }}">Testimonials</a>
             <a href="{{ route('admin.gallery.index') }}" class="{{ str_starts_with($route, 'admin.gallery') ? 'is-active' : '' }}">Gallery</a>
             <a href="{{ route('admin.policies.index') }}" class="{{ str_starts_with($route, 'admin.policies') ? 'is-active' : '' }}">Policies</a>
+            <a href="{{ route('admin.pages.index') }}" class="{{ str_starts_with($route, 'admin.pages') ? 'is-active' : '' }}">Content pages</a>
             <a href="{{ route('admin.team.index') }}" class="{{ str_starts_with($route, 'admin.team') ? 'is-active' : '' }}">Founders &amp; Team</a>
-            <a href="{{ route('admin.homepage.index') }}" class="{{ str_starts_with($route, 'admin.homepage') ? 'is-active' : '' }}">Homepage</a>
+            <a href="{{ route('admin.homepage.index') }}" class="{{ str_starts_with($route, 'admin.homepage') ? 'is-active' : '' }}">Homepage sections</a>
             <a href="{{ route('admin.health-explorer.index') }}" class="{{ str_starts_with($route, 'admin.health-explorer') ? 'is-active' : '' }}">Health Explorer</a>
             <a href="{{ route('admin.reports.index') }}" class="{{ str_starts_with($route, 'admin.reports') ? 'is-active' : '' }}">Reports</a>
             <a href="{{ route('admin.audit-logs.index') }}" class="{{ str_starts_with($route, 'admin.audit-logs') ? 'is-active' : '' }}">Audit log</a>

@@ -5,37 +5,56 @@
 
 @section('content')
     @php($hero = $sections->get('hero'))
+    @php($heroData = $hero?->data() ?? [])
     @php($trust = $sections->get('trust'))
+    @php($trustData = $trust?->data() ?? [])
+    @php($doctorLead = $sections->get('doctor_lead'))
+    @php($doctorLeadData = $doctorLead?->data() ?? [])
     @php($categories = $sections->get('categories'))
+    @php($brands = $sections->get('brands'))
     @php($featured = $sections->get('featured_products'))
+    @php($featuredData = $featured?->data() ?? [])
     @php($consult = $sections->get('consult'))
+    @php($consultData = $consult?->data() ?? [])
+    @php($founders = $sections->get('founders'))
+    @php($foundersData = $founders?->data() ?? [])
+    @php($deals = $sections->get('deals'))
+    @php($dealsData = $deals?->data() ?? [])
     @php($library = $sections->get('health_library'))
+    @php($libraryData = $library?->data() ?? [])
+    @php($testimonials = $sections->get('testimonials'))
+    @php($newsletter = $sections->get('newsletter'))
+    @php($newsletterData = $newsletter?->data() ?? [])
+    @php($footerTrust = $sections->get('footer_trust'))
+    @php($footerTrustData = $footerTrust?->data() ?? [])
 
+    @if ($hero)
     <section class="hp-hero-banner hp-hero-banner--art" aria-label="Homeopathy Pharma">
         <img
             class="hp-hero-banner__art"
-            src="{{ asset('images/home/hero-personal-doctors-v3.jpg') }}?v=20261104-doctors-v3"
-            alt="Homeopathy Pharma — A More Personal Approach to Healthcare. Thoughtful consultations, quality-focused products and care centred around you."
+            src="{{ asset($heroData['image_path'] ?? 'images/home/hero-personal-doctors-v3.jpg') }}{{ !empty($heroData['image_version']) ? '?v='.$heroData['image_version'] : '' }}"
+            alt="{{ $heroData['image_alt'] ?? ($hero->title ?? 'Homeopathy Pharma') }}"
             width="2000"
             height="751"
             decoding="async"
             fetchpriority="high"
         >
-        <h1 class="hp-sr-only">A More Personal Approach to Healthcare.</h1>
+        <h1 class="hp-sr-only">{{ $hero->title ?? 'A More Personal Approach to Healthcare.' }}</h1>
         <a
             class="hp-hero-banner__hit hp-hero-banner__hit--consult"
-            href="{{ $hero->payload['primary_cta_href'] ?? route('doctors.index') }}"
-        >{{ $hero->payload['primary_cta_label'] ?? 'Consult a Doctor' }}</a>
+            href="{{ $heroData['primary_cta_href'] ?? route('doctors.index') }}"
+        >{{ $heroData['primary_cta_label'] ?? 'Consult a Doctor' }}</a>
         <a
             class="hp-hero-banner__hit hp-hero-banner__hit--shop"
-            href="{{ $hero->payload['secondary_cta_href'] ?? route('shop.index') }}"
-        >{{ $hero->payload['secondary_cta_label'] ?? 'Explore Remedies' }}</a>
+            href="{{ $heroData['secondary_cta_href'] ?? route('shop.index') }}"
+        >{{ $heroData['secondary_cta_label'] ?? 'Explore Remedies' }}</a>
     </section>
+    @endif
 
     @if ($trust)
         <section class="hp-trust-strip">
             <div class="hp-container hp-trust-strip__grid">
-                @foreach (($trust->payload['items'] ?? []) as $item)
+                @foreach (($trustData['items'] ?? []) as $item)
                     <div class="hp-trust-strip__item">
                         <span class="hp-trust-strip__icon" aria-hidden="true"></span>
                         <div>
@@ -48,11 +67,12 @@
         </section>
     @endif
 
+    @if ($doctorLead)
     <section class="hp-doctor-lead" id="talk-to-doctor" aria-label="Talk to a doctor">
         <div class="hp-doctor-lead__card">
             <div class="hp-doctor-lead__inner">
-                <h2>Talk to a Doctor, Understand Your Health Better</h2>
-                <p class="hp-doctor-lead__sub">Personalised guidance, thoughtful care.</p>
+                <h2>{{ $doctorLead->title }}</h2>
+                <p class="hp-doctor-lead__sub">{{ $doctorLead->subtitle }}</p>
 
                 @if (session('status') && session('lead_form') === 'doctor')
                     <p class="hp-doctor-lead__status" role="status">{{ session('status') }}</p>
@@ -101,17 +121,19 @@
                     </div>
                     <label class="hp-doctor-lead__consent">
                         <input type="checkbox" name="consent" value="1" required @checked(old('consent'))>
-                        <span>I agree to be contacted about this enquiry. This is not emergency care.</span>
+                        <span>{{ $doctorLeadData['consent_text'] ?? 'I agree to be contacted about this enquiry. This is not emergency care.' }}</span>
                     </label>
                     @if ($errors->any() && old('lead_form') === 'doctor')
                         <p class="hp-doctor-lead__error" role="alert">{{ $errors->first() }}</p>
                     @endif
-                    <button class="hp-doctor-lead__submit" type="submit">Talk to a Doctor</button>
+                    <button class="hp-doctor-lead__submit" type="submit">{{ $doctorLeadData['submit_label'] ?? 'Talk to a Doctor' }}</button>
                 </form>
             </div>
         </div>
     </section>
+    @endif
 
+    @if ($categories)
     <section class="hp-section" id="health-concerns">
         <div class="hp-container">
             <div class="hp-section-head">
@@ -135,12 +157,14 @@
             @endif
         </div>
     </section>
+    @endif
 
+    @if ($brands)
     <section class="hp-section hp-section--soft" id="trusted-brands">
         <div class="hp-container">
             <div class="hp-section-head">
-                <h2>Our Trusted Brands</h2>
-                <p>Quality names families already know — curated in one place.</p>
+                <h2>{{ $brands->title ?? 'Our Trusted Brands' }}</h2>
+                <p>{{ $brands->subtitle ?? 'Quality names families already know — curated in one place.' }}</p>
             </div>
             @if ($homepageBrands->isEmpty())
                 <div class="hp-empty">Brands appear once published in admin.</div>
@@ -157,7 +181,9 @@
             @endif
         </div>
     </section>
+    @endif
 
+    @if ($featured)
     <section class="hp-section" id="popular-medicines">
         <div class="hp-container">
             <div class="hp-section-head hp-section-head--row">
@@ -165,7 +191,7 @@
                     <h2>{{ $featured->title ?? 'Popular Homeopathic Medicines' }}</h2>
                     <p>{{ $featured->subtitle ?? 'Everyday essentials from trusted brands.' }}</p>
                 </div>
-                <a class="hp-text-link" href="{{ route('shop.index') }}">View all</a>
+                <a class="hp-text-link" href="{{ $featuredData['view_all_href'] ?? route('shop.index') }}">{{ $featuredData['view_all_label'] ?? 'View all' }}</a>
             </div>
             @if ($featuredProducts->isEmpty())
                 <div class="hp-empty">Featured products appear when selected in admin.</div>
@@ -174,13 +200,15 @@
             @endif
         </div>
     </section>
+    @endif
 
+    @if ($consult)
     <section class="hp-consult-banner hp-consult-banner--split" id="consult-doctors" aria-label="Online consultation">
         <div class="hp-consult-banner__visual">
             <img
                 class="hp-consult-banner__art"
-                src="{{ asset('img-raw.php') }}?f=consult-banner-visual-2x.jpg&v=20261105-consult-one-card"
-                alt="Online consultation — clipboard, stethoscope, and homeopathy checklist."
+                src="{{ str_starts_with($consultData['image_path'] ?? '', 'http') ? $consultData['image_path'] : asset($consultData['image_path'] ?? 'img-raw.php?f=consult-banner-visual-2x.jpg&v=20261105-consult-one-card') }}"
+                alt="{{ $consultData['image_alt'] ?? 'Online consultation' }}"
                 width="2420"
                 height="1336"
                 loading="eager"
@@ -189,17 +217,17 @@
             >
             <a
                 class="hp-consult-banner__hit hp-consult-banner__hit--doctors"
-                href="{{ route('doctors.index') }}"
-            >Browse Doctors</a>
+                href="{{ $consultData['doctors_cta_href'] ?? route('doctors.index') }}"
+            >{{ $consultData['doctors_cta_label'] ?? 'Browse Doctors' }}</a>
             <a
                 class="hp-consult-banner__hit hp-consult-banner__hit--whatsapp"
-                href="{{ $settings->whatsappUrl('Hi, I want to book a doctor consult') }}"
+                href="{{ $settings->whatsappUrl($consultData['whatsapp_prefill'] ?? 'Hi, I want to book a doctor consult') }}"
                 target="_blank"
                 rel="noopener"
-            >Chat on WhatsApp</a>
+            >{{ $consultData['whatsapp_cta_label'] ?? 'Chat on WhatsApp' }}</a>
         </div>
 
-<form
+        <form
             class="hp-consult-banner__form"
             method="post"
             action="{{ route('contact.store') }}"
@@ -217,8 +245,8 @@
                 @endif
 
                 <div class="hp-consult-banner__intro">
-                    <h2 class="hp-consult-banner__title">Book a Consultation</h2>
-                    <p class="hp-consult-banner__lead">Share your details and our team will get in touch to schedule your online consultation.</p>
+                    <h2 class="hp-consult-banner__title">{{ $consultData['form_title'] ?? ($consult->title ?? 'Book a Consultation') }}</h2>
+                    <p class="hp-consult-banner__lead">{{ $consultData['form_lead'] ?? ($consult->subtitle ?? 'Share your details and our team will get in touch to schedule your online consultation.') }}</p>
                 </div>
 
                 <div class="hp-consult-banner__row">
@@ -293,14 +321,9 @@
                         required
                     >
                         <option value="" disabled @selected(old('lead_form') !== 'consult_banner' || old('concern') === null || old('concern') === '')>Select Concern*</option>
-                        <option value="Head & Hair" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Head & Hair')>Head &amp; Hair</option>
-                        <option value="Face & Skin" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Face & Skin')>Face &amp; Skin</option>
-                        <option value="Digestion" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Digestion')>Digestion</option>
-                        <option value="Women's Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === "Women's Care")>Women's Care</option>
-                        <option value="Child Care" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Child Care')>Child Care</option>
-                        <option value="Immunity" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Immunity')>Immunity</option>
-                        <option value="Stress & Sleep" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Stress & Sleep')>Stress &amp; Sleep</option>
-                        <option value="Other" @selected(old('lead_form') === 'consult_banner' && old('concern') === 'Other')>Other</option>
+                        @foreach (($consultData['concerns'] ?? []) as $concernOption)
+                            <option value="{{ $concernOption }}" @selected(old('lead_form') === 'consult_banner' && old('concern') === $concernOption)>{{ $concernOption }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -343,8 +366,8 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="m15.2 7.2-6.5 6.5a2.3 2.3 0 1 0 3.25 3.25l7.1-7.1a3.7 3.7 0 0 0-5.23-5.23L6.7 11.75"/></svg>
                     </span>
                     <div class="hp-consult-banner__upload-copy">
-                        <strong>Add Medical Report or Diseased Photo</strong> <span>(Optional)</span>
-                        <small>JPG, PNG or PDF (Max 10 MB)</small>
+                        <strong>{{ $consultData['upload_title'] ?? 'Add Medical Report or Diseased Photo' }}</strong> <span>(Optional)</span>
+                        <small>{{ $consultData['upload_hint'] ?? 'JPG, PNG or PDF (Max 10 MB)' }}</small>
                     </div>
                     <label class="hp-consult-banner__upload-btn" for="consult-banner-attachment">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16.5V5.2"/><path d="m7.8 9.2 4.2-4 4.2 4"/><path d="M5 18.8h14"/></svg>
@@ -364,7 +387,7 @@
                     <p class="hp-consult-banner__error" role="alert">{{ $errors->first() }}</p>
                 @endif
 
-                <button class="hp-consult-banner__submit" type="submit">Book Now</button>
+                <button class="hp-consult-banner__submit" type="submit">{{ $consultData['submit_label'] ?? 'Book Now' }}</button>
             </div>
         </form>
         <script>
@@ -396,12 +419,14 @@
             })();
         </script>
     </section>
+    @endif
 
+    @if ($founders)
     <section class="hp-section" id="founders">
         <div class="hp-container">
             <div class="hp-section-head">
-                <h2>Our Founder &amp; Co-Founder</h2>
-                <p>The people behind {{ $settings->brandName() }}.</p>
+                <h2>{{ $founders->title ?? 'Our Founder & Co-Founder' }}</h2>
+                <p>{{ $founders->subtitle ?? ('The people behind '.$settings->brandName().'.') }}</p>
             </div>
             <div class="hp-founders-layout">
                 <div class="hp-founders-grid">
@@ -428,21 +453,23 @@
                     @endforelse
                 </div>
                 <blockquote class="hp-mission-quote">
-                    <p>“To bring the goodness of homeopathy to every home and help people live healthier, happier lives naturally.”</p>
-                    <footer>— {{ $settings->brandName() }}</footer>
+                    <p>“{{ $foundersData['mission_quote'] ?? 'To bring the goodness of homeopathy to every home and help people live healthier, happier lives naturally.' }}”</p>
+                    <footer>— {{ $foundersData['mission_attribution'] ?? $settings->brandName() }}</footer>
                 </blockquote>
             </div>
         </div>
     </section>
+    @endif
 
+    @if ($deals)
     <section class="hp-section hp-section--soft" id="super-deals">
         <div class="hp-container">
             <div class="hp-section-head hp-section-head--row">
                 <div>
-                    <h2>Super Saving Deals</h2>
-                    <p>Limited-time savings on selected medicines.</p>
+                    <h2>{{ $deals->title ?? 'Super Saving Deals' }}</h2>
+                    <p>{{ $deals->subtitle ?? 'Limited-time savings on selected medicines.' }}</p>
                 </div>
-                <a class="hp-text-link" href="{{ route('shop.index', ['sort' => 'price_asc']) }}">See deals</a>
+                <a class="hp-text-link" href="{{ $dealsData['view_all_href'] ?? route('shop.index', ['sort' => 'price_asc']) }}">{{ $dealsData['view_all_label'] ?? 'See deals' }}</a>
             </div>
             @if ($dealProducts->isEmpty())
                 <div class="hp-empty">Sale products appear when sale prices are set in admin.</div>
@@ -451,7 +478,9 @@
             @endif
         </div>
     </section>
+    @endif
 
+    @if ($library)
     <section class="hp-section" id="health-library">
         <div class="hp-container">
             <div class="hp-section-head hp-section-head--row">
@@ -459,7 +488,7 @@
                     <h2>{{ $library->title ?? 'Health Library' }}</h2>
                     <p>{{ $library->subtitle ?? 'Guides and educational reading from our team.' }}</p>
                 </div>
-                <a class="hp-text-link" href="{{ route('blog.index') }}">View all posts</a>
+                <a class="hp-text-link" href="{{ $libraryData['view_all_href'] ?? route('blog.index') }}">{{ $libraryData['view_all_label'] ?? 'View all posts' }}</a>
             </div>
             @if ($homepageBlog->isEmpty())
                 <div class="hp-empty">Blog posts appear after publishing.</div>
@@ -482,12 +511,14 @@
             @endif
         </div>
     </section>
+    @endif
 
+    @if ($testimonials)
     <section class="hp-section hp-section--soft" id="testimonials">
         <div class="hp-container">
             <div class="hp-section-head">
-                <h2>What Our Customers Say</h2>
-                <p>Real words from people who booked through {{ $settings->brandName() }}.</p>
+                <h2>{{ $testimonials->title ?? 'What Our Customers Say' }}</h2>
+                <p>{{ $testimonials->subtitle ?? ('Real words from people who booked through '.$settings->brandName().'.') }}</p>
             </div>
             @if ($homepageTestimonials->isEmpty())
                 <div class="hp-empty">Testimonials appear when published in admin.</div>
@@ -507,24 +538,28 @@
             @endif
         </div>
     </section>
+    @endif
 
+    @if ($newsletter)
     <section class="hp-newsletter">
         <div class="hp-container hp-newsletter__row">
             <div>
-                <h2>Stay Updated</h2>
-                <p>Health tips, new arrivals, and consult reminders — no spam.</p>
+                <h2>{{ $newsletter->title ?? 'Stay Updated' }}</h2>
+                <p>{{ $newsletter->subtitle ?? 'Health tips, new arrivals, and consult reminders — no spam.' }}</p>
             </div>
             <form class="hp-newsletter__form" method="get" action="{{ route('contact.show') }}">
                 <label class="hp-sr-only" for="newsletter-email">Email</label>
-                <input id="newsletter-email" class="hp-input" type="email" name="contact" placeholder="Enter your email" required>
-                <button class="hp-btn hp-btn--primary" type="submit">Subscribe</button>
+                <input id="newsletter-email" class="hp-input" type="email" name="contact" placeholder="{{ $newsletterData['placeholder'] ?? 'Enter your email' }}" required>
+                <button class="hp-btn hp-btn--primary" type="submit">{{ $newsletterData['submit_label'] ?? 'Subscribe' }}</button>
             </form>
         </div>
     </section>
+    @endif
 
+    @if ($footerTrust)
     <section class="hp-trust-strip hp-trust-strip--footer">
         <div class="hp-container hp-trust-strip__grid">
-            @foreach (['100% Genuine Products', 'Secure Payments', 'Expert Doctors', 'Easy Returns'] as $label)
+            @foreach (($footerTrustData['labels'] ?? []) as $label)
                 <div class="hp-trust-strip__item">
                     <span class="hp-trust-strip__icon" aria-hidden="true"></span>
                     <strong>{{ $label }}</strong>
@@ -532,4 +567,5 @@
             @endforeach
         </div>
     </section>
+    @endif
 @endsection

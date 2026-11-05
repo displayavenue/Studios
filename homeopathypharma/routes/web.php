@@ -18,7 +18,9 @@ use App\Http\Controllers\Admin\GalleryItemController as AdminGalleryItemControll
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\ContentPageController as AdminContentPageController;
 use App\Http\Controllers\Admin\PolicyPageController as AdminPolicyPageController;
+use App\Http\Controllers\ContentPageController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
@@ -44,7 +46,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ShopController;
 use App\Models\Appointment;
-use App\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -86,12 +87,8 @@ Route::get('/consultations/{consultation}/confirmation', [ConsultationRequestCon
 
 Route::get('/policies/{slug}', [PolicyController::class, 'show'])->name('policies.show');
 
-Route::get('/about', fn () => view('pages.about'))->name('about');
-Route::get('/about/founders', function () {
-    $members = TeamMember::query()->published()->orderBy('sort_order')->orderBy('name')->with('photo')->get();
-
-    return view('pages.founders', compact('members'));
-})->name('about.founders');
+Route::get('/about', [ContentPageController::class, 'about'])->name('about');
+Route::get('/about/founders', [ContentPageController::class, 'founders'])->name('about.founders');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'store'])
@@ -184,6 +181,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('policies', [AdminPolicyPageController::class, 'index'])->name('policies.index');
         Route::get('policies/{policy}/edit', [AdminPolicyPageController::class, 'edit'])->name('policies.edit');
         Route::put('policies/{policy}', [AdminPolicyPageController::class, 'update'])->name('policies.update');
+        Route::get('pages', [AdminContentPageController::class, 'index'])->name('pages.index');
+        Route::get('pages/{page}/edit', [AdminContentPageController::class, 'edit'])->name('pages.edit');
+        Route::put('pages/{page}', [AdminContentPageController::class, 'update'])->name('pages.update');
         Route::get('audit-logs', AdminAuditLogController::class)->name('audit-logs.index');
         Route::get('reports', AdminReportController::class)->name('reports.index');
 

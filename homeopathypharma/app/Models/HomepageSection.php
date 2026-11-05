@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\HomepageSectionCatalog;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,5 +33,25 @@ class HomepageSection extends Model
         return $query
             ->where('is_enabled', true)
             ->where('status', 'published');
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function data(): array
+    {
+        return HomepageSectionCatalog::normalizePayload($this->key, $this->payload ?? []);
+    }
+
+    public function value(string $payloadKey, mixed $default = null): mixed
+    {
+        $data = $this->data();
+
+        return $data[$payloadKey] ?? $default;
+    }
+
+    public function adminLabel(): string
+    {
+        return HomepageSectionCatalog::label($this->key);
     }
 }
