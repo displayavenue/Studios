@@ -1258,17 +1258,14 @@ body {
 }
 
 .hp-consult-banner__status {
-  grid-column: 2;
-  position: relative;
-  z-index: 6;
-  margin: 0 0 -0.35rem;
+  margin: 0;
   padding: 0.45rem 0.65rem;
   border-radius: 0.45rem;
   font-size: clamp(11px, 0.95vw, 13px);
   line-height: 1.3;
-  background: rgba(255, 255, 255, 0.96);
+  background: #eef7f2;
   color: #0b4a34;
-  box-shadow: 0 4px 16px rgba(11, 74, 52, 0.12);
+  border: 1px solid rgba(11, 74, 52, 0.12);
 }
 
 .hp-consult-banner__error {
@@ -1285,10 +1282,6 @@ body {
   .hp-consult-banner--split {
     grid-template-columns: 1fr;
     padding: 1rem;
-  }
-
-  .hp-consult-banner__status {
-    grid-column: 1;
   }
 
   .hp-consult-banner__art {

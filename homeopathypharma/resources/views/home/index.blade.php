@@ -199,11 +199,7 @@
             >Chat on WhatsApp</a>
         </div>
 
-        @if (session('status') && session('lead_form') === 'consult_banner')
-            <p class="hp-consult-banner__status" role="status">{{ session('status') }}</p>
-        @endif
-
-        <form
+<form
             class="hp-consult-banner__form"
             method="post"
             action="{{ route('contact.store') }}"
@@ -216,6 +212,10 @@
             <input type="hidden" name="consent" value="1">
 
             <div class="hp-consult-banner__panel">
+                @if (session('status') && session('lead_form') === 'consult_banner')
+                    <p class="hp-consult-banner__status" role="status">{{ session('status') }}</p>
+                @endif
+
                 <div class="hp-consult-banner__intro">
                     <h2 class="hp-consult-banner__title">Book a Consultation</h2>
                     <p class="hp-consult-banner__lead">Share your details and our team will get in touch to schedule your online consultation.</p>
