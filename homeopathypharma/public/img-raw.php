@@ -11,6 +11,7 @@ $allowed = [
     'consult-banner-fullbleed.jpg',
     'consult-banner-fullbleed-2x.jpg',
     'consult-banner-fullbleed@2x.jpg',
+    'consult-banner-visual-2x.jpg',
     'hero-personal-doctors-v3.jpg',
     'hero-banner.jpg',
 ];

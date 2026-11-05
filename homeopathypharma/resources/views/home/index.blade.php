@@ -175,25 +175,34 @@
         </div>
     </section>
 
-    <section class="hp-consult-banner hp-consult-banner--art" id="consult-doctors" aria-label="Online consultation">
-        {{-- Single 2x source via img-raw.php (no srcset): Hostinger CDN downscales /images/* and also
-             rewrites srcset picks via client hints; a plain img keeps the full 4000×1336 bytes. --}}
-        <img
-            class="hp-consult-banner__art"
-            src="{{ asset('img-raw.php') }}?f=consult-banner-fullbleed-2x.jpg&v=20261105-consult-nocard"
-            alt="Online consultation — Consult certified homeopathic doctors. Book a consultation, browse doctors, or chat on WhatsApp."
-            width="2000"
-            height="668"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-        >
+    <section class="hp-consult-banner hp-consult-banner--split" id="consult-doctors" aria-label="Online consultation">
+        <div class="hp-consult-banner__visual">
+            <img
+                class="hp-consult-banner__art"
+                src="{{ asset('img-raw.php') }}?f=consult-banner-visual-2x.jpg&v=20261105-consult-split"
+                alt="Online consultation — clipboard, stethoscope, and homeopathy checklist."
+                width="2800"
+                height="1336"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+            >
+            <a
+                class="hp-consult-banner__hit hp-consult-banner__hit--doctors"
+                href="{{ route('doctors.index') }}"
+            >Browse Doctors</a>
+            <a
+                class="hp-consult-banner__hit hp-consult-banner__hit--whatsapp"
+                href="{{ $settings->whatsappUrl('Hi, I want to book a doctor consult') }}"
+                target="_blank"
+                rel="noopener"
+            >Chat on WhatsApp</a>
+        </div>
 
         @if (session('status') && session('lead_form') === 'consult_banner')
             <p class="hp-consult-banner__status" role="status">{{ session('status') }}</p>
         @endif
 
-        {{-- Full card UI matching the approved consult form look (covers painted form completely) --}}
         <form
             class="hp-consult-banner__form"
             method="post"
@@ -386,18 +395,6 @@
                 }
             })();
         </script>
-
-        {{-- Invisible hit targets over the left artwork CTAs --}}
-        <a
-            class="hp-consult-banner__hit hp-consult-banner__hit--doctors"
-            href="{{ route('doctors.index') }}"
-        >Browse Doctors</a>
-        <a
-            class="hp-consult-banner__hit hp-consult-banner__hit--whatsapp"
-            href="{{ $settings->whatsappUrl('Hi, I want to book a doctor consult') }}"
-            target="_blank"
-            rel="noopener"
-        >Chat on WhatsApp</a>
     </section>
 
     <section class="hp-section" id="founders">
