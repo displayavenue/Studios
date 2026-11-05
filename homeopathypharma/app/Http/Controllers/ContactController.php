@@ -23,13 +23,27 @@ class ContactController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'contact' => ['required', 'string', 'max:190'],
+            'email' => ['nullable', 'email', 'max:190'],
+            'concern' => ['nullable', 'string', 'max:120'],
+            'side_effects' => ['nullable', 'string', 'max:190'],
             'message' => ['required', 'string', 'max:5000'],
             'consent' => ['accepted'],
             'context' => ['nullable', 'string', 'max:80'],
             'lead_form' => ['nullable', 'string', 'max:40'],
         ]);
 
-        $message = $data['message'];
+        $parts = [];
+        if (! empty($data['email'])) {
+            $parts[] = 'Email: '.$data['email'];
+        }
+        if (! empty($data['concern'])) {
+            $parts[] = 'Concern: '.$data['concern'];
+        }
+        if (! empty($data['side_effects'])) {
+            $parts[] = 'Side effects: '.$data['side_effects'];
+        }
+        $parts[] = $data['message'];
+        $message = implode("\n", $parts);
         if (! empty($data['context'])) {
             $message = '['.$data['context'].'] '.$message;
         }

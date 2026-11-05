@@ -923,76 +923,238 @@ body {
   .hp-product-rail { grid-template-columns: 1fr; }
 }
 
-/* Consult banner */
+/* Consult banner — online consultation booking */
 .hp-consult-banner {
-  background: linear-gradient(120deg, #dff0e8, #cfe6db);
-  padding: 3rem 0;
+  --consult-cream: #f7f1ea;
+  --consult-ink: #0b5143;
+  background:
+    radial-gradient(900px 420px at 55% 20%, rgba(190, 214, 196, 0.35), transparent 60%),
+    linear-gradient(105deg, #f8f2eb 0%, #f3ebe3 48%, #efe6dc 100%);
+  padding: clamp(2.5rem, 5vw, 3.75rem) 0;
+  color: var(--consult-ink);
 }
 
 .hp-consult-banner__grid {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.85fr) minmax(18rem, 0.95fr);
+  gap: clamp(1rem, 2.5vw, 1.75rem);
   align-items: center;
 }
 
+.hp-consult-banner__kicker {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--consult-ink);
+  display: inline-block;
+  padding-bottom: 0.45rem;
+  border-bottom: 1.5px solid rgba(11, 81, 67, 0.35);
+}
+
 .hp-consult-banner h2 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.75rem;
   font-family: var(--hp-serif);
-  color: var(--hp-deep);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--consult-ink);
+  font-size: clamp(1.7rem, 3.2vw, 2.45rem);
+  line-height: 1.15;
+  max-width: 16ch;
 }
 
-.hp-consult-banner__list {
-  margin: 1rem 0 1.25rem;
-  padding-left: 1.1rem;
-  color: var(--hp-text);
+.hp-consult-banner__lead {
+  margin: 0 0 1.35rem;
+  color: rgba(11, 81, 67, 0.88);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  max-width: 34rem;
 }
 
-.hp-consult-banner__doctors {
-  margin-top: 1rem;
+.hp-consult-banner__features {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.hp-consult-banner__features li {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--consult-ink);
+}
+
+.hp-consult-banner__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: var(--consult-ink);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(11, 81, 67, 0.12);
+}
+
+.hp-consult-banner__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-.hp-consult-banner__doctors a {
-  text-decoration: none;
-  color: var(--hp-primary);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.hp-consult-banner__aside {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(11, 81, 67, 0.12);
-  border-radius: var(--hp-radius);
-  padding: 1.25rem;
-}
-
-.hp-consult-banner__aside h3 {
-  margin: 0 0 0.75rem;
-  color: var(--hp-deep);
-}
-
-.hp-consult-banner__aside ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
+.hp-btn--whatsapp {
+  background: #fff;
+  color: var(--consult-ink);
+  border: 1.5px solid rgba(11, 81, 67, 0.35);
+  display: inline-flex;
+  align-items: center;
   gap: 0.45rem;
 }
 
-.hp-consult-banner__aside a {
-  text-decoration: none;
-  color: var(--hp-text);
-  font-weight: 600;
+.hp-btn--whatsapp:hover {
+  background: #f7faf8;
+  color: var(--hp-primary-dark);
 }
 
-.hp-consult-banner__aside a:hover { color: var(--hp-primary); }
+.hp-consult-banner__visual {
+  justify-self: center;
+  width: min(100%, 22rem);
+}
+
+.hp-consult-banner__visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+  box-shadow: 0 18px 40px rgba(40, 30, 20, 0.12);
+}
+
+.hp-consult-banner__form-card {
+  background: #fff;
+  border-radius: 1.1rem;
+  padding: clamp(1.15rem, 2.5vw, 1.5rem);
+  box-shadow: 0 18px 42px rgba(40, 30, 20, 0.12);
+  border: 1px solid rgba(11, 81, 67, 0.08);
+}
+
+.hp-consult-banner__form-card h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--hp-serif);
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  color: var(--consult-ink);
+}
+
+.hp-consult-banner__form-card > p {
+  margin: 0 0 1rem;
+  color: rgba(11, 81, 67, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.hp-consult-banner__form {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.hp-consult-field {
+  position: relative;
+  display: block;
+}
+
+.hp-consult-field__icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 0.85rem;
+  color: var(--consult-ink);
+  opacity: 0.75;
+  pointer-events: none;
+  display: grid;
+}
+
+.hp-consult-field input,
+.hp-consult-field select,
+.hp-consult-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d7ddd8;
+  border-radius: 0.65rem;
+  min-height: 2.85rem;
+  padding: 0.7rem 0.85rem 0.7rem 2.55rem;
+  font: inherit;
+  color: var(--hp-text);
+  background: #fff;
+}
+
+.hp-consult-field textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+
+.hp-consult-field input:focus,
+.hp-consult-field select:focus,
+.hp-consult-field textarea:focus {
+  outline: 2px solid rgba(11, 81, 67, 0.35);
+  outline-offset: 1px;
+  border-color: rgba(11, 81, 67, 0.45);
+}
+
+.hp-consult-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(11, 81, 67, 0.82);
+}
+
+.hp-consult-consent input {
+  margin-top: 0.15rem;
+}
+
+.hp-consult-banner__status {
+  margin: 0 0 0.75rem;
+  color: var(--hp-primary);
+  font-size: 0.9rem;
+}
+
+.hp-consult-banner__error {
+  margin: 0;
+  color: #9b2c2c;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 1100px) {
+  .hp-consult-banner__grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+  .hp-consult-banner__visual {
+    display: none;
+  }
+}
 
 @media (max-width: 800px) {
-  .hp-consult-banner__grid { grid-template-columns: 1fr; }
+  .hp-consult-banner__grid {
+    grid-template-columns: 1fr;
+  }
+  .hp-consult-banner h2 {
+    max-width: none;
+  }
+  .hp-consult-banner__features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hp-consult-banner__visual {
+    display: block;
+    width: min(100%, 20rem);
+    order: 2;
+  }
+  .hp-consult-banner__form-card {
+    order: 3;
+  }
 }
 
 /* Founders */
@@ -1269,7 +1431,6 @@ img, video, svg {
   .hp-brand-row { grid-template-columns: 1fr 1fr; }
   .hp-founders-layout,
   .hp-founders-grid { grid-template-columns: 1fr; }
-  .hp-consult-banner__grid { grid-template-columns: 1fr; }
   .hp-footer__grid--5 { grid-template-columns: 1fr 1fr; }
   /* Hero stays identical to desktop — no crop/position overrides */
 }
