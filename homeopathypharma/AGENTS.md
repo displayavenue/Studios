@@ -14,6 +14,22 @@ Whenever frontend section copy/CTAs/images change, update the backend in the sam
 
 See `docs/CMS_FRONTEND_BACKEND_SYNC.md`.
 
+## CCRH Homoeopathy reference book (required for medicine Q&A)
+
+When the user asks to list medicines, drugs, CCRH research remedies, or facts from the Homoeopathy dossier, use:
+
+`knowledge/ccrh/` — *Homoeopathy — Science of Gentle Healing* (Ministry of AYUSH / CCRH, 2016)
+
+```sh
+python3 knowledge/ccrh/search.py "query"
+```
+
+- Catalog: `knowledge/ccrh/medicines.md` (monographs + Table 21/23)
+- Full text: `knowledge/ccrh/homoeopathy_gentle_healing_CCRH.txt`
+- Source PDF: https://ccrhindia.ayush.gov.in/sites/default/files/2023-08/homoeopathy_gentle_healing_CCRH.pdf
+
+Cite the book when answering from it. Do not invent doses/SKU stock from the dossier alone.
+
 ## Prerequisites
 
 Verify that PHP and Composer are available:
