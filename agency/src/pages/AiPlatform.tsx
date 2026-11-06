@@ -11,6 +11,16 @@ export function AiPlatform() {
     <div className="page-shell">
       <SEO title="AI Platform | DisplayAvenue" description="100+ AI tools for marketing, sales, content, automation, analytics, and development." path="/ai-platform" />
       <div className="container-wide">
+        <div className="page-frame page-intro" style={{ padding: "1.75rem", marginBottom: "1rem" }}>
+          <p className="badge">AI Platform</p>
+          <h1 className="section-title" style={{ marginTop: "0.65rem" }}>
+            100+ AI tools for your marketing and sales
+          </h1>
+          <p className="section-sub">
+            AI tools for marketing, sales, content, automation, analytics, and development  -  set
+            up and run for you, so your team spends less time on busywork.
+          </p>
+        </div>
         <div className="page-frame" style={{ padding: "1.25rem 1.25rem 0" }}>
           <AiPlatformMenu />
         </div>

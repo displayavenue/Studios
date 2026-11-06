@@ -17,6 +17,16 @@ export function Resources() {
     <div className="page-shell">
       <SEO title="Resources & Insights | DisplayAvenue" description="Guides, blogs, templates, and playbooks for digital growth." path="/resources" />
       <div className="container-wide">
+        <div className="page-frame page-intro" style={{ padding: "1.75rem", marginBottom: "1rem" }}>
+          <p className="badge">Resources</p>
+          <h1 className="section-title" style={{ marginTop: "0.65rem" }}>
+            Free guides, reports and tools for growing your business
+          </h1>
+          <p className="section-sub">
+            Practical reading for business owners  -  research reports, checklists, templates and
+            free tools you can use today, in plain English.
+          </p>
+        </div>
         <div className="page-frame">
           <div className="page-grid-3">
             <aside className="page-left">

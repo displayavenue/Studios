@@ -1,4 +1,13 @@
 # SPA + SEO for DisplayAvenue (https://displayavenue.com/)
+# Pages are prerendered at build time into /<route>/index.html (scripts/prerender.mjs),
+# so crawlers and link previews get real content. Anything not prerendered
+# falls back to the clean React shell.
+
+# Serve /services as /services/index.html without redirecting to /services/
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -6,8 +15,25 @@
   # Dynamic sitemap
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
-  RewriteRule ^index\.html$ - [L]
+  # Admin keeps its own folder index (with the trailing slash)
+  RewriteRule ^admin$ /admin/ [R=301,L]
+
+  RewriteRule ^(index|spa-shell)\.html$ - [L]
+
+  # Prerendered page for this URL? Serve it.
+  RewriteCond %{REQUEST_URI} !^/(admin|content|assets|images|catalogue)(/|$)
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.+?)/?$ /$1/index.html [L]
+
+  # Otherwise: real files and folders as-is, everything else to the React shell
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  RewriteRule . /spa-shell.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Prerendered HTML must not be cached for long, so CMS changes show after a rebuild
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
 </IfModule>
