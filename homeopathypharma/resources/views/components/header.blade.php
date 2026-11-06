@@ -86,7 +86,7 @@
         <div class="hp-container hp-nav-bar__row">
             <nav id="site-nav" class="hp-primary-nav" data-nav aria-label="Primary">
                 <div class="hp-nav-item hp-nav-item--has-menu">
-                    <a class="hp-nav-link hp-nav-link--pill" href="{{ route('shop.index') }}">
+                    <a class="hp-nav-link" href="{{ route('shop.index') }}">
                         Shop by Category
                         <span class="hp-nav-chevron" aria-hidden="true"></span>
                     </a>
@@ -129,15 +129,11 @@
                 <a class="hp-nav-link" href="{{ route('health-library.index') }}">Health Library</a>
                 <a class="hp-nav-link" href="{{ route('about') }}">About Us</a>
                 <a class="hp-nav-link" href="{{ route('contact.show') }}">Contact Us</a>
-
-                <a class="hp-nav-link hp-nav-mobile-only" href="{{ route('account.dashboard') }}">Track Order</a>
-                <a class="hp-nav-link hp-nav-mobile-only" href="{{ route('contact.show') }}">Need Help?</a>
-                <a class="hp-nav-link hp-nav-mobile-only" href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
             </nav>
 
             <div class="hp-nav-bar__right">
-                <a href="{{ route('account.dashboard') }}">Track Order</a>
-                <a href="{{ route('contact.show') }}">Need Help?</a>
+                <a class="hp-nav-link--pill" href="{{ route('account.dashboard') }}">Track Order</a>
+                <a class="hp-nav-link--pill" href="{{ route('contact.show') }}">Need Help?</a>
             </div>
         </div>
     </div>
