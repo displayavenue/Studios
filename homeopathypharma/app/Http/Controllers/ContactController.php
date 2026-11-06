@@ -8,6 +8,7 @@ use App\Models\ContentPage;
 use App\Models\HomepageSection;
 use App\Services\LeadAlertService;
 use App\Services\SiteSettings;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -24,7 +25,7 @@ class ContactController extends Controller
         ]);
     }
 
-    public function store(Request $request, SiteSettings $settings, LeadAlertService $alerts): RedirectResponse
+    public function store(Request $request, SiteSettings $settings, LeadAlertService $alerts): RedirectResponse|JsonResponse
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:120'],
@@ -35,7 +36,7 @@ class ContactController extends Controller
             'message' => ['required', 'string', 'max:5000'],
             'consent' => ['accepted'],
             'context' => ['nullable', 'string', 'max:80'],
-            'lead_form' => ['nullable', 'string', 'in:doctor,consult_banner,contact'],
+            'lead_form' => ['nullable', 'string', 'in:doctor,consult_banner,contact,homepage_chat'],
             'attachment' => ['nullable', 'file', 'max:10240', 'mimes:jpg,jpeg,png,pdf'],
         ]);
 
@@ -46,7 +47,7 @@ class ContactController extends Controller
             return $this->storeConsultRequest($request, $data, $settings);
         }
 
-        // Talk to a Doctor (+ contact page) → Admin → Leads
+        // Talk to a Doctor / homepage chat / contact page → Admin → Leads
         return $this->storeLead($request, $data, $source, $settings, $alerts);
     }
 
@@ -59,7 +60,7 @@ class ContactController extends Controller
         string $source,
         SiteSettings $settings,
         LeadAlertService $alerts
-    ): RedirectResponse {
+    ): RedirectResponse|JsonResponse {
         $parts = [];
         if (! empty($data['email'])) {
             $parts[] = 'Email: '.$data['email'];
@@ -76,19 +77,39 @@ class ContactController extends Controller
             $message = '['.$data['context'].'] '.$message;
         }
 
+        $storedSource = match ($source) {
+            'doctor' => 'doctor',
+            'homepage_chat' => 'chat',
+            default => 'contact',
+        };
+
         $lead = ContactMessage::query()->create([
             'name' => $data['name'],
             'contact' => $data['contact'],
             'message' => $message,
             'consent' => true,
             'status' => 'new',
-            'source' => $source === 'doctor' ? 'doctor' : 'contact',
+            'source' => $storedSource,
             'ip_address' => $request->ip(),
         ]);
 
         $alert = $alerts->alert($lead);
         $success = $this->successMessageFor($source, $settings);
-        $anchor = $source === 'doctor' ? '#talk-to-doctor' : '';
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'ok' => true,
+                'status' => $success,
+                'lead_form' => $source,
+                'lead_id' => $lead->id,
+            ]);
+        }
+
+        $anchor = match ($source) {
+            'doctor' => '#talk-to-doctor',
+            'homepage_chat' => '#homepage-chat',
+            default => '',
+        };
         $previous = preg_replace('/#.*$/', '', (string) url()->previous()) ?: url('/');
 
         return redirect()
@@ -178,6 +199,10 @@ class ContactController extends Controller
             }
 
             return 'Thank you. Our team will connect with you soon to schedule your consultation.';
+        }
+
+        if ($source === 'homepage_chat') {
+            return 'Thanks for writing in. Our team will reply shortly with the information you need.';
         }
 
         return 'Thank you. Our team will connect with you soon. For urgent matters please call '.$settings->phoneDisplay().'.';

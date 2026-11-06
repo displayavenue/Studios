@@ -69,78 +69,74 @@
     @endif
 
     @if ($doctorLead)
-    <section class="hp-doctor-lead" id="talk-to-doctor" aria-label="Talk to a doctor">
-        <img
-            class="hp-doctor-lead__art"
-            src="{{ !empty($doctorLeadData['media_asset_id']) ? $doctorLead->imageUrl() : asset('img-raw.php').'?f=doctor-lead-banner.jpg&v=20261106-doctor-lead-exact2' }}"
-            alt=""
-            width="3548"
-            height="646"
-            decoding="async"
-            aria-hidden="true"
-        >
-        <div class="hp-doctor-lead__card">
-            <div class="hp-doctor-lead__inner">
-                <h2>{{ $doctorLead->title }}</h2>
-                <p class="hp-doctor-lead__sub">{{ $doctorLead->subtitle }}</p>
+    <section
+        class="hp-doctor-lead"
+        id="talk-to-doctor"
+        aria-label="Talk to a doctor"
+        @if (!empty($doctorLeadData['media_asset_id']) && $doctorLead->imageUrl())
+            style="--hp-doctor-lead-bg: url('{{ $doctorLead->imageUrl() }}')"
+        @endif
+    >
+        <div class="hp-doctor-lead__inner">
+            <h2>{{ $doctorLead->title }}</h2>
+            <p class="hp-doctor-lead__sub">{{ $doctorLead->subtitle }}</p>
 
-                @if (session('lead_success') && session('lead_form') === 'doctor')
-                    <div class="hp-doctor-lead__success" role="status" aria-live="polite">
-                        <p class="hp-doctor-lead__success-title">{{ session('status') }}</p>
-                    </div>
-                @else
-                <form class="hp-doctor-lead__form" method="post" action="{{ route('contact.store') }}">
-                    @csrf
-                    <input type="hidden" name="context" value="Homepage doctor lead">
-                    <input type="hidden" name="lead_form" value="doctor">
-                    <div class="hp-doctor-lead__fields">
-                        <label class="hp-sr-only" for="doctor-lead-name">{{ $doctorLeadData['name_placeholder'] ?? 'Your Full Name' }}</label>
-                        <input
-                            id="doctor-lead-name"
-                            class="hp-doctor-lead__input"
-                            type="text"
-                            name="name"
-                            value="{{ old('lead_form') === 'doctor' ? old('name') : '' }}"
-                            placeholder="{{ $doctorLeadData['name_placeholder'] ?? 'Your Full Name' }}"
-                            autocomplete="name"
-                            required
-                            maxlength="120"
-                        >
-                        <label class="hp-sr-only" for="doctor-lead-mobile">{{ $doctorLeadData['mobile_placeholder'] ?? 'Mobile Number' }}</label>
-                        <input
-                            id="doctor-lead-mobile"
-                            class="hp-doctor-lead__input"
-                            type="tel"
-                            name="contact"
-                            value="{{ old('lead_form') === 'doctor' ? old('contact') : '' }}"
-                            placeholder="{{ $doctorLeadData['mobile_placeholder'] ?? 'Mobile Number' }}"
-                            autocomplete="tel"
-                            required
-                            maxlength="190"
-                        >
-                        <label class="hp-sr-only" for="doctor-lead-concern">{{ $doctorLeadData['concern_placeholder'] ?? 'Your Health Concern' }}</label>
-                        <input
-                            id="doctor-lead-concern"
-                            class="hp-doctor-lead__input"
-                            type="text"
-                            name="message"
-                            value="{{ old('lead_form') === 'doctor' ? old('message') : '' }}"
-                            placeholder="{{ $doctorLeadData['concern_placeholder'] ?? 'Your Health Concern' }}"
-                            required
-                            maxlength="5000"
-                        >
-                    </div>
-                    <label class="hp-doctor-lead__consent">
-                        <input type="checkbox" name="consent" value="1" required @checked(old('lead_form') === 'doctor' && old('consent'))>
-                        <span>{{ $doctorLeadData['consent_text'] ?? 'I agree to be contacted about this enquiry. This is not emergency care.' }}</span>
-                    </label>
-                    @if ($errors->any() && old('lead_form') === 'doctor')
-                        <p class="hp-doctor-lead__error" role="alert">{{ $errors->first() }}</p>
-                    @endif
-                    <button class="hp-doctor-lead__submit" type="submit">{{ $doctorLeadData['submit_label'] ?? 'Talk to a Doctor' }}</button>
-                </form>
+            @if (session('lead_success') && session('lead_form') === 'doctor')
+                <div class="hp-doctor-lead__success" role="status" aria-live="polite">
+                    <p class="hp-doctor-lead__success-title">{{ session('status') }}</p>
+                </div>
+            @else
+            <form class="hp-doctor-lead__form" method="post" action="{{ route('contact.store') }}">
+                @csrf
+                <input type="hidden" name="context" value="Homepage doctor lead">
+                <input type="hidden" name="lead_form" value="doctor">
+                <div class="hp-doctor-lead__fields">
+                    <label class="hp-sr-only" for="doctor-lead-name">{{ $doctorLeadData['name_placeholder'] ?? 'Your Full Name' }}</label>
+                    <input
+                        id="doctor-lead-name"
+                        class="hp-doctor-lead__input"
+                        type="text"
+                        name="name"
+                        value="{{ old('lead_form') === 'doctor' ? old('name') : '' }}"
+                        placeholder="{{ $doctorLeadData['name_placeholder'] ?? 'Your Full Name' }}"
+                        autocomplete="name"
+                        required
+                        maxlength="120"
+                    >
+                    <label class="hp-sr-only" for="doctor-lead-mobile">{{ $doctorLeadData['mobile_placeholder'] ?? 'Mobile Number' }}</label>
+                    <input
+                        id="doctor-lead-mobile"
+                        class="hp-doctor-lead__input"
+                        type="tel"
+                        name="contact"
+                        value="{{ old('lead_form') === 'doctor' ? old('contact') : '' }}"
+                        placeholder="{{ $doctorLeadData['mobile_placeholder'] ?? 'Mobile Number' }}"
+                        autocomplete="tel"
+                        required
+                        maxlength="190"
+                    >
+                    <label class="hp-sr-only" for="doctor-lead-concern">{{ $doctorLeadData['concern_placeholder'] ?? 'Your Health Concern' }}</label>
+                    <input
+                        id="doctor-lead-concern"
+                        class="hp-doctor-lead__input"
+                        type="text"
+                        name="message"
+                        value="{{ old('lead_form') === 'doctor' ? old('message') : '' }}"
+                        placeholder="{{ $doctorLeadData['concern_placeholder'] ?? 'Your Health Concern' }}"
+                        required
+                        maxlength="5000"
+                    >
+                </div>
+                <label class="hp-doctor-lead__consent">
+                    <input type="checkbox" name="consent" value="1" required @checked(old('lead_form') === 'doctor' && old('consent'))>
+                    <span>{{ $doctorLeadData['consent_text'] ?? 'I agree to be contacted about this enquiry. This is not emergency care.' }}</span>
+                </label>
+                @if ($errors->any() && old('lead_form') === 'doctor')
+                    <p class="hp-doctor-lead__error" role="alert">{{ $errors->first() }}</p>
                 @endif
-            </div>
+                <button class="hp-doctor-lead__submit" type="submit">{{ $doctorLeadData['submit_label'] ?? 'Talk to a Doctor' }}</button>
+            </form>
+            @endif
         </div>
     </section>
     @endif
@@ -581,4 +577,6 @@
         </div>
     </section>
     @endif
+
+    @include('components.homepage-chat')
 @endsection

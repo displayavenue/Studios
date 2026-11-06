@@ -25,7 +25,11 @@ class LeadAlertService
             $email = trim((string) $this->settings->get('notification_email', ''));
         }
 
-        $subject = 'New Talk to a Doctor lead — '.$lead->name;
+        $subject = match ($lead->source) {
+            'doctor' => 'New Talk to a Doctor lead — '.$lead->name,
+            'chat' => 'New homepage chat enquiry — '.$lead->name,
+            default => 'New website lead — '.$lead->name,
+        };
         $body = implode("\n", [
             'A new lead was submitted on the website.',
             '',
