@@ -7,10 +7,12 @@
     "dev": "vite",
     "seo:generate": "node scripts/generate-seo.mjs",
     "prebuild": "node scripts/generate-seo.mjs",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy:hostinger": "bash scripts/deploy-hostinger.sh"
+    "deploy:hostinger": "bash scripts/deploy-hostinger.sh",
+    "build:spa": "tsc -b && vite build",
+    "prerender": "node scripts/prerender.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -23,6 +25,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "oxlint": "^1.75.0",
+    "playwright-core": "^1.65.0",
     "typescript": "~6.0.2",
     "vite": "^8.2.0"
   }

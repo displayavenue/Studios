@@ -5,6 +5,43 @@
   min-width: 0;
 }
 
+.logo-mark {
+  flex: none;
+}
+
+.logo-mark__tile {
+  fill: var(--ink);
+}
+
+.logo-light .logo-mark__tile {
+  fill: rgba(255, 255, 255, 0.08);
+  stroke: rgba(255, 255, 255, 0.16);
+}
+
+.logo-mark__dot {
+  fill: var(--marigold);
+}
+
+.logo-mark__d {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3.4;
+  stroke-linejoin: round;
+}
+
+.logo:not(.logo-light) .logo-mark__d {
+  stroke: #fff;
+}
+
+.logo-mark__dot {
+  transform-origin: 19.5px 20px;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.logo:hover .logo-mark__dot {
+  transform: scale(1.35);
+}
+
 .logo-text {
   display: flex;
   flex-direction: column;
@@ -12,19 +49,24 @@
 }
 
 .logo-text strong {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 750;
+  color: var(--ink);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.logo-text__soft {
+  font-weight: 450;
 }
 
 .logo-text small {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   font-weight: 500;
   white-space: nowrap;
-  margin-top: 0.12rem;
+  margin-top: 0.15rem;
 }
 
 .logo-light .logo-text strong {
@@ -32,5 +74,5 @@
 }
 
 .logo-light .logo-text small {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.62);
 }

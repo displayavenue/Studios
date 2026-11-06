@@ -60,3 +60,19 @@ bash scripts/deploy-ssh-live.sh
 Home, What We Do / Services, Industries, Solutions, AI Platform, Packages, Free Tools, Case Studies, Portfolio, Resources, Why DisplayAvenue, Contact (+ detail stubs).
 
 Domain: [displayavenue.com](https://displayavenue.com)
+
+
+## Prerendering (SEO + link previews)
+
+`npm run build` now runs `scripts/prerender.mjs` after Vite. It opens every URL in
+`sitemap.xml` with the Chrome already installed on the machine and saves
+`dist/<route>/index.html` with the real page text and that page's own title,
+description, canonical, Open Graph and JSON-LD tags. Google, Facebook/Meta,
+WhatsApp and LinkedIn previews then see real content instead of an empty page.
+
+- No Chrome on the build machine? The step is skipped with a warning; set
+  `CHROME_PATH=/path/to/chrome` to point at one. `PRERENDER=0` skips it.
+- `public/.htaccess` serves the prerendered file for each URL and falls back to
+  `spa-shell.html` for anything else.
+- Visitors always get the live React app with live CMS content. After big CMS
+  edits, rebuild and redeploy so the static copy that crawlers read stays current.

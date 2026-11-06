@@ -50,7 +50,7 @@
 }
 
 .blog-card:hover {
-  border-color: var(--blue, #0056ff);
+  border-color: var(--blue, var(--ultra));
   box-shadow: 0 8px 24px rgba(15, 40, 70, 0.06);
 }
 
@@ -143,5 +143,5 @@
 }
 
 .blog-related a {
-  color: var(--blue, #0056ff);
+  color: var(--blue, var(--ultra));
 }

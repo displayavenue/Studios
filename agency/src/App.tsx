@@ -38,6 +38,7 @@ import {
   ResourceDetail,
   IndustryServiceCombo,
 } from "./pages/CatalogDetails";
+import "./styles/polish.css";
 
 export default function App() {
   const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";

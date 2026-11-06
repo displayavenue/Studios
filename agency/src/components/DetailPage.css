@@ -319,8 +319,8 @@
   margin: 1rem 0 0;
   padding: 0.9rem 1rem;
   border-radius: 12px;
-  background: rgba(0, 86, 255, 0.06);
-  border: 1px solid rgba(0, 86, 255, 0.12);
+  background: rgba(44, 70, 224, 0.06);
+  border: 1px solid rgba(44, 70, 224, 0.12);
 }
 
 .detail-quick-answer strong {
@@ -377,7 +377,7 @@
 }
 
 .detail-compare__col--ours {
-  border-color: rgba(0, 86, 255, 0.25);
+  border-color: rgba(44, 70, 224, 0.25);
   background: var(--blue-soft);
 }
 

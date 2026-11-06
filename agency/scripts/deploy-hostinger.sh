@@ -3,6 +3,8 @@
 # Required env: HOSTINGER_FTP_HOST, HOSTINGER_FTP_USERNAME, HOSTINGER_FTP_PASSWORD
 # Optional: HOSTINGER_FTP_REMOTE_PATH (default: public_html)
 # Use a SEPARATE Hostinger site / FTP account from displayavenuestudios.com
+# Never overwritten or deleted on the server: content/ (live CMS edits),
+# admin/.leads/ (form leads), admin/.token*/ (logins), us/ (US landing page).
 
 set -euo pipefail
 
@@ -26,7 +28,7 @@ echo "Uploading dist/ → ${HOST}/${REMOTE} ..."
 lftp -u "$USER","$PASS" "$HOST" <<EOF
 set ftp:ssl-allow no
 set ssl:verify-certificate no
-mirror -R --delete --verbose --exclude-glob .git* dist/ $REMOTE/
+mirror -R --delete --verbose --exclude-glob .git* -x '^content/' -x '^admin/\.leads/' -x '^admin/\.tokens?/' -x '^us/' dist/ $REMOTE/
 bye
 EOF
 

@@ -1,0 +1,419 @@
+/**
+ * Site-wide polish for every inner page (loaded last).
+ * Brings list pages, detail pages and shared blocks into the "Signal" system
+ * without touching their markup or CMS content.
+ */
+
+/* ---------- Labels: sentence case, marigold rule (no shouty caps) ---------- */
+.achome__kicker,
+.grev__kicker,
+.explore-dir__kicker,
+.explore-dir__section-label,
+.acred__kicker,
+.growth-eyebrow,
+.hero-eyebrow,
+.preferred-sources__kicker,
+.rotate-kw__label {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-weight: 600 !important;
+}
+
+.achome__kicker,
+.grev__kicker,
+.explore-dir__kicker,
+.acred__kicker,
+.growth-eyebrow,
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.95rem !important;
+  color: var(--marigold-2) !important;
+}
+
+.achome__kicker::before,
+.grev__kicker::before,
+.explore-dir__kicker::before,
+.acred__kicker::before,
+.growth-eyebrow::before,
+.hero-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+/* ---------- List pages: white sheet floats over an ink band ---------- */
+.page-shell {
+  background:
+    linear-gradient(var(--ink), var(--ink)) top / 100% clamp(220px, 28vw, 340px) no-repeat,
+    var(--paper);
+  padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.page-frame {
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 40px 80px -40px rgba(8, 22, 41, 0.45);
+  animation: polishSheet 0.9s var(--ease-out) both;
+}
+
+.page-frame[style*="padding"] {
+  padding: clamp(1.5rem, 4.5vw, 3.5rem) !important;
+}
+
+@keyframes polishSheet {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+.page-shell h1.section-title,
+.placeholder-page h1.section-title {
+  font-size: clamp(2.4rem, 5.6vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  max-width: 17ch;
+  color: var(--ink) !important;
+  animation: polishTitle 1s var(--ease-out) 0.1s both;
+}
+
+@keyframes polishTitle {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 -20% 0);
+  }
+}
+
+.page-shell .section-sub {
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+}
+
+/* ---------- Detail pages: ink hero, floating card ---------- */
+.detail-hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(55% 70% at 90% 10%, color-mix(in srgb, var(--accent, var(--ultra)) 40%, transparent), transparent 70%),
+    radial-gradient(40% 50% at 70% 100%, rgba(242, 181, 60, 0.12), transparent 70%),
+    var(--ink) !important;
+  padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 5rem) !important;
+  border-bottom: 0 !important;
+}
+
+.detail-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(70% 70% at 80% 30%, #000, transparent 75%);
+  pointer-events: none;
+}
+
+.detail-hero > .container {
+  position: relative;
+}
+
+.detail-hero h1 {
+  font-size: clamp(2.3rem, 5.2vw, 4.4rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.045em !important;
+  color: #fff !important;
+  max-width: 16ch;
+  animation: polishTitle 1s var(--ease-out) 0.1s both;
+}
+
+.detail-crumbs,
+.detail-crumbs a {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.detail-crumbs a:hover {
+  color: var(--marigold) !important;
+}
+
+.detail-hero .badge {
+  color: var(--ink);
+  background: var(--marigold);
+}
+
+.detail-summary,
+.detail-plain {
+  color: rgba(255, 255, 255, 0.74) !important;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem) !important;
+}
+
+.detail-quick-answer {
+  color: rgba(255, 255, 255, 0.82) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-left: 3px solid var(--marigold) !important;
+  border-radius: 16px !important;
+}
+
+.detail-quick-answer strong {
+  color: var(--marigold) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.detail-quick-answer p {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.detail-hero .btn-outline {
+  --btn-fg: #fff;
+  --btn-hover: #fff;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.4);
+}
+
+.detail-hero .btn-outline:hover {
+  color: var(--ink);
+}
+
+.detail-metrics {
+  border-top-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.detail-metrics strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem) !important;
+  letter-spacing: -0.04em;
+  color: #fff !important;
+}
+
+.detail-metrics span {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.detail-hero-card {
+  border: 0 !important;
+  border-radius: var(--radius-lg) !important;
+  padding: clamp(1.4rem, 3vw, 2rem) !important;
+  box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.7) !important;
+  animation: polishCard 1.1s var(--ease-out) 0.3s both;
+}
+
+@keyframes polishCard {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotate(2deg);
+  }
+}
+
+.detail-hero-card h2 {
+  font-size: 1.5rem !important;
+  color: var(--ink) !important;
+}
+
+.detail-page h2 {
+  letter-spacing: -0.035em;
+}
+
+/* ---------- Cards across catalogue pages ---------- */
+.category-card,
+.tool-card,
+.featured-card,
+.start-point,
+.explore-start,
+.explore-tile,
+.detail-benefit,
+.price-card,
+.testimonial-card,
+.acred__card {
+  border-radius: var(--radius) !important;
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    border-color 0.3s ease !important;
+}
+
+.category-card:hover,
+.tool-card:hover,
+.featured-card:hover,
+.start-point:hover,
+.explore-start:hover,
+.explore-tile:hover,
+.price-card:hover,
+.acred__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--marigold) !important;
+  box-shadow: 0 24px 48px -28px rgba(11, 31, 58, 0.45) !important;
+}
+
+/* Scroll-linked entrance for every card grid — CSS only, progressive */
+@supports (animation-timeline: view()) {
+  .category-card,
+  .tool-card,
+  .featured-card,
+  .start-point,
+  .explore-start,
+  .explore-tile,
+  .detail-benefit,
+  .price-card,
+  .testimonial-card,
+  .acred__card,
+  .grev__card,
+  .detail-related-grid > *,
+  .detail-process li {
+    animation: polishCardIn linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+
+  @keyframes polishCardIn {
+    from {
+      opacity: 0;
+      transform: translateY(36px) scale(0.98);
+    }
+  }
+}
+
+/* ---------- Section headings in inner pages ---------- */
+.section-title {
+  text-wrap: balance;
+}
+
+.growth-section h2,
+.detail-page section h2 {
+  font-family: var(--font-display);
+}
+
+/* ---------- Explore directory (bottom of every page) ---------- */
+.explore-dir__title {
+  font-size: clamp(2rem, 4vw, 3.2rem) !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1 !important;
+}
+
+/* ---------- Forms ---------- */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select,
+textarea {
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.25s;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--ink) !important;
+  box-shadow: 0 0 0 4px rgba(242, 181, 60, 0.35) !important;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .page-frame,
+  .page-shell h1.section-title,
+  .detail-hero h1,
+  .detail-hero-card {
+    animation: none !important;
+  }
+}
+
+/* ---------- Detail page section headings: a step down from page titles ---------- */
+.detail-page .section-title,
+.detail-page section h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.035em !important;
+}
+
+/* ---------- Floating chat + mobile action bar ---------- */
+.da-chat__launcher {
+  background: var(--ink) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 18px 36px -14px rgba(8, 22, 41, 0.7) !important;
+  font-weight: 600 !important;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s !important;
+}
+
+.da-chat__launcher:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+.da-chat__launcher svg * {
+  fill: var(--marigold);
+}
+
+.da-chat__head {
+  background: var(--ink) !important;
+}
+
+.sticky-mcta__btn {
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+}
+
+.sticky-mcta__btn--cta {
+  background: var(--marigold) !important;
+  color: var(--ink) !important;
+}
+
+.sticky-mcta {
+  background: rgba(8, 22, 41, 0.92) !important;
+  backdrop-filter: blur(14px);
+}
+
+/* ---------- Announcement: one line on phones ---------- */
+@media (max-width: 1099px) {
+  .announcement-inner > span {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+/* ---------- Narrow sidebars keep a sidebar-sized title ---------- */
+.page-left h1.section-title,
+.page-grid-3 h1.section-title {
+  font-size: clamp(1.9rem, 2.6vw, 2.6rem) !important;
+  max-width: none;
+}
+
+.blog-frame,
+.page-frame:has(> .badge:first-child) {
+  padding: clamp(1.5rem, 4.5vw, 3.5rem);
+}
+
+/* ---------- /growth landing: brand action colour ---------- */
+.growth-btn--primary,
+.growth-form .btn-primary,
+.growth-sticky-cta .growth-btn--primary {
+  background: var(--marigold) !important;
+  color: var(--ink) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 1px 0 var(--marigold-2), 0 12px 28px -12px rgba(217, 150, 26, 0.75) !important;
+}
+
+.growth-btn--primary:hover,
+.growth-form .btn-primary:hover {
+  background: #ffc75a !important;
+}
+
+.growth-btn {
+  border-radius: 999px;
+}
+
+.growth-shell h1,
+.growth-shell h2,
+.growth-shell h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.035em;
+}
+.growth-shell { overflow-x: clip; }
