@@ -69,7 +69,8 @@ class HomepageSectionCatalog
                 'subtitle' => 'Personalised guidance, thoughtful care.',
                 'sort_order' => 25,
                 'payload' => [
-                    'image_path' => 'images/home/doctor-lead-banner.jpg',
+                    'image_path' => 'img-raw.php?f=doctor-lead-banner.jpg&v=20261106-doctor-lead-exact2',
+                    'image_alt' => 'Talk to a doctor banner',
                     'media_asset_id' => null,
                     'name_placeholder' => 'Your Full Name',
                     'mobile_placeholder' => 'Mobile Number',

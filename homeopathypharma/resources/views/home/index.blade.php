@@ -69,14 +69,13 @@
     @endif
 
     @if ($doctorLead)
-    @php($doctorLeadImage = $doctorLead->imageUrl('images/home/doctor-lead-banner.jpg'))
     <section class="hp-doctor-lead" id="talk-to-doctor" aria-label="Talk to a doctor">
         <img
             class="hp-doctor-lead__art"
-            src="{{ $doctorLeadImage }}?v=20261106-doctor-lead-v2"
+            src="{{ !empty($doctorLeadData['media_asset_id']) ? $doctorLead->imageUrl() : asset('img-raw.php').'?f=doctor-lead-banner.jpg&v=20261106-doctor-lead-exact2' }}"
             alt=""
-            width="2000"
-            height="668"
+            width="3548"
+            height="646"
             decoding="async"
             aria-hidden="true"
         >
