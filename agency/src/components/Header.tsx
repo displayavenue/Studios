@@ -19,6 +19,8 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [mega, setMega] = useState<MegaKey | null>(null);
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const closeTimer = useRef<number | null>(null);
   const navId = useId();
@@ -33,6 +35,29 @@ export function Header() {
     setMobileSection(null);
     setSearchOpen(false);
   }, [pathname]);
+
+  // Headroom: hide on scroll down, reveal on scroll up.
+  useEffect(() => {
+    let last = window.scrollY;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - last;
+        setScrolled(y > 8);
+        if (Math.abs(delta) > 6) {
+          setHidden(delta > 0 && y > 220);
+          if (delta > 0 && y > 220) setMega(null);
+          last = y;
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
@@ -158,7 +183,9 @@ export function Header() {
       : null;
 
   return (
-    <header className="site-header">
+    <header
+      className={`site-header${hidden && !open ? " is-hidden" : ""}${scrolled ? " is-scrolled" : ""}`}
+    >
       <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
       <div className="announcement">
         <div className="container-wide announcement-inner">
@@ -178,7 +205,17 @@ export function Header() {
           <Logo light />
           <div className="header-actions">
             <button
-              className="icon-btn"
+              type="button"
+              className="header-kbd"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search the site"
+            >
+              <Icon name="search" size={16} color="currentColor" />
+              Search
+              <kbd>⌘K</kbd>
+            </button>
+            <button
+              className="icon-btn search-btn"
               aria-label="Search"
               type="button"
               onClick={() => setSearchOpen(true)}
@@ -194,7 +231,7 @@ export function Header() {
             </a>
             <Link to="/contact" className="btn btn-primary btn-sm proposal-btn">
               Get Free Proposal
-              <Icon name="arrow" size={14} color="#fff" />
+              <Icon name="arrow" size={14} color="currentColor" />
             </Link>
             <button
               className={`icon-btn mobile-toggle${open ? " is-open" : ""}`}

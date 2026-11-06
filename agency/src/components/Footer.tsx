@@ -80,7 +80,7 @@ export function Footer() {
             <p>{content.footerCta.sub}</p>
           </div>
           <div className="footer-cta-actions">
-            <Link to="/contact" className="btn btn-primary btn-shimmer">
+            <Link to="/contact" className="btn btn-primary">
               Book Free Consultation
               <span className="btn-arrow" aria-hidden>
                 →
@@ -177,11 +177,11 @@ export function Footer() {
             <h4>Get In Touch</h4>
             <ul className="footer-contact">
               <li>
-                <Icon name="building" size={16} color="#7dd3fc" />
+                <Icon name="building" size={16} color="#f2b53c" />
                 {company.address.city}
               </li>
               <li>
-                <Icon name="clock" size={16} color="#7dd3fc" />
+                <Icon name="clock" size={16} color="#f2b53c" />
                 {company.address.hours}
               </li>
               <li>
@@ -192,16 +192,19 @@ export function Footer() {
               </li>
             </ul>
             <a
-              className="btn btn-primary btn-sm"
+              className="btn btn-sm footer-wa-btn"
               href={company.whatsappHref}
               target="_blank"
               rel="noreferrer"
-              style={{ background: "#25d366", marginTop: "0.75rem" }}
             >
               Chat on WhatsApp
             </a>
           </div>
         </div>
+      </div>
+
+      <div className="footer-wordmark" aria-hidden>
+        <span>{company.name}</span>
       </div>
 
       <div className="footer-bottom">
