@@ -36,6 +36,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ConsultController;
 use App\Http\Controllers\ConsultationRequestController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\GalleryController;
@@ -94,6 +95,8 @@ Route::get('/policies/{slug}', [PolicyController::class, 'show'])->name('policie
 
 Route::get('/about', [ContentPageController::class, 'about'])->name('about');
 Route::get('/about/founders', [ContentPageController::class, 'founders'])->name('about.founders');
+
+Route::get('/chat', [ChatController::class, 'show'])->name('chat.show');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'store'])

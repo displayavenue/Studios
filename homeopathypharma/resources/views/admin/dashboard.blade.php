@@ -25,6 +25,12 @@
 </div>
 
 <div class="admin-card" style="margin-top:1.25rem;">
+    <h3 style="margin-top:0;">Homepage chats</h3>
+    <p class="admin-muted" style="margin:0 0 0.75rem;">When someone uses the chat icon, their name, number, and message appear here so you know who asked what.</p>
+    <a class="btn btn-primary" href="{{ route('admin.leads.index', ['source' => 'chat', 'status' => 'all']) }}">Open chats</a>
+</div>
+
+<div class="admin-card" style="margin-top:1.25rem;">
     <h3 style="margin-top:0;">After you make changes</h3>
     <p class="admin-muted" style="margin:0 0 0.75rem;">Clear caches and visitor cookies so the live site shows your latest updates.</p>
     <a class="btn btn-primary" href="{{ route('admin.cache.index') }}">Clear cache &amp; cookies</a>

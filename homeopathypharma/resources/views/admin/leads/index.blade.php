@@ -1,10 +1,27 @@
 @extends('layouts.admin')
-@section('title', 'Leads')
+@section('title', $source === 'chat' ? 'Chats' : 'Leads')
 @section('content')
+@php
+    $isChatInbox = $source === 'chat';
+    $sourceLabel = static function (?string $value): string {
+        return match ($value) {
+            'doctor' => 'Talk to a Doctor',
+            'chat' => 'Homepage chat',
+            'contact' => 'Contact page',
+            default => $value ?: 'contact',
+        };
+    };
+@endphp
 <div class="admin-top">
     <div>
-        <h2>Leads</h2>
-        <p class="admin-muted" style="margin:0.35rem 0 0;">Talk to a Doctor, homepage chat, and contact page submissions appear here instantly. Book a Consultation goes to Consult requests. {{ $newCount }} new.</p>
+        <h2>{{ $isChatInbox ? 'Chats' : 'Leads' }}</h2>
+        <p class="admin-muted" style="margin:0.35rem 0 0;">
+            @if ($isChatInbox)
+                Messages from the homepage chat icon appear here. See who asked what and follow up by phone or WhatsApp. {{ $newCount }} new leads overall.
+            @else
+                Talk to a Doctor, homepage chat, and contact page submissions appear here instantly. Book a Consultation goes to Consult requests. {{ $newCount }} new.
+            @endif
+        </p>
     </div>
 </div>
 
@@ -29,6 +46,7 @@
     <th>When</th>
     <th>Name</th>
     <th>Contact</th>
+    <th>Asked about</th>
     <th>Source</th>
     <th>Status</th>
     <th></th>
@@ -36,16 +54,21 @@
 </thead>
 <tbody>
 @forelse ($leads as $lead)
+@php
+    $preview = trim(preg_replace('/^\\[[^\\]]+\\]\\s*/', '', (string) $lead->message));
+    $preview = \Illuminate\Support\Str::limit($preview, 90);
+@endphp
 <tr>
     <td>{{ $lead->created_at?->timezone('Asia/Kolkata')->format('d M Y, h:i A') }}</td>
     <td><strong>{{ $lead->name }}</strong></td>
     <td><a href="tel:{{ preg_replace('/\s+/', '', $lead->contact) }}">{{ $lead->contact }}</a></td>
-    <td><code>{{ $lead->source ?: 'contact' }}</code></td>
+    <td style="max-width:18rem;">{{ $preview }}</td>
+    <td>{{ $sourceLabel($lead->source) }}</td>
     <td><span class="badge">{{ $lead->status }}</span></td>
     <td><a href="{{ route('admin.leads.show', $lead) }}">Open</a></td>
 </tr>
 @empty
-<tr><td colspan="6">No leads yet. Submissions from the homepage form will show here.</td></tr>
+<tr><td colspan="7">{{ $isChatInbox ? 'No chat messages yet.' : 'No leads yet. Submissions from the homepage form will show here.' }}</td></tr>
 @endforelse
 </tbody>
 </table>

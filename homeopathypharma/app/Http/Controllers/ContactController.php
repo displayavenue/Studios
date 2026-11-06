@@ -105,11 +105,16 @@ class ContactController extends Controller
             ]);
         }
 
-        $anchor = match ($source) {
-            'doctor' => '#talk-to-doctor',
-            'homepage_chat' => '#homepage-chat',
-            default => '',
-        };
+        if ($source === 'homepage_chat') {
+            return redirect()
+                ->route('chat.show')
+                ->with('lead_form', $source)
+                ->with('lead_success', true)
+                ->with('status', $success)
+                ->with('lead_alert', $alert['message']);
+        }
+
+        $anchor = $source === 'doctor' ? '#talk-to-doctor' : '';
         $previous = preg_replace('/#.*$/', '', (string) url()->previous()) ?: url('/');
 
         return redirect()
