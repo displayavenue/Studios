@@ -95,7 +95,7 @@ class Phase5ContentOpsTest extends TestCase
         $this->get('/health-library')->assertSee('Cold Care Basics', false);
     }
 
-    public function test_contact_persists_message_and_logs_notification_without_claiming_delivery(): void
+    public function test_contact_persists_message_and_logs_admin_inbox_alert(): void
     {
         $this->seed(SiteSettingsSeeder::class);
 
@@ -104,17 +104,19 @@ class Phase5ContentOpsTest extends TestCase
             'contact' => 'visitor@example.test',
             'message' => 'Please call back about stock.',
             'consent' => '1',
+            'lead_form' => 'contact',
         ])->assertRedirect();
 
         $this->assertDatabaseHas('contact_messages', [
             'name' => 'Visitor',
             'contact' => 'visitor@example.test',
+            'source' => 'contact',
+            'status' => 'new',
         ]);
 
-        $log = NotificationLog::query()->where('event', 'contact.received')->first();
+        $log = NotificationLog::query()->where('event', 'lead.received')->where('channel', 'admin_inbox')->first();
         $this->assertNotNull($log);
-        $this->assertSame('skipped', $log->status);
-        $this->assertSame('log', $log->channel);
+        $this->assertSame('stored', $log->status);
     }
 
     public function test_shipping_manager_creates_manual_shipment_when_shiprocket_unconfigured(): void

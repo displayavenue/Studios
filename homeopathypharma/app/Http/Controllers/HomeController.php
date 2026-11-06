@@ -29,14 +29,12 @@ class HomeController extends Controller
             ->with('image')
             ->orderBy('sort_order')
             ->orderBy('name')
-            ->limit(10)
             ->get();
 
         $navCategories = Category::query()
             ->published()
             ->orderBy('sort_order')
             ->orderBy('name')
-            ->limit(12)
             ->get();
 
         $homepageBrands = Brand::query()

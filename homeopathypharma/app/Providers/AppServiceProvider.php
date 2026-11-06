@@ -11,7 +11,9 @@ use App\Services\Notifications\LogNotifier;
 use App\Services\Notifications\Notifier;
 use App\Services\Video\NullVideoMeetingProvider;
 use App\Services\Video\VideoMeetingProvider;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\HealthCondition;
 use App\Services\CartService;
 use App\Services\SiteSettings;
 use Illuminate\Support\Facades\URL;
@@ -39,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         Route::bind('homepage', fn (string $value) => HomepageSection::query()->findOrFail($value));
         Route::bind('doctor', fn (string $value) => DoctorProfile::query()->findOrFail($value));
         Route::bind('policy', fn (string $value) => PolicyPage::query()->findOrFail($value));
+        Route::bind('condition', fn (string $value) => HealthCondition::query()->findOrFail($value));
 
         View::composer(['layouts.app', 'components.*'], function ($view) {
             $settings = app(SiteSettings::class);
@@ -56,7 +59,10 @@ class AppServiceProvider extends ServiceProvider
                     ->published()
                     ->orderBy('sort_order')
                     ->orderBy('name')
-                    ->limit(12)
+                    ->get(),
+                'navBrands' => Brand::query()
+                    ->published()
+                    ->orderBy('name')
                     ->get(),
             ]);
         });

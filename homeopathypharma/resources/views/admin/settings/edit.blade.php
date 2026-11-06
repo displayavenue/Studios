@@ -23,6 +23,10 @@
 <input type="checkbox" name="announcement_enabled" value="1" @checked(old('announcement_enabled', filter_var($settings['announcement_enabled']->value ?? false, FILTER_VALIDATE_BOOLEAN)))>
 Announcement bar enabled
 </label>
+<label>Lead notify email
+<input type="email" name="lead_notify_email" value="{{ old('lead_notify_email', $settings['lead_notify_email']->value ?? '') }}" placeholder="you@example.com">
+<span class="admin-muted" style="display:block;margin-top:0.35rem;font-size:0.85rem;">Instant email when someone clicks Talk to a Doctor (also saved under Admin → Leads).</span>
+</label>
 <button class="btn btn-primary" type="submit">Save settings</button>
 </form>
 @endsection

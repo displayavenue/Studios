@@ -1,0 +1,853 @@
+CHAPTER-4
+
+
+
+DRUG DEVELOPMENT AND REGULATION
+
+Increase in the use of homeopathic medicines and rapid expansion of global market are associated with
+ensuring safety and quality of homeopathic medicines by the health authorities, pharmaceutical
+industries and consumers.                Requirements and methods for the quality control of finished
+homeopathic medicines are far more complex than for chemical drugs, particularly for combined or
+mixed homeopathic medicines.
+
+Source materials used in manufacture of homeopathic medicines consist of the following:
+l  plant material such as: roots, stems, leaves, flowers, bark, pollen, lichen, moss, ferns and algae;
+l  microorganisms such as: fungi, bacteria, viruses and plant parasites;
+l  animal materials such as: whole animals, animal organs, tissues, secretions, excretions, cell lines,
+        toxins, blood products;
+l       human materials such as: tissues, secretions, cell lines and endogenous molecules such as hormones;
+l       minerals and chemicals;
+l       imponderabilia.
+
+Two issues are decisive for quality of homœopathic preparations: determining the authenticity of
+source material according to homœopathic traditions and defining manufacturing process. In the
+recent years, WHO has identified guidelines for quality assurance of homœopathic drugs which can be
+adopted by the country's regulatory authorities and drug manufacturers56.
+
+Government of India has set up regulatory authorities for quality control and laying down standards
+of homœopathic medicines. The standards of homœopathic drugs are determined by the process of
+drug standardization. Homœopathic pathogenetic studies and clinical verification are other two
+processes in drug development.
+
+4.1         HOMŒOPATHIC PHARMACOPOEIA COMMITTEE AND HOMŒOPATHIC
+            PHARMACOPOEIA LABORATORY57
+
+The Government of India constituted the Homœopathic Pharmacopoeia Committee (HPC) in 1962 to
+lay down principles and standards for the preparation of homœopathic drugs.
+
+Homœopathic Pharmacopoeia Laboratory (HPL) was established in 1975 (Figure 21) with a vision to
+help the consumer to get quality homœopathic drugs. It is a central drug laboratory of homœopathic
+
+56
+ World Health Organization.Safety issues in the preparation of homeopathic medicines. WHO 2009 [cited 2012 September
+1] Available at www.who.int/medicines/areas/traditional/Homeopathy.pdf
+57
+     Homoeopathic Pharmacopoeia Laboratory. New Delhi (IN): Ministry of Health and Family Welfare, Government of
+India [cited 2012 Sept 04]. Available from: http://hplism.nic.in
+
+
+                                                                                                                       127
+                                                                                              CHAPTER-4
+
+
+
+      system of medicine. Laboratory plays a pivotal role in standardization of drugs and awareness
+      regarding quality of homœopathic medicines.
+
+      It is a statutory laboratory for laying down standards and tests of homœopathic drugs, and also
+      disseminates technical knowledge regarding homœopathic drugs. The Laboratory applies multi-
+      disciplinary approach covering pharmacognostical, physicochemical, pharmocological,
+      microbiological and homœopathic studies for fixation of standards in different sections of the
+      laboratory.
+
+      The major activities of the HPL are:
+      l  Laying down of standards for identity and purity of homœopathic drugs.
+      l  Verification and updating of pharmacopoeial standards done for adoption of additional
+          information and improvement of standards.
+      l   Testing of samples of homœopathic drugs control authorities, port authorities, state government,
+          etc. for identity and quality under different provisions of Drugs and Cosmetics Act and Rules.
+      l   Survey and collection of samples of homœopathic drugs for verification of quality and adulteration
+          trends of drugs marketed.
+      l   Cultivation and introduction of medicinal plants. Maintenance of a medicinal plants garden with
+          reference to plants used in Homœopathy.
+      l   Survey and collection of medicinal plants.
+      l   Maintenance of a reference herbarium and a museum.
+      l   Imparting training to central government drugs authorities/state, drugs inspectors, drug analysts,
+          pharmacists etc. on GMP, standardization and quality control of homœopathic drug.
+      l   Act as central drug laboratory for homœopathic medicines for whole of India.
+      l   Director of the laboratory performs function of a government analyst for state governments as and
+          when desired by them.
+
+      The HPL has pharmacognosy, chemistry, microbiology, homœopathy sections. These sections are
+      described in the following paragraphs:
+
+      Pharmacognosy Section
+      The Pharmacognosy section undertakes detailed pharmacognostic studies, which includes taxonomic
+      identification of plants and its parts, Macro- and Microscopical details and histochemical analysis of
+      the plant parts used in preparation of medicine is done. The laboratory conducts survey tours to
+      different agroclimatic regions of India for collection of medicinal plants. The laboratory maintains a
+      herbarium, where medicinal plants are preserved. Museum of laboratory has a huge collection of rare
+      and exotic medicinal plants, used in Homœopathy. Regular addition of new samples in the museum is
+      also the continuous process. Latest scientific techniques are used to preserve them.
+
+
+128
+CHAPTER-4
+
+
+
+The laboratory also maintains an experimental medicinal plants garden. Efforts are being made to
+have maximum species of medicinal plants of homœopathic importance so that biodiversity does not
+affect standardization. About 60% plants used in Homœopathy are of foreign origin, so different
+technical methods have been adopted to acclimatize them in the climatic condition of our country.
+Medicinal plants grown in herbal garden are also used in preparation of drugs and help in
+standardization process. This also serves the educational purpose of visitors like faculty members
+and students of different homœopathic medical colleges from all over India.            Laboratory also
+conducts the seed exchange programme with different countries.
+
+Chemistry Section
+The chemistry section of laboratory (Figure 22) is equipped with many sophisticated instruments like
+Ultra Violet Spectrophotometer, Atomic Absorption Spectrophotometer, HPTLC, etc. and many
+modern analytical techniques are adopted for standardization of homœopathic drugs.
+
+Microbiology Section
+Methods of preparation of nosode have been given in the 4th volume of the Homœopathic
+Pharmacopoeia of India.      Few monographs on nosodes are published in different volumes of
+Homœopathic Pharmacopoeia of India. Laboratory maintains a nosode bank which serves our
+demand and is also supplied to scientific institutions on demand.
+l  It performs the sterility test of ophthalmic preparation as per Schedule FF of Drugs and Cosmetics
+    Act & Rules.
+l   Test for presence of pathogenic bacteria (MLT) for bio-chemic tablets and liquid orals are done.
+
+Homœopathic Section
+It helps in screening of formulation and preparation of monographs.
+
+Library, Publications and Information Section
+The library of laboratory has a good collection of books in the sphere of laboratory's mandate and
+subscribes scientific and technical journals.
+
+Training Programme
+The laboratory organizes training programme for drug inspectors / drug analysts as capacity building
+programme. In the past the laboratory organized training programmes for manufactures, principals
+of homœopathic medical colleges and medical officers of states. The students of various medical
+colleges of india also visit the laboratory to learn the homœopathic pharmacy. The Director of the
+laboratory is notified Government Analyst and laboratory also function as drug testing laboratory for
+the purpose of homœopathic drugs. Many state governments have also notified Director of the
+laboratory as Government Analyst. The laboratory receives samples for testing as per Drugs &
+Cosmetics Act & Rules from different agencies like Port, Different State Drug Enforcement
+                                                                                                         129
+                                                                                             CHAPTER-4
+
+
+
+      Authorities, CGHS, State Govt. Hospitals etc.
+
+      Publications
+      Worked out standards of homœopathic drugs by the laboratory are approved by HPC and
+      incorporated as monographs in Homœopathic Pharmacopoeia of India (HPI). So far, 9 volumes of HPI
+      have been published comprising of standards on 944 drugs and 263 standards on finished products.
+      10th volume of HPI is in the press. A consolidated volume containing all the monographs of Volume 1st
+      to Volume 9th is under progress. Apart from this, standards of 101 Homœopathic Drugs have been
+      published in the form of Homœopathic Pharmaceutical Codex.
+
+
+
+
+                    Figure 21: Homoeopathic Pharmacopoeia Laboratory, Ghaziabad
+
+
+
+
+                    Figure 22: Chemistry laboratory at HPL, Ghaziabad
+
+
+
+130
+CHAPTER-4
+
+
+
+4. 2     DRUG STANDARDIZATION
+
+Drug Standardization procedures establish pharmacognostic, physico-chemical, and pharmacological
+parameters of the drug substances.                            The pharmacognostical studies include the macro and
+microscopical characteristics of raw drugs of vegetable origin. The physico-chemical analysis helps to
+determine the physical and chemical properties of a drug. The pharmacological spectrum of a drug is
+ascertained through experimental trials on laboratory animals and includes evaluation of safety, drug
+action and preliminary estimation of dosage. The pharmacological studies are conducted in
+compliance with CPCSEA (Committee for the Purpose of Control and Supervision on Experiments on
+Animals) guidelines. The Council has undertaken pharmacognostical studies on 295 drugs, physico-
+chemical studies on 292 drugs and pharmacological studies on 151 drugs. One hundred and forty five
+(145) drugs have been studied in all three aspects.                       This profiling process is of high economic
+importance since it establishes the identity of the raw drug material and helps in laying down the
+standards of drugs for ensuring the quality of the product (Figure 23).
+
+Figure 23: Standardization parameters of Buxus sempervirens
+
+
+
+
+                                                                                   1. T.S. of leaf at midvein x 162
+                                                                                   2. T.S. of leaf lamina x 132
+                                                                                   3. T.S. of stem x 145
+
+
+
+
+                                                                                   Abbreviations :
+                                                                                   c - cuticle;
+                                                                                   ue - upper epidermis;
+                                                                                   le - lower epidermis;
+                                                                                   p - palisade tissue;
+                                                                                   vb - vascular bundle;
+                                                                                   x - xylem;
+                                                                                   ph - phloem;
+                                                                                   cr - crystal;
+                                                                                   sp - spongy tissue;
+                                                                                   e - epidermis;
+                                                                                   cb - cortical bundle;
+                                                                                   pi - pith;
+                                                                                   sc - secretory canal.
+
+
+                                                                                                                       131
+                                                                               CHAPTER-4
+
+
+
+               HPTLC Densitogram (chloroform: methanol (9:1 v/v))
+               of Buxus sempervirens mother tincture scanned at 254 nm.
+
+
+
+
+                                         HPTLC finger printing (chloroform: methanol
+                                         (9:1 v/v)) of Buxus sempervirens mother tincture
+                                         scanned at 254 nm and 366 nm.
+
+
+
+
+      254 nm               366 nm
+
+
+132
+CHAPTER-4
+
+
+
+Survey, Collection and Cultivation of Medicinal Plants:
+Survey of Medicinal Plants and Collection Unit (SMPCU) of CCRH, established in 1979 is located at
+Emerald, Nilgiri District Tamil Nadu. It conducts survey, collection and cultivation of medicinal plants
+used in Homœopathy and supplies raw drug samples to the Central Research Institute (H), Noida and
+Drug Standardization Unit (H), Hyderabad for standardization studies. The Unit also cultivates exotic
+(71) (Figure 19) and indigenous (15) medicinal plants used in Homœopathy and maintains the garden,
+which is spread in 12.7 acres of land. Since inception SMPCU has collected and supplied 445
+Homoeopathic medicinal raw plant drug to the units of the council and maintained a herbarium
+consisting of 9105 herbarium sheets of the collected plants during the tours.
+
+Publications
+A. Books Published:
+1. Standardisation of Homoeopathic Drugs Vol. I
+2. Standardisation of Homoeopathic Drugs Vol. II
+3. Standardisation of Homoeopathic Drugs Vol. III
+4. Standardisation of Homoeopathic Drugs Vol. IV
+5. Identification of Homoeopathic Drugs of Plant Origin
+6. A check list Homoeopathic Medicinal Plants of India
+7. A hand book of Medicinal Plants used in Homoeopathy
+8. Pharmacological action of Homoeopathic drugs
+9. Plants in Ethnomedicine of the Nilgiri Tribes in Tamil Nadu, India
+10. Vernacular names of plant drugs in Homoeopathic Pharmacopoeia of India
+
+B.    Monographs Published:
+1.    Abroma augusta
+2.    Acalypha indica
+3.    Aegle folia
+4.    Aegle marmelos
+5.    Alfalfa
+6.    Atista indica
+7.    Baryta iodatum
+8.    Boerhaavia diffusa
+9.    Carica papaya
+10.   Cassia fistula
+11.   Cassia sophera
+12.   Cynodon dactylon
+13.   Holarrhena antidysenterica
+14.   Hydrocotyle asiatica
+15.   Kali muriaticum
+16.   Ocimum canum
+17.   Terminalia chebula
+18.   Tylophora indica
+19.   Thea chinensis
+
+                                                                                                           133
+                                                                                                             CHAPTER-4
+
+
+
+               C.      Scientific Papers Published :
+
+               More than 170 scientific papers have been published in various reputed Journals at National
+               and International levels.
+
+      4. 3    DRUG PROVING (HOMŒOPATHIC PATHOGENETIC TRIAL)
+
+      The challenge of finding a simple drug substance to treat complex diseases in a dynamic living system
+      is incredible. The very foundation of Homœopathy is based on the action of drug substances on the
+      living systems and therefore, the earliest experiments conducted in Homœopathy were those of Drug
+      Proving. Trials conducted on healthy human beings elicit the finer symptoms of the drug as compared
+      to the gross toxicological symptoms evident from animal studies. These more subtle subjective and
+      objective symptoms form the profile of the drug recorded in the Homœopathic Materia Medica.
+
+      These studies are similar, but not identical to Phase 1 trials conducted in Allopathy. The latter also
+      involve testing of the drug substance on healthy human volunteers. But the stark contrast between the
+      two systems is highlighted here. On one hand, the Phase I trial is designed primarily to reduce the risk
+      of serious (drug) toxicity and avoid confounding pharmacologic and adverse effects; and also to assess
+      pharmacokinetics, whereas in Homœopathy, sub-material or ultra-molecular doses of potentially
+      toxic or pathogenic substances commonly are used in homœopathic drug proving on healthy human
+      beings to produce symptoms and so generate new indications for clinical use of the homœopathic
+      medicine58.
+
+      Drug provings have been an important activity of research in India.                        Various authorities in
+      Homœopathy have proved drugs, native to India and drugs used by other Indian systems of medicine
+      have been adopted in Homœopathy, following derivation of their symptomatology as per the
+      Homœopathic Drug provings. 'Drugs of Hindoosthan' is a compilation of partially proved drugs and
+      contains symptomatology of 50 drugs of Indian origin.
+
+      The focus of the CCRH's drug proving programme is on proving of fragmentarily proved drugs and
+      indigenous drugs. Till now, the CCRH has methodically proved 101 drugs, out of which 76 drugs are
+      of plant origin, 08 are of animal origin and 14 are prepared from chemicals and 01 is nosode. Out of
+      these 101 drugs, 15 drugs of Indian origin are proved for the first time (Table 21).
+
+      The CCRH prepared a Drug Proving Protocol on double blind technique, taking positive leads from
+      protocols followed by different international homœopathic organizations.                        The protocol was
+      published in the British Homœopathic Journal . The reproving of Tarentula hispanica60 validated this
+                                                            59
+
+
+
+
+      58
+       Dantas Flávio. How can we get more reliable information from homoeopathic pathogenetic trials?: A critique of proving.
+      British Homoeopathic Journal 1996; 85(4): 230-6.
+
+
+134
+CHAPTER-4
+
+
+
+protocol wherein about forty symptoms as mentioned in the original proving appeared in the
+reproving These were also verified clinically under the clinical verification programme61.
+
+
+Table 21         New drugs proved by the CCRH
+
+
+                 1.                Asclepias curassavica
+                 2.                Azathioprine
+                 3.                Brassica oleracia
+                 4.                Buxus sempervirens
+                 5.                Cardiospermum halicacabum
+                 6.                Cassia fistula
+                 7.                Cassia sophera
+                 8.                Curcuma longa
+                 9.                Cuscuta reflexa
+                 10.               Cyclosporine
+                 11.               Cynara scolymus
+                 12.               Foeniculumvulgare
+                 13.               Glycyrrhiza glabra
+                 14.               Persea americana
+                 15.               Phyllantheus neruri
+
+4. 4    CLINICAL VERIFICATION
+
+Following compilation of the effects of drugs on healthy human beings, the clinical verification of
+homœopathic drugs implies actual application of these drugs on persons with disease so as to
+reiterate the similia principle of Homœopathy and to compile an evidence base of actual action of
+drug substance on individuals with diseases. This process amalgamates the basic principles of
+Homœopathy and builds upon the Homœopathic Materia Medica. Till date Clinical Verification of
+symptomatic data of 106 drugs have been completed including those proved by the Council and
+those, which have had fragmentary provings.
+The drug development process in Homœopathy, therefore, moves from standardization of a drug
+substance to ascertaining its therapeutic potential followed by its verification in clinical settings.
+
+59
+   Nagpaul VM, Provings – planning & protocol. British Homoeopathic Journal.1987; 76(2):76-80
+60
+   Nagpaul VM, Dhawan IM, Vichitra AK, Rastogi DP; Tarentula Hispanica Reproving; British Homeopathic Journal, 1989;
+78(1):19-26
+61
+   Khurana A. Reproving & clinical verification of pathogenesis of Tarentula hispanica. CCRH Quarterly Bulletin 1992; 14
+(1&2)
+
+                                                                                                                           135
+                                                                                             CHAPTER-4
+
+
+
+      Table 22 Drug development process
+
+        Drug Standardization                 Homœopathic Pathogenetic          Clinical Verification
+                                             Trial
+
+        Laboratory                           Healthy human beings in           Persons with diseases in
+                                             controlled settings               clinical settings
+
+        Raw drug material collected          Direct action of drug on          Completes the symptom
+        from the nature under diverse        living system in health           profiles of drugs
+        settings
+
+        Involves profiling of drugs on       Evolves the symptomatic           Therapeutic application of
+        Pharmacognostic, Physico-            indications of the drugs          drug on sick persons
+        chemical and Pharmacological
+        parameters
+
+      List of drugs of Indian origin whose drug standardization, homœopathic pathogenetic trials, clinical
+      verification studies are completed by the CCRH are given in Table 23.
+
+      Table 23       List of drugs with complete studies by CCRH on drug standardization, drug
+                     proving and clinical verification
+
+      1. Abroma augusta                  23. Coleus aromaticus             45. Comus circinata
+      2. Acalypha indica                 24. Curcuma longa                 46. Embelia ribes
+      3. Acid butyricum                  25. Cynodon dactylon              47. Ephedra vulgaris
+      4. Aegle folia                     26. Gymnema sylvestre             48. Ficus religiosa
+      5. Aegle marmelos                  27. Holarrhena antidysenterica    49. Formic Acid
+      6. Aesclepias curassavica          28. Hydrocotyle asiatica          50. Jalapa
+      7. Amoora rohituka                 29. Hygrophila spinosa            51. Kali muriaticum
+      8. Anthrakokali                    30. Janosia asoca                 52. Liatris spicata
+      9. Alfalfa                         31. Juglans regia                 53. Magnesium sulph
+      10. Atista indica                  32. Mangifera indica              54. Mimosa humilis
+      11. Azadirachta indica             33. Ocimum canum                  55. Nyctanthes arbortristis
+      12. Baryta iodatum                 34. Terminalia arjuna             56. Ocimum sanctum
+      13. Bellis perennis                35. Terminalia chebula            57. Parrafin
+      14. Boerhavia diffusa              36. Tribulus terrestris           58. Pothos foetidus
+      15. Caesalpinia bonducella         37. Tylophora indica              59. Ricinus communis
+      16. Calotropis gigantea            38. Agave americana               60. Senega
+      17. Carica papaya                  39. Andrographis paniculata       61. Skookum chuck
+      18. Cassia fistula                 40. Argemone mexicana             62. Tinospora cordifolia
+      19. Cassia sophera                 41. Bacopa monnieri               63. Thea chinesis
+      20. Caesalpinia bonducella         42. Chelone glabra                64. Thymol
+      21. Cephalandra indica             43. Clerodendron infortunatum     65. Thyroidinum
+      22. Chromo. Kali sulph             44. Cuprum oxydatum nigrum
+
+136
+CHAPTER-4
+
+
+
+The details of some of these drugs, along with their common names, botanical names and the clinical
+conditions verified are given as Figure 24 to 61.
+4. 5        DRUG REGULATIONS AND QUALITY CONTROL
+The Drugs and Cosmetics Act, 1940 & Rules, 1945
+There exists a regulatory provision for Homœopathic Medicines in the Second Schedule under 4-A of
+the Drugs and Cosmetics Act, 1940. The definition of Homœopathic Medicines, prescribed under Rule
+2(dd) of Drugs and Cosmetics Rules, 1945 is as follows:-
+“Homœopathic medicines include any drug which is recorded in Homœopathic proving or therapeutic efficacy of
+which has been established through long clinical experience as recorded in authoritative Homœopathic literature of
+India and abroad and which is prepared according to the techniques of Homœopathic pharmacy and covers
+combination of ingredients of such Homœopathic medicines but does not include a medicine which is administered
+by parenteral route62.”
+The provisions under the above Act and Rules cover sale, manufacturing and quality control of
+homœopathic medicines. There exists a Drug Technical Advisory Board and Drug Consultative
+Committee. A Homœopathic Sub-Committee has also been set up under the above Board for looking
+after the sale and manufacture of homœopathic medicines exclusively.
+Good Manufacturing Practices (GMP) :
+Good manufacturing practice (GMP) guidelines covering manufacturing process, premises, personnel,
+packaging and labeling applied to homeopathic medicines have been notified for manufacturing of
+homœopathic medicines (Schedule M-1 of Drugs and Cosmetics Rules, 1945). It is mandatory for all
+homœopathic drug manufactures to comply with the GMP provisions and obtain GMP certification63.
+
+4. 6        DRUG MANUFACTURING INDUSTRY
+
+The IBISWorld's Homoeopaths reveals a report on market research providing latest statistics in the
+Homoeopathic industry trends. It has unveiled the increasing interest of US populations in
+Homoeopathic healing methods especially in the aging population. The report showed double digit sale
+growth in the recent years estimated the increased percentage of the US adult population as a
+Homoeopathy users. In the five years to 2017, the industry will continue to grow coupled with rising per
+capital disposable income. Over the 10 years to 2018, Homoeopathic industry will add value, or its
+contribution to the economy is expected to grow at an annualized rate of 5.8%. This statistics of faster
+growth is found more than the projected growth for US GDP during the same period (2.1%), including
+the industry will make up a larger share of the economy in the recent years ahead. In the five years to
+2013, IBISWorld estimated an increasing percentage of Americans using Homoeopathic services due to
+widened acceptance of its safety and efficacy, which further a sure spurred growth in the Homoeopathic
+         64
+industry .
+62
+   The Drugs & Cosmetics Act & Rules. Ministry of Health and Family Welfare (Department of Health). New Delhi IN:
+Department of Health, Ministry of Health and Family Welfare 2005. Available from: http://cdsco.nic.in/html/copy%
+20of%201.%20d&cact121.pdf
+63
+   Central Drug Standard Control Organization. Schedule M. [cited 2012 Sept 1] Available at : http://cdsco.nic.in/html/gmp/
+schedulem%28gmp%29.pdf
+64
+     Homoeopaths in the US Industry: Market Research Report. IBISWorld [Internet] July 2012 © 1999-2012 [cited 2012 September
+1] Available from: http://www.ibisworld.com/industry/homeopaths.html                                                            137
+                                                                                                                   CHAPTER-4
+
+
+
+      The European Coalition for Homeopathic and Anthroposophical Medicinal Products (ECHAMP) in its
+      publication 'Facts and Figures 2011' records that in 2010, for the third year in a row, sales of homeopathic
+      and anthroposophic products exceeded €1 billion, valuing the total EU market for these products at €1.
+      035 billion in 2010. The sector represents only 0. 7% of the total turnover of the pharmaceutical industry,
+      yet in fact, reaches a high number of European citizens due to low cost of the products and the fact that
+      dosages to achieve a required therapeutic effect are often small in number. Manufacturers of these
+      products are experiencing consistently high and increasing demand for these products from patients,
+                                     65
+      doctors and homœopaths .
+
+      In the UK in 2008, it was estimated that 15% of the population of Britain trusts Homœopathy as a form of
+      treatment. The over-the-counter market in Homœopathy currently stands at around £40million based
+      on the last market figures published by Mintel, which estimated in 2007 that it was worth £38million but
+                                                  66
+      projected to reach £46million in 2012 .
+
+      The Associated Chambers of Commerce and Industry (ASSOCHAM) of India in 2011 estimated the
+      Homœopathy market globally to be Rs. 263 billion, with a growth rate of 25%. France was found to be
+      the largest contributor. In India the domestic Homœopathy market size was estimated to be about Rs.
+                                                                                                        67
+      27. 58 billion, likely to grow 30% annually and reach a size of Rs. 46 billion by 2012 .
+
+      The leading countries exporting homœopathic medicines are Germany, France and India. Currently, in
+      India there are 319 drug manufacturing units. These companies in organized sector are, professionally
+      managed and equipped with modern facilities and technology. India is exporting homœopathic
+      products to a number of countries including Australia, New Zealand, Germany, Canada, Sri Lanka,
+      Bangladesh, Oman, Malaysia, Pakistan, Singapore and Nepal.
+
+      GMP requirements are essential for export of medicines. The framework of the drug industry in India,
+      therefore, identifies quality assurance through regulations and lays down the standards of
+      homœopathic medicines followed by their publication and dissemination.
+
+      Pharmaceutical research offers a high potential for industry to collaborate with the research
+      organizations, universities and institutes. Studies incorporating new substances, standardization,
+      drug proving and clinical verification are a need of the hour for which the CCRH is in the process of
+      exploring options and seeks collaboration and cooperation from the drug manufacturing industry.
+
+      Some exotic medicinal plants used commonly along with their botanical names, common names and
+      few clinical conditions, where they are used most commonly are given in Figure 53 to 61.
+      65
+         European Coalition on Homeopathic and Anthroposophic Medicinal Products. Annual Report 2011 [Internet]. ECHAMP,
+      Brussels [cited 2012 September 2]. Available from: http://www.echamp.eu/fileadmin/user_upload/Annual_Report/2011_-
+      Annual_Report_v07.pdf
+      66
+         British Homeopathic Association; Popularity and the Market Place. [Internet] [updated 2011 June 3; cited 2012 September 1].
+      A v a i l a b l e                                                                                                   f r o m :
+      http://www.britishhomeopathic.org/media_centre/facts_about_homeopathy/popularity_and_market_place.html
+      67
+        Homeopathy Industry Likely to be Rs. 4,600 cr. by 2012: ASSOCHAM [press release]. India: ASSOCHAM 2011 March 18.
+      [cited 2012 September 1]. Available from: http://www.assocham.org/prels/shownews-archive.php?Id=2804
+138
+CHAPTER-4
+
+
+
+4.7      SOME MEDICINAL PLANTS USED IN HOMŒOPATHY WITH
+         COMPLETE STUDIES BY CCRH ON DRUG STANDARDIZATION,
+         DRUG PROVING AND CLINICAL VERIFICATION STUDIES
+
+
+
+
+Figure 24 : Abroma augusta                               Figure 25 : Acalypha indica
+Botanical name: Abroma augustum (L.) L.f.                Botanical name: Acalypha indica L.
+Common names: English: Devil s cotton                    Common names:
+Hindi: Kumal, Sanukapashi, Ulatkambal.                   English: Indian nettle, Indian acalypha.
+Clinical conditions verified: Anorexia, Arthritis,       Hindi: Khokali, Kuppi, Kuppikhokli, Khokla, Khokli.
+Constipation, Coryza, Cough, Diabetes mellitus,          Clinical conditions verified: Arthritis, Aphthous
+                                                         ulcer, Backache, Boils, Constipation, Coryza, Cough,
+Dysmenorrhoea, Insomnia, Leucorrhoea,
+                                                         Dyspepsia, Fever, Glossitis, Headache, Haemoptysis,
+Metrorrhagia, Otorrhoea, Urinary tract infection.
+                                                         Haemorrhoids, Insomnia, Jaundice, Leucorrhoea,
+                                                         Nocturnal emission, Rash, Sore throat, Styes, Tinnitus,
+                                                         Toothache, Tuberculosis, Vertigo.
+
+
+
+
+Figure 26 : Aegle folia & Aegle marmelos                 Figure 27 : Amoora rohituka
+Botanical name: Aegle marmelos (L.) Correa               Botanical name: Aphanamixis polystachya (Wall.)
+Common names: English: Bengal quince, Bael, Holy         Parker,
+Fruit Tree, Golden apple.                                Common names:
+Hindi: Bel, Bael, Bilva, Sripal, Bel patri, Bel patra,   English: Rohituka tree
+Siphal, Sriphal.                                         Hindi: Harinhara, Harinkhana
+Clinical conditions verified for Aegle folia:            Clinical conditions verified: Anorexia, Bleeding
+Diarrhoea, Dysentery, Dyspepsia.                         haemorrhoids, Constipation, Headache, Hepato-
+Clinical conditions verified for Aegle marmelos:         splenomegaly, Leucorrhoea, Nausea & vomiting,
+Coryza, Dysentery, Styes, Vertigo.                       Vertigo.
+
+
+                                                                                                                   139
+                                                                                                        CHAPTER-4
+
+
+
+
+      Figure 28 : Atista indica                                Figure 29 : Azadirachta indica
+      Botanical name: Glycosmis pentaphylla (Retz.) Correa     Botanical name: Azadirachta indica A. Juss.
+      Common name:                                             Common name:
+      Hindi: Ban-nimbu                                         English: Indian lilac, Neem tree,Margosa.
+      Clinical conditions verified: Constipation, Diarrhoea,   Hindi: Nimb, Nim, Neem, Bakain.
+      Dysentery, Epistaxis, Hyperacidity, Leucorrhoea,         Clinical conditions verified: Constipation, Coryza,
+      Nocturnal enuresis, Tonsillitis, Toothache, Vomiting.    Diarrhoea, Headache, Insomnia, Menorrhagia,
+                                                               Spermatorrhoea, Vertigo.
+
+
+
+
+      Figure 30 : Boerhavia diffusa                            Figure 31 : Calotropis gigantea
+      Botanical name: Boerhavia diffusa L.                     Botanical name: Calotropis gigantea (L.) R.Br.
+      Common names:                                            Common names:
+      English: Spreading hog-weed.                             English: Gigantic madder, Swallow-wort
+      Hindi: Beshakapore, Gadhaparna, Punarnava, Snathikari,   Hindi: Madar, Akanda, Ark, Akond, Aak, Lalak,
+      Sant,Thikri.                                             Lalmadar, Safedak.
+      Clinical conditions verified: Anorexia, Dropsy,          Clinical conditions verified: Anorexia, Arthritis,
+      Hypertension, Jaundice, Migraine, Oedema, Palpitation,   Backache, Conjunctivitis, Constipation, Headache,
+      Urinary tract infection, Vertigo.                        Ringworm, Sore throat, Tonsillitis.
+
+
+
+
+140
+CHAPTER-4
+
+
+
+
+Figure 32 : Carica papaya                                   Figure 33 : Cassia fistula
+Botanical name: Carica papaya L.                            Botanical name: Cassia fistula L.
+Common names:                                               Common names:
+English:Papaya,Papaw.                                       English: Golden shower tree, Indian Laburnum.
+Hindi:Papeeta, Popaiyah, Arandkharbuza, Papita.             Hindi: Amaltas.
+Clinical conditions verified: Backache, Conjunctivitis,     Clinical conditions verified: Anorexia, Arthritis,
+Constipation, Coryza, Cough, Depression, Difficulty in      Constipation, Coryza, Headache, Hoarseness of voice,
+concentration, Dyspepsia, Fever, Headache, Sore throat,     Orchitis.
+Toothache, Urinary tract infection, Vertigo.
+
+
+
+
+Figure 34 : Cassia sophera                                  Figure 35 : Caesalpinia bonducella
+Botanical name: Cassia sophera L.                           Botanical name: Caesalpinia bonduc (L.) Roxb.,
+Common names:                                               Common names:
+English: Pepper leaves senna                                English: Fever nut, Bonducella nut, Nicker bean
+Hindi: Banar, Kasondi, Kasunda, Bas-ki- Kasunda,            Hindi: Karanju, Kat-karanj, Katklija.
+Baskikasondi.                                               Clinical conditions verified: Constipation, Coryza,
+Clinical conditions verified: Arthritis, Asthma,            Fever, Hepatomegaly.
+Constipation, Laryngitis, Leucorrhoea, Nasal obstruction,
+Urticaria, Vertigo.
+
+
+
+
+                                                                                                                   141
+                                                                                                               CHAPTER-4
+
+
+
+
+      Figure 36 : Coccinia grandis (L.)                             Figure 37 : Plectranthus amboinicus (Lour.)
+      Botanical name: Coccinia grandis (L.) Voigt                   Botanical name: Plectranthus amboinicus (Lour.) Spreng. ,
+      Common names:                                                 Common names:
+      English: Ivy gourd                                            English: Indian borage
+      Hindi: Kunduri, Bhimb, Kanduri-ki-bel, Kanduri.               Hindi: Patharchur, Patherchur, Pathorchur, Patta
+      Clinical conditions verified: Diabetes mellitus, Diarrhoea,   ajavauin.
+      Flatulence, Rhinitis, Vertigo.                                Clinical conditions verified: Dysentery, Indigestion,
+                                                                    Piles.
+
+
+
+
+      Figure 38 : Curcuma longa                                     Figure 39 : Cynodon dactylon
+      Botanical name: Curcuma longa L.                              Botanical name: Cynodon dactylon (L.)Pers.
+      Common names:                                                 Common names:
+      English: Turmeric.                                            English: Dhub grass, Bermuda grass, Bahama grass.
+      Hindi: Haldi,Halda.                                           Hindi: Doorba, Dhub, Dub, Dubra, Kalighas, Khabbal.
+      Clinical conditions verified: Arthritis, Conjunctivitis,      Clinical conditions verified: Abdominal pain, Acidity,
+      Cough, Dyspepsia, Headache, Toothache, Urinary tract          Anaemia, Backache, Conjunctivitis, Constipation,
+      infection, Vertigo.                                           Coryza, Cough, Diarrhea, Dysentery, Dysmenorrhoea,
+                                                                    Dyspnoea, Epistaxis, Fever, Flatulence, Furuncles,
+                                                                    Headache, Haematuria, Haemoptysis, Itching eruption,
+                                                                    Leucorrhoea, Nocturnal enuresis, Pharyngitis, Piles,
+                                                                    Renal calculi, Urinary tract infection, Vertigo, Vomiting,
+                                                                    Worm infestation.
+
+
+
+142
+CHAPTER-4
+
+
+
+
+Figure 40 : Gymnema sylvestre                                Figure 41 : Holarrhena antidysenterica
+Botanical name: Gymnema sylvestre (Retz) R.Br. ex. Schult.   Botanical name: Holarrhena pubescens (Buch.-Ham.)
+Common names:                                                Wall. ex G. Don.
+English: Periploca of the woods, small Indian ipecacuanha.   Common names:
+Hindi: Gur-mar, Merasingi,Meshasringi.                       English: Conessi bark, Tellichery bark.
+Clinical conditions verified: Arthralgia, Boils, Diabetes    Hindi: Kurchi, Kura, Karchi.
+mellitus, General debility, Leucorrhoea, Pruritus vulvae,    Clinical conditions verified: Abdominal colic, Arthritis,
+Urethritis, Vertigo.                                         Constipation, Coryza, Diarrhea, Dermatitis, Dyspepsia,
+                                                             Dysentery, Epistaxis, Excessive sweating, Fever,
+                                                             Forgetfulness, Headache, Insomnia. Stomatitis, Vertigo.
+
+
+
+
+Figure 42 : Hydrocotyle asiatica                             Figure 43 : Hygrophila spinosa
+Botanical name: Centella asiatica (L.) Urban                 Botanical name: Hygrophila schulli (Ham.)M.R. & S.M.,
+Common names:                                                Common names:
+English: Indian pennywort ,Centella.                         Hindi: Gokshura, Talmakhana, Gokkhula-kanta,
+Hindi: Brahma manduki, Khulakhudi, Brahmibuti.               Kolsekajhar.
+Clinical conditions verified: Acne, Anorexia, Arthritis,     Clinical conditions verified: Abdominal colic,
+Backache, Dandruff, Dropsy, Dyspnoea, Eczema, Laryngitis,    Cholelithiasis, Constipation, Insomnia, Pimples,
+Psoriasis, Ringworm, Scabies, Urticaria.                     Urticaria, Urinary tract infection.
+
+
+
+
+                                                                                                                         143
+                                                                                                              CHAPTER-4
+
+
+
+
+      Figure 44 : Janosia asoca                                     Figure 45 : Juglans regia
+      Botanical name: Saraca asoca (Roxb.) De Wilde.                Botanical name: Juglans regia L.
+      Common names:                                                 Common names:
+      English: Asoka tree.                                          English:Walnut
+      Hindi: Ashok, Asok, Anganapriya.                              Hindi: Akharot, Akhroot, Akor, Khor.
+      Clinical conditions verified: Acidity, Acne, Amenorrhoea,     Clinical condition verified: Acne, Boils, Constipation,
+      Anorexia, Dysmenorrhoea, Fever, Hemorrhoids, Insomnia,        Headache, Indigestion, Stye, Toothache, Urticaria.
+      Laryngitis, Palpitation, Prolapsed uterus, Stye, Toothache,
+      Tonsillitis, Urinary tract infection.
+
+
+
+
+      Figure 46 : Mangifera indica                                  Figure 47 : Ocimum canum
+      Botanical Name: Mangifera indica L.                           Botanical name: Ocimum americanum L.
+      Common names:                                                 Common names:
+      English: Mango Tree                                           English: Hoary basil, Rosary.
+      Hindi: Aam, Amba, Kairi.                                      Hindi: Kali tulsi, Mamri.
+      Clinical condition Verified: Anorexia, Aphthous ulcer,        Clinical conditions verified: Anxiety, Backache, Boils,
+      Arthritis, Coryza, Epistaxis, Forgetfulness, Glossitis,       Constipation, Coryza, Cough, Diarrhea, Difficulty in
+      Headache, Haemorrhoids, Insomnia, Sore throat,                concentration, Dyspepsia, Eczema, Headache, Herpes,
+                                                                    Leucorrhoea, Mastitis, Orchitis, Prolapsed vagina,
+      Tonsillitis, Toothache, Varicose veins, Vertigo.
+                                                                    Remittent fever, Sore throat, Toothache, Urinary tract
+                                                                    infection, Vertigo.
+
+
+
+
+144
+CHAPTER-4
+
+
+
+
+Figure 48 : Terminalia arjuna                                   Figure 49 : Terminalia chebula
+Botanical name: Terminalia arjuna (Roxb.) Wt.& Arn.             Botanical name: Terminalia chebula Retz.
+Common names:                                                   Common names:
+English: White Marudah, Arjun.                                  English: Yellow Myrobalan, Chebulic Myrobalan
+Hindi: Arjuna, Anjan, Jamla, Kahu, Kahua, Kowa.                 Hindi: Harad, Harada, Harar, Pile-har.
+Clinical conditions verified: Angina, Boils, Cough,             Clinical conditions verified: Bleeding piles,
+Dyspnoea, Headache, Palpitation, Tinnitus, Vertigo.             Constipation, Dyspepsia.
+
+
+
+
+Figure 50 : Tribulus terrestris                                 Figure 51 : Tylophora indica
+Botanical name: Tribulus terrestris L.                          Botanical name: Tylophora indica (Burm. f.) Merrill
+Common names:                                                   Common names:
+English: Small calotrops, Land calotrops, Puncture vine.        English: Indian ipecac, Indian ipecacuanha, Emetic
+Hindi: Gokhru, Chhotagokharu, Burragokhur.                      swallow-wort.
+Clinical conditions verified: Anorexia, Arthritis, Coryza,      Hindi: Antamul, Jangli pikvam, Jangali-pikvan.
+Cough, Dysentery, Dyspnoea, Fever, Headache, Itching            Clinical conditions verified: Catarrh, Constipation,
+eruptions, Sore throat, Tonsillitis, Urinary tract infection,   Cough, Diarrhoea, Dyspnoea, Flatulence, Headache,
+Vertigo.                                                        Myalgia, Pain in abdomen, Piles, Sore throat, Tinnitus,
+                                                                Urinary tract infection, Vertigo.
+
+
+
+
+                                                                                                                          145
+                                                                                                        CHAPTER-4
+
+
+
+
+        COMMON EXOTIC MEDICINAL PLANTS USED IN HOMOEOPATHY
+
+
+
+
+      Figure 52 : Aconitum napellus                          Figure 53 : Bryonia alba
+      Botanical name: Aconitum napellus L.                   Botanical name: Bryonia alba L.
+      Common names:                                          Common names:
+      English: Aconite, Monkshood, Wolfsbane                 English: Black-berried bryony, Wild hop
+      Clinical uses: Amenorrhoea, Cough, Fever, Influenza.   Clinical uses: Constipation, Cough, Headache,
+                                                             Rheumatism, Vertigo.
+
+
+
+
+      Figure 54 : Calendula officinalis                      Figure 55 : Cineraria maritima
+      Botanical name: Calendula officinalis L.               Botanical name: Senecio bicolor (Willd.) Tod. ssp.
+      Common names:                                          cineraria (DC.) Chater
+      English: Calendula, Garden marigold                    Common names:
+      Hindi: Zerzul                                          English: Cineraria, Dusty miller
+      Clinical uses: Coryza, Deafness, Endocervicitis,       Clinical uses: Cataract and corneal opacities.
+      Menorrhagia, Open wounds, Ulcers after injury.
+
+
+
+
+146
+CHAPTER-4
+
+
+
+
+Figure 56 : Digitalis purpurea                          Figure 57 : Echinacea purpurea
+Botanical name: Digitalis purpurea L.                   Botanical name: Echinacea purpurea (L.) Moench
+Common names:                                           Common names:
+English: Fox glove, Purple fox glove                    English: Purple corn flower
+Clinical uses: Hypertension, Hypertrophy and valvular   Clinical uses: Acidity, Blood poisoning, Boils, Diarrhoea,
+diseases of heart, Jaundice, Rheumatism.                Goitre, Headache, Septic conditions.
+
+
+
+
+Figure 58 : Lycopodium clavatum                         Figure 59 : Rhus toxicodendron
+Botanical name: Lycopodium clavatum L.                  Botanical name: Rhus toxicodendron L.
+Common names:                                           Common names:
+English: Club moss, Wolf's claw                         English: Poison ash, Poison ivy, Poison vine
+Clinical uses: Constipation, Catarrh, Dyspepsia,        Clinical uses: Backache, Dermatitis, Diarrhoea,
+Impotency, Malnutrition, Pneumonia.                     Headache, Influenza, Rheumatism, Sciatica, Urticaria.
+                                                        Vertigo.
+
+
+
+
+                                                                                                                     147
+                                                                                                           CHAPTER-4
+
+
+
+
+      Figure 60 : Ruta graveolens                                Figure 61 : Thuja occidentalis
+      Botanical name: Ruta graveolens L.                         Botanical name: Thuja occidentalis L.
+      Common names:                                              Common names:
+      English: Bitter herb, Garden rue, Rue                      English: American arbor-vitae, White cedar, Tree of life
+      Clinical uses: Constipation, Periosteal troubles, Rectal   Clinical uses: Asthma, Chronic otitis media, Insomnia,
+      prolapse, Sciatica, Sprain, Visual disturbances, Warts.    Migraine, Rheumatism, Tumour, Urinary tract infection,
+                                                                 Warts.
+
+
+
+
+148

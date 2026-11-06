@@ -11,11 +11,11 @@
     <meta property="og:title" content="{{ $condition->seo_title }}">
     <meta property="og:description" content="{{ $condition->seo_description }}">
     <meta property="og:url" content="{{ route('conditions.show', $condition->slug) }}">
-    <meta property="og:image" content="{{ $condition->image_url }}">
+    <meta property="og:image" content="{{ $condition->imageUrl() }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $condition->seo_title }}">
     <meta name="twitter:description" content="{{ $condition->seo_description }}">
-    <meta name="twitter:image" content="{{ $condition->image_url }}">
+    <meta name="twitter:image" content="{{ $condition->imageUrl() }}">
     <script type="application/ld+json">
         {!! json_encode([
             '@context' => 'https://schema.org',
@@ -31,7 +31,7 @@
                     'isAccessibleForFree' => true,
                     'datePublished' => optional($condition->published_at)?->toAtomString(),
                     'dateModified' => optional($condition->updated_at)?->toAtomString(),
-                    'image' => $condition->image_url,
+                    'image' => $condition->imageUrl(),
                     'about' => [
                         '@type' => 'MedicalCondition',
                         'name' => $condition->title,
@@ -75,7 +75,7 @@
                     '@type' => 'Product',
                     'name' => $condition->title.' — educational consult guidance',
                     'description' => $condition->snippet,
-                    'image' => $condition->image_url,
+                    'image' => $condition->imageUrl(),
                     'brand' => ['@type' => 'Brand', 'name' => $settings->brandName()],
                     'aggregateRating' => [
                         '@type' => 'AggregateRating',
@@ -124,7 +124,7 @@
         </header>
 
         <figure class="hp-condition-media">
-            <img src="{{ $condition->image_url }}" alt="{{ $condition->image_alt }}" width="1200" height="700" loading="eager" fetchpriority="high">
+            <img src="{{ $condition->imageUrl() }}" alt="{{ $condition->imageAltText() }}" width="1200" height="700" loading="eager" fetchpriority="high">
         </figure>
 
         <p class="hp-condition-short">{{ $condition->short_description }}</p>

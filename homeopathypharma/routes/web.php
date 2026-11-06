@@ -10,26 +10,35 @@ use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\AuditLogController as AdminAuditLogController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
+use App\Http\Controllers\Admin\CacheController as AdminCacheController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ConsultationRequestController as AdminConsultationRequestController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 use App\Http\Controllers\Admin\GalleryItemController as AdminGalleryItemController;
+use App\Http\Controllers\Admin\HealthConditionController as AdminHealthConditionController;
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
+use App\Http\Controllers\Admin\LeadController as AdminLeadController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\ContentPageController as AdminContentPageController;
 use App\Http\Controllers\Admin\PolicyPageController as AdminPolicyPageController;
+use App\Http\Controllers\ContentPageController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
 use App\Http\Controllers\Admin\TeamMemberController as AdminTeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
+use App\Http\Controllers\AreaOfConsultationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ConsultController;
 use App\Http\Controllers\ConsultationRequestController;
+use App\Http\Controllers\Admin\ChatController as AdminChatController;
+use App\Http\Controllers\ChatApiController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\GalleryController;
@@ -44,7 +53,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ShopController;
 use App\Models\Appointment;
-use App\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -55,6 +63,7 @@ Route::get('/llms.txt', [HealthConditionController::class, 'llms'])->name('seo.l
 
 Route::get('/conditions', [HealthConditionController::class, 'index'])->name('conditions.index');
 Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
+Route::get('/area-of-consultation', AreaOfConsultationController::class)->name('area-of-consultation');
 
 Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');
 Route::get('/api/health-explorer/catalog', [HealthExplorerController::class, 'catalog'])->name('health-explorer.catalog');
@@ -86,12 +95,22 @@ Route::get('/consultations/{consultation}/confirmation', [ConsultationRequestCon
 
 Route::get('/policies/{slug}', [PolicyController::class, 'show'])->name('policies.show');
 
-Route::get('/about', fn () => view('pages.about'))->name('about');
-Route::get('/about/founders', function () {
-    $members = TeamMember::query()->published()->orderBy('sort_order')->orderBy('name')->with('photo')->get();
+Route::get('/about', [ContentPageController::class, 'about'])->name('about');
+Route::get('/about/founders', [ContentPageController::class, 'founders'])->name('about.founders');
 
-    return view('pages.founders', compact('members'));
-})->name('about.founders');
+Route::get('/chat', [ChatController::class, 'show'])->name('chat.show');
+Route::post('/chat/api/start', [ChatApiController::class, 'start'])
+    ->middleware('throttle:30,1')
+    ->name('chat.api.start');
+Route::get('/chat/api/{uuid}', [ChatApiController::class, 'show'])
+    ->middleware('throttle:60,1')
+    ->name('chat.api.show');
+Route::get('/chat/api/{uuid}/messages', [ChatApiController::class, 'messages'])
+    ->middleware('throttle:120,1')
+    ->name('chat.api.messages');
+Route::post('/chat/api/{uuid}/messages', [ChatApiController::class, 'send'])
+    ->middleware('throttle:40,1')
+    ->name('chat.api.send');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'store'])
@@ -172,6 +191,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('consultations', [AdminConsultationRequestController::class, 'index'])->name('consultations.index');
         Route::get('consultations/{consultation}', [AdminConsultationRequestController::class, 'show'])->name('consultations.show');
         Route::put('consultations/{consultation}', [AdminConsultationRequestController::class, 'update'])->name('consultations.update');
+        Route::get('leads', [AdminLeadController::class, 'index'])->name('leads.index');
+        Route::get('leads/{lead}', [AdminLeadController::class, 'show'])->name('leads.show');
+        Route::put('leads/{lead}', [AdminLeadController::class, 'update'])->name('leads.update');
+        Route::get('chats', [AdminChatController::class, 'index'])->name('chats.index');
+        Route::get('chats/{chat}', [AdminChatController::class, 'show'])->name('chats.show');
+        Route::post('chats/{chat}/reply', [AdminChatController::class, 'reply'])->name('chats.reply');
+        Route::put('chats/{chat}', [AdminChatController::class, 'update'])->name('chats.update');
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
         Route::put('orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
@@ -184,6 +210,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('policies', [AdminPolicyPageController::class, 'index'])->name('policies.index');
         Route::get('policies/{policy}/edit', [AdminPolicyPageController::class, 'edit'])->name('policies.edit');
         Route::put('policies/{policy}', [AdminPolicyPageController::class, 'update'])->name('policies.update');
+        Route::get('pages', [AdminContentPageController::class, 'index'])->name('pages.index');
+        Route::get('pages/{page}/edit', [AdminContentPageController::class, 'edit'])->name('pages.edit');
+        Route::put('pages/{page}', [AdminContentPageController::class, 'update'])->name('pages.update');
+        Route::resource('conditions', AdminHealthConditionController::class)->except(['show']);
         Route::get('audit-logs', AdminAuditLogController::class)->name('audit-logs.index');
         Route::get('reports', AdminReportController::class)->name('reports.index');
 
@@ -197,5 +227,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('health-explorer/products/{slug}', [AdminHealthExplorerController::class, 'updateProduct'])->name('health-explorer.products.update');
         Route::get('settings', [AdminSiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('settings.update');
+        Route::get('cache', [AdminCacheController::class, 'index'])->name('cache.index');
+        Route::post('cache/purge', [AdminCacheController::class, 'purge'])
+            ->middleware('throttle:10,1')
+            ->name('cache.purge');
     });
 });

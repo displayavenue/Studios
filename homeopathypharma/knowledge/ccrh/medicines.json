@@ -1,0 +1,995 @@
+{
+  "book": "Homoeopathy \u2014 Science of Gentle Healing",
+  "publisher": "Ministry of AYUSH / CCRH",
+  "year": 2016,
+  "isbn": "978-93-81458-07-5",
+  "source_url": "https://ccrhindia.ayush.gov.in/sites/default/files/2023-08/homoeopathy_gentle_healing_CCRH.pdf",
+  "note": "Official CCRH dossier lists (monographs, Table 21 new provings, Table 23 complete studies). Not a prescribing Materia Medica.",
+  "medicines": [
+    {
+      "name": "Abroma augusta",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        79,
+        164,
+        167,
+        170,
+        191
+      ],
+      "snippet": "prescribed. 11 Hyperlipo- Observational 293 Abroma augusta, Gelsemium, B proteinemia study Lycopodium, Bryonia alba, Pulsatilla,",
+      "aliases": []
+    },
+    {
+      "name": "Acalypha indica",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        170,
+        191
+      ],
+      "snippet": "rugs in Homoeopathic Pharmacopoeia of India B. Monographs Published: 1. Abroma augusta 2. Acalypha indica 3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya",
+      "aliases": []
+    },
+    {
+      "name": "Acid butyricum",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "2. Acalypha indica 24. Curcuma longa 46. Embelia ribes 3. Acid butyricum 25. Cynodon dactylon 47. Ephedra vulgaris 4. Aegle folia 26. Gymnema sylvestre",
+      "aliases": []
+    },
+    {
+      "name": "Aegle folia",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        170,
+        191
+      ],
+      "snippet": "harmacopoeia of India B. Monographs Published: 1. Abroma augusta 2. Acalypha indica 3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistu",
+      "aliases": []
+    },
+    {
+      "name": "Aegle marmelos",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        170,
+        191
+      ],
+      "snippet": "dia B. Monographs Published: 1. Abroma augusta 2. Acalypha indica 3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophe",
+      "aliases": []
+    },
+    {
+      "name": "Aesclepias curassavica",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "5. Aegle marmelos 27. Holarrhena antidysenterica 49. Formic Acid 6. Aesclepias curassavica 28. Hydrocotyle asiatica 50. Jalapa 7. Amoora rohituka 29. Hygrophila spinosa 51. Kali m",
+      "aliases": []
+    },
+    {
+      "name": "Agave americana",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "37. Tylophora indica 59. Ricinus communis 16. Calotropis gigantea 38. Agave americana 60. Senega 17. Carica papaya 39. Andrographis paniculata 61. Skookum chuck 18. Cassia fist",
+      "aliases": []
+    },
+    {
+      "name": "Alfalfa",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        192
+      ],
+      "snippet": "Published: 1. Abroma augusta 2. Acalypha indica 3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynod",
+      "aliases": []
+    },
+    {
+      "name": "Amoora rohituka",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        170
+      ],
+      "snippet": "Acid 6. Aesclepias curassavica 28. Hydrocotyle asiatica 50. Jalapa 7. Amoora rohituka 29. Hygrophila spinosa 51. Kali muriaticum 8. Anthrakokali 30. Janosia asoca",
+      "aliases": []
+    },
+    {
+      "name": "Andrographis paniculata",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "38. Agave americana 60. Senega 17. Carica papaya 39. Andrographis paniculata 61. Skookum chuck 18. Cassia fistula 40. Argemone mexicana 62. Tinospora cordifolia 19. Cassi",
+      "aliases": []
+    },
+    {
+      "name": "Anthrakokali",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "7. Amoora rohituka 29. Hygrophila spinosa 51. Kali muriaticum 8. Anthrakokali 30. Janosia asoca 52. Liatris spicata 9. Alfalfa 31. Juglans regia",
+      "aliases": []
+    },
+    {
+      "name": "Argemone mexicana",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "39. Andrographis paniculata 61. Skookum chuck 18. Cassia fistula 40. Argemone mexicana 62. Tinospora cordifolia 19. Cassia sophera 41. Bacopa monnieri 63. Thea chinesis 20.",
+      "aliases": []
+    },
+    {
+      "name": "Asclepias curassavica",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166,
+        167
+      ],
+      "snippet": "n programme61. Table 21 New drugs proved by the CCRH 1. Asclepias curassavica 2. Azathioprine 3. Brassica oleracia 4. Bux",
+      "aliases": [
+        "Aesclepias curassavica",
+        "Asclepias curassavica"
+      ]
+    },
+    {
+      "name": "Atista indica",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        171,
+        191
+      ],
+      "snippet": "Abroma augusta 2. Acalypha indica 3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Ho",
+      "aliases": []
+    },
+    {
+      "name": "Azadirachta indica",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        76,
+        90,
+        167,
+        171
+      ],
+      "snippet": "hypopigmented patches. 1. Miglani A, Manchanda RK. Azadirachta indica in treatment of acne vulgaris-an open-label observational study. Indian Journal of Research in Hom\u0153opathy 2014;8 (4): 218-223 2. Miglani",
+      "aliases": []
+    },
+    {
+      "name": "Azathioprine",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        90,
+        166
+      ],
+      "snippet": "B study known immune modifier Azathioprine along with Azadirachta indica was found to be useful",
+      "aliases": []
+    },
+    {
+      "name": "Bacopa monnieri",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        149,
+        155,
+        167
+      ],
+      "snippet": "hate on plant growth higher potency (6X) and growth inhibition at using Bacopa monnieri as lower potencies (1X to 5X) on Bacopa monneiri. model system 62. Anti-rheumatoid and anti- Rats",
+      "aliases": []
+    },
+    {
+      "name": "Baryta iodatum",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167
+      ],
+      "snippet": ". Acalypha indica 3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenter",
+      "aliases": []
+    },
+    {
+      "name": "Bellis perennis",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        128,
+        167
+      ],
+      "snippet": "logy Neuroprotective effect Rat The medicines (Bellis laboratory, of Bellis perennis and Perennis and Hypericum Department of Hypericum perforatum on perforatum in 6C and 30C M",
+      "aliases": []
+    },
+    {
+      "name": "Boerhaavia diffusa",
+      "lists": [
+        "monographs_published"
+      ],
+      "pages": [
+        164,
+        191
+      ],
+      "snippet": "3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asi",
+      "aliases": []
+    },
+    {
+      "name": "Boerhavia diffusa",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        171,
+        191
+      ],
+      "snippet": "3. Aegle folia 4. Aegle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asi",
+      "aliases": [
+        "Boerhaavia diffusa",
+        "Boerhavia diffusa"
+      ]
+    },
+    {
+      "name": "Brassica oleracia",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "pias curassavica 2. Azathioprine 3. Brassica oleracia 4. Buxus sempervirens 5. Cardiospermum halicacabum 6.",
+      "aliases": []
+    },
+    {
+      "name": "Buxus sempervirens",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        162,
+        163,
+        166
+      ],
+      "snippet": "rugs for ensuring the quality of the product (Figure 23). Figure 23: Standardization parameters of Buxus sempervirens 1. T.S. of leaf at midvein x 162",
+      "aliases": []
+    },
+    {
+      "name": "Caesalpinia bonducella",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        172
+      ],
+      "snippet": "14. Boerhavia diffusa 36. Tribulus terrestris 58. Pothos foetidus 15. Caesalpinia bonducella 37. Tylophora indica 59. Ricinus communis 16. Calotropis gigantea 38. Agave americana 6",
+      "aliases": []
+    },
+    {
+      "name": "Calotropis gigantea",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        171
+      ],
+      "snippet": "15. Caesalpinia bonducella 37. Tylophora indica 59. Ricinus communis 16. Calotropis gigantea 38. Agave americana 60. Senega 17. Carica papaya 39. Andrographis paniculata 61. Skoo",
+      "aliases": []
+    },
+    {
+      "name": "Cardiospermum halicacabum",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "a oleracia 4. Buxus sempervirens 5. Cardiospermum halicacabum 6. Cassia fistula 7. Cassia sophera 8. Curc",
+      "aliases": []
+    },
+    {
+      "name": "Carica papaya",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        172,
+        191
+      ],
+      "snippet": "egle marmelos 5. Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali mur",
+      "aliases": []
+    },
+    {
+      "name": "Cassia fistula",
+      "lists": [
+        "monographs_published",
+        "table_21_new_drugs_proved",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        166,
+        167,
+        172,
+        192
+      ],
+      "snippet": "Alfalfa 6. Atista indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum",
+      "aliases": []
+    },
+    {
+      "name": "Cassia sophera",
+      "lists": [
+        "monographs_published",
+        "table_21_new_drugs_proved",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        166,
+        167,
+        172,
+        191
+      ],
+      "snippet": "indica 7. Baryta iodatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum canum 17. Terminali",
+      "aliases": []
+    },
+    {
+      "name": "Cephalandra indica",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        78,
+        80,
+        123,
+        130,
+        132,
+        133,
+        147,
+        154,
+        167
+      ],
+      "snippet": "agents. 6. Diabete Observational 88 With Cephalandra indica Q as add on B Mellitus study drug to regular hypoglycemic agents,",
+      "aliases": []
+    },
+    {
+      "name": "Chelone glabra",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "41. Bacopa monnieri 63. Thea chinesis 20. Caesalpinia bonducella 42. Chelone glabra 64. Thymol 21. Cephalandra indica 43. Clerodendron infortunatum 65. Thyroidinum 22. Chromo. Kali",
+      "aliases": []
+    },
+    {
+      "name": "Chromium kali sulph",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "21. Cephalandra indica 43. Clerodendron infortunatum 65. Thyroidinum 22. Chromo. Kali sulph 44. Cuprum oxydatum nigrum 136",
+      "aliases": [
+        "Chromo. Kali sulph",
+        "Chromium kali sulph"
+      ]
+    },
+    {
+      "name": "Clerodendron infortunatum",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "a 42. Chelone glabra 64. Thymol 21. Cephalandra indica 43. Clerodendron infortunatum 65. Thyroidinum 22. Chromo. Kali sulph 44. Cuprum oxydatum nigrum 136",
+      "aliases": []
+    },
+    {
+      "name": "Coleus aromaticus",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "proving and clinical verification 1. Abroma augusta 23. Coleus aromaticus 45. Comus circinata 2. Acalypha indica 24. Curcuma longa 46. Embelia ribes 3. Acid",
+      "aliases": []
+    },
+    {
+      "name": "Cornus circinata",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "inical verification 1. Abroma augusta 23. Coleus aromaticus 45. Comus circinata 2. Acalypha indica 24. Curcuma longa 46. Embelia ribes 3. Acid butyricum 25. C",
+      "aliases": [
+        "Comus circinata"
+      ]
+    },
+    {
+      "name": "Cuprum oxydatum nigrum",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "43. Clerodendron infortunatum 65. Thyroidinum 22. Chromo. Kali sulph 44. Cuprum oxydatum nigrum 136",
+      "aliases": []
+    },
+    {
+      "name": "Curcuma longa",
+      "lists": [
+        "table_21_new_drugs_proved",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        166,
+        167,
+        173
+      ],
+      "snippet": "Cassia fistula 7. Cassia sophera 8. Curcuma longa 9. Cuscuta reflexa 10. Cyclosporine 11. Cynar",
+      "aliases": []
+    },
+    {
+      "name": "Cuscuta reflexa",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "Cassia sophera 8. Curcuma longa 9. Cuscuta reflexa 10. Cyclosporine 11. Cynara scolymus 12. Foeni",
+      "aliases": []
+    },
+    {
+      "name": "Cyclosporine",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "Curcuma longa 9. Cuscuta reflexa 10. Cyclosporine 11. Cynara scolymus 12. Foeniculumvulgare 13.",
+      "aliases": []
+    },
+    {
+      "name": "Cynara scolymus",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "Cuscuta reflexa 10. Cyclosporine 11. Cynara scolymus 12. Foeniculumvulgare 13. Glycyrrhiza glabra 14.",
+      "aliases": []
+    },
+    {
+      "name": "Cynodon dactylon",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        173,
+        191,
+        192
+      ],
+      "snippet": "odatum 8. Boerhaavia diffusa 9. Carica papaya 10. Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum canum 17. Terminalia chebula 18. Tylopho",
+      "aliases": []
+    },
+    {
+      "name": "Embelia ribes",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "45. Comus circinata 2. Acalypha indica 24. Curcuma longa 46. Embelia ribes 3. Acid butyricum 25. Cynodon dactylon 47. Ephedra vulgaris 4. Aegle folia 26",
+      "aliases": []
+    },
+    {
+      "name": "Ephedra vulgaris",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "46. Embelia ribes 3. Acid butyricum 25. Cynodon dactylon 47. Ephedra vulgaris 4. Aegle folia 26. Gymnema sylvestre 48. Ficus religiosa 5. Aegle marmelos 27.",
+      "aliases": []
+    },
+    {
+      "name": "Ficus religiosa",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "47. Ephedra vulgaris 4. Aegle folia 26. Gymnema sylvestre 48. Ficus religiosa 5. Aegle marmelos 27. Holarrhena antidysenterica 49. Formic Acid 6. Aesclepias curassavica 28. Hyd",
+      "aliases": []
+    },
+    {
+      "name": "Foeniculum vulgare",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "Cyclosporine 11. Cynara scolymus 12. Foeniculumvulgare 13. Glycyrrhiza glabra 14. Persea americana 15.",
+      "aliases": [
+        "Foeniculumvulgare"
+      ]
+    },
+    {
+      "name": "Formic acid",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "48. Ficus religiosa 5. Aegle marmelos 27. Holarrhena antidysenterica 49. Formic Acid 6. Aesclepias curassavica 28. Hydrocotyle asiatica 50. Jalapa 7. Amoora rohituka 29. Hygrophi",
+      "aliases": [
+        "Formic Acid"
+      ]
+    },
+    {
+      "name": "Glycyrrhiza glabra",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "ra scolymus 12. Foeniculumvulgare 13. Glycyrrhiza glabra 14. Persea americana 15. Phyllantheus neruri 4. 4 CLINICAL VERIFICATION",
+      "aliases": []
+    },
+    {
+      "name": "Gymnema sylvestre",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        148,
+        155,
+        167,
+        174
+      ],
+      "snippet": "Antihyperglycemic drug In-vitro Overall results indicate GS to have significant Gymnema sylvestre also shows anticancer effect on A375 cells apart from its anticancer potentials in reported antidiab",
+      "aliases": []
+    },
+    {
+      "name": "Holarrhena antidysenterica",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        134,
+        164,
+        167,
+        174,
+        191
+      ],
+      "snippet": "with different concentrations, in the case of The example of Holarrhena Holarrhena antidysenterica Wall, the best antidysenterica solvent was 70% v/v ethanol. This is different",
+      "aliases": []
+    },
+    {
+      "name": "Hydrocotyle asiatica",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        174,
+        191
+      ],
+      "snippet": "Cassia fistula 11. Cassia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum canum 17. Terminalia chebula 18. Tylophora indica 19. Thea chinensis",
+      "aliases": []
+    },
+    {
+      "name": "Hygrophila spinosa",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        174
+      ],
+      "snippet": "28. Hydrocotyle asiatica 50. Jalapa 7. Amoora rohituka 29. Hygrophila spinosa 51. Kali muriaticum 8. Anthrakokali 30. Janosia asoca 52. Liatris spicata 9. Alfa",
+      "aliases": []
+    },
+    {
+      "name": "Jalapa",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "a 49. Formic Acid 6. Aesclepias curassavica 28. Hydrocotyle asiatica 50. Jalapa 7. Amoora rohituka 29. Hygrophila spinosa 51. Kali muriaticum 8. Anthrakokali 30.",
+      "aliases": []
+    },
+    {
+      "name": "Janosia asoca",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        175
+      ],
+      "snippet": "29. Hygrophila spinosa 51. Kali muriaticum 8. Anthrakokali 30. Janosia asoca 52. Liatris spicata 9. Alfalfa 31. Juglans regia 53. Magnesium sulph 10",
+      "aliases": []
+    },
+    {
+      "name": "Juglans regia",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        175
+      ],
+      "snippet": "30. Janosia asoca 52. Liatris spicata 9. Alfalfa 31. Juglans regia 53. Magnesium sulph 10. Atista indica 32. Mangifera indica 54. Mimosa humilis 11.",
+      "aliases": []
+    },
+    {
+      "name": "Kali muriaticum",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        191
+      ],
+      "snippet": "ia sophera 12. Cynodon dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum canum 17. Terminalia chebula 18. Tylophora indica 19. Thea chinensis",
+      "aliases": []
+    },
+    {
+      "name": "Liatris spicata",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "51. Kali muriaticum 8. Anthrakokali 30. Janosia asoca 52. Liatris spicata 9. Alfalfa 31. Juglans regia 53. Magnesium sulph 10. Atista indica 32.",
+      "aliases": []
+    },
+    {
+      "name": "Magnesium sulphuricum",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "52. Liatris spicata 9. Alfalfa 31. Juglans regia 53. Magnesium sulph 10. Atista indica 32. Mangifera indica 54. Mimosa humilis 11. Azadirachta indica 33.",
+      "aliases": [
+        "Magnesium sulph"
+      ]
+    },
+    {
+      "name": "Mangifera indica",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        175
+      ],
+      "snippet": "31. Juglans regia 53. Magnesium sulph 10. Atista indica 32. Mangifera indica 54. Mimosa humilis 11. Azadirachta indica 33. Ocimum canum 55. Nyctanthes arbortristis",
+      "aliases": []
+    },
+    {
+      "name": "Mimosa humilis",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "53. Magnesium sulph 10. Atista indica 32. Mangifera indica 54. Mimosa humilis 11. Azadirachta indica 33. Ocimum canum 55. Nyctanthes arbortristis 12. Baryta iodatum",
+      "aliases": []
+    },
+    {
+      "name": "Nyctanthes arbortristis",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "54. Mimosa humilis 11. Azadirachta indica 33. Ocimum canum 55. Nyctanthes arbortristis 12. Baryta iodatum 34. Terminalia arjuna 56. Ocimum sanctum 13. Bellis perennis 35.",
+      "aliases": []
+    },
+    {
+      "name": "Ocimum canum",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        175,
+        191
+      ],
+      "snippet": "on dactylon 13. Holarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum canum 17. Terminalia chebula 18. Tylophora indica 19. Thea chinensis",
+      "aliases": []
+    },
+    {
+      "name": "Ocimum sanctum",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "tanthes arbortristis 12. Baryta iodatum 34. Terminalia arjuna 56. Ocimum sanctum 13. Bellis perennis 35. Terminalia chebula 57. Parrafin 14. Boerhavia diffusa 36. Tribul",
+      "aliases": []
+    },
+    {
+      "name": "Paraffin",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "56. Ocimum sanctum 13. Bellis perennis 35. Terminalia chebula 57. Parrafin 14. Boerhavia diffusa 36. Tribulus terrestris 58. Pothos foetidus 15. Caesalpinia bonducella 37.",
+      "aliases": [
+        "Parrafin"
+      ]
+    },
+    {
+      "name": "Persea americana",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "lumvulgare 13. Glycyrrhiza glabra 14. Persea americana 15. Phyllantheus neruri 4. 4 CLINICAL VERIFICATION Following compilation of the effects of drugs on hea",
+      "aliases": []
+    },
+    {
+      "name": "Phyllanthus niruri",
+      "lists": [
+        "table_21_new_drugs_proved"
+      ],
+      "pages": [
+        166
+      ],
+      "snippet": "rhiza glabra 14. Persea americana 15. Phyllantheus neruri 4. 4 CLINICAL VERIFICATION Following compilation of the effects of drugs on healthy human beings, the clinical verification of hom\u0153opa",
+      "aliases": [
+        "Phyllantheus neruri",
+        "Phyllanthus neruri"
+      ]
+    },
+    {
+      "name": "Pothos foetidus",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "57. Parrafin 14. Boerhavia diffusa 36. Tribulus terrestris 58. Pothos foetidus 15. Caesalpinia bonducella 37. Tylophora indica 59. Ricinus communis 16. Calotropis gigantea 38",
+      "aliases": []
+    },
+    {
+      "name": "Ricinus communis",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        120,
+        131,
+        167
+      ],
+      "snippet": "hom\u0153opathic drug (serum glucose, serum Ricinus communis cholesterol, serum triglycerides, serum total",
+      "aliases": []
+    },
+    {
+      "name": "Senega",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "59. Ricinus communis 16. Calotropis gigantea 38. Agave americana 60. Senega 17. Carica papaya 39. Andrographis paniculata 61. Skookum chuck 18. Cassia fistula 40. A",
+      "aliases": []
+    },
+    {
+      "name": "Skookum chuck",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "60. Senega 17. Carica papaya 39. Andrographis paniculata 61. Skookum chuck 18. Cassia fistula 40. Argemone mexicana 62. Tinospora cordifolia 19. Cassia sophera",
+      "aliases": []
+    },
+    {
+      "name": "Terminalia arjuna",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        176
+      ],
+      "snippet": "mum canum 55. Nyctanthes arbortristis 12. Baryta iodatum 34. Terminalia arjuna 56. Ocimum sanctum 13. Bellis perennis 35. Terminalia chebula 57. Parrafin 14. Boerhavia",
+      "aliases": []
+    },
+    {
+      "name": "Terminalia chebula",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        176,
+        191
+      ],
+      "snippet": "olarrhena antidysenterica 14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum canum 17. Terminalia chebula 18. Tylophora indica 19. Thea chinensis",
+      "aliases": []
+    },
+    {
+      "name": "Thea chinensis",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        192
+      ],
+      "snippet": "tica 15. Kali muriaticum 16. Ocimum canum 17. Terminalia chebula 18. Tylophora indica 19. Thea chinensis 133",
+      "aliases": [
+        "Thea chinesis",
+        "Thea chinensis"
+      ]
+    },
+    {
+      "name": "Thymol",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "63. Thea chinesis 20. Caesalpinia bonducella 42. Chelone glabra 64. Thymol 21. Cephalandra indica 43. Clerodendron infortunatum 65. Thyroidinum 22. Chromo. Kali sulph 44. Cup",
+      "aliases": []
+    },
+    {
+      "name": "Thyroidinum",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "64. Thymol 21. Cephalandra indica 43. Clerodendron infortunatum 65. Thyroidinum 22. Chromo. Kali sulph 44. Cuprum oxydatum nigrum 136",
+      "aliases": []
+    },
+    {
+      "name": "Tinospora cordifolia",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167
+      ],
+      "snippet": "61. Skookum chuck 18. Cassia fistula 40. Argemone mexicana 62. Tinospora cordifolia 19. Cassia sophera 41. Bacopa monnieri 63. Thea chinesis 20. Caesalpinia bonducella 42. C",
+      "aliases": []
+    },
+    {
+      "name": "Tribulus terrestris",
+      "lists": [
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        167,
+        176
+      ],
+      "snippet": "35. Terminalia chebula 57. Parrafin 14. Boerhavia diffusa 36. Tribulus terrestris 58. Pothos foetidus 15. Caesalpinia bonducella 37. Tylophora indica 59. Ricinus communis 16. Cal",
+      "aliases": []
+    },
+    {
+      "name": "Tylophora indica",
+      "lists": [
+        "monographs_published",
+        "table_23_complete_studies"
+      ],
+      "pages": [
+        164,
+        167,
+        176,
+        191
+      ],
+      "snippet": "14. Hydrocotyle asiatica 15. Kali muriaticum 16. Ocimum canum 17. Terminalia chebula 18. Tylophora indica 19. Thea chinensis 133",
+      "aliases": []
+    }
+  ]
+}

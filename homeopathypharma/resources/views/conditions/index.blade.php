@@ -1,46 +1,54 @@
 @extends('layouts.app')
 
-@section('title', 'Health conditions A–Z — '.$settings->brandName())
-@section('meta_description', 'Educational guides to common health problems and how homeopathy may approach them. Index of '.$total.' condition pages from '.$settings->brandName().', Mira Road, Mumbai.')
+@section('title', 'A to Z Diseases — '.$settings->brandName())
+@section('meta_description', 'A–Z educational disease and health-condition guides from '.$settings->brandName().'. Browse '.$total.' topics and book a consultation.')
 
 @push('head')
     <link rel="canonical" href="{{ route('conditions.index') }}">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Health conditions A–Z — {{ $settings->brandName() }}">
-    <meta property="og:description" content="Educational condition guides with FAQs, reviews, and WhatsApp consult CTA.">
-    <meta property="og:url" content="{{ route('conditions.index') }}">
 @endpush
 
 @section('content')
 <section class="hp-page hp-conditions-index">
     <div class="hp-container">
         <nav class="hp-breadcrumb" aria-label="Breadcrumb">
-            <a href="{{ route('home') }}">Home</a> / <span>Conditions</span>
+            <a href="{{ route('home') }}">Home</a> / <span>A to Z Diseases</span>
         </nav>
         <div class="hp-page__intro">
-            <h1>Health conditions &amp; problems</h1>
-            <p class="hp-section__lead">{{ $total }} educational guides covering symptoms overview, red flags, FAQs, and how a homeopath may take the case. Not personal medical advice.</p>
+            <h1>A to Z Diseases</h1>
+            <p class="hp-section__lead">{{ $total }} educational guides. Content is editable in Admin → A–Z Diseases. Not personal medical advice.</p>
             <div class="hp-btn-row">
-                <a class="hp-btn hp-btn--primary" href="{{ $settings->whatsappUrl('Hi HOMEOPATHY PHARMA, I want help choosing a condition consult.') }}" target="_blank" rel="noopener">WhatsApp us</a>
-                <a class="hp-btn hp-btn--secondary" href="{{ route('doctors.index') }}">Book doctor · {{ $settings->consultationFeeDisplay() }}</a>
+                <a class="hp-btn hp-btn--primary" href="{{ route('area-of-consultation') }}">Area of Consultation</a>
+                <a class="hp-btn hp-btn--secondary" href="{{ route('doctors.index') }}">Consult a Doctor</a>
             </div>
         </div>
 
-        @foreach ($grouped as $category => $items)
-            <section class="hp-condition-group" id="{{ \Illuminate\Support\Str::slug($category) }}">
-                <h2>{{ $category }}</h2>
-                <ul class="hp-condition-list">
+        @if (!empty($letters) && count($letters))
+        <nav class="hp-az-nav" aria-label="A to Z">
+            @foreach ($letters as $letter)
+                <a href="#letter-{{ $letter }}">{{ $letter }}</a>
+            @endforeach
+        </nav>
+        @endif
+
+        @foreach ($byLetter as $letter => $items)
+            <section class="hp-condition-group" id="letter-{{ $letter }}">
+                <h2>{{ $letter }}</h2>
+                <div class="hp-disease-grid">
                     @foreach ($items as $condition)
-                        <li>
-                            <a href="{{ route('conditions.show', $condition->slug) }}">{{ $condition->title }}</a>
-                        </li>
+                        <a class="hp-disease-card" href="{{ route('conditions.show', $condition->slug) }}">
+                            <span class="hp-disease-card__media" style="background-image:url('{{ $condition->imageUrl() }}')"></span>
+                            <span class="hp-disease-card__body">
+                                <strong>{{ $condition->title }}</strong>
+                                <small>{{ $condition->category }}</small>
+                            </span>
+                        </a>
                     @endforeach
-                </ul>
+                </div>
             </section>
         @endforeach
 
-        <p class="hp-disclaimer">Educational information only. For emergencies call local services. For personal care, consult a qualified clinician or WhatsApp {{ $settings->phoneDisplay() }}.</p>
+        <p class="hp-disclaimer">Educational information only. For emergencies call local services. For personal care, book via Area of Consultation or WhatsApp {{ $settings->phoneDisplay() }}.</p>
     </div>
 </section>
 @endsection

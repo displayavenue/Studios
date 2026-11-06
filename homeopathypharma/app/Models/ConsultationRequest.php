@@ -10,7 +10,7 @@ class ConsultationRequest extends Model
     protected $fillable = [
         'number', 'doctor_profile_id', 'user_id', 'patient_name', 'patient_phone',
         'patient_email', 'concern', 'preferred_window', 'fee_paise', 'status',
-        'meeting_url', 'scheduled_at', 'admin_notes',
+        'source', 'meeting_url', 'scheduled_at', 'admin_notes',
     ];
 
     protected function casts(): array

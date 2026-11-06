@@ -3,6 +3,33 @@
 
 This repository contains a Laravel application. Complete the following setup before working on the user's request.
 
+## Storefront ↔ Admin CMS (required)
+
+Whenever frontend section copy/CTAs/images change, update the backend in the same change:
+
+1. Register fields in `app/Support/HomepageSectionCatalog.php`
+2. Read them from Blade via `$sections->get('key')->data()` — do not hardcode customer-facing copy
+3. Run `php artisan homepage:sync-sections` after deploy
+4. Static pages (About/Consult/Contact/Founders intro) use **Admin → Content pages**
+
+See `docs/CMS_FRONTEND_BACKEND_SYNC.md`.
+
+## CCRH Homoeopathy reference book (required for medicine Q&A)
+
+When the user asks to list medicines, drugs, CCRH research remedies, or facts from the Homoeopathy dossier, use:
+
+`knowledge/ccrh/` — *Homoeopathy — Science of Gentle Healing* (Ministry of AYUSH / CCRH, 2016)
+
+```sh
+python3 knowledge/ccrh/search.py "query"
+```
+
+- Catalog: `knowledge/ccrh/medicines.md` (monographs + Table 21/23)
+- Full text: `knowledge/ccrh/homoeopathy_gentle_healing_CCRH.txt`
+- Source PDF: https://ccrhindia.ayush.gov.in/sites/default/files/2023-08/homoeopathy_gentle_healing_CCRH.pdf
+
+Cite the book when answering from it. Do not invent doses/SKU stock from the dossier alone.
+
 ## Prerequisites
 
 Verify that PHP and Composer are available:

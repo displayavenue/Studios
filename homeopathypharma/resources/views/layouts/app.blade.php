@@ -10,14 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     @php
+        $hpCacheToken = $settings->frontendCacheToken();
         $hpCssApp = public_path('css/app.css');
         $hpCssStore = public_path('css/storefront.css');
-        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-logo-hp';
-        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-logo-hp';
+        $hpCssAppV = (is_file($hpCssApp) ? filemtime($hpCssApp) : time()).'-'.$hpCacheToken;
+        $hpCssStoreV = (is_file($hpCssStore) ? filemtime($hpCssStore) : time()).'-'.$hpCacheToken;
     @endphp
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ $hpCssAppV }}">
     <link rel="stylesheet" href="{{ asset('css/storefront.css') }}?v={{ $hpCssStoreV }}">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta name="hp-cache-token" content="{{ $hpCacheToken }}">
     @stack('head')
 </head>
 <body>

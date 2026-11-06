@@ -23,6 +23,7 @@ class SiteSettingsSeeder extends Seeder
             ['group' => 'commerce', 'key' => 'consultation_fee_paise', 'value' => '99900', 'type' => 'string'],
             ['group' => 'social', 'key' => 'facebook_url', 'value' => '', 'type' => 'string'],
             ['group' => 'social', 'key' => 'instagram_url', 'value' => '', 'type' => 'string'],
+            ['group' => 'notifications', 'key' => 'lead_notify_email', 'value' => '', 'type' => 'string'],
             // Support email intentionally omitted until confirmed by the business.
         ];
 

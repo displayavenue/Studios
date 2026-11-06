@@ -11,16 +11,22 @@ class HealthConditionController extends Controller
 {
     public function index(SiteSettings $settings): View
     {
-        $grouped = HealthCondition::query()
+        $items = HealthCondition::query()
             ->published()
-            ->orderBy('category')
+            ->with('media')
             ->orderBy('title')
-            ->get()
-            ->groupBy('category');
+            ->get();
+
+        $byLetter = $items->groupBy(function (HealthCondition $condition) {
+            $letter = strtoupper(substr($condition->title, 0, 1));
+
+            return preg_match('/[A-Z]/', $letter) ? $letter : '#';
+        })->sortKeys();
 
         return view('conditions.index', [
-            'grouped' => $grouped,
-            'total' => $grouped->flatten()->count(),
+            'byLetter' => $byLetter,
+            'letters' => $byLetter->keys()->all(),
+            'total' => $items->count(),
             'settings' => $settings,
         ]);
     }
@@ -29,11 +35,13 @@ class HealthConditionController extends Controller
     {
         $condition = HealthCondition::query()
             ->published()
+            ->with('media')
             ->where('slug', $slug)
             ->firstOrFail();
 
         $related = HealthCondition::query()
             ->published()
+            ->with('media')
             ->where('category', $condition->category)
             ->where('id', '!=', $condition->id)
             ->orderBy('title')

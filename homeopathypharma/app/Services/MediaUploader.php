@@ -61,6 +61,8 @@ class MediaUploader
             }
         }
 
+        $this->publishToWebRoots($path);
+
         return MediaAsset::query()->create([
             'disk' => 'public',
             'path' => $path,
@@ -75,13 +77,68 @@ class MediaUploader
         ]);
     }
 
+    /**
+     * Copy a storage/app/public file into real public/uploads trees so Hostinger
+     * can serve it without relying on storage/ symlinks.
+     */
+    public function publishToWebRoots(string $path): void
+    {
+        $source = Storage::disk('public')->path($path);
+        if (! is_file($source)) {
+            return;
+        }
+
+        $targets = [public_path('uploads/'.$path)];
+
+        $sibling = base_path('../public_html/uploads/'.$path);
+        if (is_dir(base_path('../public_html'))) {
+            $targets[] = $sibling;
+        }
+
+        foreach (array_unique($targets) as $dest) {
+            $dir = dirname($dest);
+            if (! is_dir($dir)) {
+                mkdir($dir, 0755, true);
+            }
+            if (! @copy($source, $dest)) {
+                continue;
+            }
+            @chmod($dest, 0644);
+        }
+    }
+
+    public function publishAll(): int
+    {
+        $count = 0;
+        foreach (MediaAsset::query()->cursor() as $asset) {
+            if (! $asset->path) {
+                continue;
+            }
+            $this->publishToWebRoots($asset->path);
+            $count++;
+        }
+
+        return $count;
+    }
+
     public function deleteIfUnused(MediaAsset $asset): bool
     {
+        $sectionUsesMedia = \App\Models\HomepageSection::query()
+            ->where(function ($q) use ($asset) {
+                $q->where('payload->media_asset_id', (string) $asset->id)
+                    ->orWhere('payload->media_asset_id', $asset->id);
+            })
+            ->exists();
+
         $inUse = $asset->id && (
             \App\Models\Brand::query()->where('logo_media_id', $asset->id)->exists()
             || \App\Models\Category::query()->where('image_media_id', $asset->id)->exists()
             || \App\Models\ProductImage::query()->where('media_asset_id', $asset->id)->exists()
             || \App\Models\TeamMember::query()->where('photo_media_id', $asset->id)->exists()
+            || \App\Models\DoctorProfile::query()->where('photo_media_id', $asset->id)->exists()
+            || \App\Models\Article::query()->where('cover_media_id', $asset->id)->exists()
+            || \App\Models\HealthCondition::query()->where('media_asset_id', $asset->id)->exists()
+            || $sectionUsesMedia
         );
 
         if ($inUse) {
@@ -89,6 +146,8 @@ class MediaUploader
         }
 
         Storage::disk($asset->disk)->delete($asset->path);
+        @unlink(public_path('uploads/'.$asset->path));
+        @unlink(base_path('../public_html/uploads/'.$asset->path));
         $asset->delete();
 
         return true;

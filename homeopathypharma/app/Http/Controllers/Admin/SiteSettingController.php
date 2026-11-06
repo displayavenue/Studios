@@ -26,6 +26,7 @@ class SiteSettingController extends Controller
             'instagram_url',
             'announcement_enabled',
             'announcement_text',
+            'lead_notify_email',
         ];
 
         $settings = SiteSetting::query()->whereIn('key', $keys)->get()->keyBy('key');
@@ -49,6 +50,7 @@ class SiteSettingController extends Controller
             'instagram_url' => ['nullable', 'url', 'max:255'],
             'announcement_enabled' => ['sometimes', 'boolean'],
             'announcement_text' => ['nullable', 'string', 'max:500'],
+            'lead_notify_email' => ['nullable', 'email', 'max:190'],
         ]);
 
         $map = [
@@ -63,6 +65,7 @@ class SiteSettingController extends Controller
             'facebook_url' => ['string', 'social'],
             'instagram_url' => ['string', 'social'],
             'announcement_text' => ['text', 'homepage'],
+            'lead_notify_email' => ['string', 'notifications'],
         ];
 
         foreach ($map as $key => [$type, $group]) {
