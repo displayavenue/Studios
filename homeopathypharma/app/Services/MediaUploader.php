@@ -137,6 +137,7 @@ class MediaUploader
             || \App\Models\TeamMember::query()->where('photo_media_id', $asset->id)->exists()
             || \App\Models\DoctorProfile::query()->where('photo_media_id', $asset->id)->exists()
             || \App\Models\Article::query()->where('cover_media_id', $asset->id)->exists()
+            || \App\Models\HealthCondition::query()->where('media_asset_id', $asset->id)->exists()
             || $sectionUsesMedia
         );
 

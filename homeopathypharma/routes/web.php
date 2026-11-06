@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ConsultationRequestController as AdminConsultatio
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 use App\Http\Controllers\Admin\GalleryItemController as AdminGalleryItemController;
+use App\Http\Controllers\Admin\HealthConditionController as AdminHealthConditionController;
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\LeadController as AdminLeadController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSettingController;
 use App\Http\Controllers\Admin\TeamMemberController as AdminTeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
+use App\Http\Controllers\AreaOfConsultationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
@@ -58,6 +60,7 @@ Route::get('/llms.txt', [HealthConditionController::class, 'llms'])->name('seo.l
 
 Route::get('/conditions', [HealthConditionController::class, 'index'])->name('conditions.index');
 Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
+Route::get('/area-of-consultation', AreaOfConsultationController::class)->name('area-of-consultation');
 
 Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');
 Route::get('/api/health-explorer/catalog', [HealthExplorerController::class, 'catalog'])->name('health-explorer.catalog');
@@ -189,6 +192,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('pages', [AdminContentPageController::class, 'index'])->name('pages.index');
         Route::get('pages/{page}/edit', [AdminContentPageController::class, 'edit'])->name('pages.edit');
         Route::put('pages/{page}', [AdminContentPageController::class, 'update'])->name('pages.update');
+        Route::resource('conditions', AdminHealthConditionController::class)->except(['show']);
         Route::get('audit-logs', AdminAuditLogController::class)->name('audit-logs.index');
         Route::get('reports', AdminReportController::class)->name('reports.index');
 

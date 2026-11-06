@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class HealthCondition extends Model
 {
@@ -11,6 +12,7 @@ class HealthCondition extends Model
         'slug',
         'title',
         'category',
+        'media_asset_id',
         'image_url',
         'image_alt',
         'snippet',
@@ -41,6 +43,11 @@ class HealthCondition extends Model
         ];
     }
 
+    public function media(): BelongsTo
+    {
+        return $this->belongsTo(MediaAsset::class, 'media_asset_id');
+    }
+
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('status', 'published')
@@ -51,6 +58,26 @@ class HealthCondition extends Model
     public function scopeIndexed(Builder $query): Builder
     {
         return $query->published()->where('is_indexed', true);
+    }
+
+    public function imageUrl(): string
+    {
+        if ($this->media_asset_id && $this->relationLoaded('media') && $this->media) {
+            return $this->media->publicUrl();
+        }
+        if ($this->media_asset_id) {
+            $url = $this->media?->publicUrl();
+            if ($url) {
+                return $url;
+            }
+        }
+
+        return (string) ($this->image_url ?: asset('images/brand/logo-hp.png'));
+    }
+
+    public function imageAltText(): string
+    {
+        return (string) ($this->image_alt ?: $this->title);
     }
 
     public function whatsappMessage(): string

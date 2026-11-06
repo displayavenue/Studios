@@ -17,6 +17,8 @@ Whenever a **storefront section** gains new copy, CTAs, images, or labels:
 | Brand / phone / address / announcement / lead notify email | Site Settings |
 | Talk to a Doctor (+ contact page) submissions | Leads |
 | Book a Consultation (homepage banner) submissions | Consult requests |
+| A–Z Diseases (Conditions menu) titles, copy, images | A–Z Diseases |
+| Area of Consultation doctor cards / photos | Doctors |
 | Products, categories, brands, doctors, team, testimonials, articles | Their own admin menus (+ “show on homepage”) |
 | About / Consult / Contact / Founders intro body | Content pages |
 | Policies / FAQ | Policies |

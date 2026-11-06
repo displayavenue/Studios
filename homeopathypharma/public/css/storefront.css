@@ -281,18 +281,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
-  min-height: 3rem;
-}
-
-.hp-nav-bar__left {
-  display: flex;
-  align-items: center;
-  flex: 1 1 auto;
-  min-width: 0;
-  gap: clamp(1.1rem, 2.4vw, 2.4rem);
-  justify-content: space-between;
-  flex-wrap: nowrap;
+  gap: 1.25rem;
+  min-height: 3.1rem;
 }
 
 .hp-nav-bar__right {
@@ -301,13 +291,13 @@ body {
   flex: 0 0 auto;
   gap: 1.35rem;
   flex-wrap: nowrap;
-  padding-left: 0.35rem;
-  border-left: 1px solid color-mix(in srgb, var(--hp-border) 80%, transparent);
-  margin-left: 0.15rem;
+  padding-left: 1rem;
+  margin-left: 0.25rem;
+  border-left: 1px solid color-mix(in srgb, var(--hp-border) 85%, transparent);
 }
 
 .hp-nav-bar__right a,
-.hp-primary-nav a {
+.hp-nav-link {
   text-decoration: none;
   color: var(--hp-text);
   font-weight: 600;
@@ -316,62 +306,117 @@ body {
 }
 
 .hp-nav-bar__right a:hover,
-.hp-primary-nav a:hover { color: var(--hp-primary); }
+.hp-nav-link:hover { color: var(--hp-primary); }
 
 .hp-primary-nav {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(1rem, 2.2vw, 2.25rem);
+  gap: 0.35rem;
   flex-wrap: nowrap;
   min-width: 0;
 }
 
-.hp-cat-menu {
+.hp-nav-item {
   position: relative;
-  flex: 0 0 auto;
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
 }
 
-.hp-cat-menu__btn {
-  list-style: none;
-  cursor: pointer;
+.hp-primary-nav > .hp-nav-link {
+  flex: 1 1 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 0.65rem 0.2rem;
+}
+
+.hp-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.65rem 0.35rem;
+}
+
+.hp-nav-link--pill {
   background: var(--hp-deep);
-  color: #fff;
+  color: #fff !important;
   border-radius: 0.4rem;
-  padding: 0.55rem 0.9rem;
+  padding: 0.55rem 0.85rem;
   font-weight: 700;
   font-size: 0.88rem;
 }
 
-.hp-cat-menu__btn::-webkit-details-marker { display: none; }
+.hp-nav-link--pill:hover { color: #fff !important; filter: brightness(1.06); }
 
-.hp-cat-menu__panel {
+.hp-nav-chevron {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  opacity: 0.85;
+  flex: 0 0 auto;
+}
+
+.hp-nav-panel {
   position: absolute;
-  top: calc(100% + 0.35rem);
-  left: 0;
-  min-width: 14rem;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0.25rem);
+  min-width: 14.5rem;
+  max-width: min(22rem, 80vw);
+  max-height: min(70vh, 28rem);
+  overflow: auto;
   background: #fff;
   border: 1px solid var(--hp-border);
   border-radius: var(--hp-radius);
-  box-shadow: 0 10px 30px rgba(10, 61, 50, 0.12);
-  padding: 0.5rem;
+  box-shadow: 0 14px 36px rgba(10, 61, 50, 0.14);
+  padding: 0.45rem;
   display: grid;
-  z-index: 70;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.14s ease, visibility 0.14s ease, transform 0.14s ease;
+  z-index: 90;
 }
 
-.hp-cat-menu__panel a {
+.hp-nav-item--has-menu:hover > .hp-nav-panel,
+.hp-nav-item--has-menu:focus-within > .hp-nav-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hp-nav-panel a {
   text-decoration: none;
   color: var(--hp-text);
-  padding: 0.55rem 0.65rem;
+  padding: 0.6rem 0.7rem;
   border-radius: 0.35rem;
   font-weight: 600;
   font-size: 0.9rem;
 }
 
-.hp-cat-menu__panel a:hover {
+.hp-nav-panel a:hover {
   background: var(--hp-mint);
   color: var(--hp-primary);
+}
+
+/* Keep panel open while moving pointer into it */
+.hp-nav-item--has-menu::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 0.55rem;
 }
 
 .hp-menu-toggle {
@@ -403,43 +448,58 @@ body {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 0;
     padding: 0.35rem 0 0.75rem;
   }
   .hp-primary-nav.is-open { display: flex; }
-  .hp-primary-nav a {
+  .hp-nav-item,
+  .hp-primary-nav > .hp-nav-link {
+    flex: none;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .hp-nav-link {
+    justify-content: flex-start;
+    width: 100%;
     padding: 0.75rem 0.35rem;
     border-bottom: 1px solid var(--hp-border);
   }
-  .hp-nav-mobile-only { display: block; }
+  .hp-nav-link--pill {
+    width: 100%;
+    text-align: left;
+    justify-content: space-between;
+  }
+  .hp-nav-item--has-menu:hover > .hp-nav-panel,
+  .hp-nav-item--has-menu:focus-within > .hp-nav-panel {
+    /* Mobile: panels stay click-toggled via :focus-within on open items */
+  }
+  .hp-nav-panel {
+    position: static;
+    transform: none;
+    left: auto;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    box-shadow: none;
+    max-height: none;
+    margin: 0 0 0.35rem;
+    display: none;
+  }
+  .hp-nav-item--has-menu:focus-within > .hp-nav-panel,
+  .hp-nav-item--open > .hp-nav-panel {
+    display: grid;
+  }
+  .hp-nav-mobile-only { display: flex; }
   .hp-nav-bar__row {
     flex-direction: column;
     align-items: stretch;
     min-height: 0;
     padding: 0.55rem 0;
   }
-  .hp-nav-bar__left {
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
-    gap: 0.75rem;
-  }
-  .hp-primary-nav {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0;
-  }
   .hp-nav-bar__right { display: none; }
   .hp-contact-pill { display: none; }
   .hp-header-actions__rule { display: none; }
-  .hp-cat-menu { flex: 1; }
-  .hp-cat-menu__btn { width: 100%; text-align: center; }
-  .hp-cat-menu__panel {
-    position: static;
-    width: 100%;
-    margin-top: 0.45rem;
-    box-shadow: none;
-  }
 }
 
 /* Hero — same artwork composition on every device (no crop shift) */
@@ -1832,4 +1892,65 @@ img, video, svg {
   .hp-site-header {
     padding-top: env(safe-area-inset-top);
   }
+}
+
+/* A–Z Diseases index */
+.hp-az-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 1.75rem;
+}
+.hp-az-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.45rem;
+  border-radius: 0.35rem;
+  background: #e7efeb;
+  color: var(--hp-deep);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+.hp-az-nav a:hover { background: var(--hp-deep); color: #fff; }
+.hp-disease-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+  gap: 0.85rem;
+  margin: 0 0 1.75rem;
+}
+.hp-disease-card {
+  display: grid;
+  grid-template-rows: 7.5rem auto;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid var(--hp-border);
+  border-radius: 0.65rem;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hp-disease-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(10, 61, 50, 0.1);
+}
+.hp-disease-card__media {
+  display: block;
+  background: #dfe8e4 center / cover no-repeat;
+}
+.hp-disease-card__body {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.7rem 0.75rem 0.85rem;
+}
+.hp-disease-card__body strong {
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+.hp-disease-card__body small {
+  color: #5f6f68;
+  font-size: 0.78rem;
 }

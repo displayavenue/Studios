@@ -84,31 +84,57 @@
 
     <div class="hp-nav-bar">
         <div class="hp-container hp-nav-bar__row">
-            <div class="hp-nav-bar__left">
-                <details class="hp-cat-menu">
-                    <summary class="hp-cat-menu__btn">Shop by Category</summary>
-                    <div class="hp-cat-menu__panel">
+            <nav id="site-nav" class="hp-primary-nav" data-nav aria-label="Primary">
+                <div class="hp-nav-item hp-nav-item--has-menu">
+                    <a class="hp-nav-link hp-nav-link--pill" href="{{ route('shop.index') }}">
+                        Shop by Category
+                        <span class="hp-nav-chevron" aria-hidden="true"></span>
+                    </a>
+                    <div class="hp-nav-panel" role="menu">
                         @forelse (($navCategories ?? collect()) as $category)
                             <a href="{{ route('shop.category', $category->slug) }}">{{ $category->name }}</a>
                         @empty
                             <a href="{{ route('shop.index') }}">All products</a>
                         @endforelse
                     </div>
-                </details>
+                </div>
 
-                <nav id="site-nav" class="hp-primary-nav" data-nav aria-label="Primary">
-                    <a href="{{ route('home') }}#trusted-brands">Brands</a>
-                    <a href="{{ route('doctors.index') }}">Consult a Doctor</a>
-                    <a href="{{ route('conditions.index') }}">Conditions</a>
-                    <a href="{{ route('health-explorer') }}">Health Explorer</a>
-                    <a href="{{ route('health-library.index') }}">Health Library</a>
-                    <a href="{{ route('about') }}">About Us</a>
-                    <a href="{{ route('contact.show') }}">Contact Us</a>
-                    <a class="hp-nav-mobile-only" href="{{ route('account.dashboard') }}">Track Order</a>
-                    <a class="hp-nav-mobile-only" href="{{ route('contact.show') }}">Need Help?</a>
-                    <a class="hp-nav-mobile-only" href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
-                </nav>
-            </div>
+                <div class="hp-nav-item hp-nav-item--has-menu">
+                    <a class="hp-nav-link" href="{{ route('home') }}#trusted-brands">
+                        Brands
+                        <span class="hp-nav-chevron" aria-hidden="true"></span>
+                    </a>
+                    <div class="hp-nav-panel" role="menu">
+                        @forelse (($navBrands ?? collect()) as $brand)
+                            <a href="{{ route('shop.index', ['brand' => $brand->slug]) }}">{{ $brand->name }}</a>
+                        @empty
+                            <a href="{{ route('home') }}#trusted-brands">View brands</a>
+                        @endforelse
+                    </div>
+                </div>
+
+                <div class="hp-nav-item hp-nav-item--has-menu">
+                    <a class="hp-nav-link" href="{{ route('conditions.index') }}">
+                        Conditions
+                        <span class="hp-nav-chevron" aria-hidden="true"></span>
+                    </a>
+                    <div class="hp-nav-panel" role="menu">
+                        <a href="{{ route('conditions.index') }}">A to Z Diseases</a>
+                        <a href="{{ route('area-of-consultation') }}">Area of Consultation</a>
+                    </div>
+                </div>
+
+                <a class="hp-nav-link" href="{{ route('health-explorer') }}">Health Explorer</a>
+                <a class="hp-nav-link" href="{{ route('doctors.index') }}">Consult a Doctor</a>
+                <a class="hp-nav-link" href="{{ route('health-library.index') }}">Health Library</a>
+                <a class="hp-nav-link" href="{{ route('about') }}">About Us</a>
+                <a class="hp-nav-link" href="{{ route('contact.show') }}">Contact Us</a>
+
+                <a class="hp-nav-link hp-nav-mobile-only" href="{{ route('account.dashboard') }}">Track Order</a>
+                <a class="hp-nav-link hp-nav-mobile-only" href="{{ route('contact.show') }}">Need Help?</a>
+                <a class="hp-nav-link hp-nav-mobile-only" href="tel:{{ $settings->phoneTel() }}">{{ $settings->phoneDisplay() }}</a>
+            </nav>
+
             <div class="hp-nav-bar__right">
                 <a href="{{ route('account.dashboard') }}">Track Order</a>
                 <a href="{{ route('contact.show') }}">Need Help?</a>
