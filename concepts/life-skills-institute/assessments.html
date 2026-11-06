@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assessments | Pragati Institute of Life Skills</title>
+  <meta name="description" content="Short, scenario-based assessments for workplace readiness, career direction, emotional intelligence, communication and leadership, with a 30-day plan in every report.">
+  <link rel="canonical" href="https://www.example.com/assessments.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Assessments | Pragati Institute of Life Skills">
+  <meta property="og:description" content="Short, scenario-based assessments for workplace readiness, career direction, emotional intelligence, communication and leadership, with a 30-day plan in every report.">
+  <meta property="og:image" content="https://www.example.com/assets/og-image.png">
+  <meta name="theme-color" content="#0f4c3a">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Main">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="" width="36" height="36">
+        <span>Pragati<small>Institute of Life Skills</small></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="assessments.html" aria-current="page">Assessments</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="coaching.html">Coaching</a></li>
+          <li><a href="institutions.html">For institutions</a></li>
+          <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="btn btn-primary btn-sm" href="contact.html">Book a free call</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Assessments</p>
+        <h1>Measure first. Then decide what to work on.</h1>
+        <p class="lede">Each assessment ends with a report that names your strengths, your two biggest gaps and a 30-day plan. Retake it later and compare your scores.</p>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap">
+        <form class="filters" data-filters role="search" aria-label="Filter assessments">
+          <label>Search<input type="search" name="q" placeholder="e.g. leadership"></label>
+          <label>For
+            <select name="audience">
+              <option value="">Everyone</option>
+              <option value="student">Students</option>
+              <option value="professional">Professionals</option>
+              <option value="manager">Managers</option>
+            </select>
+          </label>
+          <label>Price
+            <select name="price">
+              <option value="">Any</option>
+              <option value="free">Free</option>
+              <option value="paid">Paid</option>
+            </select>
+          </label>
+          <button class="btn btn-ghost btn-sm" type="reset">Clear</button>
+        </form>
+        <p class="result-count" data-count aria-live="polite"></p>
+
+        <div class="cards">
+          <article class="card" id="money-habits" data-card data-audience="student" data-price="free">
+            <div class="card-tags"><span class="tag">Financial life</span><span class="tag tag-accent">Free</span></div>
+            <h3>Money Habits Check</h3>
+            <p>Covers budgeting, saving, credit and debt, insurance basics and how to spot common scams. Written for people in their first few years of earning.</p>
+            <ul class="facts"><li>15 min</li><li>12 questions</li><li>Instant report</li></ul>
+            <div class="card-foot"><span class="price">₹0</span><a class="btn btn-primary btn-sm" href="contact.html?topic=Money%20Habits%20Check">Start</a></div>
+          </article>
+
+          <article class="card" id="workplace-readiness" data-card data-audience="student" data-price="paid">
+            <div class="card-tags"><span class="tag">Readiness</span></div>
+            <h3>Workplace Readiness Check</h3>
+            <p>Situational questions on communication, prioritisation, accountability, handling pressure and digital etiquette. Ideal before your first job or internship.</p>
+            <ul class="facts"><li>25 min</li><li>30 scenarios</li><li>Report + 30-day plan</li></ul>
+            <div class="card-foot"><span class="price">₹299</span><a class="btn btn-primary btn-sm" href="contact.html?topic=Workplace%20Readiness%20Check">Start</a></div>
+          </article>
+
+          <article class="card" id="career-direction" data-card data-audience="student" data-price="paid">
+            <div class="card-tags"><span class="tag">Career</span></div>
+            <h3>Career Direction Profile</h3>
+            <p>Combines your interests, work values and aptitude to suggest three role families worth exploring, each with first steps for India's job market.</p>
+            <ul class="facts"><li>35 min</li><li>3 sections</li><li>Report + role map</li></ul>
+            <div class="card-foot"><span class="price">₹499</span><a class="btn btn-primary btn-sm" href="contact.html?topic=Career%20Direction%20Profile">Start</a></div>
+          </article>
+
+          <article class="card" id="eq-snapshot" data-card data-audience="professional" data-price="paid">
+            <div class="card-tags"><span class="tag">Emotional intelligence</span></div>
+            <h3>EQ at Work Snapshot</h3>
+            <p>Measures self-awareness, self-control under pressure, empathy and handling conflict, using workplace situations rather than abstract statements.</p>
+            <ul class="facts"><li>20 min</li><li>24 scenarios</li><li>Instant report</li></ul>
+            <div class="card-foot"><span class="price">₹299</span><a class="btn btn-primary btn-sm" href="contact.html?topic=EQ%20at%20Work%20Snapshot">Start</a></div>
+          </article>
+
+          <article class="card" id="communication-style" data-card data-audience="professional" data-price="paid">
+            <div class="card-tags"><span class="tag">Communication</span></div>
+            <h3>Communication Style Audit</h3>
+            <p>Includes rewriting a sample email and handling a meeting scenario. You get feedback on clarity, tone and structure, not just a score.</p>
+            <ul class="facts"><li>20 min</li><li>Writing task included</li><li>Report in 24 hours</li></ul>
+            <div class="card-foot"><span class="price">₹399</span><a class="btn btn-primary btn-sm" href="contact.html?topic=Communication%20Style%20Audit">Start</a></div>
+          </article>
+
+          <article class="card" id="leadership-360" data-card data-audience="manager" data-price="paid">
+            <div class="card-tags"><span class="tag">Leadership</span><span class="tag tag-accent">360°</span></div>
+            <h3>Leadership Readiness 360</h3>
+            <p>You and up to eight colleagues rate how you delegate, give feedback, make decisions and develop people. Includes a 45-minute debrief with a coach.</p>
+            <ul class="facts"><li>Up to 9 raters</li><li>2-week window</li><li>Coach debrief</li></ul>
+            <div class="card-foot"><span class="price">₹2,499</span><a class="btn btn-primary btn-sm" href="contact.html?topic=Leadership%20Readiness%20360">Start</a></div>
+          </article>
+        </div>
+        <p class="empty" data-empty hidden>No assessments match those filters. <button class="btn btn-ghost btn-sm" type="button" onclick="document.querySelector('[data-filters]').reset()">Clear filters</button></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">What your report contains</p>
+          <h2>Readable in five minutes. Useful for a month.</h2>
+          <p class="lede">No jargon and no labels to pin on yourself. Just where you stand and what to do next.</p>
+        </div>
+        <ul class="checklist">
+          <li><b>Score by area</b><span>Shown against a reference group at your career stage.</span></li>
+          <li><b>Your two priority gaps</b><span>With concrete examples drawn from your own answers.</span></li>
+          <li><b>A 30-day plan</b><span>One small daily action per gap, with a suggested course if you want structure.</span></li>
+          <li><b>A retake date</b><span>A reminder to retake after 30 days so you can see your progress.</span></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="assets/logo.svg" alt="" width="36" height="36">
+            <span>Pragati<small>Institute of Life Skills</small></span>
+          </a>
+          <p style="margin-top:14px">Short assessments, practical courses and honest coaching for the skills school didn't teach.</p>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="assessments.html">Assessments</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="coaching.html">Coaching</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Organisation</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="institutions.html">For colleges &amp; companies</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Policies</h4>
+          <ul>
+            <li><a href="policies.html#terms">Terms of use</a></li>
+            <li><a href="policies.html#privacy">Privacy</a></li>
+            <li><a href="policies.html#refunds">Refunds</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span data-year>2026</span> Pragati Institute of Life Skills. Concept site.</span>
+        <span><a data-email href="mailto:hello@example.com">hello@example.com</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
