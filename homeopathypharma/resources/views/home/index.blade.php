@@ -84,10 +84,11 @@
                 <h2>{{ $doctorLead->title }}</h2>
                 <p class="hp-doctor-lead__sub">{{ $doctorLead->subtitle }}</p>
 
-                @if (session('status') && session('lead_form') === 'doctor')
-                    <p class="hp-doctor-lead__status" role="status">{{ session('status') }}</p>
-                @endif
-
+                @if (session('lead_success') && session('lead_form') === 'doctor')
+                    <div class="hp-doctor-lead__success" role="status" aria-live="polite">
+                        <p class="hp-doctor-lead__success-title">{{ session('status') }}</p>
+                    </div>
+                @else
                 <form class="hp-doctor-lead__form" method="post" action="{{ route('contact.store') }}">
                     @csrf
                     <input type="hidden" name="context" value="Homepage doctor lead">
@@ -138,6 +139,7 @@
                     @endif
                     <button class="hp-doctor-lead__submit" type="submit">{{ $doctorLeadData['submit_label'] ?? 'Talk to a Doctor' }}</button>
                 </form>
+                @endif
             </div>
         </div>
     </section>
@@ -251,7 +253,7 @@
             <input type="hidden" name="consent" value="1">
 
             <div class="hp-consult-banner__panel">
-                @if (session('status') && session('lead_form') === 'consult_banner')
+                @if (session('lead_success') && session('lead_form') === 'consult_banner')
                     <p class="hp-consult-banner__status" role="status">{{ session('status') }}</p>
                 @endif
 

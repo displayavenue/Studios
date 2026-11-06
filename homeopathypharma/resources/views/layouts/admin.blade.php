@@ -23,6 +23,7 @@
             <a href="{{ route('admin.orders.index') }}" class="{{ str_starts_with($route, 'admin.orders') ? 'is-active' : '' }}">Orders</a>
             <a href="{{ route('admin.doctors.index') }}" class="{{ str_starts_with($route, 'admin.doctors') ? 'is-active' : '' }}">Doctors</a>
             <a href="{{ route('admin.consultations.index') }}" class="{{ str_starts_with($route, 'admin.consultations') ? 'is-active' : '' }}">Consult requests</a>
+            <a href="{{ route('admin.leads.index') }}" class="{{ str_starts_with($route, 'admin.leads') ? 'is-active' : '' }}">Leads</a>
             <a href="{{ route('admin.appointments.index') }}" class="{{ str_starts_with($route, 'admin.appointments') ? 'is-active' : '' }}">Appointments</a>
             <a href="{{ route('admin.articles.index') }}" class="{{ str_starts_with($route, 'admin.articles') || str_starts_with($route, 'admin.article-categories') ? 'is-active' : '' }}">Blog &amp; Library</a>
             <a href="{{ route('admin.testimonials.index') }}" class="{{ str_starts_with($route, 'admin.testimonials') ? 'is-active' : '' }}">Testimonials</a>

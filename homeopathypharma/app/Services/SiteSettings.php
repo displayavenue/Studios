@@ -115,4 +115,9 @@ class SiteSettings
     {
         return (string) $this->get('frontend_cache_token', '1');
     }
+
+    public function leadNotifyEmail(): string
+    {
+        return trim((string) $this->get('lead_notify_email', ''));
+    }
 }

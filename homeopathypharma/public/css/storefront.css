@@ -667,6 +667,34 @@ body {
 .hp-doctor-lead__status { color: #d7ebe1; }
 .hp-doctor-lead__error { color: #ffd0c8; }
 
+.hp-doctor-lead__success {
+  margin-top: 0.35rem;
+  padding: 1.1rem 1rem 1.25rem;
+  text-align: center;
+  animation: hp-doctor-lead-success-in 0.55s ease both;
+}
+
+.hp-doctor-lead__success-title {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #f3fff8;
+}
+
+.hp-doctor-lead__success-note {
+  margin: 0.55rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #d7ebe1;
+}
+
+@keyframes hp-doctor-lead-success-in {
+  from { opacity: 0; transform: translateY(0.4rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 820px) {
   .hp-doctor-lead__art {
     min-height: 26rem;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\ContactMessage;
 use App\Models\MediaAsset;
 use App\Models\Order;
 use App\Models\Product;
@@ -31,6 +32,7 @@ class DashboardController extends Controller
                 'orders_pending' => Order::query()->where('payment_status', 'pending')->count(),
                 'orders_paid' => Order::query()->where('payment_status', 'paid')->count(),
                 'revenue_paid_paise' => (int) Order::query()->where('payment_status', 'paid')->sum('total_paise'),
+                'leads_new' => ContactMessage::query()->where('status', 'new')->count(),
             ],
         ]);
     }

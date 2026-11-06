@@ -77,6 +77,7 @@ class HomepageSectionCatalog
                     'concern_placeholder' => 'Your Health Concern',
                     'submit_label' => 'Talk to a Doctor',
                     'consent_text' => 'I agree to be contacted about this enquiry. This is not emergency care.',
+                    'success_message' => 'Thank you. Our team will connect with you soon.',
                 ],
                 'fields' => [
                     'media_asset_id' => ['label' => 'Background art (from Media Library)', 'type' => 'media', 'help' => 'Optional. Overrides the default organic green banner.'],
@@ -86,6 +87,12 @@ class HomepageSectionCatalog
                     'concern_placeholder' => ['label' => 'Concern field placeholder', 'type' => 'text'],
                     'submit_label' => ['label' => 'Submit button label', 'type' => 'text'],
                     'consent_text' => ['label' => 'Consent checkbox text', 'type' => 'textarea', 'rows' => 2],
+                    'success_message' => [
+                        'label' => 'Success message after submit',
+                        'type' => 'textarea',
+                        'rows' => 2,
+                        'help' => 'Shown to the user after they click Talk to a Doctor.',
+                    ],
                 ],
             ],
             'categories' => [
@@ -136,6 +143,7 @@ class HomepageSectionCatalog
                     'upload_title' => 'Add Medical Report or Diseased Photo',
                     'upload_hint' => 'JPG, PNG or PDF (Max 10 MB)',
                     'concerns_text' => "Head & Hair\nFace & Skin\nDigestion\nWomen's Care\nChild Care\nImmunity\nStress & Sleep\nOther",
+                    'success_message' => 'Thank you. Our team will connect with you soon.',
                 ],
                 'fields' => [
                     'media_asset_id' => ['label' => 'Consult visual (from Media Library)', 'type' => 'media', 'help' => 'Upload in Media Library first, then select it here.'],
@@ -155,6 +163,11 @@ class HomepageSectionCatalog
                         'type' => 'textarea',
                         'rows' => 8,
                         'help' => 'One concern per line',
+                    ],
+                    'success_message' => [
+                        'label' => 'Success message after submit',
+                        'type' => 'textarea',
+                        'rows' => 2,
                     ],
                 ],
             ],

@@ -24,6 +24,7 @@
 
         <form class="hp-form" method="post" action="{{ route('contact.store') }}" style="margin-top:1.5rem;">
             @csrf
+            <input type="hidden" name="lead_form" value="contact">
             <label class="hp-label">
                 Name
                 <input class="hp-input" type="text" name="name" value="{{ old('name') }}" required maxlength="120">
