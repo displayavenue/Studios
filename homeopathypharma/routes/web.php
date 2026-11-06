@@ -36,6 +36,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ConsultController;
 use App\Http\Controllers\ConsultationRequestController;
+use App\Http\Controllers\Admin\ChatController as AdminChatController;
+use App\Http\Controllers\ChatApiController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DoctorController;
@@ -97,6 +99,18 @@ Route::get('/about', [ContentPageController::class, 'about'])->name('about');
 Route::get('/about/founders', [ContentPageController::class, 'founders'])->name('about.founders');
 
 Route::get('/chat', [ChatController::class, 'show'])->name('chat.show');
+Route::post('/chat/api/start', [ChatApiController::class, 'start'])
+    ->middleware('throttle:30,1')
+    ->name('chat.api.start');
+Route::get('/chat/api/{uuid}', [ChatApiController::class, 'show'])
+    ->middleware('throttle:60,1')
+    ->name('chat.api.show');
+Route::get('/chat/api/{uuid}/messages', [ChatApiController::class, 'messages'])
+    ->middleware('throttle:120,1')
+    ->name('chat.api.messages');
+Route::post('/chat/api/{uuid}/messages', [ChatApiController::class, 'send'])
+    ->middleware('throttle:40,1')
+    ->name('chat.api.send');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'store'])
@@ -180,6 +194,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('leads', [AdminLeadController::class, 'index'])->name('leads.index');
         Route::get('leads/{lead}', [AdminLeadController::class, 'show'])->name('leads.show');
         Route::put('leads/{lead}', [AdminLeadController::class, 'update'])->name('leads.update');
+        Route::get('chats', [AdminChatController::class, 'index'])->name('chats.index');
+        Route::get('chats/{chat}', [AdminChatController::class, 'show'])->name('chats.show');
+        Route::post('chats/{chat}/reply', [AdminChatController::class, 'reply'])->name('chats.reply');
+        Route::put('chats/{chat}', [AdminChatController::class, 'update'])->name('chats.update');
         Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
         Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
         Route::put('orders/{order}', [AdminOrderController::class, 'update'])->name('orders.update');

@@ -26,8 +26,8 @@
 
 <div class="admin-card" style="margin-top:1.25rem;">
     <h3 style="margin-top:0;">Homepage chats</h3>
-    <p class="admin-muted" style="margin:0 0 0.75rem;">When someone uses the chat icon, their name, number, and message appear here so you know who asked what.</p>
-    <a class="btn btn-primary" href="{{ route('admin.leads.index', ['source' => 'chat', 'status' => 'all']) }}">Open chats</a>
+    <p class="admin-muted" style="margin:0 0 0.75rem;">Every visitor chat is stored with full message history. Reply from Admin → Chats.</p>
+    <a class="btn btn-primary" href="{{ route('admin.chats.index') }}">Open chats</a>
 </div>
 
 <div class="admin-card" style="margin-top:1.25rem;">
