@@ -4,7 +4,7 @@
 <div class="admin-top">
     <div>
         <h2>Leads</h2>
-        <p class="admin-muted" style="margin:0.35rem 0 0;">Talk to a Doctor and contact form submissions appear here instantly. {{ $newCount }} new.</p>
+        <p class="admin-muted" style="margin:0.35rem 0 0;">Talk to a Doctor and contact page submissions appear here instantly. Book a Consultation goes to Consult requests. {{ $newCount }} new.</p>
     </div>
 </div>
 
@@ -17,7 +17,6 @@
     <select name="source" onchange="this.form.submit()">
         <option value="">All sources</option>
         <option value="doctor" @selected($source === 'doctor')>Talk to a Doctor</option>
-        <option value="consult_banner" @selected($source === 'consult_banner')>Consult banner</option>
         <option value="contact" @selected($source === 'contact')>Contact page</option>
     </select>
 </form>

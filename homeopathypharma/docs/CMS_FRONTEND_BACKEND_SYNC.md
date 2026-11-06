@@ -13,8 +13,10 @@ Whenever a **storefront section** gains new copy, CTAs, images, or labels:
 |--------|----------------|
 | Homepage section titles, subtitles, CTAs, form labels, concern list, mission quote | Homepage sections |
 | Talk to a Doctor placeholders, button label, consent text, success message | Homepage sections → `doctor_lead` |
+| Book a Consultation form copy / success message | Homepage sections → `consult` |
 | Brand / phone / address / announcement / lead notify email | Site Settings |
-| Talk to a Doctor / contact form submissions | Leads (instant inbox + optional email alert) |
+| Talk to a Doctor (+ contact page) submissions | Leads |
+| Book a Consultation (homepage banner) submissions | Consult requests |
 | Products, categories, brands, doctors, team, testimonials, articles | Their own admin menus (+ “show on homepage”) |
 | About / Consult / Contact / Founders intro body | Content pages |
 | Policies / FAQ | Policies |

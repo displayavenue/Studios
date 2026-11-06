@@ -50,6 +50,7 @@ class ConsultationRequestController extends Controller
             'preferred_window' => $data['preferred_window'] ?? null,
             'fee_paise' => $fee,
             'status' => 'pending',
+            'source' => 'doctor_page',
         ]);
 
         $notifications->notify(

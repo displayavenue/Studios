@@ -95,4 +95,68 @@ class LeadAlertService
             'channels' => $channels,
         ];
     }
+
+    /**
+     * Instant alert for homepage Book a Consultation → Admin → Consult requests.
+     *
+     * @return array{status: string, message: string, channels: list<string>}
+     */
+    public function alertConsultRequest(\App\Models\ConsultationRequest $request): array
+    {
+        $channels = [];
+        $email = trim((string) $this->settings->get('lead_notify_email', ''));
+        if ($email === '') {
+            $email = trim((string) $this->settings->get('notification_email', ''));
+        }
+
+        $subject = 'New consult request '.$request->number.' — '.$request->patient_name;
+        $body = implode("\n", [
+            'A new Book a Consultation request was submitted on the homepage.',
+            '',
+            'Number: '.$request->number,
+            'Name: '.$request->patient_name,
+            'Phone / WhatsApp: '.$request->patient_phone,
+            'Email: '.($request->patient_email ?: '—'),
+            'Concern:',
+            $request->concern ?: '—',
+            '',
+            'Submitted at: '.$request->created_at?->timezone('Asia/Kolkata')?->format('d M Y, h:i A').' (Asia/Kolkata)',
+            'Admin inbox: '.url('/admin/consultations/'.$request->id),
+        ]);
+
+        if ($email !== '') {
+            try {
+                Mail::raw($body, function ($message) use ($email, $subject) {
+                    $message->to($email)->subject($subject);
+                });
+                $channels[] = 'mail:'.$email;
+                NotificationLog::query()->create([
+                    'channel' => 'mail',
+                    'event' => 'consultation.requested',
+                    'recipient' => $email,
+                    'status' => 'sent',
+                    'message' => $body,
+                    'meta' => ['consultation_request_id' => $request->id],
+                ]);
+            } catch (\Throwable $e) {
+                Log::warning('Consult request email failed', ['error' => $e->getMessage(), 'id' => $request->id]);
+            }
+        }
+
+        NotificationLog::query()->create([
+            'channel' => 'admin_inbox',
+            'event' => 'consultation.requested',
+            'recipient' => 'admin',
+            'status' => 'stored',
+            'message' => $body,
+            'meta' => ['consultation_request_id' => $request->id],
+        ]);
+        $channels[] = 'admin_inbox';
+
+        return [
+            'status' => $email !== '' ? 'sent' : 'stored',
+            'message' => 'Consult request saved in Admin → Consult requests.',
+            'channels' => $channels,
+        ];
+    }
 }

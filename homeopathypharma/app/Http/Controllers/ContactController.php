@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConsultationRequest;
 use App\Models\ContactMessage;
 use App\Models\ContentPage;
 use App\Models\HomepageSection;
@@ -9,6 +10,8 @@ use App\Services\LeadAlertService;
 use App\Services\SiteSettings;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class ContactController extends Controller
@@ -36,6 +39,27 @@ class ContactController extends Controller
             'attachment' => ['nullable', 'file', 'max:10240', 'mimes:jpg,jpeg,png,pdf'],
         ]);
 
+        $source = $data['lead_form'] ?? 'contact';
+
+        // Book a Consultation banner → Admin → Consult requests
+        if ($source === 'consult_banner') {
+            return $this->storeConsultRequest($request, $data, $settings);
+        }
+
+        // Talk to a Doctor (+ contact page) → Admin → Leads
+        return $this->storeLead($request, $data, $source, $settings, $alerts);
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     */
+    private function storeLead(
+        Request $request,
+        array $data,
+        string $source,
+        SiteSettings $settings,
+        LeadAlertService $alerts
+    ): RedirectResponse {
         $parts = [];
         if (! empty($data['email'])) {
             $parts[] = 'Email: '.$data['email'];
@@ -47,16 +71,10 @@ class ContactController extends Controller
             $parts[] = 'Side effects: '.$data['side_effects'];
         }
         $parts[] = $data['message'];
-        if ($request->hasFile('attachment')) {
-            $stored = $request->file('attachment')->store('consult-attachments', 'public');
-            $parts[] = 'Attachment: '.$stored;
-        }
         $message = implode("\n", $parts);
         if (! empty($data['context'])) {
             $message = '['.$data['context'].'] '.$message;
         }
-
-        $source = $data['lead_form'] ?? 'contact';
 
         $lead = ContactMessage::query()->create([
             'name' => $data['name'],
@@ -64,18 +82,13 @@ class ContactController extends Controller
             'message' => $message,
             'consent' => true,
             'status' => 'new',
-            'source' => $source,
+            'source' => $source === 'doctor' ? 'doctor' : 'contact',
             'ip_address' => $request->ip(),
         ]);
 
         $alert = $alerts->alert($lead);
-
         $success = $this->successMessageFor($source, $settings);
-        $anchor = match ($source) {
-            'doctor' => '#talk-to-doctor',
-            'consult_banner' => '#consult-doctors',
-            default => '',
-        };
+        $anchor = $source === 'doctor' ? '#talk-to-doctor' : '';
         $previous = preg_replace('/#.*$/', '', (string) url()->previous()) ?: url('/');
 
         return redirect()
@@ -84,6 +97,63 @@ class ContactController extends Controller
             ->with('lead_success', true)
             ->with('status', $success)
             ->with('lead_alert', $alert['message']);
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     */
+    private function storeConsultRequest(Request $request, array $data, SiteSettings $settings): RedirectResponse
+    {
+        $concernParts = [];
+        if (! empty($data['concern'])) {
+            $concernParts[] = 'Concern: '.$data['concern'];
+        }
+        if (! empty($data['side_effects'])) {
+            $concernParts[] = 'Side effects: '.$data['side_effects'];
+        }
+        $concernParts[] = $data['message'];
+
+        $notes = ['Source: Homepage Book a Consultation banner'];
+        if ($request->hasFile('attachment')) {
+            try {
+                $stored = $request->file('attachment')->store('consult-attachments', 'public');
+                $notes[] = 'Attachment: '.$stored;
+            } catch (\Throwable $e) {
+                Log::warning('Consult attachment store failed', ['error' => $e->getMessage()]);
+                $notes[] = 'Attachment upload failed.';
+            }
+        }
+
+        $record = ConsultationRequest::query()->create([
+            'number' => 'CR-'.strtoupper(Str::random(8)),
+            'doctor_profile_id' => null,
+            'user_id' => $request->user()?->id,
+            'patient_name' => $data['name'],
+            'patient_phone' => $data['contact'],
+            'patient_email' => $data['email'] ?? null,
+            'concern' => implode("\n", $concernParts),
+            'preferred_window' => null,
+            'fee_paise' => $settings->consultationFeePaise(),
+            'status' => 'pending',
+            'source' => 'homepage_banner',
+            'admin_notes' => implode("\n", $notes),
+        ]);
+
+        try {
+            $alerts = app(LeadAlertService::class);
+            $alerts->alertConsultRequest($record);
+        } catch (\Throwable $e) {
+            Log::warning('Consult request alert failed', ['error' => $e->getMessage(), 'id' => $record->id]);
+        }
+
+        $success = $this->successMessageFor('consult_banner', $settings);
+        $previous = preg_replace('/#.*$/', '', (string) url()->previous()) ?: url('/');
+
+        return redirect()
+            ->to($previous.'#consult-doctors')
+            ->with('lead_form', 'consult_banner')
+            ->with('lead_success', true)
+            ->with('status', $success);
     }
 
     private function successMessageFor(string $source, SiteSettings $settings): string
@@ -106,6 +176,8 @@ class ContactController extends Controller
             if ($custom !== '') {
                 return $custom;
             }
+
+            return 'Thank you. Our team will connect with you soon to schedule your consultation.';
         }
 
         return 'Thank you. Our team will connect with you soon. For urgent matters please call '.$settings->phoneDisplay().'.';
