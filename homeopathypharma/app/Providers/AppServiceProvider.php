@@ -59,12 +59,10 @@ class AppServiceProvider extends ServiceProvider
                     ->published()
                     ->orderBy('sort_order')
                     ->orderBy('name')
-                    ->limit(12)
                     ->get(),
                 'navBrands' => Brand::query()
                     ->published()
                     ->orderBy('name')
-                    ->limit(20)
                     ->get(),
             ]);
         });
