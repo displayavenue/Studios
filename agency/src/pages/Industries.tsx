@@ -104,13 +104,28 @@ export function Industries() {
                     <Link
                       key={item.slug}
                       to={`/industries/${item.slug}`}
-                      className="category-card"
+                      className="category-card category-card--media"
                     >
-                      <Icon name={item.icon} color={item.color || "#0056ff"} />
-                      <h3>{item.title}</h3>
-                      <p>{item.summary.slice(0, 100)}…</p>
-                      <span className="arrow">
-                        <Icon name="arrow" size={14} />
+                      {item.coverImage ? (
+                        <span className="category-card-media">
+                          <img
+                            src={item.coverImage}
+                            alt={item.coverAlt || item.title}
+                            width={640}
+                            height={360}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </span>
+                      ) : (
+                        <Icon name={item.icon} color={item.color || "#0056ff"} />
+                      )}
+                      <span className="category-card-body">
+                        <h3>{item.title}</h3>
+                        <p>{item.summary.slice(0, 100)}…</p>
+                        <span className="arrow">
+                          <Icon name="arrow" size={14} />
+                        </span>
                       </span>
                     </Link>
                   ))}
