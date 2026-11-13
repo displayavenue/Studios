@@ -100,7 +100,9 @@
       "slug": "marketing",
       "kind": "ai",
       "title": "AI Marketing Suite",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/marketing.jpg",
+      "coverAlt": "AI Marketing Suite | DisplayAvenue"
     },
     {
       "icon": "growth",
@@ -202,7 +204,9 @@
       "slug": "sales",
       "kind": "ai",
       "title": "AI Sales & Lead Generation",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/sales.jpg",
+      "coverAlt": "AI Sales & Lead Generation | DisplayAvenue"
     },
     {
       "icon": "doc",
@@ -304,7 +308,9 @@
       "slug": "content",
       "kind": "ai",
       "title": "AI Content & Creative",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/content.jpg",
+      "coverAlt": "AI Content & Creative | DisplayAvenue"
     },
     {
       "icon": "chat",
@@ -406,7 +412,9 @@
       "slug": "cx",
       "kind": "ai",
       "title": "AI Chat & Customer Experience",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/cx.jpg",
+      "coverAlt": "AI Chat & Customer Experience | DisplayAvenue"
     },
     {
       "icon": "bolt",
@@ -508,7 +516,9 @@
       "slug": "automation",
       "kind": "ai",
       "title": "AI Automation Suite",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/automation.jpg",
+      "coverAlt": "AI Automation Suite | DisplayAvenue"
     },
     {
       "icon": "chart",
@@ -610,7 +620,9 @@
       "slug": "analytics",
       "kind": "ai",
       "title": "AI Analytics & Insights",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/analytics.jpg",
+      "coverAlt": "AI Analytics & Insights | DisplayAvenue"
     },
     {
       "icon": "globe",
@@ -712,7 +724,9 @@
       "slug": "seo",
       "kind": "ai",
       "title": "AI Website & SEO",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/seo.jpg",
+      "coverAlt": "AI Website & SEO | DisplayAvenue"
     },
     {
       "icon": "code",
@@ -814,7 +828,9 @@
       "slug": "developer",
       "kind": "ai",
       "title": "AI Developer Tools",
-      "category": "AI Platform"
+      "category": "AI Platform",
+      "coverImage": "/images/ai/developer.jpg",
+      "coverAlt": "AI Developer Tools | DisplayAvenue"
     }
   ]
 }

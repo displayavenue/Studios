@@ -100,7 +100,9 @@
       "slug": "digital-marketing",
       "kind": "package",
       "title": "Digital Marketing Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/digital-marketing.jpg",
+      "coverAlt": "Digital Marketing Packages | DisplayAvenue"
     },
     {
       "icon": "search",
@@ -202,7 +204,9 @@
       "slug": "seo",
       "kind": "package",
       "title": "SEO Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/seo.jpg",
+      "coverAlt": "SEO Packages | DisplayAvenue"
     },
     {
       "icon": "ads",
@@ -304,7 +308,9 @@
       "slug": "google-ads",
       "kind": "package",
       "title": "Google Ads Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/google-ads.jpg",
+      "coverAlt": "Google Ads Packages | DisplayAvenue"
     },
     {
       "icon": "share",
@@ -406,7 +412,9 @@
       "slug": "social-media",
       "kind": "package",
       "title": "Social Media Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/social-media.jpg",
+      "coverAlt": "Social Media Packages | DisplayAvenue"
     },
     {
       "icon": "code",
@@ -508,7 +516,9 @@
       "slug": "website",
       "kind": "package",
       "title": "Website Development Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/website.jpg",
+      "coverAlt": "Website Development Packages | DisplayAvenue"
     },
     {
       "icon": "bag",
@@ -610,7 +620,9 @@
       "slug": "ecommerce",
       "kind": "package",
       "title": "E-commerce Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/ecommerce.jpg",
+      "coverAlt": "E-commerce Packages | DisplayAvenue"
     },
     {
       "icon": "brand",
@@ -712,7 +724,9 @@
       "slug": "branding",
       "kind": "package",
       "title": "Branding Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/branding.jpg",
+      "coverAlt": "Branding Packages | DisplayAvenue"
     },
     {
       "icon": "camera",
@@ -814,7 +828,9 @@
       "slug": "creative",
       "kind": "package",
       "title": "Creative & Production Packages",
-      "category": "Packages"
+      "category": "Packages",
+      "coverImage": "/images/packages/creative.jpg",
+      "coverAlt": "Creative & Production Packages | DisplayAvenue"
     }
   ]
 }

@@ -23,12 +23,31 @@ export function AiPlatform() {
           </p>
           <div className="category-grid" style={{ marginTop: "1rem" }}>
             {ai.map((item) => (
-              <Link key={item.slug} to={`/ai-platform/${item.slug}`} className="category-card">
-                <span className="icon-box" style={{ background: `${item.color}18` }}>
-                  <Icon name={item.icon} color={item.color} />
+              <Link
+                key={item.slug}
+                to={`/ai-platform/${item.slug}`}
+                className="category-card category-card--media"
+              >
+                {item.coverImage ? (
+                  <span className="category-card-media">
+                    <img
+                      src={item.coverImage}
+                      alt={item.coverAlt || item.title}
+                      width={640}
+                      height={360}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                ) : (
+                  <span className="icon-box" style={{ background: `${item.color}18` }}>
+                    <Icon name={item.icon} color={item.color} />
+                  </span>
+                )}
+                <span className="category-card-body">
+                  <h3>{item.title}</h3>
+                  <p>{item.summary.slice(0, 90)}…</p>
                 </span>
-                <h3>{item.title}</h3>
-                <p>{item.summary.slice(0, 90)}…</p>
               </Link>
             ))}
           </div>

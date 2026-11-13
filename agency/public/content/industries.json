@@ -170,7 +170,9 @@
           "CRM + WhatsApp follow-up workflows",
           "Weekly optimisation against pipeline metrics"
         ]
-      }
+      },
+      "coverImage": "/images/industries/manufacturing.jpg",
+      "coverAlt": "Manufacturing | DisplayAvenue"
     },
     {
       "icon": "heart",
@@ -313,7 +315,9 @@
           "title": "Remind",
           "desc": "Reduce no-shows with follow-up."
         }
-      ]
+      ],
+      "coverImage": "/images/industries/healthcare.jpg",
+      "coverAlt": "Healthcare | DisplayAvenue"
     },
     {
       "icon": "book",
@@ -446,7 +450,9 @@
           "title": "Admit",
           "desc": "Nurture until application and fee."
         }
-      ]
+      ],
+      "coverImage": "/images/industries/education.jpg",
+      "coverAlt": "Education | DisplayAvenue"
     },
     {
       "icon": "building",
@@ -611,7 +617,9 @@
           "CRM + WhatsApp follow-up workflows",
           "Weekly optimisation against pipeline metrics"
         ]
-      }
+      },
+      "coverImage": "/images/industries/real-estate.jpg",
+      "coverAlt": "Real Estate | DisplayAvenue"
     },
     {
       "icon": "hotel",
@@ -713,7 +721,9 @@
       "slug": "hospitality",
       "kind": "industry",
       "title": "Hospitality",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/hospitality.jpg",
+      "coverAlt": "Hospitality | DisplayAvenue"
     },
     {
       "icon": "utensils",
@@ -815,7 +825,9 @@
       "slug": "restaurants",
       "kind": "industry",
       "title": "Restaurants & F&B",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/restaurants.jpg",
+      "coverAlt": "Restaurants & F&B | DisplayAvenue"
     },
     {
       "icon": "cart",
@@ -951,7 +963,9 @@
           "title": "Retain",
           "desc": "Repeat purchase and LTV flows."
         }
-      ]
+      ],
+      "coverImage": "/images/industries/ecommerce.jpg",
+      "coverAlt": "E-commerce | DisplayAvenue"
     },
     {
       "icon": "chip",
@@ -1053,7 +1067,9 @@
       "slug": "saas",
       "kind": "industry",
       "title": "SaaS & Technology",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/saas.jpg",
+      "coverAlt": "SaaS & Technology | DisplayAvenue"
     },
     {
       "icon": "bank",
@@ -1155,7 +1171,9 @@
       "slug": "finance",
       "kind": "industry",
       "title": "Finance & Banking",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/finance.jpg",
+      "coverAlt": "Finance & Banking | DisplayAvenue"
     },
     {
       "icon": "car",
@@ -1257,7 +1275,9 @@
       "slug": "automotive",
       "kind": "industry",
       "title": "Automotive",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/automotive.jpg",
+      "coverAlt": "Automotive | DisplayAvenue"
     },
     {
       "icon": "hardhat",
@@ -1359,7 +1379,9 @@
       "slug": "construction",
       "kind": "industry",
       "title": "Construction",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/construction.jpg",
+      "coverAlt": "Construction | DisplayAvenue"
     },
     {
       "icon": "plane",
@@ -1461,7 +1483,9 @@
       "slug": "travel",
       "kind": "industry",
       "title": "Travel & Tourism",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/travel.jpg",
+      "coverAlt": "Travel & Tourism | DisplayAvenue"
     },
     {
       "icon": "shirt",
@@ -1563,7 +1587,9 @@
       "slug": "fashion",
       "kind": "industry",
       "title": "Fashion & Apparel",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/fashion.jpg",
+      "coverAlt": "Fashion & Apparel | DisplayAvenue"
     },
     {
       "icon": "gem",
@@ -1665,7 +1691,9 @@
       "slug": "jewellery",
       "kind": "industry",
       "title": "Jewellery",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/jewellery.jpg",
+      "coverAlt": "Jewellery | DisplayAvenue"
     },
     {
       "icon": "leaf",
@@ -1767,7 +1795,9 @@
       "slug": "wellness",
       "kind": "industry",
       "title": "Homeopathy & Wellness",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/wellness.jpg",
+      "coverAlt": "Homeopathy & Wellness | DisplayAvenue"
     },
     {
       "icon": "briefcase",
@@ -1869,7 +1899,9 @@
       "slug": "b2b",
       "kind": "industry",
       "title": "B2B Services",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/b2b.jpg",
+      "coverAlt": "B2B Services | DisplayAvenue"
     },
     {
       "icon": "hands",
@@ -1971,7 +2003,9 @@
       "slug": "ngo",
       "kind": "industry",
       "title": "NGO & Non-Profit",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/ngo.jpg",
+      "coverAlt": "NGO & Non-Profit | DisplayAvenue"
     },
     {
       "icon": "rocket",
@@ -2073,7 +2107,9 @@
       "slug": "startups",
       "kind": "industry",
       "title": "Startups",
-      "category": "Industries"
+      "category": "Industries",
+      "coverImage": "/images/industries/startups.jpg",
+      "coverAlt": "Startups | DisplayAvenue"
     }
   ]
 }

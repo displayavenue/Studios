@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { SEO } from "../components/SEO";
+import { useCms } from "../cms/CmsProvider";
 import {
   packageCategories,
   packageBenefits,
@@ -10,6 +11,7 @@ import { clientLogos } from "../data/work";
 import "../styles/pages.css";
 
 export function Packages() {
+  const { packages } = useCms();
   return (
     <div className="page-shell">
       <SEO title="Packages & Pricing | DisplayAvenue" description="Transparent digital marketing, SEO, ads, website, ecommerce, and branding packages." path="/packages" />
@@ -122,6 +124,43 @@ export function Packages() {
               Get Annual Plan Benefits →
             </Link>
           </div>
+
+          {packages.length > 0 && (
+            <section style={{ marginTop: "2rem", padding: "0 0.25rem 1rem" }}>
+              <h2 className="section-title" style={{ fontSize: "1.2rem" }}>
+                Explore package detail pages
+              </h2>
+              <p className="section-sub">
+                Each package page explains deliverables, process, and FAQs with visuals.
+              </p>
+              <div className="category-grid" style={{ marginTop: "1rem" }}>
+                {packages.map((item) => (
+                  <Link
+                    key={item.slug}
+                    to={`/packages/${item.slug}`}
+                    className="category-card category-card--media"
+                  >
+                    {item.coverImage ? (
+                      <span className="category-card-media">
+                        <img
+                          src={item.coverImage}
+                          alt={item.coverAlt || item.title}
+                          width={640}
+                          height={360}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </span>
+                    ) : null}
+                    <span className="category-card-body">
+                      <h3>{item.title}</h3>
+                      <p>{item.summary.slice(0, 100)}…</p>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </div>
       <style>{`
