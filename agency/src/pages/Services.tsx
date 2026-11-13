@@ -30,7 +30,7 @@ export function Services() {
               Most owners start with{" "}
               <Link to="/services/seo">SEO</Link>,{" "}
               <Link to="/services/google-ads">Google Ads</Link>,{" "}
-              <Link to="/services/social-media-marketing">Social Media</Link>, or{" "}
+              <Link to="/services/social-media">Social Media</Link>, or{" "}
               <Link to="/services/web-development">Web Development</Link>. You can
               also browse{" "}
               <Link to="/packages">monthly packages</Link>,{" "}
@@ -62,18 +62,33 @@ export function Services() {
                     <Link
                       key={item.slug}
                       to={`/services/${item.slug}`}
-                      className="category-card"
+                      className="category-card category-card--media"
                     >
-                      <span
-                        className="icon-box"
-                        style={{ background: `${item.color}18` }}
-                      >
-                        <Icon name={item.icon} color={item.color} />
-                      </span>
-                      <h3>{item.title}</h3>
-                      <p>{item.summary.slice(0, 110)}…</p>
-                      <span className="arrow">
-                        <Icon name="arrow" size={14} />
+                      {item.coverImage ? (
+                        <span className="category-card-media">
+                          <img
+                            src={item.coverImage}
+                            alt={item.coverAlt || item.title}
+                            width={640}
+                            height={360}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </span>
+                      ) : (
+                        <span
+                          className="icon-box"
+                          style={{ background: `${item.color}18` }}
+                        >
+                          <Icon name={item.icon} color={item.color} />
+                        </span>
+                      )}
+                      <span className="category-card-body">
+                        <h3>{item.title}</h3>
+                        <p>{item.summary.slice(0, 110)}…</p>
+                        <span className="arrow">
+                          <Icon name="arrow" size={14} />
+                        </span>
                       </span>
                     </Link>
                   ))}
