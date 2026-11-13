@@ -1,0 +1,30 @@
+<?php
+/**
+ * Server-only secrets for Social Studio + daily blog cron.
+ * Copy to social-local.php on Hostinger (never commit the real file).
+ *
+ * Blog autopilot (hPanel → Advanced → Cron Jobs, once daily e.g. 09:15 IST):
+ *   curl -s "https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY"
+ */
+declare(strict_types=1);
+
+return [
+  // Required for admin/blog-cron.php
+  'cron_key' => 'CHANGE_ME_LONG_RANDOM_STRING',
+
+  // Optional social / AI keys used by Social Studio
+  'ayrshare_api_key' => '',
+  'ayrshare_profile_key' => '',
+  'meta_page_id' => '',
+  'meta_page_access_token' => '',
+  'meta_ig_user_id' => '',
+  'linkedin_access_token' => '',
+  'linkedin_author_urn' => '',
+  'gbp_access_token' => '',
+  'gbp_account_name' => '',
+  'gbp_location_name' => '',
+  'ai_provider' => '',
+  'ai_api_key' => '',
+  'ai_model' => '',
+  'publish_webhook_url' => '',
+];

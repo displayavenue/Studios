@@ -32,6 +32,13 @@ function da_blog_save(array $blog): bool {
   );
 }
 
+function da_blog_mark_autopilot(array &$blog, string $dateYmd): void {
+  $blog['lastAutopilotAt'] = gmdate('c');
+  $blog['lastAutopilotDate'] = $dateYmd;
+  if (!isset($blog['autoPublish'])) $blog['autoPublish'] = true;
+  if (!isset($blog['postsPerDay'])) $blog['postsPerDay'] = 1;
+}
+
 function da_blog_topics(): array {
   return [
     [
@@ -180,6 +187,7 @@ function da_blog_publish_today(): ?array {
   if (isset($posts[2])) $posts[2]['trending'] = true;
   $posts = array_slice($posts, 0, 120);
   $blog['posts'] = $posts;
+  da_blog_mark_autopilot($blog, $today);
   da_blog_save($blog);
   return $post;
 }
