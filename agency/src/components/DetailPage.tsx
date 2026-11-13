@@ -212,7 +212,12 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
 
   return (
     <div className={`detail-page detail-page--${arch}`}>
-      <SEO title={title} description={description} path={path} />
+      <SEO
+        title={title}
+        description={description}
+        path={path}
+        image={page.coverImage || undefined}
+      />
       <BreadcrumbSchema items={crumbs} />
       {(page.kind === "service" ||
         page.kind === "solution" ||
@@ -225,6 +230,7 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
           description={page.summary}
           path={path}
           category={page.category}
+          image={page.coverImage}
         />
       )}
       {(page.kind === "resource" || page.kind === "case-study") && (
@@ -303,19 +309,37 @@ export function DetailPage({ page }: { page: DetailPageContent }) {
             )}
           </div>
           <div className="detail-hero-card">
-            <span className="icon-box" style={{ background: `${page.color}22` }}>
-              <Icon name={page.icon} color={page.color} size={28} />
-            </span>
-            <h2>{page.title}</h2>
-            <p>{page.targetAudience || page.category}</p>
-            <ul>
-              {page.deliverables.slice(0, 5).map((item) => (
-                <li key={item}>
-                  <Icon name="check" size={14} color={page.color} />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            {page.coverImage ? (
+              <div className="detail-hero-media">
+                <img
+                  src={page.coverImage}
+                  alt={page.coverAlt || `${page.title} by DisplayAvenue`}
+                  width={800}
+                  height={450}
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            ) : (
+              <span className="icon-box" style={{ background: `${page.color}22` }}>
+                <Icon name={page.icon} color={page.color} size={28} />
+              </span>
+            )}
+            <div className="detail-hero-card-body">
+              <span className="icon-box" style={{ background: `${page.color}22` }}>
+                <Icon name={page.icon} color={page.color} size={22} />
+              </span>
+              <h2>{page.title}</h2>
+              <p>{page.targetAudience || page.category}</p>
+              <ul>
+                {page.deliverables.slice(0, 5).map((item) => (
+                  <li key={item}>
+                    <Icon name="check" size={14} color={page.color} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

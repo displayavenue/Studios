@@ -68,6 +68,9 @@ export type DetailPageContent = {
   industrySlug?: string;
   serviceSlug?: string;
   indexable?: boolean;
+  /** Hero / card cover image (public path) */
+  coverImage?: string;
+  coverAlt?: string;
 };
 
 export function titleFromSlug(slug: string): string {

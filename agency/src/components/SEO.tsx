@@ -288,17 +288,19 @@ export function ServiceSchema({
   description,
   path,
   category,
+  image,
 }: {
   name: string;
   description: string;
   path: string;
   category?: string;
+  image?: string;
 }) {
   const { company } = useCms();
 
   useEffect(() => {
     const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
-    upsertJsonLd("schema-service", {
+    const payload: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": "Service",
       name,
@@ -308,9 +310,13 @@ export function ServiceSchema({
       provider: { "@id": `${site}/#business` },
       areaServed: { "@type": "Country", name: "India" },
       brand: { "@type": "Brand", name: company.name },
-    });
+    };
+    if (image) {
+      payload.image = absoluteUrl(company.website, image);
+    }
+    upsertJsonLd("schema-service", payload);
     return () => upsertJsonLd("schema-service", null);
-  }, [name, description, path, category, company]);
+  }, [name, description, path, category, image, company]);
 
   return null;
 }

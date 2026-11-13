@@ -100,7 +100,9 @@
       "slug": "digital-marketing",
       "kind": "service",
       "title": "Digital Marketing",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "coverImage": "/images/services/digital-marketing.jpg",
+      "coverAlt": "Digital Marketing services by DisplayAvenue"
     },
     {
       "icon": "search",
@@ -247,7 +249,9 @@
           "CRM + WhatsApp follow-up workflows",
           "Weekly optimisation against pipeline metrics"
         ]
-      }
+      },
+      "coverImage": "/images/services/seo.jpg",
+      "coverAlt": "SEO services by DisplayAvenue"
     },
     {
       "icon": "brain",
@@ -351,7 +355,9 @@
       "title": "AI SEO (GEO)",
       "category": "Digital Marketing",
       "architecture": "aeo",
-      "quickAnswer": "AI SEO / GEO work strengthens how your brand is represented in AI-assisted search - alongside classic SEO foundations."
+      "quickAnswer": "AI SEO / GEO work strengthens how your brand is represented in AI-assisted search - alongside classic SEO foundations.",
+      "coverImage": "/images/services/ai-seo.jpg",
+      "coverAlt": "AI SEO (GEO) services by DisplayAvenue"
     },
     {
       "icon": "globe",
@@ -459,7 +465,9 @@
       "title": "Local SEO",
       "category": "Digital Marketing",
       "architecture": "seo",
-      "quickAnswer": "Local SEO helps nearby customers find you on Google Search and Maps via Google Business Profile, local pages and reviews."
+      "quickAnswer": "Local SEO helps nearby customers find you on Google Search and Maps via Google Business Profile, local pages and reviews.",
+      "coverImage": "/images/services/local-seo.jpg",
+      "coverAlt": "Local SEO services by DisplayAvenue"
     },
     {
       "icon": "ads",
@@ -571,7 +579,9 @@
       "title": "Google Ads",
       "category": "Paid Media",
       "architecture": "ads",
-      "quickAnswer": "Google Ads captures high-intent searches. We connect campaigns to landing pages, tracking and follow-up so spend maps to qualified conversations."
+      "quickAnswer": "Google Ads captures high-intent searches. We connect campaigns to landing pages, tracking and follow-up so spend maps to qualified conversations.",
+      "coverImage": "/images/services/google-ads.jpg",
+      "coverAlt": "Google Ads services by DisplayAvenue"
     },
     {
       "icon": "share",
@@ -695,7 +705,9 @@
       "title": "Meta Ads",
       "category": "Paid Media",
       "architecture": "ads",
-      "quickAnswer": "Meta Ads create demand and retarget interest. We pair creative testing with conversion assets and WhatsApp/CRM routing."
+      "quickAnswer": "Meta Ads create demand and retarget interest. We pair creative testing with conversion assets and WhatsApp/CRM routing.",
+      "coverImage": "/images/services/meta-ads.jpg",
+      "coverAlt": "Meta Ads services by DisplayAvenue"
     },
     {
       "icon": "briefcase",
@@ -797,7 +809,9 @@
       "slug": "linkedin-ads",
       "kind": "service",
       "title": "Linkedin Ads",
-      "category": "Paid Media"
+      "category": "Paid Media",
+      "coverImage": "/images/services/linkedin-ads.jpg",
+      "coverAlt": "Linkedin Ads services by DisplayAvenue"
     },
     {
       "icon": "chat",
@@ -899,7 +913,9 @@
       "slug": "email-marketing",
       "kind": "service",
       "title": "Email Marketing",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "coverImage": "/images/services/email-marketing.jpg",
+      "coverAlt": "Email Marketing services by DisplayAvenue"
     },
     {
       "icon": "share",
@@ -1009,7 +1025,9 @@
       "slug": "social-media",
       "kind": "service",
       "title": "Social Media Marketing",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "coverImage": "/images/services/social-media.jpg",
+      "coverAlt": "Social Media Marketing services by DisplayAvenue"
     },
     {
       "icon": "doc",
@@ -1111,7 +1129,9 @@
       "slug": "content-marketing",
       "kind": "service",
       "title": "Content Marketing",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "coverImage": "/images/services/content-marketing.jpg",
+      "coverAlt": "Content Marketing services by DisplayAvenue"
     },
     {
       "icon": "users",
@@ -1213,7 +1233,9 @@
       "slug": "influencer-marketing",
       "kind": "service",
       "title": "Influencer Marketing",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "coverImage": "/images/services/influencer-marketing.jpg",
+      "coverAlt": "Influencer Marketing services by DisplayAvenue"
     },
     {
       "icon": "bolt",
@@ -1321,7 +1343,9 @@
       "title": "Marketing Automation",
       "category": "Digital Marketing",
       "architecture": "automation",
-      "quickAnswer": "Marketing automation connects forms, email, WhatsApp and CRM so leads get timely follow-up without manual chaos."
+      "quickAnswer": "Marketing automation connects forms, email, WhatsApp and CRM so leads get timely follow-up without manual chaos.",
+      "coverImage": "/images/services/marketing-automation.jpg",
+      "coverAlt": "Marketing Automation services by DisplayAvenue"
     },
     {
       "icon": "growth",
@@ -1429,7 +1453,9 @@
       "title": "CRO & Landing Pages",
       "category": "Conversion",
       "architecture": "web",
-      "quickAnswer": "CRO improves the percentage of visitors who enquire or buy - through page structure, offers, forms and experiments."
+      "quickAnswer": "CRO improves the percentage of visitors who enquire or buy - through page structure, offers, forms and experiments.",
+      "coverImage": "/images/services/cro.jpg",
+      "coverAlt": "CRO & Landing Pages services by DisplayAvenue"
     },
     {
       "icon": "chart",
@@ -1539,7 +1565,9 @@
       "slug": "analytics",
       "kind": "service",
       "title": "Analytics & Tracking",
-      "category": "Analytics"
+      "category": "Analytics",
+      "coverImage": "/images/services/analytics.jpg",
+      "coverAlt": "Analytics & Tracking services by DisplayAvenue"
     },
     {
       "icon": "star",
@@ -1641,7 +1669,9 @@
       "slug": "reputation",
       "kind": "service",
       "title": "Reputation Management",
-      "category": "Digital Marketing"
+      "category": "Digital Marketing",
+      "coverImage": "/images/services/reputation.jpg",
+      "coverAlt": "Reputation Management services by DisplayAvenue"
     },
     {
       "icon": "code",
@@ -1751,7 +1781,9 @@
       "slug": "web-development",
       "kind": "service",
       "title": "Web Development",
-      "category": "Web Development"
+      "category": "Web Development",
+      "coverImage": "/images/services/web-development.jpg",
+      "coverAlt": "Web Development services by DisplayAvenue"
     },
     {
       "icon": "building",
@@ -1853,7 +1885,9 @@
       "slug": "corporate-websites",
       "kind": "service",
       "title": "Corporate Websites",
-      "category": "Web Development"
+      "category": "Web Development",
+      "coverImage": "/images/services/corporate-websites.jpg",
+      "coverAlt": "Corporate Websites services by DisplayAvenue"
     },
     {
       "icon": "rocket",
@@ -1955,7 +1989,9 @@
       "slug": "startup-websites",
       "kind": "service",
       "title": "Startup Websites",
-      "category": "Web Development"
+      "category": "Web Development",
+      "coverImage": "/images/services/startup-websites.jpg",
+      "coverAlt": "Startup Websites services by DisplayAvenue"
     },
     {
       "icon": "doc",
@@ -2057,7 +2093,9 @@
       "slug": "landing-pages",
       "kind": "service",
       "title": "Landing Pages",
-      "category": "Web Development"
+      "category": "Web Development",
+      "coverImage": "/images/services/landing-pages.jpg",
+      "coverAlt": "Landing Pages services by DisplayAvenue"
     },
     {
       "icon": "bag",
@@ -2159,7 +2197,9 @@
       "slug": "shopify",
       "kind": "service",
       "title": "Shopify",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "coverImage": "/images/services/shopify.jpg",
+      "coverAlt": "Shopify services by DisplayAvenue"
     },
     {
       "icon": "bag",
@@ -2261,7 +2301,9 @@
       "slug": "woocommerce",
       "kind": "service",
       "title": "Woocommerce",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "coverImage": "/images/services/woocommerce.jpg",
+      "coverAlt": "Woocommerce services by DisplayAvenue"
     },
     {
       "icon": "bag",
@@ -2363,7 +2405,9 @@
       "slug": "magento",
       "kind": "service",
       "title": "Magento",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "coverImage": "/images/services/magento.jpg",
+      "coverAlt": "Magento services by DisplayAvenue"
     },
     {
       "icon": "bag",
@@ -2465,7 +2509,9 @@
       "slug": "custom-ecommerce",
       "kind": "service",
       "title": "Custom Ecommerce",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "coverImage": "/images/services/custom-ecommerce.jpg",
+      "coverAlt": "Custom Ecommerce services by DisplayAvenue"
     },
     {
       "icon": "bag",
@@ -2575,7 +2621,9 @@
       "slug": "ecommerce",
       "kind": "service",
       "title": "E-commerce Solutions",
-      "category": "E-commerce"
+      "category": "E-commerce",
+      "coverImage": "/images/services/ecommerce.jpg",
+      "coverAlt": "E-commerce Solutions services by DisplayAvenue"
     },
     {
       "icon": "code",
@@ -2677,7 +2725,9 @@
       "slug": "wordpress",
       "kind": "service",
       "title": "Wordpress",
-      "category": "CMS"
+      "category": "CMS",
+      "coverImage": "/images/services/wordpress.jpg",
+      "coverAlt": "Wordpress services by DisplayAvenue"
     },
     {
       "icon": "layers",
@@ -2779,7 +2829,9 @@
       "slug": "webflow",
       "kind": "service",
       "title": "Webflow",
-      "category": "CMS"
+      "category": "CMS",
+      "coverImage": "/images/services/webflow.jpg",
+      "coverAlt": "Webflow services by DisplayAvenue"
     },
     {
       "icon": "layers",
@@ -2881,7 +2933,9 @@
       "slug": "wix",
       "kind": "service",
       "title": "Wix",
-      "category": "CMS"
+      "category": "CMS",
+      "coverImage": "/images/services/wix.jpg",
+      "coverAlt": "Wix services by DisplayAvenue"
     },
     {
       "icon": "layers",
@@ -2983,7 +3037,9 @@
       "slug": "framer",
       "kind": "service",
       "title": "Framer",
-      "category": "CMS"
+      "category": "CMS",
+      "coverImage": "/images/services/framer.jpg",
+      "coverAlt": "Framer services by DisplayAvenue"
     },
     {
       "icon": "code",
@@ -3085,7 +3141,9 @@
       "slug": "drupal",
       "kind": "service",
       "title": "Drupal",
-      "category": "CMS"
+      "category": "CMS",
+      "coverImage": "/images/services/drupal.jpg",
+      "coverAlt": "Drupal services by DisplayAvenue"
     },
     {
       "icon": "users",
@@ -3191,7 +3249,9 @@
       "slug": "crm",
       "kind": "service",
       "title": "CRM Systems",
-      "category": "Software"
+      "category": "Software",
+      "coverImage": "/images/services/crm.jpg",
+      "coverAlt": "CRM Systems services by DisplayAvenue"
     },
     {
       "icon": "gear",
@@ -3293,7 +3353,9 @@
       "slug": "erp",
       "kind": "service",
       "title": "ERP Solutions",
-      "category": "Software"
+      "category": "Software",
+      "coverImage": "/images/services/erp.jpg",
+      "coverAlt": "ERP Solutions services by DisplayAvenue"
     },
     {
       "icon": "chip",
@@ -3395,7 +3457,9 @@
       "slug": "saas",
       "kind": "service",
       "title": "SaaS Product Development",
-      "category": "Software"
+      "category": "Software",
+      "coverImage": "/images/services/saas.jpg",
+      "coverAlt": "SaaS Product Development services by DisplayAvenue"
     },
     {
       "icon": "chart",
@@ -3497,7 +3561,9 @@
       "slug": "dashboards",
       "kind": "service",
       "title": "Admin Dashboards",
-      "category": "Software"
+      "category": "Software",
+      "coverImage": "/images/services/dashboards.jpg",
+      "coverAlt": "Admin Dashboards services by DisplayAvenue"
     },
     {
       "icon": "phone",
@@ -3599,7 +3665,9 @@
       "slug": "mobile",
       "kind": "service",
       "title": "Mobile App Development",
-      "category": "Mobile"
+      "category": "Mobile",
+      "coverImage": "/images/services/mobile.jpg",
+      "coverAlt": "Mobile App Development services by DisplayAvenue"
     },
     {
       "icon": "phone",
@@ -3701,7 +3769,9 @@
       "slug": "android",
       "kind": "service",
       "title": "Android App Development",
-      "category": "Mobile"
+      "category": "Mobile",
+      "coverImage": "/images/services/android.jpg",
+      "coverAlt": "Android App Development services by DisplayAvenue"
     },
     {
       "icon": "phone",
@@ -3803,7 +3873,9 @@
       "slug": "ios",
       "kind": "service",
       "title": "iOS App Development",
-      "category": "Mobile"
+      "category": "Mobile",
+      "coverImage": "/images/services/ios.jpg",
+      "coverAlt": "iOS App Development services by DisplayAvenue"
     },
     {
       "icon": "phone",
@@ -3905,7 +3977,9 @@
       "slug": "flutter",
       "kind": "service",
       "title": "Flutter App Development",
-      "category": "Mobile"
+      "category": "Mobile",
+      "coverImage": "/images/services/flutter.jpg",
+      "coverAlt": "Flutter App Development services by DisplayAvenue"
     },
     {
       "icon": "phone",
@@ -4007,7 +4081,9 @@
       "slug": "react-native",
       "kind": "service",
       "title": "React Native Apps",
-      "category": "Mobile"
+      "category": "Mobile",
+      "coverImage": "/images/services/react-native.jpg",
+      "coverAlt": "React Native Apps services by DisplayAvenue"
     },
     {
       "icon": "globe",
@@ -4109,7 +4185,9 @@
       "slug": "pwa",
       "kind": "service",
       "title": "Progressive Web Apps",
-      "category": "Mobile"
+      "category": "Mobile",
+      "coverImage": "/images/services/pwa.jpg",
+      "coverAlt": "Progressive Web Apps services by DisplayAvenue"
     },
     {
       "icon": "layers",
@@ -4211,7 +4289,9 @@
       "slug": "design",
       "kind": "service",
       "title": "UI/UX & Product Design",
-      "category": "Design"
+      "category": "Design",
+      "coverImage": "/images/services/design.jpg",
+      "coverAlt": "UI/UX & Product Design services by DisplayAvenue"
     },
     {
       "icon": "layers",
@@ -4313,7 +4393,9 @@
       "slug": "ui-ux",
       "kind": "service",
       "title": "UI/UX Design",
-      "category": "Design"
+      "category": "Design",
+      "coverImage": "/images/services/ui-ux.jpg",
+      "coverAlt": "UI/UX Design services by DisplayAvenue"
     },
     {
       "icon": "layers",
@@ -4415,7 +4497,9 @@
       "slug": "wireframing",
       "kind": "service",
       "title": "Wireframing",
-      "category": "Design"
+      "category": "Design",
+      "coverImage": "/images/services/wireframing.jpg",
+      "coverAlt": "Wireframing services by DisplayAvenue"
     },
     {
       "icon": "bolt",
@@ -4517,7 +4601,9 @@
       "slug": "prototyping",
       "kind": "service",
       "title": "Prototyping",
-      "category": "Design"
+      "category": "Design",
+      "coverImage": "/images/services/prototyping.jpg",
+      "coverAlt": "Prototyping services by DisplayAvenue"
     },
     {
       "icon": "grid",
@@ -4619,7 +4705,9 @@
       "slug": "design-systems",
       "kind": "service",
       "title": "Design Systems",
-      "category": "Design"
+      "category": "Design",
+      "coverImage": "/images/services/design-systems.jpg",
+      "coverAlt": "Design Systems services by DisplayAvenue"
     },
     {
       "icon": "brand",
@@ -4721,7 +4809,9 @@
       "slug": "branding",
       "kind": "service",
       "title": "Branding",
-      "category": "Branding"
+      "category": "Branding",
+      "coverImage": "/images/services/branding.jpg",
+      "coverAlt": "Branding services by DisplayAvenue"
     },
     {
       "icon": "brand",
@@ -4823,7 +4913,9 @@
       "slug": "logo",
       "kind": "service",
       "title": "Logo Design",
-      "category": "Branding"
+      "category": "Branding",
+      "coverImage": "/images/services/logo.jpg",
+      "coverAlt": "Logo Design services by DisplayAvenue"
     },
     {
       "icon": "brand",
@@ -4925,7 +5017,9 @@
       "slug": "brand-identity",
       "kind": "service",
       "title": "Brand Identity",
-      "category": "Branding"
+      "category": "Branding",
+      "coverImage": "/images/services/brand-identity.jpg",
+      "coverAlt": "Brand Identity services by DisplayAvenue"
     },
     {
       "icon": "bag",
@@ -5027,7 +5121,9 @@
       "slug": "packaging",
       "kind": "service",
       "title": "Packaging Design",
-      "category": "Branding"
+      "category": "Branding",
+      "coverImage": "/images/services/packaging.jpg",
+      "coverAlt": "Packaging Design services by DisplayAvenue"
     },
     {
       "icon": "doc",
@@ -5129,7 +5225,9 @@
       "slug": "brand-guidelines",
       "kind": "service",
       "title": "Brand Guidelines",
-      "category": "Branding"
+      "category": "Branding",
+      "coverImage": "/images/services/brand-guidelines.jpg",
+      "coverAlt": "Brand Guidelines services by DisplayAvenue"
     },
     {
       "icon": "chat",
@@ -5239,7 +5337,9 @@
       "slug": "ai-chatbots",
       "kind": "service",
       "title": "AI Chatbots",
-      "category": "AI Solutions"
+      "category": "AI Solutions",
+      "coverImage": "/images/services/ai-chatbots.jpg",
+      "coverAlt": "AI Chatbots services by DisplayAvenue"
     },
     {
       "icon": "robot",
@@ -5341,7 +5441,9 @@
       "slug": "ai-agents",
       "kind": "service",
       "title": "AI Agents",
-      "category": "AI Solutions"
+      "category": "AI Solutions",
+      "coverImage": "/images/services/ai-agents.jpg",
+      "coverAlt": "AI Agents services by DisplayAvenue"
     },
     {
       "icon": "bolt",
@@ -5445,7 +5547,9 @@
       "title": "AI Automation",
       "category": "AI Solutions",
       "architecture": "automation",
-      "quickAnswer": "AI automation removes repetitive marketing and sales busywork - lead routing, follow-ups, content assists - while humans keep judgement calls."
+      "quickAnswer": "AI automation removes repetitive marketing and sales busywork - lead routing, follow-ups, content assists - while humans keep judgement calls.",
+      "coverImage": "/images/services/ai-automation.jpg",
+      "coverAlt": "AI Automation services by DisplayAvenue"
     },
     {
       "icon": "nodes",
@@ -5547,7 +5651,9 @@
       "slug": "ai-workflows",
       "kind": "service",
       "title": "AI Workflows",
-      "category": "AI Solutions"
+      "category": "AI Solutions",
+      "coverImage": "/images/services/ai-workflows.jpg",
+      "coverAlt": "AI Workflows services by DisplayAvenue"
     },
     {
       "icon": "code",
@@ -5657,7 +5763,9 @@
       "slug": "software",
       "kind": "service",
       "title": "Custom Software Development",
-      "category": "Software"
+      "category": "Software",
+      "coverImage": "/images/services/software.jpg",
+      "coverAlt": "Custom Software Development services by DisplayAvenue"
     },
     {
       "icon": "users",
@@ -5759,7 +5867,9 @@
       "slug": "hrms",
       "kind": "service",
       "title": "HRMS Development",
-      "category": "Software"
+      "category": "Software",
+      "coverImage": "/images/services/hrms.jpg",
+      "coverAlt": "HRMS Development services by DisplayAvenue"
     },
     {
       "icon": "tag",
@@ -5861,7 +5971,9 @@
       "slug": "pos",
       "kind": "service",
       "title": "POS Systems",
-      "category": "Software"
+      "category": "Software",
+      "coverImage": "/images/services/pos.jpg",
+      "coverAlt": "POS Systems services by DisplayAvenue"
     },
     {
       "icon": "cloud",
@@ -5971,7 +6083,9 @@
       "slug": "cloud",
       "kind": "service",
       "title": "Cloud & DevOps",
-      "category": "Cloud & DevOps"
+      "category": "Cloud & DevOps",
+      "coverImage": "/images/services/cloud.jpg",
+      "coverAlt": "Cloud & DevOps services by DisplayAvenue"
     },
     {
       "icon": "cloud",
@@ -6073,7 +6187,9 @@
       "slug": "aws",
       "kind": "service",
       "title": "AWS Cloud Services",
-      "category": "Cloud & DevOps"
+      "category": "Cloud & DevOps",
+      "coverImage": "/images/services/aws.jpg",
+      "coverAlt": "AWS Cloud Services services by DisplayAvenue"
     },
     {
       "icon": "cloud",
@@ -6175,7 +6291,9 @@
       "slug": "azure",
       "kind": "service",
       "title": "Azure Cloud Services",
-      "category": "Cloud & DevOps"
+      "category": "Cloud & DevOps",
+      "coverImage": "/images/services/azure.jpg",
+      "coverAlt": "Azure Cloud Services services by DisplayAvenue"
     },
     {
       "icon": "cloud",
@@ -6277,7 +6395,9 @@
       "slug": "gcp",
       "kind": "service",
       "title": "Google Cloud Platform",
-      "category": "Cloud & DevOps"
+      "category": "Cloud & DevOps",
+      "coverImage": "/images/services/gcp.jpg",
+      "coverAlt": "Google Cloud Platform services by DisplayAvenue"
     },
     {
       "icon": "gear",
@@ -6379,7 +6499,9 @@
       "slug": "docker",
       "kind": "service",
       "title": "Docker & Containers",
-      "category": "Cloud & DevOps"
+      "category": "Cloud & DevOps",
+      "coverImage": "/images/services/docker.jpg",
+      "coverAlt": "Docker & Containers services by DisplayAvenue"
     },
     {
       "icon": "shield",
@@ -6481,7 +6603,9 @@
       "slug": "server-management",
       "kind": "service",
       "title": "Server Management",
-      "category": "Cloud & DevOps"
+      "category": "Cloud & DevOps",
+      "coverImage": "/images/services/server-management.jpg",
+      "coverAlt": "Server Management services by DisplayAvenue"
     },
     {
       "icon": "camera",
@@ -6583,7 +6707,9 @@
       "slug": "creative",
       "kind": "service",
       "title": "Creative & Production",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/creative.jpg",
+      "coverAlt": "Creative & Production services by DisplayAvenue"
     },
     {
       "icon": "camera",
@@ -6685,7 +6811,9 @@
       "slug": "photography",
       "kind": "service",
       "title": "Photography",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/photography.jpg",
+      "coverAlt": "Photography services by DisplayAvenue"
     },
     {
       "icon": "camera",
@@ -6787,7 +6915,9 @@
       "slug": "videography",
       "kind": "service",
       "title": "Videography",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/videography.jpg",
+      "coverAlt": "Videography services by DisplayAvenue"
     },
     {
       "icon": "plane",
@@ -6889,7 +7019,9 @@
       "slug": "drone",
       "kind": "service",
       "title": "Drone Photography",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/drone.jpg",
+      "coverAlt": "Drone Photography services by DisplayAvenue"
     },
     {
       "icon": "camera",
@@ -6991,7 +7123,9 @@
       "slug": "video-editing",
       "kind": "service",
       "title": "Video Editing",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/video-editing.jpg",
+      "coverAlt": "Video Editing services by DisplayAvenue"
     },
     {
       "icon": "bolt",
@@ -7093,7 +7227,9 @@
       "slug": "animation",
       "kind": "service",
       "title": "Animation",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/animation.jpg",
+      "coverAlt": "Animation services by DisplayAvenue"
     },
     {
       "icon": "bolt",
@@ -7195,7 +7331,9 @@
       "slug": "motion-graphics",
       "kind": "service",
       "title": "Motion Graphics",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/motion-graphics.jpg",
+      "coverAlt": "Motion Graphics services by DisplayAvenue"
     },
     {
       "icon": "image",
@@ -7297,7 +7435,9 @@
       "slug": "product-shoots",
       "kind": "service",
       "title": "Product Shoots",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/product-shoots.jpg",
+      "coverAlt": "Product Shoots services by DisplayAvenue"
     },
     {
       "icon": "play",
@@ -7399,7 +7539,9 @@
       "slug": "brand-films",
       "kind": "service",
       "title": "Brand Films",
-      "category": "Creative Studio"
+      "category": "Creative Studio",
+      "coverImage": "/images/services/brand-films.jpg",
+      "coverAlt": "Brand Films services by DisplayAvenue"
     },
     {
       "slug": "aeo",
@@ -7568,7 +7710,9 @@
           "value": "SEO+",
           "label": "Works with search"
         }
-      ]
+      ],
+      "coverImage": "/images/services/aeo.jpg",
+      "coverAlt": "AEO Services services by DisplayAvenue"
     },
     {
       "slug": "performance-marketing",
@@ -7724,7 +7868,9 @@
           "value": "A/B",
           "label": "Creative testing"
         }
-      ]
+      ],
+      "coverImage": "/images/services/performance-marketing.jpg",
+      "coverAlt": "Performance Marketing services by DisplayAvenue"
     },
     {
       "slug": "lead-generation",
@@ -7904,7 +8050,9 @@
           "value": "CRM",
           "label": "Pipeline visibility"
         }
-      ]
+      ],
+      "coverImage": "/images/services/lead-generation.jpg",
+      "coverAlt": "Lead Generation services by DisplayAvenue"
     },
     {
       "slug": "technical-seo",
@@ -8024,7 +8172,9 @@
           "value": "Schema",
           "label": "Valid markup"
         }
-      ]
+      ],
+      "coverImage": "/images/services/technical-seo.jpg",
+      "coverAlt": "Technical SEO services by DisplayAvenue"
     },
     {
       "slug": "whatsapp-marketing",
@@ -8162,7 +8312,9 @@
           "value": "SLA",
           "label": "Response targets"
         }
-      ]
+      ],
+      "coverImage": "/images/services/whatsapp-marketing.jpg",
+      "coverAlt": "WhatsApp Marketing services by DisplayAvenue"
     },
     {
       "slug": "reels-shorts-video",
@@ -8359,7 +8511,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/reels-shorts-video.jpg",
+      "coverAlt": "Reels & Shorts Video Marketing services by DisplayAvenue"
     },
     {
       "slug": "server-side-tracking",
@@ -8556,7 +8710,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/server-side-tracking.jpg",
+      "coverAlt": "Server-Side Tracking & Meta CAPI services by DisplayAvenue"
     },
     {
       "slug": "business-intelligence",
@@ -8753,7 +8909,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/business-intelligence.jpg",
+      "coverAlt": "Business Intelligence & Dashboards services by DisplayAvenue"
     },
     {
       "slug": "customer-data-platform",
@@ -8950,7 +9108,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/customer-data-platform.jpg",
+      "coverAlt": "Customer Data Platform (CDP) services by DisplayAvenue"
     },
     {
       "slug": "ab-testing",
@@ -9147,7 +9307,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/ab-testing.jpg",
+      "coverAlt": "A/B Testing & Experimentation services by DisplayAvenue"
     },
     {
       "slug": "voice-ai",
@@ -9344,7 +9506,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/voice-ai.jpg",
+      "coverAlt": "Voice AI & Call Agents services by DisplayAvenue"
     },
     {
       "slug": "custom-ai-rag",
@@ -9541,7 +9705,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/custom-ai-rag.jpg",
+      "coverAlt": "Custom AI & RAG Knowledge Bots services by DisplayAvenue"
     },
     {
       "slug": "rpa-automation",
@@ -9738,7 +9904,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/rpa-automation.jpg",
+      "coverAlt": "RPA & Process Automation services by DisplayAvenue"
     },
     {
       "slug": "hosting-domains",
@@ -9935,7 +10103,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/hosting-domains.jpg",
+      "coverAlt": "Web Hosting & Domains services by DisplayAvenue"
     },
     {
       "slug": "api-integrations",
@@ -10132,7 +10302,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/api-integrations.jpg",
+      "coverAlt": "API Development & Integrations services by DisplayAvenue"
     },
     {
       "slug": "backend-microservices",
@@ -10329,7 +10501,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/backend-microservices.jpg",
+      "coverAlt": "Backend & Microservices Development services by DisplayAvenue"
     },
     {
       "slug": "database-management",
@@ -10526,7 +10700,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/database-management.jpg",
+      "coverAlt": "Database Design & Management services by DisplayAvenue"
     },
     {
       "slug": "cybersecurity-vapt",
@@ -10723,7 +10899,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/cybersecurity-vapt.jpg",
+      "coverAlt": "Cybersecurity & VAPT services by DisplayAvenue"
     },
     {
       "slug": "managed-soc",
@@ -10920,7 +11098,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/managed-soc.jpg",
+      "coverAlt": "Managed SOC & Security Monitoring services by DisplayAvenue"
     },
     {
       "slug": "backup-disaster-recovery",
@@ -11117,7 +11297,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/backup-disaster-recovery.jpg",
+      "coverAlt": "Backup & Disaster Recovery services by DisplayAvenue"
     },
     {
       "slug": "privacy-compliance",
@@ -11314,7 +11496,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/privacy-compliance.jpg",
+      "coverAlt": "Privacy, DPDP & GDPR Compliance services by DisplayAvenue"
     },
     {
       "slug": "it-support-msp",
@@ -11511,7 +11695,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/it-support-msp.jpg",
+      "coverAlt": "IT Support & Managed Services (MSP) services by DisplayAvenue"
     },
     {
       "slug": "microsoft-365-workspace",
@@ -11708,7 +11894,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/microsoft-365-workspace.jpg",
+      "coverAlt": "Microsoft 365 & Google Workspace services by DisplayAvenue"
     },
     {
       "slug": "intranet-internal-tools",
@@ -11905,7 +12093,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/intranet-internal-tools.jpg",
+      "coverAlt": "Intranet & Internal Tools services by DisplayAvenue"
     },
     {
       "slug": "digital-asset-management",
@@ -12102,7 +12292,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/digital-asset-management.jpg",
+      "coverAlt": "Digital Asset Management (DAM) services by DisplayAvenue"
     },
     {
       "slug": "ott-streaming",
@@ -12299,7 +12491,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/ott-streaming.jpg",
+      "coverAlt": "OTT & Video Streaming Platforms services by DisplayAvenue"
     },
     {
       "slug": "podcast-production",
@@ -12496,7 +12690,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/podcast-production.jpg",
+      "coverAlt": "Podcast Production & Hosting services by DisplayAvenue"
     },
     {
       "slug": "payment-gateway",
@@ -12693,7 +12889,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/payment-gateway.jpg",
+      "coverAlt": "Payment Gateway Integration services by DisplayAvenue"
     },
     {
       "slug": "subscription-billing",
@@ -12890,7 +13088,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/subscription-billing.jpg",
+      "coverAlt": "Subscription & Recurring Billing services by DisplayAvenue"
     },
     {
       "slug": "marketplace-development",
@@ -13087,7 +13287,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/marketplace-development.jpg",
+      "coverAlt": "Marketplace Development services by DisplayAvenue"
     },
     {
       "slug": "website-maintenance",
@@ -13284,7 +13486,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/website-maintenance.jpg",
+      "coverAlt": "Website Maintenance & Growth Retainer services by DisplayAvenue"
     },
     {
       "slug": "youtube-ads",
@@ -13481,7 +13685,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/youtube-ads.jpg",
+      "coverAlt": "YouTube Ads services by DisplayAvenue"
     },
     {
       "slug": "sms-marketing",
@@ -13678,7 +13884,9 @@
           "label": "SME-ready delivery"
         }
       ],
-      "indexable": true
+      "indexable": true,
+      "coverImage": "/images/services/sms-marketing.jpg",
+      "coverAlt": "SMS Marketing services by DisplayAvenue"
     }
   ]
 }
