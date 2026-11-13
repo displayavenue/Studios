@@ -26,6 +26,17 @@ Default password is in [`config.php`](config.php): `DisplayAgency@2026` - **chan
 Open **Tracking & Pixels**, paste your IDs when ready, click **Save changes**, refresh the website.
 
 
+## Daily blog autopilot
+
+1. Keep `social-local.php` on the server (copy from `social-local.php.example`). It must define `cron_key`.
+2. In Hostinger hPanel → **Advanced → Cron Jobs**, run once per day (e.g. 09:15 IST):
+
+```bash
+curl -s "https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY"
+```
+
+3. Deploys must never delete `social-local.php`. Prefer `scripts/deploy-ssh-safe-live.sh`.
+
 ## Permissions
 
 `content/` must be writable by PHP on Hostinger (`chmod 755` or `775` on the folder).

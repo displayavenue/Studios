@@ -44,6 +44,16 @@ Remote `/demo/content/` edits are preserved across deploys.
 
 ## Live cutover (displayavenue.com root)
 
+**Preferred (safe — does not wipe live-only folders/secrets):**
+
+```bash
+cd agency
+export SSH_PASS='...'
+bash scripts/deploy-ssh-safe-live.sh
+```
+
+Legacy wipe deploy (restores `social-local.php` + CAPI secret from backup after upload):
+
 ```bash
 cd agency
 export SSH_PASS='...'
@@ -53,6 +63,15 @@ bash scripts/deploy-ssh-live.sh
 - Website: https://displayavenue.com/
 - CMS: https://displayavenue.com/admin/
 - Keeps `/demo` and `/os` folders; backs up previous root under `~/backups/`
+- Never delete `admin/social-local.php` (holds blog `cron_key`)
+
+### Daily blog cron (required)
+
+hPanel → Advanced → Cron Jobs → once daily (09:15 IST):
+
+```bash
+curl -s "https://displayavenue.com/admin/blog-cron.php?key=YOUR_CRON_KEY"
+```
 
 
 ## Pages

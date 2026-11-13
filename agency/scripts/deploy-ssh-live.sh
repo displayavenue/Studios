@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # Deploy agency site to LIVE displayavenue.com root (public_html).
+# Prefer scripts/deploy-ssh-safe-live.sh for routine releases (no docroot wipe).
+# This script backs up, then replaces SPA files, and RESTORES server-only secrets:
+#   admin/social-local.php (blog cron_key), admin/.meta-capi.secret.php, admin/config.php
 # Preserves /demo and /os. Backs up previous root first.
 # Usage: SSH_PASS='...' ./scripts/deploy-ssh-live.sh
 
@@ -70,10 +73,21 @@ sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
 
 sshpass -p "$PASS" scp "${SSH_OPTS[@]}" -P "$PORT" -r /tmp/da-agency-live/. "$HOST:$DOC/"
 
+# Restore server-only secrets wiped by the clear step (blog cron + CAPI + admin config)
 sshpass -p "$PASS" ssh "${SSH_OPTS[@]}" -p "$PORT" "$HOST" \
-  "chmod 755 ${DOC} ${DOC}/content ${DOC}/admin ${DOC}/assets 2>/dev/null || true; \
+  "for f in admin/social-local.php admin/.meta-capi.secret.php admin/config.php; do \
+     if [ -f \$HOME/${BACKUP}/\$f ]; then \
+       cp -a \$HOME/${BACKUP}/\$f ${DOC}/\$f; \
+       echo RESTORED_\$f; \
+     else \
+       echo MISSING_IN_BACKUP_\$f; \
+     fi; \
+   done; \
+   chmod 600 ${DOC}/admin/social-local.php ${DOC}/admin/.meta-capi.secret.php 2>/dev/null || true; \
+   chmod 755 ${DOC} ${DOC}/content ${DOC}/admin ${DOC}/assets 2>/dev/null || true; \
    chmod 644 ${DOC}/index.html ${DOC}/.htaccess ${DOC}/robots.txt ${DOC}/sitemap.xml ${DOC}/llms.txt 2>/dev/null || true; \
    chmod 664 ${DOC}/content/*.json; \
+   test -f ${DOC}/admin/social-local.php && echo SOCIAL_LOCAL_OK || echo SOCIAL_LOCAL_MISSING; \
    php -r \"require '${DOC}/admin/seo-sync.php'; \\\$r=da_sync_seo_artifacts('${DOC}/content', '${DOC}'); echo 'SEO_URLS='.\\\$r['urlCount'].PHP_EOL;\" 2>/dev/null || echo 'SEO sync skipped'; \
    ls -la ${DOC} | head -30; \
    echo LIVE_DEPLOY_OK"
