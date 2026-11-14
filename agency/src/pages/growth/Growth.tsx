@@ -8,6 +8,7 @@ import { growthFaqs, growthPricing, growthServices } from "./growthData";
 import { captureGrowthAttribution } from "./growthAttribution";
 import { trackCtaClick, trackGrowthEvent } from "./growthAnalytics";
 import { GrowthHeroSystem, GrowthServiceVisual } from "./GrowthVisuals";
+import { logWhatsAppLead } from "../../lib/crmWhatsApp";
 
 type GrowthConfig = {
   parentBrand?: string;
@@ -274,9 +275,14 @@ export function Growth() {
                 href={company.whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() =>
-                  trackGrowthEvent("whatsapp_click", { cta_location: "hero" })
-                }
+                onClick={() => {
+                  trackGrowthEvent("whatsapp_click", { cta_location: "hero" });
+                  void logWhatsAppLead({
+                    message: "WhatsApp from /growth hero",
+                    cta_location: "growth_hero",
+                    page: "/growth",
+                  });
+                }}
               >
                 WhatsApp Us
               </a>
@@ -592,9 +598,14 @@ export function Growth() {
                 href={company.whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() =>
-                  trackGrowthEvent("whatsapp_click", { cta_location: "office" })
-                }
+                onClick={() => {
+                  trackGrowthEvent("whatsapp_click", { cta_location: "office" });
+                  void logWhatsAppLead({
+                    message: "WhatsApp from /growth office section",
+                    cta_location: "growth_office",
+                    page: "/growth",
+                  });
+                }}
               >
                 WhatsApp Us →
               </a>
@@ -668,9 +679,14 @@ export function Growth() {
               href={company.whatsappHref}
               target="_blank"
               rel="noreferrer"
-              onClick={() =>
-                trackGrowthEvent("whatsapp_click", { cta_location: "expert_sheet" })
-              }
+              onClick={() => {
+                trackGrowthEvent("whatsapp_click", { cta_location: "expert_sheet" });
+                void logWhatsAppLead({
+                  message: "WhatsApp from /growth expert sheet",
+                  cta_location: "growth_expert_sheet",
+                  page: "/growth",
+                });
+              }}
             >
               WhatsApp
             </a>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { useCms } from "../cms/CmsProvider";
 import { getVisitorId } from "./VisitorTracker";
+import { logWhatsAppLead } from "../lib/crmWhatsApp";
 import "./LiveChat.css";
 
 type ChatCta = { label: string; href: string; kind?: string };
@@ -247,7 +248,20 @@ export function LiveChat() {
               <button type="submit" className="da-chat__send" disabled={busy}>
                 {busy ? "Starting…" : "Chat with AI"}
               </button>
-              <a className="da-chat__wa" href={company.whatsappHref} target="_blank" rel="noreferrer">
+              <a
+                className="da-chat__wa"
+                href={company.whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => {
+                  void logWhatsAppLead({
+                    name: name.trim() || "Chat visitor",
+                    phone: phone.trim(),
+                    message: "Prefer WhatsApp from DA Growth AI chat",
+                    cta_location: "livechat_preform",
+                  });
+                }}
+              >
                 Prefer WhatsApp →
               </a>
             </form>

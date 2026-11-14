@@ -15,6 +15,8 @@ return [
   'meta_capi_pixel_id' => getenv('META_CAPI_PIXEL_ID') ?: '',
   'meta_capi_test_event_code' => getenv('META_CAPI_TEST_EVENT_CODE') ?: '',
   'meta_capi_api_version' => getenv('META_CAPI_API_VERSION') ?: 'v21.0',
+  // HubSpot Private App token — prefer admin/.crm.secret.php or env HUBSPOT_ACCESS_TOKEN
+  'hubspot_access_token' => getenv('HUBSPOT_ACCESS_TOKEN') ?: '',
   'collections' => [
     'company' => 'Header, Footer & Company',
     'home' => 'Homepage',
@@ -22,6 +24,7 @@ return [
     'awards' => 'Awards',
     'certifications' => 'Certifications',
     'contact' => 'Contact Form',
+    'crm' => 'CRM (HubSpot / Sheets)',
     'combos' => 'Industry × Service Pages',
     'services' => 'Services (all pages)',
     'industries' => 'Industries',

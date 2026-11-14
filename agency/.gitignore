@@ -25,3 +25,5 @@ dist-ssr
 
 # Meta CAPI secrets (never commit access tokens)
 public/admin/.meta-capi.secret.php
+# HubSpot / CRM secrets (never commit access tokens)
+public/admin/.crm.secret.php

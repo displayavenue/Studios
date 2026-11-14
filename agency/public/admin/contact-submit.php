@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $config = require __DIR__ . '/config.php';
 $contentDir = rtrim((string)$config['content_dir'], '/\\');
+require_once __DIR__ . '/lib/crm.php';
 $contactPath = $contentDir . '/contact.json';
 $contact = is_file($contactPath)
   ? (json_decode((string)file_get_contents($contactPath), true) ?: [])
@@ -71,11 +72,14 @@ if (strlen($name) > 120 || strlen($phone) > 40 || strlen($email) > 120 || strlen
 $lead = [
   'id' => 'lead_' . date('Ymd_His') . '_' . bin2hex(random_bytes(3)),
   'createdAt' => gmdate('c'),
+  'created_at' => gmdate('c'),
   'name' => $name,
   'phone' => $phone,
   'email' => $email,
   'business' => $business,
   'message' => $message,
+  'source' => 'contact_form',
+  'channel' => 'form',
   'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
   'userAgent' => substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 240),
   'page' => (string)($body['page'] ?? '/contact'),
@@ -105,6 +109,9 @@ array_unshift($index, [
   'phone' => $lead['phone'],
   'email' => $lead['email'],
   'business' => $lead['business'],
+  'page' => $lead['page'],
+  'source' => 'contact_form',
+  'channel' => 'form',
 ]);
 $index = array_slice($index, 0, 500);
 @file_put_contents($indexPath, json_encode($index, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
@@ -132,10 +139,13 @@ if ($notify !== '' && filter_var($notify, FILTER_VALIDATE_EMAIL)) {
   $mailOk = @mail($notify, $subject, implode("\n", $lines), $headers);
 }
 
+$crmResult = da_crm_forward($lead, $contentDir, $config);
+
 echo json_encode([
   'ok' => true,
   'saved' => (bool)$written,
   'emailed' => $mailOk,
+  'crm' => $crmResult,
   'successTitle' => $contact['successTitle'] ?? 'Thanks - we got your message',
   'successMessage' => $contact['successMessage'] ?? 'Our team will reply soon.',
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

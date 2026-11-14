@@ -3,7 +3,7 @@
 # - Backs up current root first
 # - Overwrites SPA build + admin helpers + content JSON
 # - Does NOT delete protected live-only trees or wipe the docroot
-# - Preserves admin/.meta-capi.secret.php, admin/config.php, admin/social-local.php
+# - Preserves admin/.meta-capi.secret.php, admin/.crm.secret.php, admin/config.php, admin/social-local.php
 #   (social-local.php holds cron_key for daily blog autopilot — never wipe it)
 #
 # Usage: SSH_PASS='...' ./scripts/deploy-ssh-safe-live.sh
@@ -60,7 +60,7 @@ cp -a dist/. "$STAGE/"
 rm -rf "$STAGE/admin" "$STAGE/content"
 cp -a public/admin "$STAGE/admin"
 cp -a public/content "$STAGE/content"
-rm -f "$STAGE/admin/.meta-capi.secret.php" "$STAGE/admin/social-local.php"
+rm -f "$STAGE/admin/.meta-capi.secret.php" "$STAGE/admin/.crm.secret.php" "$STAGE/admin/social-local.php"
 
 STAMP="$(date -u +%Y%m%d-%H%M%S)"
 BACKUP="backups/displayavenue-root-${STAMP}"
@@ -90,6 +90,7 @@ sshpass -e rsync -az \
   --exclude 'domains/' \
   --exclude 'uploads/' \
   --exclude 'admin/.meta-capi.secret.php' \
+  --exclude 'admin/.crm.secret.php' \
   --exclude 'admin/config.php' \
   --exclude 'admin/social-local.php' \
   --exclude 'admin/.leads/' \

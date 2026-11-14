@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "title": "Free CRM connection",
+  "hubspot": {
+    "enabled": false,
+    "portalId": "244759409",
+    "formGuid": "",
+    "accessToken": "",
+    "accountName": "DisplayAvenue"
+  },
+  "sheets": {
+    "enabled": false,
+    "webhookUrl": "",
+    "sheetUrl": ""
+  },
+  "webhookUrl": "",
+  "setup": {
+    "recommended": "hubspot",
+    "notes": "Portal ID saved (244759409). Prefer Private App token (Contacts API). Optional: Admin → CRM → Pull Form GUID, or paste Form GUID as Forms API fallback."
+  }
+}
