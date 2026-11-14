@@ -261,6 +261,7 @@ function renderEditor() {
     awards: renderAwards,
     certifications: renderCertifications,
     contact: renderContactForm,
+    crm: renderCrm,
     citations: renderCitations,
     backlinks: renderBacklinks,
     tracking: renderTracking,
@@ -657,6 +658,55 @@ function renderCertifications(d) {
   `;
 }
 
+function renderCrm(d) {
+  const hs = d.hubspot || {};
+  const sh = d.sheets || {};
+  return `
+    ${card(
+      "Free CRM connection",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Connect <strong>HubSpot Free CRM</strong> and/or a <strong>Google Sheet</strong> so every contact form, /growth form, and WhatsApp click lands in one inbox.
+        Local copies also stay in <code>admin/.leads/</code> (Recent leads below on Contact).
+      </p>
+      ${field("CRM sync enabled", "enabled", d.enabled !== false, "checkbox")}
+      ${field("Generic webhook URL (optional)", "webhookUrl", d.webhookUrl || "")}
+    `,
+    )}
+    ${card(
+      "HubSpot Free CRM",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        1) Create free HubSpot account → Marketing → Forms → create a form with Email, First name, Last name, Phone, Company, Message.<br/>
+        2) Form embed / share → get Portal ID + Form GUID.<br/>
+        3) Paste below and enable. New leads create HubSpot contacts automatically.
+      </p>
+      ${field("Enable HubSpot", "hubspot.enabled", hs.enabled === true, "checkbox")}
+      ${field("Portal ID", "hubspot.portalId", hs.portalId || "")}
+      ${field("Form GUID", "hubspot.formGuid", hs.formGuid || "")}
+    `,
+    )}
+    ${card(
+      "Google Sheets (free)",
+      `
+      <p class="hint" style="grid-column:1/-1">
+        Use the Apps Script in <code>agency/scripts/google-sheets-crm-appscript.js</code>. Deploy as Web App (Anyone), paste the URL here, enable Sheets.
+      </p>
+      ${field("Enable Google Sheets", "sheets.enabled", sh.enabled === true, "checkbox")}
+      ${field("Apps Script webhook URL", "sheets.webhookUrl", sh.webhookUrl || "")}
+      ${field("Sheet link (for your reference)", "sheets.sheetUrl", sh.sheetUrl || "")}
+    `,
+    )}
+    <section class="card">
+      <div class="list-item-head">
+        <h3>CRM inbox (all leads)</h3>
+        <button type="button" class="btn btn-ghost" data-action="refresh-leads">Refresh leads</button>
+      </div>
+      <div id="contact-leads-panel"><p class="hint">Click Refresh leads to load form + WhatsApp contacts.</p></div>
+    </section>
+  `;
+}
+
 function renderContactForm(d) {
   const f = d.fields || {};
   return `
@@ -665,7 +715,7 @@ function renderContactForm(d) {
       `
       <p class="hint" style="grid-column:1/-1">
         Form submissions are saved under <code>admin/.leads/</code> and emailed to the notify address when the server mailer works.
-        Edit copy, labels, and notification email here.
+        Also forwarded to HubSpot/Sheets when CRM is enabled. Edit copy, labels, and notification email here.
       </p>
       ${field("Enabled", "enabled", d.enabled !== false, "checkbox")}
       ${field("Badge / title", "title", d.title || "")}
@@ -1119,20 +1169,29 @@ async function loadContactLeads() {
       return;
     }
     panel.innerHTML = leads
-      .slice(0, 40)
-      .map(
-        (l) => `
+      .slice(0, 60)
+      .map((l) => {
+        const channel = escapeHtml(l.channel || l.source || "form");
+        const wa = l.whatsappUrl
+          ? `<a href="${escapeHtml(l.whatsappUrl)}" target="_blank" rel="noreferrer">WhatsApp</a>`
+          : "";
+        const temp = l.lead_temperature
+          ? ` · <span class="hint">${escapeHtml(String(l.lead_temperature))}${l.lead_score ? " " + escapeHtml(String(l.lead_score)) : ""}</span>`
+          : "";
+        return `
       <div class="list-item">
         <div class="list-item-head">
           <strong>${escapeHtml(l.name || "Lead")}</strong>
-          <span class="hint" style="margin:0">${escapeHtml(l.createdAt || "")}</span>
+          <span class="hint" style="margin:0">${escapeHtml(channel)} · ${escapeHtml(l.createdAt || "")}</span>
         </div>
         <p style="margin:.35rem 0;font-size:.9rem">
-          ${escapeHtml(l.phone || "")}${l.email ? " · " + escapeHtml(l.email) : ""}${l.business ? " · " + escapeHtml(l.business) : ""}
+          ${escapeHtml(l.phone || "")}${l.email ? " · " + escapeHtml(l.email) : ""}${l.business ? " · " + escapeHtml(l.business) : ""}${temp}
+          ${wa ? " · " + wa : ""}
         </p>
-        ${l.message ? `<p style="margin:0;color:var(--muted);font-size:.88rem">${escapeHtml(l.message)}</p>` : ""}
-      </div>`,
-      )
+        <p class="hint" style="margin:0">Page: ${escapeHtml(l.page || l.source || "")}</p>
+        ${l.message ? `<p style="margin:.35rem 0 0;color:var(--muted);font-size:.88rem">${escapeHtml(l.message)}</p>` : ""}
+      </div>`;
+      })
       .join("");
   } catch (e) {
     panel.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load leads")}</p>`;

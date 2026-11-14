@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { logWhatsAppLead } from "../lib/crmWhatsApp";
 import "../styles/pages.css";
 import "./Contact.css";
 
@@ -141,6 +142,13 @@ export function Contact() {
                 href={company.whatsappHref}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => {
+                  void logWhatsAppLead({
+                    message: "WhatsApp from /contact aside",
+                    cta_location: "contact_aside",
+                    page: "/contact",
+                  });
+                }}
               >
                 Chat on WhatsApp
               </a>
@@ -189,6 +197,13 @@ export function Contact() {
                     href={company.whatsappHref}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() => {
+                      void logWhatsAppLead({
+                        message: "WhatsApp after contact form success",
+                        cta_location: "contact_success",
+                        page: "/contact",
+                      });
+                    }}
                   >
                     WhatsApp us
                   </a>

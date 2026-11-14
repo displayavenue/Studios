@@ -248,16 +248,23 @@ switch ($action) {
       $leads = json_decode((string)file_get_contents($indexPath), true) ?: [];
     }
     if (!is_array($leads)) $leads = [];
-    // Enrich with message from individual files when present
+    // Enrich with message/source from individual files when present
     foreach ($leads as &$row) {
       if (!is_array($row) || empty($row['id'])) continue;
       $file = $leadsDir . '/' . $row['id'] . '.json';
       if (!is_file($file)) continue;
       $full = json_decode((string)file_get_contents($file), true);
       if (is_array($full)) {
-        $row['message'] = (string)($full['message'] ?? '');
+        $row['message'] = (string)($full['message'] ?? $full['business_description'] ?? '');
         $row['email'] = (string)($full['email'] ?? ($row['email'] ?? ''));
-        $row['business'] = (string)($full['business'] ?? ($row['business'] ?? ''));
+        $row['business'] = (string)($full['business'] ?? $full['business_name'] ?? ($row['business'] ?? ''));
+        $row['source'] = (string)($full['source'] ?? ($row['source'] ?? ''));
+        $row['channel'] = (string)($full['channel'] ?? ($row['channel'] ?? 'form'));
+        $row['page'] = (string)($full['page'] ?? $full['landing_page'] ?? ($row['page'] ?? ''));
+        $row['lead_temperature'] = (string)($full['lead_temperature'] ?? ($row['lead_temperature'] ?? ''));
+        $row['lead_score'] = (int)($full['lead_score'] ?? ($row['lead_score'] ?? 0));
+        $phoneDigits = preg_replace('/\D+/', '', (string)($row['phone'] ?? '')) ?? '';
+        $row['whatsappUrl'] = $phoneDigits !== '' ? ('https://wa.me/' . $phoneDigits) : '';
       }
     }
     unset($row);

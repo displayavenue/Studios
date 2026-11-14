@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $config = require __DIR__ . '/config.php';
 $contentDir = rtrim((string)$config['content_dir'], '/\\');
+require_once __DIR__ . '/lib/crm.php';
 $contactPath = $contentDir . '/contact.json';
 $growthPath = $contentDir . '/growth.json';
 $contact = is_file($contactPath)
@@ -123,6 +124,8 @@ $lead = [
   'fbp' => mb_substr(trim((string)($body['fbp'] ?? '')), 0, 200),
   'fbc' => mb_substr(trim((string)($body['fbc'] ?? '')), 0, 300),
   'page' => '/growth',
+  'source' => 'growth_form',
+  'channel' => 'form',
   'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
   'userAgent' => substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 240),
 ];
@@ -151,6 +154,8 @@ array_unshift($index, [
   'email' => $lead['email'],
   'business' => $lead['business_name'],
   'page' => '/growth',
+  'source' => 'growth_form',
+  'channel' => 'form',
   'lead_temperature' => $lead['lead_temperature'],
   'lead_score' => $lead['lead_score'],
 ]);
@@ -186,23 +191,15 @@ if ($notify !== '' && filter_var($notify, FILTER_VALIDATE_EMAIL)) {
   $mailOk = @mail($notify, $subject, implode("\n", $lines), $headers);
 }
 
+// Free CRM forward (HubSpot / Google Sheets / generic webhook)
+$crmResult = da_crm_forward($lead, $contentDir, $config);
+
+// Legacy growth.json webhookUrl still supported
 $webhookOk = null;
 $webhookUrl = trim((string)($growth['webhookUrl'] ?? ''));
 if ($webhookUrl !== '' && filter_var($webhookUrl, FILTER_VALIDATE_URL)) {
-  $ch = curl_init($webhookUrl);
-  if ($ch) {
-    curl_setopt_array($ch, [
-      CURLOPT_POST => true,
-      CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
-      CURLOPT_POSTFIELDS => json_encode($lead, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_TIMEOUT => 8,
-    ]);
-    curl_exec($ch);
-    $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-    $webhookOk = $code >= 200 && $code < 300;
-  }
+  $legacy = da_crm_post_json($webhookUrl, $lead);
+  $webhookOk = !empty($legacy['ok']);
 }
 
 // Meta Conversions API (server-side Lead) — deduped with browser Pixel via event_id
@@ -253,6 +250,7 @@ echo json_encode([
   'mail' => $mailOk,
   'webhook' => $webhookOk,
   'webhook_configured' => $webhookUrl !== '',
+  'crm' => $crmResult,
   'capi' => [
     'enabled' => $capiEnabled,
     'ok' => !empty($capiResult['ok']),

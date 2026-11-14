@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "title": "Free CRM connection",
+  "hubspot": {
+    "enabled": false,
+    "portalId": "",
+    "formGuid": "",
+    "accessToken": ""
+  },
+  "sheets": {
+    "enabled": false,
+    "webhookUrl": "",
+    "sheetUrl": ""
+  },
+  "webhookUrl": "",
+  "setup": {
+    "recommended": "hubspot",
+    "notes": "Enable HubSpot Free CRM form sync or Google Sheets Apps Script webhook. Secrets (HubSpot private app token) belong in admin/.crm.secret.php — not in this file."
+  }
+}

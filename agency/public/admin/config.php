@@ -22,6 +22,7 @@ return [
     'awards' => 'Awards',
     'certifications' => 'Certifications',
     'contact' => 'Contact Form',
+    'crm' => 'CRM (HubSpot / Sheets)',
     'combos' => 'Industry × Service Pages',
     'services' => 'Services (all pages)',
     'industries' => 'Industries',
