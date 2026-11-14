@@ -13,10 +13,10 @@ export const copy = {
       'Authentic Vedic birth chart, prepared from your exact birth details.',
       'आपके सटीक जन्म विवरण से तैयार प्रामाणिक वैदिक जन्म कुंडली।',
     ),
-  /** Primary CTA — free generate mode (payment later) */
+  /** Primary CTA — pay / WhatsApp order page */
   ctaPrimary: (lang: Language) =>
-    t(lang, 'Generate My Kundali', 'मेरी कुंडली बनाएँ'),
-  ctaPrimaryShort: (lang: Language) => t(lang, 'Generate', 'बनाएँ'),
+    t(lang, 'Order My Kundali', 'मेरी कुंडली मँगवाएँ'),
+  ctaPrimaryShort: (lang: Language) => t(lang, 'Order', 'मँगवाएँ'),
   priceKundali: (lang: Language) =>
     t(lang, `Kundali PDF — ${formatInr(PRICING.kundaliInr)}`, `कुंडली PDF — ${formatInr(PRICING.kundaliInr)}`),
   priceRemedies: (lang: Language) =>

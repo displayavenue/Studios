@@ -4,8 +4,8 @@ export const SITE = {
   brandHi: 'ज्योतिष कुंडली',
   domain: 'https://jyotishkundali.com',
   supportEmail: 'support@jyotishkundali.com',
-  whatsappNumber: '919999999999', // replace with real number
-  whatsappDisplay: '+91 99999 99999',
+  whatsappNumber: '917400303493',
+  whatsappDisplay: '+91 74003 03493',
   businessName: 'Jyotish Kundali',
   businessAddress: 'India',
   grievanceName: 'Grievance Officer',

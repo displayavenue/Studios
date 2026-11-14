@@ -1,45 +1,23 @@
-import { useState } from 'react'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { copy } from '../lib/i18n'
 import type { Language } from '../astrology/types'
 import { useLanguage } from '../hooks/useLanguage'
-
-const NAV = [
-  { to: '/generate', en: 'Generate', hi: 'बनाएँ' },
-  { to: '/sample', en: 'Sample', hi: 'नमूना' },
-  { to: '/features', en: 'Features', hi: 'विशेषताएँ' },
-  { to: '/whats-inside', en: "What's inside", hi: 'अंदर क्या है' },
-  { to: '/faq', en: 'FAQ', hi: 'FAQ' },
-] as const
+import { SITE, whatsappLink } from '../data/site'
+import { formatInr, PRICING } from '../lib/pricing'
 
 export function Layout() {
   const { lang, setLang } = useLanguage()
-  const navigate = useNavigate()
-  const [menuOpen, setMenuOpen] = useState(false)
-
-  function go(to: string) {
-    setMenuOpen(false)
-    navigate(to)
-  }
 
   return (
-    <div className="site-shell">
-      <header className="site-header">
+    <div className="site-shell lp-shell">
+      <header className="site-header lp-header">
         <div className="container header-inner">
-          <Link to="/" className="brand" aria-label={copy.brand(lang)} onClick={() => setMenuOpen(false)}>
+          <Link to="/" className="brand" aria-label={copy.brand(lang)}>
             <span className="brand-mark" aria-hidden>
               ✦
             </span>
             <span className="brand-text">{copy.brand(lang)}</span>
           </Link>
-
-          <nav className="nav-desktop" aria-label="Primary">
-            {NAV.map((item) => (
-              <NavLink key={item.to} to={item.to} className={({ isActive }) => (isActive ? 'active' : undefined)}>
-                {lang === 'hi' ? item.hi : item.en}
-              </NavLink>
-            ))}
-          </nav>
 
           <div className="nav-actions">
             <div className="lang-toggle" role="group" aria-label="Language">
@@ -50,38 +28,14 @@ export function Layout() {
                 हिं
               </button>
             </div>
-            <button type="button" className="btn btn-primary btn-nav-cta" onClick={() => go('/generate')}>
-              <span className="cta-full">{copy.ctaPrimaryShort(lang)}</span>
-            </button>
-            <button
-              type="button"
-              className="menu-toggle"
-              aria-expanded={menuOpen}
-              aria-label={lang === 'hi' ? 'मेनू' : 'Menu'}
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
+            <a className="btn btn-ghost btn-nav-cta" href={whatsappLink()} target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
+            <a className="btn btn-primary btn-nav-cta" href="#order">
+              {lang === 'hi' ? `भुगतान · ${formatInr(PRICING.kundaliInr)}` : `Pay · ${formatInr(PRICING.kundaliInr)}`}
+            </a>
           </div>
         </div>
-
-        {menuOpen && (
-          <div className="mobile-drawer container">
-            {NAV.map((item) => (
-              <button key={item.to} type="button" className="drawer-link" onClick={() => go(item.to)}>
-                {lang === 'hi' ? item.hi : item.en}
-              </button>
-            ))}
-            <button type="button" className="drawer-link" onClick={() => go('/orders')}>
-              {lang === 'hi' ? 'ऑर्डर खोजें' : 'Order lookup'}
-            </button>
-            <button type="button" className="drawer-link" onClick={() => go('/contact')}>
-              {lang === 'hi' ? 'संपर्क' : 'Contact'}
-            </button>
-          </div>
-        )}
       </header>
 
       <main className="site-main">
@@ -94,21 +48,15 @@ export function Layout() {
             <strong>{copy.brand(lang)}</strong>
             <p>
               {lang === 'hi'
-                ? 'स्वयं-सेवा वैदिक कुंडली · पूर्ण PDF · मुफ़्त पूर्वावलोकन'
-                : 'Self-serve Vedic kundali · full PDF · free preview'}
+                ? 'वैदिक कुंडली · भुगतान या WhatsApp · PDF डिलीवरी'
+                : 'Vedic kundali · pay or WhatsApp · PDF delivery'}
             </p>
           </div>
           <div className="footer-links">
-            <Link to="/generate">{lang === 'hi' ? 'कुंडली बनाएँ' : 'Generate'}</Link>
-            <Link to="/sample">{lang === 'hi' ? 'नमूना PDF' : 'Sample PDF'}</Link>
-            <Link to="/features">{lang === 'hi' ? 'विशेषताएँ' : 'Features'}</Link>
-            <Link to="/whats-inside">{lang === 'hi' ? 'कुंडली में क्या' : "What's inside"}</Link>
-            <Link to="/faq">FAQ</Link>
-            <Link to="/about">{lang === 'hi' ? 'परिचय' : 'About'}</Link>
-            <Link to="/contact">{lang === 'hi' ? 'संपर्क' : 'Contact'}</Link>
-            <Link to="/orders">{lang === 'hi' ? 'ऑर्डर' : 'Orders'}</Link>
-          </div>
-          <div className="footer-links">
+            <a href="#order">{lang === 'hi' ? 'ऑर्डर' : 'Order'}</a>
+            <a href={whatsappLink()} target="_blank" rel="noreferrer">
+              WhatsApp {SITE.whatsappDisplay}
+            </a>
             <Link to="/legal/privacy">{lang === 'hi' ? 'गोपनीयता' : 'Privacy'}</Link>
             <Link to="/legal/terms">{lang === 'hi' ? 'शर्तें' : 'Terms'}</Link>
             <Link to="/legal/refund">{lang === 'hi' ? 'रिफंड' : 'Refund'}</Link>
@@ -116,8 +64,8 @@ export function Layout() {
           </div>
           <p className="footer-note">
             {lang === 'hi'
-              ? 'जन्म विवरण गोपनीय। रिपोर्ट मार्गदर्शन हेतु—चिकित्सा/कानूनी सलाह नहीं। मानव परामर्श आवश्यक नहीं।'
-              : 'Birth details kept private. Reports are guidance—not medical or legal advice. No human consult required.'}
+              ? 'जन्म विवरण गोपनीय। रिपोर्ट मार्गदर्शन हेतु—चिकित्सा/कानूनी सलाह नहीं।'
+              : 'Birth details kept private. Reports are guidance—not medical or legal advice.'}
           </p>
         </div>
       </footer>

@@ -1,8 +1,9 @@
 # Jyotish Kundali
 
-Vedic kundali maker: enter birth details → generate chart → download full ~20 page PDF.
+Single-page Vedic kundali order site: **pay online (Razorpay)** or **ask on WhatsApp**.  
+We prepare the kundali and send the PDF on WhatsApp.
 
-**Current mode:** free generation preview (Razorpay paused). Payment will be added after generation is verified.
+**Live:** https://jyotishkundali.com/
 
 ## Run locally
 
@@ -12,34 +13,21 @@ npm install
 npm run dev
 ```
 
-## Hostinger deploy (production)
-
-Domain: **https://jyotishkundali.com/**
+## Deploy
 
 ```bash
 cd kundali-maker
 SSH_PASS='…' npm run deploy:hostinger
 ```
 
-Deploys to `domains/jyotishkundali.com/public_html` with `base=/`.
-Preserves `varnikya/` subdirectory and existing Razorpay `api/config.php` keys when env secrets are unset.
+Preserves Razorpay `api/config.php` keys and the `varnikya/` subdirectory when present.
 
-## Scripts
+## Flow
 
-- `npm run dev` — development server
-- `npm run build` — production build to `dist/`
-- `npm run preview` — preview production build
-- `npm run test:astrology` — smoke-test chart generation
-- `npm run test:pdf` — build sample complete PDF + page count check
-- `npm run deploy:hostinger` — build + SSH upload to Hostinger
-
-## Flow (preview)
-
-1. Landing → Generate
-2. Enter birth details → confirm
-3. Chart unlocks instantly (no payment)
-4. Download complete ~20 page PDF
+1. Visitor enters name, WhatsApp, birth details
+2. **Pay** via Razorpay, or **Ask on WhatsApp**
+3. You prepare the kundali and send the PDF on WhatsApp
 
 ## Stack
 
-React + Vite + TypeScript, `astronomy-engine` (sidereal via Lahiri ayanamsa), jsPDF, localStorage orders.
+React + Vite + TypeScript, Razorpay PHP API, WhatsApp deep links.

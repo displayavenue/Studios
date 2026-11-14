@@ -1488,7 +1488,211 @@ body {
   .anim-rise,
   .reveal,
   .sticky-buy,
-  .visual-img {
+  .visual-img,
+  .lp-hero-video {
     animation: none !important;
   }
+}
+
+/* —— Single-page pay / WhatsApp landing —— */
+.lp-shell .site-main {
+  padding: 0;
+}
+.lp-header .btn-nav-cta {
+  display: inline-flex;
+}
+.lp-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  align-items: end;
+  color: #fffaf2;
+  overflow: hidden;
+}
+.lp-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.lp-hero-video,
+.lp-hero-fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lp-hero-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.lp-hero-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(20, 8, 6, 0.35) 0%, rgba(20, 8, 6, 0.55) 45%, rgba(20, 8, 6, 0.82) 100%),
+    radial-gradient(ellipse 70% 50% at 70% 20%, rgba(232, 197, 71, 0.18), transparent 60%);
+}
+.lp-hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 7rem 1.25rem 4.5rem;
+  max-width: 720px;
+}
+.lp-brand {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.35rem;
+  line-height: 1;
+}
+.lp-hero h1 {
+  font-size: clamp(1.55rem, 4.2vw, 2.35rem);
+  font-weight: 500;
+  max-width: 16ch;
+  margin-bottom: 0.85rem;
+}
+.lp-lede {
+  color: rgba(255, 250, 242, 0.88);
+  font-size: 1.05rem;
+  max-width: 38ch;
+  margin-bottom: 1.35rem;
+}
+.lp-order .lp-lede,
+.lp-visual .lp-lede,
+.lp-trust .lp-lede,
+.lp-thanks .lp-lede {
+  color: var(--muted);
+}
+.lp-hero-cta,
+.lp-actions,
+.lp-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+.btn-ghost-light {
+  background: transparent;
+  color: #fffaf2;
+  border: 1px solid rgba(255, 250, 242, 0.55);
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 250, 242, 0.1);
+}
+.btn-whatsapp {
+  background: #128c7e;
+  color: #fff;
+  border: 1px solid #0e7368;
+}
+.btn-whatsapp:hover {
+  background: #0e7368;
+}
+.lp-order {
+  padding-top: 3.5rem;
+}
+.lp-order-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .lp-order-grid {
+    grid-template-columns: 1fr 1.05fr;
+    gap: 2.5rem;
+  }
+}
+.lp-order-copy h2 {
+  margin-bottom: 0.5rem;
+}
+.lp-bullets {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+.lp-bullets li {
+  margin-bottom: 0.35rem;
+}
+.lp-media-card {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.lp-media-card video {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+.lp-form {
+  margin: 0;
+}
+.lp-fine {
+  margin-top: 0.85rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.lp-kicker {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--maroon);
+  margin-bottom: 0.35rem;
+}
+.lp-thanks {
+  padding: 5rem 1.25rem 4rem;
+  text-align: center;
+}
+.lp-thanks h1 {
+  margin-bottom: 0.75rem;
+}
+.lp-thanks .lp-actions {
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+.lp-how,
+.lp-visual,
+.lp-trust {
+  padding-top: 1rem;
+}
+.lp-trust {
+  text-align: center;
+  padding-bottom: 4rem;
+}
+.lp-trust h2 {
+  margin-bottom: 0.5rem;
+}
+.lp-trust .lp-actions {
+  justify-content: center;
+  margin: 1.25rem 0 1rem;
+}
+body:has(.lp) {
+  padding-bottom: 0;
+}
+.sticky-buy {
+  display: none;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.anim-rise {
+  animation: riseIn 0.7s ease both;
+}
+.delay-1 {
+  animation-delay: 0.12s;
+}
+.delay-2 {
+  animation-delay: 0.24s;
+}
+.delay-3 {
+  animation-delay: 0.36s;
 }
