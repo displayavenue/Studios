@@ -270,6 +270,58 @@ switch ($action) {
     unset($row);
     respond(200, ['ok' => true, 'leads' => $leads]);
 
+  case 'hubspot-list-forms':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/crm.php';
+    $crmCfg = da_crm_load_config((string)$config['content_dir'], $config);
+    $token = (string)($crmCfg['hubspot']['accessToken'] ?? '');
+    if ($token === '') {
+      respond(400, [
+        'ok' => false,
+        'error' => 'HubSpot Private App token missing. Add HUBSPOT_ACCESS_TOKEN or admin/.crm.secret.php',
+        'hasToken' => false,
+        'portalId' => $crmCfg['hubspot']['portalId'] ?? '',
+      ]);
+    }
+    $listed = da_crm_hubspot_list_forms($token);
+    if (empty($listed['ok'])) {
+      respond(502, [
+        'ok' => false,
+        'error' => $listed['error'] ?? 'Could not list HubSpot forms',
+        'hasToken' => true,
+        'portalId' => $crmCfg['hubspot']['portalId'] ?? '',
+      ]);
+    }
+    respond(200, [
+      'ok' => true,
+      'hasToken' => true,
+      'portalId' => $crmCfg['hubspot']['portalId'] ?? '',
+      'forms' => $listed['forms'] ?? [],
+    ]);
+
+  case 'hubspot-apply-form':
+    requireAuth($config);
+    require_once __DIR__ . '/lib/crm.php';
+    $formGuid = trim((string)($body['formGuid'] ?? $_GET['formGuid'] ?? ''));
+    $enable = array_key_exists('enable', $body) ? !empty($body['enable']) : true;
+    if ($formGuid === '' || !preg_match('/^[a-f0-9-]{36}$/i', $formGuid)) {
+      respond(400, ['ok' => false, 'error' => 'Valid formGuid (UUID) required']);
+    }
+    $path = contentPath($config, 'crm');
+    $data = readJson($path);
+    if (!isset($data['hubspot']) || !is_array($data['hubspot'])) $data['hubspot'] = [];
+    $data['hubspot']['formGuid'] = $formGuid;
+    $data['hubspot']['portalId'] = trim((string)($data['hubspot']['portalId'] ?? '244759409')) ?: '244759409';
+    if ($enable) {
+      $data['hubspot']['enabled'] = true;
+      $data['enabled'] = true;
+    }
+    $data['setup'] = is_array($data['setup'] ?? null) ? $data['setup'] : [];
+    $data['setup']['notes'] = 'Form GUID saved from HubSpot API. Contacts API token preferred when available.';
+    $data['updatedAt'] = gmdate('c');
+    writeJson($path, $data);
+    respond(200, ['ok' => true, 'hubspot' => $data['hubspot'], 'data' => $data]);
+
   default:
     respond(400, ['ok' => false, 'error' => 'Unknown action']);
 }

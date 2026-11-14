@@ -677,13 +677,20 @@ function renderCrm(d) {
       "HubSpot Free CRM",
       `
       <p class="hint" style="grid-column:1/-1">
-        1) Create free HubSpot account → Marketing → Forms → create a form with Email, First name, Last name, Phone, Company, Message.<br/>
-        2) Form embed / share → get Portal ID + Form GUID.<br/>
-        3) Paste below and enable. New leads create HubSpot contacts automatically.
+        <strong>Recommended:</strong> Private App token (Contacts API) — no Form GUID needed.<br/>
+        1) HubSpot → Settings → Integrations → Private Apps → create app with contacts write/read.<br/>
+        2) Put token in server <code>admin/.crm.secret.php</code> or env <code>HUBSPOT_ACCESS_TOKEN</code>.<br/>
+        3) Portal ID is already set (244759409). Optional Form GUID still works as fallback.
       </p>
       ${field("Enable HubSpot", "hubspot.enabled", hs.enabled === true, "checkbox")}
-      ${field("Portal ID", "hubspot.portalId", hs.portalId || "")}
-      ${field("Form GUID", "hubspot.formGuid", hs.formGuid || "")}
+      ${field("Portal ID", "hubspot.portalId", hs.portalId || "244759409")}
+      ${field("Form GUID (optional fallback)", "hubspot.formGuid", hs.formGuid || "")}
+      ${field("Account name", "hubspot.accountName", hs.accountName || "")}
+      <div style="grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <button type="button" class="btn btn-gold" data-action="hubspot-pull-forms">Pull Form GUID from HubSpot</button>
+        <span class="hint">Needs Private App token with forms + contacts scopes.</span>
+      </div>
+      <div id="hubspot-forms-panel" style="grid-column:1/-1"></div>
     `,
     )}
     ${card(
@@ -1055,6 +1062,9 @@ function handleAction(action, index) {
   } else if (action === "refresh-leads") {
     loadContactLeads();
     return;
+  } else if (action === "hubspot-pull-forms") {
+    pullHubSpotForms();
+    return;
   } else if (action === "sync-google-reviews") {
     syncGoogleReviews();
     return;
@@ -1195,6 +1205,59 @@ async function loadContactLeads() {
       .join("");
   } catch (e) {
     panel.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not load leads")}</p>`;
+  }
+}
+
+async function pullHubSpotForms() {
+  const panel = document.getElementById("hubspot-forms-panel");
+  if (!panel) return;
+  panel.innerHTML = `<p class="hint">Pulling HubSpot forms for portal 244759409…</p>`;
+  try {
+    const res = await api("hubspot-list-forms");
+    const forms = res.forms || [];
+    if (!forms.length) {
+      panel.innerHTML = `<p class="empty">No forms found. Create one in HubSpot → Marketing → Forms, then pull again. (Contacts API still works without a form.)</p>`;
+      toast("No HubSpot forms yet — create one, or rely on Contacts API", "err");
+      return;
+    }
+    panel.innerHTML = `
+      <p class="hint">Click <strong>Use this GUID</strong> to save Form GUID into CRM settings and enable HubSpot.</p>
+      ${forms
+        .map(
+          (f) => `
+        <div class="list-item">
+          <div class="list-item-head">
+            <strong>${escapeHtml(f.name || "Form")}</strong>
+            <button type="button" class="btn btn-gold hubspot-use-form" data-guid="${escapeAttr(f.id)}">Use this GUID</button>
+          </div>
+          <p class="hint" style="margin:0;font-family:ui-monospace,monospace">${escapeHtml(f.id)}</p>
+        </div>`,
+        )
+        .join("")}`;
+    panel.querySelectorAll(".hubspot-use-form").forEach((btn) => {
+      btn.onclick = async () => {
+        const guid = btn.getAttribute("data-guid") || "";
+        try {
+          const applied = await api("hubspot-apply-form", { formGuid: guid, enable: true });
+          if (state.current === "crm" && applied.data) {
+            state.data = applied.data;
+            renderEditor();
+          } else if (state.data?.hubspot) {
+            state.data.hubspot.formGuid = guid;
+            state.data.hubspot.enabled = true;
+            state.data.enabled = true;
+            renderEditor();
+          }
+          toast("Form GUID saved and HubSpot enabled");
+        } catch (e) {
+          toast(e.message || "Could not save Form GUID", "err");
+        }
+      };
+    });
+    toast(`Found ${forms.length} HubSpot form${forms.length === 1 ? "" : "s"}`);
+  } catch (e) {
+    panel.innerHTML = `<p class="empty">${escapeHtml(e.message || "Could not pull forms")}</p>`;
+    toast(e.message || "Could not pull HubSpot forms", "err");
   }
 }
 

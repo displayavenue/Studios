@@ -16,6 +16,6 @@
   "webhookUrl": "",
   "setup": {
     "recommended": "hubspot",
-    "notes": "Portal ID saved (244759409). Enable HubSpot after adding Form GUID from Marketing → Forms → your form → Share/Embed."
+    "notes": "Portal ID saved (244759409). Prefer Private App token (Contacts API). Optional: Admin → CRM → Pull Form GUID, or paste Form GUID as Forms API fallback."
   }
 }
