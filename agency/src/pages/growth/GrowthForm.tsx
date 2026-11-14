@@ -89,7 +89,8 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [started, setStarted] = useState(false);
-  const total = 8;
+  /** 6 short steps — enough to qualify ad leads without drop-off */
+  const total = 6;
 
   useEffect(() => {
     if (initialPlanId) {
@@ -115,17 +116,21 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
       if (!data.email.trim()) next.email = "Enter your email";
       else if (!isValidEmail(data.email)) next.email = "Enter a valid email address";
     }
-    if (s === 2 && !data.industry) next.industry = "Select an industry";
-    if (s === 3 && data.services_required.length === 0) {
-      next.services_required = "Select at least one requirement";
+    if (s === 2) {
+      if (!data.industry) next.industry = "Select an industry";
+      if (data.services_required.length === 0) {
+        next.services_required = "Select at least one requirement";
+      }
     }
-    if (s === 4 && data.current_marketing.length === 0) {
+    if (s === 3 && data.current_marketing.length === 0) {
       next.current_marketing = "Select at least one option";
     }
-    if (s === 5 && !data.budgetId) next.budgetId = "Select a budget range";
-    if (s === 6 && !data.planId) next.planId = "Select a plan";
-    if (s === 7 && !data.timelineId) next.timelineId = "Select a timeline";
-    if (s === 8) {
+    if (s === 4) {
+      if (!data.budgetId) next.budgetId = "Select a budget range";
+      if (!data.planId) next.planId = "Select a plan";
+    }
+    if (s === 5 && !data.timelineId) next.timelineId = "Select a timeline";
+    if (s === 6) {
       if (!data.business_description.trim()) {
         next.business_description = "Tell us a bit about your requirements";
       }
@@ -151,7 +156,7 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
 
   const submit = async () => {
     markStart();
-    if (!validateStep(8)) return;
+    if (!validateStep(6)) return;
     setSubmitting(true);
     setSubmitError("");
     const scoring = scoreGrowthLead({
@@ -219,7 +224,7 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
       }
 
       trackGrowthEvent("form_submit", {
-        form_step: 8,
+        form_step: 6,
         industry: data.industry,
         selected_plan: planLabel,
         budget_range: budgetLabel,
@@ -262,11 +267,11 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
   return (
     <div className="growth-form" id="growth-form">
       <div className="growth-form__head">
-        <p className="growth-eyebrow">Qualification</p>
-        <h2>Let’s Build Your Growth Plan</h2>
+        <p className="growth-eyebrow">Free growth plan</p>
+        <h2>Get a clear plan for more qualified enquiries</h2>
         <p>
-          Tell us about your business, current marketing and goals. We’ll use this
-          information to understand which services may be relevant.
+          6 quick questions. We reply on WhatsApp with the right channels, budget fit and
+          next step — no hard sell.
         </p>
         <div className="growth-form__progress" aria-hidden>
           <div style={{ width: `${progress}%` }} />
@@ -314,32 +319,31 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
       )}
 
       {step === 2 && (
-        <ChoiceGrid
-          label="What industry is your business in?"
-          error={errors.industry}
-          options={[...growthIndustries]}
-          value={data.industry ? [data.industry] : []}
-          onToggle={(v) => setData({ ...data, industry: v })}
-          single
-        />
+        <div className="growth-form__stack">
+          <ChoiceGrid
+            label="What industry is your business in?"
+            error={errors.industry}
+            options={[...growthIndustries]}
+            value={data.industry ? [data.industry] : []}
+            onToggle={(v) => setData({ ...data, industry: v })}
+            single
+          />
+          <ChoiceGrid
+            label="What do you need help with?"
+            hint="Select all that apply"
+            error={errors.services_required}
+            options={[...growthNeeds]}
+            value={data.services_required}
+            onToggle={(v) =>
+              setData({ ...data, services_required: toggleIn(data.services_required, v) })
+            }
+          />
+        </div>
       )}
 
       {step === 3 && (
         <ChoiceGrid
-          label="What do you need help with?"
-          hint="Select all that apply"
-          error={errors.services_required}
-          options={[...growthNeeds]}
-          value={data.services_required}
-          onToggle={(v) =>
-            setData({ ...data, services_required: toggleIn(data.services_required, v) })
-          }
-        />
-      )}
-
-      {step === 4 && (
-        <ChoiceGrid
-          label="What are you currently doing?"
+          label="What are you currently doing for marketing?"
           hint="Select all that apply"
           error={errors.current_marketing}
           options={[...growthCurrentMarketing]}
@@ -350,43 +354,42 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
         />
       )}
 
+      {step === 4 && (
+        <div className="growth-form__stack">
+          <ChoiceGrid
+            label="Approximate monthly marketing budget?"
+            error={errors.budgetId}
+            options={growthBudgets.map((b) => b.label)}
+            value={
+              data.budgetId
+                ? [growthBudgets.find((b) => b.id === data.budgetId)?.label || ""]
+                : []
+            }
+            onToggle={(label) => {
+              const id = growthBudgets.find((b) => b.label === label)?.id || "";
+              setData({ ...data, budgetId: id });
+            }}
+            single
+          />
+          <ChoiceGrid
+            label="Which monthly plan are you considering?"
+            error={errors.planId}
+            options={growthPlans.map((p) => p.label)}
+            value={
+              data.planId
+                ? [growthPlans.find((p) => p.id === data.planId)?.label || ""]
+                : []
+            }
+            onToggle={(label) => {
+              const id = growthPlans.find((p) => p.label === label)?.id || "";
+              setData({ ...data, planId: id });
+            }}
+            single
+          />
+        </div>
+      )}
+
       {step === 5 && (
-        <ChoiceGrid
-          label="What is your approximate current monthly marketing investment?"
-          error={errors.budgetId}
-          options={growthBudgets.map((b) => b.label)}
-          value={
-            data.budgetId
-              ? [growthBudgets.find((b) => b.id === data.budgetId)?.label || ""]
-              : []
-          }
-          onToggle={(label) => {
-            const id = growthBudgets.find((b) => b.label === label)?.id || "";
-            setData({ ...data, budgetId: id });
-          }}
-          single
-        />
-      )}
-
-      {step === 6 && (
-        <ChoiceGrid
-          label="Which monthly plan are you considering?"
-          error={errors.planId}
-          options={growthPlans.map((p) => p.label)}
-          value={
-            data.planId
-              ? [growthPlans.find((p) => p.id === data.planId)?.label || ""]
-              : []
-          }
-          onToggle={(label) => {
-            const id = growthPlans.find((p) => p.label === label)?.id || "";
-            setData({ ...data, planId: id });
-          }}
-          single
-        />
-      )}
-
-      {step === 7 && (
         <ChoiceGrid
           label="When are you planning to start?"
           error={errors.timelineId}
@@ -404,18 +407,19 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
         />
       )}
 
-      {step === 8 && (
+      {step === 6 && (
         <div className="growth-form__grid growth-form__grid--single">
           <Field
-            label="Tell us about your business, current marketing challenges and what you want to achieve."
+            label="What do you want more of — calls, WhatsApp enquiries, or store visits?"
             error={errors.business_description}
           >
             <textarea
-              rows={5}
+              rows={4}
               value={data.business_description}
               onChange={(e) =>
                 setData({ ...data, business_description: e.target.value })
               }
+              placeholder="Example: We run a clinic in Mira Road and want more appointment enquiries from Google and Instagram."
             />
           </Field>
           <label className={`growth-check ${errors.consent ? "is-error" : ""}`}>
@@ -425,7 +429,7 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
               onChange={(e) => setData({ ...data, consent: e.target.checked })}
             />
             <span>
-              I agree to be contacted by DisplayAvenue regarding my enquiry.{" "}
+              I agree to be contacted by DisplayAvenue on WhatsApp/phone about this enquiry.{" "}
               <Link to="/privacy">Privacy Policy</Link> · <Link to="/terms">Terms</Link>
             </span>
           </label>

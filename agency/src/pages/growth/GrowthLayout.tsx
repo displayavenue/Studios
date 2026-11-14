@@ -8,9 +8,9 @@ import { captureGrowthAttribution } from "./growthAttribution";
 import "./Growth.css";
 
 const NAV = [
+  { href: "#fit", label: "Is This For You" },
+  { href: "#growth-form", label: "Get Plan" },
   { href: "#services", label: "Services" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#cases", label: "Case Studies" },
   { href: "#reviews", label: "Reviews" },
   { href: "#pricing", label: "Pricing" },
 ] as const;
