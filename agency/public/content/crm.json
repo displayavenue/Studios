@@ -3,9 +3,10 @@
   "title": "Free CRM connection",
   "hubspot": {
     "enabled": false,
-    "portalId": "",
+    "portalId": "244759409",
     "formGuid": "",
-    "accessToken": ""
+    "accessToken": "",
+    "accountName": "DisplayAvenue"
   },
   "sheets": {
     "enabled": false,
@@ -15,6 +16,6 @@
   "webhookUrl": "",
   "setup": {
     "recommended": "hubspot",
-    "notes": "Enable HubSpot Free CRM form sync or Google Sheets Apps Script webhook. Secrets (HubSpot private app token) belong in admin/.crm.secret.php — not in this file."
+    "notes": "Portal ID saved (244759409). Enable HubSpot after adding Form GUID from Marketing → Forms → your form → Share/Embed."
   }
 }
