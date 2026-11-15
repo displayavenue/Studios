@@ -52,7 +52,7 @@ Index in search / sitemap
 
 <div class="admin-actions">
 <button class="btn btn-primary" type="submit">Save</button>
-<a class="btn btn-secondary" href="{{ route('admin.conditions.index') }}">Back</a>
+<a class="btn btn-secondary" href="{{ route('admin.conditions.index', array_filter(['letter' => ($letter ?? '') ?: null])) }}">Back{{ !empty($letter) ? ' to '.$letter : '' }}</a>
 @if ($condition->exists)
 <button class="btn btn-secondary" form="delete-condition" type="submit" onclick="return confirm('Delete this disease page?')">Delete</button>
 @endif
