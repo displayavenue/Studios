@@ -89,6 +89,67 @@ a:hover { text-decoration: underline; }
 .media-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(9rem,1fr)); gap: 0.75rem; }
 .media-card img { width: 100%; height: 7rem; object-fit: cover; border-radius: 0.4rem; background: #eef5ec; }
 .badge { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 999px; font-size: 0.75rem; background: #eef5ec; color: var(--ad-bg); }
+
+.admin-az-rail {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 4;
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.85rem;
+  background: #fff;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgba(30, 43, 38, 0.05);
+}
+.admin-az-rail__label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.65rem;
+}
+.admin-az-rail__letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.admin-az-rail__btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.15rem;
+  min-height: 2.15rem;
+  padding: 0.25rem 0.35rem;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.45rem;
+  background: #fff;
+  color: var(--ad-text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1.1;
+}
+.admin-az-rail__btn small {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--ad-muted);
+}
+.admin-az-rail__btn:hover {
+  border-color: var(--ad-accent);
+  color: var(--ad-accent);
+  text-decoration: none;
+}
+.admin-az-rail__btn.is-active {
+  background: var(--ad-bg);
+  border-color: var(--ad-bg);
+  color: #fff;
+}
+.admin-az-rail__btn.is-active small { color: rgba(255, 255, 255, 0.82); }
+.admin-az-rail__btn.is-empty {
+  opacity: 0.45;
+}
+
 @media (max-width: 860px) {
   .admin-shell { grid-template-columns: 1fr; }
   .admin-sidebar { position: sticky; top: 0; z-index: 5; }

@@ -13,10 +13,13 @@ use Illuminate\View\View;
 
 class HealthConditionController extends Controller
 {
+    private const LETTER_SESSION_KEY = 'admin_conditions_letter';
+
     public function index(Request $request): View
     {
         $q = trim((string) $request->query('q', ''));
         $status = (string) $request->query('status', '');
+        $letter = $this->resolveLetter($request);
 
         $conditions = HealthCondition::query()
             ->with('media')
@@ -26,15 +29,40 @@ class HealthConditionController extends Controller
                     ->orWhere('category', 'like', "%{$q}%");
             }))
             ->when($status !== '', fn ($query) => $query->where('status', $status))
+            ->when($letter !== '', fn ($query) => $query->where('title', 'like', $letter.'%'))
             ->orderBy('title')
             ->paginate(30)
             ->withQueryString();
 
-        return view('admin.conditions.index', compact('conditions', 'q', 'status'));
+        $letterCounts = HealthCondition::query()
+            ->selectRaw('UPPER(SUBSTR(title, 1, 1)) as letter')
+            ->selectRaw('COUNT(*) as total')
+            ->when($q !== '', fn ($query) => $query->where(function ($inner) use ($q) {
+                $inner->where('title', 'like', "%{$q}%")
+                    ->orWhere('slug', 'like', "%{$q}%")
+                    ->orWhere('category', 'like', "%{$q}%");
+            }))
+            ->when($status !== '', fn ($query) => $query->where('status', $status))
+            ->groupBy('letter')
+            ->orderBy('letter')
+            ->pluck('total', 'letter');
+
+        $alphabet = range('A', 'Z');
+
+        return view('admin.conditions.index', compact(
+            'conditions',
+            'q',
+            'status',
+            'letter',
+            'letterCounts',
+            'alphabet'
+        ));
     }
 
-    public function create(): View
+    public function create(Request $request): View
     {
+        $this->rememberLetterFromRequest($request);
+
         return view('admin.conditions.form', $this->formData(new HealthCondition([
             'status' => 'draft',
             'is_indexed' => true,
@@ -50,11 +78,12 @@ class HealthConditionController extends Controller
         $data = $this->validated($request);
         HealthCondition::query()->create($data);
 
-        return redirect()->route('admin.conditions.index')->with('status', 'Disease / condition created.');
+        return $this->redirectToIndex('Disease / condition created.');
     }
 
-    public function edit(HealthCondition $condition): View
+    public function edit(Request $request, HealthCondition $condition): View
     {
+        $this->rememberLetterFromRequest($request);
         $condition->load('media');
 
         return view('admin.conditions.form', $this->formData($condition));
@@ -64,18 +93,18 @@ class HealthConditionController extends Controller
     {
         $condition->update($this->validated($request, $condition));
 
-        return redirect()->route('admin.conditions.index')->with('status', 'Disease / condition updated.');
+        return $this->redirectToIndex('Disease / condition updated.');
     }
 
     public function destroy(HealthCondition $condition): RedirectResponse
     {
         $condition->delete();
 
-        return redirect()->route('admin.conditions.index')->with('status', 'Disease / condition deleted.');
+        return $this->redirectToIndex('Disease / condition deleted.');
     }
 
     /**
-     * @return array{condition: HealthCondition, media: \Illuminate\Support\Collection<int, MediaAsset>, categories: list<string>}
+     * @return array{condition: HealthCondition, media: \Illuminate\Support\Collection<int, MediaAsset>, categories: list<string>, letter: string}
      */
     private function formData(HealthCondition $condition): array
     {
@@ -90,7 +119,47 @@ class HealthConditionController extends Controller
                 ->filter()
                 ->values()
                 ->all(),
+            'letter' => (string) session(self::LETTER_SESSION_KEY, ''),
         ];
+    }
+
+    private function resolveLetter(Request $request): string
+    {
+        if ($request->has('letter')) {
+            $letter = strtoupper(trim((string) $request->query('letter', '')));
+            if ($letter !== '' && ! preg_match('/^[A-Z]$/', $letter)) {
+                $letter = '';
+            }
+            $request->session()->put(self::LETTER_SESSION_KEY, $letter);
+
+            return $letter;
+        }
+
+        return (string) $request->session()->get(self::LETTER_SESSION_KEY, '');
+    }
+
+    private function rememberLetterFromRequest(Request $request): void
+    {
+        if (! $request->has('letter')) {
+            return;
+        }
+
+        $letter = strtoupper(trim((string) $request->query('letter', '')));
+        if ($letter !== '' && ! preg_match('/^[A-Z]$/', $letter)) {
+            $letter = '';
+        }
+        $request->session()->put(self::LETTER_SESSION_KEY, $letter);
+    }
+
+    private function redirectToIndex(string $status): RedirectResponse
+    {
+        $letter = (string) session(self::LETTER_SESSION_KEY, '');
+
+        return redirect()
+            ->route('admin.conditions.index', array_filter([
+                'letter' => $letter !== '' ? $letter : null,
+            ], fn ($value) => $value !== null))
+            ->with('status', $status);
     }
 
     /**
@@ -116,11 +185,11 @@ class HealthConditionController extends Controller
             'published_at' => ['nullable', 'date'],
         ]);
 
-        $data['slug'] = Str::slug($data['slug'] ?: $data['title']);
-        $data['seo_title'] = $data['seo_title'] ?: ($data['title'].' — HOMEOPATHY PHARMA');
-        $data['seo_description'] = $data['seo_description'] ?: Str::limit(strip_tags($data['snippet']), 155);
-        $data['image_url'] = $data['image_url'] ?: asset('images/brand/logo-hp.png');
-        $data['image_alt'] = $data['image_alt'] ?: $data['title'];
+        $data['slug'] = Str::slug(($data['slug'] ?? '') ?: $data['title']);
+        $data['seo_title'] = ($data['seo_title'] ?? null) ?: ($data['title'].' — HOMEOPATHY PHARMA');
+        $data['seo_description'] = ($data['seo_description'] ?? null) ?: Str::limit(strip_tags($data['snippet']), 155);
+        $data['image_url'] = ($data['image_url'] ?? null) ?: asset('images/brand/logo-hp.png');
+        $data['image_alt'] = ($data['image_alt'] ?? null) ?: $data['title'];
         $data['is_indexed'] = $request->boolean('is_indexed');
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
         $data['faqs'] = $condition?->faqs ?? [];
