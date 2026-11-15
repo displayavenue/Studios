@@ -20,14 +20,13 @@ class HomepageContentTest extends TestCase
 
         $response = $this->get('/');
         $response->assertOk();
-        $response->assertSee('Dr. Kavita Deshmukh', false);
         $response->assertSee('₹999', false);
         $response->assertSee('Google Meet', false);
-        $response->assertSee('Founder', false);
-        $response->assertSee('Case studies', false);
-        $response->assertSee('Allergic rhinitis', false);
-        $response->assertSee('Blog', false);
-        $response->assertSee('Testimonials', false);
+        $response->assertSee('Our Founder', false);
+        $response->assertSee('Ananya S.', false);
+        $response->assertSee('Health Library', false);
+        $response->assertSee('When to seek urgent medical care', false);
+        $response->assertSee('What Our Customers Say', false);
     }
 
     public function test_consultation_request_creates_pending_meet_booking(): void
