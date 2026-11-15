@@ -1887,7 +1887,7 @@ img, video, svg {
 }
 .hp-disease-card {
   display: grid;
-  grid-template-rows: 7.5rem auto;
+  grid-template-rows: auto auto;
   text-decoration: none;
   color: inherit;
   background: #fff;
@@ -1902,6 +1902,8 @@ img, video, svg {
 }
 .hp-disease-card__media {
   display: block;
+  width: 100%;
+  aspect-ratio: 1376 / 1146;
   background: #dfe8e4 center / cover no-repeat;
 }
 .hp-disease-card__body {
