@@ -124,7 +124,7 @@
         </header>
 
         <figure class="hp-condition-media">
-            <img src="{{ $condition->imageUrl() }}" alt="{{ $condition->imageAltText() }}" width="1200" height="700" loading="eager" fetchpriority="high">
+            <img src="{{ $condition->imageUrl() }}" alt="{{ $condition->imageAltText() }}" width="1376" height="1146" loading="eager" fetchpriority="high">
         </figure>
 
         <p class="hp-condition-short">{{ $condition->short_description }}</p>
