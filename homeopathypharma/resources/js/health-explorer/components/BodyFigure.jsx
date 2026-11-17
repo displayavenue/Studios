@@ -1,133 +1,169 @@
+import { useCallback, useMemo, useRef, useState } from 'react';
+
+const FRAME_YAWS = [0, 90, 180, 270];
+
+function normalizeYaw(yaw) {
+  const n = Number(yaw) || 0;
+  return ((n % 360) + 360) % 360;
+}
+
+function nearestFrame(yaw) {
+  const y = normalizeYaw(yaw);
+  let best = FRAME_YAWS[0];
+  let bestDist = 999;
+  for (const candidate of FRAME_YAWS) {
+    const dist = Math.min(Math.abs(y - candidate), 360 - Math.abs(y - candidate));
+    if (dist < bestDist) {
+      bestDist = dist;
+      best = candidate;
+    }
+  }
+  return best;
+}
+
+function frameKey(yaw) {
+  const nearest = nearestFrame(yaw);
+  if (nearest === 0) return 'front';
+  if (nearest === 180) return 'back';
+  if (nearest === 90) return 'side';
+  return 'side-left';
+}
+
+function viewLabel(yaw) {
+  const nearest = nearestFrame(yaw);
+  if (nearest === 0) return 'front';
+  if (nearest === 180) return 'back';
+  if (nearest === 90) return 'right';
+  return 'left';
+}
+
+function hotspotFor(organ, gender, yaw) {
+  const spots = organ.hotspots?.[gender];
+  if (!spots) return null;
+  const nearest = nearestFrame(yaw);
+  if (nearest === 0 && spots.front) return { ...spots.front, flipX: false };
+  if (nearest === 180 && spots.back) return { ...spots.back, flipX: false };
+  if (nearest === 90 && (spots.side || spots.front)) {
+    return { ...(spots.side || spots.front), flipX: false };
+  }
+  if (nearest === 270) {
+    const src = spots.side || spots.front;
+    if (!src) return null;
+    return { ...src, cx: 100 - Number(src.cx), flipX: true };
+  }
+  return spots.front || spots.back || null;
+}
+
 /**
- * Stylized anatomical body figure with gender + view variants and organ hotspots.
- * Hotspot coordinates are percentages of the 100×160 viewBox.
+ * Image-based anatomy turntable with small red organ dots.
+ * Drag horizontally or use rotate controls to turn left/right.
  */
 export default function BodyFigure({
   gender = 'female',
-  view = 'front',
+  yaw = 0,
   organs = [],
   activeId = null,
   zoom = 1,
   onSelect,
+  onYawChange,
 }) {
-  const visible = organs.filter((organ) => {
-    if (organ.gender !== 'both' && organ.gender !== gender) return false;
-    const spot = organ.hotspots?.[gender]?.[view];
-    return spot && typeof spot.cx === 'number';
-  });
+  const stageRef = useRef(null);
+  const dragRef = useRef(null);
+  const [dragging, setDragging] = useState(false);
+
+  const frame = frameKey(yaw);
+  const label = viewLabel(yaw);
+  const src = `/images/health-explorer/${gender}/${frame}.webp`;
+
+  const visible = useMemo(() => {
+    return organs
+      .map((organ) => {
+        if (organ.gender !== 'both' && organ.gender !== gender) return null;
+        const spot = hotspotFor(organ, gender, yaw);
+        if (!spot || typeof spot.cx !== 'number' || typeof spot.cy !== 'number') return null;
+        return { organ, spot };
+      })
+      .filter(Boolean);
+  }, [organs, gender, yaw]);
+
+  const startDrag = useCallback((clientX) => {
+    dragRef.current = { startX: clientX, startYaw: normalizeYaw(yaw) };
+    setDragging(true);
+  }, [yaw]);
+
+  const moveDrag = useCallback((clientX) => {
+    if (!dragRef.current) return;
+    const dx = clientX - dragRef.current.startX;
+    // Drag right → turn left (see body's left side), natural turntable feel.
+    const next = normalizeYaw(dragRef.current.startYaw - dx * 0.45);
+    onYawChange?.(next);
+  }, [onYawChange]);
+
+  const endDrag = useCallback(() => {
+    dragRef.current = null;
+    setDragging(false);
+    // Snap to nearest cardinal view for clearer organ mapping.
+    onYawChange?.(nearestFrame(yaw));
+  }, [onYawChange, yaw]);
 
   return (
-    <div className="hx-figure-wrap" role="group" aria-label={`${gender} body ${view} view`}>
-      <svg
-        className="hx-figure"
-        viewBox="0 0 100 160"
-        style={{ transform: `scale(${zoom})` }}
-        role="img"
-        aria-label={`Interactive ${gender} anatomy, ${view} view`}
+    <div className="hx-figure-wrap" role="group" aria-label={`${gender} anatomy, ${label} view`}>
+      <div
+        ref={stageRef}
+        className={`hx-turntable${dragging ? ' is-dragging' : ''}`}
+        style={{ '--hx-zoom': zoom, '--hx-yaw': `${((normalizeYaw(yaw) + 180) % 360) - 180}deg` }}
+        onPointerDown={(e) => {
+          if (e.button !== 0) return;
+          if (e.target.closest('.hx-dot')) return;
+          e.currentTarget.setPointerCapture(e.pointerId);
+          startDrag(e.clientX);
+        }}
+        onPointerMove={(e) => {
+          if (!dragRef.current) return;
+          moveDrag(e.clientX);
+        }}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
       >
-        <title>{`${gender} anatomy ${view}`}</title>
-        {view === 'front' ? <FrontSilhouette gender={gender} /> : <BackSilhouette gender={gender} />}
-
-        {visible.map((organ) => {
-          const spot = organ.hotspots[gender][view];
-          const active = activeId === organ.id;
-          return (
-            <g key={organ.id}>
-              <circle
-                className={`hx-hotspot${active ? ' is-active' : ''}`}
-                cx={spot.cx}
-                cy={spot.cy}
-                r={spot.r || 3}
-                tabIndex={0}
-                role="button"
-                aria-label={organ.name}
-                aria-pressed={active}
-                onClick={() => onSelect?.(organ.id)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
+        <div className="hx-turntable__scene" aria-hidden={false}>
+          <img
+            className="hx-turntable__image"
+            src={src}
+            alt=""
+            draggable={false}
+            width="420"
+            height="900"
+          />
+          <div className="hx-turntable__dots" aria-hidden={false}>
+            {visible.map(({ organ, spot }) => {
+              const active = activeId === organ.id;
+              const left = `${spot.cx}%`;
+              const top = `${spot.cy}%`;
+              return (
+                <button
+                  key={organ.id}
+                  type="button"
+                  className={`hx-dot${active ? ' is-active' : ''}`}
+                  style={{ left, top }}
+                  aria-label={organ.name}
+                  aria-pressed={active}
+                  title={organ.name}
+                  onClick={(e) => {
+                    e.stopPropagation();
                     onSelect?.(organ.id);
-                  }
-                }}
-              />
-              <text
-                x={spot.cx}
-                y={spot.cy - (spot.r || 3) - 1.8}
-                textAnchor="middle"
-                fontSize="2.6"
-                fill="#0a4f44"
-                fontWeight="700"
-                style={{ pointerEvents: 'none', userSelect: 'none' }}
-              >
-                {active ? organ.name : ''}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
+                  }}
+                >
+                  <span className="hx-dot__core" />
+                  {active ? <span className="hx-dot__label">{organ.name}</span> : null}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <p className="hx-sr-only">{`Interactive ${gender} anatomy, ${label} view. Drag sideways or use rotate buttons to turn.`}</p>
     </div>
   );
 }
 
-function FrontSilhouette({ gender }) {
-  const hips = gender === 'female' ? 28 : 24;
-  const chest = gender === 'female' ? 20 : 22;
-  const waist = gender === 'female' ? 17 : 18;
-  return (
-    <g>
-      {/* head */}
-      <ellipse className="hx-body-fill" cx="50" cy="12" rx="8.5" ry="10" />
-      {/* neck */}
-      <rect className="hx-body-accent" x="46.5" y="20" width="7" height="6" rx="2" />
-      {/* torso */}
-      <path
-        className="hx-body-fill"
-        d={`M ${50 - chest} 28
-            C ${50 - chest - 2} 40, ${50 - waist} 48, ${50 - hips} 58
-            L ${50 - hips + 2} 72
-            L ${50 + hips - 2} 72
-            L ${50 + hips} 58
-            C ${50 + waist} 48, ${50 + chest + 2} 40, ${50 + chest} 28
-            Z`}
-      />
-      {/* arms */}
-      <path className="hx-body-fill" d="M28 30 C18 38, 14 52, 16 68 C18 70, 22 68, 23 64 C22 52, 26 40, 32 34 Z" />
-      <path className="hx-body-fill" d="M72 30 C82 38, 86 52, 84 68 C82 70, 78 68, 77 64 C78 52, 74 40, 68 34 Z" />
-      {/* legs */}
-      <path className="hx-body-fill" d="M36 72 C34 95, 33 120, 35 148 C38 150, 42 148, 43 144 C42 120, 44 95, 46 72 Z" />
-      <path className="hx-body-fill" d="M64 72 C66 95, 67 120, 65 148 C62 150, 58 148, 57 144 C58 120, 56 95, 54 72 Z" />
-      {/* midline cue */}
-      <path d="M50 30 V70" stroke="#9ec2b6" strokeWidth="0.6" strokeDasharray="1.5 1.5" fill="none" />
-    </g>
-  );
-}
-
-function BackSilhouette({ gender }) {
-  const hips = gender === 'female' ? 28 : 24;
-  const chest = gender === 'female' ? 20 : 22;
-  return (
-    <g>
-      <ellipse className="hx-body-fill" cx="50" cy="12" rx="8.5" ry="10" />
-      <rect className="hx-body-accent" x="46.5" y="20" width="7" height="6" rx="2" />
-      <path
-        className="hx-body-fill"
-        d={`M ${50 - chest} 28
-            C ${50 - chest - 1} 42, ${50 - hips + 2} 52, ${50 - hips} 58
-            L ${50 - hips + 2} 72
-            L ${50 + hips - 2} 72
-            L ${50 + hips} 58
-            C ${50 + hips - 2} 52, ${50 + chest + 1} 42, ${50 + chest} 28
-            Z`}
-      />
-      <path className="hx-body-fill" d="M28 30 C18 38, 14 52, 16 68 C18 70, 22 68, 23 64 C22 52, 26 40, 32 34 Z" />
-      <path className="hx-body-fill" d="M72 30 C82 38, 86 52, 84 68 C82 70, 78 68, 77 64 C78 52, 74 40, 68 34 Z" />
-      <path className="hx-body-fill" d="M36 72 C34 95, 33 120, 35 148 C38 150, 42 148, 43 144 C42 120, 44 95, 46 72 Z" />
-      <path className="hx-body-fill" d="M64 72 C66 95, 67 120, 65 148 C62 150, 58 148, 57 144 C58 120, 56 95, 54 72 Z" />
-      {/* spine cue */}
-      <path d="M50 26 V72" stroke="#6f9e90" strokeWidth="1.2" fill="none" />
-      {[34, 42, 50, 58, 66].map((y) => (
-        <circle key={y} cx="50" cy={y} r="1.1" fill="#6f9e90" />
-      ))}
-    </g>
-  );
-}
+export { normalizeYaw, nearestFrame, viewLabel, frameKey };

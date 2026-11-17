@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, useTransition } from 'react';
-import BodyFigure from './components/BodyFigure';
+import BodyFigure, { nearestFrame, normalizeYaw, viewLabel } from './components/BodyFigure';
 import DetailPanel from './components/DetailPanel';
 
 const TABS = [
@@ -13,7 +13,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
   const [gender, setGender] = useState('female');
-  const [view, setView] = useState('front');
+  const [yaw, setYaw] = useState(0);
   const [systemId, setSystemId] = useState('all');
   const [query, setQuery] = useState('');
   const [committedQuery, setCommittedQuery] = useState('');
@@ -23,6 +23,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const [selectedMentalId, setSelectedMentalId] = useState(null);
   const [zoom, setZoom] = useState(1);
   const [, startTransition] = useTransition();
+  const view = viewLabel(yaw);
 
   useEffect(() => {
     let cancelled = false;
@@ -104,6 +105,10 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
     return 'empty';
   })();
 
+  const turnBy = (delta) => {
+    setYaw((current) => nearestFrame(normalizeYaw(current + delta)));
+  };
+
   const selectOrgan = (id) => {
     startTransition(() => {
       setSelectedOrganId(id);
@@ -111,12 +116,13 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
       setSelectedMentalId(null);
       setTab('anatomy');
       const organ = organs.find((o) => o.id === id);
-      if (organ?.hotspots?.[gender]?.back && !organ?.hotspots?.[gender]?.front && view === 'front') {
-        setView('back');
-      }
-      if (organ?.hotspots?.[gender]?.front && !organ?.hotspots?.[gender]?.back && view === 'back') {
-        setView('front');
-      }
+      const spots = organ?.hotspots?.[gender];
+      if (!spots) return;
+      const current = nearestFrame(yaw);
+      const has = (key) => spots[key] && typeof spots[key].cx === 'number';
+      if (current === 0 && !has('front') && has('back')) setYaw(180);
+      if (current === 180 && !has('back') && has('front')) setYaw(0);
+      if ((current === 90 || current === 270) && !has('side') && has('front')) setYaw(0);
     });
   };
 
@@ -200,12 +206,12 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
           </form>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
             <div className="hx-seg" role="group" aria-label="Sex">
-              <button type="button" aria-pressed={gender === 'female'} onClick={() => setGender('female')}>Female</button>
-              <button type="button" aria-pressed={gender === 'male'} onClick={() => setGender('male')}>Male</button>
+              <button type="button" aria-pressed={gender === 'female'} onClick={() => { setGender('female'); setYaw(0); }}>Female</button>
+              <button type="button" aria-pressed={gender === 'male'} onClick={() => { setGender('male'); setYaw(0); }}>Male</button>
             </div>
-            <div className="hx-seg" role="group" aria-label="View">
-              <button type="button" aria-pressed={view === 'front'} onClick={() => setView('front')}>Front</button>
-              <button type="button" aria-pressed={view === 'back'} onClick={() => setView('back')}>Back</button>
+            <div className="hx-seg" role="group" aria-label="Rotate anatomy">
+              <button type="button" onClick={() => turnBy(-90)} aria-label="Turn left">⟵ Left</button>
+              <button type="button" onClick={() => turnBy(90)} aria-label="Turn right">Right ⟶</button>
             </div>
           </div>
         </div>
@@ -238,22 +244,25 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
           <section className="hx-stage" aria-label="Anatomy stage">
             <div className="hx-stage__top">
               <h2>{gender === 'female' ? 'Female' : 'Male'} · {view} view</h2>
-              <div className="hx-zoom" role="group" aria-label="Zoom">
+              <div className="hx-zoom" role="group" aria-label="Zoom and rotate">
+                <button type="button" className="hx-icon-btn" aria-label="Turn left" onClick={() => turnBy(-90)}>⟵</button>
                 <button type="button" className="hx-icon-btn" aria-label="Zoom out" onClick={() => setZoom((z) => Math.max(0.85, +(z - 0.1).toFixed(2)))}>−</button>
-                <button type="button" className="hx-icon-btn" aria-label="Reset zoom" onClick={() => setZoom(1)}>⟲</button>
+                <button type="button" className="hx-icon-btn" aria-label="Reset view" onClick={() => { setZoom(1); setYaw(0); }}>⟲</button>
                 <button type="button" className="hx-icon-btn" aria-label="Zoom in" onClick={() => setZoom((z) => Math.min(1.45, +(z + 0.1).toFixed(2)))}>+</button>
+                <button type="button" className="hx-icon-btn" aria-label="Turn right" onClick={() => turnBy(90)}>⟶</button>
               </div>
             </div>
             <BodyFigure
               gender={gender}
-              view={view}
+              yaw={yaw}
               organs={filteredOrgans}
               activeId={selectedOrganId}
               zoom={zoom}
               onSelect={selectOrgan}
+              onYawChange={setYaw}
             />
             <p style={{ margin: '0.65rem 0 0', color: '#5b6b65', fontSize: '0.84rem' }}>
-              Tip: switch Front/Back if a hotspot is hidden on this view. Keyboard users can tab to hotspots and press Enter.
+              Drag the figure left/right to turn it, or use the rotate controls. Tap a red dot to open that organ.
             </p>
           </section>
 
