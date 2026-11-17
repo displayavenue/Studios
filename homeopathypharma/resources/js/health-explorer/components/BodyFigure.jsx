@@ -93,11 +93,8 @@ export default function BodyFigure({
   const [dragging, setDragging] = useState(false);
   yawRef.current = yaw;
 
-  const nearest = nearestFrame(yaw);
   const activeKey = frameKey(yaw);
   const label = viewLabel(yaw);
-  const residual = signedDelta(nearest, yaw);
-  const slideX = Math.max(-18, Math.min(18, residual * 0.28));
   const src = frameSrc(gender, activeKey);
 
   useEffect(() => {
@@ -233,7 +230,6 @@ export default function BodyFigure({
         className={`hx-turntable${dragging ? ' is-dragging' : ''}`}
         style={{
           '--hx-zoom': zoom,
-          '--hx-slide': `${slideX}px`,
         }}
         onPointerDown={beginFromEvent}
         onMouseDown={beginFromEvent}
