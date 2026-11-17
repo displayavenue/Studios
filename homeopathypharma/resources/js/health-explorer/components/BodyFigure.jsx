@@ -7,6 +7,11 @@ const FRAMES = [
   { yaw: 270, key: 'side-left' },
 ];
 
+/** Degrees of yaw change per pixel of horizontal drag — tuned for continuous 360 feel. */
+const DRAG_DEG_PER_PX = 1.15;
+const INERTIA_FRICTION = 0.92;
+const INERTIA_MIN_VEL = 0.35;
+
 function normalizeYaw(yaw) {
   const n = Number(yaw) || 0;
   return ((n % 360) + 360) % 360;
@@ -70,10 +75,8 @@ function frameSrc(gender, key) {
 }
 
 /**
- * Single-frame turntable: exactly one body image on screen.
- * Drag updates yaw; the nearest cardinal view hard-cuts in (no opacity blend,
- * no CSS rotateY foreshortening — both caused a double/ghost look on these arts).
- * A small translateX tracks drag residual so the turn still feels continuous.
+ * 360° sprite turntable: one body image at a time, continuous drag with inertia,
+ * hard-cuts between front / right / back / left (no opacity stacking).
  */
 export default function BodyFigure({
   gender = 'female',
@@ -86,6 +89,7 @@ export default function BodyFigure({
 }) {
   const dragRef = useRef(null);
   const yawRef = useRef(yaw);
+  const inertiaRef = useRef(null);
   const [dragging, setDragging] = useState(false);
   yawRef.current = yaw;
 
@@ -93,17 +97,19 @@ export default function BodyFigure({
   const activeKey = frameKey(yaw);
   const label = viewLabel(yaw);
   const residual = signedDelta(nearest, yaw);
-  // Subtle lateral nudge while dragging between cardinals — not a second silhouette.
-  const slideX = Math.max(-14, Math.min(14, residual * 0.32));
+  const slideX = Math.max(-18, Math.min(18, residual * 0.28));
   const src = frameSrc(gender, activeKey);
 
-  // Prefetch sibling views so hard-cuts stay instant.
   useEffect(() => {
     FRAMES.forEach((frame) => {
       const img = new Image();
       img.src = frameSrc(gender, frame.key);
     });
   }, [gender]);
+
+  useEffect(() => () => {
+    if (inertiaRef.current) cancelAnimationFrame(inertiaRef.current);
+  }, []);
 
   const visible = useMemo(() => {
     return organs
@@ -116,6 +122,54 @@ export default function BodyFigure({
       .filter(Boolean);
   }, [organs, gender, yaw]);
 
+  const stopInertia = useCallback(() => {
+    if (inertiaRef.current) {
+      cancelAnimationFrame(inertiaRef.current);
+      inertiaRef.current = null;
+    }
+  }, []);
+
+  const coastToNearest = useCallback(() => {
+    stopInertia();
+    const start = yawRef.current;
+    const target = nearestFrame(start);
+    const travel = signedDelta(start, target);
+    if (Math.abs(travel) < 0.5) {
+      onYawChange?.(target);
+      return;
+    }
+    const duration = Math.min(420, 160 + Math.abs(travel) * 3.2);
+    const t0 = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / duration);
+      const eased = 1 - (1 - t) ** 3;
+      onYawChange?.(normalizeYaw(start + travel * eased));
+      if (t < 1) {
+        inertiaRef.current = requestAnimationFrame(step);
+      } else {
+        inertiaRef.current = null;
+        onYawChange?.(target);
+      }
+    };
+    inertiaRef.current = requestAnimationFrame(step);
+  }, [onYawChange, stopInertia]);
+
+  const startInertia = useCallback((velocity) => {
+    stopInertia();
+    let vel = velocity;
+    const tick = () => {
+      if (Math.abs(vel) < INERTIA_MIN_VEL) {
+        coastToNearest();
+        return;
+      }
+      const next = normalizeYaw(yawRef.current + vel);
+      onYawChange?.(next);
+      vel *= INERTIA_FRICTION;
+      inertiaRef.current = requestAnimationFrame(tick);
+    };
+    inertiaRef.current = requestAnimationFrame(tick);
+  }, [coastToNearest, onYawChange, stopInertia]);
+
   const endDrag = useCallback(() => {
     const drag = dragRef.current;
     if (!drag) return;
@@ -124,23 +178,37 @@ export default function BodyFigure({
     window.removeEventListener('pointerup', drag.onUp);
     window.removeEventListener('mouseup', drag.onUp);
     window.removeEventListener('pointercancel', drag.onUp);
+    const velocity = drag.velocity || 0;
     dragRef.current = null;
     setDragging(false);
-    onYawChange?.(nearestFrame(yawRef.current));
-  }, [onYawChange]);
+    if (Math.abs(velocity) > 1.2) {
+      startInertia(velocity);
+    } else {
+      coastToNearest();
+    }
+  }, [coastToNearest, startInertia]);
 
   const startDrag = useCallback((clientX) => {
     endDrag();
+    stopInertia();
     const onMove = (ev) => {
       if (!dragRef.current) return;
-      const dx = ev.clientX - dragRef.current.startX;
-      const next = normalizeYaw(dragRef.current.startYaw - dx * 0.85);
+      const now = performance.now();
+      const dx = ev.clientX - dragRef.current.lastX;
+      const dt = Math.max(8, now - dragRef.current.lastT);
+      const next = normalizeYaw(yawRef.current - dx * DRAG_DEG_PER_PX);
+      // Negative dx (drag left) → positive yaw (turn right), matching natural orbit.
+      dragRef.current.velocity = (-dx * DRAG_DEG_PER_PX) * (16 / dt);
+      dragRef.current.lastX = ev.clientX;
+      dragRef.current.lastT = now;
       onYawChange?.(next);
     };
     const onUp = () => endDrag();
     dragRef.current = {
       startX: clientX,
-      startYaw: normalizeYaw(yawRef.current),
+      lastX: clientX,
+      lastT: performance.now(),
+      velocity: 0,
       onMove,
       onUp,
     };
@@ -150,7 +218,7 @@ export default function BodyFigure({
     window.addEventListener('mouseup', onUp);
     window.addEventListener('pointercancel', onUp);
     setDragging(true);
-  }, [endDrag, onYawChange]);
+  }, [endDrag, onYawChange, stopInertia]);
 
   const beginFromEvent = (e) => {
     if (e.button !== 0) return;
@@ -180,7 +248,7 @@ export default function BodyFigure({
             width="420"
             height="900"
           />
-          <div className="hx-turntable__dots">
+          <div className={`hx-turntable__dots${dragging ? ' is-dim' : ''}`}>
             {visible.map(({ organ, spot }) => {
               const active = activeId === organ.id;
               return (
@@ -205,9 +273,9 @@ export default function BodyFigure({
           </div>
         </div>
       </div>
-      <p className="hx-sr-only">{`Interactive ${gender} anatomy, ${label} view. Drag sideways to turn.`}</p>
+      <p className="hx-sr-only">{`Interactive ${gender} anatomy, ${label} view. Drag sideways for a full 360 turn.`}</p>
     </div>
   );
 }
 
-export { normalizeYaw, nearestFrame, viewLabel, frameKey, angularDistance, signedDelta };
+export { normalizeYaw, nearestFrame, viewLabel, frameKey, angularDistance, signedDelta, FRAMES };

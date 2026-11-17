@@ -273,10 +273,15 @@
   z-index: 2;
 }
 
+.hx-turntable__dots.is-dim {
+  opacity: 0.55;
+}
+
 .hx-dot {
   position: absolute;
-  width: 0.38rem;
-  height: 0.38rem;
+  /* Generous hit target; visible core is centered inside. */
+  width: 1.35rem;
+  height: 1.35rem;
   border: 0;
   padding: 0;
   margin: 0;
@@ -288,24 +293,28 @@
 }
 
 .hx-dot__core {
-  display: block;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.72rem;
+  height: 0.72rem;
+  margin: 0;
   border-radius: 50%;
   background: #e11d2e;
-  box-shadow: none;
+  box-shadow: 0 1px 2px rgba(20, 30, 40, 0.28);
   border: 0;
-  transition: transform 0.12s ease;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, background 0.12s ease;
 }
 
 .hx-dot:hover .hx-dot__core,
 .hx-dot:focus-visible .hx-dot__core {
-  transform: scale(1.25);
+  transform: translate(-50%, -50%) scale(1.22);
   outline: none;
 }
 
 .hx-dot.is-active .hx-dot__core {
-  transform: scale(1.35);
+  transform: translate(-50%, -50%) scale(1.32);
   background: #c4091c;
 }
 

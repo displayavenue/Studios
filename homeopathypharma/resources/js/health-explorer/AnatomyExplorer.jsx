@@ -107,11 +107,16 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   })();
 
   const turnBy = (delta) => {
-    // Snap to the next cardinal view. Interpolating mid-angles only caused
-    // half-frame swaps / ghost stacks with our 4 sprite sheets.
     if (yawAnimRef.current) cancelAnimationFrame(yawAnimRef.current);
     yawAnimRef.current = null;
     setYaw((prev) => nearestFrame(normalizeYaw(nearestFrame(prev) + delta)));
+  };
+
+  /** Jump straight to a named cardinal view (front / right / back / left). */
+  const setCardinalView = (targetYaw) => {
+    if (yawAnimRef.current) cancelAnimationFrame(yawAnimRef.current);
+    yawAnimRef.current = null;
+    setYaw(nearestFrame(targetYaw));
   };
 
   const selectOrgan = (id) => {
@@ -214,9 +219,11 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               <button type="button" aria-pressed={gender === 'female'} onClick={() => { setGender('female'); setYaw(0); }}>Female</button>
               <button type="button" aria-pressed={gender === 'male'} onClick={() => { setGender('male'); setYaw(0); }}>Male</button>
             </div>
-            <div className="hx-seg" role="group" aria-label="Rotate anatomy">
-              <button type="button" onClick={() => turnBy(-90)} aria-label="Turn left">⟵ Left</button>
-              <button type="button" onClick={() => turnBy(90)} aria-label="Turn right">Right ⟶</button>
+            <div className="hx-seg" role="group" aria-label="Anatomy view">
+              <button type="button" aria-pressed={view === 'front'} onClick={() => setCardinalView(0)}>Front</button>
+              <button type="button" aria-pressed={view === 'back'} onClick={() => setCardinalView(180)}>Back</button>
+              <button type="button" aria-pressed={view === 'left'} onClick={() => setCardinalView(270)}>Left</button>
+              <button type="button" aria-pressed={view === 'right'} onClick={() => setCardinalView(90)}>Right</button>
             </div>
           </div>
         </div>
@@ -267,7 +274,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               onYawChange={setYaw}
             />
             <p style={{ margin: '0.65rem 0 0', color: '#5b6b65', fontSize: '0.84rem' }}>
-              Drag left or right to turn the figure, or use the rotate controls. Tap a red dot to open that organ.
+              Drag sideways for a full 360° turn, or jump with Front / Back / Left / Right. Tap a red dot to open that organ.
             </p>
           </section>
 
