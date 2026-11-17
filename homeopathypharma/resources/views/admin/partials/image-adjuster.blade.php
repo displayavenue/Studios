@@ -31,7 +31,9 @@
                 <div class="hp-imgadj__frontend-frame" data-hp-imgadj-preview-frame data-preview="disease">
                     {{-- Exact A–Z disease website card (same structure/look as storefront) --}}
                     <a class="hp-disease-card hp-disease-card--preview" data-preview-panel="disease" href="#" tabindex="-1" onclick="return false;">
-                        <span class="hp-disease-card__media" data-hp-imgadj-preview-media></span>
+                        <span class="hp-disease-card__media" data-hp-imgadj-preview-media>
+                            <img data-hp-imgadj-preview-img alt="" width="1376" height="1146">
+                        </span>
                         <span class="hp-disease-card__body">
                             <strong data-hp-imgadj-preview-title>Disease title</strong>
                             <small data-hp-imgadj-preview-subtitle>Category</small>

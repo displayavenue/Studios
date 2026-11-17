@@ -42,15 +42,16 @@ Image (Media Library)
 <div class="hp-admin-site-card" data-hp-site-card data-preview="disease">
     <p class="hp-admin-site-card__label">How it looks on the website (A–Z Diseases card)</p>
     <a class="hp-disease-card hp-disease-card--preview" href="#" tabindex="-1" onclick="return false;">
-        <span
-            class="hp-disease-card__media"
-            data-hp-site-card-media
-            @if ($condition->media_asset_id && $condition->relationLoaded('media') && $condition->media)
-                style="background-image:url('{{ $condition->media->publicUrl() }}')"
-            @elseif ($condition->image_url)
-                style="background-image:url('{{ $condition->image_url }}')"
-            @endif
-        ></span>
+        <span class="hp-disease-card__media" data-hp-site-card-media>
+            @php($previewSrc = ($condition->media_asset_id && $condition->relationLoaded('media') && $condition->media) ? $condition->media->publicUrl() : ($condition->image_url ?: ''))
+            <img
+                data-hp-site-card-img
+                src="{{ $previewSrc !== '' ? $previewSrc : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==' }}"
+                alt=""
+                width="1376"
+                height="1146"
+            >
+        </span>
         <span class="hp-disease-card__body">
             <strong data-hp-site-card-title>{{ old('title', $condition->title) ?: 'Disease title' }}</strong>
             <small data-hp-site-card-subtitle>{{ old('category', $condition->category) ?: 'Category' }}</small>

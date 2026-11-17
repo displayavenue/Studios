@@ -240,39 +240,61 @@ body.hp-imgadj-open { overflow: hidden; }
   padding: 0.35rem;
 }
 .hp-imgadj__frontend-note { margin: 0; font-size: 0.78rem; }
-/* Exact match to storefront A–Z disease card */
+/* Exact match to storefront A–Z disease card (same ~desktop grid column width) */
 .hp-disease-card,
 .hp-disease-card--preview {
   display: grid;
   grid-template-rows: auto auto;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
   text-decoration: none;
   color: inherit;
   background: #fff;
   border: 1px solid #e3e8e1;
   border-radius: 0.65rem;
   overflow: hidden;
-  width: min(100%, 11.5rem);
+  /* Match live /conditions 8-column card (~157px on desktop) */
+  width: 9.85rem;
+  max-width: 100%;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
 }
 .hp-disease-card__media {
   display: block;
+  position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   aspect-ratio: 1376 / 1146;
-  background: #dfe8e4 center / cover no-repeat;
+  background: #dfe8e4;
+  overflow: hidden;
+}
+.hp-disease-card__media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 .hp-disease-card__body {
   display: grid;
   gap: 0.2rem;
   padding: 0.7rem 0.75rem 0.85rem;
+  min-width: 0;
 }
 .hp-disease-card__body strong {
   font-size: 0.95rem;
   line-height: 1.25;
   color: #1e2b26;
   font-weight: 700;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .hp-disease-card__body small {
   color: #5f6f68;
   font-size: 0.78rem;
+  overflow-wrap: anywhere;
 }
 .hp-admin-site-card {
   margin: 0.35rem 0 1rem;
@@ -280,7 +302,7 @@ body.hp-imgadj-open { overflow: hidden; }
   border: 1px dashed #c9d4cc;
   border-radius: 0.75rem;
   background: #f7faf7;
-  max-width: 18rem;
+  max-width: 14rem;
 }
 .hp-admin-site-card__label {
   margin: 0 0 0.55rem;
@@ -289,7 +311,7 @@ body.hp-imgadj-open { overflow: hidden; }
   color: var(--ad-bg);
 }
 .hp-imgadj__frontend-frame .hp-disease-card {
-  width: min(100%, 12rem);
+  width: 9.85rem;
   box-shadow: 0 8px 20px rgba(10, 40, 30, 0.08);
 }
 .hp-prev {

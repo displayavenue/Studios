@@ -117,7 +117,13 @@
         clearPreviewUrl();
         previewObjectUrl = URL.createObjectURL(blob);
         root.querySelectorAll('[data-hp-imgadj-preview-media]').forEach((el) => {
-          el.style.backgroundImage = `url('${previewObjectUrl}')`;
+          const img = el.querySelector('[data-hp-imgadj-preview-img]');
+          if (img) {
+            img.src = previewObjectUrl;
+            el.style.backgroundImage = '';
+          } else {
+            el.style.backgroundImage = `url('${previewObjectUrl}')`;
+          }
         });
       }, 'image/jpeg', 0.88);
     } catch (e) {
@@ -467,8 +473,14 @@
   }
 
   function updateSiteCardMedia(url) {
+    const placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
     document.querySelectorAll('[data-hp-site-card-media]').forEach((el) => {
-      if (url) {
+      const img = el.querySelector('[data-hp-site-card-img]');
+      const next = url ? bust(url) : placeholder;
+      if (img) {
+        img.src = next;
+        el.style.backgroundImage = '';
+      } else if (url) {
         el.style.backgroundImage = `url('${bust(url)}')`;
       } else {
         el.style.backgroundImage = '';

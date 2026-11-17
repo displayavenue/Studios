@@ -1888,6 +1888,10 @@ img, video, svg {
 .hp-disease-card {
   display: grid;
   grid-template-rows: auto auto;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
   text-decoration: none;
   color: inherit;
   background: #fff;
@@ -1902,22 +1906,39 @@ img, video, svg {
 }
 .hp-disease-card__media {
   display: block;
+  position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   aspect-ratio: 1376 / 1146;
-  background: #dfe8e4 center / cover no-repeat;
+  background: #dfe8e4;
+  overflow: hidden;
+}
+.hp-disease-card__media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 .hp-disease-card__body {
   display: grid;
   gap: 0.2rem;
   padding: 0.7rem 0.75rem 0.85rem;
+  min-width: 0;
 }
 .hp-disease-card__body strong {
   font-size: 0.95rem;
   line-height: 1.25;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .hp-disease-card__body small {
   color: #5f6f68;
   font-size: 0.78rem;
+  overflow-wrap: anywhere;
 }
 
 /* Homepage chat FAB → /chat page */

@@ -37,7 +37,9 @@
                 <div class="hp-disease-grid">
                     @foreach ($items as $condition)
                         <a class="hp-disease-card" href="{{ route('conditions.show', $condition->slug) }}">
-                            <span class="hp-disease-card__media" style="background-image:url('{{ $condition->imageUrl() }}')"></span>
+                            <span class="hp-disease-card__media">
+                                <img src="{{ $condition->imageUrl() }}" alt="{{ $condition->imageAltText() }}" loading="lazy" decoding="async" width="1376" height="1146">
+                            </span>
                             <span class="hp-disease-card__body">
                                 <strong>{{ $condition->title }}</strong>
                                 <small>{{ $condition->category }}</small>
