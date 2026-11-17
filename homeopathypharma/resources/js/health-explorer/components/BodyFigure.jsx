@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 const FRAMES = [
   { yaw: 0, key: 'front' },
@@ -15,6 +15,11 @@ function normalizeYaw(yaw) {
 function angularDistance(a, b) {
   const d = Math.abs(normalizeYaw(a) - normalizeYaw(b));
   return Math.min(d, 360 - d);
+}
+
+/** Signed shortest delta from -> to in (-180, 180]. */
+function signedDelta(from, to) {
+  return ((normalizeYaw(to) - normalizeYaw(from) + 540) % 360) - 180;
 }
 
 function nearestFrame(yaw) {
@@ -43,12 +48,6 @@ function viewLabel(yaw) {
   return 'left';
 }
 
-function frameOpacity(yaw, frameYaw) {
-  const dist = angularDistance(yaw, frameYaw);
-  // Soft blend across ~100° so adjacent views overlap smoothly.
-  return Math.max(0, Math.min(1, 1 - dist / 100));
-}
-
 function hotspotFor(organ, gender, yaw) {
   const spots = organ.hotspots?.[gender];
   if (!spots) return null;
@@ -66,8 +65,15 @@ function hotspotFor(organ, gender, yaw) {
   return spots.front || spots.back || null;
 }
 
+function frameSrc(gender, key) {
+  return `/images/health-explorer/${gender}/${key}.webp`;
+}
+
 /**
- * Smooth image turntable: stacked frames crossfade by yaw while dragging.
+ * Single-frame turntable: exactly one body image on screen.
+ * Drag updates yaw; the nearest cardinal view hard-cuts in (no opacity blend,
+ * no CSS rotateY foreshortening — both caused a double/ghost look on these arts).
+ * A small translateX tracks drag residual so the turn still feels continuous.
  */
 export default function BodyFigure({
   gender = 'female',
@@ -81,27 +87,31 @@ export default function BodyFigure({
   const dragRef = useRef(null);
   const yawRef = useRef(yaw);
   const [dragging, setDragging] = useState(false);
-  const label = viewLabel(yaw);
   yawRef.current = yaw;
 
-  const layers = useMemo(
-    () => FRAMES.map((frame) => ({
-      ...frame,
-      opacity: frameOpacity(yaw, frame.yaw),
-      src: `/images/health-explorer/${gender}/${frame.key}.webp`,
-    })),
-    [gender, yaw],
-  );
+  const nearest = nearestFrame(yaw);
+  const activeKey = frameKey(yaw);
+  const label = viewLabel(yaw);
+  const residual = signedDelta(nearest, yaw);
+  // Subtle lateral nudge while dragging between cardinals — not a second silhouette.
+  const slideX = Math.max(-14, Math.min(14, residual * 0.32));
+  const src = frameSrc(gender, activeKey);
+
+  // Prefetch sibling views so hard-cuts stay instant.
+  useEffect(() => {
+    FRAMES.forEach((frame) => {
+      const img = new Image();
+      img.src = frameSrc(gender, frame.key);
+    });
+  }, [gender]);
 
   const visible = useMemo(() => {
-    const opacity = frameOpacity(yaw, nearestFrame(yaw));
-    if (opacity < 0.35) return [];
     return organs
       .map((organ) => {
         if (organ.gender !== 'both' && organ.gender !== gender) return null;
         const spot = hotspotFor(organ, gender, yaw);
         if (!spot || typeof spot.cx !== 'number' || typeof spot.cy !== 'number') return null;
-        return { organ, spot, opacity };
+        return { organ, spot };
       })
       .filter(Boolean);
   }, [organs, gender, yaw]);
@@ -116,14 +126,14 @@ export default function BodyFigure({
     window.removeEventListener('pointercancel', drag.onUp);
     dragRef.current = null;
     setDragging(false);
-  }, []);
+    onYawChange?.(nearestFrame(yawRef.current));
+  }, [onYawChange]);
 
   const startDrag = useCallback((clientX) => {
     endDrag();
     const onMove = (ev) => {
       if (!dragRef.current) return;
       const dx = ev.clientX - dragRef.current.startX;
-      // Continuous turn — no snapping while dragging.
       const next = normalizeYaw(dragRef.current.startYaw - dx * 0.85);
       onYawChange?.(next);
     };
@@ -153,32 +163,32 @@ export default function BodyFigure({
     <div className="hx-figure-wrap" role="group" aria-label={`${gender} anatomy, ${label} view`}>
       <div
         className={`hx-turntable${dragging ? ' is-dragging' : ''}`}
-        style={{ '--hx-zoom': zoom }}
+        style={{
+          '--hx-zoom': zoom,
+          '--hx-slide': `${slideX}px`,
+        }}
         onPointerDown={beginFromEvent}
         onMouseDown={beginFromEvent}
       >
         <div className="hx-turntable__scene">
-          {layers.map((layer) => (
-            <img
-              key={layer.key}
-              className="hx-turntable__image"
-              src={layer.src}
-              alt=""
-              draggable={false}
-              width="420"
-              height="900"
-              style={{ opacity: layer.opacity }}
-            />
-          ))}
+          <img
+            key={`${gender}-${activeKey}`}
+            className="hx-turntable__image is-active"
+            src={src}
+            alt=""
+            draggable={false}
+            width="420"
+            height="900"
+          />
           <div className="hx-turntable__dots">
-            {visible.map(({ organ, spot, opacity }) => {
+            {visible.map(({ organ, spot }) => {
               const active = activeId === organ.id;
               return (
                 <button
                   key={organ.id}
                   type="button"
                   className={`hx-dot${active ? ' is-active' : ''}`}
-                  style={{ left: `${spot.cx}%`, top: `${spot.cy}%`, opacity }}
+                  style={{ left: `${spot.cx}%`, top: `${spot.cy}%` }}
                   aria-label={organ.name}
                   aria-pressed={active}
                   title={organ.name}
@@ -195,9 +205,9 @@ export default function BodyFigure({
           </div>
         </div>
       </div>
-      <p className="hx-sr-only">{`Interactive ${gender} anatomy, ${label} view. Drag sideways to turn smoothly.`}</p>
+      <p className="hx-sr-only">{`Interactive ${gender} anatomy, ${label} view. Drag sideways to turn.`}</p>
     </div>
   );
 }
 
-export { normalizeYaw, nearestFrame, viewLabel, frameKey, angularDistance };
+export { normalizeYaw, nearestFrame, viewLabel, frameKey, angularDistance, signedDelta };

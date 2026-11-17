@@ -107,22 +107,11 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   })();
 
   const turnBy = (delta) => {
+    // Snap to the next cardinal view. Interpolating mid-angles only caused
+    // half-frame swaps / ghost stacks with our 4 sprite sheets.
     if (yawAnimRef.current) cancelAnimationFrame(yawAnimRef.current);
-    const startYaw = yaw;
-    const travel = delta;
-    const duration = 420;
-    const t0 = performance.now();
-    const step = (now) => {
-      const t = Math.min(1, (now - t0) / duration);
-      const eased = 1 - (1 - t) ** 3;
-      setYaw(normalizeYaw(startYaw + travel * eased));
-      if (t < 1) {
-        yawAnimRef.current = requestAnimationFrame(step);
-      } else {
-        yawAnimRef.current = null;
-      }
-    };
-    yawAnimRef.current = requestAnimationFrame(step);
+    yawAnimRef.current = null;
+    setYaw((prev) => nearestFrame(normalizeYaw(nearestFrame(prev) + delta)));
   };
 
   const selectOrgan = (id) => {
@@ -278,7 +267,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               onYawChange={setYaw}
             />
             <p style={{ margin: '0.65rem 0 0', color: '#5b6b65', fontSize: '0.84rem' }}>
-              Drag smoothly left or right to turn the figure, or use the rotate controls. Tap a red dot to open that organ.
+              Drag left or right to turn the figure, or use the rotate controls. Tap a red dot to open that organ.
             </p>
           </section>
 
