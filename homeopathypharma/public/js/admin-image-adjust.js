@@ -132,13 +132,43 @@
     previewTimer = setTimeout(refreshFrontendPreview, 80);
   }
 
+  function readFormText(name) {
+    if (!name) {
+      return '';
+    }
+    const el = document.querySelector(`input[name="${name}"], textarea[name="${name}"], select[name="${name}"]`);
+    return (el?.value || '').trim();
+  }
+
+  function applyPreviewCopy(title, subtitle) {
+    const t = title || 'Disease title';
+    const s = subtitle || 'Category';
+    root.querySelectorAll('[data-hp-imgadj-preview-title]').forEach((el) => {
+      el.textContent = t;
+    });
+    root.querySelectorAll('[data-hp-imgadj-preview-subtitle]').forEach((el) => {
+      el.textContent = s;
+    });
+    document.querySelectorAll('[data-hp-site-card-title]').forEach((el) => {
+      el.textContent = t;
+    });
+    document.querySelectorAll('[data-hp-site-card-subtitle]').forEach((el) => {
+      el.textContent = s;
+    });
+  }
+
   function open(options) {
+    const titleFromForm = readFormText(options.titleInput || 'title');
+    const subtitleFromForm = readFormText(options.subtitleInput || 'category');
     active = {
       mediaId: options.mediaId || null,
       fileInput: options.fileInput || null,
       aspect: options.aspect ?? NaN,
       preview: options.preview || null,
-      title: options.title || '',
+      title: options.title || titleFromForm || '',
+      subtitle: options.subtitle || subtitleFromForm || '',
+      titleInput: options.titleInput || 'title',
+      subtitleInput: options.subtitleInput || 'category',
       onApplied: typeof options.onApplied === 'function' ? options.onApplied : null,
       mime: options.mime || 'image/jpeg',
       filename: options.filename || 'adjusted.jpg',
@@ -155,9 +185,7 @@
       aspectEl.value = 'NaN';
     }
 
-    root.querySelectorAll('[data-hp-imgadj-preview-title]').forEach((el) => {
-      el.textContent = active.title || 'Preview title';
-    });
+    applyPreviewCopy(active.title, active.subtitle);
 
     zoomEl.value = '1';
     destroyCropper();
@@ -357,8 +385,9 @@
 
   function contextFromSelect(select) {
     const name = select.getAttribute('name') || '';
-    const aspect = Number(select.dataset.aspect || select.closest('label')?.dataset.aspect || NaN);
-    let preview = select.dataset.preview || select.closest('label')?.dataset.preview || null;
+    const host = select.closest('label');
+    const aspect = Number(select.dataset.aspect || host?.dataset.aspect || NaN);
+    let preview = select.dataset.preview || host?.dataset.preview || null;
     if (!preview) {
       if (name.includes('photo_media') || name.includes('logo_media')) {
         preview = 'doctor';
@@ -376,7 +405,22 @@
         preview = 'doctor';
       }
     }
-    return { aspect, preview };
+    return {
+      aspect,
+      preview,
+      titleInput: select.dataset.previewTitleInput || host?.dataset.previewTitleInput || 'title',
+      subtitleInput: select.dataset.previewSubtitleInput || host?.dataset.previewSubtitleInput || 'category',
+    };
+  }
+
+  function updateSiteCardMedia(url) {
+    document.querySelectorAll('[data-hp-site-card-media]').forEach((el) => {
+      if (url) {
+        el.style.backgroundImage = `url('${bust(url)}')`;
+      } else {
+        el.style.backgroundImage = '';
+      }
+    });
   }
 
   function enhanceSelect(select) {
@@ -395,24 +439,32 @@
 
     async function refresh() {
       const id = select.value;
+      applyPreviewCopy(readFormText(ctx.titleInput), readFormText(ctx.subtitleInput));
       if (!id) {
         ensurePreview(host, null);
+        updateSiteCardMedia('');
         actions.innerHTML = '';
         return;
       }
       try {
         const media = await fetchMedia(id);
         const preview = ensurePreview(host, media.url);
+        updateSiteCardMedia(media.url);
         addAdjustButton(preview.querySelector('.hp-img-preview__actions'), () => {
           open({
             imageUrl: media.url,
             mediaId: media.id,
             aspect: ctx.aspect,
-            preview: ctx.preview,
+            preview: ctx.preview || 'disease',
+            titleInput: ctx.titleInput,
+            subtitleInput: ctx.subtitleInput,
+            title: readFormText(ctx.titleInput),
+            subtitle: readFormText(ctx.subtitleInput),
             mime: media.mime_type || 'image/jpeg',
             filename: media.original_name || `media-${media.id}.jpg`,
             onApplied: (updated) => {
               ensurePreview(host, updated.url);
+              updateSiteCardMedia(updated.url);
             },
           });
         });
@@ -423,6 +475,54 @@
 
     select.addEventListener('change', refresh);
     refresh();
+  }
+
+  function enhanceSiteCards() {
+    document.querySelectorAll('[data-hp-site-card]').forEach((card) => {
+      if (card.dataset.hpImgEnhanced === '1') {
+        return;
+      }
+      card.dataset.hpImgEnhanced = '1';
+      const titleInput = 'title';
+      const subtitleInput = 'category';
+      const syncCopy = () => applyPreviewCopy(readFormText(titleInput), readFormText(subtitleInput));
+      document.querySelector(`input[name="${titleInput}"]`)?.addEventListener('input', syncCopy);
+      document.querySelector(`input[name="${subtitleInput}"]`)?.addEventListener('input', syncCopy);
+      syncCopy();
+
+      card.querySelector('[data-hp-site-card-adjust]')?.addEventListener('click', async () => {
+        const select = document.querySelector('select[name="media_asset_id"]');
+        const id = select?.value;
+        if (!id) {
+          alert('Select an image from Media Library first, then adjust it in this box.');
+          return;
+        }
+        try {
+          const media = await fetchMedia(id);
+          open({
+            imageUrl: media.url,
+            mediaId: media.id,
+            aspect: 1376 / 1146,
+            preview: 'disease',
+            titleInput,
+            subtitleInput,
+            title: readFormText(titleInput),
+            subtitle: readFormText(subtitleInput),
+            mime: media.mime_type || 'image/jpeg',
+            filename: media.original_name || `media-${media.id}.jpg`,
+            onApplied: (updated) => {
+              updateSiteCardMedia(updated.url);
+              const host = select.closest('label');
+              if (host) {
+                ensurePreview(host, updated.url);
+              }
+            },
+          });
+        } catch (e) {
+          alert('Could not open image adjuster.');
+        }
+      });
+    });
   }
 
   function enhanceFileInput(input) {
@@ -584,4 +684,5 @@
   document.querySelectorAll('input[type="file"][accept*="image"]').forEach(enhanceFileInput);
   enhanceMediaCards();
   enhanceProductChecks();
+  enhanceSiteCards();
 })();

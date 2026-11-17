@@ -28,13 +28,14 @@
                     </select>
                 </div>
                 <div class="hp-imgadj__frontend-frame" data-hp-imgadj-preview-frame data-preview="disease">
-                    <div class="hp-prev hp-prev--disease" data-preview-panel="disease">
-                        <div class="hp-prev__media" data-hp-imgadj-preview-media></div>
-                        <div class="hp-prev__body">
+                    {{-- Exact A–Z disease website card (same structure/look as storefront) --}}
+                    <a class="hp-disease-card hp-disease-card--preview" data-preview-panel="disease" href="#" tabindex="-1" onclick="return false;">
+                        <span class="hp-disease-card__media" data-hp-imgadj-preview-media></span>
+                        <span class="hp-disease-card__body">
                             <strong data-hp-imgadj-preview-title>Disease title</strong>
-                            <small>Category</small>
-                        </div>
-                    </div>
+                            <small data-hp-imgadj-preview-subtitle>Category</small>
+                        </span>
+                    </a>
                     <div class="hp-prev hp-prev--disease-detail" data-preview-panel="disease-detail" hidden>
                         <div class="hp-prev__media hp-prev__media--wide" data-hp-imgadj-preview-media></div>
                         <p class="hp-prev__caption">Condition page image</p>
