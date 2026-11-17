@@ -33,3 +33,4 @@ Thumbs.db
 
 # Large CCRH PDF (re-download via knowledge/ccrh/README.md); keep text extract + indexes in git
 /knowledge/ccrh/*.pdf
+uploads/
