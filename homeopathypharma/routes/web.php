@@ -222,10 +222,37 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('homepage/{homepage}/edit', [AdminHomepageSectionController::class, 'edit'])->name('homepage.edit');
         Route::put('homepage/{homepage}', [AdminHomepageSectionController::class, 'update'])->name('homepage.update');
         Route::get('health-explorer', [AdminHealthExplorerController::class, 'index'])->name('health-explorer.index');
+        Route::put('health-explorer/disclaimer', [AdminHealthExplorerController::class, 'updateDisclaimer'])->name('health-explorer.disclaimer.update');
+
+        Route::get('health-explorer/systems/create', [AdminHealthExplorerController::class, 'createSystem'])->name('health-explorer.systems.create');
+        Route::post('health-explorer/systems', [AdminHealthExplorerController::class, 'storeSystem'])->name('health-explorer.systems.store');
+        Route::get('health-explorer/systems/{id}/edit', [AdminHealthExplorerController::class, 'editSystem'])->name('health-explorer.systems.edit');
+        Route::put('health-explorer/systems/{id}', [AdminHealthExplorerController::class, 'updateSystem'])->name('health-explorer.systems.update');
+        Route::delete('health-explorer/systems/{id}', [AdminHealthExplorerController::class, 'destroySystem'])->name('health-explorer.systems.destroy');
+
+        Route::get('health-explorer/organs/create', [AdminHealthExplorerController::class, 'createOrgan'])->name('health-explorer.organs.create');
+        Route::post('health-explorer/organs', [AdminHealthExplorerController::class, 'storeOrgan'])->name('health-explorer.organs.store');
         Route::get('health-explorer/organs/{slug}/edit', [AdminHealthExplorerController::class, 'editOrgan'])->name('health-explorer.organs.edit');
         Route::put('health-explorer/organs/{slug}', [AdminHealthExplorerController::class, 'updateOrgan'])->name('health-explorer.organs.update');
+        Route::delete('health-explorer/organs/{slug}', [AdminHealthExplorerController::class, 'destroyOrgan'])->name('health-explorer.organs.destroy');
+
+        Route::get('health-explorer/diseases/create', [AdminHealthExplorerController::class, 'createDisease'])->name('health-explorer.diseases.create');
+        Route::post('health-explorer/diseases', [AdminHealthExplorerController::class, 'storeDisease'])->name('health-explorer.diseases.store');
+        Route::get('health-explorer/diseases/{slug}/edit', [AdminHealthExplorerController::class, 'editDisease'])->name('health-explorer.diseases.edit');
+        Route::put('health-explorer/diseases/{slug}', [AdminHealthExplorerController::class, 'updateDisease'])->name('health-explorer.diseases.update');
+        Route::delete('health-explorer/diseases/{slug}', [AdminHealthExplorerController::class, 'destroyDisease'])->name('health-explorer.diseases.destroy');
+
+        Route::get('health-explorer/mental/create', [AdminHealthExplorerController::class, 'createMental'])->name('health-explorer.mental.create');
+        Route::post('health-explorer/mental', [AdminHealthExplorerController::class, 'storeMental'])->name('health-explorer.mental.store');
+        Route::get('health-explorer/mental/{slug}/edit', [AdminHealthExplorerController::class, 'editMental'])->name('health-explorer.mental.edit');
+        Route::put('health-explorer/mental/{slug}', [AdminHealthExplorerController::class, 'updateMental'])->name('health-explorer.mental.update');
+        Route::delete('health-explorer/mental/{slug}', [AdminHealthExplorerController::class, 'destroyMental'])->name('health-explorer.mental.destroy');
+
+        Route::get('health-explorer/products/create', [AdminHealthExplorerController::class, 'createProduct'])->name('health-explorer.products.create');
+        Route::post('health-explorer/products', [AdminHealthExplorerController::class, 'storeProduct'])->name('health-explorer.products.store');
         Route::get('health-explorer/products/{slug}/edit', [AdminHealthExplorerController::class, 'editProduct'])->name('health-explorer.products.edit');
         Route::put('health-explorer/products/{slug}', [AdminHealthExplorerController::class, 'updateProduct'])->name('health-explorer.products.update');
+        Route::delete('health-explorer/products/{slug}', [AdminHealthExplorerController::class, 'destroyProduct'])->name('health-explorer.products.destroy');
         Route::get('settings', [AdminSiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('settings', [AdminSiteSettingController::class, 'update'])->name('settings.update');
         Route::get('cache', [AdminCacheController::class, 'index'])->name('cache.index');

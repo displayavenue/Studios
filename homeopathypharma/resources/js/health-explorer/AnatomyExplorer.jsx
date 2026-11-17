@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useTransition } from 'react';
+import { useEffect, useMemo, useRef, useState, useTransition } from 'react';
 import BodyFigure, { nearestFrame, normalizeYaw, viewLabel } from './components/BodyFigure';
 import DetailPanel from './components/DetailPanel';
 
@@ -23,6 +23,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const [selectedMentalId, setSelectedMentalId] = useState(null);
   const [zoom, setZoom] = useState(1);
   const [, startTransition] = useTransition();
+  const yawAnimRef = useRef(null);
   const view = viewLabel(yaw);
 
   useEffect(() => {
@@ -106,7 +107,22 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   })();
 
   const turnBy = (delta) => {
-    setYaw((current) => nearestFrame(normalizeYaw(current + delta)));
+    if (yawAnimRef.current) cancelAnimationFrame(yawAnimRef.current);
+    const startYaw = yaw;
+    const travel = delta;
+    const duration = 420;
+    const t0 = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / duration);
+      const eased = 1 - (1 - t) ** 3;
+      setYaw(normalizeYaw(startYaw + travel * eased));
+      if (t < 1) {
+        yawAnimRef.current = requestAnimationFrame(step);
+      } else {
+        yawAnimRef.current = null;
+      }
+    };
+    yawAnimRef.current = requestAnimationFrame(step);
   };
 
   const selectOrgan = (id) => {
@@ -262,7 +278,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               onYawChange={setYaw}
             />
             <p style={{ margin: '0.65rem 0 0', color: '#5b6b65', fontSize: '0.84rem' }}>
-              Drag the figure left/right to turn it, or use the rotate controls. Tap a red dot to open that organ.
+              Drag smoothly left or right to turn the figure, or use the rotate controls. Tap a red dot to open that organ.
             </p>
           </section>
 
