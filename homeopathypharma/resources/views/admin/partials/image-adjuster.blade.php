@@ -5,7 +5,8 @@
         <header class="hp-imgadj__header">
             <div>
                 <h3 id="hp-imgadj-title">Adjust image</h3>
-                <p class="admin-muted" style="margin:0.2rem 0 0;">Crop, zoom, pan, and rotate. The right panel shows how it will look on the website after you save.</p>
+                <p class="admin-muted" style="margin:0.2rem 0 0;">Zoom and drag the image inside the website box. The right panel shows how it will look after you save.</p>
+                <p class="admin-muted" style="margin:0.35rem 0 0;" data-hp-imgadj-mode-hint>Website box size is fixed. Drag the image to reposition, use Zoom to scale — sides will not shrink together.</p>
             </div>
             <button type="button" class="btn btn-secondary" data-hp-imgadj-close>Close</button>
         </header>
