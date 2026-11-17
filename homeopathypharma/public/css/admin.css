@@ -154,3 +154,272 @@ a:hover { text-decoration: underline; }
   .admin-shell { grid-template-columns: 1fr; }
   .admin-sidebar { position: sticky; top: 0; z-index: 5; }
 }
+
+/* Image adjust (crop / zoom / rotate) */
+body.hp-imgadj-open { overflow: hidden; }
+.hp-imgadj {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+.hp-imgadj[hidden] { display: none !important; }
+.hp-imgadj__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 28, 22, 0.55);
+}
+.hp-imgadj__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  max-height: min(94vh, 960px);
+  overflow: auto;
+  background: #fff;
+  border-radius: 0.85rem;
+  border: 1px solid var(--ad-border);
+  box-shadow: 0 18px 48px rgba(10, 40, 30, 0.28);
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem 1.1rem;
+}
+.hp-imgadj__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.hp-imgadj__header h3 { margin: 0; color: var(--ad-bg); font-size: 1.15rem; }
+.hp-imgadj__workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.9fr);
+  gap: 0.85rem;
+  align-items: stretch;
+}
+.hp-imgadj__stage {
+  width: 100%;
+  min-height: 280px;
+  max-height: 52vh;
+  background: #1a2a24;
+  border-radius: 0.55rem;
+  overflow: hidden;
+}
+.hp-imgadj__stage img { display: block; max-width: 100%; }
+.hp-imgadj__frontend {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.65rem;
+  background: #f4f7f4;
+  min-height: 280px;
+}
+.hp-imgadj__frontend-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.hp-imgadj__frontend-head strong { color: var(--ad-bg); font-size: 0.92rem; }
+.hp-imgadj__frontend-head select {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.4rem;
+  background: #fff;
+  max-width: 100%;
+}
+.hp-imgadj__frontend-frame {
+  display: grid;
+  place-items: center;
+  padding: 0.35rem;
+}
+.hp-imgadj__frontend-note { margin: 0; font-size: 0.78rem; }
+/* Exact match to storefront A–Z disease card (same ~desktop grid column width) */
+.hp-disease-card,
+.hp-disease-card--preview {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #e3e8e1;
+  border-radius: 0.65rem;
+  overflow: hidden;
+  /* Match live /conditions 8-column card (~157px on desktop) */
+  width: 9.85rem;
+  max-width: 100%;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+}
+.hp-disease-card__media {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  aspect-ratio: 1376 / 1146;
+  background: #dfe8e4;
+  overflow: hidden;
+}
+.hp-disease-card__media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.hp-disease-card__body {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.7rem 0.75rem 0.85rem;
+  min-width: 0;
+}
+.hp-disease-card__body strong {
+  font-size: 0.95rem;
+  line-height: 1.25;
+  color: #1e2b26;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.hp-disease-card__body small {
+  color: #5f6f68;
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+.hp-admin-site-card {
+  margin: 0.35rem 0 1rem;
+  padding: 0.85rem;
+  border: 1px dashed #c9d4cc;
+  border-radius: 0.75rem;
+  background: #f7faf7;
+  max-width: 14rem;
+}
+.hp-admin-site-card__label {
+  margin: 0 0 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ad-bg);
+}
+.hp-imgadj__frontend-frame .hp-disease-card {
+  width: 9.85rem;
+  box-shadow: 0 8px 20px rgba(10, 40, 30, 0.08);
+}
+.hp-prev {
+  width: min(100%, 17rem);
+  background: #fff;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.65rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(10, 40, 30, 0.08);
+}
+.hp-prev__media {
+  width: 100%;
+  aspect-ratio: 1376 / 1146;
+  background: #dfe8e4 center / cover no-repeat;
+}
+.hp-prev__media--square { aspect-ratio: 1; }
+.hp-prev__media--wide { aspect-ratio: 1376 / 1146; }
+.hp-prev__media--hero { aspect-ratio: 2000 / 751; }
+.hp-prev__media--gallery { aspect-ratio: 16 / 9; }
+.hp-prev__body {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.65rem 0.75rem 0.8rem;
+}
+.hp-prev__body strong { font-size: 0.92rem; line-height: 1.25; color: #1e2b26; }
+.hp-prev__body small { color: #5f6f68; font-size: 0.78rem; }
+.hp-prev__caption {
+  margin: 0;
+  padding: 0.45rem 0.65rem 0.6rem;
+  font-size: 0.78rem;
+  color: #5f6f68;
+}
+.hp-prev--doctor .hp-prev__media,
+.hp-prev--product .hp-prev__media {
+  aspect-ratio: 1;
+}
+.hp-prev--hero,
+.hp-prev--gallery,
+.hp-prev--disease-detail {
+  width: min(100%, 100%);
+}
+@media (max-width: 900px) {
+  .hp-imgadj__workspace { grid-template-columns: 1fr; }
+  .hp-imgadj__frontend { min-height: auto; }
+}
+.hp-imgadj__controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.75rem;
+  align-items: end;
+}
+.hp-imgadj__control {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+.hp-imgadj__control select,
+.hp-imgadj__control input[type="range"] {
+  width: 100%;
+}
+.hp-imgadj__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+.hp-imgadj__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--ad-border);
+  padding-top: 0.85rem;
+}
+.hp-img-preview {
+  margin-top: 0.55rem;
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+}
+.hp-img-preview[hidden] { display: none !important; }
+.hp-img-preview img {
+  max-width: min(100%, 220px);
+  max-height: 160px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--ad-border);
+  object-fit: cover;
+  background: #eef5ec;
+}
+.hp-img-preview__actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.hp-img-preview-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: 0.35rem;
+}
+.hp-img-thumb {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  border: 1px solid var(--ad-border);
+  background: #eef5ec;
+}
+.media-card .hp-media-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.35rem 0;
+}

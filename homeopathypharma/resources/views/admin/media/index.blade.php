@@ -5,13 +5,12 @@
     <div>
         <h2>Media Library</h2>
         <p class="admin-muted" style="margin:0.35rem 0 0;max-width:42rem;">
-            Upload here, then attach the image on the product / doctor / team / homepage section form and save.
-            Homepage hero &amp; consult images: Admin → Homepage sections → edit Hero or Consult → choose media or upload.
+            Upload images here, then crop / zoom / rotate before saving. Attach the image on product, doctor, disease, homepage, and other forms.
         </p>
     </div>
 </div>
 <div class="admin-card" style="margin-bottom:1rem;">
-    <form method="post" action="{{ route('admin.media.store') }}" enctype="multipart/form-data" class="admin-form">
+    <form method="post" action="{{ route('admin.media.store') }}" enctype="multipart/form-data" class="admin-form" data-hp-media-upload>
         @csrf
         <label>Upload image (JPEG/PNG/WebP/GIF, max 5 MB)
             <input type="file" name="file" accept="image/jpeg,image/png,image/webp,image/gif" required>
@@ -19,6 +18,7 @@
         <label>Alt text
             <input type="text" name="alt_text" maxlength="255">
         </label>
+        <p class="admin-muted" style="margin:0;">After choosing a file, click <strong>Adjust image</strong> if you want to crop / zoom / rotate. Then click Upload.</p>
         <button class="btn btn-primary" type="submit">Upload</button>
     </form>
 </div>
@@ -28,9 +28,20 @@
 </form>
 <div class="media-grid">
     @forelse ($media as $item)
-        <div class="admin-card media-card">
+        <div
+            class="admin-card media-card"
+            data-hp-media-card
+            data-media-id="{{ $item->id }}"
+            data-media-url="{{ $item->publicUrl() }}"
+            data-media-mime="{{ $item->mime_type }}"
+            data-media-name="{{ $item->original_name }}"
+        >
             <img src="{{ $item->publicUrl() }}" alt="{{ $item->alt_text ?: $item->original_name }}">
             <p style="font-size:0.75rem;margin:0.4rem 0;word-break:break-all;">#{{ $item->id }} · {{ $item->original_name }}</p>
+            @if ($item->width && $item->height)
+                <p class="admin-muted" style="font-size:0.72rem;margin:0 0 0.35rem;">{{ $item->width }} × {{ $item->height }}</p>
+            @endif
+            <div class="hp-media-card-actions" data-hp-media-card-actions></div>
             <form method="post" action="{{ route('admin.media.update', $item) }}" class="admin-form" style="gap:0.4rem;">
                 @csrf
                 @method('PUT')

@@ -40,7 +40,7 @@
                 @php($selected = ($media ?? collect())->firstWhere('id', $selectedId))
                 <label>
                     {{ $field['label'] }}
-                    <select name="payload[{{ $key }}]">
+                    <select name="payload[{{ $key }}]" data-aspect="{{ ($section->key ?? '') === 'hero' ? (2000/751) : (($section->key ?? '') === 'consult' ? (2420/1336) : (16/9)) }}">
                         <option value="">— None —</option>
                         @foreach (($media ?? []) as $item)
                             <option value="{{ $item->id }}" @selected($selectedId === (int) $item->id)>

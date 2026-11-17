@@ -31,19 +31,28 @@ class MediaAsset extends Model
      *
      * Hostinger often cannot serve storage/ symlinks (Apache treats them as
      * missing and Laravel returns 404). Prefer real files under /uploads/.
+     * Appends ?v=updated_at so frontend caches refresh after crop/adjust.
      */
-    public function publicUrl(): string
+    public function publicUrl(bool $cacheBust = true): string
     {
         if ($this->path && is_file(public_path('uploads/'.$this->path))) {
-            return asset('uploads/'.$this->path);
+            $url = asset('uploads/'.$this->path);
+        } else {
+            // Sibling document root used on Hostinger (laravel/ + public_html/).
+            $publicHtml = base_path('../public_html/uploads/'.$this->path);
+            if ($this->path && is_file($publicHtml)) {
+                $url = url('uploads/'.$this->path);
+            } else {
+                $url = asset('storage/'.$this->path);
+            }
         }
 
-        // Sibling document root used on Hostinger (laravel/ + public_html/).
-        $publicHtml = base_path('../public_html/uploads/'.$this->path);
-        if ($this->path && is_file($publicHtml)) {
-            return url('uploads/'.$this->path);
+        if (! $cacheBust) {
+            return $url;
         }
 
-        return asset('storage/'.$this->path);
+        $version = $this->updated_at?->getTimestamp() ?: $this->id;
+
+        return $url.(str_contains($url, '?') ? '&' : '?').'v='.$version;
     }
 }

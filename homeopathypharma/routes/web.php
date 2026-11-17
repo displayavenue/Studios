@@ -179,7 +179,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('products', AdminProductController::class)->except(['show']);
         Route::resource('categories', AdminCategoryController::class)->except(['show']);
         Route::resource('brands', AdminBrandController::class)->except(['show']);
-        Route::resource('media', AdminMediaController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('media', AdminMediaController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+        Route::post('media/{medium}/adjust', [AdminMediaController::class, 'adjust'])->name('media.adjust');
         Route::resource('team', AdminTeamMemberController::class)->except(['show']);
         Route::resource('doctors', AdminDoctorController::class)->except(['show']);
         Route::post('doctors/{doctor}/credentials', [AdminDoctorController::class, 'storeCredential'])->name('doctors.credentials.store');

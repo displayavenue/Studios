@@ -17,15 +17,48 @@
 </datalist>
 </label>
 
-<label>Image (Media Library)
-<select name="media_asset_id">
+<label
+    data-aspect="{{ 1376/1146 }}"
+    data-preview="disease"
+    data-preview-title-input="title"
+    data-preview-subtitle-input="category"
+>
+Image (Media Library)
+<select
+    name="media_asset_id"
+    data-aspect="{{ 1376/1146 }}"
+    data-preview="disease"
+    data-preview-title-input="title"
+    data-preview-subtitle-input="category"
+>
 <option value="">— use fallback URL below —</option>
 @foreach ($media as $item)
 <option value="{{ $item->id }}" @selected((string) old('media_asset_id', $condition->media_asset_id) === (string) $item->id)>#{{ $item->id }} {{ $item->original_name }}</option>
 @endforeach
 </select>
-<span class="admin-muted" style="display:block;margin-top:0.35rem;font-size:0.85rem;">Upload in <a href="{{ route('admin.media.index') }}">Media Library</a> first, then select here.</span>
+<span class="admin-muted" style="display:block;margin-top:0.35rem;font-size:0.85rem;">Upload in <a href="{{ route('admin.media.index') }}">Media Library</a>, then Adjust image to crop while seeing the same website card below.</span>
 </label>
+
+<div class="hp-admin-site-card" data-hp-site-card data-preview="disease">
+    <p class="hp-admin-site-card__label">How it looks on the website (A–Z Diseases card)</p>
+    <a class="hp-disease-card hp-disease-card--preview" href="#" tabindex="-1" onclick="return false;">
+        <span class="hp-disease-card__media" data-hp-site-card-media>
+            @php($previewSrc = ($condition->media_asset_id && $condition->relationLoaded('media') && $condition->media) ? $condition->media->publicUrl() : ($condition->image_url ?: ''))
+            <img
+                data-hp-site-card-img
+                src="{{ $previewSrc !== '' ? $previewSrc : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==' }}"
+                alt=""
+                width="1376"
+                height="1146"
+            >
+        </span>
+        <span class="hp-disease-card__body">
+            <strong data-hp-site-card-title>{{ old('title', $condition->title) ?: 'Disease title' }}</strong>
+            <small data-hp-site-card-subtitle>{{ old('category', $condition->category) ?: 'Category' }}</small>
+        </span>
+    </a>
+    <button type="button" class="btn btn-secondary" data-hp-site-card-adjust style="margin-top:0.55rem;">Adjust image in this box</button>
+</div>
 <label>Fallback image URL <input name="image_url" value="{{ old('image_url', $condition->image_url) }}"></label>
 <label>Image alt text <input name="image_alt" value="{{ old('image_alt', $condition->image_alt) }}"></label>
 

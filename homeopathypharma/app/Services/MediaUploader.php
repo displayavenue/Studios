@@ -107,6 +107,72 @@ class MediaUploader
         }
     }
 
+    /**
+     * Replace an existing media asset's file contents (used after crop/zoom adjust).
+     */
+    public function replace(MediaAsset $asset, UploadedFile $file): MediaAsset
+    {
+        if ($file->getSize() > $this->maxBytes) {
+            throw ValidationException::withMessages([
+                'file' => 'Image must be 5 MB or smaller.',
+            ]);
+        }
+
+        $mime = $file->getMimeType() ?: '';
+        if (! in_array($mime, $this->allowedMimes, true)) {
+            throw ValidationException::withMessages([
+                'file' => 'Only JPEG, PNG, WebP, and GIF images are allowed.',
+            ]);
+        }
+
+        $extension = strtolower($file->getClientOriginalExtension() ?: 'bin');
+        $safeExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        if (! in_array($extension, $safeExtensions, true)) {
+            $extension = match ($mime) {
+                'image/jpeg' => 'jpg',
+                'image/png' => 'png',
+                'image/webp' => 'webp',
+                'image/gif' => 'gif',
+                default => 'bin',
+            };
+        }
+
+        $oldPath = $asset->path;
+        $filename = Str::uuid()->toString().'.'.$extension;
+        $path = $file->storeAs('media/'.now()->format('Y/m'), $filename, 'public');
+
+        $width = null;
+        $height = null;
+        $realPath = $file->getRealPath();
+        if ($realPath) {
+            $size = @getimagesize($realPath);
+            if (is_array($size)) {
+                $width = $size[0] ?? null;
+                $height = $size[1] ?? null;
+            }
+        }
+
+        $this->publishToWebRoots($path);
+
+        $asset->forceFill([
+            'path' => $path,
+            'filename' => $filename,
+            'original_name' => $file->getClientOriginalName() ?: $asset->original_name,
+            'mime_type' => $mime,
+            'size_bytes' => (int) $file->getSize(),
+            'width' => $width,
+            'height' => $height,
+        ])->save();
+
+        if ($oldPath && $oldPath !== $path) {
+            Storage::disk($asset->disk ?: 'public')->delete($oldPath);
+            @unlink(public_path('uploads/'.$oldPath));
+            @unlink(base_path('../public_html/uploads/'.$oldPath));
+        }
+
+        return $asset->fresh();
+    }
+
     public function publishAll(): int
     {
         $count = 0;
