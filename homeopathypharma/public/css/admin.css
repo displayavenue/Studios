@@ -174,8 +174,8 @@ body.hp-imgadj-open { overflow: hidden; }
 .hp-imgadj__dialog {
   position: relative;
   z-index: 1;
-  width: min(960px, 100%);
-  max-height: min(92vh, 900px);
+  width: min(1120px, 100%);
+  max-height: min(94vh, 960px);
   overflow: auto;
   background: #fff;
   border-radius: 0.85rem;
@@ -192,6 +192,12 @@ body.hp-imgadj-open { overflow: hidden; }
   align-items: flex-start;
 }
 .hp-imgadj__header h3 { margin: 0; color: var(--ad-bg); font-size: 1.15rem; }
+.hp-imgadj__workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.9fr);
+  gap: 0.85rem;
+  align-items: stretch;
+}
 .hp-imgadj__stage {
   width: 100%;
   min-height: 280px;
@@ -201,6 +207,82 @@ body.hp-imgadj-open { overflow: hidden; }
   overflow: hidden;
 }
 .hp-imgadj__stage img { display: block; max-width: 100%; }
+.hp-imgadj__frontend {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.65rem;
+  background: #f4f7f4;
+  min-height: 280px;
+}
+.hp-imgadj__frontend-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.hp-imgadj__frontend-head strong { color: var(--ad-bg); font-size: 0.92rem; }
+.hp-imgadj__frontend-head select {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.4rem;
+  background: #fff;
+  max-width: 100%;
+}
+.hp-imgadj__frontend-frame {
+  display: grid;
+  place-items: center;
+  padding: 0.35rem;
+}
+.hp-imgadj__frontend-note { margin: 0; font-size: 0.78rem; }
+.hp-prev {
+  width: min(100%, 17rem);
+  background: #fff;
+  border: 1px solid var(--ad-border);
+  border-radius: 0.65rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(10, 40, 30, 0.08);
+}
+.hp-prev__media {
+  width: 100%;
+  aspect-ratio: 1376 / 1146;
+  background: #dfe8e4 center / cover no-repeat;
+}
+.hp-prev__media--square { aspect-ratio: 1; }
+.hp-prev__media--wide { aspect-ratio: 1376 / 1146; }
+.hp-prev__media--hero { aspect-ratio: 2000 / 751; }
+.hp-prev__media--gallery { aspect-ratio: 16 / 9; }
+.hp-prev__body {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.65rem 0.75rem 0.8rem;
+}
+.hp-prev__body strong { font-size: 0.92rem; line-height: 1.25; color: #1e2b26; }
+.hp-prev__body small { color: #5f6f68; font-size: 0.78rem; }
+.hp-prev__caption {
+  margin: 0;
+  padding: 0.45rem 0.65rem 0.6rem;
+  font-size: 0.78rem;
+  color: #5f6f68;
+}
+.hp-prev--doctor .hp-prev__media,
+.hp-prev--product .hp-prev__media {
+  aspect-ratio: 1;
+}
+.hp-prev--hero,
+.hp-prev--gallery,
+.hp-prev--disease-detail {
+  width: min(100%, 100%);
+}
+@media (max-width: 900px) {
+  .hp-imgadj__workspace { grid-template-columns: 1fr; }
+  .hp-imgadj__frontend { min-height: auto; }
+}
 .hp-imgadj__controls {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));

@@ -17,8 +17,8 @@
 </datalist>
 </label>
 
-<label data-aspect="{{ 1376/1146 }}">Image (Media Library)
-<select name="media_asset_id" data-aspect="{{ 1376/1146 }}">
+<label data-aspect="{{ 1376/1146 }}" data-preview="disease">Image (Media Library)
+<select name="media_asset_id" data-aspect="{{ 1376/1146 }}" data-preview="disease">
 <option value="">— use fallback URL below —</option>
 @foreach ($media as $item)
 <option value="{{ $item->id }}" @selected((string) old('media_asset_id', $condition->media_asset_id) === (string) $item->id)>#{{ $item->id }} {{ $item->original_name }}</option>

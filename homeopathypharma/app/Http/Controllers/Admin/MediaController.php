@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\MediaAsset;
+use App\Models\SiteSetting;
 use App\Services\MediaUploader;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -65,10 +66,16 @@ class MediaController extends Controller
 
         $asset = $uploader->replace($medium, $data['file']);
 
+        // Bust storefront CSS/asset caches so visitors see the new crop promptly.
+        SiteSetting::query()->updateOrCreate(
+            ['key' => 'frontend_cache_token'],
+            ['value' => (string) time()]
+        );
+
         return response()->json([
             'ok' => true,
             'media' => $this->mediaPayload($asset),
-            'message' => 'Image adjusted.',
+            'message' => 'Image adjusted. Frontend will show the new crop.',
         ]);
     }
 
@@ -100,7 +107,7 @@ class MediaController extends Controller
     {
         return [
             'id' => (int) $asset->id,
-            'url' => $asset->publicUrl().'?v='.$asset->updated_at?->timestamp,
+            'url' => $asset->publicUrl(),
             'original_name' => $asset->original_name,
             'alt_text' => $asset->alt_text,
             'width' => $asset->width,

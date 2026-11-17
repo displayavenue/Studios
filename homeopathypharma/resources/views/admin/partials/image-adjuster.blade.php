@@ -1,17 +1,69 @@
-{{-- Shared image crop / zoom / rotate modal for all admin image fields --}}
+{{-- Shared image crop / zoom / rotate modal with live frontend preview --}}
 <div class="hp-imgadj" id="hp-imgadj" hidden data-hp-imgadj>
     <div class="hp-imgadj__backdrop" data-hp-imgadj-close></div>
     <div class="hp-imgadj__dialog" role="dialog" aria-modal="true" aria-labelledby="hp-imgadj-title">
         <header class="hp-imgadj__header">
             <div>
                 <h3 id="hp-imgadj-title">Adjust image</h3>
-                <p class="admin-muted" style="margin:0.2rem 0 0;">Crop, zoom, pan, and rotate before saving.</p>
+                <p class="admin-muted" style="margin:0.2rem 0 0;">Crop, zoom, pan, and rotate. The right panel shows how it will look on the website after you save.</p>
             </div>
             <button type="button" class="btn btn-secondary" data-hp-imgadj-close>Close</button>
         </header>
 
-        <div class="hp-imgadj__stage">
-            <img data-hp-imgadj-image alt="Image being adjusted">
+        <div class="hp-imgadj__workspace">
+            <div class="hp-imgadj__stage">
+                <img data-hp-imgadj-image alt="Image being adjusted">
+            </div>
+
+            <aside class="hp-imgadj__frontend" aria-label="Frontend preview">
+                <div class="hp-imgadj__frontend-head">
+                    <strong>Frontend preview</strong>
+                    <select data-hp-imgadj-preview-type title="Preview as">
+                        <option value="disease">A–Z disease card</option>
+                        <option value="disease-detail">Disease detail</option>
+                        <option value="doctor">Doctor / team photo</option>
+                        <option value="product">Product card</option>
+                        <option value="hero">Homepage hero</option>
+                        <option value="gallery">Gallery / landscape</option>
+                    </select>
+                </div>
+                <div class="hp-imgadj__frontend-frame" data-hp-imgadj-preview-frame data-preview="disease">
+                    <div class="hp-prev hp-prev--disease" data-preview-panel="disease">
+                        <div class="hp-prev__media" data-hp-imgadj-preview-media></div>
+                        <div class="hp-prev__body">
+                            <strong data-hp-imgadj-preview-title>Disease title</strong>
+                            <small>Category</small>
+                        </div>
+                    </div>
+                    <div class="hp-prev hp-prev--disease-detail" data-preview-panel="disease-detail" hidden>
+                        <div class="hp-prev__media hp-prev__media--wide" data-hp-imgadj-preview-media></div>
+                        <p class="hp-prev__caption">Condition page image</p>
+                    </div>
+                    <div class="hp-prev hp-prev--doctor" data-preview-panel="doctor" hidden>
+                        <div class="hp-prev__media hp-prev__media--square" data-hp-imgadj-preview-media></div>
+                        <div class="hp-prev__body">
+                            <strong>Doctor name</strong>
+                            <small>Consulting physician</small>
+                        </div>
+                    </div>
+                    <div class="hp-prev hp-prev--product" data-preview-panel="product" hidden>
+                        <div class="hp-prev__media hp-prev__media--square" data-hp-imgadj-preview-media></div>
+                        <div class="hp-prev__body">
+                            <strong>Product name</strong>
+                            <small>Brand</small>
+                        </div>
+                    </div>
+                    <div class="hp-prev hp-prev--hero" data-preview-panel="hero" hidden>
+                        <div class="hp-prev__media hp-prev__media--hero" data-hp-imgadj-preview-media></div>
+                        <p class="hp-prev__caption">Homepage hero strip</p>
+                    </div>
+                    <div class="hp-prev hp-prev--gallery" data-preview-panel="gallery" hidden>
+                        <div class="hp-prev__media hp-prev__media--gallery" data-hp-imgadj-preview-media></div>
+                        <p class="hp-prev__caption">Gallery / blog cover</p>
+                    </div>
+                </div>
+                <p class="admin-muted hp-imgadj__frontend-note">Live preview updates as you crop. Saving replaces the file used on the public site.</p>
+            </aside>
         </div>
 
         <div class="hp-imgadj__controls">
@@ -24,6 +76,7 @@
                     <option value="0.8">Portrait 4∶5</option>
                     <option value="{{ 16/9 }}">Landscape 16∶9</option>
                     <option value="{{ 21/9 }}">Wide 21∶9</option>
+                    <option value="{{ 2000/751 }}">Hero ~2000∶751</option>
                 </select>
             </label>
             <label class="hp-imgadj__control">
@@ -39,7 +92,7 @@
 
         <footer class="hp-imgadj__footer">
             <button type="button" class="btn btn-secondary" data-hp-imgadj-close>Cancel</button>
-            <button type="button" class="btn btn-primary" data-hp-imgadj-apply>Apply &amp; save</button>
+            <button type="button" class="btn btn-primary" data-hp-imgadj-apply>Apply &amp; save to website</button>
         </footer>
     </div>
 </div>

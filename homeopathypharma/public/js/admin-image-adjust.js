@@ -8,12 +8,25 @@
   const aspectEl = root.querySelector('[data-hp-imgadj-aspect]');
   const zoomEl = root.querySelector('[data-hp-imgadj-zoom]');
   const applyBtn = root.querySelector('[data-hp-imgadj-apply]');
+  const previewTypeEl = root.querySelector('[data-hp-imgadj-preview-type]');
+  const previewFrame = root.querySelector('[data-hp-imgadj-preview-frame]');
   const csrf = document.querySelector('meta[name="csrf-token"]')?.content || '';
   const adjustUrlTemplate = document.body.dataset.mediaAdjustUrl || '/admin/media/__ID__/adjust';
   const mediaShowTemplate = document.body.dataset.mediaShowUrl || '/admin/media/__ID__';
 
   let cropper = null;
   let active = null;
+  let previewTimer = null;
+  let previewObjectUrl = null;
+
+  const ASPECT_PRESETS = {
+    disease: 1376 / 1146,
+    'disease-detail': 1376 / 1146,
+    doctor: 1,
+    product: 1,
+    hero: 2000 / 751,
+    gallery: 16 / 9,
+  };
 
   function destroyCropper() {
     if (cropper) {
@@ -22,8 +35,20 @@
     }
   }
 
+  function clearPreviewUrl() {
+    if (previewObjectUrl) {
+      URL.revokeObjectURL(previewObjectUrl);
+      previewObjectUrl = null;
+    }
+  }
+
   function close() {
+    if (previewTimer) {
+      clearTimeout(previewTimer);
+      previewTimer = null;
+    }
     destroyCropper();
+    clearPreviewUrl();
     root.hidden = true;
     document.body.classList.remove('hp-imgadj-open');
     imgEl.removeAttribute('src');
@@ -35,28 +60,108 @@
     return Number.isFinite(n) && n > 0 ? n : NaN;
   }
 
+  function setPreviewType(type) {
+    const next = ASPECT_PRESETS[type] ? type : 'disease';
+    if (previewTypeEl) {
+      previewTypeEl.value = next;
+    }
+    if (previewFrame) {
+      previewFrame.dataset.preview = next;
+    }
+    root.querySelectorAll('[data-preview-panel]').forEach((panel) => {
+      panel.hidden = panel.getAttribute('data-preview-panel') !== next;
+    });
+    return next;
+  }
+
+  function guessPreviewType(aspect, explicit) {
+    if (explicit && ASPECT_PRESETS[explicit]) {
+      return explicit;
+    }
+    if (!Number.isFinite(aspect) || aspect <= 0) {
+      return 'gallery';
+    }
+    if (Math.abs(aspect - 1376 / 1146) < 0.02) {
+      return 'disease';
+    }
+    if (Math.abs(aspect - 1) < 0.05) {
+      return 'doctor';
+    }
+    if (Math.abs(aspect - 2000 / 751) < 0.05) {
+      return 'hero';
+    }
+    if (aspect >= 1.6) {
+      return 'gallery';
+    }
+    return 'disease';
+  }
+
+  function refreshFrontendPreview() {
+    if (!cropper) {
+      return;
+    }
+    try {
+      const canvas = cropper.getCroppedCanvas({
+        maxWidth: 720,
+        maxHeight: 720,
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high',
+      });
+      if (!canvas) {
+        return;
+      }
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          return;
+        }
+        clearPreviewUrl();
+        previewObjectUrl = URL.createObjectURL(blob);
+        root.querySelectorAll('[data-hp-imgadj-preview-media]').forEach((el) => {
+          el.style.backgroundImage = `url('${previewObjectUrl}')`;
+        });
+      }, 'image/jpeg', 0.88);
+    } catch (e) {
+      // Cropper may not be ready yet.
+    }
+  }
+
+  function schedulePreview() {
+    if (previewTimer) {
+      clearTimeout(previewTimer);
+    }
+    previewTimer = setTimeout(refreshFrontendPreview, 80);
+  }
+
   function open(options) {
     active = {
       mediaId: options.mediaId || null,
       fileInput: options.fileInput || null,
       aspect: options.aspect ?? NaN,
+      preview: options.preview || null,
+      title: options.title || '',
       onApplied: typeof options.onApplied === 'function' ? options.onApplied : null,
       mime: options.mime || 'image/jpeg',
       filename: options.filename || 'adjusted.jpg',
     };
 
+    const previewType = setPreviewType(guessPreviewType(active.aspect, active.preview));
     if (Number.isFinite(active.aspect) && active.aspect > 0) {
       const match = [...aspectEl.options].find((opt) => Math.abs(Number(opt.value) - active.aspect) < 0.001);
-      aspectEl.value = match ? match.value : 'NaN';
-      if (!match) {
-        aspectEl.value = String(active.aspect);
-      }
+      aspectEl.value = match ? match.value : String(active.aspect);
+    } else if (ASPECT_PRESETS[previewType]) {
+      aspectEl.value = String(ASPECT_PRESETS[previewType]);
+      active.aspect = ASPECT_PRESETS[previewType];
     } else {
       aspectEl.value = 'NaN';
     }
 
+    root.querySelectorAll('[data-hp-imgadj-preview-title]').forEach((el) => {
+      el.textContent = active.title || 'Preview title';
+    });
+
     zoomEl.value = '1';
     destroyCropper();
+    clearPreviewUrl();
     imgEl.onload = () => {
       cropper = new Cropper(imgEl, {
         viewMode: 1,
@@ -70,6 +175,13 @@
           if (imageData?.width) {
             zoomEl.value = String(imageData.width / (imageData.naturalWidth || imageData.width));
           }
+          refreshFrontendPreview();
+        },
+        crop() {
+          schedulePreview();
+        },
+        zoom() {
+          schedulePreview();
         },
       });
     };
@@ -84,7 +196,7 @@
     }
 
     applyBtn.disabled = true;
-    applyBtn.textContent = 'Saving…';
+    applyBtn.textContent = 'Saving to website…';
 
     try {
       const canvas = cropper.getCroppedCanvas({
@@ -145,7 +257,7 @@
       alert(err?.message || 'Could not save adjusted image.');
     } finally {
       applyBtn.disabled = false;
-      applyBtn.textContent = 'Apply & save';
+      applyBtn.textContent = 'Apply & save to website';
     }
   }
 
@@ -154,17 +266,28 @@
   aspectEl.addEventListener('change', () => {
     if (cropper) {
       cropper.setAspectRatio(parseAspect(aspectEl.value));
+      schedulePreview();
     }
   });
   zoomEl.addEventListener('input', () => {
     if (cropper) {
       cropper.zoomTo(Number(zoomEl.value) || 1);
+      schedulePreview();
     }
+  });
+  previewTypeEl?.addEventListener('change', () => {
+    const type = setPreviewType(previewTypeEl.value);
+    if (ASPECT_PRESETS[type] && cropper) {
+      aspectEl.value = String(ASPECT_PRESETS[type]);
+      cropper.setAspectRatio(ASPECT_PRESETS[type]);
+    }
+    schedulePreview();
   });
   root.querySelectorAll('[data-hp-imgadj-rotate]').forEach((btn) => {
     btn.addEventListener('click', () => {
       if (cropper) {
         cropper.rotate(Number(btn.getAttribute('data-hp-imgadj-rotate')) || 0);
+        schedulePreview();
       }
     });
   });
@@ -172,6 +295,7 @@
     if (cropper) {
       cropper.reset();
       zoomEl.value = '1';
+      schedulePreview();
     }
   });
 
@@ -181,8 +305,10 @@
     if (!url) {
       return url;
     }
-    const sep = url.includes('?') ? '&' : '?';
-    return `${url}${sep}v=${Date.now()}`;
+    // Strip old v= then append fresh bust so admin previews update immediately.
+    const clean = String(url).replace(/([?&])v=\d+/g, '').replace(/[?&]$/, '');
+    const sep = clean.includes('?') ? '&' : '?';
+    return `${clean}${sep}v=${Date.now()}`;
   }
 
   function ensurePreview(host, url) {
@@ -229,6 +355,30 @@
     return json.media;
   }
 
+  function contextFromSelect(select) {
+    const name = select.getAttribute('name') || '';
+    const aspect = Number(select.dataset.aspect || select.closest('label')?.dataset.aspect || NaN);
+    let preview = select.dataset.preview || select.closest('label')?.dataset.preview || null;
+    if (!preview) {
+      if (name.includes('photo_media') || name.includes('logo_media')) {
+        preview = 'doctor';
+      } else if (name.includes('cover_media')) {
+        preview = 'gallery';
+      } else if (name.includes('media_asset_id') && location.pathname.includes('/conditions')) {
+        preview = 'disease';
+      } else if (location.pathname.includes('/homepage')) {
+        preview = name.includes('payload') ? 'hero' : 'gallery';
+      } else if (location.pathname.includes('/products')) {
+        preview = 'product';
+      } else if (location.pathname.includes('/gallery')) {
+        preview = 'gallery';
+      } else if (location.pathname.includes('/doctors') || location.pathname.includes('/team')) {
+        preview = 'doctor';
+      }
+    }
+    return { aspect, preview };
+  }
+
   function enhanceSelect(select) {
     if (select.dataset.hpImgEnhanced === '1') {
       return;
@@ -239,7 +389,7 @@
       return;
     }
 
-    const aspect = Number(select.dataset.aspect || host.dataset.aspect || NaN);
+    const ctx = contextFromSelect(select);
     const wrap = ensurePreview(host, null);
     const actions = wrap.querySelector('.hp-img-preview__actions');
 
@@ -257,7 +407,8 @@
           open({
             imageUrl: media.url,
             mediaId: media.id,
-            aspect,
+            aspect: ctx.aspect,
+            preview: ctx.preview,
             mime: media.mime_type || 'image/jpeg',
             filename: media.original_name || `media-${media.id}.jpg`,
             onApplied: (updated) => {
@@ -284,6 +435,7 @@
       return;
     }
     const aspect = Number(input.dataset.aspect || host.dataset.aspect || NaN);
+    const preview = input.dataset.preview || host.dataset.preview || (location.pathname.includes('/homepage') ? 'hero' : null);
     const wrap = ensurePreview(host, null);
     const actions = wrap.querySelector('.hp-img-preview__actions');
 
@@ -298,6 +450,7 @@
           imageUrl: url,
           fileInput: input,
           aspect,
+          preview,
           mime: file.type,
           filename: file.name,
           onApplied: (updated) => {
@@ -307,11 +460,11 @@
           },
         });
       }, 'Crop / zoom before upload');
-      // Auto-open adjuster when a file is chosen
       open({
         imageUrl: url,
         fileInput: input,
         aspect,
+        preview,
         mime: file.type,
         filename: file.name,
         onApplied: (updated) => {
@@ -354,6 +507,7 @@
           mediaId: Number(id),
           mime,
           filename: name,
+          preview: 'disease',
           onApplied: (updated) => {
             const image = card.querySelector('img');
             if (image && updated?.url) {
@@ -399,6 +553,8 @@
             mediaId: media.id,
             mime: media.mime_type || 'image/jpeg',
             filename: media.original_name || `media-${media.id}.jpg`,
+            preview: 'product',
+            aspect: 1,
             onApplied: (updated) => {
               img.src = updated.url;
               media.url = updated.url;
