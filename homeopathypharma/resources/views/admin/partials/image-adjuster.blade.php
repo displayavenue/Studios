@@ -5,8 +5,8 @@
         <header class="hp-imgadj__header">
             <div>
                 <h3 id="hp-imgadj-title">Adjust image</h3>
-                <p class="admin-muted" style="margin:0.2rem 0 0;">Zoom and drag the image inside the website box. The right panel shows how it will look after you save.</p>
-                <p class="admin-muted" style="margin:0.35rem 0 0;" data-hp-imgadj-mode-hint>Website box size is fixed. Drag the image to reposition, use Zoom to scale — sides will not shrink together.</p>
+                <p class="admin-muted" style="margin:0.2rem 0 0;">Crop from any side, zoom, or drag the image. The right panel shows how it will look after you save.</p>
+                <p class="admin-muted" style="margin:0.35rem 0 0;" data-hp-imgadj-mode-hint>Drag any edge to crop that side only. Aspect preset sets the starting box; Zoom/drag repositions the image. Preview shows the website card.</p>
             </div>
             <button type="button" class="btn btn-secondary" data-hp-imgadj-close>Close</button>
         </header>

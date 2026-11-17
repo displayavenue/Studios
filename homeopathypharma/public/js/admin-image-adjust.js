@@ -143,43 +143,50 @@
   }
 
   /**
-   * Locked aspect (disease card etc.): keep a fixed crop frame matching the
-   * website box. User pans/zooms the image — dragging one edge must NOT shrink
-   * the other sides (that was Cropper's proportional resize).
-   * Free aspect: allow independent edge resizing.
+   * Always allow independent 4-side crop (left/right/top/bottom alone).
+   * Aspect presets only SNAP the starting crop box — they do not lock ratio,
+   * so dragging one edge never forces the opposite sides to move together.
+   * Live website preview still shows cover-fit inside the site card box.
    */
-  function applyCropMode(aspect) {
+  function snapCropBoxToAspect(aspect) {
+    if (!cropper || !isLockedAspect(aspect)) {
+      return;
+    }
+    const container = cropper.getContainerData();
+    if (!container?.width || !container?.height) {
+      return;
+    }
+    let boxW = container.width * 0.92;
+    let boxH = boxW / aspect;
+    if (boxH > container.height * 0.92) {
+      boxH = container.height * 0.92;
+      boxW = boxH * aspect;
+    }
+    cropper.setCropBoxData({
+      left: (container.width - boxW) / 2,
+      top: (container.height - boxH) / 2,
+      width: boxW,
+      height: boxH,
+    });
+  }
+
+  function applyCropMode(aspect, { snap = true } = {}) {
     if (!cropper) {
       return;
     }
-    const locked = isLockedAspect(aspect);
-    cropper.setAspectRatio(locked ? aspect : NaN);
+    // Free ratio so each edge handle moves only that side.
+    cropper.setAspectRatio(NaN);
     cropper.setDragMode('move');
-    cropper.options.cropBoxResizable = !locked;
-    cropper.options.cropBoxMovable = !locked;
-    if (locked) {
-      // Rebuild crop box to fill the stage at the locked ratio, then only pan/zoom.
-      const container = cropper.getContainerData();
-      if (container?.width && container?.height) {
-        let boxW = container.width * 0.92;
-        let boxH = boxW / aspect;
-        if (boxH > container.height * 0.92) {
-          boxH = container.height * 0.92;
-          boxW = boxH * aspect;
-        }
-        cropper.setCropBoxData({
-          left: (container.width - boxW) / 2,
-          top: (container.height - boxH) / 2,
-          width: boxW,
-          height: boxH,
-        });
-      }
+    cropper.options.cropBoxResizable = true;
+    cropper.options.cropBoxMovable = true;
+    if (snap) {
+      snapCropBoxToAspect(aspect);
     }
     const hint = root.querySelector('[data-hp-imgadj-mode-hint]');
     if (hint) {
-      hint.textContent = locked
-        ? 'Website box size is fixed. Drag the image to reposition, use Zoom to scale — sides will not shrink together.'
-        : 'Free crop: drag each edge independently.';
+      hint.textContent = isLockedAspect(aspect)
+        ? 'Drag any edge to crop that side only. Aspect preset sets the starting box; Zoom/drag repositions the image. Preview shows the website card.'
+        : 'Free crop: drag each edge independently. Zoom or drag the image to reposition.';
     }
   }
 
@@ -242,22 +249,21 @@
     destroyCropper();
     clearPreviewUrl();
     imgEl.onload = () => {
-      const initialAspect = parseAspect(aspectEl.value);
-      const locked = isLockedAspect(initialAspect);
       cropper = new Cropper(imgEl, {
         viewMode: 1,
         dragMode: 'move',
-        autoCropArea: 1,
+        autoCropArea: 0.92,
         responsive: true,
         background: false,
-        aspectRatio: locked ? initialAspect : NaN,
-        cropBoxResizable: !locked,
-        cropBoxMovable: !locked,
+        // Always free ratio so left/right/top/bottom edges move separately.
+        aspectRatio: NaN,
+        cropBoxResizable: true,
+        cropBoxMovable: true,
         guides: true,
         center: true,
         highlight: true,
         ready() {
-          applyCropMode(parseAspect(aspectEl.value));
+          applyCropMode(parseAspect(aspectEl.value), { snap: true });
           const imageData = cropper.getImageData();
           if (imageData?.width) {
             zoomEl.value = String(imageData.width / (imageData.naturalWidth || imageData.width));
@@ -352,7 +358,7 @@
   applyBtn.addEventListener('click', apply);
   aspectEl.addEventListener('change', () => {
     if (cropper) {
-      applyCropMode(parseAspect(aspectEl.value));
+      applyCropMode(parseAspect(aspectEl.value), { snap: true });
       schedulePreview();
     }
   });
@@ -366,7 +372,10 @@
     const type = setPreviewType(previewTypeEl.value);
     if (ASPECT_PRESETS[type] && cropper) {
       aspectEl.value = String(ASPECT_PRESETS[type]);
-      cropper.setAspectRatio(ASPECT_PRESETS[type]);
+      applyCropMode(ASPECT_PRESETS[type], { snap: true });
+    } else if (cropper) {
+      aspectEl.value = 'NaN';
+      applyCropMode(NaN, { snap: false });
     }
     schedulePreview();
   });
@@ -382,6 +391,7 @@
     if (cropper) {
       cropper.reset();
       zoomEl.value = '1';
+      applyCropMode(parseAspect(aspectEl.value), { snap: true });
       schedulePreview();
     }
   });
