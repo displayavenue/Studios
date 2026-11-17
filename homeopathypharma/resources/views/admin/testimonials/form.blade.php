@@ -8,6 +8,15 @@
 <label>Author name <input name="author_name" value="{{ old('author_name', $testimonial->author_name) }}" required></label>
 <label>Author role / location <input name="author_role" value="{{ old('author_role', $testimonial->author_role) }}"></label>
 <label>Quote <textarea name="quote" rows="5" required>{{ old('quote', $testimonial->quote) }}</textarea></label>
+<label data-aspect="1">Photo (Media Library)
+<select name="photo_media_id" data-aspect="1">
+<option value="">— none —</option>
+@foreach (($media ?? []) as $item)
+<option value="{{ $item->id }}" @selected((string) old('photo_media_id', $testimonial->photo_media_id) === (string) $item->id)>#{{ $item->id }} {{ $item->original_name }}</option>
+@endforeach
+</select>
+<span class="admin-muted" style="display:block;margin-top:0.35rem;font-size:0.85rem;">Upload &amp; adjust in <a href="{{ route('admin.media.index') }}">Media Library</a>, then select here.</span>
+</label>
 <label>Rating (1–5) <input type="number" min="1" max="5" name="rating" value="{{ old('rating', $testimonial->rating) }}"></label>
 <label>Sort order <input type="number" min="0" name="sort_order" value="{{ old('sort_order', $testimonial->sort_order ?? 0) }}"></label>
 <label>Status <select name="status">@foreach(['draft','published','archived'] as $s)<option value="{{ $s }}" @selected(old('status', $testimonial->status)===$s)>{{ $s }}</option>@endforeach</select></label>

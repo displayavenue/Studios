@@ -7,9 +7,15 @@
     <title>@yield('title', 'Admin') — HOMEOPATHY PHARMA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}?v={{ @filemtime(public_path('css/admin.css')) ?: '1' }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.css" crossorigin="anonymous">
+    @stack('styles')
 </head>
-<body class="admin">
+<body
+    class="admin"
+    data-media-adjust-url="{{ url('/admin/media/__ID__/adjust') }}"
+    data-media-show-url="{{ url('/admin/media/__ID__') }}"
+>
 @php($route = request()->route()?->getName() ?? '')
 <div class="admin-shell">
     <aside class="admin-sidebar">
@@ -62,5 +68,9 @@
         @yield('content')
     </div>
 </div>
+@include('admin.partials.image-adjuster')
+<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.6.2/dist/cropper.min.js" crossorigin="anonymous"></script>
+<script src="{{ asset('js/admin-image-adjust.js') }}?v={{ @filemtime(public_path('js/admin-image-adjust.js')) ?: '1' }}"></script>
+@stack('scripts')
 </body>
 </html>

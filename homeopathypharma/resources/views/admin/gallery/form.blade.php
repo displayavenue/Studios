@@ -9,7 +9,7 @@
 <label>Permalink URL <input name="permalink" value="{{ old('permalink', $item->permalink) }}"></label>
 <label>Remote media URL <input name="remote_media_url" value="{{ old('remote_media_url', $item->remote_media_url) }}"></label>
 <label>Media library
-<select name="media_asset_id"><option value="">—</option>
+<select name="media_asset_id" data-aspect="{{ 16/10 }}"><option value="">—</option>
 @foreach($media as $m)<option value="{{ $m->id }}" @selected(old('media_asset_id', $item->media_asset_id)==$m->id)>#{{ $m->id }} {{ $m->original_name }}</option>@endforeach
 </select></label>
 <label>Type <select name="media_type">@foreach(['image','video','carousel'] as $t)<option value="{{ $t }}" @selected(old('media_type', $item->media_type)===$t)>{{ $t }}</option>@endforeach</select></label>

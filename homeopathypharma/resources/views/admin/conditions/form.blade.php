@@ -17,14 +17,14 @@
 </datalist>
 </label>
 
-<label>Image (Media Library)
-<select name="media_asset_id">
+<label data-aspect="{{ 1376/1146 }}">Image (Media Library)
+<select name="media_asset_id" data-aspect="{{ 1376/1146 }}">
 <option value="">— use fallback URL below —</option>
 @foreach ($media as $item)
 <option value="{{ $item->id }}" @selected((string) old('media_asset_id', $condition->media_asset_id) === (string) $item->id)>#{{ $item->id }} {{ $item->original_name }}</option>
 @endforeach
 </select>
-<span class="admin-muted" style="display:block;margin-top:0.35rem;font-size:0.85rem;">Upload in <a href="{{ route('admin.media.index') }}">Media Library</a> first, then select here.</span>
+<span class="admin-muted" style="display:block;margin-top:0.35rem;font-size:0.85rem;">Upload in <a href="{{ route('admin.media.index') }}">Media Library</a>, adjust crop/zoom there or here, then select.</span>
 </label>
 <label>Fallback image URL <input name="image_url" value="{{ old('image_url', $condition->image_url) }}"></label>
 <label>Image alt text <input name="image_alt" value="{{ old('image_alt', $condition->image_alt) }}"></label>

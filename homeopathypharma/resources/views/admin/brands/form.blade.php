@@ -9,7 +9,7 @@
 <label>Slug <input name="slug" value="{{ old('slug', $brand->slug) }}"></label>
 <label>Description <textarea name="description">{{ old('description', $brand->description) }}</textarea></label>
 <label>Logo media ID
-<select name="logo_media_id">
+<select name="logo_media_id" data-aspect="1">
 <option value="">—</option>
 @foreach($media as $item)
 <option value="{{ $item->id }}" @selected(old('logo_media_id', $brand->logo_media_id)==$item->id)>#{{ $item->id }} {{ $item->original_name }}</option>

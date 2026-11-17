@@ -25,7 +25,7 @@
 <label>Excerpt <textarea name="excerpt">{{ old('excerpt', $article->excerpt) }}</textarea></label>
 <label>Body <textarea name="body" rows="12">{{ old('body', $article->body) }}</textarea></label>
 <label>Cover media
-<select name="cover_media_id">
+<select name="cover_media_id" data-aspect="{{ 16/9 }}">
 <option value="">—</option>
 @foreach($media as $item)
 <option value="{{ $item->id }}" @selected(old('cover_media_id', $article->cover_media_id)==$item->id)>#{{ $item->id }} {{ $item->original_name }}</option>

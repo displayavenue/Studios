@@ -17,7 +17,7 @@
 </select>
 </label>
 <label>Photo media
-<select name="photo_media_id">
+<select name="photo_media_id" data-aspect="1">
 <option value="">—</option>
 @foreach($media as $item)
 <option value="{{ $item->id }}" @selected(old('photo_media_id', $member->photo_media_id)==$item->id)>#{{ $item->id }} {{ $item->original_name }}</option>
