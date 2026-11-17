@@ -237,7 +237,8 @@
   transform: scale(var(--hx-zoom, 1));
   transform-origin: center center;
   transition: transform 0.14s ease-out;
-  filter: drop-shadow(0 14px 22px rgba(20, 40, 50, 0.1));
+  /* Soft silhouette shadow only — no rectangular card frame. */
+  filter: drop-shadow(0 10px 16px rgba(20, 40, 50, 0.12));
 }
 
 .hx-turntable.is-dragging .hx-turntable__scene {
