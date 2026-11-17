@@ -18,7 +18,7 @@
         <label>Alt text
             <input type="text" name="alt_text" maxlength="255">
         </label>
-        <p class="admin-muted" style="margin:0;">Choosing a file opens the Adjust image panel (crop, zoom, rotate). Apply, then click Upload.</p>
+        <p class="admin-muted" style="margin:0;">After choosing a file, click <strong>Adjust image</strong> if you want to crop / zoom / rotate. Then click Upload.</p>
         <button class="btn btn-primary" type="submit">Upload</button>
     </form>
 </div>

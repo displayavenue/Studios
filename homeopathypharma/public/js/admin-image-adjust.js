@@ -559,20 +559,8 @@
             }
           },
         });
-      }, 'Crop / zoom before upload');
-      open({
-        imageUrl: url,
-        fileInput: input,
-        aspect,
-        preview,
-        mime: file.type,
-        filename: file.name,
-        onApplied: (updated) => {
-          if (updated?.url) {
-            ensurePreview(host, updated.url);
-          }
-        },
-      });
+      }, 'Adjust image');
+      // Do not auto-open — adjuster opens only when the user clicks Adjust.
     };
 
     input.addEventListener('change', () => {
