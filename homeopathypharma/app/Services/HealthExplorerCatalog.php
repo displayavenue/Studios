@@ -262,6 +262,18 @@ class HealthExplorerCatalog
             ];
         }
 
+        if ($id === 'lymphatic') {
+            $base['overlay_mode'] = 'full_figure';
+            $base['overlays'] = [
+                'female' => [
+                    'front' => '/images/health-explorer/overlays/lymphatic-female-front-v1.webp',
+                ],
+                'male' => [
+                    'front' => '/images/health-explorer/overlays/lymphatic-male-front-v1.webp',
+                ],
+            ];
+        }
+
         return $base;
     }
 

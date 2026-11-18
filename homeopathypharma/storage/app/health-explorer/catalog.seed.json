@@ -123,7 +123,16 @@
     {
       "id": "lymphatic",
       "name": "Lymphatic & Immune",
-      "description": "Lymph nodes, spleen and immune tissues."
+      "description": "Lymph nodes, spleen and immune tissues.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/lymphatic-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/lymphatic-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "hematologic",
