@@ -179,7 +179,20 @@
   .ax-layout { grid-template-columns:1fr; }
   .ax-panel { position:static; max-height:none; }
 }
+.ax-save-flash {
+  position:fixed; inset:0; z-index:9999; pointer-events:none;
+  background:#ffffff; opacity:0;
+}
+.ax-save-flash.is-on {
+  animation: ax-page-blink 0.45s ease-out 1;
+}
+@keyframes ax-page-blink {
+  0% { opacity:0; }
+  30% { opacity:0.65; }
+  100% { opacity:0; }
+}
 </style>
+<div id="ax-save-flash" class="ax-save-flash" aria-hidden="true"></div>
 
 <script>
 (() => {
@@ -603,6 +616,7 @@
       }
       clearDirty(ids);
       setStatus(`Saved ${ids.length} anatomy change(s). Safe to leave this page.`);
+      blinkPageSaved();
       render();
     } catch (err) {
       ids.forEach((id) => state.dirtyIds.add(id));
@@ -612,6 +626,16 @@
       state.saving = false;
       markDirty(null);
     }
+  }
+
+  function blinkPageSaved() {
+    const flash = document.getElementById('ax-save-flash');
+    if (!flash) return;
+    flash.classList.remove('is-on');
+    // Restart CSS animation even if Save all is clicked twice quickly.
+    void flash.offsetWidth;
+    flash.classList.add('is-on');
+    window.setTimeout(() => flash.classList.remove('is-on'), 500);
   }
 
   els.saveAll.addEventListener('click', () => saveAllChanges());
