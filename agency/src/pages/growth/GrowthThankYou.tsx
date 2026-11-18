@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCms } from "../../cms/CmsProvider";
 import { SEO } from "../../components/SEO";
+import { trackAdsConversion } from "../../lib/adsConversions";
 import { trackGrowthEvent } from "./growthAnalytics";
 
 type SavedLead = {
@@ -20,6 +21,19 @@ export function GrowthThankYou() {
     try {
       const raw = sessionStorage.getItem("da_growth_lead");
       if (raw) setLead(JSON.parse(raw) as SavedLead);
+    } catch {
+      /* ignore */
+    }
+    // Backup page-load conversion if submit-time fire was missed
+    try {
+      if (!sessionStorage.getItem("da_ads_form_conv")) {
+        const raw = sessionStorage.getItem("da_growth_lead");
+        const parsed = raw ? (JSON.parse(raw) as SavedLead) : {};
+        trackAdsConversion("form", {
+          transaction_id: parsed.lead_id || `thanks_${Date.now()}`,
+        });
+        sessionStorage.setItem("da_ads_form_conv", "1");
+      }
     } catch {
       /* ignore */
     }

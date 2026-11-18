@@ -758,9 +758,15 @@ function renderTracking(d) {
       ${field("Google Tag Manager ID (GTM-…)", "googleTagManagerId", d.googleTagManagerId || d.gtmId || "")}
       ${field("Google Analytics ID (G-…)", "googleAnalyticsId", d.googleAnalyticsId || d.gaId || "")}
       ${field("Google Ads tag ID (AW-…)", "googleAdsId", d.googleAdsId || "")}
+      ${field("Ads conversion · Form submit (label or AW-…/label)", "googleAdsConversions.form", d.googleAdsConversions?.form || "")}
+      ${field("Ads conversion · Phone click (label or AW-…/label)", "googleAdsConversions.phone", d.googleAdsConversions?.phone || "")}
+      ${field("Ads conversion · WhatsApp click (label or AW-…/label)", "googleAdsConversions.whatsapp", d.googleAdsConversions?.whatsapp || "")}
       ${field("Meta Pixel ID (comma-separate for multiple)", "metaPixelId", d.metaPixelId || "")}
       ${field("Google Search Console verification", "googleSiteVerification", d.googleSiteVerification || "")}
     </div>
+    <p class="hint" style="grid-column:1/-1;margin:.5rem 0 0">
+      Create 3 website conversions in Google Ads (Form / Phone / WhatsApp), open each → Tag setup → copy Conversion label, paste above. Site already has AW-11371180411.
+    </p>
     <div class="field full" style="margin-top:1rem">
       <label for="tracking_head_scripts">Additional &lt;head&gt; scripts</label>
       <textarea data-path="headScripts" id="tracking_head_scripts" rows="8" placeholder="Paste full &lt;script&gt; tags from Google Ads, LinkedIn, Microsoft, TikTok, AI ad platforms, etc.">${escapeHtml(d.headScripts || "")}</textarea>

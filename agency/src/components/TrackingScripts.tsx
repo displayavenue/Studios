@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
+import {
+  configureAdsConversions,
+  installAdsClickTracking,
+} from "../lib/adsConversions";
 
 function injectHtmlFragment(html: string, target: HTMLElement, markerId: string) {
   if (!html.trim()) return;
@@ -163,6 +167,16 @@ export function TrackingScripts() {
     } else if (adsId) {
       injectGoogleAnalytics("cms-ga", adsId, adsId);
     }
+
+    configureAdsConversions({
+      adsId: adsId || "",
+      conversions: {
+        form: tracking.googleAdsConversions?.form || "",
+        phone: tracking.googleAdsConversions?.phone || "",
+        whatsapp: tracking.googleAdsConversions?.whatsapp || "",
+      },
+    });
+    installAdsClickTracking();
 
     const metaIds = parseMetaPixelIds(tracking);
     if (metaIds.length) injectMetaPixel("cms-meta", metaIds);

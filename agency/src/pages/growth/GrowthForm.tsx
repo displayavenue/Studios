@@ -246,6 +246,7 @@ export function GrowthForm({ initialPlanId = "", onSubmitted }: Props) {
             selected_plan: payload.selected_plan,
           }),
         );
+        sessionStorage.setItem("da_ads_form_conv", "1");
       } catch {
         /* ignore */
       }

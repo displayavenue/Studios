@@ -1,3 +1,5 @@
+import { trackAdsConversion } from "../../lib/adsConversions";
+
 type GrowthEventParams = Record<string, string | number | boolean | undefined | null>;
 
 declare global {
@@ -17,7 +19,7 @@ function cleanParams(params: GrowthEventParams = {}) {
   return out;
 }
 
-/** Push marketing events to GTM dataLayer + GA4 + Meta Pixel when available. */
+/** Push marketing events to GTM dataLayer + GA4 + Meta Pixel + Google Ads conversions. */
 export function trackGrowthEvent(event: string, params: GrowthEventParams = {}) {
   const payload = {
     event,
@@ -30,6 +32,21 @@ export function trackGrowthEvent(event: string, params: GrowthEventParams = {}) 
 
   if (typeof window.gtag === "function") {
     window.gtag("event", event, cleanParams(params));
+  }
+
+  // Google Ads conversion labels (configured in content/tracking.json)
+  if (event === "form_submit" || event === "lead") {
+    const tid =
+      params.event_id !== undefined
+        ? String(params.event_id)
+        : params.lead_id !== undefined
+          ? String(params.lead_id)
+          : undefined;
+    trackAdsConversion("form", { transaction_id: tid });
+  } else if (event === "phone_click") {
+    trackAdsConversion("phone");
+  } else if (event === "whatsapp_click") {
+    trackAdsConversion("whatsapp");
   }
 
   if (typeof window.fbq === "function") {
