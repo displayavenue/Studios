@@ -77,8 +77,21 @@ function hotspotFor(organ, gender, yaw) {
   return null;
 }
 
+function cacheToken() {
+  if (typeof document === 'undefined') return '1';
+  const fromRoot = document.getElementById('health-explorer-root')?.dataset?.cacheToken;
+  if (fromRoot) return fromRoot;
+  return document.querySelector('meta[name="hp-cache-token"]')?.content || '1';
+}
+
+function frameFile(gender, key) {
+  // Versioned female back asset so CDN/browser caches cannot keep the old hair curtain.
+  if (gender === 'female' && key === 'back') return 'back-v3';
+  return key;
+}
+
 function frameSrc(gender, key) {
-  return `/images/health-explorer/${gender}/${key}.webp`;
+  return `/images/health-explorer/${gender}/${frameFile(gender, key)}.webp?v=${cacheToken()}`;
 }
 
 /**
