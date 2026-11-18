@@ -54,6 +54,11 @@
       "description": "Lymph nodes, spleen and immune tissues."
     },
     {
+      "id": "hematologic",
+      "name": "Hematologic",
+      "description": "Blood, bone marrow and related hematologic tissues."
+    },
+    {
       "id": "mental",
       "name": "Mental Health",
       "description": "Emotional and cognitive wellbeing."

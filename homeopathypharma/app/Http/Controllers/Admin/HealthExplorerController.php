@@ -883,6 +883,8 @@ class HealthExplorerController extends Controller
             'reproductive' => ['uterus', 'ovary', 'testis', 'testicle', 'prostate', 'reproductive', 'breast'],
             'musculoskeletal' => ['muscle', 'joint', 'bone', 'knee', 'hip', 'shoulder', 'spine', 'coccyx', 'sacrum', 'rib', 'skull', 'vertebra'],
             'integumentary' => ['skin', 'derm', 'hair', 'nail'],
+            'hematologic' => ['blood', 'hemat', 'haemat', 'marrow', 'anemia', 'anaemia', 'platelet', 'hemoglobin', 'haemoglobin'],
+            'lymphatic' => ['lymph', 'immune', 'spleen', 'tonsil'],
         ];
 
         $systemId = $fallbackSystem;
