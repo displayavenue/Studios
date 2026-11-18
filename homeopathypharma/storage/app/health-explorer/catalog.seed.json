@@ -53,7 +53,16 @@
     {
       "id": "musculoskeletal",
       "name": "Musculoskeletal",
-      "description": "Bones, joints, muscles and connective tissue."
+      "description": "Bones, joints, muscles and connective tissue.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/musculoskeletal-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/musculoskeletal-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "endocrine",
