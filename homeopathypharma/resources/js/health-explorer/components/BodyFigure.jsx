@@ -99,6 +99,14 @@ function frameSrc(gender, key) {
   return `/images/health-explorer/${gender}/${frameFile(gender, key)}.webp?v=${cacheToken()}`;
 }
 
+/** Separate system overlays sit ABOVE the silhouette; never bake into anatomy sprites. */
+function systemOverlaySrc(systemId, gender, viewKey) {
+  if (systemId !== 'cardiovascular') return null;
+  // Front-only for now (matches the approved cardiovascular reference).
+  if (viewKey !== 'front') return null;
+  return `/images/health-explorer/overlays/cardiovascular-${gender}-front.webp?v=${cacheToken()}`;
+}
+
 /**
  * 360° sprite turntable: one body image at a time, continuous drag with inertia,
  * hard-cuts between front / right / back / left (no opacity stacking).
@@ -109,6 +117,7 @@ export default function BodyFigure({
   organs = [],
   activeId = null,
   zoom = 1,
+  systemId = 'all',
   onSelect,
   onYawChange,
 }) {
@@ -121,6 +130,7 @@ export default function BodyFigure({
   const activeKey = frameKey(yaw);
   const label = viewLabel(yaw);
   const src = frameSrc(gender, activeKey);
+  const overlaySrc = systemOverlaySrc(systemId, gender, activeKey);
 
   useEffect(() => {
     FRAMES.forEach((frame) => {
@@ -269,6 +279,17 @@ export default function BodyFigure({
             width="420"
             height="900"
           />
+          {overlaySrc ? (
+            <img
+              key={`overlay-${systemId}-${gender}-${activeKey}`}
+              className="hx-turntable__overlay is-active"
+              src={overlaySrc}
+              alt=""
+              draggable={false}
+              width="420"
+              height="900"
+            />
+          ) : null}
           <div className={`hx-turntable__dots${dragging ? ' is-dim' : ''}`}>
             {visible.map(({ organ, spot }) => {
               const active = activeId === organ.id;

@@ -265,11 +265,31 @@
   z-index: 1;
 }
 
+.hx-turntable__overlay {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  /* Above silhouette, below interactive dots — silhouette shade stays unchanged. */
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.hx-turntable__overlay.is-active {
+  opacity: 1;
+}
+
 .hx-turntable__dots {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hx-turntable__dots.is-dim {

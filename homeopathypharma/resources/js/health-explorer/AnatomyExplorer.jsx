@@ -238,7 +238,14 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               type="button"
               className="hx-chip"
               aria-pressed={systemId === system.id}
-              onClick={() => setSystemId(system.id)}
+              onClick={() => {
+                setSystemId(system.id);
+                // Cardiovascular overlay is authored for front view.
+                if (system.id === 'cardiovascular') {
+                  setYaw(0);
+                  setTab('anatomy');
+                }
+              }}
               title={system.description}
             >
               {system.name}
@@ -272,11 +279,14 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               organs={filteredOrgans}
               activeId={selectedOrganId}
               zoom={zoom}
+              systemId={systemId}
               onSelect={selectOrgan}
               onYawChange={setYaw}
             />
             <p style={{ margin: '0.65rem 0 0', color: '#5b6b65', fontSize: '0.84rem' }}>
-              Drag sideways for a full 360° turn, or jump with Front / Back / Left / Right. Tap a red dot to open that organ.
+              {systemId === 'cardiovascular'
+                ? 'Cardiovascular overlay is shown on the Front view — veins and arteries sit above the silhouette without changing its shade.'
+                : 'Drag sideways for a full 360° turn, or jump with Front / Back / Left / Right. Tap a red dot to open that organ.'}
             </p>
           </section>
 
