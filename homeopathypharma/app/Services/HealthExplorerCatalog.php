@@ -190,6 +190,18 @@ class HealthExplorerCatalog
             ];
         }
 
+        if ($id === 'nervous') {
+            $base['overlay_mode'] = 'full_figure';
+            $base['overlays'] = [
+                'female' => [
+                    'front' => '/images/health-explorer/overlays/nervous-female-front-v1.webp',
+                ],
+                'male' => [
+                    'front' => '/images/health-explorer/overlays/nervous-male-front-v1.webp',
+                ],
+            ];
+        }
+
         return $base;
     }
 
