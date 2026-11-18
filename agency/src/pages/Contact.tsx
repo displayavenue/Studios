@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
 import { SEO } from "../components/SEO";
+import { trackAdsConversion } from "../lib/adsConversions";
 import "../styles/pages.css";
 import "./Contact.css";
 
@@ -56,6 +57,18 @@ export function Contact() {
       setSuccessMessage(json.successMessage || contact.successMessage);
       setStatus("ok");
       form.reset();
+      trackAdsConversion("form", {
+        transaction_id: `contact_${Date.now()}`,
+      });
+      const w = window as Window & {
+        dataLayer?: unknown[];
+        gtag?: (...args: unknown[]) => void;
+      };
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push({ event: "form_submit", page: "/contact" });
+      if (typeof w.gtag === "function") {
+        w.gtag("event", "form_submit", { page: "/contact" });
+      }
     } catch (err) {
       setStatus("err");
       setError(err instanceof Error ? err.message : "Could not send.");
