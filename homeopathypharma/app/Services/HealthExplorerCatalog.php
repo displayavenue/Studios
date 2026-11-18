@@ -238,6 +238,18 @@ class HealthExplorerCatalog
             ];
         }
 
+        if ($id === 'reproductive') {
+            $base['overlay_mode'] = 'full_figure';
+            $base['overlays'] = [
+                'female' => [
+                    'front' => '/images/health-explorer/overlays/reproductive-female-front-v1.webp',
+                ],
+                'male' => [
+                    'front' => '/images/health-explorer/overlays/reproductive-male-front-v1.webp',
+                ],
+            ];
+        }
+
         return $base;
     }
 

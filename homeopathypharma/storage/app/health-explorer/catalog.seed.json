@@ -95,7 +95,16 @@
     {
       "id": "reproductive",
       "name": "Reproductive",
-      "description": "Male and female reproductive organs."
+      "description": "Male and female reproductive organs.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/reproductive-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/reproductive-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "integumentary",
