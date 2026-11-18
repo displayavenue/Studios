@@ -186,15 +186,6 @@
   background:#0d6b5c;
   opacity:0;
 }
-.ax-save-flash.is-on {
-  animation: ax-page-blink 0.7s ease-out 1;
-}
-@keyframes ax-page-blink {
-  0% { opacity:0; }
-  12% { opacity:0.45; }
-  45% { opacity:0.45; }
-  100% { opacity:0; }
-}
 </style>
 
 <script>
@@ -646,13 +637,16 @@
     const flash = document.getElementById('ax-save-flash') || saveFlash;
     if (!flash) return;
     if (flash.parentElement !== document.body) document.body.appendChild(flash);
-    flash.classList.remove('is-on');
-    // Restart CSS animation even if Save all is clicked twice quickly.
+    // JS-driven blink is more reliable than CSS keyframes across admin layouts.
+    flash.style.transition = 'none';
+    flash.style.opacity = '0';
     void flash.offsetWidth;
-    requestAnimationFrame(() => {
-      flash.classList.add('is-on');
-      window.setTimeout(() => flash.classList.remove('is-on'), 800);
-    });
+    flash.style.transition = 'opacity 120ms ease-out';
+    flash.style.opacity = '0.5';
+    window.setTimeout(() => {
+      flash.style.transition = 'opacity 320ms ease-out';
+      flash.style.opacity = '0';
+    }, 260);
   }
 
   els.saveAll.addEventListener('click', () => saveAllChanges());
