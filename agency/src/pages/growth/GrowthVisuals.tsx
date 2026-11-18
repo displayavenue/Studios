@@ -12,44 +12,54 @@ const HERO_NODES = [
   "Sales Opportunity",
 ] as const;
 
-/** Cinematic Digital Growth System — CSS-only, no fake metrics. */
+/** Cinematic Digital Growth System — tappable steps on mobile. */
 export function GrowthHeroSystem() {
   const [pulse, setPulse] = useState(0);
+  const [pausedUntil, setPausedUntil] = useState(0);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
-    const id = window.setInterval(() => setPulse((p) => (p + 1) % HERO_NODES.length), 1400);
+    const id = window.setInterval(() => {
+      if (Date.now() < pausedUntil) return;
+      setPulse((p) => (p + 1) % HERO_NODES.length);
+    }, 1400);
     return () => window.clearInterval(id);
-  }, []);
+  }, [pausedUntil]);
+
+  const selectStep = (index: number) => {
+    setPulse(index);
+    setPausedUntil(Date.now() + 8000);
+  };
+
+  const showToast =
+    HERO_NODES[pulse] === "Qualified Lead" ||
+    HERO_NODES[pulse] === "WhatsApp / Call" ||
+    HERO_NODES[pulse] === "Sales Opportunity";
 
   return (
-    <div className="ghs" aria-hidden>
+    <div className="ghs" aria-label="Digital growth system steps">
       <div className="ghs__glow ghs__glow--a" />
       <div className="ghs__glow ghs__glow--b" />
-      <div className="ghs__rail">
+      <div className="ghs__rail" role="list">
         {HERO_NODES.map((label, i) => (
-          <div
+          <button
             key={label}
+            type="button"
+            role="listitem"
             className={`ghs__node ${i === pulse ? "is-active" : ""} ${
               label === "Qualified Lead" ? "is-accent" : ""
             } ${label === "Sales Opportunity" ? "is-final" : ""}`}
+            aria-pressed={i === pulse}
+            onClick={() => selectStep(i)}
           >
-            <span className="ghs__dot" />
+            <span className="ghs__dot" aria-hidden />
             <span>{label}</span>
-          </div>
+          </button>
         ))}
-        <div className="ghs__particle" style={{ ["--p" as string]: pulse }} />
+        <div className="ghs__particle" style={{ ["--p" as string]: pulse }} aria-hidden />
       </div>
-      <aside
-        className={`ghs__toast ${
-          HERO_NODES[pulse] === "Qualified Lead" ||
-          HERO_NODES[pulse] === "WhatsApp / Call" ||
-          HERO_NODES[pulse] === "Sales Opportunity"
-            ? "is-in"
-            : ""
-        }`}
-      >
+      <aside className={`ghs__toast ${showToast ? "is-in" : ""}`} aria-hidden>
         <div className="ghs__toast-top">
           <span className="ghs__live" />
           New Qualified Lead
