@@ -181,14 +181,16 @@
 }
 .ax-save-flash {
   position:fixed; inset:0; z-index:9999; pointer-events:none;
-  background:#ffffff; opacity:0;
+  background:rgba(13, 107, 92, 0.28);
+  opacity:0;
 }
 .ax-save-flash.is-on {
-  animation: ax-page-blink 0.45s ease-out 1;
+  animation: ax-page-blink 0.55s ease-out 1;
 }
 @keyframes ax-page-blink {
   0% { opacity:0; }
-  30% { opacity:0.65; }
+  18% { opacity:1; }
+  55% { opacity:1; }
   100% { opacity:0; }
 }
 </style>
@@ -634,8 +636,10 @@
     flash.classList.remove('is-on');
     // Restart CSS animation even if Save all is clicked twice quickly.
     void flash.offsetWidth;
-    flash.classList.add('is-on');
-    window.setTimeout(() => flash.classList.remove('is-on'), 500);
+    requestAnimationFrame(() => {
+      flash.classList.add('is-on');
+      window.setTimeout(() => flash.classList.remove('is-on'), 650);
+    });
   }
 
   els.saveAll.addEventListener('click', () => saveAllChanges());
