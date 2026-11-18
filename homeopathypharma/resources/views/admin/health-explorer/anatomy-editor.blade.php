@@ -180,26 +180,38 @@
   .ax-panel { position:static; max-height:none; }
 }
 .ax-save-flash {
-  position:fixed; inset:0; z-index:9999; pointer-events:none;
-  background:rgba(13, 107, 92, 0.28);
+  position:fixed; left:0; top:0; right:0; bottom:0;
+  width:100vw; height:100vh;
+  z-index:2147483646; pointer-events:none;
+  background:#0d6b5c;
   opacity:0;
 }
 .ax-save-flash.is-on {
-  animation: ax-page-blink 0.55s ease-out 1;
+  animation: ax-page-blink 0.7s ease-out 1;
 }
 @keyframes ax-page-blink {
   0% { opacity:0; }
-  18% { opacity:1; }
-  55% { opacity:1; }
+  12% { opacity:0.45; }
+  45% { opacity:0.45; }
   100% { opacity:0; }
 }
 </style>
-<div id="ax-save-flash" class="ax-save-flash" aria-hidden="true"></div>
 
 <script>
 (() => {
   const root = document.getElementById('ax-app');
   const boot = JSON.parse(root.getAttribute('data-boot'));
+  // Mount on body so position:fixed is not trapped by admin layout stacking/overflow.
+  let saveFlash = document.getElementById('ax-save-flash');
+  if (!saveFlash) {
+    saveFlash = document.createElement('div');
+    saveFlash.id = 'ax-save-flash';
+    saveFlash.className = 'ax-save-flash';
+    saveFlash.setAttribute('aria-hidden', 'true');
+  }
+  if (saveFlash.parentElement !== document.body) {
+    document.body.appendChild(saveFlash);
+  }
   const state = {
     gender: 'female',
     view: 'front', // front|back|left|right (viewer-relative)
@@ -631,14 +643,15 @@
   }
 
   function blinkPageSaved() {
-    const flash = document.getElementById('ax-save-flash');
+    const flash = document.getElementById('ax-save-flash') || saveFlash;
     if (!flash) return;
+    if (flash.parentElement !== document.body) document.body.appendChild(flash);
     flash.classList.remove('is-on');
     // Restart CSS animation even if Save all is clicked twice quickly.
     void flash.offsetWidth;
     requestAnimationFrame(() => {
       flash.classList.add('is-on');
-      window.setTimeout(() => flash.classList.remove('is-on'), 650);
+      window.setTimeout(() => flash.classList.remove('is-on'), 800);
     });
   }
 
