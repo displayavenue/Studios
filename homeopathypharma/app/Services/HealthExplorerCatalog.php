@@ -230,10 +230,10 @@ class HealthExplorerCatalog
             $base['overlay_mode'] = 'full_figure';
             $base['overlays'] = [
                 'female' => [
-                    'front' => '/images/health-explorer/overlays/urinary-female-front-v1.webp',
+                    'front' => '/images/health-explorer/overlays/urinary-female-front-v2.webp',
                 ],
                 'male' => [
-                    'front' => '/images/health-explorer/overlays/urinary-male-front-v1.webp',
+                    'front' => '/images/health-explorer/overlays/urinary-male-front-v2.webp',
                 ],
             ];
         }
