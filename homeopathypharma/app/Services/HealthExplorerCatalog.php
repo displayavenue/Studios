@@ -250,6 +250,18 @@ class HealthExplorerCatalog
             ];
         }
 
+        if ($id === 'integumentary') {
+            $base['overlay_mode'] = 'full_figure';
+            $base['overlays'] = [
+                'female' => [
+                    'front' => '/images/health-explorer/overlays/integumentary-female-front-v1.webp',
+                ],
+                'male' => [
+                    'front' => '/images/health-explorer/overlays/integumentary-male-front-v1.webp',
+                ],
+            ];
+        }
+
         return $base;
     }
 

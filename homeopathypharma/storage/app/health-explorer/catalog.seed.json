@@ -109,7 +109,16 @@
     {
       "id": "integumentary",
       "name": "Skin & Sensory",
-      "description": "Skin, eyes, ears and related structures."
+      "description": "Skin, eyes, ears and related structures.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/integumentary-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/integumentary-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "lymphatic",
