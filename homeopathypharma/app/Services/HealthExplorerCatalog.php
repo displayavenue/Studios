@@ -218,10 +218,10 @@ class HealthExplorerCatalog
             $base['overlay_mode'] = 'full_figure';
             $base['overlays'] = [
                 'female' => [
-                    'front' => '/images/health-explorer/overlays/endocrine-female-front-v1.webp',
+                    'front' => '/images/health-explorer/overlays/endocrine-female-front-v2.webp',
                 ],
                 'male' => [
-                    'front' => '/images/health-explorer/overlays/endocrine-male-front-v1.webp',
+                    'front' => '/images/health-explorer/overlays/endocrine-male-front-v2.webp',
                 ],
             ];
         }
