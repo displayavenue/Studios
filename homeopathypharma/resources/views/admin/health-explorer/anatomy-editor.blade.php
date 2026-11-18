@@ -31,7 +31,7 @@
 
 <p class="admin-card" style="margin-bottom:1rem;">
     Same male/female figures and system chips as the website. Click a system (e.g. Cardiovascular) to preview the same overlay as the storefront.
-    Front, Back, Left, and Right each have their own red dots. Use <strong>Save all changes</strong> before leaving.
+    Front, Back, Left, and Right each have their own red dots. An organ can belong to several systems, and each system can place that organ’s dot in a different spot. Use <strong>Save all changes</strong> before leaving.
 </p>
 
 <div id="ax-app" class="ax" data-boot='@json($boot)'>
@@ -346,23 +346,77 @@
     return { src: `${path}${sep}v=${boot.cacheToken || Date.now()}`, mode };
   }
 
+  function migrateGenderHotspotMap(map) {
+    if (!map || typeof map !== 'object') return map || {};
+    if (map.side && !map.left) {
+      map.left = { cx: Number(map.side.cx), cy: Number(map.side.cy), r: Number(map.side.r || 1.15) };
+    }
+    if (map.side && !map.right) {
+      map.right = {
+        cx: Math.round((100 - Number(map.side.cx)) * 10) / 10,
+        cy: Number(map.side.cy),
+        r: Number(map.side.r || 1.15),
+      };
+    }
+    return map;
+  }
+
   function migrateOrganHotspots(organ) {
     if (!organ) return;
     organ.hotspots = organ.hotspots || {};
     for (const g of ['female', 'male']) {
-      const map = organ.hotspots[g] || {};
-      organ.hotspots[g] = map;
-      if (map.side && !map.left) {
-        map.left = { cx: Number(map.side.cx), cy: Number(map.side.cy), r: Number(map.side.r || 1.15) };
-      }
-      if (map.side && !map.right) {
-        map.right = {
-          cx: Math.round((100 - Number(map.side.cx)) * 10) / 10,
-          cy: Number(map.side.cy),
-          r: Number(map.side.r || 1.15),
-        };
-      }
+      organ.hotspots[g] = migrateGenderHotspotMap(organ.hotspots[g] || {});
     }
+    organ.hotspots_by_system = organ.hotspots_by_system && typeof organ.hotspots_by_system === 'object'
+      ? organ.hotspots_by_system
+      : {};
+    Object.keys(organ.hotspots_by_system).forEach((systemId) => {
+      const byGender = organ.hotspots_by_system[systemId];
+      if (!byGender || typeof byGender !== 'object') {
+        organ.hotspots_by_system[systemId] = {};
+        return;
+      }
+      for (const g of ['female', 'male']) {
+        if (byGender[g] && typeof byGender[g] === 'object') {
+          byGender[g] = migrateGenderHotspotMap(byGender[g]);
+        }
+      }
+    });
+  }
+
+  function activeSystemFilterId() {
+    if (!state.systemId || state.systemId === 'all' || state.systemId === 'mental') return null;
+    return state.systemId;
+  }
+
+  function readSpotValue(map, key) {
+    if (!map || typeof map !== 'object') return undefined;
+    if (Object.prototype.hasOwnProperty.call(map, key)) {
+      const v = map[key];
+      if (v === null || v === false) return null; // tombstone: hidden for this system/view
+      if (v && typeof v.cx === 'number' && typeof v.cy === 'number') {
+        return { cx: Number(v.cx), cy: Number(v.cy), r: Number(v.r || 1.15) };
+      }
+      return null;
+    }
+    if (key === 'left' && map.side && typeof map.side.cx === 'number') {
+      return { cx: Number(map.side.cx), cy: Number(map.side.cy), r: Number(map.side.r || 1.15) };
+    }
+    if (key === 'right' && map.side && typeof map.side.cx === 'number') {
+      return {
+        cx: Math.round((100 - Number(map.side.cx)) * 10) / 10,
+        cy: Number(map.side.cy),
+        r: Number(map.side.r || 1.15),
+      };
+    }
+    return undefined;
+  }
+
+  function ensureSystemHotspotMap(organ, systemId) {
+    ensureHotspots(organ);
+    organ.hotspots_by_system[systemId] = organ.hotspots_by_system[systemId] || {};
+    organ.hotspots_by_system[systemId][state.gender] = organ.hotspots_by_system[systemId][state.gender] || {};
+    return organ.hotspots_by_system[systemId][state.gender];
   }
 
   function setStatus(msg, ok = true) {
@@ -386,13 +440,11 @@
     organ.hotspots = organ.hotspots || {};
     organ.hotspots.female = organ.hotspots.female || {};
     organ.hotspots.male = organ.hotspots.male || {};
+    organ.hotspots_by_system = organ.hotspots_by_system || {};
   }
 
   function hasSpotOnCurrentView(organ) {
-    ensureHotspots(organ);
-    const meta = viewMeta(state.view);
-    const spot = organ.hotspots?.[state.gender]?.[meta.key];
-    return !!(spot && typeof spot.cx === 'number' && typeof spot.cy === 'number');
+    return !!displaySpot(organ);
   }
 
   function visibleOrgans() {
@@ -408,27 +460,54 @@
   function displaySpot(organ) {
     ensureHotspots(organ);
     const meta = viewMeta(state.view);
-    const spot = organ.hotspots?.[state.gender]?.[meta.key];
-    if (!spot || typeof spot.cx !== 'number') return null;
-    return {
-      cx: Number(spot.cx),
-      cy: Number(spot.cy),
-    };
+    const systemId = activeSystemFilterId();
+    if (systemId) {
+      const systemMap = organ.hotspots_by_system?.[systemId]?.[state.gender];
+      const own = readSpotValue(systemMap, meta.key);
+      if (own === null) return null;
+      if (own) return { cx: own.cx, cy: own.cy };
+    }
+    const fallback = readSpotValue(organ.hotspots?.[state.gender], meta.key);
+    if (!fallback) return null;
+    return { cx: fallback.cx, cy: fallback.cy };
   }
 
   function writeSpot(organ, displayCx, displayCy) {
     ensureHotspots(organ);
     const meta = viewMeta(state.view);
-    organ.hotspots[state.gender][meta.key] = {
+    const next = {
       cx: Math.round(Math.max(0, Math.min(100, displayCx)) * 10) / 10,
       cy: Math.round(Math.max(0, Math.min(100, displayCy)) * 10) / 10,
-      r: organ.hotspots[state.gender][meta.key]?.r || 1.15,
+      r: 1.15,
     };
+    const systemId = activeSystemFilterId();
+    if (systemId) {
+      const map = ensureSystemHotspotMap(organ, systemId);
+      const prev = readSpotValue(map, meta.key);
+      next.r = (prev && prev.r) || readSpotValue(organ.hotspots?.[state.gender], meta.key)?.r || 1.15;
+      map[meta.key] = next;
+      if (meta.key === 'left' || meta.key === 'right') delete map.side;
+      return;
+    }
+    const prevDefault = readSpotValue(organ.hotspots[state.gender], meta.key);
+    next.r = (prevDefault && prevDefault.r) || 1.15;
+    organ.hotspots[state.gender][meta.key] = next;
+    if (meta.key === 'left' || meta.key === 'right') {
+      delete organ.hotspots[state.gender].side;
+    }
   }
 
   function removeSpotFromCurrentView(organ) {
     ensureHotspots(organ);
     const meta = viewMeta(state.view);
+    const systemId = activeSystemFilterId();
+    if (systemId) {
+      // Tombstone so this system no longer falls back to the shared default position.
+      const map = ensureSystemHotspotMap(organ, systemId);
+      map[meta.key] = false;
+      if (meta.key === 'left' || meta.key === 'right') delete map.side;
+      return;
+    }
     if (organ.hotspots?.[state.gender]) {
       delete organ.hotspots[state.gender][meta.key];
       // Drop legacy shared side key so it cannot resurrect a removed left/right dot.
@@ -465,8 +544,17 @@
     els.addCancel.hidden = !on;
     els.hint.textContent = on
       ? 'Click on the body to drop a new red dot, then name it in the side panel.'
-      : 'Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.';
+      : defaultHint();
     setStatus(on ? 'Place mode — click the anatomy figure' : '');
+  }
+
+  function defaultHint() {
+    const systemId = activeSystemFilterId();
+    if (systemId) {
+      const name = activeSystem()?.name || systemId;
+      return `Editing “${name}” positions — drag a red dot to place it for this system only. Other systems keep their own spots.`;
+    }
+    return 'Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.';
   }
 
   function organNeedsAutoFill(organ) {
@@ -559,9 +647,14 @@
     });
 
     if (!state.placing) {
-      els.hint.textContent = overlay.src
-        ? `${systemLabel} overlay matches the live explorer for this view. Drag red dots as usual.`
-        : 'Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.';
+      const systemId = activeSystemFilterId();
+      if (systemId) {
+        els.hint.textContent = overlay.src
+          ? `${systemLabel} overlay on. Dot positions here are for this system only — other systems keep their own.`
+          : defaultHint();
+      } else {
+        els.hint.textContent = defaultHint();
+      }
     }
 
     els.dots.innerHTML = '';
@@ -726,6 +819,7 @@
       homeopathy_product_ids: organ.homeopathy_product_ids || [],
       related_organ_ids: organ.related_organ_ids || [],
       hotspots: organ.hotspots,
+      hotspots_by_system: organ.hotspots_by_system || {},
     };
     const data = await api(boot.saveUrl, 'PUT', payload);
     const idx = state.organs.findIndex((o) => o.id === organ.id);
@@ -762,6 +856,7 @@
           system_ids: organSystemIds(o),
           gender: o.gender,
           hotspots: o.hotspots,
+          hotspots_by_system: o.hotspots_by_system || {},
         } : null;
       }).filter(Boolean);
       await api(boot.bulkUrl, 'PUT', { organs: patches });

@@ -137,6 +137,7 @@ class HealthExplorerController extends Controller
             'related_organ_ids' => ['nullable', 'array'],
             'related_organ_ids.*' => ['string', 'max:120'],
             'hotspots' => ['required', 'array'],
+            'hotspots_by_system' => ['nullable', 'array'],
         ]);
 
         $systemIds = $this->resolveSystemIdsInput($data);
@@ -166,6 +167,13 @@ class HealthExplorerController extends Controller
             $organ['homeopathy_product_ids'] = array_values($data['homeopathy_product_ids'] ?? []);
             $organ['related_organ_ids'] = array_values($data['related_organ_ids'] ?? []);
             $organ['hotspots'] = $this->normalizeHotspots($data['hotspots'], $data['gender'], $organ['hotspots'] ?? []);
+            if (array_key_exists('hotspots_by_system', $data)) {
+                $organ['hotspots_by_system'] = $this->normalizeHotspotsBySystem(
+                    is_array($data['hotspots_by_system']) ? $data['hotspots_by_system'] : [],
+                    $data['gender'],
+                    is_array($organ['hotspots_by_system'] ?? null) ? $organ['hotspots_by_system'] : []
+                );
+            }
             break;
         }
         unset($organ);
@@ -215,18 +223,21 @@ class HealthExplorerController extends Controller
             if (($existing['slug'] ?? null) !== $slug && ($existing['id'] ?? null) !== $slug) {
                 continue;
             }
-            $existing['hotspots'] = is_array($existing['hotspots'] ?? null) ? $existing['hotspots'] : [];
-            $existing['hotspots'][$bodyGender] = is_array($existing['hotspots'][$bodyGender] ?? null)
-                ? $existing['hotspots'][$bodyGender]
-                : [];
-            $existing['hotspots'][$bodyGender][$view] = $spot;
-            // Placing an existing organ while filtered to another system adds that membership.
-            if ($requestedSystems !== []) {
+            // Placing while filtered to a system writes a per-system spot (keeps other systems' positions).
+            $targetSystem = $requestedSystems[0] ?? null;
+            if ($targetSystem) {
+                $this->writeSystemHotspot($existing, $targetSystem, $bodyGender, $view, $spot);
                 $merged = array_values(array_unique(array_merge(
                     HealthExplorerCatalog::normalizeOrganSystemIds($existing),
                     $requestedSystems
                 )));
                 $this->applyOrganSystems($existing, $merged);
+            } else {
+                $existing['hotspots'] = is_array($existing['hotspots'] ?? null) ? $existing['hotspots'] : [];
+                $existing['hotspots'][$bodyGender] = is_array($existing['hotspots'][$bodyGender] ?? null)
+                    ? $existing['hotspots'][$bodyGender]
+                    : [];
+                $existing['hotspots'][$bodyGender][$view] = $spot;
             }
             $this->saveCatalog($catalog);
 
@@ -246,6 +257,15 @@ class HealthExplorerController extends Controller
             'male' => [],
         ];
         $hotspots[$bodyGender][$view] = $spot;
+        $hotspotsBySystem = [];
+        $primarySystem = $systemIds[0] ?? null;
+        if ($primarySystem) {
+            $hotspotsBySystem[$primarySystem] = [
+                'female' => [],
+                'male' => [],
+            ];
+            $hotspotsBySystem[$primarySystem][$bodyGender][$view] = $spot;
+        }
 
         $organ = array_merge($draft, [
             'id' => $slug,
@@ -253,6 +273,7 @@ class HealthExplorerController extends Controller
             'name' => $name,
             'gender' => $gender,
             'hotspots' => $hotspots,
+            'hotspots_by_system' => $hotspotsBySystem,
         ]);
         $this->applyOrganSystems($organ, $systemIds);
 
@@ -274,6 +295,7 @@ class HealthExplorerController extends Controller
             'organs.*.system_ids' => ['nullable', 'array'],
             'organs.*.system_ids.*' => ['string', 'max:80'],
             'organs.*.gender' => ['nullable', 'in:both,male,female'],
+            'organs.*.hotspots_by_system' => ['nullable', 'array'],
         ]);
 
         $catalog = $this->catalog();
@@ -295,6 +317,13 @@ class HealthExplorerController extends Controller
                     $organ['gender'] = $patch['gender'];
                 }
                 $organ['hotspots'] = $this->normalizeHotspots($patch['hotspots'], $gender, $organ['hotspots'] ?? []);
+                if (array_key_exists('hotspots_by_system', $patch)) {
+                    $organ['hotspots_by_system'] = $this->normalizeHotspotsBySystem(
+                        is_array($patch['hotspots_by_system']) ? $patch['hotspots_by_system'] : [],
+                        $gender,
+                        is_array($organ['hotspots_by_system'] ?? null) ? $organ['hotspots_by_system'] : []
+                    );
+                }
                 $saved++;
                 break;
             }
@@ -852,6 +881,9 @@ class HealthExplorerController extends Controller
             'homeopathy_product_ids' => $existing['homeopathy_product_ids'] ?? [],
             'related_organ_ids' => $existing['related_organ_ids'] ?? [],
             'hotspots' => $hotspots,
+            'hotspots_by_system' => is_array($existing['hotspots_by_system'] ?? null)
+                ? $existing['hotspots_by_system']
+                : [],
         ];
     }
 
@@ -1229,6 +1261,94 @@ class HealthExplorerController extends Controller
         }
 
         return $out;
+    }
+
+    /**
+     * Per-system hotspot maps. Same shape as hotspots, keyed by system id.
+     * false/null view entries are kept as false (tombstones hide the shared default).
+     *
+     * @param  array<string, mixed>  $incoming
+     * @param  array<string, mixed>  $existing
+     * @return array<string, mixed>
+     */
+    private function normalizeHotspotsBySystem(array $incoming, string $gender, array $existing = []): array
+    {
+        // Incoming is authoritative for which systems keep a per-system map.
+        $out = [];
+        foreach ($incoming as $systemId => $srcSystem) {
+            $systemId = trim((string) $systemId);
+            if ($systemId === '' || $systemId === 'all' || $systemId === 'mental' || ! is_array($srcSystem)) {
+                continue;
+            }
+            $prevSystem = is_array($existing[$systemId] ?? null) ? $existing[$systemId] : [];
+            $targets = $gender === 'both' ? ['female', 'male'] : [$gender];
+            $nextSystem = $prevSystem;
+            foreach ($targets as $g) {
+                $src = $srcSystem[$g] ?? null;
+                if (! is_array($src)) {
+                    // Keep prior gender map when payload omits it.
+                    continue;
+                }
+                $next = [];
+                foreach (['front', 'back', 'left', 'right', 'side'] as $view) {
+                    if (! array_key_exists($view, $src)) {
+                        continue;
+                    }
+                    $spot = $src[$view];
+                    if ($spot === null || $spot === false) {
+                        $next[$view] = false;
+
+                        continue;
+                    }
+                    if (! is_array($spot)) {
+                        continue;
+                    }
+                    $next[$view] = [
+                        'cx' => round(max(0, min(100, (float) ($spot['cx'] ?? 50))), 2),
+                        'cy' => round(max(0, min(100, (float) ($spot['cy'] ?? 40))), 2),
+                        'r' => round((float) ($spot['r'] ?? 1.15), 2),
+                    ];
+                }
+                if (isset($next['side']) && is_array($next['side'])) {
+                    $side = $next['side'];
+                    if (! isset($next['left'])) {
+                        $next['left'] = $side;
+                    }
+                    if (! isset($next['right'])) {
+                        $next['right'] = [
+                            'cx' => round(max(0, min(100, 100 - (float) $side['cx'])), 2),
+                            'cy' => $side['cy'],
+                            'r' => $side['r'],
+                        ];
+                    }
+                }
+                $nextSystem[$g] = $next;
+            }
+            $out[$systemId] = $nextSystem;
+        }
+
+        return $out;
+    }
+
+    /**
+     * @param  array<string, mixed>  $organ
+     * @param  array{cx: float, cy: float, r?: float}  $spot
+     */
+    private function writeSystemHotspot(array &$organ, string $systemId, string $bodyGender, string $view, array $spot): void
+    {
+        $systemId = trim($systemId);
+        if ($systemId === '') {
+            return;
+        }
+        $by = is_array($organ['hotspots_by_system'] ?? null) ? $organ['hotspots_by_system'] : [];
+        $by[$systemId] = is_array($by[$systemId] ?? null) ? $by[$systemId] : [];
+        $by[$systemId][$bodyGender] = is_array($by[$systemId][$bodyGender] ?? null) ? $by[$systemId][$bodyGender] : [];
+        $by[$systemId][$bodyGender][$view] = [
+            'cx' => round(max(0, min(100, (float) ($spot['cx'] ?? 50))), 2),
+            'cy' => round(max(0, min(100, (float) ($spot['cy'] ?? 40))), 2),
+            'r' => round((float) ($spot['r'] ?? 1.15), 2),
+        ];
+        $organ['hotspots_by_system'] = $by;
     }
 
     private function catalog(): array

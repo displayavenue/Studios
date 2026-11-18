@@ -149,10 +149,25 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
       setSelectedMentalId(null);
       setTab('anatomy');
       const organ = organs.find((o) => o.id === id);
-      const spots = organ?.hotspots?.[gender];
+      if (!organ) return;
+      const systemSpots = (systemId && systemId !== 'all' && systemId !== 'mental')
+        ? organ.hotspots_by_system?.[systemId]?.[gender]
+        : null;
+      const spots = systemSpots || organ.hotspots?.[gender];
       if (!spots) return;
       const current = nearestFrame(yaw);
-      const has = (key) => spots[key] && typeof spots[key].cx === 'number';
+      const has = (key) => {
+        if (Object.prototype.hasOwnProperty.call(spots, key)) {
+          const v = spots[key];
+          return !!(v && typeof v.cx === 'number');
+        }
+        if (key === 'left' || key === 'right') {
+          return !!(spots.side && typeof spots.side.cx === 'number');
+        }
+        // Fall back to shared default when system map omits this view.
+        const fallback = organ.hotspots?.[gender];
+        return !!(fallback?.[key] && typeof fallback[key].cx === 'number');
+      };
       if (current === 0 && !has('front') && has('back')) setYaw(180);
       if (current === 180 && !has('back') && has('front')) setYaw(0);
       if (current === 90 && !has('left') && !has('side') && has('front')) setYaw(0);

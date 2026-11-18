@@ -58,21 +58,50 @@ function activeSpot(spot) {
   return spot && typeof spot.cx === 'number' && typeof spot.cy === 'number' ? { ...spot } : null;
 }
 
-function hotspotFor(organ, gender, yaw) {
-  const spots = organ.hotspots?.[gender];
-  if (!spots) return null;
+/** Read one view from a gender hotspot map. false/null = explicit hide; undefined = missing. */
+function readViewSpot(spots, key) {
+  if (!spots || typeof spots !== 'object') return undefined;
+  if (Object.prototype.hasOwnProperty.call(spots, key)) {
+    const value = spots[key];
+    if (value === null || value === false) return null;
+    return activeSpot(value);
+  }
+  if (key === 'left' && spots.side) return activeSpot(spots.side);
+  if (key === 'right' && spots.side) {
+    const side = activeSpot(spots.side);
+    return side ? { ...side, cx: 100 - Number(side.cx) } : null;
+  }
+  return undefined;
+}
+
+function viewKeysForYaw(yaw) {
   const nearest = nearestFrame(yaw);
-  // Independent per-view dots: front / back / left / right (legacy `side` falls back to left).
-  if (nearest === 0) return activeSpot(spots.front);
-  if (nearest === 180) return activeSpot(spots.back);
-  if (nearest === 90) return activeSpot(spots.left || spots.side);
-  if (nearest === 270) {
-    if (spots.right) return activeSpot(spots.right);
-    // Legacy: mirrored side when right was not stored separately.
-    if (spots.side) {
-      return { ...spots.side, cx: 100 - Number(spots.side.cx) };
+  if (nearest === 0) return ['front'];
+  if (nearest === 180) return ['back'];
+  if (nearest === 90) return ['left'];
+  if (nearest === 270) return ['right'];
+  return ['front'];
+}
+
+/**
+ * Resolve hotspot for the active system filter.
+ * Prefers hotspots_by_system[systemId]; falls back to shared hotspots when a view is unset.
+ */
+function hotspotFor(organ, gender, yaw, systemId = 'all') {
+  const keys = viewKeysForYaw(yaw);
+  const defaultSpots = organ.hotspots?.[gender];
+  const systemSpots = (systemId && systemId !== 'all' && systemId !== 'mental')
+    ? organ.hotspots_by_system?.[systemId]?.[gender]
+    : null;
+
+  for (const key of keys) {
+    if (systemSpots) {
+      const own = readViewSpot(systemSpots, key);
+      if (own === null) return null;
+      if (own) return own;
     }
-    return null;
+    const fallback = readViewSpot(defaultSpots, key);
+    if (fallback) return fallback;
   }
   return null;
 }
@@ -159,12 +188,12 @@ export default function BodyFigure({
     return organs
       .map((organ) => {
         if (organ.gender !== 'both' && organ.gender !== gender) return null;
-        const spot = hotspotFor(organ, gender, yaw);
+        const spot = hotspotFor(organ, gender, yaw, systemId);
         if (!spot || typeof spot.cx !== 'number' || typeof spot.cy !== 'number') return null;
         return { organ, spot };
       })
       .filter(Boolean);
-  }, [organs, gender, yaw]);
+  }, [organs, gender, yaw, systemId]);
 
   const stopInertia = useCallback(() => {
     if (inertiaRef.current) {
