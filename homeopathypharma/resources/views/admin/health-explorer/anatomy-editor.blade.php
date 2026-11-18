@@ -15,6 +15,8 @@
         'destroyBase' => url('/admin/health-explorer/organs'),
         'csrf' => csrf_token(),
         'imageBase' => asset('images/health-explorer'),
+        'cacheToken' => (string) (\App\Models\SiteSetting::query()->where('key', 'frontend_cache_token')->value('value') ?: time()),
+        'mentalUrl' => route('admin.health-explorer.index').'#mental',
     ];
 @endphp
 
@@ -22,13 +24,14 @@
     <h2>Anatomy editor</h2>
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
         <a class="btn btn-secondary" href="{{ route('admin.health-explorer.index') }}">Back to catalogue</a>
+        <a class="btn btn-secondary" href="{{ route('admin.health-explorer.systems.index') }}">Manage systems</a>
         <a class="btn btn-secondary" href="{{ route('health-explorer') }}" target="_blank" rel="noopener">Open live explorer</a>
     </div>
 </div>
 
 <p class="admin-card" style="margin-bottom:1rem;">
-    Same male/female figures as the website. Front, Back, Left, and Right each have their own red dots — removing or moving a dot on one view does not change the others.
-    Use <strong>Save all changes</strong> before leaving. To add a marker on the current view only: <strong>Add red dot</strong>, click the body, enter the organ name.
+    Same male/female figures and system chips as the website. Click a system (e.g. Cardiovascular) to preview the same overlay as the storefront.
+    Front, Back, Left, and Right each have their own red dots. Use <strong>Save all changes</strong> before leaving.
 </p>
 
 <div id="ax-app" class="ax" data-boot='@json($boot)'>
@@ -49,6 +52,22 @@
         <span class="ax-status" id="ax-status" aria-live="polite"></span>
     </div>
 
+    <div class="ax-filters" id="ax-filters" role="toolbar" aria-label="Body systems">
+        <button type="button" class="ax-chip is-on" data-system="all" aria-pressed="true">All systems</button>
+        @foreach ($systems as $system)
+            @continue(($system['id'] ?? '') === 'mental')
+            @continue(array_key_exists('enabled', $system) && empty($system['enabled']))
+            <button
+                type="button"
+                class="ax-chip"
+                data-system="{{ $system['id'] }}"
+                aria-pressed="false"
+                title="{{ $system['description'] ?? $system['summary'] ?? $system['name'] }}"
+            >{{ $system['name'] }}</button>
+        @endforeach
+        <button type="button" class="ax-chip" data-system="mental" aria-pressed="false" title="Mental health topics">Mental Health</button>
+    </div>
+
     <div class="ax-layout">
         <section class="ax-stage" aria-label="Anatomy canvas">
             <div class="ax-stage__top">
@@ -56,7 +75,8 @@
                 <p class="ax-hint" id="ax-hint">Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.</p>
             </div>
             <div class="ax-figure" id="ax-figure">
-                <img id="ax-image" src="" alt="Anatomy figure" width="420" height="900" draggable="false">
+                <img id="ax-image" class="ax-image" src="" alt="Anatomy figure" width="420" height="900" draggable="false">
+                <img id="ax-overlay" class="ax-overlay" src="" alt="" width="420" height="900" draggable="false" hidden>
                 <div class="ax-dots" id="ax-dots"></div>
                 <div class="ax-ghost" id="ax-ghost" hidden></div>
             </div>
@@ -129,11 +149,19 @@
 
 <style>
 .ax { --ax-teal:#0d6b5c; --ax-mint:#e7f5f1; --ax-ink:#15231f; --ax-muted:#5b6b65; }
-.ax-toolbar { display:flex; flex-wrap:wrap; gap:0.55rem; align-items:center; margin-bottom:1rem; }
+.ax-toolbar { display:flex; flex-wrap:wrap; gap:0.55rem; align-items:center; margin-bottom:0.75rem; }
 .ax-seg { display:inline-flex; background:#fff; border:1px solid #d5e3dd; border-radius:999px; padding:0.15rem; gap:0.15rem; }
 .ax-seg button { border:0; background:transparent; padding:0.4rem 0.85rem; border-radius:999px; font-weight:700; color:var(--ax-ink); cursor:pointer; }
 .ax-seg button.is-on { background:var(--ax-teal); color:#fff; }
 .ax-status { color:var(--ax-teal); font-weight:600; font-size:0.9rem; }
+.ax-filters { display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:1rem; }
+.ax-chip {
+  background:#fff; border:1px solid #d5e3dd; color:var(--ax-muted);
+  border-radius:999px; padding:0.35rem 0.75rem; font-size:0.82rem; font-weight:600; cursor:pointer;
+}
+.ax-chip.is-on, .ax-chip[aria-pressed="true"] {
+  background:var(--ax-mint); border-color:#b7d9cf; color:#0a4f44;
+}
 .ax-layout { display:grid; grid-template-columns: minmax(280px, 420px) minmax(280px, 1fr); gap:1.25rem; align-items:start; }
 .ax-stage { background:transparent; }
 .ax-stage__top h3 { margin:0 0 0.25rem; color:var(--ax-teal); }
@@ -148,11 +176,18 @@
   transform:translate(-50%,-50%); pointer-events:none; box-shadow:0 0 0 3px rgba(225,29,46,0.25); z-index:4;
 }
 .ax-create { margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid #e3e8e1; }
-.ax-figure img {
+.ax-figure .ax-image {
   position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center bottom;
-  pointer-events:none; filter: drop-shadow(0 10px 16px rgba(20,40,50,0.12));
+  pointer-events:none; filter: drop-shadow(0 10px 16px rgba(20,40,50,0.12)); z-index:1;
 }
-.ax-dots { position:absolute; inset:0; }
+.ax-figure .ax-image.is-under-system { opacity:0; }
+.ax-figure .ax-overlay {
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center bottom;
+  pointer-events:none; filter:none; z-index:2;
+  image-rendering:-webkit-optimize-contrast;
+}
+.ax-figure .ax-overlay.is-full-figure { filter:none; }
+.ax-dots { position:absolute; inset:0; z-index:3; }
 .ax-dot {
   position:absolute; width:1.35rem; height:1.35rem; border:0; padding:0; margin:0;
   transform:translate(-50%,-50%); background:transparent; cursor:grab; z-index:2;
@@ -206,6 +241,7 @@
   const state = {
     gender: 'female',
     view: 'front', // front|back|left|right (viewer-relative)
+    systemId: 'all',
     organs: structuredClone(boot.organs || []),
     selectedId: null,
     dirtyIds: new Set(),
@@ -220,6 +256,8 @@
     title: document.getElementById('ax-title'),
     hint: document.getElementById('ax-hint'),
     image: document.getElementById('ax-image'),
+    overlay: document.getElementById('ax-overlay'),
+    filters: document.getElementById('ax-filters'),
     dots: document.getElementById('ax-dots'),
     figure: document.getElementById('ax-figure'),
     ghost: document.getElementById('ax-ghost'),
@@ -250,10 +288,28 @@
 
   /** Map viewer view → stored hotspot key + image file. Each of the 4 views is independent. */
   function viewMeta(view) {
-    if (view === 'front') return { key: 'front', file: state.gender === 'female' ? 'front-v2' : 'front' };
-    if (view === 'back') return { key: 'back', file: state.gender === 'female' ? 'back-v6' : 'back' };
-    if (view === 'left') return { key: 'left', file: state.gender === 'female' ? 'side-v2' : 'side' };
-    return { key: 'right', file: state.gender === 'female' ? 'side-left-v2' : 'side-left' };
+    if (view === 'front') return { key: 'front', file: state.gender === 'female' ? 'front-v2' : 'front', overlayKey: 'front' };
+    if (view === 'back') return { key: 'back', file: state.gender === 'female' ? 'back-v6' : 'back', overlayKey: 'back' };
+    // Left/Right match the live explorer sprite files / overlay keys.
+    if (view === 'left') return { key: 'left', file: state.gender === 'female' ? 'side-v2' : 'side', overlayKey: 'side' };
+    return { key: 'right', file: state.gender === 'female' ? 'side-left-v2' : 'side-left', overlayKey: 'side-left' };
+  }
+
+  function activeSystem() {
+    if (!state.systemId || state.systemId === 'all' || state.systemId === 'mental') return null;
+    return (boot.systems || []).find((s) => s.id === state.systemId) || null;
+  }
+
+  function systemOverlayInfo() {
+    const system = activeSystem();
+    if (!system) return { src: null, mode: 'none' };
+    const mode = system.overlay_mode || 'none';
+    if (mode === 'none') return { src: null, mode };
+    const meta = viewMeta(state.view);
+    const path = system.overlays?.[state.gender]?.[meta.overlayKey];
+    if (!path) return { src: null, mode };
+    const sep = String(path).includes('?') ? '&' : '?';
+    return { src: `${path}${sep}v=${boot.cacheToken || Date.now()}`, mode };
   }
 
   function migrateOrganHotspots(organ) {
@@ -308,6 +364,9 @@
   function visibleOrgans() {
     return state.organs.filter((o) => {
       if (!(o.gender === 'both' || o.gender === state.gender)) return false;
+      if (state.systemId && state.systemId !== 'all' && state.systemId !== 'mental' && o.system_id !== state.systemId) {
+        return false;
+      }
       return hasSpotOnCurrentView(o);
     });
   }
@@ -437,35 +496,90 @@
 
   function render() {
     const meta = viewMeta(state.view);
-    els.title.textContent = `${state.gender === 'female' ? 'Female' : 'Male'} · ${state.view} view`;
-    els.image.src = `${boot.imageBase}/${state.gender}/${meta.file}.webp?v=${Date.now()}`;
+    const system = activeSystem();
+    const overlay = systemOverlayInfo();
+    const systemLabel = state.systemId === 'all'
+      ? 'All systems'
+      : (state.systemId === 'mental' ? 'Mental Health' : (system?.name || state.systemId));
+    els.title.textContent = `${state.gender === 'female' ? 'Female' : 'Male'} · ${state.view} view · ${systemLabel}`;
+    els.image.src = `${boot.imageBase}/${state.gender}/${meta.file}.webp?v=${boot.cacheToken || Date.now()}`;
+    els.image.classList.toggle('is-under-system', !!(overlay.src && overlay.mode === 'full_figure'));
+
+    if (overlay.src) {
+      els.overlay.hidden = false;
+      els.overlay.src = overlay.src;
+      els.overlay.classList.toggle('is-full-figure', overlay.mode === 'full_figure');
+    } else {
+      els.overlay.hidden = true;
+      els.overlay.removeAttribute('src');
+      els.overlay.classList.remove('is-full-figure');
+    }
 
     root.querySelectorAll('[data-gender]').forEach((b) => b.classList.toggle('is-on', b.dataset.gender === state.gender));
     root.querySelectorAll('[data-view]').forEach((b) => b.classList.toggle('is-on', b.dataset.view === state.view));
-
-    els.dots.innerHTML = '';
-    visibleOrgans().forEach((organ) => {
-      const spot = displaySpot(organ);
-      if (!spot || Number.isNaN(spot.cx) || Number.isNaN(spot.cy)) return;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'ax-dot' + (state.selectedId === organ.id ? ' is-active' : '');
-      btn.style.left = `${spot.cx}%`;
-      btn.style.top = `${spot.cy}%`;
-      btn.dataset.id = organ.id;
-      btn.title = organ.name;
-      btn.innerHTML = `<span class="ax-dot__core"></span>${state.selectedId === organ.id ? `<span class="ax-dot__label">${organ.name}</span>` : ''}`;
-      btn.addEventListener('pointerdown', (ev) => startDrag(ev, organ.id));
-      btn.addEventListener('click', (ev) => {
-        ev.preventDefault();
-        state.selectedId = organ.id;
-        fillForm(organ);
-        render();
-      });
-      els.dots.appendChild(btn);
+    root.querySelectorAll('[data-system]').forEach((b) => {
+      const on = b.dataset.system === state.systemId;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
 
+    if (!state.placing) {
+      els.hint.textContent = overlay.src
+        ? `${systemLabel} overlay matches the live explorer for this view. Drag red dots as usual.`
+        : 'Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.';
+    }
+
+    els.dots.innerHTML = '';
+    if (state.systemId !== 'mental') {
+      visibleOrgans().forEach((organ) => {
+        const spot = displaySpot(organ);
+        if (!spot || Number.isNaN(spot.cx) || Number.isNaN(spot.cy)) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'ax-dot' + (state.selectedId === organ.id ? ' is-active' : '');
+        btn.style.left = `${spot.cx}%`;
+        btn.style.top = `${spot.cy}%`;
+        btn.dataset.id = organ.id;
+        btn.title = organ.name;
+        btn.innerHTML = `<span class="ax-dot__core"></span>${state.selectedId === organ.id ? `<span class="ax-dot__label">${organ.name}</span>` : ''}`;
+        btn.addEventListener('pointerdown', (ev) => startDrag(ev, organ.id));
+        btn.addEventListener('click', (ev) => {
+          ev.preventDefault();
+          state.selectedId = organ.id;
+          fillForm(organ);
+          render();
+        });
+        els.dots.appendChild(btn);
+      });
+    }
+
     fillForm(organById(state.selectedId));
+  }
+
+  function setSystem(systemId) {
+    if (systemId === 'mental') {
+      state.systemId = 'mental';
+      state.selectedId = null;
+      setStatus('Mental Health topics are edited in the catalogue — anatomy overlays stay on body systems.');
+      render();
+      return;
+    }
+    state.systemId = systemId || 'all';
+    const system = activeSystem();
+    if (system) {
+      const overlays = system.overlays || {};
+      const hasFront = !!(overlays.female?.front || overlays.male?.front);
+      const hasOther = ['back', 'side', 'side-left'].some(
+        (key) => overlays.female?.[key] || overlays.male?.[key],
+      );
+      if (hasFront && !hasOther) state.view = 'front';
+    }
+    // Keep selection only if it still belongs to this system filter.
+    const selected = organById(state.selectedId);
+    if (selected && state.systemId !== 'all' && selected.system_id !== state.systemId) {
+      state.selectedId = null;
+    }
+    render();
   }
 
   function startDrag(ev, id) {
@@ -849,6 +963,9 @@
       state.view = btn.dataset.view;
       render();
     });
+  });
+  root.querySelectorAll('[data-system]').forEach((btn) => {
+    btn.addEventListener('click', () => setSystem(btn.dataset.system));
   });
 
   ['ax-cx', 'ax-cy'].forEach((id) => {

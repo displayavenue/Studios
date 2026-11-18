@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, useTransition } from 'react';
-import BodyFigure, { nearestFrame, normalizeYaw, viewLabel } from './components/BodyFigure';
+import BodyFigure, { frameKey, nearestFrame, normalizeYaw, viewLabel } from './components/BodyFigure';
 import DetailPanel from './components/DetailPanel';
 
 const TABS = [
@@ -63,7 +63,8 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const mentalConditions = catalog?.mental_conditions || [];
   const products = catalog?.homeopathy_products || [];
   const activeSystem = systems.find((s) => s.id === systemId) || null;
-  const activeOverlayPath = activeSystem?.overlays?.[gender]?.[view] || null;
+  // Overlay assets are keyed front/back/side/side-left (same as BodyFigure frames).
+  const activeOverlayPath = activeSystem?.overlays?.[gender]?.[frameKey(yaw)] || null;
 
   const filteredOrgans = useMemo(() => {
     return organs.filter((organ) => {
