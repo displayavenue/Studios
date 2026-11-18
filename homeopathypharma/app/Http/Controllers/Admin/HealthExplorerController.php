@@ -39,10 +39,7 @@ class HealthExplorerController extends Controller
             'mental' => $catalog['mental_conditions'] ?? [],
             'products' => $catalog['homeopathy_products'] ?? [],
             'disclaimer' => $catalog['disclaimer'] ?? '',
-            'organCountsBySystem' => collect($catalog['organs'] ?? [])
-                ->groupBy(fn ($o) => $o['system_id'] ?? '')
-                ->map->count()
-                ->all(),
+            'organCountsBySystem' => $this->organCountsBySystem($catalog['organs'] ?? []),
         ]);
     }
 
@@ -112,7 +109,9 @@ class HealthExplorerController extends Controller
         $data = $request->validate([
             'id' => ['required', 'string', 'max:120'],
             'name' => ['required', 'string', 'max:160'],
-            'system_id' => ['required', 'string', 'max:80'],
+            'system_id' => ['nullable', 'string', 'max:80'],
+            'system_ids' => ['nullable', 'array', 'min:1'],
+            'system_ids.*' => ['string', 'max:80'],
             'gender' => ['required', 'in:both,male,female'],
             'summary' => ['nullable', 'string'],
             'function' => ['nullable', 'string'],
@@ -140,6 +139,9 @@ class HealthExplorerController extends Controller
             'hotspots' => ['required', 'array'],
         ]);
 
+        $systemIds = $this->resolveSystemIdsInput($data);
+        abort_if($systemIds === [], 422, 'Select at least one body system.');
+
         $catalog = $this->catalog();
         $found = false;
         foreach ($catalog['organs'] as &$organ) {
@@ -148,7 +150,7 @@ class HealthExplorerController extends Controller
             }
             $found = true;
             $organ['name'] = $data['name'];
-            $organ['system_id'] = $data['system_id'];
+            $this->applyOrganSystems($organ, $systemIds);
             $organ['gender'] = $data['gender'];
             $organ['summary'] = $data['summary'] ?? '';
             $organ['function'] = $data['function'] ?? '';
@@ -184,6 +186,8 @@ class HealthExplorerController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:160'],
             'system_id' => ['nullable', 'string', 'max:80'],
+            'system_ids' => ['nullable', 'array'],
+            'system_ids.*' => ['string', 'max:80'],
             'gender' => ['nullable', 'in:both,male,female'],
             'cx' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'cy' => ['nullable', 'numeric', 'min:0', 'max:100'],
@@ -204,6 +208,7 @@ class HealthExplorerController extends Controller
         }
         $bodyGender = $data['body_gender'] ?? 'female';
         $spot = ['cx' => $cx, 'cy' => $cy, 'r' => 1.15];
+        $requestedSystems = $this->resolveSystemIdsInput($data);
 
         // If this organ already exists, only add/update the red dot on this body + view.
         foreach ($catalog['organs'] as &$existing) {
@@ -215,6 +220,14 @@ class HealthExplorerController extends Controller
                 ? $existing['hotspots'][$bodyGender]
                 : [];
             $existing['hotspots'][$bodyGender][$view] = $spot;
+            // Placing an existing organ while filtered to another system adds that membership.
+            if ($requestedSystems !== []) {
+                $merged = array_values(array_unique(array_merge(
+                    HealthExplorerCatalog::normalizeOrganSystemIds($existing),
+                    $requestedSystems
+                )));
+                $this->applyOrganSystems($existing, $merged);
+            }
             $this->saveCatalog($catalog);
 
             return response()->json(['ok' => true, 'organ' => $existing, 'updated_view' => true]);
@@ -223,7 +236,9 @@ class HealthExplorerController extends Controller
 
         $draft = $this->autoFillOrganFromName($name, $catalog);
         $gender = $data['gender'] ?? $draft['gender'];
-        $systemId = ($data['system_id'] ?? null) ?: $draft['system_id'];
+        $systemIds = $requestedSystems !== []
+            ? $requestedSystems
+            : HealthExplorerCatalog::normalizeOrganSystemIds($draft);
 
         // New organ: place a red dot only on the current body + view.
         $hotspots = [
@@ -236,10 +251,10 @@ class HealthExplorerController extends Controller
             'id' => $slug,
             'slug' => $slug,
             'name' => $name,
-            'system_id' => $systemId,
             'gender' => $gender,
             'hotspots' => $hotspots,
         ]);
+        $this->applyOrganSystems($organ, $systemIds);
 
         $catalog['organs'][] = $organ;
         $this->saveCatalog($catalog);
@@ -256,6 +271,8 @@ class HealthExplorerController extends Controller
             'organs.*.hotspots' => ['required', 'array'],
             'organs.*.name' => ['nullable', 'string', 'max:160'],
             'organs.*.system_id' => ['nullable', 'string', 'max:80'],
+            'organs.*.system_ids' => ['nullable', 'array'],
+            'organs.*.system_ids.*' => ['string', 'max:80'],
             'organs.*.gender' => ['nullable', 'in:both,male,female'],
         ]);
 
@@ -270,8 +287,9 @@ class HealthExplorerController extends Controller
                 if (! empty($patch['name'])) {
                     $organ['name'] = $patch['name'];
                 }
-                if (! empty($patch['system_id'])) {
-                    $organ['system_id'] = $patch['system_id'];
+                $systemIds = $this->resolveSystemIdsInput($patch);
+                if ($systemIds !== []) {
+                    $this->applyOrganSystems($organ, $systemIds);
                 }
                 if (! empty($patch['gender'])) {
                     $organ['gender'] = $patch['gender'];
@@ -305,10 +323,7 @@ class HealthExplorerController extends Controller
 
         return view('admin.health-explorer.systems-index', [
             'systems' => $systems,
-            'organCountsBySystem' => collect($catalog['organs'] ?? [])
-                ->groupBy(fn ($o) => $o['system_id'] ?? '')
-                ->map->count()
-                ->all(),
+            'organCountsBySystem' => $this->organCountsBySystem($catalog['organs'] ?? []),
         ]);
     }
 
@@ -343,7 +358,7 @@ class HealthExplorerController extends Controller
 
         $organs = array_values(array_filter(
             $catalog['organs'] ?? [],
-            fn ($o) => ($o['system_id'] ?? null) === $id
+            fn ($o) => HealthExplorerCatalog::organBelongsToSystem($o, $id)
         ));
 
         return view('admin.health-explorer.system-form', [
@@ -376,7 +391,9 @@ class HealthExplorerController extends Controller
     public function destroySystem(string $id): RedirectResponse
     {
         $catalog = $this->catalog();
-        $linked = collect($catalog['organs'] ?? [])->contains(fn ($o) => ($o['system_id'] ?? null) === $id);
+        $linked = collect($catalog['organs'] ?? [])->contains(
+            fn ($o) => HealthExplorerCatalog::organBelongsToSystem($o, $id)
+        );
         abort_if($linked, 422, 'Remove or reassign organs in this system before deleting it.');
 
         $catalog['systems'] = array_values(array_filter(
@@ -713,10 +730,12 @@ class HealthExplorerController extends Controller
 
     private function validateOrgan(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'slug' => ['nullable', 'string', 'max:120'],
             'name' => ['required', 'string', 'max:160'],
-            'system_id' => ['required', 'string', 'max:80'],
+            'system_id' => ['nullable', 'string', 'max:80'],
+            'system_ids' => ['nullable', 'array', 'min:1'],
+            'system_ids.*' => ['string', 'max:80'],
             'gender' => ['required', 'in:both,male,female'],
             'summary' => ['nullable', 'string'],
             'function' => ['nullable', 'string'],
@@ -731,6 +750,9 @@ class HealthExplorerController extends Controller
             'hotspot_back_cx' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'hotspot_back_cy' => ['nullable', 'numeric', 'min:0', 'max:100'],
         ]);
+        abort_if($this->resolveSystemIdsInput($data) === [], 422, 'Select at least one body system.');
+
+        return $data;
     }
 
     private function validateDisease(Request $request): array
@@ -802,11 +824,17 @@ class HealthExplorerController extends Controller
             ];
         }
 
+        $systemIds = $this->resolveSystemIdsInput($data);
+        if ($systemIds === [] && $existing) {
+            $systemIds = HealthExplorerCatalog::normalizeOrganSystemIds($existing);
+        }
+
         return [
             'id' => $existing['id'] ?? $slug,
             'slug' => $slug,
             'name' => $data['name'],
-            'system_id' => $data['system_id'],
+            'system_id' => $systemIds[0] ?? '',
+            'system_ids' => $systemIds,
             'gender' => $data['gender'],
             'summary' => $data['summary'] ?? '',
             'function' => $data['function'] ?? '',
@@ -825,6 +853,47 @@ class HealthExplorerController extends Controller
             'related_organ_ids' => $existing['related_organ_ids'] ?? [],
             'hotspots' => $hotspots,
         ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     * @return list<string>
+     */
+    private function resolveSystemIdsInput(array $data): array
+    {
+        return HealthExplorerCatalog::normalizeOrganSystemIds([
+            'system_id' => $data['system_id'] ?? '',
+            'system_ids' => $data['system_ids'] ?? [],
+        ]);
+    }
+
+    /**
+     * @param  array<string, mixed>  $organ
+     * @param  list<string>  $systemIds
+     */
+    private function applyOrganSystems(array &$organ, array $systemIds): void
+    {
+        $ids = HealthExplorerCatalog::normalizeOrganSystemIds([
+            'system_ids' => $systemIds,
+        ]);
+        $organ['system_ids'] = $ids;
+        $organ['system_id'] = $ids[0] ?? '';
+    }
+
+    /**
+     * @param  list<array<string, mixed>>  $organs
+     * @return array<string, int>
+     */
+    private function organCountsBySystem(array $organs): array
+    {
+        $counts = [];
+        foreach ($organs as $organ) {
+            foreach (HealthExplorerCatalog::normalizeOrganSystemIds($organ) as $systemId) {
+                $counts[$systemId] = ($counts[$systemId] ?? 0) + 1;
+            }
+        }
+
+        return $counts;
     }
 
     private function diseasePayload(array $data, string $slug, ?array $existing = null): array
@@ -941,9 +1010,22 @@ class HealthExplorerController extends Controller
 
         $draft = $this->autoFillOrganFromName($name, $catalog);
         $changed = false;
-        $forceKeys = ['system_id', 'gender', 'seo_title', 'seo_description'];
+        // Never force-overwrite system membership — organs can belong to multiple systems.
+        $forceKeys = ['gender', 'seo_title', 'seo_description'];
+        $existingSystems = HealthExplorerCatalog::normalizeOrganSystemIds($organ);
 
         foreach ($draft as $key => $value) {
+            if (in_array($key, ['system_id', 'system_ids'], true)) {
+                if ($existingSystems !== []) {
+                    continue;
+                }
+                // Fill blank membership from the name-based guess once.
+                $this->applyOrganSystems($organ, HealthExplorerCatalog::normalizeOrganSystemIds($draft));
+                $changed = true;
+
+                continue;
+            }
+
             $current = $organ[$key] ?? null;
             $blank = $current === null
                 || $current === ''
@@ -1040,6 +1122,7 @@ class HealthExplorerController extends Controller
 
         return [
             'system_id' => $systemId,
+            'system_ids' => $systemId !== '' ? [$systemId] : [],
             'gender' => $gender,
             'summary' => "Educational overview of the {$name} and common concerns people explore in homeopathy.",
             'function' => "The {$name} contributes to normal body function; imbalance here may show as local or referred symptoms.",

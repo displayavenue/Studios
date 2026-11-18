@@ -281,7 +281,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "nervous"
+      ]
     },
     {
       "id": "thyroid",
@@ -401,7 +404,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "endocrine"
+      ]
     },
     {
       "id": "heart",
@@ -526,7 +532,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "cardiovascular"
+      ]
     },
     {
       "id": "lungs",
@@ -648,7 +657,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "respiratory"
+      ]
     },
     {
       "id": "liver",
@@ -769,7 +781,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "stomach",
@@ -888,7 +903,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "intestines",
@@ -1009,7 +1027,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "kidneys",
@@ -1131,7 +1152,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "urinary"
+      ]
     },
     {
       "id": "bladder",
@@ -1247,7 +1271,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "urinary"
+      ]
     },
     {
       "id": "pancreas",
@@ -1365,7 +1392,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "spleen",
@@ -1476,7 +1506,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "lymphatic"
+      ]
     },
     {
       "id": "spine",
@@ -1598,7 +1631,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "musculoskeletal"
+      ]
     },
     {
       "id": "joints",
@@ -1719,7 +1755,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "musculoskeletal"
+      ]
     },
     {
       "id": "muscles",
@@ -1836,7 +1875,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "musculoskeletal"
+      ]
     },
     {
       "id": "eyes",
@@ -1954,7 +1996,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "integumentary"
+      ]
     },
     {
       "id": "skin",
@@ -2073,7 +2118,10 @@
             "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "integumentary"
+      ]
     },
     {
       "id": "male-reproductive",
@@ -2166,7 +2214,10 @@
           }
         },
         "female": []
-      }
+      },
+      "system_ids": [
+        "reproductive"
+      ]
     },
     {
       "id": "female-reproductive",
@@ -2260,7 +2311,10 @@
           }
         },
         "male": []
-      }
+      },
+      "system_ids": [
+        "reproductive"
+      ]
     },
     {
       "id": "gallbladder",
@@ -2373,7 +2427,10 @@
       ],
       "related_organ_ids": [],
       "seo_title": "Gallbladder — Human Health Explorer",
-      "seo_description": "Learn about the Gallbladder, common symptoms, and educational homeopathy references."
+      "seo_description": "Learn about the Gallbladder, common symptoms, and educational homeopathy references.",
+      "system_ids": [
+        "digestive"
+      ]
     }
   ],
   "diseases": [

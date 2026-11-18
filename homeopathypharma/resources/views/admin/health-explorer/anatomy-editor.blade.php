@@ -100,13 +100,18 @@
             <form id="ax-form" class="admin-form" hidden>
                 <input type="hidden" name="id" id="ax-id">
                 <label>Name <input name="name" id="ax-name" required></label>
-                <label>System
-                    <select name="system_id" id="ax-system" required>
+                <fieldset class="ax-checks">
+                    <legend>Systems (one organ can belong to several)</legend>
+                    <div id="ax-systems" class="ax-check-list">
                         @foreach ($systems as $system)
-                            <option value="{{ $system['id'] }}">{{ $system['name'] }}</option>
+                            @continue(($system['id'] ?? '') === 'mental')
+                            <label>
+                                <input type="checkbox" data-system-id="{{ $system['id'] }}" value="{{ $system['id'] }}">
+                                <span>{{ $system['name'] }}</span>
+                            </label>
                         @endforeach
-                    </select>
-                </label>
+                    </div>
+                </fieldset>
                 <label>Shows on
                     <select name="gender" id="ax-gender">
                         <option value="both">Both</option>
@@ -268,6 +273,7 @@
     detailsTitle: document.getElementById('ax-details-title'),
     diseases: document.getElementById('ax-diseases'),
     products: document.getElementById('ax-products'),
+    systems: document.getElementById('ax-systems'),
     addBtn: document.getElementById('ax-add'),
     addCancel: document.getElementById('ax-add-cancel'),
     saveAll: document.getElementById('ax-save-all'),
@@ -298,6 +304,34 @@
   function activeSystem() {
     if (!state.systemId || state.systemId === 'all') return null;
     return (boot.systems || []).find((s) => s.id === state.systemId) || null;
+  }
+
+  function organSystemIds(organ) {
+    if (!organ) return [];
+    const ids = [];
+    const push = (id) => {
+      const v = String(id || '').trim();
+      if (v && !ids.includes(v)) ids.push(v);
+    };
+    (Array.isArray(organ.system_ids) ? organ.system_ids : []).forEach(push);
+    push(organ.system_id);
+    return ids;
+  }
+
+  function organInSystem(organ, systemId) {
+    if (!systemId || systemId === 'all') return true;
+    return organSystemIds(organ).includes(systemId);
+  }
+
+  function selectedSystemIdsFromForm() {
+    return [...els.systems.querySelectorAll('input[data-system-id]:checked')].map((i) => i.dataset.systemId);
+  }
+
+  function setSystemChecks(ids) {
+    const selected = new Set((ids || []).map(String));
+    els.systems.querySelectorAll('input[data-system-id]').forEach((input) => {
+      input.checked = selected.has(input.dataset.systemId);
+    });
   }
 
   function systemOverlayInfo() {
@@ -364,7 +398,7 @@
   function visibleOrgans() {
     return state.organs.filter((o) => {
       if (!(o.gender === 'both' || o.gender === state.gender)) return false;
-      if (state.systemId && state.systemId !== 'all' && state.systemId !== 'mental' && o.system_id !== state.systemId) {
+      if (state.systemId && state.systemId !== 'all' && state.systemId !== 'mental' && !organInSystem(o, state.systemId)) {
         return false;
       }
       return hasSpotOnCurrentView(o);
@@ -464,7 +498,8 @@
     const spot = displaySpot(organ) || { cx: 50, cy: 40 };
     document.getElementById('ax-id').value = organ.id;
     document.getElementById('ax-name').value = organ.name || '';
-    document.getElementById('ax-system').value = organ.system_id || (boot.systems[0]?.id || '');
+    const ids = organSystemIds(organ);
+    setSystemChecks(ids.length ? ids : (boot.systems[0]?.id ? [boot.systems[0].id] : []));
     document.getElementById('ax-gender').value = organ.gender || 'both';
     document.getElementById('ax-cx').value = spot.cx.toFixed(1);
     document.getElementById('ax-cy').value = spot.cy.toFixed(1);
@@ -573,7 +608,7 @@
     }
     // Keep selection only if it still belongs to this system filter.
     const selected = organById(state.selectedId);
-    if (selected && state.systemId !== 'all' && selected.system_id !== state.systemId) {
+    if (selected && state.systemId !== 'all' && state.systemId !== 'mental' && !organInSystem(selected, state.systemId)) {
       state.selectedId = null;
     }
     render();
@@ -645,7 +680,9 @@
   function readFormIntoOrgan(organ) {
     if (!els.form.hidden) {
       organ.name = document.getElementById('ax-name').value.trim();
-      organ.system_id = document.getElementById('ax-system').value;
+      const systemIds = selectedSystemIdsFromForm();
+      organ.system_ids = systemIds;
+      organ.system_id = systemIds[0] || '';
       organ.gender = document.getElementById('ax-gender').value;
       organ.summary = document.getElementById('ax-summary').value.trim();
       organ.function = document.getElementById('ax-function').value.trim();
@@ -673,6 +710,7 @@
       id: organ.id,
       name: organ.name,
       system_id: organ.system_id,
+      system_ids: organSystemIds(organ),
       gender: organ.gender,
       summary: organ.summary,
       function: organ.function,
@@ -721,6 +759,7 @@
           id: o.id,
           name: o.name,
           system_id: o.system_id,
+          system_ids: organSystemIds(o),
           gender: o.gender,
           hotspots: o.hotspots,
         } : null;
@@ -772,6 +811,10 @@
     ev.preventDefault();
     const organ = organById(state.selectedId);
     if (!organ) return;
+    if (!selectedSystemIdsFromForm().length) {
+      setStatus('Select at least one body system for this organ.', false);
+      return;
+    }
     setStatus('Saving…');
     try {
       await saveOrgan(organ);
@@ -850,12 +893,17 @@
     const meta = viewMeta(state.view);
     setStatus(`Creating on ${state.view} view & auto-filling details…`);
     try {
+      const activeSystemId = (state.systemId && state.systemId !== 'all' && state.systemId !== 'mental')
+        ? state.systemId
+        : null;
       const data = await api(boot.storeUrl, 'POST', {
         name,
         cx: state.pending.cx,
         cy: state.pending.cy,
         view: meta.key,
         body_gender: state.gender,
+        system_id: activeSystemId || undefined,
+        system_ids: activeSystemId ? [activeSystemId] : undefined,
       });
       migrateOrganHotspots(data.organ);
       const existingIdx = state.organs.findIndex((o) => o.id === data.organ.id);

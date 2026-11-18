@@ -26,13 +26,29 @@
         <label>Slug (optional) <input name="slug" value="{{ old('slug') }}" placeholder="auto-from-name"></label>
     @endunless
     <label>Name <input name="name" value="{{ old('name', $organ['name'] ?? '') }}" required></label>
-    <label>System
-        <select name="system_id" required>
+    @php
+        $selectedSystems = old('system_ids', $organ['system_ids'] ?? (isset($organ['system_id']) ? [$organ['system_id']] : []));
+        if (! is_array($selectedSystems)) {
+            $selectedSystems = [$selectedSystems];
+        }
+    @endphp
+    <fieldset style="border:1px solid #e3e8e1;border-radius:0.5rem;padding:0.75rem;">
+        <legend>Systems (select one or more)</legend>
+        <div style="display:grid;gap:0.35rem;">
             @foreach ($systems as $system)
-                <option value="{{ $system['id'] }}" @selected(old('system_id', $organ['system_id'] ?? '') === $system['id'])>{{ $system['name'] }}</option>
+                @continue(($system['id'] ?? '') === 'mental')
+                <label style="display:flex;gap:0.45rem;align-items:center;font-weight:500;">
+                    <input
+                        type="checkbox"
+                        name="system_ids[]"
+                        value="{{ $system['id'] }}"
+                        @checked(in_array($system['id'], $selectedSystems, true))
+                    >
+                    <span>{{ $system['name'] }}</span>
+                </label>
             @endforeach
-        </select>
-    </label>
+        </div>
+    </fieldset>
     <label>Gender
         <select name="gender" required>
             @foreach (['both','female','male'] as $g)

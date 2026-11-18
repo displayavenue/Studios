@@ -50,6 +50,7 @@ export default function DetailPanel({
   disease,
   mental,
   systemName,
+  systemNames = [],
   diseases = [],
   products = [],
   relatedOrgans = [],
@@ -60,6 +61,9 @@ export default function DetailPanel({
   onSelectMental,
   onClear,
 }) {
+  const resolvedSystemNames = systemNames.length
+    ? systemNames
+    : (systemName ? [systemName] : []);
   if (mode === 'mental-list') {
     return (
       <div className="hx-panel__body">
@@ -174,13 +178,17 @@ export default function DetailPanel({
         <div className="hx-breadcrumbs">
           <button type="button" onClick={onClear}>Explorer</button>
           <span>/</span>
-          <span>{systemName || 'Body'}</span>
+          <span>{resolvedSystemNames.join(' · ') || 'Body'}</span>
           <span>/</span>
           <span>{organ.name}</span>
         </div>
         <div className="hx-title-row">
           <h3>{organ.name}</h3>
-          <span className="hx-badge">{systemName || organ.system_id}</span>
+          <div className="hx-badge-row" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+            {(resolvedSystemNames.length ? resolvedSystemNames : [organ.system_id].filter(Boolean)).map((label) => (
+              <span key={label} className="hx-badge">{label}</span>
+            ))}
+          </div>
         </div>
         <p className="hx-lead">{organ.summary}</p>
         <div className="hx-grid-2">

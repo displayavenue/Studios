@@ -66,9 +66,26 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   // Overlay assets are keyed front/back/side/side-left (same as BodyFigure frames).
   const activeOverlayPath = activeSystem?.overlays?.[gender]?.[frameKey(yaw)] || null;
 
+  const organSystemIds = (organ) => {
+    if (!organ) return [];
+    const ids = [];
+    const push = (id) => {
+      const v = String(id || '').trim();
+      if (v && !ids.includes(v)) ids.push(v);
+    };
+    (Array.isArray(organ.system_ids) ? organ.system_ids : []).forEach(push);
+    push(organ.system_id);
+    return ids;
+  };
+
+  const organBelongsToSystem = (organ, id) => {
+    if (!id || id === 'all') return true;
+    return organSystemIds(organ).includes(id);
+  };
+
   const filteredOrgans = useMemo(() => {
     return organs.filter((organ) => {
-      if (systemId !== 'all' && organ.system_id !== systemId) return false;
+      if (systemId !== 'all' && !organBelongsToSystem(organ, systemId)) return false;
       if (organ.gender !== 'both' && organ.gender !== gender) return false;
       return true;
     });
@@ -89,7 +106,10 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const selectedOrgan = organs.find((o) => o.id === selectedOrganId) || null;
   const selectedDisease = diseases.find((d) => d.id === selectedDiseaseId) || null;
   const selectedMental = mentalConditions.find((m) => m.id === selectedMentalId) || null;
-  const systemName = systems.find((s) => s.id === selectedOrgan?.system_id)?.name;
+  const systemNames = organSystemIds(selectedOrgan)
+    .map((id) => systems.find((s) => s.id === id)?.name || id)
+    .filter(Boolean);
+  const systemName = systemNames.join(' · ') || systems.find((s) => s.id === selectedOrgan?.system_id)?.name;
 
   const organDiseases = useMemo(() => {
     if (!selectedOrgan) return [];
@@ -371,6 +391,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
                 disease={selectedDisease}
                 mental={panelMode === 'mental-list' ? mentalConditions : selectedMental}
                 systemName={systemName}
+                systemNames={systemNames}
                 diseases={organDiseases}
                 products={products}
                 relatedOrgans={relatedOrgans}

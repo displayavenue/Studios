@@ -91,7 +91,7 @@
         @foreach ($organs as $organ)
             <tr>
                 <td>{{ $organ['name'] }}</td>
-                <td>{{ $organ['system_id'] }}</td>
+                <td>{{ implode(', ', $organ['system_ids'] ?? array_filter([$organ['system_id'] ?? null])) }}</td>
                 <td>{{ $organ['gender'] }}</td>
                 <td style="display:flex;gap:0.5rem;align-items:center;">
                     <a href="{{ route('admin.health-explorer.organs.edit', $organ['slug'] ?? $organ['id']) }}">Edit</a>

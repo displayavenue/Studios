@@ -43,7 +43,9 @@ class HealthExplorerCatalog
             throw new RuntimeException('Health explorer catalogue is invalid.');
         }
 
-        if ($this->ensureSystemShape($catalog)) {
+        $changed = $this->ensureSystemShape($catalog);
+        $changed = $this->ensureOrganShape($catalog) || $changed;
+        if ($changed) {
             $this->save($catalog);
         }
 
@@ -133,6 +135,70 @@ class HealthExplorerCatalog
         }
 
         return $changed;
+    }
+
+    /**
+     * Ensure every organ has system_ids[] and a primary system_id (first entry).
+     * Never drops existing memberships; only fills missing shape.
+     */
+    public function ensureOrganShape(array &$catalog): bool
+    {
+        $changed = false;
+        if (! isset($catalog['organs']) || ! is_array($catalog['organs'])) {
+            return false;
+        }
+
+        foreach ($catalog['organs'] as $index => $organ) {
+            if (! is_array($organ)) {
+                continue;
+            }
+            $normalized = self::normalizeOrganSystemIds($organ);
+            $currentIds = array_values(array_filter(array_map('strval', (array) ($organ['system_ids'] ?? []))));
+            $primary = (string) ($organ['system_id'] ?? '');
+            if ($currentIds !== $normalized || $primary !== ($normalized[0] ?? '')) {
+                $catalog['organs'][$index]['system_ids'] = $normalized;
+                $catalog['organs'][$index]['system_id'] = $normalized[0] ?? '';
+                $changed = true;
+            }
+        }
+
+        return $changed;
+    }
+
+    /**
+     * @param  array<string, mixed>  $organ
+     * @return list<string>
+     */
+    public static function normalizeOrganSystemIds(array $organ): array
+    {
+        $ids = [];
+        foreach ((array) ($organ['system_ids'] ?? []) as $id) {
+            $id = trim((string) $id);
+            if ($id !== '') {
+                $ids[] = $id;
+            }
+        }
+        $primary = trim((string) ($organ['system_id'] ?? ''));
+        if ($primary !== '') {
+            array_unshift($ids, $primary);
+        }
+        $unique = [];
+        foreach ($ids as $id) {
+            if (! in_array($id, $unique, true)) {
+                $unique[] = $id;
+            }
+        }
+
+        return $unique;
+    }
+
+    public static function organBelongsToSystem(array $organ, string $systemId): bool
+    {
+        if ($systemId === '' || $systemId === 'all') {
+            return true;
+        }
+
+        return in_array($systemId, self::normalizeOrganSystemIds($organ), true);
     }
 
     private function systemDefaultsFor(string $id): array
