@@ -1820,6 +1820,99 @@
                     }
                 }
             }
+        },
+        {
+            "id": "gallbladder",
+            "slug": "gallbladder",
+            "name": "Gallbladder",
+            "system_id": "digestive",
+            "gender": "both",
+            "summary": "Educational overview of the Gallbladder and common concerns people explore in homeopathy.",
+            "function": "The Gallbladder contributes to normal body function; imbalance here may show as local or referred symptoms.",
+            "symptoms": [
+                "Discomfort around the Gallbladder",
+                "Changes in usual function",
+                "Fatigue or reduced stamina",
+                "Referred sensations nearby"
+            ],
+            "hotspots": {
+                "female": {
+                    "front": {
+                        "cx": 40,
+                        "cy": 40,
+                        "r": 1.15
+                    },
+                    "side": {
+                        "cx": 50,
+                        "cy": 40,
+                        "r": 1.15
+                    },
+                    "back": {
+                        "cx": 50,
+                        "cy": 40,
+                        "r": 1.15
+                    }
+                },
+                "male": {
+                    "front": {
+                        "cx": 40,
+                        "cy": 40,
+                        "r": 1.15
+                    },
+                    "side": {
+                        "cx": 50,
+                        "cy": 40,
+                        "r": 1.15
+                    },
+                    "back": {
+                        "cx": 50,
+                        "cy": 40,
+                        "r": 1.15
+                    }
+                }
+            },
+            "description": "This Health Explorer entry covers the Gallbladder: what it does, typical symptoms people notice, supportive care context, and related homeopathic product references. Content is for education only and is not a diagnosis or prescription.",
+            "causes": [
+                "Lifestyle and stress factors",
+                "Inflammation or irritation",
+                "Injury, strain, or overuse",
+                "Underlying medical conditions"
+            ],
+            "risk_factors": [
+                "Family history",
+                "Sedentary habits",
+                "Poor diet or hydration",
+                "Chronic stress"
+            ],
+            "diagnostics": [
+                "Clinical history and examination",
+                "Relevant lab or imaging tests when advised",
+                "Specialist review if symptoms persist"
+            ],
+            "treatments": [
+                "Medical evaluation when needed",
+                "Lifestyle and supportive care",
+                "Prescribed treatment from a qualified practitioner",
+                "Educational homeopathy product references below"
+            ],
+            "specialists": [
+                "General practitioner",
+                "Relevant organ specialist",
+                "Qualified homeopathy practitioner (adjunct education)"
+            ],
+            "prevention": [
+                "Balanced diet and hydration",
+                "Regular movement and rest",
+                "Stress management",
+                "Routine check-ups"
+            ],
+            "diseases": [],
+            "homeopathy_product_ids": [
+                "hp-chelidonium"
+            ],
+            "related_organ_ids": [],
+            "seo_title": "Gallbladder — Human Health Explorer",
+            "seo_description": "Learn about the Gallbladder, common symptoms, and educational homeopathy references."
         }
     ],
     "diseases": [

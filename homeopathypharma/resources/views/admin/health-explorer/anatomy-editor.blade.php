@@ -11,6 +11,7 @@
         'saveUrl' => route('admin.health-explorer.anatomy.save'),
         'bulkUrl' => route('admin.health-explorer.anatomy.bulk'),
         'storeUrl' => route('admin.health-explorer.anatomy.store'),
+        'autofillUrl' => route('admin.health-explorer.anatomy.autofill'),
         'destroyBase' => url('/admin/health-explorer/organs'),
         'csrf' => csrf_token(),
         'imageBase' => asset('images/health-explorer'),
@@ -117,6 +118,7 @@
                 </fieldset>
                 <div class="admin-actions" style="margin-top:0.75rem;">
                     <button class="btn btn-primary" type="submit">Save this organ</button>
+                    <button class="btn btn-secondary" type="button" id="ax-autofill" title="Fill empty fields from the organ name">Fill details from name</button>
                     <button class="btn btn-secondary" type="button" id="ax-delete">Delete</button>
                 </div>
             </form>
@@ -191,6 +193,8 @@
     placing: false,
     pending: null, // { cx, cy } display coords waiting for create form
     saving: false,
+    _autofilling: false,
+    autofillAttempted: new Set(),
   };
 
   const els = {
@@ -321,6 +325,14 @@
     setStatus(on ? 'Place mode — click the anatomy figure' : '');
   }
 
+  function organNeedsAutoFill(organ) {
+    if (!organ) return false;
+    const summary = (organ.summary || '').trim();
+    const fn = (organ.function || '').trim();
+    const symptoms = organ.symptoms || [];
+    return !summary || !fn || !Array.isArray(symptoms) || symptoms.length === 0;
+  }
+
   function fillForm(organ) {
     if (state.pending) {
       els.form.hidden = true;
@@ -357,6 +369,19 @@
     document.getElementById('ax-diagnostics').value = joinLines(organ.diagnostics);
     document.getElementById('ax-risk').value = joinLines(organ.risk_factors);
     renderChecks();
+
+    // Name-only organs created before autofill: fill details as soon as selected.
+    if (
+      organNeedsAutoFill(organ)
+      && !state.placing
+      && !state._autofilling
+      && boot.autofillUrl
+      && !state.autofillAttempted.has(organ.id)
+    ) {
+      state.autofillAttempted.add(organ.id);
+      state._autofilling = true;
+      autofillSelected({ force: false }).finally(() => { state._autofilling = false; });
+    }
   }
 
   function render() {
@@ -666,6 +691,24 @@
       setStatus(err.message || 'Could not create red dot', false);
     }
   });
+
+  async function autofillSelected({ force = false } = {}) {
+    const organ = organById(state.selectedId);
+    if (!organ || !boot.autofillUrl) return;
+    setStatus(`Filling details for “${organ.name}” from its name…`);
+    try {
+      const data = await api(boot.autofillUrl, 'POST', { id: organ.id, force: !!force });
+      const idx = state.organs.findIndex((o) => o.id === organ.id);
+      if (idx >= 0) state.organs[idx] = data.organ;
+      clearDirty([organ.id]);
+      setStatus(`Filled details for “${data.organ.name}” from its name.`);
+      render();
+    } catch (err) {
+      setStatus(err.message || 'Could not autofill details', false);
+    }
+  }
+
+  document.getElementById('ax-autofill').addEventListener('click', () => autofillSelected({ force: true }));
 
   document.getElementById('ax-delete').addEventListener('click', async () => {
     const organ = organById(state.selectedId);

@@ -51,6 +51,11 @@ class HealthExplorerController extends Controller
     public function anatomyEditor(): View
     {
         $catalog = $this->catalog();
+        // Repair organs that were created with only a name (empty details).
+        if ($this->backfillEmptyOrgans($catalog)) {
+            $this->saveCatalog($catalog);
+            $catalog = $this->catalog();
+        }
 
         return view('admin.health-explorer.anatomy-editor', [
             'catalog' => $catalog,
@@ -59,6 +64,33 @@ class HealthExplorerController extends Controller
             'diseases' => $catalog['diseases'] ?? [],
             'products' => $catalog['homeopathy_products'] ?? [],
         ]);
+    }
+
+    /** Fill missing organ details from its name (for dots created before autofill). */
+    public function autofillAnatomyOrgan(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'id' => ['required', 'string', 'max:120'],
+            'force' => ['nullable', 'boolean'],
+        ]);
+
+        $catalog = $this->catalog();
+        $found = false;
+        $saved = null;
+        foreach ($catalog['organs'] as &$organ) {
+            if (($organ['id'] ?? null) !== $data['id'] && ($organ['slug'] ?? null) !== $data['id']) {
+                continue;
+            }
+            $this->applyAutoFillToOrgan($organ, $catalog, empty($data['force']));
+            $found = true;
+            $saved = $organ;
+            break;
+        }
+        unset($organ);
+        abort_unless($found, 404, 'Organ not found.');
+        $this->saveCatalog($catalog);
+
+        return response()->json(['ok' => true, 'organ' => $saved]);
     }
 
     /** Save one organ (info + hotspots) from the visual anatomy editor. */
@@ -758,6 +790,76 @@ class HealthExplorerController extends Controller
      *
      * @return array<string, mixed>
      */
+    /**
+     * @param  array<string, mixed>  $catalog
+     */
+    private function backfillEmptyOrgans(array &$catalog): bool
+    {
+        $changed = false;
+        foreach ($catalog['organs'] as &$organ) {
+            if ($this->applyAutoFillToOrgan($organ, $catalog, true)) {
+                $changed = true;
+            }
+        }
+        unset($organ);
+
+        return $changed;
+    }
+
+    /**
+     * Merge name-based defaults into an organ. When $emptyOnly is true, only
+     * organs missing core details are repaired (blank fields + guessed system).
+     *
+     * @param  array<string, mixed>  $organ
+     * @param  array<string, mixed>  $catalog
+     */
+    private function applyAutoFillToOrgan(array &$organ, array $catalog, bool $emptyOnly = true): bool
+    {
+        $name = trim((string) ($organ['name'] ?? ''));
+        if ($name === '') {
+            return false;
+        }
+
+        $needs = $this->organNeedsAutoFill($organ);
+        if ($emptyOnly && ! $needs) {
+            return false;
+        }
+
+        $draft = $this->autoFillOrganFromName($name, $catalog);
+        $changed = false;
+        $forceKeys = ['system_id', 'gender', 'seo_title', 'seo_description'];
+
+        foreach ($draft as $key => $value) {
+            $current = $organ[$key] ?? null;
+            $blank = $current === null
+                || $current === ''
+                || (is_array($current) && count($current) === 0);
+
+            if ($emptyOnly && ! $blank && ! in_array($key, $forceKeys, true)) {
+                continue;
+            }
+
+            if ($current !== $value) {
+                $organ[$key] = $value;
+                $changed = true;
+            }
+        }
+
+        return $changed;
+    }
+
+    /**
+     * @param  array<string, mixed>  $organ
+     */
+    private function organNeedsAutoFill(array $organ): bool
+    {
+        $summary = trim((string) ($organ['summary'] ?? ''));
+        $function = trim((string) ($organ['function'] ?? ''));
+        $symptoms = $organ['symptoms'] ?? [];
+
+        return $summary === '' || $function === '' || ! is_array($symptoms) || count($symptoms) === 0;
+    }
+
     private function autoFillOrganFromName(string $name, array $catalog): array
     {
         $lower = Str::lower($name);
