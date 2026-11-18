@@ -54,21 +54,27 @@ function viewLabel(yaw) {
   return 'right';
 }
 
+function activeSpot(spot) {
+  return spot && typeof spot.cx === 'number' && typeof spot.cy === 'number' ? { ...spot } : null;
+}
+
 function hotspotFor(organ, gender, yaw) {
   const spots = organ.hotspots?.[gender];
   if (!spots) return null;
   const nearest = nearestFrame(yaw);
-  if (nearest === 0 && spots.front) return { ...spots.front };
-  if (nearest === 180 && spots.back) return { ...spots.back };
-  if (nearest === 90 && (spots.side || spots.front)) {
-    return { ...(spots.side || spots.front) };
-  }
+  // Independent per-view dots: front / back / left / right (legacy `side` falls back to left).
+  if (nearest === 0) return activeSpot(spots.front);
+  if (nearest === 180) return activeSpot(spots.back);
+  if (nearest === 90) return activeSpot(spots.left || spots.side);
   if (nearest === 270) {
-    const src = spots.side || spots.front;
-    if (!src) return null;
-    return { ...src, cx: 100 - Number(src.cx) };
+    if (spots.right) return activeSpot(spots.right);
+    // Legacy: mirrored side when right was not stored separately.
+    if (spots.side) {
+      return { ...spots.side, cx: 100 - Number(spots.side.cx) };
+    }
+    return null;
   }
-  return spots.front || spots.back || null;
+  return null;
 }
 
 function frameSrc(gender, key) {

@@ -132,7 +132,8 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
       const has = (key) => spots[key] && typeof spots[key].cx === 'number';
       if (current === 0 && !has('front') && has('back')) setYaw(180);
       if (current === 180 && !has('back') && has('front')) setYaw(0);
-      if ((current === 90 || current === 270) && !has('side') && has('front')) setYaw(0);
+      if (current === 90 && !has('left') && !has('side') && has('front')) setYaw(0);
+      if (current === 270 && !has('right') && !has('side') && has('front')) setYaw(0);
     });
   };
 

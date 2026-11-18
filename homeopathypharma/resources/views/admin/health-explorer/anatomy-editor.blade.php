@@ -27,8 +27,8 @@
 </div>
 
 <p class="admin-card" style="margin-bottom:1rem;">
-    Same male/female figures as the website. Pick a body and direction, drag red dots to align organs, then use <strong>Save all changes</strong> before leaving so nothing refreshes away.
-    To add a marker: click <strong>Add red dot</strong>, click the body, and enter only the organ name — system, summary, symptoms, treatments, and related links fill in automatically.
+    Same male/female figures as the website. Front, Back, Left, and Right each have their own red dots — removing or moving a dot on one view does not change the others.
+    Use <strong>Save all changes</strong> before leaving. To add a marker on the current view only: <strong>Add red dot</strong>, click the body, enter the organ name.
 </p>
 
 <div id="ax-app" class="ax" data-boot='@json($boot)'>
@@ -119,7 +119,8 @@
                 <div class="admin-actions" style="margin-top:0.75rem;">
                     <button class="btn btn-primary" type="submit">Save this organ</button>
                     <button class="btn btn-secondary" type="button" id="ax-autofill" title="Fill empty fields from the organ name">Fill details from name</button>
-                    <button class="btn btn-secondary" type="button" id="ax-delete">Delete</button>
+                    <button class="btn btn-secondary" type="button" id="ax-remove-view" title="Remove this red dot from the current Front/Back/Left/Right view only">Remove from this view</button>
+                    <button class="btn btn-secondary" type="button" id="ax-delete" title="Delete this organ from every view">Delete organ entirely</button>
                 </div>
             </form>
         </aside>
@@ -229,12 +230,31 @@
     markDirty(null);
   }
 
-  /** Map viewer view → stored hotspot key + image file + mirror flag. */
+  /** Map viewer view → stored hotspot key + image file. Each of the 4 views is independent. */
   function viewMeta(view) {
-    if (view === 'front') return { key: 'front', file: 'front', mirror: false };
-    if (view === 'back') return { key: 'back', file: 'back', mirror: false };
-    if (view === 'left') return { key: 'side', file: 'side', mirror: false }; // viewer left
-    return { key: 'side', file: 'side-left', mirror: true }; // viewer right
+    if (view === 'front') return { key: 'front', file: 'front' };
+    if (view === 'back') return { key: 'back', file: 'back' };
+    if (view === 'left') return { key: 'left', file: 'side' };
+    return { key: 'right', file: 'side-left' };
+  }
+
+  function migrateOrganHotspots(organ) {
+    if (!organ) return;
+    organ.hotspots = organ.hotspots || {};
+    for (const g of ['female', 'male']) {
+      const map = organ.hotspots[g] || {};
+      organ.hotspots[g] = map;
+      if (map.side && !map.left) {
+        map.left = { cx: Number(map.side.cx), cy: Number(map.side.cy), r: Number(map.side.r || 1.15) };
+      }
+      if (map.side && !map.right) {
+        map.right = {
+          cx: Math.round((100 - Number(map.side.cx)) * 10) / 10,
+          cy: Number(map.side.cy),
+          r: Number(map.side.r || 1.15),
+        };
+      }
+    }
   }
 
   function setStatus(msg, ok = true) {
@@ -254,26 +274,33 @@
   }
 
   function ensureHotspots(organ) {
+    migrateOrganHotspots(organ);
     organ.hotspots = organ.hotspots || {};
-    for (const g of ['female', 'male']) {
-      organ.hotspots[g] = organ.hotspots[g] || {};
-      for (const v of ['front', 'side', 'back']) {
-        organ.hotspots[g][v] = organ.hotspots[g][v] || { cx: 50, cy: 40, r: 1.15 };
-      }
-    }
+    organ.hotspots.female = organ.hotspots.female || {};
+    organ.hotspots.male = organ.hotspots.male || {};
+  }
+
+  function hasSpotOnCurrentView(organ) {
+    ensureHotspots(organ);
+    const meta = viewMeta(state.view);
+    const spot = organ.hotspots?.[state.gender]?.[meta.key];
+    return !!(spot && typeof spot.cx === 'number' && typeof spot.cy === 'number');
   }
 
   function visibleOrgans() {
-    return state.organs.filter((o) => o.gender === 'both' || o.gender === state.gender);
+    return state.organs.filter((o) => {
+      if (!(o.gender === 'both' || o.gender === state.gender)) return false;
+      return hasSpotOnCurrentView(o);
+    });
   }
 
   function displaySpot(organ) {
     ensureHotspots(organ);
     const meta = viewMeta(state.view);
     const spot = organ.hotspots?.[state.gender]?.[meta.key];
-    if (!spot) return null;
+    if (!spot || typeof spot.cx !== 'number') return null;
     return {
-      cx: meta.mirror ? 100 - Number(spot.cx) : Number(spot.cx),
+      cx: Number(spot.cx),
       cy: Number(spot.cy),
     };
   }
@@ -281,16 +308,22 @@
   function writeSpot(organ, displayCx, displayCy) {
     ensureHotspots(organ);
     const meta = viewMeta(state.view);
-    const cx = meta.mirror ? 100 - displayCx : displayCx;
     organ.hotspots[state.gender][meta.key] = {
-      cx: Math.round(Math.max(0, Math.min(100, cx)) * 10) / 10,
+      cx: Math.round(Math.max(0, Math.min(100, displayCx)) * 10) / 10,
       cy: Math.round(Math.max(0, Math.min(100, displayCy)) * 10) / 10,
       r: organ.hotspots[state.gender][meta.key]?.r || 1.15,
     };
-    // Keep "both" bodies in sync unless gender-specific organ.
-    if (organ.gender === 'both') {
-      const other = state.gender === 'female' ? 'male' : 'female';
-      // Do not overwrite the other gender's tuned coords automatically.
+  }
+
+  function removeSpotFromCurrentView(organ) {
+    ensureHotspots(organ);
+    const meta = viewMeta(state.view);
+    if (organ.hotspots?.[state.gender]) {
+      delete organ.hotspots[state.gender][meta.key];
+      // Drop legacy shared side key so it cannot resurrect a removed left/right dot.
+      if (meta.key === 'left' || meta.key === 'right') {
+        delete organ.hotspots[state.gender].side;
+      }
     }
   }
 
@@ -669,23 +702,27 @@
     const name = document.getElementById('ax-new-name').value.trim();
     if (!name) return;
     const meta = viewMeta(state.view);
-    // Convert display coords → stored coords (un-mirror for viewer-right).
-    const storeCx = meta.mirror ? 100 - state.pending.cx : state.pending.cx;
-    const storeCy = state.pending.cy;
-    setStatus('Creating & auto-filling details…');
+    setStatus(`Creating on ${state.view} view & auto-filling details…`);
     try {
       const data = await api(boot.storeUrl, 'POST', {
         name,
-        cx: storeCx,
-        cy: storeCy,
+        cx: state.pending.cx,
+        cy: state.pending.cy,
         view: meta.key,
         body_gender: state.gender,
       });
-      state.organs.push(data.organ);
+      migrateOrganHotspots(data.organ);
+      const existingIdx = state.organs.findIndex((o) => o.id === data.organ.id);
+      if (existingIdx >= 0) state.organs[existingIdx] = data.organ;
+      else state.organs.push(data.organ);
       state.selectedId = data.organ.id;
       setPlacing(false);
       clearDirty([data.organ.id]);
-      setStatus(`Added & saved “${data.organ.name}” with auto-filled details.`);
+      setStatus(
+        data.updated_view
+          ? `Updated “${data.organ.name}” on ${state.view} view only — other views unchanged.`
+          : `Added “${data.organ.name}” on ${state.view} view only — other views unchanged.`
+      );
       render();
     } catch (err) {
       setStatus(err.message || 'Could not create red dot', false);
@@ -710,11 +747,32 @@
 
   document.getElementById('ax-autofill').addEventListener('click', () => autofillSelected({ force: true }));
 
+  document.getElementById('ax-remove-view').addEventListener('click', async () => {
+    const organ = organById(state.selectedId);
+    if (!organ) return;
+    const meta = viewMeta(state.view);
+    if (!hasSpotOnCurrentView(organ)) {
+      setStatus(`No red dot for “${organ.name}” on this ${state.view} view.`, false);
+      return;
+    }
+    if (!confirm(`Remove “${organ.name}” from the ${state.view} view only?\nOther views keep their dots.`)) return;
+    setStatus(`Removing from ${state.view} view…`);
+    try {
+      removeSpotFromCurrentView(organ);
+      await saveOrgan(organ, { quiet: true });
+      state.selectedId = null;
+      setStatus(`Removed “${organ.name}” from ${state.view} view only.`);
+      render();
+    } catch (err) {
+      setStatus(err.message || 'Could not remove from this view', false);
+    }
+  });
+
   document.getElementById('ax-delete').addEventListener('click', async () => {
     const organ = organById(state.selectedId);
     if (!organ) return;
-    if (!confirm(`Delete “${organ.name}”?`)) return;
-    setStatus('Deleting…');
+    if (!confirm(`Delete “${organ.name}” from EVERY view and the catalogue?`)) return;
+    setStatus('Deleting organ entirely…');
     try {
       const res = await fetch(`${boot.destroyBase}/${encodeURIComponent(organ.slug || organ.id)}`, {
         method: 'POST',
@@ -730,9 +788,8 @@
       }
       state.organs = state.organs.filter((o) => o.id !== organ.id);
       state.selectedId = null;
-      setStatus('Deleted.');
+      setStatus('Organ deleted from all views.');
       render();
-      // Fallback hard delete via form navigation if fetch blocked
       if (!res.ok) {
         const form = document.createElement('form');
         form.method = 'POST';
@@ -773,6 +830,7 @@
     });
   });
 
+  state.organs.forEach(migrateOrganHotspots);
   markDirty(null);
   render();
 })();

@@ -174,7 +174,7 @@ class HealthExplorerController extends Controller
             'gender' => ['nullable', 'in:both,male,female'],
             'cx' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'cy' => ['nullable', 'numeric', 'min:0', 'max:100'],
-            'view' => ['nullable', 'in:front,back,side'],
+            'view' => ['nullable', 'in:front,back,left,right,side'],
             'body_gender' => ['nullable', 'in:female,male'],
         ]);
 
@@ -182,37 +182,42 @@ class HealthExplorerController extends Controller
         $name = trim($data['name']);
         $slug = Str::slug($name);
         abort_if($slug === '', 422, 'Invalid name.');
-        abort_if(
-            collect($catalog['organs'] ?? [])->contains(fn ($o) => ($o['slug'] ?? $o['id'] ?? '') === $slug),
-            422,
-            'An organ with this name already exists.'
-        );
+
+        $cx = (float) ($data['cx'] ?? 50);
+        $cy = (float) ($data['cy'] ?? 40);
+        $view = $data['view'] ?? 'front';
+        if ($view === 'side') {
+            $view = 'left';
+        }
+        $bodyGender = $data['body_gender'] ?? 'female';
+        $spot = ['cx' => $cx, 'cy' => $cy, 'r' => 1.15];
+
+        // If this organ already exists, only add/update the red dot on this body + view.
+        foreach ($catalog['organs'] as &$existing) {
+            if (($existing['slug'] ?? null) !== $slug && ($existing['id'] ?? null) !== $slug) {
+                continue;
+            }
+            $existing['hotspots'] = is_array($existing['hotspots'] ?? null) ? $existing['hotspots'] : [];
+            $existing['hotspots'][$bodyGender] = is_array($existing['hotspots'][$bodyGender] ?? null)
+                ? $existing['hotspots'][$bodyGender]
+                : [];
+            $existing['hotspots'][$bodyGender][$view] = $spot;
+            $this->saveCatalog($catalog);
+
+            return response()->json(['ok' => true, 'organ' => $existing, 'updated_view' => true]);
+        }
+        unset($existing);
 
         $draft = $this->autoFillOrganFromName($name, $catalog);
         $gender = $data['gender'] ?? $draft['gender'];
         $systemId = ($data['system_id'] ?? null) ?: $draft['system_id'];
 
-        $cx = (float) ($data['cx'] ?? 50);
-        $cy = (float) ($data['cy'] ?? 40);
-        $view = $data['view'] ?? 'front';
-        $bodyGender = $data['body_gender'] ?? 'female';
-        $spot = ['cx' => $cx, 'cy' => $cy, 'r' => 1.15];
-        $blank = ['cx' => 50.0, 'cy' => 40.0, 'r' => 1.15];
-        $makeGenderHotspots = function () use ($view, $spot, $blank) {
-            return [
-                'front' => $view === 'front' ? $spot : $blank,
-                'side' => $view === 'side' ? $spot : $blank,
-                'back' => $view === 'back' ? $spot : $blank,
-            ];
-        };
-
+        // New organ: place a red dot only on the current body + view.
         $hotspots = [
-            'female' => $makeGenderHotspots(),
-            'male' => $makeGenderHotspots(),
+            'female' => [],
+            'male' => [],
         ];
-        if (isset($hotspots[$bodyGender])) {
-            $hotspots[$bodyGender][$view] = $spot;
-        }
+        $hotspots[$bodyGender][$view] = $spot;
 
         $organ = array_merge($draft, [
             'id' => $slug,
@@ -985,17 +990,48 @@ class HealthExplorerController extends Controller
     {
         $targets = $gender === 'both' ? ['female', 'male'] : [$gender];
         $out = $existing;
+        $views = ['front', 'back', 'left', 'right', 'side'];
 
         foreach ($targets as $g) {
-            $src = $incoming[$g] ?? [];
-            foreach (['front', 'side', 'back'] as $view) {
-                $spot = $src[$view] ?? $existing[$g][$view] ?? ['cx' => 50, 'cy' => 40, 'r' => 1.15];
-                $out[$g][$view] = [
+            $src = $incoming[$g] ?? null;
+            if (! is_array($src)) {
+                continue;
+            }
+            $out[$g] = is_array($out[$g] ?? null) ? $out[$g] : [];
+
+            // Replace this body's view map from the editor payload (omitted views are removed).
+            $next = [];
+            foreach ($views as $view) {
+                if (! array_key_exists($view, $src)) {
+                    continue;
+                }
+                $spot = $src[$view];
+                if ($spot === null || $spot === false || ! is_array($spot)) {
+                    continue;
+                }
+                $next[$view] = [
                     'cx' => round(max(0, min(100, (float) ($spot['cx'] ?? 50))), 2),
                     'cy' => round(max(0, min(100, (float) ($spot['cy'] ?? 40))), 2),
                     'r' => round((float) ($spot['r'] ?? 1.15), 2),
                 ];
             }
+
+            // Migrate legacy `side` into independent left/right when needed.
+            if (isset($next['side'])) {
+                $side = $next['side'];
+                if (! isset($next['left'])) {
+                    $next['left'] = $side;
+                }
+                if (! isset($next['right'])) {
+                    $next['right'] = [
+                        'cx' => round(max(0, min(100, 100 - (float) $side['cx'])), 2),
+                        'cy' => $side['cy'],
+                        'r' => $side['r'],
+                    ];
+                }
+            }
+
+            $out[$g] = $next;
         }
 
         return $out;
