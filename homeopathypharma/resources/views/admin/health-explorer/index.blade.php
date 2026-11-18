@@ -18,7 +18,7 @@
 <p class="admin-card" style="margin-bottom:1rem;">
     Manage the full Health Explorer catalogue here — systems, organs, diseases, mental topics, and homeopathy products.
     Use the <a href="{{ route('admin.health-explorer.anatomy') }}"><strong>Anatomy editor</strong></a> to drag red dots on the same male/female figures as the live site (front, back, left, right) and edit each organ’s homeopathy info.
-    Changes write to <code>public/data/health-explorer/catalog.json</code> and sync to the live explorer.
+    Each body system has its own edit page and is saved separately. Live edits are stored on the server and are <strong>not</strong> reset to defaults when Health Explorer code is updated.
 </p>
 
 <div class="admin-card" style="margin-bottom:1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;">
@@ -52,18 +52,23 @@
 <div class="admin-card" style="margin-bottom:1rem;">
     <div class="admin-top" style="margin:0 0 0.75rem;">
         <h3 style="margin:0;">Body systems</h3>
-        <a class="btn btn-secondary" href="{{ route('admin.health-explorer.systems.create') }}">Add system</a>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <a class="btn btn-primary" href="{{ route('admin.health-explorer.systems.index') }}">Manage systems</a>
+            <a class="btn btn-secondary" href="{{ route('admin.health-explorer.systems.create') }}">Add system</a>
+        </div>
     </div>
     <table class="admin-table">
-        <thead><tr><th>Name</th><th>Id</th><th></th></tr></thead>
+        <thead><tr><th>Name</th><th>Id</th><th>Organs</th><th>Overlay</th><th></th></tr></thead>
         <tbody>
         @foreach ($systems as $system)
             <tr>
                 <td>{{ $system['name'] }}</td>
                 <td><code>{{ $system['id'] }}</code></td>
+                <td>{{ $organCountsBySystem[$system['id']] ?? 0 }}</td>
+                <td>{{ ($system['overlay_mode'] ?? 'none') === 'none' ? '—' : ($system['overlay_mode'] ?? '—') }}</td>
                 <td style="display:flex;gap:0.5rem;align-items:center;">
-                    <a href="{{ route('admin.health-explorer.systems.edit', $system['id']) }}">Edit</a>
-                    <form method="post" action="{{ route('admin.health-explorer.systems.destroy', $system['id']) }}" onsubmit="return confirm('Delete this system?');">
+                    <a href="{{ route('admin.health-explorer.systems.edit', $system['id']) }}">Edit system</a>
+                    <form method="post" action="{{ route('admin.health-explorer.systems.destroy', $system['id']) }}" onsubmit="return confirm('Delete this system? Organs must be reassigned first.');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-secondary" style="padding:0.2rem 0.55rem;">Delete</button>

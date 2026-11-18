@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\HealthExplorerCatalog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,9 +13,17 @@ use Illuminate\View\View;
 
 class HealthExplorerController extends Controller
 {
+    public function __construct(private HealthExplorerCatalog $explorerCatalog)
+    {
+    }
+
     public function index(): View
     {
         $catalog = $this->catalog();
+        $systems = collect($catalog['systems'] ?? [])
+            ->sortBy(fn ($s) => [$s['sort_order'] ?? 100, $s['name'] ?? ''])
+            ->values()
+            ->all();
 
         return view('admin.health-explorer.index', [
             'counts' => [
@@ -24,12 +33,16 @@ class HealthExplorerController extends Controller
                 'mental' => count($catalog['mental_conditions'] ?? []),
                 'products' => count($catalog['homeopathy_products'] ?? []),
             ],
-            'systems' => $catalog['systems'] ?? [],
+            'systems' => $systems,
             'organs' => $catalog['organs'] ?? [],
             'diseases' => $catalog['diseases'] ?? [],
             'mental' => $catalog['mental_conditions'] ?? [],
             'products' => $catalog['homeopathy_products'] ?? [],
             'disclaimer' => $catalog['disclaimer'] ?? '',
+            'organCountsBySystem' => collect($catalog['organs'] ?? [])
+                ->groupBy(fn ($o) => $o['system_id'] ?? '')
+                ->map->count()
+                ->all(),
         ]);
     }
 
@@ -282,9 +295,29 @@ class HealthExplorerController extends Controller
 
     /* ---------------- Systems ---------------- */
 
+    public function systemsIndex(): View
+    {
+        $catalog = $this->catalog();
+        $systems = collect($catalog['systems'] ?? [])
+            ->sortBy(fn ($s) => [$s['sort_order'] ?? 100, $s['name'] ?? ''])
+            ->values()
+            ->all();
+
+        return view('admin.health-explorer.systems-index', [
+            'systems' => $systems,
+            'organCountsBySystem' => collect($catalog['organs'] ?? [])
+                ->groupBy(fn ($o) => $o['system_id'] ?? '')
+                ->map->count()
+                ->all(),
+        ]);
+    }
+
     public function createSystem(): View
     {
-        return view('admin.health-explorer.system-form', ['system' => null]);
+        return view('admin.health-explorer.system-form', [
+            'system' => null,
+            'organs' => [],
+        ]);
     }
 
     public function storeSystem(Request $request): RedirectResponse
@@ -294,22 +327,29 @@ class HealthExplorerController extends Controller
         $id = Str::slug($data['id'] ?: $data['name']);
         abort_if(collect($catalog['systems'] ?? [])->contains(fn ($s) => ($s['id'] ?? '') === $id), 422, 'System id already exists.');
 
-        $catalog['systems'][] = [
-            'id' => $id,
-            'name' => $data['name'],
-            'description' => $data['description'] ?? '',
-        ];
+        $catalog['systems'][] = $this->systemPayload($data, $id);
         $this->saveCatalog($catalog);
 
-        return redirect()->route('admin.health-explorer.index')->with('status', 'System added.');
+        return redirect()
+            ->route('admin.health-explorer.systems.edit', $id)
+            ->with('status', 'System added. Edit this system independently — your changes are stored separately from other systems.');
     }
 
     public function editSystem(string $id): View
     {
-        $system = collect($this->catalog()['systems'] ?? [])->firstWhere('id', $id);
+        $catalog = $this->catalog();
+        $system = collect($catalog['systems'] ?? [])->firstWhere('id', $id);
         abort_unless($system, 404);
 
-        return view('admin.health-explorer.system-form', ['system' => $system]);
+        $organs = array_values(array_filter(
+            $catalog['organs'] ?? [],
+            fn ($o) => ($o['system_id'] ?? null) === $id
+        ));
+
+        return view('admin.health-explorer.system-form', [
+            'system' => $system,
+            'organs' => $organs,
+        ]);
     }
 
     public function updateSystem(Request $request, string $id): RedirectResponse
@@ -319,8 +359,7 @@ class HealthExplorerController extends Controller
         $found = false;
         foreach ($catalog['systems'] as &$system) {
             if (($system['id'] ?? null) === $id) {
-                $system['name'] = $data['name'];
-                $system['description'] = $data['description'] ?? '';
+                $system = $this->systemPayload($data, $id, $system);
                 $found = true;
                 break;
             }
@@ -329,19 +368,24 @@ class HealthExplorerController extends Controller
         abort_unless($found, 404);
         $this->saveCatalog($catalog);
 
-        return redirect()->route('admin.health-explorer.index')->with('status', 'System updated.');
+        return redirect()
+            ->route('admin.health-explorer.systems.edit', $id)
+            ->with('status', 'System updated. Only this system was changed — other systems and organs were left alone.');
     }
 
     public function destroySystem(string $id): RedirectResponse
     {
         $catalog = $this->catalog();
+        $linked = collect($catalog['organs'] ?? [])->contains(fn ($o) => ($o['system_id'] ?? null) === $id);
+        abort_if($linked, 422, 'Remove or reassign organs in this system before deleting it.');
+
         $catalog['systems'] = array_values(array_filter(
             $catalog['systems'] ?? [],
             fn ($s) => ($s['id'] ?? null) !== $id
         ));
         $this->saveCatalog($catalog);
 
-        return redirect()->route('admin.health-explorer.index')->with('status', 'System deleted.');
+        return redirect()->route('admin.health-explorer.systems.index')->with('status', 'System deleted.');
     }
 
     /* ---------------- Organs ---------------- */
@@ -596,10 +640,75 @@ class HealthExplorerController extends Controller
     private function validateSystem(Request $request, bool $requireId = true): array
     {
         return $request->validate([
-            'id' => [$requireId ? 'nullable' : 'nullable', 'string', 'max:80'],
+            'id' => ['nullable', 'string', 'max:80'],
             'name' => ['required', 'string', 'max:160'],
-            'description' => ['nullable', 'string', 'max:1000'],
+            'description' => ['nullable', 'string', 'max:4000'],
+            'summary' => ['nullable', 'string'],
+            'function' => ['nullable', 'string'],
+            'symptoms' => ['nullable', 'string'],
+            'causes' => ['nullable', 'string'],
+            'treatments' => ['nullable', 'string'],
+            'specialists' => ['nullable', 'string'],
+            'prevention' => ['nullable', 'string'],
+            'seo_title' => ['nullable', 'string', 'max:180'],
+            'seo_description' => ['nullable', 'string', 'max:320'],
+            'sort_order' => ['nullable', 'integer', 'min:0', 'max:9999'],
+            'enabled' => ['nullable', 'boolean'],
+            'overlay_mode' => ['nullable', 'in:none,full_figure,vessels'],
+            'overlay_female_front' => ['nullable', 'string', 'max:255'],
+            'overlay_male_front' => ['nullable', 'string', 'max:255'],
+            'overlay_female_back' => ['nullable', 'string', 'max:255'],
+            'overlay_male_back' => ['nullable', 'string', 'max:255'],
+            'overlay_female_side' => ['nullable', 'string', 'max:255'],
+            'overlay_male_side' => ['nullable', 'string', 'max:255'],
+            'overlay_female_side_left' => ['nullable', 'string', 'max:255'],
+            'overlay_male_side_left' => ['nullable', 'string', 'max:255'],
         ]);
+    }
+
+    private function systemPayload(array $data, string $id, ?array $existing = null): array
+    {
+        $overlays = is_array($existing['overlays'] ?? null) ? $existing['overlays'] : [];
+        foreach (['female', 'male'] as $gender) {
+            if (! isset($overlays[$gender]) || ! is_array($overlays[$gender])) {
+                $overlays[$gender] = [];
+            }
+            foreach (['front', 'back', 'side', 'side-left'] as $view) {
+                $field = 'overlay_'.$gender.'_'.str_replace('-', '_', $view);
+                if (array_key_exists($field, $data)) {
+                    $path = trim((string) ($data[$field] ?? ''));
+                    if ($path === '') {
+                        unset($overlays[$gender][$view]);
+                    } else {
+                        $overlays[$gender][$view] = $path;
+                    }
+                }
+            }
+            if ($overlays[$gender] === []) {
+                unset($overlays[$gender]);
+            }
+        }
+
+        return [
+            'id' => $id,
+            'name' => $data['name'],
+            'description' => $data['description'] ?? ($existing['description'] ?? ''),
+            'summary' => $data['summary'] ?? ($existing['summary'] ?? ''),
+            'function' => $data['function'] ?? ($existing['function'] ?? ''),
+            'symptoms' => $this->linesToArray($data['symptoms'] ?? null, $existing['symptoms'] ?? []),
+            'causes' => $this->linesToArray($data['causes'] ?? null, $existing['causes'] ?? []),
+            'treatments' => $this->linesToArray($data['treatments'] ?? null, $existing['treatments'] ?? []),
+            'specialists' => $this->linesToArray($data['specialists'] ?? null, $existing['specialists'] ?? []),
+            'prevention' => $this->linesToArray($data['prevention'] ?? null, $existing['prevention'] ?? []),
+            'seo_title' => $data['seo_title'] ?? ($existing['seo_title'] ?? null),
+            'seo_description' => $data['seo_description'] ?? ($existing['seo_description'] ?? null),
+            'sort_order' => (int) ($data['sort_order'] ?? $existing['sort_order'] ?? 100),
+            'enabled' => array_key_exists('enabled', $data)
+                ? (bool) $data['enabled']
+                : (bool) ($existing['enabled'] ?? true),
+            'overlay_mode' => $data['overlay_mode'] ?? ($existing['overlay_mode'] ?? 'none'),
+            'overlays' => $overlays,
+        ];
     }
 
     private function validateOrgan(Request $request): array
@@ -1039,28 +1148,13 @@ class HealthExplorerController extends Controller
         return $out;
     }
 
-    private function catalogPath(): string
-    {
-        return public_path('data/health-explorer/catalog.json');
-    }
-
     private function catalog(): array
     {
-        $path = $this->catalogPath();
-        abort_unless(File::exists($path), 404, 'Explorer catalogue missing.');
-
-        return json_decode(File::get($path), true, 512, JSON_THROW_ON_ERROR);
+        return $this->explorerCatalog->get();
     }
 
     private function saveCatalog(array $catalog): void
     {
-        $catalog['updated_at'] = now()->toDateString();
-        $json = json_encode($catalog, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        File::put($this->catalogPath(), $json."\n");
-
-        $mirror = base_path('../public_html/data/health-explorer/catalog.json');
-        if (is_dir(dirname($mirror))) {
-            @File::put($mirror, $json."\n");
-        }
+        $this->explorerCatalog->save($catalog);
     }
 }

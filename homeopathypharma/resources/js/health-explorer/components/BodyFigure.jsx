@@ -100,11 +100,21 @@ function frameSrc(gender, key) {
 }
 
 /** Separate system overlays sit ABOVE the silhouette; never bake into anatomy sprites. */
-function systemOverlaySrc(systemId, gender, viewKey) {
-  if (systemId !== 'cardiovascular') return null;
-  // Front-only for now (matches the approved cardiovascular reference).
-  if (viewKey !== 'front') return null;
-  return `/images/health-explorer/overlays/cardiovascular-${gender}-front-v6.webp?v=${cacheToken()}`;
+function systemOverlaySrc(systemId, gender, viewKey, systems = []) {
+  if (!systemId || systemId === 'all') return null;
+  const system = systems.find((s) => s.id === systemId);
+  if (!system) return null;
+  const mode = system.overlay_mode || 'none';
+  if (mode === 'none') return null;
+  const path = system.overlays?.[gender]?.[viewKey];
+  if (!path) return null;
+  const sep = String(path).includes('?') ? '&' : '?';
+  return `${path}${sep}v=${cacheToken()}`;
+}
+
+function systemOverlayMode(systemId, systems = []) {
+  const system = systems.find((s) => s.id === systemId);
+  return system?.overlay_mode || 'none';
 }
 
 /**
@@ -118,6 +128,7 @@ export default function BodyFigure({
   activeId = null,
   zoom = 1,
   systemId = 'all',
+  systems = [],
   onSelect,
   onYawChange,
 }) {
@@ -130,7 +141,8 @@ export default function BodyFigure({
   const activeKey = frameKey(yaw);
   const label = viewLabel(yaw);
   const src = frameSrc(gender, activeKey);
-  const overlaySrc = systemOverlaySrc(systemId, gender, activeKey);
+  const overlaySrc = systemOverlaySrc(systemId, gender, activeKey, systems);
+  const overlayMode = systemOverlayMode(systemId, systems);
 
   useEffect(() => {
     FRAMES.forEach((frame) => {
@@ -272,7 +284,7 @@ export default function BodyFigure({
         <div className="hx-turntable__scene">
           <img
             key={`${gender}-${activeKey}`}
-            className={`hx-turntable__image is-active${overlaySrc ? ' is-under-system' : ''}`}
+            className={`hx-turntable__image is-active${overlaySrc && overlayMode === 'full_figure' ? ' is-under-system' : ''}`}
             src={src}
             alt=""
             draggable={false}
@@ -282,7 +294,7 @@ export default function BodyFigure({
           {overlaySrc ? (
             <img
               key={`overlay-${systemId}-${gender}-${activeKey}`}
-              className="hx-turntable__overlay is-active is-full-figure"
+              className={`hx-turntable__overlay is-active${overlayMode === 'full_figure' ? ' is-full-figure' : ''}`}
               src={overlaySrc}
               alt=""
               draggable={false}

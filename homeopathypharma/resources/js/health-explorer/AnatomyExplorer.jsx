@@ -62,6 +62,8 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const diseases = catalog?.diseases || [];
   const mentalConditions = catalog?.mental_conditions || [];
   const products = catalog?.homeopathy_products || [];
+  const activeSystem = systems.find((s) => s.id === systemId) || null;
+  const activeOverlayPath = activeSystem?.overlays?.[gender]?.[view] || null;
 
   const filteredOrgans = useMemo(() => {
     return organs.filter((organ) => {
@@ -240,13 +242,16 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               aria-pressed={systemId === system.id}
               onClick={() => {
                 setSystemId(system.id);
-                // Cardiovascular overlay is authored for front view.
-                if (system.id === 'cardiovascular') {
-                  setYaw(0);
-                  setTab('anatomy');
-                }
+                setTab('anatomy');
+                // If this system only has a front overlay, snap to Front.
+                const overlays = system.overlays || {};
+                const hasFront = Boolean(overlays.female?.front || overlays.male?.front);
+                const hasOther = ['back', 'side', 'side-left'].some(
+                  (key) => overlays.female?.[key] || overlays.male?.[key],
+                );
+                if (hasFront && !hasOther) setYaw(0);
               }}
-              title={system.description}
+              title={system.description || system.summary || system.name}
             >
               {system.name}
             </button>
@@ -280,12 +285,13 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               activeId={selectedOrganId}
               zoom={zoom}
               systemId={systemId}
+              systems={systems}
               onSelect={selectOrgan}
               onYawChange={setYaw}
             />
             <p style={{ margin: '0.65rem 0 0', color: '#5b6b65', fontSize: '0.84rem' }}>
-              {systemId === 'cardiovascular'
-                ? 'Cardiovascular overlay is shown on the Front view — veins and arteries sit above the silhouette without changing its shade.'
+              {activeOverlayPath
+                ? `${activeSystem?.name || 'System'} overlay is shown for this view. Each system is edited separately in admin and keeps its own content.`
                 : 'Drag sideways for a full 360° turn, or jump with Front / Back / Left / Right. Tap a red dot to open that organ.'}
             </p>
           </section>
