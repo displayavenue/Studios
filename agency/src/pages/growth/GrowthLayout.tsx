@@ -160,12 +160,12 @@ export function GrowthLayout() {
           <div>
             <h4>Services</h4>
             <ul>
+              <li>Lead Generation</li>
               <li>Website Development</li>
               <li>Website Management</li>
               <li>Meta Ads</li>
               <li>Google Ads</li>
               <li>Google Business Profile</li>
-              <li>Lead Generation</li>
               <li>E-commerce Management</li>
             </ul>
           </div>

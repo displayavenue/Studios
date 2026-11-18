@@ -87,6 +87,26 @@ export function scoreGrowthLead(input: {
 
 export const growthServices = [
   {
+    id: "lead-gen",
+    title: "Lead Generation",
+    subtitle: "Generate & Qualify Better Business Leads",
+    items: [
+      "Lead-generation strategy",
+      "Landing pages",
+      "Qualification forms",
+      "Lead scoring",
+      "CRM integration",
+      "WhatsApp integration",
+      "Retargeting",
+      "Conversion tracking",
+      "Funnel optimization",
+      "Lead reporting",
+    ],
+    note: "",
+    cta: "Generate More Leads",
+    accent: "#7c3aed",
+  },
+  {
     id: "website-dev",
     title: "Website Development",
     subtitle: "Build a Website Designed for Growth",
@@ -184,26 +204,6 @@ export const growthServices = [
     note: "",
     cta: "Improve My Google Presence",
     accent: "#34a853",
-  },
-  {
-    id: "lead-gen",
-    title: "Lead Generation",
-    subtitle: "Generate & Qualify Better Business Leads",
-    items: [
-      "Lead-generation strategy",
-      "Landing pages",
-      "Qualification forms",
-      "Lead scoring",
-      "CRM integration",
-      "WhatsApp integration",
-      "Retargeting",
-      "Conversion tracking",
-      "Funnel optimization",
-      "Lead reporting",
-    ],
-    note: "",
-    cta: "Generate More Leads",
-    accent: "#7c3aed",
   },
   {
     id: "ecommerce",
