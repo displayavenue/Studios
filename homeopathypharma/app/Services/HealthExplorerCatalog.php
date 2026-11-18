@@ -166,6 +166,18 @@ class HealthExplorerCatalog
             ];
         }
 
+        if ($id === 'respiratory') {
+            $base['overlay_mode'] = 'full_figure';
+            $base['overlays'] = [
+                'female' => [
+                    'front' => '/images/health-explorer/overlays/respiratory-female-front-v1.webp',
+                ],
+                'male' => [
+                    'front' => '/images/health-explorer/overlays/respiratory-male-front-v1.webp',
+                ],
+            ];
+        }
+
         return $base;
     }
 
