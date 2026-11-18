@@ -5,7 +5,10 @@
 
 <div class="admin-top">
     <h2>Human Health Explorer</h2>
-    <a class="btn btn-secondary" href="{{ route('health-explorer') }}" target="_blank" rel="noopener">Open explorer</a>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <a class="btn btn-primary" href="{{ route('admin.health-explorer.anatomy') }}">Anatomy editor</a>
+        <a class="btn btn-secondary" href="{{ route('health-explorer') }}" target="_blank" rel="noopener">Open explorer</a>
+    </div>
 </div>
 
 @if (session('status'))
@@ -13,9 +16,18 @@
 @endif
 
 <p class="admin-card" style="margin-bottom:1rem;">
-    Manage the full Health Explorer catalogue here — systems, organs (including red-dot positions), diseases, mental topics, and homeopathy products.
+    Manage the full Health Explorer catalogue here — systems, organs, diseases, mental topics, and homeopathy products.
+    Use the <a href="{{ route('admin.health-explorer.anatomy') }}"><strong>Anatomy editor</strong></a> to drag red dots on the same male/female figures as the live site (front, back, left, right) and edit each organ’s homeopathy info.
     Changes write to <code>public/data/health-explorer/catalog.json</code> and sync to the live explorer.
 </p>
+
+<div class="admin-card" style="margin-bottom:1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;">
+    <div>
+        <h3 style="margin:0 0 0.35rem;">Anatomy map</h3>
+        <p style="margin:0;color:#5b6b65;">Drag dots on Female/Male · Front/Back/Left/Right — preview matches the storefront explorer.</p>
+    </div>
+    <a class="btn btn-primary" href="{{ route('admin.health-explorer.anatomy') }}">Open anatomy editor</a>
+</div>
 
 <div class="admin-card" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:0.75rem;margin-bottom:1rem;">
     <div><strong>{{ $counts['systems'] }}</strong><div>Systems</div></div>

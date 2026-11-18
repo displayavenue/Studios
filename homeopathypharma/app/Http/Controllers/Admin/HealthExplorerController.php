@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -44,6 +45,175 @@ class HealthExplorerController extends Controller
         $this->saveCatalog($catalog);
 
         return back()->with('status', 'Explorer disclaimer updated.');
+    }
+
+    /** Visual anatomy editor — same figures/dots as the public explorer. */
+    public function anatomyEditor(): View
+    {
+        $catalog = $this->catalog();
+
+        return view('admin.health-explorer.anatomy-editor', [
+            'catalog' => $catalog,
+            'systems' => $catalog['systems'] ?? [],
+            'organs' => $catalog['organs'] ?? [],
+            'diseases' => $catalog['diseases'] ?? [],
+            'products' => $catalog['homeopathy_products'] ?? [],
+        ]);
+    }
+
+    /** Save one organ (info + hotspots) from the visual anatomy editor. */
+    public function saveAnatomyOrgan(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'id' => ['required', 'string', 'max:120'],
+            'name' => ['required', 'string', 'max:160'],
+            'system_id' => ['required', 'string', 'max:80'],
+            'gender' => ['required', 'in:both,male,female'],
+            'summary' => ['nullable', 'string'],
+            'function' => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
+            'symptoms' => ['nullable', 'array'],
+            'symptoms.*' => ['string', 'max:240'],
+            'causes' => ['nullable', 'array'],
+            'causes.*' => ['string', 'max:240'],
+            'risk_factors' => ['nullable', 'array'],
+            'risk_factors.*' => ['string', 'max:240'],
+            'diagnostics' => ['nullable', 'array'],
+            'diagnostics.*' => ['string', 'max:240'],
+            'treatments' => ['nullable', 'array'],
+            'treatments.*' => ['string', 'max:240'],
+            'specialists' => ['nullable', 'array'],
+            'specialists.*' => ['string', 'max:240'],
+            'prevention' => ['nullable', 'array'],
+            'prevention.*' => ['string', 'max:240'],
+            'diseases' => ['nullable', 'array'],
+            'diseases.*' => ['string', 'max:120'],
+            'homeopathy_product_ids' => ['nullable', 'array'],
+            'homeopathy_product_ids.*' => ['string', 'max:120'],
+            'related_organ_ids' => ['nullable', 'array'],
+            'related_organ_ids.*' => ['string', 'max:120'],
+            'hotspots' => ['required', 'array'],
+        ]);
+
+        $catalog = $this->catalog();
+        $found = false;
+        foreach ($catalog['organs'] as &$organ) {
+            if (($organ['id'] ?? null) !== $data['id'] && ($organ['slug'] ?? null) !== $data['id']) {
+                continue;
+            }
+            $found = true;
+            $organ['name'] = $data['name'];
+            $organ['system_id'] = $data['system_id'];
+            $organ['gender'] = $data['gender'];
+            $organ['summary'] = $data['summary'] ?? '';
+            $organ['function'] = $data['function'] ?? '';
+            $organ['description'] = $data['description'] ?? '';
+            $organ['symptoms'] = array_values($data['symptoms'] ?? []);
+            $organ['causes'] = array_values($data['causes'] ?? []);
+            $organ['risk_factors'] = array_values($data['risk_factors'] ?? []);
+            $organ['diagnostics'] = array_values($data['diagnostics'] ?? []);
+            $organ['treatments'] = array_values($data['treatments'] ?? []);
+            $organ['specialists'] = array_values($data['specialists'] ?? []);
+            $organ['prevention'] = array_values($data['prevention'] ?? []);
+            $organ['diseases'] = array_values($data['diseases'] ?? []);
+            $organ['homeopathy_product_ids'] = array_values($data['homeopathy_product_ids'] ?? []);
+            $organ['related_organ_ids'] = array_values($data['related_organ_ids'] ?? []);
+            $organ['hotspots'] = $this->normalizeHotspots($data['hotspots'], $data['gender'], $organ['hotspots'] ?? []);
+            break;
+        }
+        unset($organ);
+
+        abort_unless($found, 404, 'Organ not found.');
+        $this->saveCatalog($catalog);
+
+        $saved = collect($catalog['organs'])->first(
+            fn ($o) => ($o['id'] ?? null) === $data['id'] || ($o['slug'] ?? null) === $data['id']
+        );
+
+        return response()->json(['ok' => true, 'organ' => $saved]);
+    }
+
+    /** Create a new organ from the visual anatomy editor. */
+    public function storeAnatomyOrgan(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:160'],
+            'system_id' => ['required', 'string', 'max:80'],
+            'gender' => ['required', 'in:both,male,female'],
+            'cx' => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'cy' => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'view' => ['nullable', 'in:front,back,side'],
+            'body_gender' => ['nullable', 'in:female,male'],
+        ]);
+
+        $catalog = $this->catalog();
+        $slug = Str::slug($data['name']);
+        abort_if($slug === '', 422, 'Invalid name.');
+        abort_if(
+            collect($catalog['organs'] ?? [])->contains(fn ($o) => ($o['slug'] ?? $o['id'] ?? '') === $slug),
+            422,
+            'An organ with this name already exists.'
+        );
+
+        $cx = (float) ($data['cx'] ?? 50);
+        $cy = (float) ($data['cy'] ?? 40);
+        $view = $data['view'] ?? 'front';
+        $bodyGender = $data['body_gender'] ?? 'female';
+        $spot = ['cx' => $cx, 'cy' => $cy, 'r' => 1.15];
+        $blank = ['cx' => 50.0, 'cy' => 40.0, 'r' => 1.15];
+        $makeGenderHotspots = function () use ($view, $spot, $blank) {
+            return [
+                'front' => $view === 'front' ? $spot : $blank,
+                'side' => $view === 'side' ? $spot : $blank,
+                'back' => $view === 'back' ? $spot : $blank,
+            ];
+        };
+
+        $genders = $data['gender'] === 'both' ? ['female', 'male'] : [$data['gender']];
+        $hotspots = [];
+        foreach ($genders as $g) {
+            $hotspots[$g] = $makeGenderHotspots();
+        }
+        // Ensure both gender keys exist for "both" editing later.
+        if ($data['gender'] === 'both') {
+            $hotspots['female'] = $hotspots['female'] ?? $makeGenderHotspots();
+            $hotspots['male'] = $hotspots['male'] ?? $makeGenderHotspots();
+        } elseif (! isset($hotspots['female'])) {
+            $hotspots['female'] = ['front' => $blank, 'side' => $blank, 'back' => $blank];
+        } elseif (! isset($hotspots['male'])) {
+            $hotspots['male'] = ['front' => $blank, 'side' => $blank, 'back' => $blank];
+        }
+        // Place the initial drag spot on the body gender currently being edited.
+        if (isset($hotspots[$bodyGender])) {
+            $hotspots[$bodyGender][$view] = $spot;
+        }
+
+        $organ = [
+            'id' => $slug,
+            'slug' => $slug,
+            'name' => $data['name'],
+            'system_id' => $data['system_id'],
+            'gender' => $data['gender'],
+            'summary' => '',
+            'function' => '',
+            'description' => '',
+            'symptoms' => [],
+            'causes' => [],
+            'risk_factors' => [],
+            'diagnostics' => [],
+            'treatments' => [],
+            'specialists' => [],
+            'prevention' => [],
+            'diseases' => [],
+            'homeopathy_product_ids' => [],
+            'related_organ_ids' => [],
+            'hotspots' => $hotspots,
+        ];
+
+        $catalog['organs'][] = $organ;
+        $this->saveCatalog($catalog);
+
+        return response()->json(['ok' => true, 'organ' => $organ], 201);
     }
 
     /* ---------------- Systems ---------------- */
@@ -554,6 +724,31 @@ class HealthExplorerController extends Controller
     private function findBySlug(array $items, string $slug): ?array
     {
         return collect($items)->first(fn ($item) => ($item['slug'] ?? null) === $slug || ($item['id'] ?? null) === $slug);
+    }
+
+    /**
+     * @param  array<string, mixed>  $incoming
+     * @param  array<string, mixed>  $existing
+     * @return array<string, mixed>
+     */
+    private function normalizeHotspots(array $incoming, string $gender, array $existing = []): array
+    {
+        $targets = $gender === 'both' ? ['female', 'male'] : [$gender];
+        $out = $existing;
+
+        foreach ($targets as $g) {
+            $src = $incoming[$g] ?? [];
+            foreach (['front', 'side', 'back'] as $view) {
+                $spot = $src[$view] ?? $existing[$g][$view] ?? ['cx' => 50, 'cy' => 40, 'r' => 1.15];
+                $out[$g][$view] = [
+                    'cx' => round(max(0, min(100, (float) ($spot['cx'] ?? 50))), 2),
+                    'cy' => round(max(0, min(100, (float) ($spot['cy'] ?? 40))), 2),
+                    'r' => round((float) ($spot['r'] ?? 1.15), 2),
+                ];
+            }
+        }
+
+        return $out;
     }
 
     private function catalogPath(): string
