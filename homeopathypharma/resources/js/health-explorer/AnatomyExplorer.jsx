@@ -260,8 +260,14 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
           <button
             type="button"
             className="hx-chip"
-            aria-pressed={tab === 'mental'}
-            onClick={() => { setTab('mental'); setSelectedMentalId(null); }}
+            aria-pressed={systemId === 'mental'}
+            onClick={() => {
+              setSystemId('mental');
+              setTab('mental');
+              setSelectedMentalId(null);
+              setYaw(0);
+            }}
+            title="Mental health topics and brain/nervous overlay"
           >
             Mental Health
           </button>

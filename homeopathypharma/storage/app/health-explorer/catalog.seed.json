@@ -151,7 +151,16 @@
     {
       "id": "mental",
       "name": "Mental Health",
-      "description": "Emotional and cognitive wellbeing."
+      "description": "Emotional and cognitive wellbeing.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/mental-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/mental-male-front-v1.webp"
+        }
+      }
     }
   ],
   "organs": [

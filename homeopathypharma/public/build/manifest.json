@@ -28,7 +28,7 @@
     "src": "_instrument-sans-600-normal-B9e8oLYv.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BTVH7WGC.css",
+    "file": "assets/app-CRk-zNRY.css",
     "name": "app",
     "names": [
       "app.css"
@@ -43,7 +43,7 @@
     "isEntry": true
   },
   "resources/js/health-explorer/main.jsx": {
-    "file": "assets/main-BNsr5wJN.js",
+    "file": "assets/main-fBgzKbq2.js",
     "name": "main",
     "src": "resources/js/health-explorer/main.jsx",
     "isEntry": true,

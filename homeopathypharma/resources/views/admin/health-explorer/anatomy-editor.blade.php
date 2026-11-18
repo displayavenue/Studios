@@ -296,7 +296,7 @@
   }
 
   function activeSystem() {
-    if (!state.systemId || state.systemId === 'all' || state.systemId === 'mental') return null;
+    if (!state.systemId || state.systemId === 'all') return null;
     return (boot.systems || []).find((s) => s.id === state.systemId) || null;
   }
 
@@ -557,13 +557,6 @@
   }
 
   function setSystem(systemId) {
-    if (systemId === 'mental') {
-      state.systemId = 'mental';
-      state.selectedId = null;
-      setStatus('Mental Health topics are edited in the catalogue — anatomy overlays stay on body systems.');
-      render();
-      return;
-    }
     state.systemId = systemId || 'all';
     const system = activeSystem();
     if (system) {
@@ -573,6 +566,10 @@
         (key) => overlays.female?.[key] || overlays.male?.[key],
       );
       if (hasFront && !hasOther) state.view = 'front';
+    }
+    if (systemId === 'mental') {
+      state.selectedId = null;
+      setStatus('Mental Health overlay matches the live explorer. Topic copy stays in the catalogue.');
     }
     // Keep selection only if it still belongs to this system filter.
     const selected = organById(state.selectedId);
