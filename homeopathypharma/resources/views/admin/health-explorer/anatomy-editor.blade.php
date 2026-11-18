@@ -233,7 +233,7 @@
   /** Map viewer view → stored hotspot key + image file. Each of the 4 views is independent. */
   function viewMeta(view) {
     if (view === 'front') return { key: 'front', file: 'front' };
-    if (view === 'back') return { key: 'back', file: state.gender === 'female' ? 'back-v3' : 'back' };
+    if (view === 'back') return { key: 'back', file: state.gender === 'female' ? 'back-v4' : 'back' };
     if (view === 'left') return { key: 'left', file: 'side' };
     return { key: 'right', file: 'side-left' };
   }

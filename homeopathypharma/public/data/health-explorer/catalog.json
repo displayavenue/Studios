@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "updated_at": "2026-11-18",
-  "disclaimer": "Educational information only — not a diagnosis or prescription. Homeopathic product notes describe traditional use and product labelling; they are not a claim that homeopathy cures disease. Always seek advice from a qualified clinician for personal medical decisions.",
+  "disclaimer": "Educational information only \u2014 not a diagnosis or prescription. Homeopathic product notes describe traditional use and product labelling; they are not a claim that homeopathy cures disease. Always seek advice from a qualified clinician for personal medical decisions.",
   "systems": [
     {
       "id": "cardiovascular",
@@ -251,7 +251,7 @@
           },
           "back": {
             "cx": 50,
-            "cy": 13.2,
+            "cy": 15.6,
             "r": 1.15
           },
           "side": {
@@ -2268,7 +2268,7 @@
         "hp-chelidonium"
       ],
       "related_organ_ids": [],
-      "seo_title": "Gallbladder — Human Health Explorer",
+      "seo_title": "Gallbladder \u2014 Human Health Explorer",
       "seo_description": "Learn about the Gallbladder, common symptoms, and educational homeopathy references."
     }
   ],
@@ -2658,7 +2658,7 @@
         "Nausea"
       ],
       "causes": [
-        "Viruses A–E",
+        "Viruses A\u2013E",
         "Alcohol",
         "Autoimmune"
       ],
@@ -3013,7 +3013,7 @@
       "organ_ids": [
         "pancreas"
       ],
-      "summary": "Inflammation of the pancreas — can be acute emergency.",
+      "summary": "Inflammation of the pancreas \u2014 can be acute emergency.",
       "symptoms": [
         "Severe upper abdominal pain",
         "Vomiting"
@@ -3538,7 +3538,7 @@
       "organ_ids": [
         "male-reproductive"
       ],
-      "summary": "Difficulty achieving/maintaining erection — often multifactorial.",
+      "summary": "Difficulty achieving/maintaining erection \u2014 often multifactorial.",
       "symptoms": [
         "Erectile difficulty"
       ],
@@ -3944,7 +3944,7 @@
       "traditional_claims": "Traditionally used for trembling anxiety and heaviness.",
       "evidence_status": "No robust evidence that it cures anxiety disorders or infections.",
       "safety_warnings": "Educational listing only. Do not delay evidence-based mental health care.",
-      "contraindications": "Not for severe psychiatric crisis — seek emergency help if unsafe.",
+      "contraindications": "Not for severe psychiatric crisis \u2014 seek emergency help if unsafe.",
       "organ_ids": [
         "brain"
       ],
@@ -3984,7 +3984,7 @@
       "traditional_claims": "Traditional cardiac tonic associations in naturopathic literature.",
       "evidence_status": "Not a proven treatment for coronary disease; urgent cardiac symptoms need emergency care.",
       "safety_warnings": "Chest pain, fainting or severe breathlessness = emergency services.",
-      "contraindications": "May interact with cardiac medicines — ask a pharmacist/clinician.",
+      "contraindications": "May interact with cardiac medicines \u2014 ask a pharmacist/clinician.",
       "organ_ids": [
         "heart"
       ],
@@ -4024,7 +4024,7 @@
       "description": "Traditional homeopathic remedy sometimes discussed for rattling cough pictures.",
       "traditional_claims": "Traditionally used for loose, rattling cough patterns.",
       "evidence_status": "Not proven to treat pneumonia or COPD; seek medical care for breathing difficulty.",
-      "safety_warnings": "Difficulty breathing, blue lips, high fever in children — urgent care.",
+      "safety_warnings": "Difficulty breathing, blue lips, high fever in children \u2014 urgent care.",
       "contraindications": "Not a substitute for inhalers or oxygen therapy.",
       "organ_ids": [
         "lungs"
@@ -4085,7 +4085,7 @@
       "traditional_claims": "Traditional hepatic/biliary symptom associations.",
       "evidence_status": "Not a proven treatment for biliary colic or hepatitis.",
       "safety_warnings": "Severe RUQ pain may be surgical emergency.",
-      "contraindications": "Pregnancy caution — clinician advice.",
+      "contraindications": "Pregnancy caution \u2014 clinician advice.",
       "organ_ids": [
         "liver"
       ],
@@ -4125,7 +4125,7 @@
       "traditional_claims": "Traditional bowel urgency associations.",
       "evidence_status": "Not a treatment for IBD or infection.",
       "safety_warnings": "Bloody diarrhoea needs prompt assessment.",
-      "contraindications": "Dehydration risk — medical care if severe.",
+      "contraindications": "Dehydration risk \u2014 medical care if severe.",
       "organ_ids": [
         "intestines"
       ],
@@ -4163,8 +4163,8 @@
       "manufacturer": "Multi-brand",
       "description": "Traditionally linked with burning urinary symptoms.",
       "traditional_claims": "Traditional cystitis-like burning pictures.",
-      "evidence_status": "UTIs often need culture-guided antibiotics — do not delay.",
-      "safety_warnings": "Fever, back pain, pregnancy UTI — urgent care.",
+      "evidence_status": "UTIs often need culture-guided antibiotics \u2014 do not delay.",
+      "safety_warnings": "Fever, back pain, pregnancy UTI \u2014 urgent care.",
       "contraindications": "Not for pyelonephritis management alone.",
       "organ_ids": [
         "bladder",
@@ -4205,7 +4205,7 @@
       "description": "Traditionally mentioned for spleen-region discomfort pictures.",
       "traditional_claims": "Traditional splenic associations.",
       "evidence_status": "Unproven; splenomegaly needs medical diagnosis.",
-      "safety_warnings": "Trauma to enlarged spleen can bleed — urgent care.",
+      "safety_warnings": "Trauma to enlarged spleen can bleed \u2014 urgent care.",
       "contraindications": "Asplenic patients need vaccine protocols.",
       "organ_ids": [
         "spleen"
@@ -4248,7 +4248,7 @@
       "description": "Popular homeopathic preparation traditionally used around bruises and sore muscles.",
       "traditional_claims": "Traditional trauma/bruise associations.",
       "evidence_status": "Evidence for meaningful clinical benefit is limited/mixed; not for open wounds (topical herbal arnica).",
-      "safety_warnings": "Serious injury needs medical assessment. Topical herbal arnica ≠ homeopathic pellet.",
+      "safety_warnings": "Serious injury needs medical assessment. Topical herbal arnica \u2260 homeopathic pellet.",
       "contraindications": "Allergy to Asteraceae.",
       "organ_ids": [
         "muscles",
@@ -4333,7 +4333,7 @@
       "description": "Saw palmetto related preparation appearing in prostate-support narratives.",
       "traditional_claims": "Traditional prostate symptom associations.",
       "evidence_status": "Does not replace urology assessment for retention or cancer pathways.",
-      "safety_warnings": "Acute retention / blood in urine — urgent care.",
+      "safety_warnings": "Acute retention / blood in urine \u2014 urgent care.",
       "contraindications": "Discuss with clinician before combining with hormones.",
       "organ_ids": [
         "male-reproductive"
@@ -4354,7 +4354,7 @@
       "traditional_claims": "Traditional menstrual/hormonal associations.",
       "evidence_status": "Not a cure for endometriosis or PCOS.",
       "safety_warnings": "Heavy bleeding / severe pelvic pain needs gynaecology review.",
-      "contraindications": "Pregnancy concerns — clinician first.",
+      "contraindications": "Pregnancy concerns \u2014 clinician first.",
       "organ_ids": [
         "female-reproductive"
       ],
@@ -4485,7 +4485,7 @@
       "traditional_claims": "Traditional insomnia-from-ideas associations.",
       "evidence_status": "Not a substitute for CBT-I or apnoea evaluation.",
       "safety_warnings": "Loud snoring with pauses needs sleep apnoea screening.",
-      "contraindications": "Long-term hypnotic self-medication risks — clinician advice.",
+      "contraindications": "Long-term hypnotic self-medication risks \u2014 clinician advice.",
       "organ_ids": [
         "brain"
       ],
@@ -4502,7 +4502,7 @@
       "description": "Passionflower appears in herbal and homeopathic sleep/calm narratives.",
       "traditional_claims": "Traditional calming/sleep associations.",
       "evidence_status": "Evidence limited; not proven for chronic insomnia disorders.",
-      "safety_warnings": "May cause drowsiness — care with driving.",
+      "safety_warnings": "May cause drowsiness \u2014 care with driving.",
       "contraindications": "Check interactions with sedatives.",
       "organ_ids": [
         "brain"
