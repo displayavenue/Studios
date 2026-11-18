@@ -178,6 +178,18 @@ class HealthExplorerCatalog
             ];
         }
 
+        if ($id === 'digestive') {
+            $base['overlay_mode'] = 'full_figure';
+            $base['overlays'] = [
+                'female' => [
+                    'front' => '/images/health-explorer/overlays/digestive-female-front-v1.webp',
+                ],
+                'male' => [
+                    'front' => '/images/health-explorer/overlays/digestive-male-front-v1.webp',
+                ],
+            ];
+        }
+
         return $base;
     }
 

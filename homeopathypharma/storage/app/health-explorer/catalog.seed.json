@@ -25,7 +25,16 @@
     {
       "id": "digestive",
       "name": "Digestive",
-      "description": "Organs that break down food and absorb nutrients."
+      "description": "Organs that break down food and absorb nutrients.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/digestive-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/digestive-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "nervous",
