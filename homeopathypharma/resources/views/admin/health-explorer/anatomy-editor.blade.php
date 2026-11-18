@@ -232,10 +232,10 @@
 
   /** Map viewer view → stored hotspot key + image file. Each of the 4 views is independent. */
   function viewMeta(view) {
-    if (view === 'front') return { key: 'front', file: 'front' };
+    if (view === 'front') return { key: 'front', file: state.gender === 'female' ? 'front-v2' : 'front' };
     if (view === 'back') return { key: 'back', file: state.gender === 'female' ? 'back-v6' : 'back' };
-    if (view === 'left') return { key: 'left', file: 'side' };
-    return { key: 'right', file: 'side-left' };
+    if (view === 'left') return { key: 'left', file: state.gender === 'female' ? 'side-v2' : 'side' };
+    return { key: 'right', file: state.gender === 'female' ? 'side-left-v2' : 'side-left' };
   }
 
   function migrateOrganHotspots(organ) {

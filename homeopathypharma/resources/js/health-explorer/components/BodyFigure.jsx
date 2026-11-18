@@ -85,8 +85,13 @@ function cacheToken() {
 }
 
 function frameFile(gender, key) {
-  // Versioned female back asset so CDN/browser caches cannot keep the old hair curtain.
-  if (gender === 'female' && key === 'back') return 'back-v6';
+  // Versioned female assets so CDN/browser caches cannot keep old face/hair edits.
+  if (gender === 'female') {
+    if (key === 'back') return 'back-v6';
+    if (key === 'front') return 'front-v2';
+    if (key === 'side') return 'side-v2';
+    if (key === 'side-left') return 'side-left-v2';
+  }
   return key;
 }
 
