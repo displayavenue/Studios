@@ -237,8 +237,7 @@
   transform: scale(var(--hx-zoom, 1));
   transform-origin: center center;
   transition: transform 0.14s ease-out;
-  /* Soft silhouette shadow only — no rectangular card frame. */
-  filter: drop-shadow(0 10px 16px rgba(20, 40, 50, 0.12));
+  /* Shadow lives on the silhouette image only — not the vessel overlay. */
 }
 
 .hx-turntable.is-dragging .hx-turntable__scene {
@@ -258,6 +257,7 @@
   opacity: 1;
   /* One image node only — no stacked frames to blend. */
   transition: none;
+  filter: drop-shadow(0 10px 16px rgba(20, 40, 50, 0.12));
 }
 
 .hx-turntable__image.is-active {
@@ -279,6 +279,9 @@
   z-index: 2;
   opacity: 0;
   transition: opacity 0.28s ease;
+  /* No drop-shadow/blur on vessels — keep every vein/artery line crisp. */
+  filter: none;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .hx-turntable__overlay.is-active {
