@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const HERO_NODES = [
   "Meta Ads",
@@ -82,29 +82,85 @@ export function GrowthHeroSystem() {
   );
 }
 
+/** Services shown in the DisplayAvenue hub diagram (matches growth offer). */
+const ORBIT_SERVICES = [
+  "Website",
+  "Website Management",
+  "Meta Ads",
+  "Google Ads",
+  "Google Business Profile",
+  "Lead Generation",
+  "Landing Pages",
+  "E-commerce",
+  "WhatsApp",
+  "CRM & Follow-up",
+  "SEO & Analytics",
+  "Retargeting",
+] as const;
+
+type OrbitNode = {
+  label: string;
+  x: number;
+  y: number;
+  angle: number;
+};
+
+function buildOrbitNodes(labels: readonly string[]): OrbitNode[] {
+  const cx = 50;
+  const cy = 50;
+  const rx = 36;
+  const ry = 34;
+  const n = labels.length;
+  return labels.map((label, i) => {
+    // Start at top, evenly spaced clockwise
+    const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+    return {
+      label,
+      angle,
+      x: cx + rx * Math.cos(angle),
+      y: cy + ry * Math.sin(angle),
+    };
+  });
+}
+
 export function GrowthOrbit() {
-  const nodes = [
-    { label: "Website", x: "12%", y: "22%" },
-    { label: "Meta Ads", x: "72%", y: "18%" },
-    { label: "Google Ads", x: "8%", y: "58%" },
-    { label: "GBP", x: "78%", y: "55%" },
-    { label: "Lead Generation", x: "38%", y: "78%" },
-    { label: "E-commerce", x: "62%", y: "78%" },
-    { label: "Management", x: "50%", y: "42%" },
-  ];
+  const nodes = useMemo(() => buildOrbitNodes(ORBIT_SERVICES), []);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    const id = window.setInterval(
+      () => setActive((i) => (i + 1) % ORBIT_SERVICES.length),
+      1600,
+    );
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
     <div className="g-orbit" aria-hidden>
-      <div className="g-orbit__core">DisplayAvenue</div>
-      <svg className="g-orbit__lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <path d="M50 50 L18 28" />
-        <path d="M50 50 L78 24" />
-        <path d="M50 50 L14 62" />
-        <path d="M50 50 L82 58" />
-        <path d="M50 50 L42 82" />
-        <path d="M50 50 L64 82" />
+      <div className="g-orbit__ring" />
+      <div className="g-orbit__ring g-orbit__ring--inner" />
+      <svg className="g-orbit__lines" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        {nodes.map((n) => (
+          <path
+            key={`line-${n.label}`}
+            className={n.label === ORBIT_SERVICES[active] ? "is-active" : ""}
+            d={`M50 50 L${n.x.toFixed(2)} ${n.y.toFixed(2)}`}
+          />
+        ))}
+        <circle cx="50" cy="50" r="1.2" fill="rgba(0,86,255,0.35)" />
       </svg>
-      {nodes.map((n) => (
-        <div key={n.label} className="g-orbit__node" style={{ left: n.x, top: n.y }}>
+      <div className="g-orbit__core">
+        <span className="g-orbit__core-label">DisplayAvenue</span>
+        <span className="g-orbit__core-sub">Growth System</span>
+      </div>
+      {nodes.map((n, i) => (
+        <div
+          key={n.label}
+          className={`g-orbit__node${i === active ? " is-active" : ""}`}
+          style={{ left: `${n.x}%`, top: `${n.y}%` }}
+        >
           {n.label}
         </div>
       ))}

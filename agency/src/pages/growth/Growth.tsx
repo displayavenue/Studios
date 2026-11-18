@@ -350,8 +350,8 @@ export function Growth() {
             <h2>One Team. Your Entire Digital Growth System.</h2>
             <p className="growth-lede">
               Instead of coordinating multiple agencies and freelancers, work with one
-              digital growth team across your website, advertising, Google presence, lead
-              generation and e-commerce operations.
+              digital growth team across website, Meta &amp; Google Ads, Google Business
+              Profile, lead generation, WhatsApp, e-commerce, SEO and CRM follow-up.
             </p>
           </div>
           <div className="reveal-scale">
