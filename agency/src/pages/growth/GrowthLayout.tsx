@@ -220,14 +220,21 @@ export function GrowthLayout() {
           <div>
             <strong>Plans Starting ₹30K</strong>
           </div>
-          <button
-            type="button"
-            onClick={() =>
-              scrollToForm("Plans Starting ₹30K — Get My Growth Plan", "sticky_mobile")
-            }
+          <a
+            className="growth-sticky-cta__wa"
+            href={company.whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => {
+              trackCtaClick({
+                cta_text: "WhatsApp",
+                cta_location: "sticky_mobile",
+              });
+              trackGrowthEvent("whatsapp_click", { cta_location: "sticky_mobile" });
+            }}
           >
-            Get My Growth Plan →
-          </button>
+            WhatsApp →
+          </a>
         </div>
       )}
     </div>
