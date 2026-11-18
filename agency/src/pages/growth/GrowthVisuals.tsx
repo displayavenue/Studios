@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 
 const HERO_NODES = [
+  "Qualified Lead",
+  "AI Platform Ads",
   "Meta Ads",
   "Google Ads",
   "Website",
   "Google Business Profile",
   "Landing Page",
-  "Qualified Lead",
   "WhatsApp / Call",
   "Sales Opportunity",
 ] as const;
@@ -40,7 +41,15 @@ export function GrowthHeroSystem() {
         ))}
         <div className="ghs__particle" style={{ ["--p" as string]: pulse }} />
       </div>
-      <aside className={`ghs__toast ${pulse >= 5 ? "is-in" : ""}`}>
+      <aside
+        className={`ghs__toast ${
+          HERO_NODES[pulse] === "Qualified Lead" ||
+          HERO_NODES[pulse] === "WhatsApp / Call" ||
+          HERO_NODES[pulse] === "Sales Opportunity"
+            ? "is-in"
+            : ""
+        }`}
+      >
         <div className="ghs__toast-top">
           <span className="ghs__live" />
           New Qualified Lead
