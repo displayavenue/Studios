@@ -26,6 +26,7 @@
 
 <p class="admin-card" style="margin-bottom:1rem;">
     Same male/female figures as the website. Pick a body and direction, drag red dots to align organs, then edit names and homeopathy details in the side panel.
+    To add a marker: click <strong>Add red dot</strong>, then click on the body where it should sit.
 </p>
 
 <div id="ax-app" class="ax" data-boot='@json($boot)'>
@@ -40,7 +41,8 @@
             <button type="button" data-view="left">Left</button>
             <button type="button" data-view="right">Right</button>
         </div>
-        <button type="button" class="btn btn-primary" id="ax-add">Add organ here</button>
+        <button type="button" class="btn btn-primary" id="ax-add">Add red dot</button>
+        <button type="button" class="btn btn-secondary" id="ax-add-cancel" hidden>Cancel placing</button>
         <span class="ax-status" id="ax-status" aria-live="polite"></span>
     </div>
 
@@ -48,17 +50,44 @@
         <section class="ax-stage" aria-label="Anatomy canvas">
             <div class="ax-stage__top">
                 <h3 id="ax-title">Female · front view</h3>
-                <p class="ax-hint">Drag a red dot to move it. Click a dot to edit details.</p>
+                <p class="ax-hint" id="ax-hint">Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.</p>
             </div>
             <div class="ax-figure" id="ax-figure">
                 <img id="ax-image" src="" alt="Anatomy figure" width="420" height="900" draggable="false">
                 <div class="ax-dots" id="ax-dots"></div>
+                <div class="ax-ghost" id="ax-ghost" hidden></div>
             </div>
         </section>
 
         <aside class="ax-panel admin-card" id="ax-panel">
-            <h3 style="margin-top:0;">Organ details</h3>
-            <p id="ax-empty" class="ax-muted">Select a red dot (or add an organ) to edit its name, position, and homeopathy information.</p>
+            <div id="ax-create" class="ax-create" hidden>
+                <h3 style="margin-top:0;">New red dot</h3>
+                <p class="ax-muted">Name this marker, then save — you can fine-tune the position by dragging afterward.</p>
+                <form id="ax-create-form" class="admin-form">
+                    <label>Name <input id="ax-new-name" required placeholder="e.g. Gallbladder" autocomplete="off"></label>
+                    <label>System
+                        <select id="ax-new-system" required>
+                            @foreach ($systems as $system)
+                                <option value="{{ $system['id'] }}">{{ $system['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </label>
+                    <label>Shows on
+                        <select id="ax-new-gender">
+                            <option value="both">Both</option>
+                            <option value="female">Female only</option>
+                            <option value="male">Male only</option>
+                        </select>
+                    </label>
+                    <p class="ax-muted" id="ax-new-pos">Position: —</p>
+                    <div class="admin-actions">
+                        <button class="btn btn-primary" type="submit">Create red dot</button>
+                        <button class="btn btn-secondary" type="button" id="ax-create-cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <h3 style="margin-top:0;" id="ax-details-title">Organ details</h3>
+            <p id="ax-empty" class="ax-muted">Select a red dot, or click <strong>Add red dot</strong> and place one on the body.</p>
             <form id="ax-form" class="admin-form" hidden>
                 <input type="hidden" name="id" id="ax-id">
                 <label>Name <input name="name" id="ax-name" required></label>
@@ -122,6 +151,12 @@
   position:relative; width:min(100%, 22rem); aspect-ratio:420 / 900; margin:0 auto;
   touch-action:none; user-select:none;
 }
+.ax-figure.is-placing { cursor:crosshair; outline:2px dashed var(--ax-teal); outline-offset:4px; border-radius:0.5rem; }
+.ax-ghost {
+  position:absolute; width:0.85rem; height:0.85rem; border-radius:50%; background:#e11d2e;
+  transform:translate(-50%,-50%); pointer-events:none; box-shadow:0 0 0 3px rgba(225,29,46,0.25); z-index:4;
+}
+.ax-create { margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid #e3e8e1; }
 .ax-figure img {
   position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center bottom;
   pointer-events:none; filter: drop-shadow(0 10px 16px rgba(20,40,50,0.12));
@@ -165,18 +200,26 @@
     organs: structuredClone(boot.organs || []),
     selectedId: null,
     dirty: false,
+    placing: false,
+    pending: null, // { cx, cy } display coords waiting for create form
   };
 
   const els = {
     title: document.getElementById('ax-title'),
+    hint: document.getElementById('ax-hint'),
     image: document.getElementById('ax-image'),
     dots: document.getElementById('ax-dots'),
     figure: document.getElementById('ax-figure'),
+    ghost: document.getElementById('ax-ghost'),
     status: document.getElementById('ax-status'),
     form: document.getElementById('ax-form'),
     empty: document.getElementById('ax-empty'),
+    create: document.getElementById('ax-create'),
+    detailsTitle: document.getElementById('ax-details-title'),
     diseases: document.getElementById('ax-diseases'),
     products: document.getElementById('ax-products'),
+    addBtn: document.getElementById('ax-add'),
+    addCancel: document.getElementById('ax-add-cancel'),
   };
 
   /** Map viewer view → stored hotspot key + image file + mirror flag. */
@@ -259,7 +302,32 @@
     }).join('') || '<span class="ax-muted">No products yet.</span>';
   }
 
+  function setPlacing(on) {
+    state.placing = on;
+    if (!on) {
+      state.pending = null;
+      els.ghost.hidden = true;
+      els.create.hidden = true;
+    }
+    els.figure.classList.toggle('is-placing', on);
+    els.addBtn.hidden = on;
+    els.addCancel.hidden = !on;
+    els.hint.textContent = on
+      ? 'Click on the body to drop a new red dot, then name it in the side panel.'
+      : 'Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.';
+    setStatus(on ? 'Place mode — click the anatomy figure' : '');
+  }
+
   function fillForm(organ) {
+    if (state.pending) {
+      els.form.hidden = true;
+      els.empty.hidden = true;
+      els.create.hidden = false;
+      els.detailsTitle.hidden = true;
+      return;
+    }
+    els.create.hidden = true;
+    els.detailsTitle.hidden = false;
     if (!organ) {
       els.form.hidden = true;
       els.empty.hidden = false;
@@ -437,32 +505,89 @@
     }
   });
 
-  document.getElementById('ax-add').addEventListener('click', async () => {
-    const name = prompt('New organ name');
-    if (!name || !name.trim()) return;
-    const systemId = boot.systems[0]?.id;
-    if (!systemId) {
-      setStatus('Add a body system first.', false);
+  function cancelPlace() {
+    setPlacing(false);
+    fillForm(organById(state.selectedId));
+  }
+
+  els.addBtn.addEventListener('click', () => {
+    if (!boot.systems?.length) {
+      setStatus('Add a body system first under Health Explorer catalogue.', false);
       return;
     }
+    state.selectedId = null;
+    setPlacing(true);
+    fillForm(null);
+  });
+  els.addCancel.addEventListener('click', cancelPlace);
+  document.getElementById('ax-create-cancel').addEventListener('click', cancelPlace);
+
+  els.figure.addEventListener('pointermove', (ev) => {
+    if (!state.placing || state.pending) return;
+    const rect = els.figure.getBoundingClientRect();
+    const x = ((ev.clientX - rect.left) / rect.width) * 100;
+    const y = ((ev.clientY - rect.top) / rect.height) * 100;
+    if (x < 0 || x > 100 || y < 0 || y > 100) {
+      els.ghost.hidden = true;
+      return;
+    }
+    els.ghost.hidden = false;
+    els.ghost.style.left = `${x}%`;
+    els.ghost.style.top = `${y}%`;
+  });
+
+  els.figure.addEventListener('pointerleave', () => {
+    if (state.placing && !state.pending) els.ghost.hidden = true;
+  });
+
+  els.figure.addEventListener('click', (ev) => {
+    if (!state.placing || ev.target.closest('.ax-dot')) return;
+    const rect = els.figure.getBoundingClientRect();
+    const cx = Math.round(((ev.clientX - rect.left) / rect.width) * 1000) / 10;
+    const cy = Math.round(((ev.clientY - rect.top) / rect.height) * 1000) / 10;
+    if (cx < 0 || cx > 100 || cy < 0 || cy > 100) return;
+    state.pending = { cx, cy };
+    els.ghost.hidden = false;
+    els.ghost.style.left = `${cx}%`;
+    els.ghost.style.top = `${cy}%`;
+    document.getElementById('ax-new-name').value = '';
+    document.getElementById('ax-new-system').value = boot.systems[0]?.id || '';
+    document.getElementById('ax-new-gender').value = 'both';
+    document.getElementById('ax-new-pos').textContent = `Position: ${cx.toFixed(1)}% × ${cy.toFixed(1)}% (${state.view} view)`;
+    fillForm(null);
+    document.getElementById('ax-new-name').focus();
+    setStatus('Name the new red dot, then Create');
+  });
+
+  document.getElementById('ax-create-form').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    if (!state.pending) return;
+    const name = document.getElementById('ax-new-name').value.trim();
+    const systemId = document.getElementById('ax-new-system').value;
+    const gender = document.getElementById('ax-new-gender').value;
+    if (!name) return;
     const meta = viewMeta(state.view);
-    setStatus('Creating…');
+    // Convert display coords → stored coords (un-mirror for viewer-right).
+    const storeCx = meta.mirror ? 100 - state.pending.cx : state.pending.cx;
+    const storeCy = state.pending.cy;
+    setStatus('Creating red dot…');
     try {
       const data = await api(boot.storeUrl, 'POST', {
-        name: name.trim(),
+        name,
         system_id: systemId,
-        gender: 'both',
-        cx: 50,
-        cy: 40,
+        gender,
+        cx: storeCx,
+        cy: storeCy,
         view: meta.key,
         body_gender: state.gender,
       });
       state.organs.push(data.organ);
       state.selectedId = data.organ.id;
-      setStatus('Organ created — drag the dot into place, then Save.');
+      setPlacing(false);
+      setStatus(`Added “${data.organ.name}” — edit details below, drag to fine-tune, then Save.`);
       render();
     } catch (err) {
-      setStatus(err.message || 'Could not create organ', false);
+      setStatus(err.message || 'Could not create red dot', false);
     }
   });
 
