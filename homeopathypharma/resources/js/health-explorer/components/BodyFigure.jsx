@@ -104,7 +104,7 @@ function systemOverlaySrc(systemId, gender, viewKey) {
   if (systemId !== 'cardiovascular') return null;
   // Front-only for now (matches the approved cardiovascular reference).
   if (viewKey !== 'front') return null;
-  return `/images/health-explorer/overlays/cardiovascular-${gender}-front.webp?v=${cacheToken()}`;
+  return `/images/health-explorer/overlays/cardiovascular-${gender}-front-v2.webp?v=${cacheToken()}`;
 }
 
 /**
