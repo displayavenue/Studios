@@ -222,8 +222,9 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
             <div className="hx-seg" role="group" aria-label="Anatomy view">
               <button type="button" aria-pressed={view === 'front'} onClick={() => setCardinalView(0)}>Front</button>
               <button type="button" aria-pressed={view === 'back'} onClick={() => setCardinalView(180)}>Back</button>
-              <button type="button" aria-pressed={view === 'left'} onClick={() => setCardinalView(270)}>Left</button>
-              <button type="button" aria-pressed={view === 'right'} onClick={() => setCardinalView(90)}>Right</button>
+              {/* Viewer-relative: Left/Right match YOUR left/right, not the figure's. */}
+              <button type="button" aria-pressed={view === 'left'} onClick={() => setCardinalView(90)}>Left</button>
+              <button type="button" aria-pressed={view === 'right'} onClick={() => setCardinalView(270)}>Right</button>
             </div>
           </div>
         </div>
@@ -257,11 +258,11 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
             <div className="hx-stage__top">
               <h2>{gender === 'female' ? 'Female' : 'Male'} · {view} view</h2>
               <div className="hx-zoom" role="group" aria-label="Zoom and rotate">
-                <button type="button" className="hx-icon-btn" aria-label="Turn left" onClick={() => turnBy(-90)}>⟵</button>
+                <button type="button" className="hx-icon-btn" aria-label="Turn left" onClick={() => turnBy(90)}>⟵</button>
                 <button type="button" className="hx-icon-btn" aria-label="Zoom out" onClick={() => setZoom((z) => Math.max(0.85, +(z - 0.1).toFixed(2)))}>−</button>
                 <button type="button" className="hx-icon-btn" aria-label="Reset view" onClick={() => { setZoom(1); setYaw(0); }}>⟲</button>
                 <button type="button" className="hx-icon-btn" aria-label="Zoom in" onClick={() => setZoom((z) => Math.min(1.45, +(z + 0.1).toFixed(2)))}>+</button>
-                <button type="button" className="hx-icon-btn" aria-label="Turn right" onClick={() => turnBy(90)}>⟶</button>
+                <button type="button" className="hx-icon-btn" aria-label="Turn right" onClick={() => turnBy(-90)}>⟶</button>
               </div>
             </div>
             <BodyFigure

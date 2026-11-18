@@ -49,8 +49,9 @@ function viewLabel(yaw) {
   const nearest = nearestFrame(yaw);
   if (nearest === 0) return 'front';
   if (nearest === 180) return 'back';
-  if (nearest === 90) return 'right';
-  return 'left';
+  // Viewer-relative: yaw 90 is the view you get by turning toward YOUR left.
+  if (nearest === 90) return 'left';
+  return 'right';
 }
 
 function hotspotFor(organ, gender, yaw) {
