@@ -133,13 +133,13 @@ class HealthExplorerController extends Controller
         return response()->json(['ok' => true, 'organ' => $saved]);
     }
 
-    /** Create a new organ from the visual anatomy editor. */
+    /** Create a new organ from the visual anatomy editor (name + position only). */
     public function storeAnatomyOrgan(Request $request): JsonResponse
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:160'],
-            'system_id' => ['required', 'string', 'max:80'],
-            'gender' => ['required', 'in:both,male,female'],
+            'system_id' => ['nullable', 'string', 'max:80'],
+            'gender' => ['nullable', 'in:both,male,female'],
             'cx' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'cy' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'view' => ['nullable', 'in:front,back,side'],
@@ -147,13 +147,18 @@ class HealthExplorerController extends Controller
         ]);
 
         $catalog = $this->catalog();
-        $slug = Str::slug($data['name']);
+        $name = trim($data['name']);
+        $slug = Str::slug($name);
         abort_if($slug === '', 422, 'Invalid name.');
         abort_if(
             collect($catalog['organs'] ?? [])->contains(fn ($o) => ($o['slug'] ?? $o['id'] ?? '') === $slug),
             422,
             'An organ with this name already exists.'
         );
+
+        $draft = $this->autoFillOrganFromName($name, $catalog);
+        $gender = $data['gender'] ?? $draft['gender'];
+        $systemId = ($data['system_id'] ?? null) ?: $draft['system_id'];
 
         $cx = (float) ($data['cx'] ?? 50);
         $cy = (float) ($data['cy'] ?? 40);
@@ -169,51 +174,73 @@ class HealthExplorerController extends Controller
             ];
         };
 
-        $genders = $data['gender'] === 'both' ? ['female', 'male'] : [$data['gender']];
-        $hotspots = [];
-        foreach ($genders as $g) {
-            $hotspots[$g] = $makeGenderHotspots();
-        }
-        // Ensure both gender keys exist for "both" editing later.
-        if ($data['gender'] === 'both') {
-            $hotspots['female'] = $hotspots['female'] ?? $makeGenderHotspots();
-            $hotspots['male'] = $hotspots['male'] ?? $makeGenderHotspots();
-        } elseif (! isset($hotspots['female'])) {
-            $hotspots['female'] = ['front' => $blank, 'side' => $blank, 'back' => $blank];
-        } elseif (! isset($hotspots['male'])) {
-            $hotspots['male'] = ['front' => $blank, 'side' => $blank, 'back' => $blank];
-        }
-        // Place the initial drag spot on the body gender currently being edited.
+        $hotspots = [
+            'female' => $makeGenderHotspots(),
+            'male' => $makeGenderHotspots(),
+        ];
         if (isset($hotspots[$bodyGender])) {
             $hotspots[$bodyGender][$view] = $spot;
         }
 
-        $organ = [
+        $organ = array_merge($draft, [
             'id' => $slug,
             'slug' => $slug,
-            'name' => $data['name'],
-            'system_id' => $data['system_id'],
-            'gender' => $data['gender'],
-            'summary' => '',
-            'function' => '',
-            'description' => '',
-            'symptoms' => [],
-            'causes' => [],
-            'risk_factors' => [],
-            'diagnostics' => [],
-            'treatments' => [],
-            'specialists' => [],
-            'prevention' => [],
-            'diseases' => [],
-            'homeopathy_product_ids' => [],
-            'related_organ_ids' => [],
+            'name' => $name,
+            'system_id' => $systemId,
+            'gender' => $gender,
             'hotspots' => $hotspots,
-        ];
+        ]);
 
         $catalog['organs'][] = $organ;
         $this->saveCatalog($catalog);
 
         return response()->json(['ok' => true, 'organ' => $organ], 201);
+    }
+
+    /** Bulk-save organ hotspot maps (and optional field patches) from the anatomy editor. */
+    public function saveAnatomyBulk(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'organs' => ['required', 'array', 'min:1'],
+            'organs.*.id' => ['required', 'string', 'max:120'],
+            'organs.*.hotspots' => ['required', 'array'],
+            'organs.*.name' => ['nullable', 'string', 'max:160'],
+            'organs.*.system_id' => ['nullable', 'string', 'max:80'],
+            'organs.*.gender' => ['nullable', 'in:both,male,female'],
+        ]);
+
+        $catalog = $this->catalog();
+        $saved = 0;
+        foreach ($data['organs'] as $patch) {
+            foreach ($catalog['organs'] as &$organ) {
+                if (($organ['id'] ?? null) !== $patch['id'] && ($organ['slug'] ?? null) !== $patch['id']) {
+                    continue;
+                }
+                $gender = $patch['gender'] ?? $organ['gender'] ?? 'both';
+                if (! empty($patch['name'])) {
+                    $organ['name'] = $patch['name'];
+                }
+                if (! empty($patch['system_id'])) {
+                    $organ['system_id'] = $patch['system_id'];
+                }
+                if (! empty($patch['gender'])) {
+                    $organ['gender'] = $patch['gender'];
+                }
+                $organ['hotspots'] = $this->normalizeHotspots($patch['hotspots'], $gender, $organ['hotspots'] ?? []);
+                $saved++;
+                break;
+            }
+            unset($organ);
+        }
+
+        abort_if($saved === 0, 404, 'No matching organs to save.');
+        $this->saveCatalog($catalog);
+
+        return response()->json([
+            'ok' => true,
+            'saved' => $saved,
+            'organs' => $catalog['organs'],
+        ]);
     }
 
     /* ---------------- Systems ---------------- */
@@ -724,6 +751,127 @@ class HealthExplorerController extends Controller
     private function findBySlug(array $items, string $slug): ?array
     {
         return collect($items)->first(fn ($item) => ($item['slug'] ?? null) === $slug || ($item['id'] ?? null) === $slug);
+    }
+
+    /**
+     * Auto-build organ copy + system guess from a display name so admins only type the name.
+     *
+     * @return array<string, mixed>
+     */
+    private function autoFillOrganFromName(string $name, array $catalog): array
+    {
+        $lower = Str::lower($name);
+        $systems = collect($catalog['systems'] ?? []);
+        $fallbackSystem = (string) (($systems->first(fn ($s) => ($s['id'] ?? '') !== 'mental')['id'] ?? null)
+            ?: ($systems->first()['id'] ?? null)
+            ?: 'general');
+
+        $guesses = [
+            'cardiovascular' => ['heart', 'blood', 'vessel', 'artery', 'vein', 'cardio'],
+            'respiratory' => ['lung', 'bronch', 'airway', 'respir', 'throat', 'trachea'],
+            'digestive' => ['stomach', 'liver', 'intestin', 'pancrea', 'gall', 'colon', 'digest', 'bowel', 'spleen'],
+            'nervous' => ['brain', 'nerve', 'spine', 'spinal', 'eye', 'neurolog'],
+            'endocrine' => ['thyroid', 'hormon', 'adrenal', 'pituitary', 'pancrea', 'thymus', 'pineal', 'parathyroid'],
+            'urinary' => ['kidney', 'bladder', 'urin', 'prostate'],
+            'reproductive' => ['uterus', 'ovary', 'testis', 'testicle', 'prostate', 'reproductive', 'breast'],
+            'musculoskeletal' => ['muscle', 'joint', 'bone', 'knee', 'hip', 'shoulder', 'spine', 'coccyx', 'sacrum', 'rib', 'skull', 'vertebra'],
+            'integumentary' => ['skin', 'derm', 'hair', 'nail'],
+        ];
+
+        $systemId = $fallbackSystem;
+        foreach ($guesses as $id => $needles) {
+            foreach ($needles as $needle) {
+                if (str_contains($lower, $needle) && $systems->contains(fn ($s) => ($s['id'] ?? '') === $id)) {
+                    $systemId = $id;
+                    break 2;
+                }
+            }
+        }
+
+        $gender = 'both';
+        if (str_contains($lower, 'uterus') || str_contains($lower, 'ovary') || str_contains($lower, 'female')) {
+            $gender = 'female';
+        } elseif (str_contains($lower, 'testis') || str_contains($lower, 'testicle') || str_contains($lower, 'male reproductive')) {
+            $gender = 'male';
+        }
+
+        $products = collect($catalog['homeopathy_products'] ?? []);
+        $linkedProducts = $products
+            ->filter(function ($p) use ($lower, $name) {
+                $hay = Str::lower(($p['name'] ?? '').' '.($p['description'] ?? '').' '.($p['traditional_claims'] ?? ''));
+
+                return str_contains($hay, $lower) || str_contains($hay, Str::lower(Str::singular($name)));
+            })
+            ->take(3)
+            ->map(fn ($p) => $p['id'] ?? $p['slug'] ?? null)
+            ->filter()
+            ->values()
+            ->all();
+
+        $diseases = collect($catalog['diseases'] ?? [])
+            ->filter(function ($d) use ($lower, $name) {
+                $hay = Str::lower(($d['name'] ?? '').' '.($d['summary'] ?? '').' '.implode(' ', $d['organ_ids'] ?? []));
+
+                return str_contains($hay, $lower) || str_contains($hay, Str::slug($name));
+            })
+            ->take(4)
+            ->map(fn ($d) => $d['id'] ?? $d['slug'] ?? null)
+            ->filter()
+            ->values()
+            ->all();
+
+        return [
+            'system_id' => $systemId,
+            'gender' => $gender,
+            'summary' => "Educational overview of the {$name} and common concerns people explore in homeopathy.",
+            'function' => "The {$name} contributes to normal body function; imbalance here may show as local or referred symptoms.",
+            'description' => "This Health Explorer entry covers the {$name}: what it does, typical symptoms people notice, supportive care context, and related homeopathic product references. Content is for education only and is not a diagnosis or prescription.",
+            'symptoms' => [
+                "Discomfort around the {$name}",
+                'Changes in usual function',
+                'Fatigue or reduced stamina',
+                'Referred sensations nearby',
+            ],
+            'causes' => [
+                'Lifestyle and stress factors',
+                'Inflammation or irritation',
+                'Injury, strain, or overuse',
+                'Underlying medical conditions',
+            ],
+            'risk_factors' => [
+                'Family history',
+                'Sedentary habits',
+                'Poor diet or hydration',
+                'Chronic stress',
+            ],
+            'diagnostics' => [
+                'Clinical history and examination',
+                'Relevant lab or imaging tests when advised',
+                'Specialist review if symptoms persist',
+            ],
+            'treatments' => [
+                'Medical evaluation when needed',
+                'Lifestyle and supportive care',
+                'Prescribed treatment from a qualified practitioner',
+                'Educational homeopathy product references below',
+            ],
+            'specialists' => [
+                'General practitioner',
+                'Relevant organ specialist',
+                'Qualified homeopathy practitioner (adjunct education)',
+            ],
+            'prevention' => [
+                'Balanced diet and hydration',
+                'Regular movement and rest',
+                'Stress management',
+                'Routine check-ups',
+            ],
+            'diseases' => $diseases,
+            'homeopathy_product_ids' => $linkedProducts,
+            'related_organ_ids' => [],
+            'seo_title' => "{$name} — Human Health Explorer",
+            'seo_description' => "Learn about the {$name}, common symptoms, and educational homeopathy references.",
+        ];
     }
 
     /**

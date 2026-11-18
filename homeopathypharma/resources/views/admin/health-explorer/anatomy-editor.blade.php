@@ -9,6 +9,7 @@
         'diseases' => $diseases,
         'products' => $products,
         'saveUrl' => route('admin.health-explorer.anatomy.save'),
+        'bulkUrl' => route('admin.health-explorer.anatomy.bulk'),
         'storeUrl' => route('admin.health-explorer.anatomy.store'),
         'destroyBase' => url('/admin/health-explorer/organs'),
         'csrf' => csrf_token(),
@@ -25,8 +26,8 @@
 </div>
 
 <p class="admin-card" style="margin-bottom:1rem;">
-    Same male/female figures as the website. Pick a body and direction, drag red dots to align organs, then edit names and homeopathy details in the side panel.
-    To add a marker: click <strong>Add red dot</strong>, then click on the body where it should sit.
+    Same male/female figures as the website. Pick a body and direction, drag red dots to align organs, then use <strong>Save all changes</strong> before leaving so nothing refreshes away.
+    To add a marker: click <strong>Add red dot</strong>, click the body, and enter only the organ name — system, summary, symptoms, treatments, and related links fill in automatically.
 </p>
 
 <div id="ax-app" class="ax" data-boot='@json($boot)'>
@@ -43,6 +44,7 @@
         </div>
         <button type="button" class="btn btn-primary" id="ax-add">Add red dot</button>
         <button type="button" class="btn btn-secondary" id="ax-add-cancel" hidden>Cancel placing</button>
+        <button type="button" class="btn btn-primary" id="ax-save-all" disabled title="Save all moved dots and edits">Save all changes</button>
         <span class="ax-status" id="ax-status" aria-live="polite"></span>
     </div>
 
@@ -62,26 +64,12 @@
         <aside class="ax-panel admin-card" id="ax-panel">
             <div id="ax-create" class="ax-create" hidden>
                 <h3 style="margin-top:0;">New red dot</h3>
-                <p class="ax-muted">Name this marker, then save — you can fine-tune the position by dragging afterward.</p>
+                <p class="ax-muted">Only enter the name — system, summary, symptoms, treatments, and related homeopathy details are filled in automatically.</p>
                 <form id="ax-create-form" class="admin-form">
                     <label>Name <input id="ax-new-name" required placeholder="e.g. Gallbladder" autocomplete="off"></label>
-                    <label>System
-                        <select id="ax-new-system" required>
-                            @foreach ($systems as $system)
-                                <option value="{{ $system['id'] }}">{{ $system['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </label>
-                    <label>Shows on
-                        <select id="ax-new-gender">
-                            <option value="both">Both</option>
-                            <option value="female">Female only</option>
-                            <option value="male">Male only</option>
-                        </select>
-                    </label>
                     <p class="ax-muted" id="ax-new-pos">Position: —</p>
                     <div class="admin-actions">
-                        <button class="btn btn-primary" type="submit">Create red dot</button>
+                        <button class="btn btn-primary" type="submit">Create &amp; save</button>
                         <button class="btn btn-secondary" type="button" id="ax-create-cancel">Cancel</button>
                     </div>
                 </form>
@@ -128,7 +116,7 @@
                     <div id="ax-products" class="ax-check-list"></div>
                 </fieldset>
                 <div class="admin-actions" style="margin-top:0.75rem;">
-                    <button class="btn btn-primary" type="submit">Save organ</button>
+                    <button class="btn btn-primary" type="submit">Save this organ</button>
                     <button class="btn btn-secondary" type="button" id="ax-delete">Delete</button>
                 </div>
             </form>
@@ -199,9 +187,10 @@
     view: 'front', // front|back|left|right (viewer-relative)
     organs: structuredClone(boot.organs || []),
     selectedId: null,
-    dirty: false,
+    dirtyIds: new Set(),
     placing: false,
     pending: null, // { cx, cy } display coords waiting for create form
+    saving: false,
   };
 
   const els = {
@@ -220,7 +209,21 @@
     products: document.getElementById('ax-products'),
     addBtn: document.getElementById('ax-add'),
     addCancel: document.getElementById('ax-add-cancel'),
+    saveAll: document.getElementById('ax-save-all'),
   };
+
+  function markDirty(id) {
+    if (id) state.dirtyIds.add(id);
+    els.saveAll.disabled = state.dirtyIds.size === 0 || state.saving;
+    els.saveAll.textContent = state.dirtyIds.size
+      ? `Save all changes (${state.dirtyIds.size})`
+      : 'Save all changes';
+  }
+
+  function clearDirty(ids) {
+    (ids || [...state.dirtyIds]).forEach((id) => state.dirtyIds.delete(id));
+    markDirty(null);
+  }
 
   /** Map viewer view → stored hotspot key + image file + mirror flag. */
   function viewMeta(view) {
@@ -415,14 +418,21 @@
       }
       document.getElementById('ax-cx').value = displaySpot(organ).cx.toFixed(1);
       document.getElementById('ax-cy').value = displaySpot(organ).cy.toFixed(1);
-      state.dirty = true;
-      setStatus('Unsaved position — click Save organ');
+      markDirty(id);
+      setStatus('Unsaved — click “Save all changes” or “Save this organ”');
     };
-    const onUp = () => {
+    const onUp = async () => {
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
       window.removeEventListener('pointercancel', onUp);
       render();
+      // Auto-save the moved organ so leaving the page keeps the new spot.
+      try {
+        await saveOrgan(organById(id), { quiet: true });
+        setStatus(`Saved position for “${organById(id)?.name || id}”`);
+      } catch (err) {
+        setStatus(err.message || 'Auto-save failed — use Save all changes', false);
+      }
     };
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
@@ -446,63 +456,134 @@
   }
 
   function readFormIntoOrgan(organ) {
-    organ.name = document.getElementById('ax-name').value.trim();
-    organ.system_id = document.getElementById('ax-system').value;
-    organ.gender = document.getElementById('ax-gender').value;
-    organ.summary = document.getElementById('ax-summary').value.trim();
-    organ.function = document.getElementById('ax-function').value.trim();
-    organ.description = document.getElementById('ax-description').value.trim();
-    organ.symptoms = lines(document.getElementById('ax-symptoms').value);
-    organ.causes = lines(document.getElementById('ax-causes').value);
-    organ.treatments = lines(document.getElementById('ax-treatments').value);
-    organ.prevention = lines(document.getElementById('ax-prevention').value);
-    organ.specialists = lines(document.getElementById('ax-specialists').value);
-    organ.diagnostics = lines(document.getElementById('ax-diagnostics').value);
-    organ.risk_factors = lines(document.getElementById('ax-risk').value);
-    organ.diseases = [...els.diseases.querySelectorAll('input[data-disease]:checked')].map((i) => i.dataset.disease);
-    organ.homeopathy_product_ids = [...els.products.querySelectorAll('input[data-product]:checked')].map((i) => i.dataset.product);
+    if (!els.form.hidden) {
+      organ.name = document.getElementById('ax-name').value.trim();
+      organ.system_id = document.getElementById('ax-system').value;
+      organ.gender = document.getElementById('ax-gender').value;
+      organ.summary = document.getElementById('ax-summary').value.trim();
+      organ.function = document.getElementById('ax-function').value.trim();
+      organ.description = document.getElementById('ax-description').value.trim();
+      organ.symptoms = lines(document.getElementById('ax-symptoms').value);
+      organ.causes = lines(document.getElementById('ax-causes').value);
+      organ.treatments = lines(document.getElementById('ax-treatments').value);
+      organ.prevention = lines(document.getElementById('ax-prevention').value);
+      organ.specialists = lines(document.getElementById('ax-specialists').value);
+      organ.diagnostics = lines(document.getElementById('ax-diagnostics').value);
+      organ.risk_factors = lines(document.getElementById('ax-risk').value);
+      organ.diseases = [...els.diseases.querySelectorAll('input[data-disease]:checked')].map((i) => i.dataset.disease);
+      organ.homeopathy_product_ids = [...els.products.querySelectorAll('input[data-product]:checked')].map((i) => i.dataset.product);
 
-    const cx = parseFloat(document.getElementById('ax-cx').value);
-    const cy = parseFloat(document.getElementById('ax-cy').value);
-    if (!Number.isNaN(cx) && !Number.isNaN(cy)) writeSpot(organ, cx, cy);
+      const cx = parseFloat(document.getElementById('ax-cx').value);
+      const cy = parseFloat(document.getElementById('ax-cy').value);
+      if (!Number.isNaN(cx) && !Number.isNaN(cy)) writeSpot(organ, cx, cy);
+    }
   }
+
+  async function saveOrgan(organ, { quiet = false } = {}) {
+    if (!organ) return;
+    if (!quiet && state.selectedId === organ.id) readFormIntoOrgan(organ);
+    const payload = {
+      id: organ.id,
+      name: organ.name,
+      system_id: organ.system_id,
+      gender: organ.gender,
+      summary: organ.summary,
+      function: organ.function,
+      description: organ.description,
+      symptoms: organ.symptoms || [],
+      causes: organ.causes || [],
+      risk_factors: organ.risk_factors || [],
+      diagnostics: organ.diagnostics || [],
+      treatments: organ.treatments || [],
+      specialists: organ.specialists || [],
+      prevention: organ.prevention || [],
+      diseases: organ.diseases || [],
+      homeopathy_product_ids: organ.homeopathy_product_ids || [],
+      related_organ_ids: organ.related_organ_ids || [],
+      hotspots: organ.hotspots,
+    };
+    const data = await api(boot.saveUrl, 'PUT', payload);
+    const idx = state.organs.findIndex((o) => o.id === organ.id);
+    if (idx >= 0) state.organs[idx] = data.organ;
+    clearDirty([organ.id]);
+    return data.organ;
+  }
+
+  async function saveAllChanges() {
+    if (state.saving) return;
+    if (state.selectedId) {
+      const selected = organById(state.selectedId);
+      if (selected) {
+        readFormIntoOrgan(selected);
+        markDirty(selected.id);
+      }
+    }
+    const ids = [...state.dirtyIds];
+    if (!ids.length) {
+      setStatus('Nothing to save');
+      return;
+    }
+    state.saving = true;
+    markDirty(null);
+    setStatus(`Saving ${ids.length} change(s)…`);
+    try {
+      // Prefer bulk hotspot save, then full-save selected/dirty organs with details.
+      const patches = ids.map((id) => {
+        const o = organById(id);
+        return o ? {
+          id: o.id,
+          name: o.name,
+          system_id: o.system_id,
+          gender: o.gender,
+          hotspots: o.hotspots,
+        } : null;
+      }).filter(Boolean);
+      await api(boot.bulkUrl, 'PUT', { organs: patches });
+      for (const id of ids) {
+        const o = organById(id);
+        if (o) await saveOrgan(o, { quiet: true });
+      }
+      clearDirty(ids);
+      setStatus(`Saved ${ids.length} anatomy change(s). Safe to leave this page.`);
+      render();
+    } catch (err) {
+      ids.forEach((id) => state.dirtyIds.add(id));
+      markDirty(null);
+      setStatus(err.message || 'Save all failed', false);
+    } finally {
+      state.saving = false;
+      markDirty(null);
+    }
+  }
+
+  els.saveAll.addEventListener('click', () => saveAllChanges());
+
+  window.addEventListener('beforeunload', (ev) => {
+    if (state.dirtyIds.size === 0) return;
+    ev.preventDefault();
+    ev.returnValue = '';
+  });
 
   els.form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const organ = organById(state.selectedId);
     if (!organ) return;
-    readFormIntoOrgan(organ);
     setStatus('Saving…');
     try {
-      const payload = {
-        id: organ.id,
-        name: organ.name,
-        system_id: organ.system_id,
-        gender: organ.gender,
-        summary: organ.summary,
-        function: organ.function,
-        description: organ.description,
-        symptoms: organ.symptoms,
-        causes: organ.causes,
-        risk_factors: organ.risk_factors,
-        diagnostics: organ.diagnostics,
-        treatments: organ.treatments,
-        specialists: organ.specialists,
-        prevention: organ.prevention,
-        diseases: organ.diseases,
-        homeopathy_product_ids: organ.homeopathy_product_ids,
-        related_organ_ids: organ.related_organ_ids || [],
-        hotspots: organ.hotspots,
-      };
-      const data = await api(boot.saveUrl, 'PUT', payload);
-      const idx = state.organs.findIndex((o) => o.id === organ.id);
-      if (idx >= 0) state.organs[idx] = data.organ;
-      state.dirty = false;
-      setStatus('Saved — live explorer will use these positions.');
+      await saveOrgan(organ);
+      setStatus('Saved — live explorer will use these details.');
       render();
     } catch (err) {
       setStatus(err.message || 'Save failed', false);
     }
+  });
+
+  // Mark dirty when form fields change.
+  els.form.addEventListener('input', () => {
+    if (state.selectedId) markDirty(state.selectedId);
+  });
+  els.form.addEventListener('change', () => {
+    if (state.selectedId) markDirty(state.selectedId);
   });
 
   function cancelPlace() {
@@ -551,31 +632,25 @@
     els.ghost.style.left = `${cx}%`;
     els.ghost.style.top = `${cy}%`;
     document.getElementById('ax-new-name').value = '';
-    document.getElementById('ax-new-system').value = boot.systems[0]?.id || '';
-    document.getElementById('ax-new-gender').value = 'both';
     document.getElementById('ax-new-pos').textContent = `Position: ${cx.toFixed(1)}% × ${cy.toFixed(1)}% (${state.view} view)`;
     fillForm(null);
     document.getElementById('ax-new-name').focus();
-    setStatus('Name the new red dot, then Create');
+    setStatus('Enter the organ name only — other details auto-fill on create');
   });
 
   document.getElementById('ax-create-form').addEventListener('submit', async (ev) => {
     ev.preventDefault();
     if (!state.pending) return;
     const name = document.getElementById('ax-new-name').value.trim();
-    const systemId = document.getElementById('ax-new-system').value;
-    const gender = document.getElementById('ax-new-gender').value;
     if (!name) return;
     const meta = viewMeta(state.view);
     // Convert display coords → stored coords (un-mirror for viewer-right).
     const storeCx = meta.mirror ? 100 - state.pending.cx : state.pending.cx;
     const storeCy = state.pending.cy;
-    setStatus('Creating red dot…');
+    setStatus('Creating & auto-filling details…');
     try {
       const data = await api(boot.storeUrl, 'POST', {
         name,
-        system_id: systemId,
-        gender,
         cx: storeCx,
         cy: storeCy,
         view: meta.key,
@@ -584,7 +659,8 @@
       state.organs.push(data.organ);
       state.selectedId = data.organ.id;
       setPlacing(false);
-      setStatus(`Added “${data.organ.name}” — edit details below, drag to fine-tune, then Save.`);
+      clearDirty([data.organ.id]);
+      setStatus(`Added & saved “${data.organ.name}” with auto-filled details.`);
       render();
     } catch (err) {
       setStatus(err.message || 'Could not create red dot', false);
@@ -648,12 +724,13 @@
       const cy = parseFloat(document.getElementById('ax-cy').value);
       if (Number.isNaN(cx) || Number.isNaN(cy)) return;
       writeSpot(organ, cx, cy);
-      state.dirty = true;
-      setStatus('Unsaved position — click Save organ');
+      markDirty(organ.id);
+      setStatus('Unsaved — click “Save all changes” or “Save this organ”');
       render();
     });
   });
 
+  markDirty(null);
   render();
 })();
 </script>

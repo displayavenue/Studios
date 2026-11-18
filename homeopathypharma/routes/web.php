@@ -225,6 +225,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('health-explorer/disclaimer', [AdminHealthExplorerController::class, 'updateDisclaimer'])->name('health-explorer.disclaimer.update');
         Route::get('health-explorer/anatomy', [AdminHealthExplorerController::class, 'anatomyEditor'])->name('health-explorer.anatomy');
         Route::put('health-explorer/anatomy/organs', [AdminHealthExplorerController::class, 'saveAnatomyOrgan'])->name('health-explorer.anatomy.save');
+        Route::put('health-explorer/anatomy/organs/bulk', [AdminHealthExplorerController::class, 'saveAnatomyBulk'])->name('health-explorer.anatomy.bulk');
         Route::post('health-explorer/anatomy/organs', [AdminHealthExplorerController::class, 'storeAnatomyOrgan'])->name('health-explorer.anatomy.store');
 
         Route::get('health-explorer/systems/create', [AdminHealthExplorerController::class, 'createSystem'])->name('health-explorer.systems.create');
