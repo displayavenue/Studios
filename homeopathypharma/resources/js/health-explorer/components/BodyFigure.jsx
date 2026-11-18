@@ -104,7 +104,7 @@ function systemOverlaySrc(systemId, gender, viewKey) {
   if (systemId !== 'cardiovascular') return null;
   // Front-only for now (matches the approved cardiovascular reference).
   if (viewKey !== 'front') return null;
-  return `/images/health-explorer/overlays/cardiovascular-${gender}-front-v5.webp?v=${cacheToken()}`;
+  return `/images/health-explorer/overlays/cardiovascular-${gender}-front-v6.webp?v=${cacheToken()}`;
 }
 
 /**
@@ -272,7 +272,7 @@ export default function BodyFigure({
         <div className="hx-turntable__scene">
           <img
             key={`${gender}-${activeKey}`}
-            className="hx-turntable__image is-active"
+            className={`hx-turntable__image is-active${overlaySrc ? ' is-under-system' : ''}`}
             src={src}
             alt=""
             draggable={false}
@@ -282,7 +282,7 @@ export default function BodyFigure({
           {overlaySrc ? (
             <img
               key={`overlay-${systemId}-${gender}-${activeKey}`}
-              className="hx-turntable__overlay is-active"
+              className="hx-turntable__overlay is-active is-full-figure"
               src={overlaySrc}
               alt=""
               draggable={false}

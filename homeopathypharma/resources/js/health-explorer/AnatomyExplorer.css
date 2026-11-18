@@ -265,6 +265,12 @@
   z-index: 1;
 }
 
+/* When a full-figure system overlay (e.g. Cardiovascular) is shown, hide the
+   base silhouette so the view matches the medical reference exactly. */
+.hx-turntable__image.is-under-system {
+  opacity: 0;
+}
+
 .hx-turntable__overlay {
   position: absolute;
   inset: 0;
@@ -275,7 +281,7 @@
   object-position: center bottom;
   pointer-events: none;
   -webkit-user-drag: none;
-  /* Above silhouette, below interactive dots — silhouette shade stays unchanged. */
+  /* Above silhouette, below interactive dots. */
   z-index: 2;
   opacity: 0;
   transition: opacity 0.28s ease;
@@ -286,6 +292,11 @@
 
 .hx-turntable__overlay.is-active {
   opacity: 1;
+}
+
+.hx-turntable__overlay.is-full-figure {
+  /* Keep filter:none so vessel lines stay as clear as the reference. */
+  filter: none;
 }
 
 .hx-turntable__dots {
