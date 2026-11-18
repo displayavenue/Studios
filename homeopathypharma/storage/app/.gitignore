@@ -1,4 +1,7 @@
 *
 !private/
 !public/
+!health-explorer/
+!health-explorer/**
+health-explorer/catalog.json
 !.gitignore
