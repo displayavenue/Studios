@@ -1434,7 +1434,8 @@
   color: #fff;
   font-size: 0.86rem;
 }
-.growth-sticky-cta button {
+.growth-sticky-cta button,
+.growth-sticky-cta__wa {
   min-height: 44px;
   border: 0;
   border-radius: 12px;
@@ -1443,6 +1444,16 @@
   font-weight: 800;
   font-size: 0.88rem;
   padding: 0.55rem 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.growth-sticky-cta__wa:hover,
+.growth-sticky-cta__wa:focus-visible {
+  filter: brightness(1.06);
+  color: #fff;
 }
 
 .growth-sheet {
