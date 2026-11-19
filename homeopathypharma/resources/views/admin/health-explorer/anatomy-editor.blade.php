@@ -31,7 +31,8 @@
 
 <p class="admin-card" style="margin-bottom:1rem;">
     Same male/female figures and system chips as the website. Click a system (e.g. Cardiovascular) to preview the same overlay as the storefront.
-    Front, Back, Left, and Right each have their own red dots. An organ can belong to several systems, and each system can place that organ’s dot in a different spot. Use <strong>Save all changes</strong> before leaving.
+    <strong>All systems</strong> is a separate curated list — organs in Digestive/Endocrine/etc. do not appear there unless you also enable “Show in All systems”.
+    Front, Back, Left, and Right each have their own red dots, and each system can place the same organ in a different spot. Use <strong>Save all changes</strong> before leaving.
 </p>
 
 <div id="ax-app" class="ax" data-boot='@json($boot)'>
@@ -100,8 +101,12 @@
             <form id="ax-form" class="admin-form" hidden>
                 <input type="hidden" name="id" id="ax-id">
                 <label>Name <input name="name" id="ax-name" required></label>
+                <label class="ax-check-inline" style="display:flex;gap:0.45rem;align-items:flex-start;font-weight:600;">
+                    <input type="checkbox" id="ax-show-in-all" value="1">
+                    <span>Show in All systems <span class="ax-muted" style="font-weight:500;">(separate overview list — not automatic from other systems)</span></span>
+                </label>
                 <fieldset class="ax-checks">
-                    <legend>Systems (one organ can belong to several)</legend>
+                    <legend>Body systems (one organ can belong to several)</legend>
                     <div id="ax-systems" class="ax-check-list">
                         @foreach ($systems as $system)
                             @continue(($system['id'] ?? '') === 'mental')
@@ -318,8 +323,12 @@
     return ids;
   }
 
+  function organShowsInAll(organ) {
+    return !!(organ && organ.show_in_all);
+  }
+
   function organInSystem(organ, systemId) {
-    if (!systemId || systemId === 'all') return true;
+    if (!systemId || systemId === 'all') return organShowsInAll(organ);
     return organSystemIds(organ).includes(systemId);
   }
 
@@ -450,7 +459,10 @@
   function visibleOrgans() {
     return state.organs.filter((o) => {
       if (!(o.gender === 'both' || o.gender === state.gender)) return false;
-      if (state.systemId && state.systemId !== 'all' && state.systemId !== 'mental' && !organInSystem(o, state.systemId)) {
+      if (state.systemId === 'mental') return false;
+      if (state.systemId === 'all' || !state.systemId) {
+        if (!organShowsInAll(o)) return false;
+      } else if (!organInSystem(o, state.systemId)) {
         return false;
       }
       return hasSpotOnCurrentView(o);
@@ -552,9 +564,9 @@
     const systemId = activeSystemFilterId();
     if (systemId) {
       const name = activeSystem()?.name || systemId;
-      return `Editing “${name}” positions — drag a red dot to place it for this system only. Other systems keep their own spots.`;
+      return `Editing “${name}” positions — drag a red dot to place it for this system only. Other systems and All systems keep their own spots.`;
     }
-    return 'Drag a red dot to move it. Click a dot to edit details. Use “Add red dot” then click the body to place a new one.';
+    return 'All systems overview — only organs with “Show in All systems” appear here. Drag dots to set the All-systems position.';
   }
 
   function organNeedsAutoFill(organ) {
@@ -586,8 +598,9 @@
     const spot = displaySpot(organ) || { cx: 50, cy: 40 };
     document.getElementById('ax-id').value = organ.id;
     document.getElementById('ax-name').value = organ.name || '';
+    document.getElementById('ax-show-in-all').checked = organShowsInAll(organ);
     const ids = organSystemIds(organ);
-    setSystemChecks(ids.length ? ids : (boot.systems[0]?.id ? [boot.systems[0].id] : []));
+    setSystemChecks(ids);
     document.getElementById('ax-gender').value = organ.gender || 'both';
     document.getElementById('ax-cx').value = spot.cx.toFixed(1);
     document.getElementById('ax-cy').value = spot.cy.toFixed(1);
@@ -773,6 +786,7 @@
   function readFormIntoOrgan(organ) {
     if (!els.form.hidden) {
       organ.name = document.getElementById('ax-name').value.trim();
+      organ.show_in_all = !!document.getElementById('ax-show-in-all').checked;
       const systemIds = selectedSystemIdsFromForm();
       organ.system_ids = systemIds;
       organ.system_id = systemIds[0] || '';
@@ -804,6 +818,7 @@
       name: organ.name,
       system_id: organ.system_id,
       system_ids: organSystemIds(organ),
+      show_in_all: !!organ.show_in_all,
       gender: organ.gender,
       summary: organ.summary,
       function: organ.function,
@@ -854,6 +869,7 @@
           name: o.name,
           system_id: o.system_id,
           system_ids: organSystemIds(o),
+          show_in_all: !!o.show_in_all,
           gender: o.gender,
           hotspots: o.hotspots,
           hotspots_by_system: o.hotspots_by_system || {},
@@ -906,8 +922,10 @@
     ev.preventDefault();
     const organ = organById(state.selectedId);
     if (!organ) return;
-    if (!selectedSystemIdsFromForm().length) {
-      setStatus('Select at least one body system for this organ.', false);
+    const systemsSelected = selectedSystemIdsFromForm().length > 0;
+    const showInAll = !!document.getElementById('ax-show-in-all').checked;
+    if (!systemsSelected && !showInAll) {
+      setStatus('Enable “Show in All systems” and/or select at least one body system.', false);
       return;
     }
     setStatus('Saving…');
@@ -991,6 +1009,7 @@
       const activeSystemId = (state.systemId && state.systemId !== 'all' && state.systemId !== 'mental')
         ? state.systemId
         : null;
+      const placingInAll = !activeSystemId && state.systemId !== 'mental';
       const data = await api(boot.storeUrl, 'POST', {
         name,
         cx: state.pending.cx,
@@ -999,6 +1018,7 @@
         body_gender: state.gender,
         system_id: activeSystemId || undefined,
         system_ids: activeSystemId ? [activeSystemId] : undefined,
+        show_in_all: placingInAll ? true : undefined,
       });
       migrateOrganHotspots(data.organ);
       const existingIdx = state.organs.findIndex((o) => o.id === data.organ.id);

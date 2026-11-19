@@ -160,9 +160,26 @@ class HealthExplorerCatalog
                 $catalog['organs'][$index]['system_id'] = $normalized[0] ?? '';
                 $changed = true;
             }
+            // All-systems overview is a separate curated list — default off when missing.
+            if (! array_key_exists('show_in_all', $catalog['organs'][$index])) {
+                $catalog['organs'][$index]['show_in_all'] = false;
+                $changed = true;
+            } elseif (! is_bool($catalog['organs'][$index]['show_in_all'])) {
+                $catalog['organs'][$index]['show_in_all'] = (bool) $catalog['organs'][$index]['show_in_all'];
+                $changed = true;
+            }
+            if (! isset($catalog['organs'][$index]['hotspots_by_system']) || ! is_array($catalog['organs'][$index]['hotspots_by_system'])) {
+                $catalog['organs'][$index]['hotspots_by_system'] = [];
+                $changed = true;
+            }
         }
 
         return $changed;
+    }
+
+    public static function organShowsInAll(array $organ): bool
+    {
+        return (bool) ($organ['show_in_all'] ?? false);
     }
 
     /**
@@ -195,7 +212,7 @@ class HealthExplorerCatalog
     public static function organBelongsToSystem(array $organ, string $systemId): bool
     {
         if ($systemId === '' || $systemId === 'all') {
-            return true;
+            return self::organShowsInAll($organ);
         }
 
         return in_array($systemId, self::normalizeOrganSystemIds($organ), true);

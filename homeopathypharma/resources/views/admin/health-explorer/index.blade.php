@@ -86,12 +86,13 @@
         <a class="btn btn-secondary" href="{{ route('admin.health-explorer.organs.create') }}">Add organ</a>
     </div>
     <table class="admin-table">
-        <thead><tr><th>Name</th><th>System</th><th>Gender</th><th></th></tr></thead>
+        <thead><tr><th>Name</th><th>Systems</th><th>All systems</th><th>Gender</th><th></th></tr></thead>
         <tbody>
         @foreach ($organs as $organ)
             <tr>
                 <td>{{ $organ['name'] }}</td>
                 <td>{{ implode(', ', $organ['system_ids'] ?? array_filter([$organ['system_id'] ?? null])) }}</td>
+                <td>{{ ! empty($organ['show_in_all']) ? 'Yes' : 'No' }}</td>
                 <td>{{ $organ['gender'] }}</td>
                 <td style="display:flex;gap:0.5rem;align-items:center;">
                     <a href="{{ route('admin.health-explorer.organs.edit', $organ['slug'] ?? $organ['id']) }}">Edit</a>

@@ -32,8 +32,17 @@
             $selectedSystems = [$selectedSystems];
         }
     @endphp
+    <label style="display:flex;gap:0.45rem;align-items:flex-start;font-weight:600;">
+        <input
+            type="checkbox"
+            name="show_in_all"
+            value="1"
+            @checked(old('show_in_all', ! empty($organ['show_in_all'])))
+        >
+        <span>Show in All systems <span style="font-weight:500;color:#5b6b65;">(separate overview — not automatic from body systems)</span></span>
+    </label>
     <fieldset style="border:1px solid #e3e8e1;border-radius:0.5rem;padding:0.75rem;">
-        <legend>Systems (select one or more)</legend>
+        <legend>Body systems (select one or more, optional if shown in All)</legend>
         <div style="display:grid;gap:0.35rem;">
             @foreach ($systems as $system)
                 @continue(($system['id'] ?? '') === 'mental')

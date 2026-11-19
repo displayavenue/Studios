@@ -78,14 +78,20 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
     return ids;
   };
 
+  const organShowsInAll = (organ) => !!(organ && organ.show_in_all);
+
   const organBelongsToSystem = (organ, id) => {
-    if (!id || id === 'all') return true;
+    if (!id || id === 'all') return organShowsInAll(organ);
     return organSystemIds(organ).includes(id);
   };
 
   const filteredOrgans = useMemo(() => {
     return organs.filter((organ) => {
-      if (systemId !== 'all' && !organBelongsToSystem(organ, systemId)) return false;
+      if (systemId === 'all') {
+        if (!organShowsInAll(organ)) return false;
+      } else if (!organBelongsToSystem(organ, systemId)) {
+        return false;
+      }
       if (organ.gender !== 'both' && organ.gender !== gender) return false;
       return true;
     });

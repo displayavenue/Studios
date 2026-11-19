@@ -110,8 +110,9 @@ class HealthExplorerController extends Controller
             'id' => ['required', 'string', 'max:120'],
             'name' => ['required', 'string', 'max:160'],
             'system_id' => ['nullable', 'string', 'max:80'],
-            'system_ids' => ['nullable', 'array', 'min:1'],
+            'system_ids' => ['nullable', 'array'],
             'system_ids.*' => ['string', 'max:80'],
+            'show_in_all' => ['nullable', 'boolean'],
             'gender' => ['required', 'in:both,male,female'],
             'summary' => ['nullable', 'string'],
             'function' => ['nullable', 'string'],
@@ -141,7 +142,8 @@ class HealthExplorerController extends Controller
         ]);
 
         $systemIds = $this->resolveSystemIdsInput($data);
-        abort_if($systemIds === [], 422, 'Select at least one body system.');
+        $showInAll = (bool) ($data['show_in_all'] ?? false);
+        abort_if($systemIds === [] && ! $showInAll, 422, 'Enable All systems and/or select at least one body system.');
 
         $catalog = $this->catalog();
         $found = false;
@@ -152,6 +154,7 @@ class HealthExplorerController extends Controller
             $found = true;
             $organ['name'] = $data['name'];
             $this->applyOrganSystems($organ, $systemIds);
+            $organ['show_in_all'] = $showInAll;
             $organ['gender'] = $data['gender'];
             $organ['summary'] = $data['summary'] ?? '';
             $organ['function'] = $data['function'] ?? '';
@@ -196,6 +199,7 @@ class HealthExplorerController extends Controller
             'system_id' => ['nullable', 'string', 'max:80'],
             'system_ids' => ['nullable', 'array'],
             'system_ids.*' => ['string', 'max:80'],
+            'show_in_all' => ['nullable', 'boolean'],
             'gender' => ['nullable', 'in:both,male,female'],
             'cx' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'cy' => ['nullable', 'numeric', 'min:0', 'max:100'],
@@ -217,6 +221,7 @@ class HealthExplorerController extends Controller
         $bodyGender = $data['body_gender'] ?? 'female';
         $spot = ['cx' => $cx, 'cy' => $cy, 'r' => 1.15];
         $requestedSystems = $this->resolveSystemIdsInput($data);
+        $requestShowInAll = array_key_exists('show_in_all', $data) ? (bool) $data['show_in_all'] : null;
 
         // If this organ already exists, only add/update the red dot on this body + view.
         foreach ($catalog['organs'] as &$existing) {
@@ -238,6 +243,10 @@ class HealthExplorerController extends Controller
                     ? $existing['hotspots'][$bodyGender]
                     : [];
                 $existing['hotspots'][$bodyGender][$view] = $spot;
+                // Placing under All systems opts the organ into the curated overview list.
+                if ($requestShowInAll !== false) {
+                    $existing['show_in_all'] = true;
+                }
             }
             $this->saveCatalog($catalog);
 
@@ -247,17 +256,20 @@ class HealthExplorerController extends Controller
 
         $draft = $this->autoFillOrganFromName($name, $catalog);
         $gender = $data['gender'] ?? $draft['gender'];
-        $systemIds = $requestedSystems !== []
-            ? $requestedSystems
-            : HealthExplorerCatalog::normalizeOrganSystemIds($draft);
+        $systemIds = $requestedSystems;
+        $showInAll = $requestShowInAll === true
+            || ($requestShowInAll === null && $systemIds === []);
 
         // New organ: place a red dot only on the current body + view.
         $hotspots = [
             'female' => [],
             'male' => [],
         ];
-        $hotspots[$bodyGender][$view] = $spot;
         $hotspotsBySystem = [];
+        if ($showInAll || $systemIds === []) {
+            $hotspots[$bodyGender][$view] = $spot;
+            $showInAll = true;
+        }
         $primarySystem = $systemIds[0] ?? null;
         if ($primarySystem) {
             $hotspotsBySystem[$primarySystem] = [
@@ -265,6 +277,13 @@ class HealthExplorerController extends Controller
                 'male' => [],
             ];
             $hotspotsBySystem[$primarySystem][$bodyGender][$view] = $spot;
+            // System-only create: do not also put a default All-systems spot unless requested.
+            if (! $showInAll) {
+                $hotspots = [
+                    'female' => [],
+                    'male' => [],
+                ];
+            }
         }
 
         $organ = array_merge($draft, [
@@ -272,6 +291,7 @@ class HealthExplorerController extends Controller
             'slug' => $slug,
             'name' => $name,
             'gender' => $gender,
+            'show_in_all' => $showInAll,
             'hotspots' => $hotspots,
             'hotspots_by_system' => $hotspotsBySystem,
         ]);
@@ -294,6 +314,7 @@ class HealthExplorerController extends Controller
             'organs.*.system_id' => ['nullable', 'string', 'max:80'],
             'organs.*.system_ids' => ['nullable', 'array'],
             'organs.*.system_ids.*' => ['string', 'max:80'],
+            'organs.*.show_in_all' => ['nullable', 'boolean'],
             'organs.*.gender' => ['nullable', 'in:both,male,female'],
             'organs.*.hotspots_by_system' => ['nullable', 'array'],
         ]);
@@ -310,8 +331,11 @@ class HealthExplorerController extends Controller
                     $organ['name'] = $patch['name'];
                 }
                 $systemIds = $this->resolveSystemIdsInput($patch);
-                if ($systemIds !== []) {
+                if ($systemIds !== [] || array_key_exists('system_ids', $patch) || array_key_exists('system_id', $patch)) {
                     $this->applyOrganSystems($organ, $systemIds);
+                }
+                if (array_key_exists('show_in_all', $patch)) {
+                    $organ['show_in_all'] = (bool) $patch['show_in_all'];
                 }
                 if (! empty($patch['gender'])) {
                     $organ['gender'] = $patch['gender'];
@@ -763,8 +787,9 @@ class HealthExplorerController extends Controller
             'slug' => ['nullable', 'string', 'max:120'],
             'name' => ['required', 'string', 'max:160'],
             'system_id' => ['nullable', 'string', 'max:80'],
-            'system_ids' => ['nullable', 'array', 'min:1'],
+            'system_ids' => ['nullable', 'array'],
             'system_ids.*' => ['string', 'max:80'],
+            'show_in_all' => ['nullable', 'boolean'],
             'gender' => ['required', 'in:both,male,female'],
             'summary' => ['nullable', 'string'],
             'function' => ['nullable', 'string'],
@@ -779,7 +804,13 @@ class HealthExplorerController extends Controller
             'hotspot_back_cx' => ['nullable', 'numeric', 'min:0', 'max:100'],
             'hotspot_back_cy' => ['nullable', 'numeric', 'min:0', 'max:100'],
         ]);
-        abort_if($this->resolveSystemIdsInput($data) === [], 422, 'Select at least one body system.');
+        $showInAll = $request->boolean('show_in_all');
+        $data['show_in_all'] = $showInAll;
+        abort_if(
+            $this->resolveSystemIdsInput($data) === [] && ! $showInAll,
+            422,
+            'Enable All systems and/or select at least one body system.'
+        );
 
         return $data;
     }
@@ -864,6 +895,9 @@ class HealthExplorerController extends Controller
             'name' => $data['name'],
             'system_id' => $systemIds[0] ?? '',
             'system_ids' => $systemIds,
+            'show_in_all' => array_key_exists('show_in_all', $data)
+                ? (bool) $data['show_in_all']
+                : (bool) ($existing['show_in_all'] ?? false),
             'gender' => $data['gender'],
             'summary' => $data['summary'] ?? '',
             'function' => $data['function'] ?? '',
@@ -1155,6 +1189,7 @@ class HealthExplorerController extends Controller
         return [
             'system_id' => $systemId,
             'system_ids' => $systemId !== '' ? [$systemId] : [],
+            'show_in_all' => false,
             'gender' => $gender,
             'summary' => "Educational overview of the {$name} and common concerns people explore in homeopathy.",
             'function' => "The {$name} contributes to normal body function; imbalance here may show as local or referred symptoms.",
