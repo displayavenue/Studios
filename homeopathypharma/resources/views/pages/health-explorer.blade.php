@@ -18,6 +18,7 @@
         data-catalog-url="{{ $catalogUrl }}"
         data-shop-url="{{ route('shop.index') }}"
         data-consult-url="{{ route('consult') }}"
+        data-cache-token="{{ app(\App\Services\SiteSettings::class)->frontendCacheToken() }}"
     >
         <noscript>
             <div class="hp-container" style="padding:2rem 0;">

@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState, useTransition } from 'react';
-import BodyFigure from './components/BodyFigure';
+import { useEffect, useMemo, useRef, useState, useTransition } from 'react';
+import BodyFigure, { frameKey, nearestFrame, normalizeYaw, viewLabel } from './components/BodyFigure';
 import DetailPanel from './components/DetailPanel';
 
 const TABS = [
@@ -8,12 +8,19 @@ const TABS = [
   { id: 'search', label: 'Search results' },
 ];
 
+/** PHP empty maps decode as []; named props on arrays are dropped by JSON.stringify. */
+function asPlainObject(value) {
+  if (!value || typeof value !== 'object') return {};
+  if (Array.isArray(value)) return Object.fromEntries(Object.entries(value));
+  return value;
+}
+
 export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const [catalog, setCatalog] = useState(null);
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState('');
   const [gender, setGender] = useState('female');
-  const [view, setView] = useState('front');
+  const [yaw, setYaw] = useState(0);
   const [systemId, setSystemId] = useState('all');
   const [query, setQuery] = useState('');
   const [committedQuery, setCommittedQuery] = useState('');
@@ -23,6 +30,8 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const [selectedMentalId, setSelectedMentalId] = useState(null);
   const [zoom, setZoom] = useState(1);
   const [, startTransition] = useTransition();
+  const yawAnimRef = useRef(null);
+  const view = viewLabel(yaw);
 
   useEffect(() => {
     let cancelled = false;
@@ -34,6 +43,13 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
       })
       .then((data) => {
         if (cancelled) return;
+        if (Array.isArray(data?.organs)) {
+          data.organs = data.organs.map((organ) => {
+            if (!organ || typeof organ !== 'object') return organ;
+            organ.hotspots_by_system = asPlainObject(organ.hotspots_by_system);
+            return organ;
+          });
+        }
         setCatalog(data);
         setStatus('ready');
         const params = new URLSearchParams(window.location.search);
@@ -60,10 +76,36 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const diseases = catalog?.diseases || [];
   const mentalConditions = catalog?.mental_conditions || [];
   const products = catalog?.homeopathy_products || [];
+  const activeSystem = systems.find((s) => s.id === systemId) || null;
+  // Overlay assets are keyed front/back/side/side-left (same as BodyFigure frames).
+  const activeOverlayPath = activeSystem?.overlays?.[gender]?.[frameKey(yaw)] || null;
+
+  const organSystemIds = (organ) => {
+    if (!organ) return [];
+    const ids = [];
+    const push = (id) => {
+      const v = String(id || '').trim();
+      if (v && !ids.includes(v)) ids.push(v);
+    };
+    (Array.isArray(organ.system_ids) ? organ.system_ids : []).forEach(push);
+    push(organ.system_id);
+    return ids;
+  };
+
+  const organShowsInAll = (organ) => !!(organ && organ.show_in_all);
+
+  const organBelongsToSystem = (organ, id) => {
+    if (!id || id === 'all') return organShowsInAll(organ);
+    return organSystemIds(organ).includes(id);
+  };
 
   const filteredOrgans = useMemo(() => {
     return organs.filter((organ) => {
-      if (systemId !== 'all' && organ.system_id !== systemId) return false;
+      if (systemId === 'all') {
+        if (!organShowsInAll(organ)) return false;
+      } else if (!organBelongsToSystem(organ, systemId)) {
+        return false;
+      }
       if (organ.gender !== 'both' && organ.gender !== gender) return false;
       return true;
     });
@@ -84,7 +126,10 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const selectedOrgan = organs.find((o) => o.id === selectedOrganId) || null;
   const selectedDisease = diseases.find((d) => d.id === selectedDiseaseId) || null;
   const selectedMental = mentalConditions.find((m) => m.id === selectedMentalId) || null;
-  const systemName = systems.find((s) => s.id === selectedOrgan?.system_id)?.name;
+  const systemNames = organSystemIds(selectedOrgan)
+    .map((id) => systems.find((s) => s.id === id)?.name || id)
+    .filter(Boolean);
+  const systemName = systemNames.join(' · ') || systems.find((s) => s.id === selectedOrgan?.system_id)?.name;
 
   const organDiseases = useMemo(() => {
     if (!selectedOrgan) return [];
@@ -104,6 +149,19 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
     return 'empty';
   })();
 
+  const turnBy = (delta) => {
+    if (yawAnimRef.current) cancelAnimationFrame(yawAnimRef.current);
+    yawAnimRef.current = null;
+    setYaw((prev) => nearestFrame(normalizeYaw(nearestFrame(prev) + delta)));
+  };
+
+  /** Jump straight to a named cardinal view (front / right / back / left). */
+  const setCardinalView = (targetYaw) => {
+    if (yawAnimRef.current) cancelAnimationFrame(yawAnimRef.current);
+    yawAnimRef.current = null;
+    setYaw(nearestFrame(targetYaw));
+  };
+
   const selectOrgan = (id) => {
     startTransition(() => {
       setSelectedOrganId(id);
@@ -111,12 +169,29 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
       setSelectedMentalId(null);
       setTab('anatomy');
       const organ = organs.find((o) => o.id === id);
-      if (organ?.hotspots?.[gender]?.back && !organ?.hotspots?.[gender]?.front && view === 'front') {
-        setView('back');
-      }
-      if (organ?.hotspots?.[gender]?.front && !organ?.hotspots?.[gender]?.back && view === 'back') {
-        setView('front');
-      }
+      if (!organ) return;
+      const systemSpots = (systemId && systemId !== 'all' && systemId !== 'mental')
+        ? organ.hotspots_by_system?.[systemId]?.[gender]
+        : null;
+      const spots = systemSpots || organ.hotspots?.[gender];
+      if (!spots) return;
+      const current = nearestFrame(yaw);
+      const has = (key) => {
+        if (Object.prototype.hasOwnProperty.call(spots, key)) {
+          const v = spots[key];
+          return !!(v && typeof v.cx === 'number');
+        }
+        if (key === 'left' || key === 'right') {
+          return !!(spots.side && typeof spots.side.cx === 'number');
+        }
+        // Fall back to shared default when system map omits this view.
+        const fallback = organ.hotspots?.[gender];
+        return !!(fallback?.[key] && typeof fallback[key].cx === 'number');
+      };
+      if (current === 0 && !has('front') && has('back')) setYaw(180);
+      if (current === 180 && !has('back') && has('front')) setYaw(0);
+      if (current === 90 && !has('left') && !has('side') && has('front')) setYaw(0);
+      if (current === 270 && !has('right') && !has('side') && has('front')) setYaw(0);
     });
   };
 
@@ -200,12 +275,15 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
           </form>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
             <div className="hx-seg" role="group" aria-label="Sex">
-              <button type="button" aria-pressed={gender === 'female'} onClick={() => setGender('female')}>Female</button>
-              <button type="button" aria-pressed={gender === 'male'} onClick={() => setGender('male')}>Male</button>
+              <button type="button" aria-pressed={gender === 'female'} onClick={() => { setGender('female'); setYaw(0); }}>Female</button>
+              <button type="button" aria-pressed={gender === 'male'} onClick={() => { setGender('male'); setYaw(0); }}>Male</button>
             </div>
-            <div className="hx-seg" role="group" aria-label="View">
-              <button type="button" aria-pressed={view === 'front'} onClick={() => setView('front')}>Front</button>
-              <button type="button" aria-pressed={view === 'back'} onClick={() => setView('back')}>Back</button>
+            <div className="hx-seg" role="group" aria-label="Anatomy view">
+              <button type="button" aria-pressed={view === 'front'} onClick={() => setCardinalView(0)}>Front</button>
+              <button type="button" aria-pressed={view === 'back'} onClick={() => setCardinalView(180)}>Back</button>
+              {/* Viewer-relative: Left/Right match YOUR left/right, not the figure's. */}
+              <button type="button" aria-pressed={view === 'left'} onClick={() => setCardinalView(90)}>Left</button>
+              <button type="button" aria-pressed={view === 'right'} onClick={() => setCardinalView(270)}>Right</button>
             </div>
           </div>
         </div>
@@ -218,8 +296,18 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
               type="button"
               className="hx-chip"
               aria-pressed={systemId === system.id}
-              onClick={() => setSystemId(system.id)}
-              title={system.description}
+              onClick={() => {
+                setSystemId(system.id);
+                setTab('anatomy');
+                // If this system only has a front overlay, snap to Front.
+                const overlays = system.overlays || {};
+                const hasFront = Boolean(overlays.female?.front || overlays.male?.front);
+                const hasOther = ['back', 'side', 'side-left'].some(
+                  (key) => overlays.female?.[key] || overlays.male?.[key],
+                );
+                if (hasFront && !hasOther) setYaw(0);
+              }}
+              title={system.description || system.summary || system.name}
             >
               {system.name}
             </button>
@@ -227,8 +315,14 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
           <button
             type="button"
             className="hx-chip"
-            aria-pressed={tab === 'mental'}
-            onClick={() => { setTab('mental'); setSelectedMentalId(null); }}
+            aria-pressed={systemId === 'mental'}
+            onClick={() => {
+              setSystemId('mental');
+              setTab('mental');
+              setSelectedMentalId(null);
+              setYaw(0);
+            }}
+            title="Mental health topics and brain/nervous overlay"
           >
             Mental Health
           </button>
@@ -238,22 +332,29 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
           <section className="hx-stage" aria-label="Anatomy stage">
             <div className="hx-stage__top">
               <h2>{gender === 'female' ? 'Female' : 'Male'} · {view} view</h2>
-              <div className="hx-zoom" role="group" aria-label="Zoom">
+              <div className="hx-zoom" role="group" aria-label="Zoom and rotate">
+                <button type="button" className="hx-icon-btn" aria-label="Turn left" onClick={() => turnBy(90)}>⟵</button>
                 <button type="button" className="hx-icon-btn" aria-label="Zoom out" onClick={() => setZoom((z) => Math.max(0.85, +(z - 0.1).toFixed(2)))}>−</button>
-                <button type="button" className="hx-icon-btn" aria-label="Reset zoom" onClick={() => setZoom(1)}>⟲</button>
+                <button type="button" className="hx-icon-btn" aria-label="Reset view" onClick={() => { setZoom(1); setYaw(0); }}>⟲</button>
                 <button type="button" className="hx-icon-btn" aria-label="Zoom in" onClick={() => setZoom((z) => Math.min(1.45, +(z + 0.1).toFixed(2)))}>+</button>
+                <button type="button" className="hx-icon-btn" aria-label="Turn right" onClick={() => turnBy(-90)}>⟶</button>
               </div>
             </div>
             <BodyFigure
               gender={gender}
-              view={view}
+              yaw={yaw}
               organs={filteredOrgans}
               activeId={selectedOrganId}
               zoom={zoom}
+              systemId={systemId}
+              systems={systems}
               onSelect={selectOrgan}
+              onYawChange={setYaw}
             />
             <p style={{ margin: '0.65rem 0 0', color: '#5b6b65', fontSize: '0.84rem' }}>
-              Tip: switch Front/Back if a hotspot is hidden on this view. Keyboard users can tab to hotspots and press Enter.
+              {activeOverlayPath
+                ? `${activeSystem?.name || 'System'} overlay is shown for this view. Each system is edited separately in admin and keeps its own content.`
+                : 'Drag sideways for a full 360° turn, or jump with Front / Back / Left / Right. Tap a red dot to open that organ.'}
             </p>
           </section>
 
@@ -325,6 +426,7 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
                 disease={selectedDisease}
                 mental={panelMode === 'mental-list' ? mentalConditions : selectedMental}
                 systemName={systemName}
+                systemNames={systemNames}
                 diseases={organDiseases}
                 products={products}
                 relatedOrgans={relatedOrgans}

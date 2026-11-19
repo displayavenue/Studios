@@ -67,6 +67,8 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 ## Project Rules
 
 - This project contains committed, area-grouped rules in `.ai/rules` when that directory exists, including path-scoped framework guidelines under `.ai/rules/boost`. Before you enter plan mode or create/edit any file, you MUST first: open @.ai/rules/index.md (it maps file globs to rule files), read every rule file whose globs cover the path(s) in scope, and run `grep -rin 'keyword' .ai/rules` to catch what a path match alone misses. Do not write code until you have read and are following every matching rule. If `.ai/rules` does not exist, continue without it.
+- Health Explorer prepared anatomy art is locked: do **not** regenerate, recolor, composite, or overwrite files under `public/images/health-explorer/{female,male}/` (or the versioned `*-vN.webp` sprites) unless the owner explicitly asks to change those assets. Future Health Explorer work should edit hotspots, catalog data, UI/controls, and admin tooling only.
+- Health Explorer catalogue edits are owner-owned: the live catalogue is `storage/app/health-explorer/catalog.json` (published to `public/data/health-explorer/catalog.json`). Never overwrite the live catalogue with seed/git copies, never rsync `catalog.json` onto production from this repo, and never “reset to defaults” organ/system content during Health Explorer code updates. Only fill *missing* keys when bootstrapping. Track `catalog.seed.json` only as a first-boot fallback.
 
 ## Artisan
 

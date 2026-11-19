@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\HealthExplorerCatalog;
 use App\Services\SiteSettings;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\File;
 use Illuminate\View\View;
+use Throwable;
 
 class HealthExplorerController extends Controller
 {
@@ -17,20 +18,24 @@ class HealthExplorerController extends Controller
         ]);
     }
 
-    public function catalog(): JsonResponse
+    public function catalog(HealthExplorerCatalog $explorerCatalog): JsonResponse
     {
-        $path = public_path('data/health-explorer/catalog.json');
-
-        if (! File::exists($path)) {
+        try {
+            $catalog = $explorerCatalog->get();
+        } catch (Throwable) {
             return response()->json([
                 'message' => 'Health explorer catalogue is not available.',
             ], 404);
         }
 
-        $catalog = json_decode(File::get($path), true, 512, JSON_THROW_ON_ERROR);
+        // Public explorer only sees enabled systems; full catalogue stays in storage/admin.
+        $catalog['systems'] = array_values(array_filter(
+            $catalog['systems'] ?? [],
+            fn ($system) => ! array_key_exists('enabled', $system) || ! empty($system['enabled'])
+        ));
 
         return response()
             ->json($catalog)
-            ->header('Cache-Control', 'public, max-age=300');
+            ->header('Cache-Control', 'public, max-age=60');
     }
 }

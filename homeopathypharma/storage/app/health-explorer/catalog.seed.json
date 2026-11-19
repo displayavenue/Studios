@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-11-04",
-  "disclaimer": "Educational information only \u2014 not a diagnosis or prescription. Homeopathic product notes describe traditional use and product labelling; they are not a claim that homeopathy cures disease. Always seek advice from a qualified clinician for personal medical decisions.",
+  "updated_at": "2026-11-18",
+  "disclaimer": "Educational information only — not a diagnosis or prescription. Homeopathic product notes describe traditional use and product labelling; they are not a claim that homeopathy cures disease. Always seek advice from a qualified clinician for personal medical decisions.",
   "systems": [
     {
       "id": "cardiovascular",
@@ -11,52 +11,156 @@
     {
       "id": "respiratory",
       "name": "Respiratory",
-      "description": "Lungs and airways for gas exchange."
+      "description": "Lungs and airways for gas exchange.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/respiratory-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/respiratory-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "digestive",
       "name": "Digestive",
-      "description": "Organs that break down food and absorb nutrients."
+      "description": "Organs that break down food and absorb nutrients.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/digestive-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/digestive-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "nervous",
       "name": "Nervous",
-      "description": "Brain, spinal cord and peripheral nerves."
+      "description": "Brain, spinal cord and peripheral nerves.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/nervous-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/nervous-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "musculoskeletal",
       "name": "Musculoskeletal",
-      "description": "Bones, joints, muscles and connective tissue."
+      "description": "Bones, joints, muscles and connective tissue.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/musculoskeletal-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/musculoskeletal-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "endocrine",
       "name": "Endocrine",
-      "description": "Hormone-producing glands."
+      "description": "Hormone-producing glands.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/endocrine-female-front-v2.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/endocrine-male-front-v2.webp"
+        }
+      }
     },
     {
       "id": "urinary",
       "name": "Urinary",
-      "description": "Kidneys and urinary tract."
+      "description": "Kidneys and urinary tract.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/urinary-female-front-v2.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/urinary-male-front-v2.webp"
+        }
+      }
     },
     {
       "id": "reproductive",
       "name": "Reproductive",
-      "description": "Male and female reproductive organs."
+      "description": "Male and female reproductive organs.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/reproductive-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/reproductive-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "integumentary",
       "name": "Skin & Sensory",
-      "description": "Skin, eyes, ears and related structures."
+      "description": "Skin, eyes, ears and related structures.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/integumentary-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/integumentary-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "lymphatic",
       "name": "Lymphatic & Immune",
-      "description": "Lymph nodes, spleen and immune tissues."
+      "description": "Lymph nodes, spleen and immune tissues.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/lymphatic-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/lymphatic-male-front-v1.webp"
+        }
+      }
+    },
+    {
+      "id": "hematologic",
+      "name": "Hematologic",
+      "description": "Blood, bone marrow and related hematologic tissues.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/hematologic-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/hematologic-male-front-v1.webp"
+        }
+      }
     },
     {
       "id": "mental",
       "name": "Mental Health",
-      "description": "Emotional and cognitive wellbeing."
+      "description": "Emotional and cognitive wellbeing.",
+      "overlay_mode": "full_figure",
+      "overlays": {
+        "female": {
+          "front": "/images/health-explorer/overlays/mental-female-front-v1.webp"
+        },
+        "male": {
+          "front": "/images/health-explorer/overlays/mental-male-front-v1.webp"
+        }
+      }
     }
   ],
   "organs": [
@@ -128,31 +232,59 @@
         "eyes"
       ],
       "hotspots": {
+        "female": {
+          "back": {
+            "cx": 50,
+            "cy": 5.8,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 48,
+            "cy": 5.8,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 52,
+            "cy": 5.8,
+            "r": 1.15
+          },
+          "front": {
+            "cx": 50,
+            "cy": 5.8,
+            "r": 1.15
+          }
+        },
         "male": {
           "front": {
             "cx": 50,
-            "cy": 11,
-            "r": 4.2
+            "cy": 5.4,
+            "r": 1.15
           },
           "back": {
             "cx": 50,
-            "cy": 11,
-            "r": 4.2
-          }
-        },
-        "female": {
-          "front": {
-            "cx": 50,
-            "cy": 11,
-            "r": 4.2
+            "cy": 5.4,
+            "r": 1.15
           },
-          "back": {
-            "cx": 50,
-            "cy": 11,
-            "r": 4.2
+          "left": {
+            "cx": 48,
+            "cy": 5.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 52,
+            "cy": 5.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 48,
+            "cy": 5.5,
+            "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "nervous"
+      ]
     },
     {
       "id": "thyroid",
@@ -218,23 +350,64 @@
         "brain"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 50,
-            "cy": 18,
-            "r": 2.6
-          },
-          "back": null
-        },
         "female": {
           "front": {
             "cx": 50,
-            "cy": 18.5,
-            "r": 2.6
+            "cy": 12.8,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 15.6,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 42,
+            "cy": 13,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 42,
+            "cy": 13,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 58,
+            "cy": 13,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 12,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 12.4,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 43,
+            "cy": 12.3,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 43,
+            "cy": 12.3,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 57,
+            "cy": 12.3,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "endocrine"
+      ]
     },
     {
       "id": "heart",
@@ -305,23 +478,64 @@
         "kidneys"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 46,
-            "cy": 32,
-            "r": 3.4
-          },
-          "back": null
-        },
         "female": {
           "front": {
-            "cx": 46,
-            "cy": 33,
-            "r": 3.4
+            "cx": 44.5,
+            "cy": 26.3,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 26.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 45,
+            "cy": 26.2,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 45,
+            "cy": 26.2,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 55,
+            "cy": 26.2,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 43,
+            "cy": 24.6,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 25,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 46,
+            "cy": 24.8,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 46,
+            "cy": 24.8,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 54,
+            "cy": 24.8,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "cardiovascular"
+      ]
     },
     {
       "id": "lungs",
@@ -389,31 +603,64 @@
         "spine"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 58,
-            "cy": 33,
-            "r": 3.6
-          },
-          "back": {
-            "cx": 50,
-            "cy": 33,
-            "r": 3.8
-          }
-        },
         "female": {
           "front": {
             "cx": 58,
-            "cy": 34,
-            "r": 3.6
+            "cy": 24.2,
+            "r": 1.15
           },
           "back": {
             "cx": 50,
-            "cy": 34,
-            "r": 3.8
+            "cy": 24.8,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 48,
+            "cy": 24.2,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 48,
+            "cy": 24.2,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 52,
+            "cy": 24.2,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 59,
+            "cy": 22.8,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 23.3,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 49,
+            "cy": 23,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 49,
+            "cy": 23,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 51,
+            "cy": 23,
+            "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "respiratory"
+      ]
     },
     {
       "id": "liver",
@@ -480,23 +727,64 @@
         "pancreas"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 58,
-            "cy": 42,
-            "r": 3.2
-          },
-          "back": null
-        },
         "female": {
           "front": {
-            "cx": 58,
-            "cy": 43,
-            "r": 3.2
+            "cx": 59,
+            "cy": 33.6,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 41,
+            "cy": 33.6,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 46,
+            "cy": 33.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 46,
+            "cy": 33.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 54,
+            "cy": 33.5,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 60,
+            "cy": 32,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 40,
+            "cy": 32,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 47,
+            "cy": 32,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 47,
+            "cy": 32,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 53,
+            "cy": 32,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "stomach",
@@ -561,23 +849,64 @@
         "intestines"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 44,
-            "cy": 44,
-            "r": 3
-          },
-          "back": null
-        },
         "female": {
           "front": {
-            "cx": 44,
-            "cy": 45,
-            "r": 3
+            "cx": 43,
+            "cy": 36.2,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 36,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 44,
+            "cy": 36,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 44,
+            "cy": 36,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 56,
+            "cy": 36,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 42,
+            "cy": 34.6,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 34.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 45,
+            "cy": 34.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 45,
+            "cy": 34.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 55,
+            "cy": 34.5,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "intestines",
@@ -644,23 +973,64 @@
         "liver"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 50,
-            "cy": 52,
-            "r": 3.6
-          },
-          "back": null
-        },
         "female": {
           "front": {
             "cx": 50,
-            "cy": 53,
-            "r": 3.6
+            "cy": 45.5,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 45.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 45,
+            "cy": 45.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 45,
+            "cy": 45.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 55,
+            "cy": 45.5,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 44,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 44,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 47,
+            "cy": 44,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 47,
+            "cy": 44,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 53,
+            "cy": 44,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "kidneys",
@@ -728,23 +1098,64 @@
         "heart"
       ],
       "hotspots": {
-        "male": {
-          "front": null,
+        "female": {
+          "front": {
+            "cx": 61,
+            "cy": 40,
+            "r": 1.15
+          },
           "back": {
-            "cx": 42,
-            "cy": 46,
-            "r": 3
+            "cx": 40,
+            "cy": 39.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 52,
+            "cy": 39.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 52,
+            "cy": 39.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 48,
+            "cy": 39.5,
+            "r": 1.15
           }
         },
-        "female": {
-          "front": null,
+        "male": {
+          "front": {
+            "cx": 62,
+            "cy": 38.5,
+            "r": 1.15
+          },
           "back": {
-            "cx": 42,
-            "cy": 47,
-            "r": 3
+            "cx": 39,
+            "cy": 38,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 53,
+            "cy": 38,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 53,
+            "cy": 38,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 47,
+            "cy": 38,
+            "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "urinary"
+      ]
     },
     {
       "id": "bladder",
@@ -806,23 +1217,64 @@
         "kidneys"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 50,
-            "cy": 62,
-            "r": 2.6
-          },
-          "back": null
-        },
         "female": {
           "front": {
             "cx": 50,
-            "cy": 63,
-            "r": 2.6
+            "cy": 53.8,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 53.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 45,
+            "cy": 53.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 45,
+            "cy": 53.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 55,
+            "cy": 53.5,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 52.5,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 52.2,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 47,
+            "cy": 52.2,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 47,
+            "cy": 52.2,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 53,
+            "cy": 52.2,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "urinary"
+      ]
     },
     {
       "id": "pancreas",
@@ -886,23 +1338,64 @@
         "stomach"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 50,
-            "cy": 46,
-            "r": 2.4
-          },
-          "back": null
-        },
         "female": {
           "front": {
             "cx": 50,
-            "cy": 47,
-            "r": 2.4
+            "cy": 37.8,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 37.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 46,
+            "cy": 37.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 46,
+            "cy": 37.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 54,
+            "cy": 37.5,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 36.2,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 36,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 47,
+            "cy": 36,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 47,
+            "cy": 36,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 53,
+            "cy": 36,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "digestive"
+      ]
     },
     {
       "id": "spleen",
@@ -959,23 +1452,64 @@
         "lungs"
       ],
       "hotspots": {
+        "female": {
+          "front": {
+            "cx": 39,
+            "cy": 33.8,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 61,
+            "cy": 33.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 48,
+            "cy": 33.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 48,
+            "cy": 33.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 52,
+            "cy": 33.5,
+            "r": 1.15
+          }
+        },
         "male": {
           "front": {
             "cx": 38,
-            "cy": 42,
-            "r": 2.4
+            "cy": 32.2,
+            "r": 1.15
           },
-          "back": null
-        },
-        "female": {
-          "front": {
-            "cx": 38,
-            "cy": 43,
-            "r": 2.4
+          "back": {
+            "cx": 62,
+            "cy": 32,
+            "r": 1.15
           },
-          "back": null
+          "side": {
+            "cx": 49,
+            "cy": 32,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 49,
+            "cy": 32,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 51,
+            "cy": 32,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "lymphatic"
+      ]
     },
     {
       "id": "spine",
@@ -1043,23 +1577,64 @@
         "joints"
       ],
       "hotspots": {
-        "male": {
-          "front": null,
+        "female": {
+          "front": {
+            "cx": 50,
+            "cy": 29.8,
+            "r": 1.15
+          },
           "back": {
             "cx": 50,
-            "cy": 42,
-            "r": 2.8
+            "cy": 31.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 54,
+            "cy": 31.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 54,
+            "cy": 31.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 46,
+            "cy": 31.5,
+            "r": 1.15
           }
         },
-        "female": {
-          "front": null,
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 28,
+            "r": 1.15
+          },
           "back": {
             "cx": 50,
-            "cy": 43,
-            "r": 2.8
+            "cy": 30,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 55,
+            "cy": 30,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 55,
+            "cy": 30,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 45,
+            "cy": 30,
+            "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "musculoskeletal"
+      ]
     },
     {
       "id": "joints",
@@ -1126,31 +1701,64 @@
         "muscles"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 28,
-            "cy": 48,
-            "r": 2.6
-          },
-          "back": {
-            "cx": 28,
-            "cy": 48,
-            "r": 2.6
-          }
-        },
         "female": {
           "front": {
-            "cx": 27,
-            "cy": 49,
-            "r": 2.6
+            "cx": 31,
+            "cy": 48,
+            "r": 1.15
           },
           "back": {
-            "cx": 27,
-            "cy": 49,
-            "r": 2.6
+            "cx": 69,
+            "cy": 48,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 58,
+            "cy": 28.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 58,
+            "cy": 28.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 42,
+            "cy": 28.5,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 26,
+            "cy": 46.5,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 74,
+            "cy": 46.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 60,
+            "cy": 27,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 60,
+            "cy": 27,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 40,
+            "cy": 27,
+            "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "musculoskeletal"
+      ]
     },
     {
       "id": "muscles",
@@ -1213,31 +1821,64 @@
         "spine"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 35,
-            "cy": 38,
-            "r": 2.8
-          },
-          "back": {
-            "cx": 62,
-            "cy": 38,
-            "r": 2.8
-          }
-        },
         "female": {
           "front": {
-            "cx": 34,
-            "cy": 39,
-            "r": 2.8
+            "cx": 37,
+            "cy": 61,
+            "r": 1.15
           },
           "back": {
             "cx": 63,
-            "cy": 39,
-            "r": 2.8
+            "cy": 61,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 52,
+            "cy": 61,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 52,
+            "cy": 61,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 48,
+            "cy": 61,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 34,
+            "cy": 60,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 66,
+            "cy": 60,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 54,
+            "cy": 60,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 54,
+            "cy": 60,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 46,
+            "cy": 60,
+            "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "musculoskeletal"
+      ]
     },
     {
       "id": "eyes",
@@ -1301,23 +1942,64 @@
         "brain"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 44,
-            "cy": 13.5,
-            "r": 1.8
-          },
-          "back": null
-        },
         "female": {
           "front": {
-            "cx": 44,
-            "cy": 13.5,
-            "r": 1.8
+            "cx": 50,
+            "cy": 7.9,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 7.4,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 38,
+            "cy": 7.9,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 38,
+            "cy": 7.9,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 62,
+            "cy": 7.9,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 50,
+            "cy": 7.5,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 7.1,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 40,
+            "cy": 7.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 40,
+            "cy": 7.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 60,
+            "cy": 7.5,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "system_ids": [
+        "integumentary"
+      ]
     },
     {
       "id": "skin",
@@ -1382,31 +2064,64 @@
         "eyes"
       ],
       "hotspots": {
-        "male": {
-          "front": {
-            "cx": 68,
-            "cy": 55,
-            "r": 2.4
-          },
-          "back": {
-            "cx": 68,
-            "cy": 55,
-            "r": 2.4
-          }
-        },
         "female": {
           "front": {
-            "cx": 68,
-            "cy": 56,
-            "r": 2.4
+            "cx": 69,
+            "cy": 41,
+            "r": 1.15
           },
           "back": {
-            "cx": 68,
-            "cy": 56,
-            "r": 2.4
+            "cx": 31,
+            "cy": 41,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 58,
+            "cy": 41,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 58,
+            "cy": 41,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 42,
+            "cy": 41,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 73,
+            "cy": 39.5,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 27,
+            "cy": 39.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 60,
+            "cy": 39.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 60,
+            "cy": 39.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 40,
+            "cy": 39.5,
+            "r": 1.15
           }
         }
-      }
+      },
+      "system_ids": [
+        "integumentary"
+      ]
     },
     {
       "id": "male-reproductive",
@@ -1474,16 +2189,35 @@
         "male": {
           "front": {
             "cx": 50,
-            "cy": 68,
-            "r": 2.8
+            "cy": 55.5,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 55,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 48,
+            "cy": 55,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 48,
+            "cy": 55,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 52,
+            "cy": 55,
+            "r": 1.15
+          }
         },
-        "female": {
-          "front": null,
-          "back": null
-        }
-      }
+        "female": []
+      },
+      "system_ids": [
+        "reproductive"
+      ]
     },
     {
       "id": "female-reproductive",
@@ -1549,19 +2283,154 @@
         "thyroid"
       ],
       "hotspots": {
-        "male": {
-          "front": null,
-          "back": null
-        },
         "female": {
           "front": {
             "cx": 50,
-            "cy": 58,
-            "r": 3
+            "cy": 54.8,
+            "r": 1.15
           },
-          "back": null
+          "back": {
+            "cx": 50,
+            "cy": 54.5,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 46,
+            "cy": 54.5,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 46,
+            "cy": 54.5,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 54,
+            "cy": 54.5,
+            "r": 1.15
+          }
+        },
+        "male": []
+      },
+      "system_ids": [
+        "reproductive"
+      ]
+    },
+    {
+      "id": "gallbladder",
+      "slug": "gallbladder",
+      "name": "Gallbladder",
+      "system_id": "digestive",
+      "gender": "both",
+      "summary": "Educational overview of the Gallbladder and common concerns people explore in homeopathy.",
+      "function": "The Gallbladder contributes to normal body function; imbalance here may show as local or referred symptoms.",
+      "symptoms": [
+        "Discomfort around the Gallbladder",
+        "Changes in usual function",
+        "Fatigue or reduced stamina",
+        "Referred sensations nearby"
+      ],
+      "hotspots": {
+        "female": {
+          "front": {
+            "cx": 40,
+            "cy": 40,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          }
+        },
+        "male": {
+          "front": {
+            "cx": 40,
+            "cy": 40,
+            "r": 1.15
+          },
+          "side": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          },
+          "back": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          },
+          "left": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          },
+          "right": {
+            "cx": 50,
+            "cy": 40,
+            "r": 1.15
+          }
         }
-      }
+      },
+      "description": "This Health Explorer entry covers the Gallbladder: what it does, typical symptoms people notice, supportive care context, and related homeopathic product references. Content is for education only and is not a diagnosis or prescription.",
+      "causes": [
+        "Lifestyle and stress factors",
+        "Inflammation or irritation",
+        "Injury, strain, or overuse",
+        "Underlying medical conditions"
+      ],
+      "risk_factors": [
+        "Family history",
+        "Sedentary habits",
+        "Poor diet or hydration",
+        "Chronic stress"
+      ],
+      "diagnostics": [
+        "Clinical history and examination",
+        "Relevant lab or imaging tests when advised",
+        "Specialist review if symptoms persist"
+      ],
+      "treatments": [
+        "Medical evaluation when needed",
+        "Lifestyle and supportive care",
+        "Prescribed treatment from a qualified practitioner",
+        "Educational homeopathy product references below"
+      ],
+      "specialists": [
+        "General practitioner",
+        "Relevant organ specialist",
+        "Qualified homeopathy practitioner (adjunct education)"
+      ],
+      "prevention": [
+        "Balanced diet and hydration",
+        "Regular movement and rest",
+        "Stress management",
+        "Routine check-ups"
+      ],
+      "diseases": [],
+      "homeopathy_product_ids": [
+        "hp-chelidonium"
+      ],
+      "related_organ_ids": [],
+      "seo_title": "Gallbladder — Human Health Explorer",
+      "seo_description": "Learn about the Gallbladder, common symptoms, and educational homeopathy references.",
+      "system_ids": [
+        "digestive"
+      ]
     }
   ],
   "diseases": [
@@ -1950,7 +2819,7 @@
         "Nausea"
       ],
       "causes": [
-        "Viruses A\u2013E",
+        "Viruses A–E",
         "Alcohol",
         "Autoimmune"
       ],
@@ -2305,7 +3174,7 @@
       "organ_ids": [
         "pancreas"
       ],
-      "summary": "Inflammation of the pancreas \u2014 can be acute emergency.",
+      "summary": "Inflammation of the pancreas — can be acute emergency.",
       "symptoms": [
         "Severe upper abdominal pain",
         "Vomiting"
@@ -2830,7 +3699,7 @@
       "organ_ids": [
         "male-reproductive"
       ],
-      "summary": "Difficulty achieving/maintaining erection \u2014 often multifactorial.",
+      "summary": "Difficulty achieving/maintaining erection — often multifactorial.",
       "symptoms": [
         "Erectile difficulty"
       ],
@@ -3236,7 +4105,7 @@
       "traditional_claims": "Traditionally used for trembling anxiety and heaviness.",
       "evidence_status": "No robust evidence that it cures anxiety disorders or infections.",
       "safety_warnings": "Educational listing only. Do not delay evidence-based mental health care.",
-      "contraindications": "Not for severe psychiatric crisis \u2014 seek emergency help if unsafe.",
+      "contraindications": "Not for severe psychiatric crisis — seek emergency help if unsafe.",
       "organ_ids": [
         "brain"
       ],
@@ -3276,7 +4145,7 @@
       "traditional_claims": "Traditional cardiac tonic associations in naturopathic literature.",
       "evidence_status": "Not a proven treatment for coronary disease; urgent cardiac symptoms need emergency care.",
       "safety_warnings": "Chest pain, fainting or severe breathlessness = emergency services.",
-      "contraindications": "May interact with cardiac medicines \u2014 ask a pharmacist/clinician.",
+      "contraindications": "May interact with cardiac medicines — ask a pharmacist/clinician.",
       "organ_ids": [
         "heart"
       ],
@@ -3316,7 +4185,7 @@
       "description": "Traditional homeopathic remedy sometimes discussed for rattling cough pictures.",
       "traditional_claims": "Traditionally used for loose, rattling cough patterns.",
       "evidence_status": "Not proven to treat pneumonia or COPD; seek medical care for breathing difficulty.",
-      "safety_warnings": "Difficulty breathing, blue lips, high fever in children \u2014 urgent care.",
+      "safety_warnings": "Difficulty breathing, blue lips, high fever in children — urgent care.",
       "contraindications": "Not a substitute for inhalers or oxygen therapy.",
       "organ_ids": [
         "lungs"
@@ -3377,7 +4246,7 @@
       "traditional_claims": "Traditional hepatic/biliary symptom associations.",
       "evidence_status": "Not a proven treatment for biliary colic or hepatitis.",
       "safety_warnings": "Severe RUQ pain may be surgical emergency.",
-      "contraindications": "Pregnancy caution \u2014 clinician advice.",
+      "contraindications": "Pregnancy caution — clinician advice.",
       "organ_ids": [
         "liver"
       ],
@@ -3417,7 +4286,7 @@
       "traditional_claims": "Traditional bowel urgency associations.",
       "evidence_status": "Not a treatment for IBD or infection.",
       "safety_warnings": "Bloody diarrhoea needs prompt assessment.",
-      "contraindications": "Dehydration risk \u2014 medical care if severe.",
+      "contraindications": "Dehydration risk — medical care if severe.",
       "organ_ids": [
         "intestines"
       ],
@@ -3455,8 +4324,8 @@
       "manufacturer": "Multi-brand",
       "description": "Traditionally linked with burning urinary symptoms.",
       "traditional_claims": "Traditional cystitis-like burning pictures.",
-      "evidence_status": "UTIs often need culture-guided antibiotics \u2014 do not delay.",
-      "safety_warnings": "Fever, back pain, pregnancy UTI \u2014 urgent care.",
+      "evidence_status": "UTIs often need culture-guided antibiotics — do not delay.",
+      "safety_warnings": "Fever, back pain, pregnancy UTI — urgent care.",
       "contraindications": "Not for pyelonephritis management alone.",
       "organ_ids": [
         "bladder",
@@ -3497,7 +4366,7 @@
       "description": "Traditionally mentioned for spleen-region discomfort pictures.",
       "traditional_claims": "Traditional splenic associations.",
       "evidence_status": "Unproven; splenomegaly needs medical diagnosis.",
-      "safety_warnings": "Trauma to enlarged spleen can bleed \u2014 urgent care.",
+      "safety_warnings": "Trauma to enlarged spleen can bleed — urgent care.",
       "contraindications": "Asplenic patients need vaccine protocols.",
       "organ_ids": [
         "spleen"
@@ -3540,7 +4409,7 @@
       "description": "Popular homeopathic preparation traditionally used around bruises and sore muscles.",
       "traditional_claims": "Traditional trauma/bruise associations.",
       "evidence_status": "Evidence for meaningful clinical benefit is limited/mixed; not for open wounds (topical herbal arnica).",
-      "safety_warnings": "Serious injury needs medical assessment. Topical herbal arnica \u2260 homeopathic pellet.",
+      "safety_warnings": "Serious injury needs medical assessment. Topical herbal arnica ≠ homeopathic pellet.",
       "contraindications": "Allergy to Asteraceae.",
       "organ_ids": [
         "muscles",
@@ -3625,7 +4494,7 @@
       "description": "Saw palmetto related preparation appearing in prostate-support narratives.",
       "traditional_claims": "Traditional prostate symptom associations.",
       "evidence_status": "Does not replace urology assessment for retention or cancer pathways.",
-      "safety_warnings": "Acute retention / blood in urine \u2014 urgent care.",
+      "safety_warnings": "Acute retention / blood in urine — urgent care.",
       "contraindications": "Discuss with clinician before combining with hormones.",
       "organ_ids": [
         "male-reproductive"
@@ -3646,7 +4515,7 @@
       "traditional_claims": "Traditional menstrual/hormonal associations.",
       "evidence_status": "Not a cure for endometriosis or PCOS.",
       "safety_warnings": "Heavy bleeding / severe pelvic pain needs gynaecology review.",
-      "contraindications": "Pregnancy concerns \u2014 clinician first.",
+      "contraindications": "Pregnancy concerns — clinician first.",
       "organ_ids": [
         "female-reproductive"
       ],
@@ -3777,7 +4646,7 @@
       "traditional_claims": "Traditional insomnia-from-ideas associations.",
       "evidence_status": "Not a substitute for CBT-I or apnoea evaluation.",
       "safety_warnings": "Loud snoring with pauses needs sleep apnoea screening.",
-      "contraindications": "Long-term hypnotic self-medication risks \u2014 clinician advice.",
+      "contraindications": "Long-term hypnotic self-medication risks — clinician advice.",
       "organ_ids": [
         "brain"
       ],
@@ -3794,7 +4663,7 @@
       "description": "Passionflower appears in herbal and homeopathic sleep/calm narratives.",
       "traditional_claims": "Traditional calming/sleep associations.",
       "evidence_status": "Evidence limited; not proven for chronic insomnia disorders.",
-      "safety_warnings": "May cause drowsiness \u2014 care with driving.",
+      "safety_warnings": "May cause drowsiness — care with driving.",
       "contraindications": "Check interactions with sedatives.",
       "organ_ids": [
         "brain"

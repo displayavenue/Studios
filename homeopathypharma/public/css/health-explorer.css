@@ -170,11 +170,12 @@
 }
 
 .hx-stage {
-  background: var(--hx-white);
-  border: 1px solid var(--hx-line);
-  border-radius: var(--hx-radius);
-  box-shadow: var(--hx-shadow);
-  padding: 0.85rem;
+  /* No white card behind the figure — only the anatomy should move on drag. */
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0.35rem 0;
   position: sticky;
   top: 6.5rem;
 }
@@ -208,52 +209,128 @@
 }
 
 .hx-figure-wrap {
-  overflow: hidden;
-  border-radius: 0.85rem;
-  background:
-    linear-gradient(180deg, #f4fbf8 0%, #eef6f3 100%);
-  border: 1px solid var(--hx-mint-2);
-  touch-action: manipulation;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  touch-action: none;
 }
 
-.hx-figure {
+.hx-turntable {
+  position: relative;
+  min-height: 28rem;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  user-select: none;
+}
+
+.hx-turntable.is-dragging {
+  cursor: grabbing;
+}
+
+.hx-turntable__scene {
+  position: relative;
+  width: min(100%, 22rem);
+  aspect-ratio: 420 / 900;
+  /* Scale only — no translateX so nothing behind the figure appears to shake. */
+  transform: scale(var(--hx-zoom, 1));
+  transform-origin: center center;
+  transition: transform 0.14s ease-out;
+  /* Soft silhouette shadow only — no rectangular card frame. */
+  filter: drop-shadow(0 10px 16px rgba(20, 40, 50, 0.12));
+}
+
+.hx-turntable.is-dragging .hx-turntable__scene {
+  transition: none;
+}
+
+.hx-turntable__image {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  transform-origin: center top;
-  transition: transform 0.25s ease;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  opacity: 1;
+  /* One image node only — no stacked frames to blend. */
+  transition: none;
 }
 
-.hx-hotspot {
-  fill: rgba(13, 107, 92, 0.18);
-  stroke: var(--hx-teal);
-  stroke-width: 1.4;
+.hx-turntable__image.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hx-turntable__dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hx-turntable__dots.is-dim {
+  opacity: 0.55;
+}
+
+.hx-dot {
+  position: absolute;
+  /* Generous hit target; visible core is centered inside. */
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  background: transparent;
   cursor: pointer;
-  transition: fill 0.15s ease, stroke-width 0.15s ease;
+  pointer-events: auto;
+  z-index: 2;
 }
 
-.hx-hotspot:hover,
-.hx-hotspot:focus {
-  fill: rgba(13, 107, 92, 0.38);
-  stroke-width: 2.2;
+.hx-dot__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.72rem;
+  height: 0.72rem;
+  margin: 0;
+  border-radius: 50%;
+  background: #e11d2e;
+  box-shadow: 0 1px 2px rgba(20, 30, 40, 0.28);
+  border: 0;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.hx-dot:hover .hx-dot__core,
+.hx-dot:focus-visible .hx-dot__core {
+  transform: translate(-50%, -50%) scale(1.22);
   outline: none;
 }
 
-.hx-hotspot.is-active {
-  fill: rgba(13, 107, 92, 0.5);
-  stroke: var(--hx-teal-dark);
-  stroke-width: 2.4;
+.hx-dot.is-active .hx-dot__core {
+  transform: translate(-50%, -50%) scale(1.32);
+  background: #c4091c;
 }
 
-.hx-body-fill {
-  fill: #cfe3dc;
-  stroke: #7fa99b;
-  stroke-width: 1.5;
-}
-
-.hx-body-accent {
-  fill: #b7d5cb;
-  stroke: none;
+.hx-dot__label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.35rem);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(15, 35, 30, 0.92);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.28rem 0.45rem;
+  border-radius: 0.35rem;
+  pointer-events: none;
 }
 
 .hx-panel {
