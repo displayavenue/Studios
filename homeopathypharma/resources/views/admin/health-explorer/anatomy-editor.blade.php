@@ -370,24 +370,28 @@
     return map;
   }
 
+  /** PHP json_decode associative empty maps become [] — those must be plain objects or JSON.stringify drops keys. */
+  function asPlainObject(value) {
+    if (!value || typeof value !== 'object') return {};
+    if (Array.isArray(value)) return Object.fromEntries(Object.entries(value));
+    return value;
+  }
+
   function migrateOrganHotspots(organ) {
     if (!organ) return;
-    organ.hotspots = organ.hotspots || {};
+    organ.hotspots = asPlainObject(organ.hotspots);
     for (const g of ['female', 'male']) {
-      organ.hotspots[g] = migrateGenderHotspotMap(organ.hotspots[g] || {});
+      organ.hotspots[g] = migrateGenderHotspotMap(asPlainObject(organ.hotspots[g]));
     }
-    organ.hotspots_by_system = organ.hotspots_by_system && typeof organ.hotspots_by_system === 'object'
-      ? organ.hotspots_by_system
-      : {};
+    organ.hotspots_by_system = asPlainObject(organ.hotspots_by_system);
     Object.keys(organ.hotspots_by_system).forEach((systemId) => {
-      const byGender = organ.hotspots_by_system[systemId];
-      if (!byGender || typeof byGender !== 'object') {
-        organ.hotspots_by_system[systemId] = {};
-        return;
-      }
+      const byGender = asPlainObject(organ.hotspots_by_system[systemId]);
+      organ.hotspots_by_system[systemId] = byGender;
       for (const g of ['female', 'male']) {
-        if (byGender[g] && typeof byGender[g] === 'object') {
+        if (byGender[g] && typeof byGender[g] === 'object' && !Array.isArray(byGender[g])) {
           byGender[g] = migrateGenderHotspotMap(byGender[g]);
+        } else if (byGender[g] != null) {
+          byGender[g] = asPlainObject(byGender[g]);
         }
       }
     });
@@ -423,8 +427,11 @@
 
   function ensureSystemHotspotMap(organ, systemId) {
     ensureHotspots(organ);
-    organ.hotspots_by_system[systemId] = organ.hotspots_by_system[systemId] || {};
-    organ.hotspots_by_system[systemId][state.gender] = organ.hotspots_by_system[systemId][state.gender] || {};
+    organ.hotspots_by_system = asPlainObject(organ.hotspots_by_system);
+    organ.hotspots_by_system[systemId] = asPlainObject(organ.hotspots_by_system[systemId]);
+    organ.hotspots_by_system[systemId][state.gender] = asPlainObject(
+      organ.hotspots_by_system[systemId][state.gender]
+    );
     return organ.hotspots_by_system[systemId][state.gender];
   }
 
@@ -834,9 +841,10 @@
       homeopathy_product_ids: organ.homeopathy_product_ids || [],
       related_organ_ids: organ.related_organ_ids || [],
       hotspots: organ.hotspots,
-      hotspots_by_system: organ.hotspots_by_system || {},
+      hotspots_by_system: asPlainObject(organ.hotspots_by_system),
     };
     const data = await api(boot.saveUrl, 'PUT', payload);
+    if (data.organ) migrateOrganHotspots(data.organ);
     const idx = state.organs.findIndex((o) => o.id === organ.id);
     if (idx >= 0) state.organs[idx] = data.organ;
     clearDirty([organ.id]);
@@ -872,7 +880,7 @@
           show_in_all: !!o.show_in_all,
           gender: o.gender,
           hotspots: o.hotspots,
-          hotspots_by_system: o.hotspots_by_system || {},
+          hotspots_by_system: asPlainObject(o.hotspots_by_system),
         } : null;
       }).filter(Boolean);
       await api(boot.bulkUrl, 'PUT', { organs: patches });

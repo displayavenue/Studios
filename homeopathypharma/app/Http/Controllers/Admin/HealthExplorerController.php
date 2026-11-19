@@ -1308,6 +1308,11 @@ class HealthExplorerController extends Controller
      */
     private function normalizeHotspotsBySystem(array $incoming, string $gender, array $existing = []): array
     {
+        // [] from JSON {} / failed JS array writes must not wipe existing per-system maps.
+        if ($incoming === [] || array_is_list($incoming)) {
+            return is_array($existing) ? $existing : [];
+        }
+
         // Incoming is authoritative for which systems keep a per-system map.
         $out = [];
         foreach ($incoming as $systemId => $srcSystem) {

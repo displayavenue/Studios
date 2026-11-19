@@ -8,6 +8,13 @@ const TABS = [
   { id: 'search', label: 'Search results' },
 ];
 
+/** PHP empty maps decode as []; named props on arrays are dropped by JSON.stringify. */
+function asPlainObject(value) {
+  if (!value || typeof value !== 'object') return {};
+  if (Array.isArray(value)) return Object.fromEntries(Object.entries(value));
+  return value;
+}
+
 export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
   const [catalog, setCatalog] = useState(null);
   const [status, setStatus] = useState('loading');
@@ -36,6 +43,13 @@ export default function AnatomyExplorer({ catalogUrl, shopUrl, consultUrl }) {
       })
       .then((data) => {
         if (cancelled) return;
+        if (Array.isArray(data?.organs)) {
+          data.organs = data.organs.map((organ) => {
+            if (!organ || typeof organ !== 'object') return organ;
+            organ.hotspots_by_system = asPlainObject(organ.hotspots_by_system);
+            return organ;
+          });
+        }
         setCatalog(data);
         setStatus('ready');
         const params = new URLSearchParams(window.location.search);

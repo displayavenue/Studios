@@ -83,6 +83,15 @@ function viewKeysForYaw(yaw) {
   return ['front'];
 }
 
+function plainMap(value) {
+  if (!value || typeof value !== 'object') return null;
+  if (Array.isArray(value)) {
+    const entries = Object.entries(value);
+    return entries.length ? Object.fromEntries(entries) : null;
+  }
+  return value;
+}
+
 /**
  * Resolve hotspot for the active system filter.
  * Prefers hotspots_by_system[systemId]; falls back to shared hotspots when a view is unset.
@@ -90,8 +99,9 @@ function viewKeysForYaw(yaw) {
 function hotspotFor(organ, gender, yaw, systemId = 'all') {
   const keys = viewKeysForYaw(yaw);
   const defaultSpots = organ.hotspots?.[gender];
+  const bySystem = plainMap(organ.hotspots_by_system);
   const systemSpots = (systemId && systemId !== 'all' && systemId !== 'mental')
-    ? organ.hotspots_by_system?.[systemId]?.[gender]
+    ? plainMap(bySystem?.[systemId])?.[gender]
     : null;
 
   for (const key of keys) {

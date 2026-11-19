@@ -55,6 +55,16 @@ class HealthExplorerCatalog
     public function save(array $catalog): void
     {
         $catalog['updated_at'] = now()->toDateString();
+        // Empty PHP arrays encode as [] which JS treats as arrays; force {} for map fields.
+        foreach ($catalog['organs'] ?? [] as $index => $organ) {
+            if (! is_array($organ)) {
+                continue;
+            }
+            $bySystem = $organ['hotspots_by_system'] ?? null;
+            if (! is_array($bySystem) || $bySystem === []) {
+                $catalog['organs'][$index]['hotspots_by_system'] = new \stdClass();
+            }
+        }
         $json = json_encode($catalog, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
         if ($json === false) {
             throw new RuntimeException('Unable to encode health explorer catalogue.');
@@ -168,7 +178,8 @@ class HealthExplorerCatalog
                 $catalog['organs'][$index]['show_in_all'] = (bool) $catalog['organs'][$index]['show_in_all'];
                 $changed = true;
             }
-            if (! isset($catalog['organs'][$index]['hotspots_by_system']) || ! is_array($catalog['organs'][$index]['hotspots_by_system'])) {
+            if (! array_key_exists('hotspots_by_system', $catalog['organs'][$index])
+                || (! is_array($catalog['organs'][$index]['hotspots_by_system']) && ! is_object($catalog['organs'][$index]['hotspots_by_system']))) {
                 $catalog['organs'][$index]['hotspots_by_system'] = [];
                 $changed = true;
             }
