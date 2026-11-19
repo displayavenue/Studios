@@ -195,8 +195,8 @@ class HealthExplorerCatalog
     }
 
     /**
-     * Drop legacy false/null tombstones and empty list gender maps so system filters
-     * fall back cleanly to shared hotspots instead of hiding organs.
+     * Keep intentional per-system hides (`false`) and real spots; drop broken list maps
+     * and invalid view values that are neither spots nor hide flags.
      *
      * @param  array<string, mixed>  $organ
      */
@@ -219,7 +219,7 @@ class HealthExplorerCatalog
                     continue;
                 }
                 $genderMap = $byGender[$gender];
-                // [] / list maps cannot hold named views reliably — drop them.
+                // [] / numeric lists cannot hold named views reliably — drop them.
                 if (! is_array($genderMap) || array_is_list($genderMap)) {
                     unset($byGender[$gender]);
                     $changed = true;
@@ -231,7 +231,19 @@ class HealthExplorerCatalog
                         continue;
                     }
                     $spot = $genderMap[$view];
-                    if ($spot === null || $spot === false || ! is_array($spot)) {
+                    if ($spot === false) {
+                        continue; // intentional hide for this system+view
+                    }
+                    if ($spot === null) {
+                        $genderMap[$view] = false;
+                        $changed = true;
+
+                        continue;
+                    }
+                    if (! is_array($spot)
+                        || ! isset($spot['cx'], $spot['cy'])
+                        || ! is_numeric($spot['cx'])
+                        || ! is_numeric($spot['cy'])) {
                         unset($genderMap[$view]);
                         $changed = true;
                     }

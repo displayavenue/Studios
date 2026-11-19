@@ -149,7 +149,7 @@
                 <div class="admin-actions" style="margin-top:0.75rem;">
                     <button class="btn btn-primary" type="submit">Save this organ</button>
                     <button class="btn btn-secondary" type="button" id="ax-autofill" title="Fill empty fields from the organ name">Fill details from name</button>
-                    <button class="btn btn-secondary" type="button" id="ax-remove-view" title="Remove this red dot from the current Front/Back/Left/Right view only">Remove from this view</button>
+                    <button class="btn btn-secondary" type="button" id="ax-remove-view" title="Hide this red dot on the current system + Front/Back/Left/Right view only. Other systems and views keep their own dots.">Remove from this view</button>
                     <button class="btn btn-secondary" type="button" id="ax-delete" title="Delete this organ from every view">Delete organ entirely</button>
                 </div>
             </form>
@@ -402,28 +402,47 @@
     return state.systemId;
   }
 
-  function readSpotValue(map, key) {
-    if (!map || typeof map !== 'object' || Array.isArray(map)) return undefined;
+  /**
+   * Tri-state spot read:
+   * - { kind:'spot', spot } — use these coordinates
+   * - { kind:'hidden' } — explicitly removed from this map/view (do not fall back)
+   * - { kind:'missing' } — no entry; caller may fall back
+   */
+  function readSpotEntry(map, key) {
+    if (!map || typeof map !== 'object' || Array.isArray(map)) return { kind: 'missing' };
     if (Object.prototype.hasOwnProperty.call(map, key)) {
       const v = map[key];
-      // Legacy false/null tombstones: ignore and fall back to All-systems / default spot.
-      if (v === null || v === false) return undefined;
+      if (v === null || v === false) return { kind: 'hidden' };
       if (v && typeof v.cx === 'number' && typeof v.cy === 'number') {
-        return { cx: Number(v.cx), cy: Number(v.cy), r: Number(v.r || 1.15) };
+        return {
+          kind: 'spot',
+          spot: { cx: Number(v.cx), cy: Number(v.cy), r: Number(v.r || 1.15) },
+        };
       }
-      return undefined;
+      return { kind: 'hidden' };
     }
     if (key === 'left' && map.side && typeof map.side.cx === 'number') {
-      return { cx: Number(map.side.cx), cy: Number(map.side.cy), r: Number(map.side.r || 1.15) };
+      return {
+        kind: 'spot',
+        spot: { cx: Number(map.side.cx), cy: Number(map.side.cy), r: Number(map.side.r || 1.15) },
+      };
     }
     if (key === 'right' && map.side && typeof map.side.cx === 'number') {
       return {
-        cx: Math.round((100 - Number(map.side.cx)) * 10) / 10,
-        cy: Number(map.side.cy),
-        r: Number(map.side.r || 1.15),
+        kind: 'spot',
+        spot: {
+          cx: Math.round((100 - Number(map.side.cx)) * 10) / 10,
+          cy: Number(map.side.cy),
+          r: Number(map.side.r || 1.15),
+        },
       };
     }
-    return undefined;
+    return { kind: 'missing' };
+  }
+
+  function readSpotValue(map, key) {
+    const entry = readSpotEntry(map, key);
+    return entry.kind === 'spot' ? entry.spot : undefined;
   }
 
   function ensureSystemHotspotMap(organ, systemId) {
@@ -483,12 +502,13 @@
     const systemId = activeSystemFilterId();
     if (systemId) {
       const systemMap = asPlainObject(organ.hotspots_by_system?.[systemId]?.[state.gender]);
-      const own = readSpotValue(systemMap, meta.key);
-      if (own) return { cx: own.cx, cy: own.cy };
+      const own = readSpotEntry(systemMap, meta.key);
+      if (own.kind === 'hidden') return null;
+      if (own.kind === 'spot') return { cx: own.spot.cx, cy: own.spot.cy };
     }
-    const fallback = readSpotValue(asPlainObject(organ.hotspots?.[state.gender]), meta.key);
-    if (!fallback) return null;
-    return { cx: fallback.cx, cy: fallback.cy };
+    const fallback = readSpotEntry(asPlainObject(organ.hotspots?.[state.gender]), meta.key);
+    if (fallback.kind !== 'spot') return null;
+    return { cx: fallback.spot.cx, cy: fallback.spot.cy };
   }
 
   function writeSpot(organ, displayCx, displayCy) {
@@ -521,9 +541,9 @@
     const meta = viewMeta(state.view);
     const systemId = activeSystemFilterId();
     if (systemId) {
-      // Drop only this system's override; All-systems / other systems keep their spots.
+      // Explicit hide for this system+view so All-systems position does not reappear here.
       const map = ensureSystemHotspotMap(organ, systemId);
-      delete map[meta.key];
+      map[meta.key] = false;
       if (meta.key === 'left' || meta.key === 'right') delete map.side;
       return;
     }
@@ -1072,13 +1092,17 @@
       setStatus(`No red dot for “${organ.name}” on this ${state.view} view.`, false);
       return;
     }
-    if (!confirm(`Remove “${organ.name}” from the ${state.view} view only?\nOther views keep their dots.`)) return;
-    setStatus(`Removing from ${state.view} view…`);
+    const systemId = activeSystemFilterId();
+    const scope = systemId
+      ? `${activeSystem()?.name || systemId} · ${state.view}`
+      : `All systems · ${state.view}`;
+    if (!confirm(`Remove “${organ.name}” from ${scope} only?\nOther systems and views keep their own dots.`)) return;
+    setStatus(`Removing from ${scope}…`);
     try {
       removeSpotFromCurrentView(organ);
       await saveOrgan(organ, { quiet: true });
       state.selectedId = null;
-      setStatus(`Removed “${organ.name}” from ${state.view} view only.`);
+      setStatus(`Removed “${organ.name}” from ${scope} only.`);
       render();
     } catch (err) {
       setStatus(err.message || 'Could not remove from this view', false);

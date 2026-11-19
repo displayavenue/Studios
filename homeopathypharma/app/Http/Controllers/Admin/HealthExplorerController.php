@@ -1335,8 +1335,13 @@ class HealthExplorerController extends Controller
                         continue;
                     }
                     $spot = $src[$view];
-                    // Never persist hide-tombstones; missing key means fall back to All-systems spot.
-                    if ($spot === null || $spot === false || ! is_array($spot)) {
+                    // false/null = intentionally hidden on this system+view (do not fall back).
+                    if ($spot === null || $spot === false) {
+                        $next[$view] = false;
+
+                        continue;
+                    }
+                    if (! is_array($spot)) {
                         continue;
                     }
                     $next[$view] = [

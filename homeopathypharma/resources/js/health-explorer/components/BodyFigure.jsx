@@ -58,20 +58,27 @@ function activeSpot(spot) {
   return spot && typeof spot.cx === 'number' && typeof spot.cy === 'number' ? { ...spot } : null;
 }
 
-/** Read one view from a gender hotspot map. Legacy false/null values are ignored (fall back). */
-function readViewSpot(spots, key) {
-  if (!spots || typeof spots !== 'object' || Array.isArray(spots)) return undefined;
+/**
+ * Tri-state: 'spot' | 'hidden' | 'missing'
+ * hidden = explicitly removed for this system/view (do not fall back).
+ */
+function readViewEntry(spots, key) {
+  if (!spots || typeof spots !== 'object' || Array.isArray(spots)) return { kind: 'missing' };
   if (Object.prototype.hasOwnProperty.call(spots, key)) {
     const value = spots[key];
-    if (value === null || value === false) return undefined;
-    return activeSpot(value);
+    if (value === null || value === false) return { kind: 'hidden' };
+    const spot = activeSpot(value);
+    return spot ? { kind: 'spot', spot } : { kind: 'hidden' };
   }
-  if (key === 'left' && spots.side) return activeSpot(spots.side);
+  if (key === 'left' && spots.side) {
+    const spot = activeSpot(spots.side);
+    return spot ? { kind: 'spot', spot } : { kind: 'missing' };
+  }
   if (key === 'right' && spots.side) {
     const side = activeSpot(spots.side);
-    return side ? { ...side, cx: 100 - Number(side.cx) } : null;
+    return side ? { kind: 'spot', spot: { ...side, cx: 100 - Number(side.cx) } } : { kind: 'missing' };
   }
-  return undefined;
+  return { kind: 'missing' };
 }
 
 function viewKeysForYaw(yaw) {
@@ -106,11 +113,12 @@ function hotspotFor(organ, gender, yaw, systemId = 'all') {
 
   for (const key of keys) {
     if (systemSpots) {
-      const own = readViewSpot(systemSpots, key);
-      if (own) return own;
+      const own = readViewEntry(systemSpots, key);
+      if (own.kind === 'hidden') return null;
+      if (own.kind === 'spot') return own.spot;
     }
-    const fallback = readViewSpot(defaultSpots, key);
-    if (fallback) return fallback;
+    const fallback = readViewEntry(defaultSpots, key);
+    if (fallback.kind === 'spot') return fallback.spot;
   }
   return null;
 }
