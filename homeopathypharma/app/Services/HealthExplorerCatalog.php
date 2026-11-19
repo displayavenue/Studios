@@ -183,7 +183,105 @@ class HealthExplorerCatalog
                 $catalog['organs'][$index]['hotspots_by_system'] = [];
                 $changed = true;
             }
+            if ($this->scrubHotspotsBySystem($catalog['organs'][$index])) {
+                $changed = true;
+            }
+            if ($this->scrubGenderHotspotMaps($catalog['organs'][$index], 'hotspots')) {
+                $changed = true;
+            }
         }
+
+        return $changed;
+    }
+
+    /**
+     * Drop legacy false/null tombstones and empty list gender maps so system filters
+     * fall back cleanly to shared hotspots instead of hiding organs.
+     *
+     * @param  array<string, mixed>  $organ
+     */
+    private function scrubHotspotsBySystem(array &$organ): bool
+    {
+        $bySystem = $organ['hotspots_by_system'] ?? null;
+        if (! is_array($bySystem)) {
+            return false;
+        }
+        $changed = false;
+        foreach ($bySystem as $systemId => $byGender) {
+            if (! is_array($byGender)) {
+                unset($bySystem[$systemId]);
+                $changed = true;
+
+                continue;
+            }
+            foreach (['female', 'male'] as $gender) {
+                if (! array_key_exists($gender, $byGender)) {
+                    continue;
+                }
+                $genderMap = $byGender[$gender];
+                // [] / list maps cannot hold named views reliably — drop them.
+                if (! is_array($genderMap) || array_is_list($genderMap)) {
+                    unset($byGender[$gender]);
+                    $changed = true;
+
+                    continue;
+                }
+                foreach (['front', 'back', 'left', 'right', 'side'] as $view) {
+                    if (! array_key_exists($view, $genderMap)) {
+                        continue;
+                    }
+                    $spot = $genderMap[$view];
+                    if ($spot === null || $spot === false || ! is_array($spot)) {
+                        unset($genderMap[$view]);
+                        $changed = true;
+                    }
+                }
+                if ($genderMap === []) {
+                    unset($byGender[$gender]);
+                    $changed = true;
+                } else {
+                    $byGender[$gender] = $genderMap;
+                }
+            }
+            if ($byGender === []) {
+                unset($bySystem[$systemId]);
+                $changed = true;
+            } else {
+                $bySystem[$systemId] = $byGender;
+            }
+        }
+        $organ['hotspots_by_system'] = $bySystem;
+
+        return $changed;
+    }
+
+    /**
+     * @param  array<string, mixed>  $organ
+     */
+    private function scrubGenderHotspotMaps(array &$organ, string $key): bool
+    {
+        $map = $organ[$key] ?? null;
+        if (! is_array($map)) {
+            return false;
+        }
+        $changed = false;
+        foreach (['female', 'male'] as $gender) {
+            if (! array_key_exists($gender, $map)) {
+                continue;
+            }
+            if (! is_array($map[$gender])) {
+                $map[$gender] = [];
+                $changed = true;
+
+                continue;
+            }
+            // Convert accidental list to empty assoc map.
+            if ($map[$gender] !== [] && array_is_list($map[$gender])) {
+                $map[$gender] = [];
+                $changed = true;
+            }
+        }
+        $organ[$key] = $map;
 
         return $changed;
     }

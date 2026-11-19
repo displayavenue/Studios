@@ -403,14 +403,15 @@
   }
 
   function readSpotValue(map, key) {
-    if (!map || typeof map !== 'object') return undefined;
+    if (!map || typeof map !== 'object' || Array.isArray(map)) return undefined;
     if (Object.prototype.hasOwnProperty.call(map, key)) {
       const v = map[key];
-      if (v === null || v === false) return null; // tombstone: hidden for this system/view
+      // Legacy false/null tombstones: ignore and fall back to All-systems / default spot.
+      if (v === null || v === false) return undefined;
       if (v && typeof v.cx === 'number' && typeof v.cy === 'number') {
         return { cx: Number(v.cx), cy: Number(v.cy), r: Number(v.r || 1.15) };
       }
-      return null;
+      return undefined;
     }
     if (key === 'left' && map.side && typeof map.side.cx === 'number') {
       return { cx: Number(map.side.cx), cy: Number(map.side.cy), r: Number(map.side.r || 1.15) };
@@ -481,12 +482,11 @@
     const meta = viewMeta(state.view);
     const systemId = activeSystemFilterId();
     if (systemId) {
-      const systemMap = organ.hotspots_by_system?.[systemId]?.[state.gender];
+      const systemMap = asPlainObject(organ.hotspots_by_system?.[systemId]?.[state.gender]);
       const own = readSpotValue(systemMap, meta.key);
-      if (own === null) return null;
       if (own) return { cx: own.cx, cy: own.cy };
     }
-    const fallback = readSpotValue(organ.hotspots?.[state.gender], meta.key);
+    const fallback = readSpotValue(asPlainObject(organ.hotspots?.[state.gender]), meta.key);
     if (!fallback) return null;
     return { cx: fallback.cx, cy: fallback.cy };
   }
@@ -521,9 +521,9 @@
     const meta = viewMeta(state.view);
     const systemId = activeSystemFilterId();
     if (systemId) {
-      // Tombstone so this system no longer falls back to the shared default position.
+      // Drop only this system's override; All-systems / other systems keep their spots.
       const map = ensureSystemHotspotMap(organ, systemId);
-      map[meta.key] = false;
+      delete map[meta.key];
       if (meta.key === 'left' || meta.key === 'right') delete map.side;
       return;
     }

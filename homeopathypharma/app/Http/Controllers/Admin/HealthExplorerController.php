@@ -1335,12 +1335,8 @@ class HealthExplorerController extends Controller
                         continue;
                     }
                     $spot = $src[$view];
-                    if ($spot === null || $spot === false) {
-                        $next[$view] = false;
-
-                        continue;
-                    }
-                    if (! is_array($spot)) {
+                    // Never persist hide-tombstones; missing key means fall back to All-systems spot.
+                    if ($spot === null || $spot === false || ! is_array($spot)) {
                         continue;
                     }
                     $next[$view] = [

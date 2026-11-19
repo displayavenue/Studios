@@ -58,12 +58,12 @@ function activeSpot(spot) {
   return spot && typeof spot.cx === 'number' && typeof spot.cy === 'number' ? { ...spot } : null;
 }
 
-/** Read one view from a gender hotspot map. false/null = explicit hide; undefined = missing. */
+/** Read one view from a gender hotspot map. Legacy false/null values are ignored (fall back). */
 function readViewSpot(spots, key) {
-  if (!spots || typeof spots !== 'object') return undefined;
+  if (!spots || typeof spots !== 'object' || Array.isArray(spots)) return undefined;
   if (Object.prototype.hasOwnProperty.call(spots, key)) {
     const value = spots[key];
-    if (value === null || value === false) return null;
+    if (value === null || value === false) return undefined;
     return activeSpot(value);
   }
   if (key === 'left' && spots.side) return activeSpot(spots.side);
@@ -107,7 +107,6 @@ function hotspotFor(organ, gender, yaw, systemId = 'all') {
   for (const key of keys) {
     if (systemSpots) {
       const own = readViewSpot(systemSpots, key);
-      if (own === null) return null;
       if (own) return own;
     }
     const fallback = readViewSpot(defaultSpots, key);
