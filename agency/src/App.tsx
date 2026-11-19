@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { Industries } from "./pages/Industries";
@@ -26,6 +26,7 @@ import { CitationDirectory } from "./pages/tools/CitationDirectory";
 import { IndustryReport } from "./pages/tools/IndustryReport";
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
+import { NotFound } from "./pages/NotFound";
 import {
   ServiceDetail,
   IndustryDetail,
@@ -86,7 +87,7 @@ export default function App() {
           <Route path="certifications" element={<Certifications />} />
           <Route path="privacy" element={<LegalPage type="privacy" />} />
           <Route path="terms" element={<LegalPage type="terms" />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,5564 @@
+{
+  "/": {
+    "title": "DisplayAvenue | Get more customers online",
+    "description": "Mumbai digital marketing agency for Google, Instagram, websites and lead generation. Clear plans in plain English.",
+    "h1": "DisplayAvenue",
+    "summary": "Get more customers online",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services": {
+    "title": "Services | DisplayAvenue",
+    "description": "Digital marketing, websites, ads, SEO and AI services from DisplayAvenue.",
+    "h1": "Services",
+    "summary": "Digital marketing, websites, ads, SEO and AI services from DisplayAvenue.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries": {
+    "title": "Industries | DisplayAvenue",
+    "description": "Industry-specific digital growth systems for Indian businesses.",
+    "h1": "Industries",
+    "summary": "Industry-specific digital growth systems for Indian businesses.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industry-solutions": {
+    "title": "Industry Solutions | DisplayAvenue",
+    "description": "Industry × service landing pages for search and lead generation.",
+    "h1": "Industry Solutions",
+    "summary": "Industry × service landing pages for search and lead generation.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions": {
+    "title": "Solutions | DisplayAvenue",
+    "description": "DisplayAvenue growth solutions across acquisition, conversion and retention.",
+    "h1": "Solutions",
+    "summary": "DisplayAvenue growth solutions across acquisition, conversion and retention.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform": {
+    "title": "AI Platform | DisplayAvenue",
+    "description": "AI marketing tools and automation built for DisplayAvenue clients.",
+    "h1": "AI Platform",
+    "summary": "AI marketing tools and automation built for DisplayAvenue clients.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages": {
+    "title": "Packages | DisplayAvenue",
+    "description": "Digital growth packages for startups and growing businesses.",
+    "h1": "Packages",
+    "summary": "Digital growth packages for startups and growing businesses.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools": {
+    "title": "Free Tools | DisplayAvenue",
+    "description": "Free marketing calculators and SEO tools from DisplayAvenue.",
+    "h1": "Free Tools",
+    "summary": "Free marketing calculators and SEO tools from DisplayAvenue.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/roi-calculator": {
+    "title": "ROI Calculator | DisplayAvenue",
+    "description": "Estimate marketing ROI and lead volume with DisplayAvenue’s free calculator.",
+    "h1": "ROI Calculator",
+    "summary": "Estimate marketing ROI and lead volume with DisplayAvenue’s free calculator.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/seo-checklist": {
+    "title": "SEO Checklist | DisplayAvenue",
+    "description": "Score your website SEO readiness with DisplayAvenue’s free checklist.",
+    "h1": "SEO Checklist",
+    "summary": "Score your website SEO readiness with DisplayAvenue’s free checklist.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/local-seo-score": {
+    "title": "Local SEO Score | DisplayAvenue",
+    "description": "Check local SEO fundamentals for Google Business Profile and maps.",
+    "h1": "Local SEO Score",
+    "summary": "Check local SEO fundamentals for Google Business Profile and maps.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/citation-directory": {
+    "title": "Citation Directory | DisplayAvenue",
+    "description": "NAP citation directories for Indian local SEO.",
+    "h1": "Citation Directory",
+    "summary": "NAP citation directories for Indian local SEO.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/india-sme-digital-growth-report": {
+    "title": "India SME Digital Growth Report | DisplayAvenue",
+    "description": "Practical digital growth insights for Indian SMEs from DisplayAvenue.",
+    "h1": "India SME Digital Growth Report",
+    "summary": "Practical digital growth insights for Indian SMEs from DisplayAvenue.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/case-studies": {
+    "title": "Case Studies | DisplayAvenue",
+    "description": "Selected DisplayAvenue client engagements across SEO, ads and websites.",
+    "h1": "Case Studies",
+    "summary": "Selected DisplayAvenue client engagements across SEO, ads and websites.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/portfolio": {
+    "title": "Portfolio | DisplayAvenue",
+    "description": "Website and brand work from DisplayAvenue.",
+    "h1": "Portfolio",
+    "summary": "Website and brand work from DisplayAvenue.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources": {
+    "title": "Resources | DisplayAvenue",
+    "description": "Guides and resources for digital growth.",
+    "h1": "Resources",
+    "summary": "Guides and resources for digital growth.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/blog": {
+    "title": "Blog | DisplayAvenue",
+    "description": "Digital marketing articles and updates from DisplayAvenue.",
+    "h1": "Blog",
+    "summary": "Digital marketing articles and updates from DisplayAvenue.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/awards": {
+    "title": "Awards | DisplayAvenue",
+    "description": "Awards and recognition for DisplayAvenue.",
+    "h1": "Awards",
+    "summary": "Awards and recognition for DisplayAvenue.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/certifications": {
+    "title": "Certifications | DisplayAvenue",
+    "description": "Platform certifications held by the DisplayAvenue team.",
+    "h1": "Certifications",
+    "summary": "Platform certifications held by the DisplayAvenue team.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/why-displayavenue": {
+    "title": "Why DisplayAvenue",
+    "description": "Why businesses choose DisplayAvenue as their digital growth partner.",
+    "h1": "Why DisplayAvenue",
+    "summary": "Why businesses choose DisplayAvenue as their digital growth partner.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/contact": {
+    "title": "Contact | DisplayAvenue",
+    "description": "Book a free consultation with DisplayAvenue in Mumbai.",
+    "h1": "Contact",
+    "summary": "Book a free consultation with DisplayAvenue in Mumbai.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/growth": {
+    "title": "Generate More Qualified Leads | DisplayAvenue",
+    "description": "DisplayAvenue Growth Plan for websites, Meta Ads, Google Ads, GBP and lead generation.",
+    "h1": "Generate More Qualified Leads",
+    "summary": "DisplayAvenue Growth Plan for websites, Meta Ads, Google Ads, GBP and lead generation.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/growth/thank-you": {
+    "title": "Growth Plan Request Received | DisplayAvenue",
+    "description": "Thanks for sharing your requirements. DisplayAvenue will contact you shortly.",
+    "h1": "Growth Plan Request Received",
+    "summary": "Thanks for sharing your requirements. DisplayAvenue will contact you shortly.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": true,
+    "ogType": "website"
+  },
+  "/privacy": {
+    "title": "Privacy Policy | DisplayAvenue",
+    "description": "DisplayAvenue privacy policy.",
+    "h1": "Privacy Policy",
+    "summary": "DisplayAvenue privacy policy.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": true,
+    "ogType": "website"
+  },
+  "/terms": {
+    "title": "Terms of Service | DisplayAvenue",
+    "description": "DisplayAvenue terms of service.",
+    "h1": "Terms of Service",
+    "summary": "DisplayAvenue terms of service.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Services"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      },
+      {
+        "href": "/case-studies",
+        "label": "Case Studies"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": true,
+    "ogType": "website"
+  },
+  "/services/digital-marketing": {
+    "title": "Full-funnel digital marketing under one roof | DisplayAvenue",
+    "description": "SEO, paid media, social, content, and automation orchestrated as one growth system for your brand.",
+    "h1": "Digital Marketing",
+    "summary": "SEO, paid media, social, content, and automation orchestrated as one growth system for your brand.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/seo": {
+    "title": "SEO that compounds organic traffic and… | DisplayAvenue",
+    "description": "Technical SEO, content systems, and authority building that win competitive SERPs - with AI-assisted research and clear ROI reporting.",
+    "h1": "SEO",
+    "summary": "Technical SEO, content systems, and authority building that win competitive SERPs - with AI-assisted research and clear ROI reporting.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ai-seo": {
+    "title": "AI SEO (GEO) that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end ai seo (geo) for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "AI SEO (GEO)",
+    "summary": "DisplayAvenue delivers end-to-end ai seo (geo) for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/local-seo": {
+    "title": "Local SEO that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end local seo for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Local SEO",
+    "summary": "DisplayAvenue delivers end-to-end local seo for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/google-ads": {
+    "title": "Google Ads campaigns engineered for… | DisplayAvenue",
+    "description": "Search, Performance Max, and remarketing structures built around CPA, ROAS, and lead quality - not just spend.",
+    "h1": "Google Ads",
+    "summary": "Search, Performance Max, and remarketing structures built around CPA, ROAS, and lead quality - not just spend.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/meta-ads": {
+    "title": "Meta Ads that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end meta ads for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Meta Ads",
+    "summary": "DisplayAvenue delivers end-to-end meta ads for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/linkedin-ads": {
+    "title": "Linkedin Ads that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end linkedin ads for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Linkedin Ads",
+    "summary": "DisplayAvenue delivers end-to-end linkedin ads for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/email-marketing": {
+    "title": "Email Marketing that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end email marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Email Marketing",
+    "summary": "DisplayAvenue delivers end-to-end email marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/social-media": {
+    "title": "Social Media Marketing that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end social media marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Social Media Marketing",
+    "summary": "DisplayAvenue delivers end-to-end social media marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/content-marketing": {
+    "title": "Content Marketing that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end content marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Content Marketing",
+    "summary": "DisplayAvenue delivers end-to-end content marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/influencer-marketing": {
+    "title": "Influencer Marketing that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end influencer marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Influencer Marketing",
+    "summary": "DisplayAvenue delivers end-to-end influencer marketing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/marketing-automation": {
+    "title": "Marketing Automation that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end marketing automation for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Marketing Automation",
+    "summary": "DisplayAvenue delivers end-to-end marketing automation for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/cro": {
+    "title": "CRO & Landing Pages that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end cro & landing pages for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "CRO & Landing Pages",
+    "summary": "DisplayAvenue delivers end-to-end cro & landing pages for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/analytics": {
+    "title": "Analytics & Tracking that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end analytics & tracking for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Analytics & Tracking",
+    "summary": "DisplayAvenue delivers end-to-end analytics & tracking for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/reputation": {
+    "title": "Reputation Management that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end reputation management for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Reputation Management",
+    "summary": "DisplayAvenue delivers end-to-end reputation management for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/web-development": {
+    "title": "High-performance websites and web apps… | DisplayAvenue",
+    "description": "From corporate sites to custom platforms - fast, secure, SEO-ready, and built for growth.",
+    "h1": "Web Development",
+    "summary": "From corporate sites to custom platforms - fast, secure, SEO-ready, and built for growth.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/corporate-websites": {
+    "title": "Corporate Websites that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end corporate websites for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Corporate Websites",
+    "summary": "DisplayAvenue delivers end-to-end corporate websites for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/startup-websites": {
+    "title": "Startup Websites that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end startup websites for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Startup Websites",
+    "summary": "DisplayAvenue delivers end-to-end startup websites for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/landing-pages": {
+    "title": "Landing Pages that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end landing pages for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Landing Pages",
+    "summary": "DisplayAvenue delivers end-to-end landing pages for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/shopify": {
+    "title": "Shopify stores designed to sell and scale | DisplayAvenue",
+    "description": "Conversion-focused Shopify builds, migrations, and growth systems for D2C and retail brands.",
+    "h1": "Shopify",
+    "summary": "Conversion-focused Shopify builds, migrations, and growth systems for D2C and retail brands.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/woocommerce": {
+    "title": "Woocommerce that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end woocommerce for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Woocommerce",
+    "summary": "DisplayAvenue delivers end-to-end woocommerce for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/magento": {
+    "title": "Magento that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end magento for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Magento",
+    "summary": "DisplayAvenue delivers end-to-end magento for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/custom-ecommerce": {
+    "title": "Custom Ecommerce that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end custom ecommerce for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Custom Ecommerce",
+    "summary": "DisplayAvenue delivers end-to-end custom ecommerce for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ecommerce": {
+    "title": "E-commerce Solutions that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end e-commerce solutions for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "E-commerce Solutions",
+    "summary": "DisplayAvenue delivers end-to-end e-commerce solutions for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/wordpress": {
+    "title": "Wordpress that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end wordpress for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Wordpress",
+    "summary": "DisplayAvenue delivers end-to-end wordpress for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/webflow": {
+    "title": "Webflow that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end webflow for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Webflow",
+    "summary": "DisplayAvenue delivers end-to-end webflow for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/wix": {
+    "title": "Wix that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end wix for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Wix",
+    "summary": "DisplayAvenue delivers end-to-end wix for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/framer": {
+    "title": "Framer that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end framer for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Framer",
+    "summary": "DisplayAvenue delivers end-to-end framer for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/drupal": {
+    "title": "Drupal that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end drupal for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Drupal",
+    "summary": "DisplayAvenue delivers end-to-end drupal for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/crm": {
+    "title": "CRM Systems that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end crm systems for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "CRM Systems",
+    "summary": "DisplayAvenue delivers end-to-end crm systems for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/erp": {
+    "title": "ERP Solutions that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end erp solutions for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "ERP Solutions",
+    "summary": "DisplayAvenue delivers end-to-end erp solutions for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/saas": {
+    "title": "SaaS Product Development that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end saas product development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "SaaS Product Development",
+    "summary": "DisplayAvenue delivers end-to-end saas product development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/dashboards": {
+    "title": "Admin Dashboards that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end admin dashboards for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Admin Dashboards",
+    "summary": "DisplayAvenue delivers end-to-end admin dashboards for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/mobile": {
+    "title": "Mobile App Development that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end mobile app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Mobile App Development",
+    "summary": "DisplayAvenue delivers end-to-end mobile app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/android": {
+    "title": "Android App Development that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end android app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Android App Development",
+    "summary": "DisplayAvenue delivers end-to-end android app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ios": {
+    "title": "iOS App Development that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end ios app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "iOS App Development",
+    "summary": "DisplayAvenue delivers end-to-end ios app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/flutter": {
+    "title": "Flutter App Development that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end flutter app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Flutter App Development",
+    "summary": "DisplayAvenue delivers end-to-end flutter app development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/react-native": {
+    "title": "React Native Apps that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end react native apps for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "React Native Apps",
+    "summary": "DisplayAvenue delivers end-to-end react native apps for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/pwa": {
+    "title": "Progressive Web Apps that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end progressive web apps for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Progressive Web Apps",
+    "summary": "DisplayAvenue delivers end-to-end progressive web apps for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/design": {
+    "title": "UI/UX & Product Design that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end ui/ux & product design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "UI/UX & Product Design",
+    "summary": "DisplayAvenue delivers end-to-end ui/ux & product design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ui-ux": {
+    "title": "UI/UX Design that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end ui/ux design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "UI/UX Design",
+    "summary": "DisplayAvenue delivers end-to-end ui/ux design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/wireframing": {
+    "title": "Wireframing that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end wireframing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Wireframing",
+    "summary": "DisplayAvenue delivers end-to-end wireframing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/prototyping": {
+    "title": "Prototyping that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end prototyping for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Prototyping",
+    "summary": "DisplayAvenue delivers end-to-end prototyping for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/design-systems": {
+    "title": "Design Systems that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end design systems for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Design Systems",
+    "summary": "DisplayAvenue delivers end-to-end design systems for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/branding": {
+    "title": "Branding that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end branding for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Branding",
+    "summary": "DisplayAvenue delivers end-to-end branding for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/logo": {
+    "title": "Logo Design that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end logo design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Logo Design",
+    "summary": "DisplayAvenue delivers end-to-end logo design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/brand-identity": {
+    "title": "Brand Identity that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end brand identity for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Brand Identity",
+    "summary": "DisplayAvenue delivers end-to-end brand identity for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/packaging": {
+    "title": "Packaging Design that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end packaging design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Packaging Design",
+    "summary": "DisplayAvenue delivers end-to-end packaging design for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/brand-guidelines": {
+    "title": "Brand Guidelines that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end brand guidelines for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Brand Guidelines",
+    "summary": "DisplayAvenue delivers end-to-end brand guidelines for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ai-chatbots": {
+    "title": "AI chatbots that qualify leads and support… | DisplayAvenue",
+    "description": "Custom chat and WhatsApp bots trained on your business - connected to CRM, calendar, and support workflows.",
+    "h1": "AI Chatbots",
+    "summary": "Custom chat and WhatsApp bots trained on your business - connected to CRM, calendar, and support workflows.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ai-agents": {
+    "title": "AI Agents that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end ai agents for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "AI Agents",
+    "summary": "DisplayAvenue delivers end-to-end ai agents for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ai-automation": {
+    "title": "AI Automation that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end ai automation for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "AI Automation",
+    "summary": "DisplayAvenue delivers end-to-end ai automation for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/ai-workflows": {
+    "title": "AI Workflows that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end ai workflows for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "AI Workflows",
+    "summary": "DisplayAvenue delivers end-to-end ai workflows for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/software": {
+    "title": "Custom Software Development that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end custom software development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Custom Software Development",
+    "summary": "DisplayAvenue delivers end-to-end custom software development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/hrms": {
+    "title": "HRMS Development that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end hrms development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "HRMS Development",
+    "summary": "DisplayAvenue delivers end-to-end hrms development for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/pos": {
+    "title": "POS Systems that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end pos systems for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "POS Systems",
+    "summary": "DisplayAvenue delivers end-to-end pos systems for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/cloud": {
+    "title": "Cloud & DevOps that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end cloud & devops for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Cloud & DevOps",
+    "summary": "DisplayAvenue delivers end-to-end cloud & devops for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/aws": {
+    "title": "AWS Cloud Services that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end aws cloud services for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "AWS Cloud Services",
+    "summary": "DisplayAvenue delivers end-to-end aws cloud services for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/azure": {
+    "title": "Azure Cloud Services that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end azure cloud services for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Azure Cloud Services",
+    "summary": "DisplayAvenue delivers end-to-end azure cloud services for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/gcp": {
+    "title": "Google Cloud Platform that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end google cloud platform for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Google Cloud Platform",
+    "summary": "DisplayAvenue delivers end-to-end google cloud platform for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/docker": {
+    "title": "Docker & Containers that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end docker & containers for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Docker & Containers",
+    "summary": "DisplayAvenue delivers end-to-end docker & containers for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/server-management": {
+    "title": "Server Management that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end server management for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Server Management",
+    "summary": "DisplayAvenue delivers end-to-end server management for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/creative": {
+    "title": "Creative & Production that drives… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end creative & production for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Creative & Production",
+    "summary": "DisplayAvenue delivers end-to-end creative & production for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/photography": {
+    "title": "Photography that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end photography for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Photography",
+    "summary": "DisplayAvenue delivers end-to-end photography for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/videography": {
+    "title": "Videography that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end videography for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Videography",
+    "summary": "DisplayAvenue delivers end-to-end videography for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/drone": {
+    "title": "Drone Photography that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end drone photography for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Drone Photography",
+    "summary": "DisplayAvenue delivers end-to-end drone photography for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/video-editing": {
+    "title": "Video Editing that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end video editing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Video Editing",
+    "summary": "DisplayAvenue delivers end-to-end video editing for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/animation": {
+    "title": "Animation that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end animation for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Animation",
+    "summary": "DisplayAvenue delivers end-to-end animation for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/motion-graphics": {
+    "title": "Motion Graphics that drives measurable… | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end motion graphics for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Motion Graphics",
+    "summary": "DisplayAvenue delivers end-to-end motion graphics for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/product-shoots": {
+    "title": "Product Shoots that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end product shoots for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Product Shoots",
+    "summary": "DisplayAvenue delivers end-to-end product shoots for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/brand-films": {
+    "title": "Brand Films that drives measurable growth | DisplayAvenue",
+    "description": "DisplayAvenue delivers end-to-end brand films for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "h1": "Brand Films",
+    "summary": "DisplayAvenue delivers end-to-end brand films for brands that want clarity, speed, and ROI - powered by strategy, creative, and AI.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/aeo": {
+    "title": "Make your expertise easy for answer… | DisplayAvenue",
+    "description": "DisplayAvenue AEO programmes structure your services, entities, FAQs and proof so AI search and answer engines can surface accurate explanations of what…",
+    "h1": "AEO Services",
+    "summary": "DisplayAvenue AEO programmes structure your services, entities, FAQs and proof so AI search and answer engines can surface accurate explanations of what you offer - without fake ranking promises.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/performance-marketing": {
+    "title": "Buy attention that becomes pipeline - not… | DisplayAvenue",
+    "description": "Performance marketing from DisplayAvenue connects Google, Meta and other paid channels to landing pages, CRM and follow-up so spend maps to qualified…",
+    "h1": "Performance Marketing",
+    "summary": "Performance marketing from DisplayAvenue connects Google, Meta and other paid channels to landing pages, CRM and follow-up so spend maps to qualified leads and revenue conversations.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/lead-generation": {
+    "title": "Generate enquiries - then qualify and… | DisplayAvenue",
+    "description": "DisplayAvenue lead generation systems combine ads, SEO, landing pages, WhatsApp and CRM so you get fewer wasted leads and more sales conversations.",
+    "h1": "Lead Generation",
+    "summary": "DisplayAvenue lead generation systems combine ads, SEO, landing pages, WhatsApp and CRM so you get fewer wasted leads and more sales conversations.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/technical-seo": {
+    "title": "Fix the foundations Google needs to crawl,… | DisplayAvenue",
+    "description": "Technical SEO for sites that leak growth through slow pages, broken indexation, weak internal links or messy templates - especially multi-location and…",
+    "h1": "Technical SEO",
+    "summary": "Technical SEO for sites that leak growth through slow pages, broken indexation, weak internal links or messy templates - especially multi-location and ecommerce properties.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/services/whatsapp-marketing": {
+    "title": "Turn WhatsApp into a follow-up and booking… | DisplayAvenue",
+    "description": "WhatsApp marketing and automation for Indian businesses: enquiry routing, templates, reminders and CRM sync so conversations become appointments and sales.",
+    "h1": "WhatsApp Marketing",
+    "summary": "WhatsApp marketing and automation for Indian businesses: enquiry routing, templates, reminders and CRM sync so conversations become appointments and sales.",
+    "links": [
+      {
+        "href": "/services",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/manufacturing": {
+    "title": "Generate qualified RFQs for manufacturers… | DisplayAvenue",
+    "description": "DisplayAvenue helps manufacturers attract procurement searches, capture RFQs, and run sales follow-up systems across India and export markets.",
+    "h1": "Manufacturing",
+    "summary": "DisplayAvenue helps manufacturers attract procurement searches, capture RFQs, and run sales follow-up systems across India and export markets.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/healthcare": {
+    "title": "Help patients find you - then turn… | DisplayAvenue",
+    "description": "Responsible healthcare marketing for clinics and hospitals: local SEO, Google visibility, appointment funnels and reminder automation - without medical…",
+    "h1": "Healthcare",
+    "summary": "Responsible healthcare marketing for clinics and hospitals: local SEO, Google visibility, appointment funnels and reminder automation - without medical outcome promises.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/education": {
+    "title": "Fill seats with an admission funnel - not… | DisplayAvenue",
+    "description": "Education marketing for schools, coaching institutes and study-abroad brands: Meta/Google acquisition, counselling qualification and admission follow-up.",
+    "h1": "Education",
+    "summary": "Education marketing for schools, coaching institutes and study-abroad brands: Meta/Google acquisition, counselling qualification and admission follow-up.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/real-estate": {
+    "title": "Generate qualified real estate enquiries -… | DisplayAvenue",
+    "description": "Acquisition and automation systems for builders, developers and brokers: Meta/Google demand, landing pages, qualification, WhatsApp and CRM for site…",
+    "h1": "Real Estate",
+    "summary": "Acquisition and automation systems for builders, developers and brokers: Meta/Google demand, landing pages, qualification, WhatsApp and CRM for site visits.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/hospitality": {
+    "title": "Digital growth strategies for Hospitality | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for hospitality brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Hospitality",
+    "summary": "Industry-specific marketing, websites, and AI systems for hospitality brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/restaurants": {
+    "title": "Digital growth strategies for Restaurants… | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for restaurants & f&b brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Restaurants & F&B",
+    "summary": "Industry-specific marketing, websites, and AI systems for restaurants & f&b brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/ecommerce": {
+    "title": "Grow ecommerce revenue across traffic,… | DisplayAvenue",
+    "description": "Ecommerce marketing systems for D2C and online stores: SEO, paid social/search, CRO, cart recovery and retention automation.",
+    "h1": "E-commerce",
+    "summary": "Ecommerce marketing systems for D2C and online stores: SEO, paid social/search, CRO, cart recovery and retention automation.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/saas": {
+    "title": "Digital growth strategies for SaaS &… | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for saas & technology brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "SaaS & Technology",
+    "summary": "Industry-specific marketing, websites, and AI systems for saas & technology brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/finance": {
+    "title": "Digital growth strategies for Finance &… | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for finance & banking brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Finance & Banking",
+    "summary": "Industry-specific marketing, websites, and AI systems for finance & banking brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/automotive": {
+    "title": "Digital growth strategies for Automotive | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for automotive brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Automotive",
+    "summary": "Industry-specific marketing, websites, and AI systems for automotive brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/construction": {
+    "title": "Digital growth strategies for Construction | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for construction brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Construction",
+    "summary": "Industry-specific marketing, websites, and AI systems for construction brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/travel": {
+    "title": "Digital growth strategies for Travel &… | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for travel & tourism brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Travel & Tourism",
+    "summary": "Industry-specific marketing, websites, and AI systems for travel & tourism brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/fashion": {
+    "title": "Digital growth strategies for Fashion &… | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for fashion & apparel brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Fashion & Apparel",
+    "summary": "Industry-specific marketing, websites, and AI systems for fashion & apparel brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/jewellery": {
+    "title": "Digital growth strategies for Jewellery | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for jewellery brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Jewellery",
+    "summary": "Industry-specific marketing, websites, and AI systems for jewellery brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/wellness": {
+    "title": "Digital growth strategies for Homeopathy &… | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for homeopathy & wellness brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Homeopathy & Wellness",
+    "summary": "Industry-specific marketing, websites, and AI systems for homeopathy & wellness brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/b2b": {
+    "title": "Digital growth strategies for B2B Services | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for b2b services brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "B2B Services",
+    "summary": "Industry-specific marketing, websites, and AI systems for b2b services brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/ngo": {
+    "title": "Digital growth strategies for NGO &… | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for ngo & non-profit brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "NGO & Non-Profit",
+    "summary": "Industry-specific marketing, websites, and AI systems for ngo & non-profit brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/startups": {
+    "title": "Digital growth strategies for Startups | DisplayAvenue",
+    "description": "Industry-specific marketing, websites, and AI systems for startups brands - built around your buyers, compliance needs, and growth goals.",
+    "h1": "Startups",
+    "summary": "Industry-specific marketing, websites, and AI systems for startups brands - built around your buyers, compliance needs, and growth goals.",
+    "links": [
+      {
+        "href": "/industries",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/digital-marketing": {
+    "title": "Digital Marketing Packages with… | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "Digital Marketing Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/seo": {
+    "title": "SEO Packages with transparent pricing | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "SEO Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/google-ads": {
+    "title": "Google Ads Packages with transparent pricing | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "Google Ads Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/social-media": {
+    "title": "Social Media Packages with transparent… | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "Social Media Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/website": {
+    "title": "Website Development Packages with… | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "Website Development Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/ecommerce": {
+    "title": "E-commerce Packages with transparent pricing | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "E-commerce Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/branding": {
+    "title": "Branding Packages with transparent pricing | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "Branding Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/packages/creative": {
+    "title": "Creative & Production Packages with… | DisplayAvenue",
+    "description": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "h1": "Creative & Production Packages",
+    "summary": "Choose a plan that matches your stage - or request a custom package. Every plan includes strategy, execution, reporting, and a dedicated account manager.",
+    "links": [
+      {
+        "href": "/packages",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/lead-generation": {
+    "title": "Solution: Lead Generation | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around lead generation - combining strategy, channels, creative, and AI execution.",
+    "h1": "Lead Generation",
+    "summary": "A DisplayAvenue growth solution tailored around lead generation - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/ecommerce-growth": {
+    "title": "Solution: Ecommerce Growth | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around ecommerce growth - combining strategy, channels, creative, and AI execution.",
+    "h1": "Ecommerce Growth",
+    "summary": "A DisplayAvenue growth solution tailored around ecommerce growth - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/brand-awareness": {
+    "title": "Solution: Brand Awareness | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around brand awareness - combining strategy, channels, creative, and AI execution.",
+    "h1": "Brand Awareness",
+    "summary": "A DisplayAvenue growth solution tailored around brand awareness - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/app-installs": {
+    "title": "Solution: App Installs | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around app installs - combining strategy, channels, creative, and AI execution.",
+    "h1": "App Installs",
+    "summary": "A DisplayAvenue growth solution tailored around app installs - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/revenue-growth": {
+    "title": "Solution: Revenue Growth | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around revenue growth - combining strategy, channels, creative, and AI execution.",
+    "h1": "Revenue Growth",
+    "summary": "A DisplayAvenue growth solution tailored around revenue growth - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/startups": {
+    "title": "Solution: Startups | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around startups - combining strategy, channels, creative, and AI execution.",
+    "h1": "Startups",
+    "summary": "A DisplayAvenue growth solution tailored around startups - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/smb": {
+    "title": "Solution: Smb | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around smb - combining strategy, channels, creative, and AI execution.",
+    "h1": "Smb",
+    "summary": "A DisplayAvenue growth solution tailored around smb - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/medium": {
+    "title": "Solution: Medium | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around medium - combining strategy, channels, creative, and AI execution.",
+    "h1": "Medium",
+    "summary": "A DisplayAvenue growth solution tailored around medium - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/enterprise": {
+    "title": "Solution: Enterprise | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around enterprise - combining strategy, channels, creative, and AI execution.",
+    "h1": "Enterprise",
+    "summary": "A DisplayAvenue growth solution tailored around enterprise - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/agencies": {
+    "title": "Solution: Agencies | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around agencies - combining strategy, channels, creative, and AI execution.",
+    "h1": "Agencies",
+    "summary": "A DisplayAvenue growth solution tailored around agencies - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/google": {
+    "title": "Solution: Google | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around google - combining strategy, channels, creative, and AI execution.",
+    "h1": "Google",
+    "summary": "A DisplayAvenue growth solution tailored around google - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/meta": {
+    "title": "Solution: Meta | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around meta - combining strategy, channels, creative, and AI execution.",
+    "h1": "Meta",
+    "summary": "A DisplayAvenue growth solution tailored around meta - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/linkedin": {
+    "title": "Solution: Linkedin | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around linkedin - combining strategy, channels, creative, and AI execution.",
+    "h1": "Linkedin",
+    "summary": "A DisplayAvenue growth solution tailored around linkedin - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/youtube": {
+    "title": "Solution: Youtube | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around youtube - combining strategy, channels, creative, and AI execution.",
+    "h1": "Youtube",
+    "summary": "A DisplayAvenue growth solution tailored around youtube - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/whatsapp": {
+    "title": "Solution: Whatsapp | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around whatsapp - combining strategy, channels, creative, and AI execution.",
+    "h1": "Whatsapp",
+    "summary": "A DisplayAvenue growth solution tailored around whatsapp - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/shopify": {
+    "title": "Solution: Shopify | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around shopify - combining strategy, channels, creative, and AI execution.",
+    "h1": "Shopify",
+    "summary": "A DisplayAvenue growth solution tailored around shopify - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/wordpress": {
+    "title": "Solution: Wordpress | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around wordpress - combining strategy, channels, creative, and AI execution.",
+    "h1": "Wordpress",
+    "summary": "A DisplayAvenue growth solution tailored around wordpress - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/amazon": {
+    "title": "Solution: Amazon | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around amazon - combining strategy, channels, creative, and AI execution.",
+    "h1": "Amazon",
+    "summary": "A DisplayAvenue growth solution tailored around amazon - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/apps": {
+    "title": "Solution: Apps | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around apps - combining strategy, channels, creative, and AI execution.",
+    "h1": "Apps",
+    "summary": "A DisplayAvenue growth solution tailored around apps - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/cloud": {
+    "title": "Solution: Cloud | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around cloud - combining strategy, channels, creative, and AI execution.",
+    "h1": "Cloud",
+    "summary": "A DisplayAvenue growth solution tailored around cloud - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/automation": {
+    "title": "Solution: Automation | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around automation - combining strategy, channels, creative, and AI execution.",
+    "h1": "Automation",
+    "summary": "A DisplayAvenue growth solution tailored around automation - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/security": {
+    "title": "Solution: Security | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around security - combining strategy, channels, creative, and AI execution.",
+    "h1": "Security",
+    "summary": "A DisplayAvenue growth solution tailored around security - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/seo": {
+    "title": "Solution: Seo | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around seo - combining strategy, channels, creative, and AI execution.",
+    "h1": "Seo",
+    "summary": "A DisplayAvenue growth solution tailored around seo - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/google-ads": {
+    "title": "Solution: Google Ads | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around google ads - combining strategy, channels, creative, and AI execution.",
+    "h1": "Google Ads",
+    "summary": "A DisplayAvenue growth solution tailored around google ads - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/social": {
+    "title": "Solution: Social | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around social - combining strategy, channels, creative, and AI execution.",
+    "h1": "Social",
+    "summary": "A DisplayAvenue growth solution tailored around social - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/email": {
+    "title": "Solution: Email | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around email - combining strategy, channels, creative, and AI execution.",
+    "h1": "Email",
+    "summary": "A DisplayAvenue growth solution tailored around email - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/influencer": {
+    "title": "Solution: Influencer | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around influencer - combining strategy, channels, creative, and AI execution.",
+    "h1": "Influencer",
+    "summary": "A DisplayAvenue growth solution tailored around influencer - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/awareness": {
+    "title": "Solution: Awareness | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around awareness - combining strategy, channels, creative, and AI execution.",
+    "h1": "Awareness",
+    "summary": "A DisplayAvenue growth solution tailored around awareness - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/consideration": {
+    "title": "Solution: Consideration | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around consideration - combining strategy, channels, creative, and AI execution.",
+    "h1": "Consideration",
+    "summary": "A DisplayAvenue growth solution tailored around consideration - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/conversion": {
+    "title": "Solution: Conversion | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around conversion - combining strategy, channels, creative, and AI execution.",
+    "h1": "Conversion",
+    "summary": "A DisplayAvenue growth solution tailored around conversion - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/retention": {
+    "title": "Solution: Retention | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around retention - combining strategy, channels, creative, and AI execution.",
+    "h1": "Retention",
+    "summary": "A DisplayAvenue growth solution tailored around retention - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/loyalty": {
+    "title": "Solution: Loyalty | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around loyalty - combining strategy, channels, creative, and AI execution.",
+    "h1": "Loyalty",
+    "summary": "A DisplayAvenue growth solution tailored around loyalty - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/strategy": {
+    "title": "Solution: Strategy | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around strategy - combining strategy, channels, creative, and AI execution.",
+    "h1": "Strategy",
+    "summary": "A DisplayAvenue growth solution tailored around strategy - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/implementation": {
+    "title": "Solution: Implementation | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around implementation - combining strategy, channels, creative, and AI execution.",
+    "h1": "Implementation",
+    "summary": "A DisplayAvenue growth solution tailored around implementation - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/creative": {
+    "title": "Solution: Creative | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around creative - combining strategy, channels, creative, and AI execution.",
+    "h1": "Creative",
+    "summary": "A DisplayAvenue growth solution tailored around creative - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/development": {
+    "title": "Solution: Development | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around development - combining strategy, channels, creative, and AI execution.",
+    "h1": "Development",
+    "summary": "A DisplayAvenue growth solution tailored around development - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/solutions/support": {
+    "title": "Solution: Support | DisplayAvenue",
+    "description": "A DisplayAvenue growth solution tailored around support - combining strategy, channels, creative, and AI execution.",
+    "h1": "Support",
+    "summary": "A DisplayAvenue growth solution tailored around support - combining strategy, channels, creative, and AI execution.",
+    "links": [
+      {
+        "href": "/solutions",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/marketing": {
+    "title": "AI Marketing Suite for real business… | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai marketing suite.",
+    "h1": "AI Marketing Suite",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai marketing suite.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/sales": {
+    "title": "AI Sales & Lead Generation for real… | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai sales & lead generation.",
+    "h1": "AI Sales & Lead Generation",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai sales & lead generation.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/content": {
+    "title": "AI Content & Creative for real business… | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai content & creative.",
+    "h1": "AI Content & Creative",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai content & creative.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/cx": {
+    "title": "AI Chat & Customer Experience for real… | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai chat & customer experience.",
+    "h1": "AI Chat & Customer Experience",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai chat & customer experience.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/automation": {
+    "title": "AI Automation Suite for real business… | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai automation suite.",
+    "h1": "AI Automation Suite",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai automation suite.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/analytics": {
+    "title": "AI Analytics & Insights for real business… | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai analytics & insights.",
+    "h1": "AI Analytics & Insights",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai analytics & insights.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/seo": {
+    "title": "AI Website & SEO for real business workflows | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai website & seo.",
+    "h1": "AI Website & SEO",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai website & seo.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/ai-platform/developer": {
+    "title": "AI Developer Tools for real business… | DisplayAvenue",
+    "description": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai developer tools.",
+    "h1": "AI Developer Tools",
+    "summary": "Explore AI tools inside the DisplayAvenue platform - built to automate work, accelerate teams, and improve ROI across ai developer tools.",
+    "links": [
+      {
+        "href": "/ai-platform",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/seo": {
+    "title": "SEO Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade seo tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "SEO Tools",
+    "summary": "Professional-grade seo tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/website": {
+    "title": "Website Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade website tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Website Tools",
+    "summary": "Professional-grade website tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/marketing": {
+    "title": "Marketing Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade marketing tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Marketing Tools",
+    "summary": "Professional-grade marketing tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/social": {
+    "title": "Social Media Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade social media tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Social Media Tools",
+    "summary": "Professional-grade social media tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/content": {
+    "title": "Content Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade content tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Content Tools",
+    "summary": "Professional-grade content tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/ai": {
+    "title": "AI Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade ai tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "AI Tools",
+    "summary": "Professional-grade ai tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/ecommerce": {
+    "title": "E-commerce Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade e-commerce tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "E-commerce Tools",
+    "summary": "Professional-grade e-commerce tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/design": {
+    "title": "Design & Image Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade design & image tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Design & Image Tools",
+    "summary": "Professional-grade design & image tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/developer": {
+    "title": "Developer Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade developer tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Developer Tools",
+    "summary": "Professional-grade developer tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/domain": {
+    "title": "Domain Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade domain tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Domain Tools",
+    "summary": "Professional-grade domain tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/productivity": {
+    "title": "Productivity Tools - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade productivity tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Productivity Tools",
+    "summary": "Professional-grade productivity tools from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/free-tools/analytics": {
+    "title": "Analytics & Tracking - 100% free, no signup | DisplayAvenue",
+    "description": "Professional-grade analytics & tracking from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "h1": "Analytics & Tracking",
+    "summary": "Professional-grade analytics & tracking from DisplayAvenue. Instant results, privacy-first, built for marketers and founders.",
+    "links": [
+      {
+        "href": "/free-tools",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/case-studies/vaidraj-seo": {
+    "title": "Vaidraj Ayurvedic - SEO Growth | DisplayAvenue",
+    "description": "How DisplayAvenue delivered measurable growth for Vaidraj Ayurvedic through seo and full-funnel execution.",
+    "h1": "Vaidraj Ayurvedic - SEO Growth",
+    "summary": "How DisplayAvenue delivered measurable growth for Vaidraj Ayurvedic through seo and full-funnel execution.",
+    "links": [
+      {
+        "href": "/case-studies",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/case-studies/bpg-ads": {
+    "title": "Bhaskar Patil Group - Google Ads | DisplayAvenue",
+    "description": "How DisplayAvenue delivered measurable growth for Bhaskar Patil Group through google ads and full-funnel execution.",
+    "h1": "Bhaskar Patil Group - Google Ads",
+    "summary": "How DisplayAvenue delivered measurable growth for Bhaskar Patil Group through google ads and full-funnel execution.",
+    "links": [
+      {
+        "href": "/case-studies",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/case-studies/royal-ecom": {
+    "title": "Royal Mouth Fresheners - Ecommerce | DisplayAvenue",
+    "description": "How DisplayAvenue delivered measurable growth for Royal Mouth Fresheners through e-commerce and full-funnel execution.",
+    "h1": "Royal Mouth Fresheners - Ecommerce",
+    "summary": "How DisplayAvenue delivered measurable growth for Royal Mouth Fresheners through e-commerce and full-funnel execution.",
+    "links": [
+      {
+        "href": "/case-studies",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/case-studies/island360": {
+    "title": "Island360 Adventure - Meta Ads | DisplayAvenue",
+    "description": "How DisplayAvenue delivered measurable growth for Island360 Adventure through meta ads and full-funnel execution.",
+    "h1": "Island360 Adventure - Meta Ads",
+    "summary": "How DisplayAvenue delivered measurable growth for Island360 Adventure through meta ads and full-funnel execution.",
+    "links": [
+      {
+        "href": "/case-studies",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/portfolio/vaidraj": {
+    "title": "Vaidraj Ayurvedic Store | DisplayAvenue",
+    "description": "A featured DisplayAvenue project spanning strategy, design, and growth for Vaidraj Ayurvedic Store.",
+    "h1": "Vaidraj Ayurvedic Store",
+    "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Vaidraj Ayurvedic Store.",
+    "links": [
+      {
+        "href": "/portfolio",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/portfolio/bpg": {
+    "title": "Bhaskar Patil Group Website | DisplayAvenue",
+    "description": "A featured DisplayAvenue project spanning strategy, design, and growth for Bhaskar Patil Group Website.",
+    "h1": "Bhaskar Patil Group Website",
+    "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Bhaskar Patil Group Website.",
+    "links": [
+      {
+        "href": "/portfolio",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/portfolio/rak": {
+    "title": "RAK Ceramics Brand System | DisplayAvenue",
+    "description": "A featured DisplayAvenue project spanning strategy, design, and growth for RAK Ceramics Brand System.",
+    "h1": "RAK Ceramics Brand System",
+    "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for RAK Ceramics Brand System.",
+    "links": [
+      {
+        "href": "/portfolio",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/portfolio/royal": {
+    "title": "Royal Mouth Fresheners Growth | DisplayAvenue",
+    "description": "A featured DisplayAvenue project spanning strategy, design, and growth for Royal Mouth Fresheners Growth.",
+    "h1": "Royal Mouth Fresheners Growth",
+    "summary": "A featured DisplayAvenue project spanning strategy, design, and growth for Royal Mouth Fresheners Growth.",
+    "links": [
+      {
+        "href": "/portfolio",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/blog": {
+    "title": "Blog | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Blog",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/guides": {
+    "title": "Guides & eBooks | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Guides & eBooks",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/whitepapers": {
+    "title": "Whitepapers | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Whitepapers",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/templates": {
+    "title": "Templates | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Templates",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/checklists": {
+    "title": "Checklists | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Checklists",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/webinars": {
+    "title": "Webinars | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Webinars",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/videos": {
+    "title": "Videos | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Videos",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/podcasts": {
+    "title": "Podcasts | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Podcasts",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/reports": {
+    "title": "Industry Reports | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Industry Reports",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/glossary": {
+    "title": "Glossary | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Glossary",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/ai-marketing-guide": {
+    "title": "AI Marketing: Complete Guide | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "AI Marketing: Complete Guide",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/roi-playbook": {
+    "title": "ROI Playbook for Digital Growth | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "ROI Playbook for Digital Growth",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/90-day-template": {
+    "title": "90-Day Marketing Strategy Template | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "90-Day Marketing Strategy Template",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/seo-strategies": {
+    "title": "10 Proven SEO Strategies | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "10 Proven SEO Strategies",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/ai-agents-marketing": {
+    "title": "AI Agents in Marketing Ops | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "AI Agents in Marketing Ops",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/attribution-guide": {
+    "title": "Full-Funnel Attribution Guide | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "Full-Funnel Attribution Guide",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/resources/landing-pages": {
+    "title": "High-Converting Landing Pages | DisplayAvenue",
+    "description": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "h1": "High-Converting Landing Pages",
+    "summary": "Practical insights and assets from DisplayAvenue - free resources to help you plan, execute, and measure digital growth.",
+    "links": [
+      {
+        "href": "/resources",
+        "label": "Overview"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      },
+      {
+        "href": "/growth",
+        "label": "Growth Plan"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/real-estate/lead-generation": {
+    "title": "Generate Qualified Real Estate Enquiries -… | DisplayAvenue",
+    "description": "Real estate lead generation systems that connect Meta/Google demand to qualification, WhatsApp and site-visit CRM.",
+    "h1": "Real Estate Lead Generation",
+    "summary": "Real estate lead generation systems that connect Meta/Google demand to qualification, WhatsApp and site-visit CRM.",
+    "links": [
+      {
+        "href": "/industries/real-estate",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/real-estate/meta-ads": {
+    "title": "Meta Ads for Real Estate Projects That… | DisplayAvenue",
+    "description": "Meta Ads creative, landing pages and WhatsApp routing for builders and developers focused on qualified visits.",
+    "h1": "Real Estate Meta Ads",
+    "summary": "Meta Ads creative, landing pages and WhatsApp routing for builders and developers focused on qualified visits.",
+    "links": [
+      {
+        "href": "/industries/real-estate",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/real-estate/seo": {
+    "title": "Real Estate SEO for Project and Locality… | DisplayAvenue",
+    "description": "SEO for project pages, locality intent and developer brand search - built for long sales cycles.",
+    "h1": "Real Estate Seo",
+    "summary": "SEO for project pages, locality intent and developer brand search - built for long sales cycles.",
+    "links": [
+      {
+        "href": "/industries/real-estate",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/real-estate/marketing-automation": {
+    "title": "Real Estate Marketing Automation for Lead… | DisplayAvenue",
+    "description": "Automate acknowledgements, reminders and CRM stages so real estate leads do not go cold.",
+    "h1": "Real Estate Marketing Automation",
+    "summary": "Automate acknowledgements, reminders and CRM stages so real estate leads do not go cold.",
+    "links": [
+      {
+        "href": "/industries/real-estate",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/real-estate/google-ads": {
+    "title": "Google Ads for High-Intent Real Estate… | DisplayAvenue",
+    "description": "Search and Performance Max structures for project and locality keywords with conversion tracking.",
+    "h1": "Real Estate Google Ads",
+    "summary": "Search and Performance Max structures for project and locality keywords with conversion tracking.",
+    "links": [
+      {
+        "href": "/industries/real-estate",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/manufacturing/lead-generation": {
+    "title": "Manufacturing Lead Generation for… | DisplayAvenue",
+    "description": "B2B lead systems for manufacturers: SEO, Google Ads, RFQ pages and CRM quotation follow-up.",
+    "h1": "Manufacturing Lead Generation",
+    "summary": "B2B lead systems for manufacturers: SEO, Google Ads, RFQ pages and CRM quotation follow-up.",
+    "links": [
+      {
+        "href": "/industries/manufacturing",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/manufacturing/seo": {
+    "title": "Manufacturing SEO for Product and… | DisplayAvenue",
+    "description": "Industrial SEO for machine, component and capability pages that attract procurement searches.",
+    "h1": "Manufacturing Seo",
+    "summary": "Industrial SEO for machine, component and capability pages that attract procurement searches.",
+    "links": [
+      {
+        "href": "/industries/manufacturing",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/manufacturing/google-ads": {
+    "title": "Google Ads for Manufacturers Who Need RFQs | DisplayAvenue",
+    "description": "Paid search for industrial keywords with RFQ forms and sales handoff.",
+    "h1": "Manufacturing Google Ads",
+    "summary": "Paid search for industrial keywords with RFQ forms and sales handoff.",
+    "links": [
+      {
+        "href": "/industries/manufacturing",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/manufacturing/crm": {
+    "title": "Manufacturing CRM Automation for Quotation… | DisplayAvenue",
+    "description": "CRM stages, reminders and ownership so long manufacturing sales cycles stay organised.",
+    "h1": "Manufacturing Crm",
+    "summary": "CRM stages, reminders and ownership so long manufacturing sales cycles stay organised.",
+    "links": [
+      {
+        "href": "/industries/manufacturing",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/healthcare/seo": {
+    "title": "Healthcare SEO for Clinics and Hospitals | DisplayAvenue",
+    "description": "Local and service-page SEO that helps patients find you - without medical outcome claims.",
+    "h1": "Healthcare Seo",
+    "summary": "Local and service-page SEO that helps patients find you - without medical outcome claims.",
+    "links": [
+      {
+        "href": "/industries/healthcare",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/healthcare/lead-generation": {
+    "title": "Healthcare Lead Generation for Appointments | DisplayAvenue",
+    "description": "Responsible patient enquiry systems: local search, landing pages and appointment follow-up.",
+    "h1": "Healthcare Lead Generation",
+    "summary": "Responsible patient enquiry systems: local search, landing pages and appointment follow-up.",
+    "links": [
+      {
+        "href": "/industries/healthcare",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/healthcare/local-seo": {
+    "title": "Local SEO for Clinics and Multi-Location… | DisplayAvenue",
+    "description": "Google Business Profile and local pages that improve discovery for nearby patients.",
+    "h1": "Healthcare Local Seo",
+    "summary": "Google Business Profile and local pages that improve discovery for nearby patients.",
+    "links": [
+      {
+        "href": "/industries/healthcare",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/education/meta-ads": {
+    "title": "Meta Ads for Schools and Coaching Admissions | DisplayAvenue",
+    "description": "Admission-focused Meta campaigns with counselling qualification and CRM follow-up.",
+    "h1": "Education Meta Ads",
+    "summary": "Admission-focused Meta campaigns with counselling qualification and CRM follow-up.",
+    "links": [
+      {
+        "href": "/industries/education",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/education/lead-generation": {
+    "title": "Education Lead Generation for Admissions… | DisplayAvenue",
+    "description": "Admission funnels from ad to counselling to application - with less lead leakage.",
+    "h1": "Education Lead Generation",
+    "summary": "Admission funnels from ad to counselling to application - with less lead leakage.",
+    "links": [
+      {
+        "href": "/industries/education",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/ecommerce/seo": {
+    "title": "Ecommerce SEO for Product Discovery and… | DisplayAvenue",
+    "description": "Category and product SEO plus technical hygiene for online stores.",
+    "h1": "Ecommerce Seo",
+    "summary": "Category and product SEO plus technical hygiene for online stores.",
+    "links": [
+      {
+        "href": "/industries/ecommerce",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/ecommerce/meta-ads": {
+    "title": "Meta Ads for Ecommerce and D2C Brands | DisplayAvenue",
+    "description": "Prospecting and retargeting systems tied to product feed and ROAS discipline.",
+    "h1": "Ecommerce Meta Ads",
+    "summary": "Prospecting and retargeting systems tied to product feed and ROAS discipline.",
+    "links": [
+      {
+        "href": "/industries/ecommerce",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/ecommerce/cro": {
+    "title": "Ecommerce Conversion Rate Optimisation | DisplayAvenue",
+    "description": "PDP, cart and checkout experiments that lift revenue without only buying more traffic.",
+    "h1": "Ecommerce Cro",
+    "summary": "PDP, cart and checkout experiments that lift revenue without only buying more traffic.",
+    "links": [
+      {
+        "href": "/industries/ecommerce",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/automotive/lead-generation": {
+    "title": "Automotive Lead Generation for Dealers and… | DisplayAvenue",
+    "description": "Lead systems for dealerships, EV dealers and detailing studios with WhatsApp follow-up.",
+    "h1": "Automotive Lead Generation",
+    "summary": "Lead systems for dealerships, EV dealers and detailing studios with WhatsApp follow-up.",
+    "links": [
+      {
+        "href": "/industries/automotive",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/hospitality/seo": {
+    "title": "Hotel and Hospitality SEO for Bookings… | DisplayAvenue",
+    "description": "SEO for hotels, resorts and stays focused on discovery and booking intent.",
+    "h1": "Hospitality Seo",
+    "summary": "SEO for hotels, resorts and stays focused on discovery and booking intent.",
+    "links": [
+      {
+        "href": "/industries/hospitality",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/construction/lead-generation": {
+    "title": "Construction Lead Generation for Builders… | DisplayAvenue",
+    "description": "B2B and project enquiry systems for construction and contracting businesses.",
+    "h1": "Construction Lead Generation",
+    "summary": "B2B and project enquiry systems for construction and contracting businesses.",
+    "links": [
+      {
+        "href": "/industries/construction",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/finance/seo": {
+    "title": "SEO for CAs, Advisors and Financial Services | DisplayAvenue",
+    "description": "Compliant SEO for professional finance brands focused on trust and enquiry quality.",
+    "h1": "Finance Seo",
+    "summary": "Compliant SEO for professional finance brands focused on trust and enquiry quality.",
+    "links": [
+      {
+        "href": "/industries/finance",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/travel/lead-generation": {
+    "title": "Travel Lead Generation for Agencies and… | DisplayAvenue",
+    "description": "Package enquiry systems with WhatsApp qualification and follow-up for travel brands.",
+    "h1": "Travel Lead Generation",
+    "summary": "Package enquiry systems with WhatsApp qualification and follow-up for travel brands.",
+    "links": [
+      {
+        "href": "/industries/travel",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/saas/lead-generation": {
+    "title": "B2B SaaS Lead Generation Systems | DisplayAvenue",
+    "description": "Demo and trial pipelines combining content, ads and CRM nurture for SaaS teams.",
+    "h1": "Saas Lead Generation",
+    "summary": "Demo and trial pipelines combining content, ads and CRM nurture for SaaS teams.",
+    "links": [
+      {
+        "href": "/industries/saas",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/industries/b2b/seo": {
+    "title": "B2B SEO for Professional and Industrial… | DisplayAvenue",
+    "description": "SEO that targets decision-makers researching vendors and service partners.",
+    "h1": "B2B Seo",
+    "summary": "SEO that targets decision-makers researching vendors and service partners.",
+    "links": [
+      {
+        "href": "/industries/b2b",
+        "label": "Industry"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "website"
+  },
+  "/blog/whatsapp-business-replies-that-convert-more-leads-20260908": {
+    "title": "WhatsApp Business Replies That Convert… | DisplayAvenue",
+    "description": "Speed and a simple script beat fancy funnels for most Indian SMEs.",
+    "h1": "WhatsApp Business Replies That Convert More Leads",
+    "summary": "Speed and a simple script beat fancy funnels for most Indian SMEs.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/brand-basics-that-make-ads-convert-faster-20260907": {
+    "title": "Brand Basics That Make Ads Convert Faster | DisplayAvenue",
+    "description": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+    "h1": "Brand Basics That Make Ads Convert Faster",
+    "summary": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/from-enquiry-to-sale-a-simple-crm-habit-for-smes-20260906": {
+    "title": "From Enquiry to Sale: A Simple CRM Habit… | DisplayAvenue",
+    "description": "Marketing fails when leads sit unanswered in Instagram DMs.",
+    "h1": "From Enquiry to Sale: A Simple CRM Habit for SMEs",
+    "summary": "Marketing fails when leads sit unanswered in Instagram DMs.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/why-slow-mobile-sites-kill-whatsapp-enquiries-20260905": {
+    "title": "Why Slow Mobile Sites Kill WhatsApp… | DisplayAvenue",
+    "description": "If your page takes more than 3 seconds on 4G, many buyers never message you.",
+    "h1": "Why Slow Mobile Sites Kill WhatsApp Enquiries",
+    "summary": "If your page takes more than 3 seconds on 4G, many buyers never message you.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/thane-west-lead-gen-ads-maps-whatsapp-speed-20260904": {
+    "title": "Thane West Lead Gen: Ads + Maps + WhatsApp… | DisplayAvenue",
+    "description": "Thane service businesses win when Maps visibility and reply speed work together.",
+    "h1": "Thane West Lead Gen: Ads + Maps + WhatsApp Speed",
+    "summary": "Thane service businesses win when Maps visibility and reply speed work together.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/local-seo-for-navi-mumbai-clinics-and-coaching-brands-20260903": {
+    "title": "Local SEO for Navi Mumbai Clinics and… | DisplayAvenue",
+    "description": "Vashi, Nerul, and Kharghar buyers search on Maps — quiet profiles lose calls.",
+    "h1": "Local SEO for Navi Mumbai Clinics and Coaching Brands",
+    "summary": "Vashi, Nerul, and Kharghar buyers search on Maps — quiet profiles lose calls.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/google-ads-for-mumbai-smes-where-budget-actually-goes-20260902": {
+    "title": "Google Ads for Mumbai SMEs: Where Budget… | DisplayAvenue",
+    "description": "In Mumbai, broad match and weak landing pages burn budget before WhatsApp ever rings.",
+    "h1": "Google Ads for Mumbai SMEs: Where Budget Actually Goes",
+    "summary": "In Mumbai, broad match and weak landing pages burn budget before WhatsApp ever rings.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/google-business-profile-posts-that-get-calls-20260901": {
+    "title": "Google Business Profile Posts That Get Calls | DisplayAvenue",
+    "description": "Weekly GBP posts keep your profile active and help local discovery.",
+    "h1": "Google Business Profile Posts That Get Calls",
+    "summary": "Weekly GBP posts keep your profile active and help local discovery.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/service-pages-that-rank-city-offer-seo-for-indian-businesses-20260831": {
+    "title": "Service Pages That Rank: City × Offer SEO… | DisplayAvenue",
+    "description": "Generic blogs rarely bring customers. City and service pages do.",
+    "h1": "Service Pages That Rank: City × Offer SEO for Indian Businesses",
+    "summary": "Generic blogs rarely bring customers. City and service pages do.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/instagram-lead-ads-how-to-improve-lead-quality-in-india-20260830": {
+    "title": "Instagram Lead Ads: How to Improve Lead… | DisplayAvenue",
+    "description": "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+    "h1": "Instagram Lead Ads: How to Improve Lead Quality in India",
+    "summary": "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/google-ads-budget-mistakes-indian-smes-make-and-fixes-20260829": {
+    "title": "Google Ads Budget Mistakes Indian SMEs… | DisplayAvenue",
+    "description": "Most wasted Google Ads spend comes from broad match chaos and slow WhatsApp follow-up.",
+    "h1": "Google Ads Budget Mistakes Indian SMEs Make (And Fixes)",
+    "summary": "Most wasted Google Ads spend comes from broad match chaos and slow WhatsApp follow-up.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/which-numbers-matter-leads-cost-and-booked-jobs-20260828": {
+    "title": "Which Numbers Matter: Leads, Cost, and… | DisplayAvenue",
+    "description": "Vanity metrics hide waste. Track the path from click to booked work.",
+    "h1": "Which Numbers Matter: Leads, Cost, and Booked Jobs",
+    "summary": "Vanity metrics hide waste. Track the path from click to booked work.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/whatsapp-business-replies-that-convert-more-leads-20260827": {
+    "title": "WhatsApp Business Replies That Convert… | DisplayAvenue",
+    "description": "Speed and a simple script beat fancy funnels for most Indian SMEs.",
+    "h1": "WhatsApp Business Replies That Convert More Leads",
+    "summary": "Speed and a simple script beat fancy funnels for most Indian SMEs.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/google-business-profile-posts-that-get-calls-20260826": {
+    "title": "Google Business Profile Posts That Get Calls | DisplayAvenue",
+    "description": "Weekly GBP posts keep your profile active and help local discovery.",
+    "h1": "Google Business Profile Posts That Get Calls",
+    "summary": "Weekly GBP posts keep your profile active and help local discovery.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/service-pages-that-rank-city-offer-seo-for-indian-businesses-20260825": {
+    "title": "Service Pages That Rank: City × Offer SEO… | DisplayAvenue",
+    "description": "Generic blogs rarely bring customers. City and service pages do.",
+    "h1": "Service Pages That Rank: City × Offer SEO for Indian Businesses",
+    "summary": "Generic blogs rarely bring customers. City and service pages do.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/instagram-lead-ads-how-to-improve-lead-quality-in-india-20260824": {
+    "title": "Instagram Lead Ads: How to Improve Lead… | DisplayAvenue",
+    "description": "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+    "h1": "Instagram Lead Ads: How to Improve Lead Quality in India",
+    "summary": "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/google-ads-budget-mistakes-indian-smes-make-and-fixes-20260823": {
+    "title": "Google Ads Budget Mistakes Indian SMEs… | DisplayAvenue",
+    "description": "Most wasted Google Ads spend comes from broad match chaos and slow WhatsApp follow-up.",
+    "h1": "Google Ads Budget Mistakes Indian SMEs Make (And Fixes)",
+    "summary": "Most wasted Google Ads spend comes from broad match chaos and slow WhatsApp follow-up.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/which-numbers-matter-leads-cost-and-booked-jobs-20260822": {
+    "title": "Which Numbers Matter: Leads, Cost, and… | DisplayAvenue",
+    "description": "Vanity metrics hide waste. Track the path from click to booked work.",
+    "h1": "Which Numbers Matter: Leads, Cost, and Booked Jobs",
+    "summary": "Vanity metrics hide waste. Track the path from click to booked work.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/instagram-lead-ads-how-to-improve-lead-quality-in-india-20260821": {
+    "title": "Instagram Lead Ads: How to Improve Lead… | DisplayAvenue",
+    "description": "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+    "h1": "Instagram Lead Ads: How to Improve Lead Quality in India",
+    "summary": "Cheap Meta leads only help if your form questions and WhatsApp reply speed are tight.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/brand-basics-that-make-ads-convert-faster-20260820": {
+    "title": "Brand Basics That Make Ads Convert Faster | DisplayAvenue",
+    "description": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+    "h1": "Brand Basics That Make Ads Convert Faster",
+    "summary": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/brand-basics-that-make-ads-convert-faster-20260819": {
+    "title": "Brand Basics That Make Ads Convert Faster | DisplayAvenue",
+    "description": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+    "h1": "Brand Basics That Make Ads Convert Faster",
+    "summary": "Clear offer and consistent visuals reduce cost per lead on Google and Meta.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/google-ads-cost-per-lead-india-clinics-2026": {
+    "title": "Google Ads Cost Per Lead for Clinics in… | DisplayAvenue",
+    "description": "What Indian clinic owners should expect to pay per enquiry on Google Ads — and how to cut waste without killing volume.",
+    "h1": "Google Ads Cost Per Lead for Clinics in India (2026 Guide)",
+    "summary": "What Indian clinic owners should expect to pay per enquiry on Google Ads — and how to cut waste without killing volume.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/local-seo-google-business-profile-mumbai-sme": {
+    "title": "Local SEO for Mumbai SMEs: Win the Google… | DisplayAvenue",
+    "description": "A plain-English Local SEO playbook for shops, clinics, and service businesses that want more Maps calls and walk-ins.",
+    "h1": "Local SEO for Mumbai SMEs: Win the Google Maps Pack",
+    "summary": "A plain-English Local SEO playbook for shops, clinics, and service businesses that want more Maps calls and walk-ins.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  },
+  "/blog/whatsapp-meta-ads-lead-funnel-india": {
+    "title": "Meta Ads to WhatsApp: The Lead Funnel… | DisplayAvenue",
+    "description": "Cheap Instagram leads are useless if nobody replies. Here’s the WhatsApp-first funnel that turns Meta Ads into sales conversations.",
+    "h1": "Meta Ads to WhatsApp: The Lead Funnel Indian SMEs Actually Close",
+    "summary": "Cheap Instagram leads are useless if nobody replies. Here’s the WhatsApp-first funnel that turns Meta Ads into sales conversations.",
+    "links": [
+      {
+        "href": "/blog",
+        "label": "Blog"
+      },
+      {
+        "href": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "noindex": false,
+    "ogType": "article"
+  }
+}
