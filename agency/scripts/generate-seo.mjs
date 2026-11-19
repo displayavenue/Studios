@@ -209,10 +209,173 @@ const robots = [
   "",
 ].join("\n");
 
+function clip(text, max = 155) {
+  const clean = String(text || "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (clean.length <= max) return clean;
+  return `${clean.slice(0, max - 1).replace(/\s+\S*$/, "")}…`;
+}
+
+function pageTitle(namePart) {
+  const brand = name || "DisplayAvenue";
+  const raw = String(namePart || brand).trim();
+  if (!raw) return `${brand} | Get more customers online`;
+  if (raw.toLowerCase().includes(brand.toLowerCase())) return clip(raw, 60);
+  const suffix = ` | ${brand}`;
+  return `${clip(raw, Math.max(24, 60 - suffix.length))}${suffix}`;
+}
+
+function addPage(map, path, meta) {
+  const key = path === "/" ? "/" : path.replace(/\/$/, "");
+  map[key] = {
+    title: pageTitle(meta.title),
+    description: clip(meta.description),
+    h1: String(meta.h1 || meta.title || name).trim(),
+    summary: clip(meta.summary || meta.description, 280),
+    links: Array.isArray(meta.links) ? meta.links.slice(0, 8) : [],
+    noindex: Boolean(meta.noindex),
+    ogType: meta.ogType || "website",
+  };
+}
+
+const defaultLinks = [
+  { href: "/services", label: "Services" },
+  { href: "/growth", label: "Growth Plan" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/contact", label: "Contact" },
+];
+
+const seoPages = {};
+addPage(seoPages, "/", {
+  title: `${name} | Get more customers online`,
+  description:
+    "Mumbai digital marketing agency for Google, Instagram, websites and lead generation. Clear plans in plain English.",
+  h1: name,
+  summary:
+    company.tagline ||
+    "DisplayAvenue helps business owners get found online and turn interest into real enquiries.",
+  links: defaultLinks,
+});
+
+const staticMeta = {
+  "/services": ["Services", "Digital marketing, websites, ads, SEO and AI services from DisplayAvenue."],
+  "/industries": ["Industries", "Industry-specific digital growth systems for Indian businesses."],
+  "/industry-solutions": ["Industry Solutions", "Industry × service landing pages for search and lead generation."],
+  "/solutions": ["Solutions", "DisplayAvenue growth solutions across acquisition, conversion and retention."],
+  "/ai-platform": ["AI Platform", "AI marketing tools and automation built for DisplayAvenue clients."],
+  "/packages": ["Packages", "Digital growth packages for startups and growing businesses."],
+  "/free-tools": ["Free Tools", "Free marketing calculators and SEO tools from DisplayAvenue."],
+  "/free-tools/roi-calculator": ["ROI Calculator", "Estimate marketing ROI and lead volume with DisplayAvenue’s free calculator."],
+  "/free-tools/seo-checklist": ["SEO Checklist", "Score your website SEO readiness with DisplayAvenue’s free checklist."],
+  "/free-tools/local-seo-score": ["Local SEO Score", "Check local SEO fundamentals for Google Business Profile and maps."],
+  "/free-tools/citation-directory": ["Citation Directory", "NAP citation directories for Indian local SEO."],
+  "/resources/india-sme-digital-growth-report": [
+    "India SME Digital Growth Report",
+    "Practical digital growth insights for Indian SMEs from DisplayAvenue.",
+  ],
+  "/case-studies": ["Case Studies", "Selected DisplayAvenue client engagements across SEO, ads and websites."],
+  "/portfolio": ["Portfolio", "Website and brand work from DisplayAvenue."],
+  "/resources": ["Resources", "Guides and resources for digital growth."],
+  "/blog": ["Blog", "Digital marketing articles and updates from DisplayAvenue."],
+  "/awards": ["Awards", "Awards and recognition for DisplayAvenue."],
+  "/certifications": ["Certifications", "Platform certifications held by the DisplayAvenue team."],
+  "/why-displayavenue": ["Why DisplayAvenue", "Why businesses choose DisplayAvenue as their digital growth partner."],
+  "/contact": ["Contact", "Book a free consultation with DisplayAvenue in Mumbai."],
+  "/growth": [
+    "Generate More Qualified Leads",
+    "DisplayAvenue Growth Plan for websites, Meta Ads, Google Ads, GBP and lead generation.",
+  ],
+  "/growth/thank-you": [
+    "Growth Plan Request Received",
+    "Thanks for sharing your requirements. DisplayAvenue will contact you shortly.",
+    true,
+  ],
+  "/privacy": ["Privacy Policy", "DisplayAvenue privacy policy.", true],
+  "/terms": ["Terms of Service", "DisplayAvenue terms of service.", true],
+};
+
+for (const [path, meta] of Object.entries(staticMeta)) {
+  addPage(seoPages, path, {
+    title: meta[0],
+    description: meta[1],
+    h1: meta[0],
+    noindex: Boolean(meta[2]),
+    links: defaultLinks,
+  });
+}
+
+const catalogMaps = [
+  [items(services), "/services/", "Service"],
+  [items(industries), "/industries/", "Industry"],
+  [items(packages), "/packages/", "Package"],
+  [items(solutions), "/solutions/", "Solution"],
+  [items(ai), "/ai-platform/", "AI"],
+  [items(tools), "/free-tools/", "Tool"],
+  [items(cases), "/case-studies/", "Case study"],
+  [items(projects), "/portfolio/", "Project"],
+  [items(resources), "/resources/", "Resource"],
+];
+
+for (const [list, prefix] of catalogMaps) {
+  for (const item of list) {
+    if (!item?.slug) continue;
+    const path = `${prefix}${item.slug}`;
+    const title = item.seo?.title || item.headline || item.title;
+    const description =
+      item.seo?.description || item.summary || `${item.title} from DisplayAvenue.`;
+    addPage(seoPages, path, {
+      title,
+      description,
+      h1: item.title || title,
+      summary: item.summary || description,
+      links: [
+        { href: prefix.replace(/\/$/, "") || "/", label: "Overview" },
+        { href: "/contact", label: "Contact" },
+        { href: "/growth", label: "Growth Plan" },
+      ],
+    });
+  }
+}
+
+for (const item of items(combos)) {
+  if (!item?.industrySlug || !item?.serviceSlug || item?.indexable === false) continue;
+  const path = `/industries/${item.industrySlug}/${item.serviceSlug}`;
+  addPage(seoPages, path, {
+    title: item.seo?.title || item.headline || item.title,
+    description: item.seo?.description || item.summary || item.title,
+    h1: item.title,
+    summary: item.summary || item.title,
+    links: [
+      { href: `/industries/${item.industrySlug}`, label: "Industry" },
+      { href: "/contact", label: "Contact" },
+    ],
+  });
+}
+
+for (const post of blogPosts) {
+  if (!post?.slug) continue;
+  addPage(seoPages, `/blog/${post.slug}`, {
+    title: post.seoTitle || post.title,
+    description: post.seoDescription || post.excerpt || post.title,
+    h1: post.title,
+    summary: post.excerpt || post.title,
+    ogType: "article",
+    links: [
+      { href: "/blog", label: "Blog" },
+      { href: "/contact", label: "Contact" },
+    ],
+  });
+}
+
 writeFileSync(join(publicDir, "sitemap.xml"), xml);
 writeFileSync(join(publicDir, "llms.txt"), llms);
 writeFileSync(join(publicDir, "robots.txt"), robots);
 writeFileSync(join(publicDir, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
+writeFileSync(
+  join(publicDir, "seo-pages.json"),
+  `${JSON.stringify(seoPages, null, 2)}\n`,
+);
 
 settings.seoSyncedAt = new Date().toISOString();
 settings.sitemapUrlCount = unique.length;
@@ -224,5 +387,5 @@ writeFileSync(
 );
 
 console.log(
-  `SEO: wrote sitemap.xml + llms.txt + robots.txt (${unique.length} URLs) → ${base}`,
+  `SEO: wrote sitemap.xml + llms.txt + robots.txt + seo-pages.json (${unique.length} URLs, ${Object.keys(seoPages).length} meta pages) → ${base}`,
 );
