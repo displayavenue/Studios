@@ -35,7 +35,7 @@ class ShopController extends Controller
             ->when($sort === 'price_desc', fn ($query) => $query->orderByDesc('price_paise'))
             ->when($sort === 'name', fn ($query) => $query->orderBy('name'))
             ->when($sort === 'newest', fn ($query) => $query->latest('published_at'))
-            ->paginate(12)
+            ->paginate(24)
             ->withQueryString();
 
         return view('pages.shop', [
