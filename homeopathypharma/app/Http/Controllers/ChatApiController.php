@@ -29,7 +29,7 @@ class ChatApiController extends Controller
                 'last_message_at' => now(),
             ]);
 
-            $this->addMessage($conversation, 'system', 'Feel free to share your questions and concerns. We are here to help you.');
+            $this->addMessage($conversation, 'system', 'Feel free to share your questions and concerns to us. We are here to help.');
             $this->addMessage($conversation, 'system', 'Please share your name so we can assist you.');
         }
 
