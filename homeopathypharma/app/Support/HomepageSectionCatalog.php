@@ -189,7 +189,7 @@ class HomepageSectionCatalog
                 'label' => 'Super Saving Deals',
                 'title' => 'Super Saving Deals',
                 'subtitle' => 'Limited-time savings on selected medicines.',
-                'sort_order' => 60,
+                'sort_order' => 41,
                 'payload' => [
                     'view_all_label' => 'See deals',
                     'view_all_href' => '/shop?sort=price_asc',

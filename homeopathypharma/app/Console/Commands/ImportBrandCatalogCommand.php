@@ -135,6 +135,7 @@ class ImportBrandCatalogCommand extends Command
                         'manufacturer' => $meta['manufacturer'],
                         'status' => 'published',
                         'is_featured' => false,
+                        'is_super_saving' => false,
                         'seo_title' => $name.' | '.$meta['name'].' | HOMEOPATHY PHARMA',
                         'seo_description' => 'Buy '.$name.' from '.$meta['name'].' at HOMEOPATHY PHARMA.',
                         'published_at' => now(),

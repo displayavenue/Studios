@@ -24,6 +24,7 @@
 @if (session('status'))
     <div class="admin-card" style="margin-bottom:1rem;border-color:#b7d7c4;background:#f3faf5;">{{ session('status') }}</div>
 @endif
+<p class="admin-muted" style="margin:0 0 0.85rem;">One-click homepage placement: <strong>Popular</strong> and <strong>Super Saving</strong> appear under each other on the storefront.</p>
 <div class="admin-card">
 <table class="admin-table admin-product-table">
     <thead>
@@ -34,6 +35,7 @@
             <th>Market</th>
             <th>Sale</th>
             <th>Discount</th>
+            <th>Homepage</th>
             <th>Stock</th>
             <th>Status</th>
             <th></th>
@@ -52,7 +54,6 @@
             </td>
             <td>
                 <strong>{{ $product->name }}</strong>
-                @if($product->is_featured)<span class="badge">Featured</span>@endif
                 <div class="admin-muted" style="font-size:0.78rem;">{{ $product->sku ?: 'No SKU' }}</div>
             </td>
             <td>{{ $product->brand?->name ?: '—' }}</td>
@@ -65,6 +66,26 @@
                     —
                 @endif
             </td>
+            <td>
+                <div class="admin-product-toggles">
+                    <form method="post" action="{{ route('admin.products.toggle-popular', $product) }}">
+                        @csrf
+                        <button
+                            class="btn admin-toggle-btn {{ $product->is_featured ? 'admin-toggle-btn--on' : '' }}"
+                            type="submit"
+                            title="{{ $product->is_featured ? 'Remove from Popular' : 'Add to Popular' }}"
+                        >{{ $product->is_featured ? 'Popular ✓' : 'Popular' }}</button>
+                    </form>
+                    <form method="post" action="{{ route('admin.products.toggle-super-saving', $product) }}">
+                        @csrf
+                        <button
+                            class="btn admin-toggle-btn {{ $product->is_super_saving ? 'admin-toggle-btn--deal' : '' }}"
+                            type="submit"
+                            title="{{ $product->is_super_saving ? 'Remove from Super Saving' : 'Add to Super Saving' }}"
+                        >{{ $product->is_super_saving ? 'Super Saving ✓' : 'Super Saving' }}</button>
+                    </form>
+                </div>
+            </td>
             <td>{{ $product->stock_qty }}</td>
             <td><span class="badge">{{ $product->status }}</span></td>
             <td class="admin-actions">
@@ -76,7 +97,7 @@
             </td>
         </tr>
     @empty
-        <tr><td colspan="9">No products yet. Create one to publish on the shop.</td></tr>
+        <tr><td colspan="10">No products yet. Create one to publish on the shop.</td></tr>
     @endforelse
     </tbody>
 </table>

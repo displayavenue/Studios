@@ -22,7 +22,12 @@ class Phase1HomepageTest extends TestCase
         $response->assertSee('HOMEOPATHY PHARMA', false);
         $response->assertSee('Natural wellness. Expert guidance.', false);
         $response->assertSee('+91 8169 122333', false);
-        $response->assertSee('Featured products appear when selected in admin.', false);
+        $response->assertSeeInOrder([
+            'Popular Homeopathic Medicines',
+            'Mark products as Popular in admin to show them here.',
+            'Super Saving Deals',
+            'Mark products as Super Saving in admin to show them here.',
+        ], false);
         $response->assertDontSee('@gmail.com', false);
     }
 
