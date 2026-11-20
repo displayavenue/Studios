@@ -18,7 +18,7 @@
             <a class="hp-prochat__brand" href="{{ route('home') }}">Homeopathy Pharma</a>
             <a class="hp-prochat__wa" href="{{ $whatsappUrl }}" target="_blank" rel="noopener">Prefer WhatsApp?</a>
         </div>
-        <h1 class="hp-prochat__headline">Have a question? We are here to help.</h1>
+        <h1 class="hp-prochat__headline">Welcome to Homeopathy Pharma</h1>
     </header>
 
     <div class="hp-prochat__thread" data-hp-prochat-thread role="log" aria-live="polite" aria-relevant="additions"></div>
@@ -54,7 +54,7 @@
     var sendTpl = root.getAttribute('data-send-url-template');
     var pollTpl = root.getAttribute('data-poll-url-template');
     var csrf = (document.querySelector('meta[name="csrf-token"]') || {}).content || '';
-    var storageKey = 'hp_chat_uuid_v1';
+    var storageKey = 'hp_chat_uuid_v2';
     var uuid = localStorage.getItem(storageKey) || '';
     var lastId = 0;
     var busy = false;

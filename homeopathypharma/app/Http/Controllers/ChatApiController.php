@@ -12,6 +12,16 @@ use Illuminate\Support\Str;
 
 class ChatApiController extends Controller
 {
+    public const WELCOME_MESSAGE = 'Feel free to share your questions and concerns to us. We are here to help.';
+
+    public const NAME_PROMPT_MESSAGE = 'Please share your name so we can assist you.';
+
+    /** @var list<string> */
+    private const OUTDATED_WELCOME_MESSAGES = [
+        'Have a question? We are here to help.',
+        'Feel free to share your questions and concerns. We are here to help you.',
+    ];
+
     public function start(Request $request): JsonResponse
     {
         $uuid = (string) $request->input('uuid', '');
@@ -29,8 +39,10 @@ class ChatApiController extends Controller
                 'last_message_at' => now(),
             ]);
 
-            $this->addMessage($conversation, 'system', 'Have a question? We are here to help.');
-            $this->addMessage($conversation, 'system', 'Please share your name so we can assist you.');
+            $this->addMessage($conversation, 'system', self::WELCOME_MESSAGE);
+            $this->addMessage($conversation, 'system', self::NAME_PROMPT_MESSAGE);
+        } else {
+            $this->refreshWelcomeMessage($conversation);
         }
 
         return response()->json($this->payload($conversation->fresh('messages')));
@@ -149,6 +161,32 @@ class ChatApiController extends Controller
         $conversation->forceFill(['last_message_at' => now()])->save();
 
         return $message;
+    }
+
+    /**
+     * Replace stale first-system welcome copy so resumed chats pick up new wording.
+     */
+    private function refreshWelcomeMessage(ChatConversation $conversation): void
+    {
+        $firstSystem = ChatMessage::query()
+            ->where('chat_conversation_id', $conversation->id)
+            ->where('sender', 'system')
+            ->orderBy('id')
+            ->first();
+
+        if (! $firstSystem) {
+            return;
+        }
+
+        if ($firstSystem->body === self::WELCOME_MESSAGE) {
+            return;
+        }
+
+        if (! in_array($firstSystem->body, self::OUTDATED_WELCOME_MESSAGES, true)) {
+            return;
+        }
+
+        $firstSystem->forceFill(['body' => self::WELCOME_MESSAGE])->save();
     }
 
     /**

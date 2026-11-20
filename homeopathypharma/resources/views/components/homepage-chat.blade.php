@@ -3,7 +3,7 @@
     class="hp-chat-fab"
     id="homepage-chat"
     href="{{ route('chat.show') }}"
-    aria-label="Open chat — Have a question? We are here to help."
+    aria-label="Open chat — Welcome to Homeopathy Pharma"
 >
     <span class="hp-chat-fab__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
