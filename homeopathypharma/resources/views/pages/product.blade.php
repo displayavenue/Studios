@@ -26,11 +26,8 @@
                             data-full="{{ $primary->publicUrl() }}"
                             src="{{ $primary->publicUrl() }}"
                             alt="{{ $primary->alt_text ?: $product->name }}"
-                            tabindex="0"
+                            draggable="false"
                         >
-                        <button type="button" class="hp-product-gallery__zoom-btn" data-hp-zoom-open>
-                            Zoom image
-                        </button>
                     </div>
                     @if ($gallery->count() > 1)
                         <div class="hp-product-gallery__thumbs" role="list">
@@ -51,7 +48,7 @@
                             @endforeach
                         </div>
                     @endif
-                    <p class="hp-muted hp-product-gallery__hint">Tap or click the image to zoom on any device.</p>
+                    <p class="hp-muted hp-product-gallery__hint">On desktop, move your cursor over the image to zoom that spot. Move away to reset.</p>
                 @else
                     <div class="hp-product-card__placeholder" style="min-height:16rem;border-radius:0.75rem;"></div>
                 @endif

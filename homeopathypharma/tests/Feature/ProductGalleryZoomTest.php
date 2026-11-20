@@ -66,9 +66,11 @@ class ProductGalleryZoomTest extends TestCase
             ->assertOk()
             ->assertSee('data-hp-product-gallery', false)
             ->assertSee('data-hp-zoom-main', false)
-            ->assertSee('Zoom image', false)
+            ->assertSee('data-hp-zoom-stage', false)
             ->assertSee('product-image-zoom.js', false)
-            ->assertSee('data-hp-zoom-thumb', false);
+            ->assertSee('move your cursor over the image to zoom', false)
+            ->assertSee('data-hp-zoom-thumb', false)
+            ->assertDontSee('Zoom image', false);
     }
 
     public function test_admin_can_delete_one_product_image_and_keep_others(): void
