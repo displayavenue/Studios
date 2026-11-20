@@ -3,5 +3,7 @@
 !public/
 !health-explorer/
 !health-explorer/**
+!imports/
+!imports/**
 health-explorer/catalog.json
 !.gitignore

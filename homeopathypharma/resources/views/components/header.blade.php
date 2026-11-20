@@ -100,15 +100,16 @@
                 </div>
 
                 <div class="hp-nav-item hp-nav-item--has-menu">
-                    <a class="hp-nav-link" href="{{ route('home') }}#trusted-brands">
+                    <a class="hp-nav-link" href="{{ route('brands.index') }}">
                         Brands
                         <span class="hp-nav-chevron" aria-hidden="true"></span>
                     </a>
                     <div class="hp-nav-panel" role="menu">
+                        <a href="{{ route('brands.index') }}">All brands</a>
                         @forelse (($navBrands ?? collect()) as $brand)
                             <a href="{{ route('shop.index', ['brand' => $brand->slug]) }}">{{ $brand->name }}</a>
                         @empty
-                            <a href="{{ route('home') }}#trusted-brands">View brands</a>
+                            <a href="{{ route('brands.index') }}">View brands</a>
                         @endforelse
                     </div>
                 </div>

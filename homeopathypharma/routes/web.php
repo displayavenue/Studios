@@ -51,6 +51,7 @@ use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SeoController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ShopController;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +71,7 @@ Route::get('/api/health-explorer/catalog', [HealthExplorerController::class, 'ca
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{slug}', [ShopController::class, 'category'])->name('shop.category');
+Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index');
