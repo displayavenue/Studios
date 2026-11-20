@@ -202,9 +202,28 @@
                 <a class="hp-text-link" href="{{ $featuredData['view_all_href'] ?? route('shop.index') }}">{{ $featuredData['view_all_label'] ?? 'View all' }}</a>
             </div>
             @if ($featuredProducts->isEmpty())
-                <div class="hp-empty">Featured products appear when selected in admin.</div>
+                <div class="hp-empty">Mark products as Popular in admin to show them here.</div>
             @else
                 @include('partials.product-cards', ['products' => $featuredProducts])
+            @endif
+        </div>
+    </section>
+    @endif
+
+    @if ($deals)
+    <section class="hp-section hp-section--soft" id="super-deals">
+        <div class="hp-container">
+            <div class="hp-section-head hp-section-head--row">
+                <div>
+                    <h2>{{ $deals->title ?? 'Super Saving Deals' }}</h2>
+                    <p>{{ $deals->subtitle ?? 'Limited-time savings on selected medicines.' }}</p>
+                </div>
+                <a class="hp-text-link" href="{{ $dealsData['view_all_href'] ?? route('shop.index', ['sort' => 'price_asc']) }}">{{ $dealsData['view_all_label'] ?? 'See deals' }}</a>
+            </div>
+            @if ($dealProducts->isEmpty())
+                <div class="hp-empty">Mark products as Super Saving in admin to show them here.</div>
+            @else
+                @include('partials.product-cards', ['products' => $dealProducts])
             @endif
         </div>
     </section>
@@ -466,25 +485,6 @@
                     <footer>— {{ $foundersData['mission_attribution'] ?? $settings->brandName() }}</footer>
                 </blockquote>
             </div>
-        </div>
-    </section>
-    @endif
-
-    @if ($deals)
-    <section class="hp-section hp-section--soft" id="super-deals">
-        <div class="hp-container">
-            <div class="hp-section-head hp-section-head--row">
-                <div>
-                    <h2>{{ $deals->title ?? 'Super Saving Deals' }}</h2>
-                    <p>{{ $deals->subtitle ?? 'Limited-time savings on selected medicines.' }}</p>
-                </div>
-                <a class="hp-text-link" href="{{ $dealsData['view_all_href'] ?? route('shop.index', ['sort' => 'price_asc']) }}">{{ $dealsData['view_all_label'] ?? 'See deals' }}</a>
-            </div>
-            @if ($dealProducts->isEmpty())
-                <div class="hp-empty">Sale products appear when sale prices are set in admin.</div>
-            @else
-                @include('partials.product-cards', ['products' => $dealProducts])
-            @endif
         </div>
     </section>
     @endif

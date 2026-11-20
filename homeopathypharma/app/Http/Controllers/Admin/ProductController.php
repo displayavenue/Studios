@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -53,6 +54,7 @@ class ProductController extends Controller
             'stock_status' => 'in_stock',
             'stock_qty' => 0,
             'is_featured' => false,
+            'is_super_saving' => false,
         ])));
     }
 
@@ -116,6 +118,24 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('status', 'Product deleted.');
     }
 
+    public function togglePopular(Product $product): RedirectResponse
+    {
+        $product->forceFill(['is_featured' => ! $product->is_featured])->save();
+
+        $label = $product->is_featured ? 'added to Popular' : 'removed from Popular';
+
+        return back()->with('status', $product->name.' '.$label.'.');
+    }
+
+    public function toggleSuperSaving(Product $product): RedirectResponse
+    {
+        $product->forceFill(['is_super_saving' => ! $product->is_super_saving])->save();
+
+        $label = $product->is_super_saving ? 'added to Super Saving Deals' : 'removed from Super Saving Deals';
+
+        return back()->with('status', $product->name.' '.$label.'.');
+    }
+
     private function formData(Product $product): array
     {
         $attachedIds = $product->images->pluck('media_asset_id')->filter()->all();
@@ -161,6 +181,7 @@ class ProductController extends Controller
             'manufacturer' => ['nullable', 'string', 'max:190'],
             'status' => ['required', 'in:draft,published,archived'],
             'is_featured' => ['sometimes', 'boolean'],
+            'is_super_saving' => ['sometimes', 'boolean'],
             'seo_title' => ['nullable', 'string', 'max:190'],
             'seo_description' => ['nullable', 'string', 'max:500'],
             'category_ids' => ['nullable', 'array'],
@@ -171,13 +192,14 @@ class ProductController extends Controller
 
         $data['slug'] = Str::slug($data['slug'] ?: $data['name']);
         $data['is_featured'] = $request->boolean('is_featured');
+        $data['is_super_saving'] = $request->boolean('is_super_saving');
         $data['price_paise'] = (int) round(((float) $data['price_inr']) * 100);
         $data['sale_price_paise'] = isset($data['sale_price_inr']) && $data['sale_price_inr'] !== null && $data['sale_price_inr'] !== ''
             ? (int) round(((float) $data['sale_price_inr']) * 100)
             : null;
 
         if ($data['sale_price_paise'] !== null && $data['sale_price_paise'] >= $data['price_paise']) {
-            throw \Illuminate\Validation\ValidationException::withMessages([
+            throw ValidationException::withMessages([
                 'sale_price_inr' => 'Sale price must be lower than the market / MRP price.',
             ]);
         }

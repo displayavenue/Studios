@@ -30,6 +30,7 @@ class Product extends Model
         'manufacturer',
         'status',
         'is_featured',
+        'is_super_saving',
         'seo_title',
         'seo_description',
         'published_at',
@@ -42,6 +43,7 @@ class Product extends Model
             'sale_ends_at' => 'datetime',
             'published_at' => 'datetime',
             'is_featured' => 'boolean',
+            'is_super_saving' => 'boolean',
         ];
     }
 

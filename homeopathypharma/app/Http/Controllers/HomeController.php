@@ -54,9 +54,9 @@ class HomeController extends Controller
 
         $dealProducts = Product::query()
             ->published()
-            ->whereNotNull('sale_price_paise')
+            ->where('is_super_saving', true)
             ->with(['images.media', 'brand'])
-            ->orderBy('sale_price_paise')
+            ->latest('published_at')
             ->limit(8)
             ->get();
 

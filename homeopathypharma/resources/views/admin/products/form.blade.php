@@ -96,9 +96,22 @@
                         </select>
                     </label>
                 </div>
-                <label style="display:flex;gap:0.5rem;align-items:center;font-weight:500;">
-                    <input type="checkbox" name="is_featured" value="1" @checked(old('is_featured', $product->is_featured))> Featured on homepage
-                </label>
+                <div class="admin-product-flags">
+                    <label class="admin-product-flag">
+                        <input type="checkbox" name="is_featured" value="1" @checked(old('is_featured', $product->is_featured))>
+                        <span>
+                            <strong>Popular medicines</strong>
+                            <small>Show in Popular Homeopathic Medicines on the homepage</small>
+                        </span>
+                    </label>
+                    <label class="admin-product-flag">
+                        <input type="checkbox" name="is_super_saving" value="1" @checked(old('is_super_saving', $product->is_super_saving))>
+                        <span>
+                            <strong>Super Saving Deals</strong>
+                            <small>Show in Super Saving Deals just under Popular on the homepage</small>
+                        </span>
+                    </label>
+                </div>
             </section>
 
             <section class="admin-card admin-product-section">

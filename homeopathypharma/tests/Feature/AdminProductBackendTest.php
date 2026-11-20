@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User;
+use Database\Seeders\HomepageSectionSeeder;
 use Database\Seeders\SiteSettingsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -86,6 +87,55 @@ class AdminProductBackendTest extends TestCase
             ->assertSee('Sale price', false)
             ->assertSee('Frontend card preview', false)
             ->assertSee('Adjust primary image', false)
+            ->assertSee('Popular medicines', false)
+            ->assertSee('Super Saving Deals', false)
             ->assertSee('data-hp-product-form', false);
+    }
+
+    public function test_admin_can_one_click_toggle_popular_and_super_saving(): void
+    {
+        $this->seed(SiteSettingsSeeder::class);
+        $this->seed(HomepageSectionSeeder::class);
+
+        $product = Product::query()->create([
+            'name' => 'Deal Product',
+            'slug' => 'deal-product',
+            'price_paise' => 30000,
+            'sale_price_paise' => 24900,
+            'stock_qty' => 5,
+            'stock_status' => 'in_stock',
+            'status' => 'published',
+            'is_featured' => false,
+            'is_super_saving' => false,
+            'published_at' => now(),
+        ]);
+
+        $admin = $this->admin();
+
+        $this->actingAs($admin)
+            ->get(route('admin.products.index'))
+            ->assertOk()
+            ->assertSee('Popular', false)
+            ->assertSee('Super Saving', false)
+            ->assertSee(route('admin.products.toggle-popular', $product), false)
+            ->assertSee(route('admin.products.toggle-super-saving', $product), false);
+
+        $this->actingAs($admin)
+            ->post(route('admin.products.toggle-popular', $product))
+            ->assertRedirect();
+        $this->assertTrue($product->fresh()->is_featured);
+
+        $this->actingAs($admin)
+            ->post(route('admin.products.toggle-super-saving', $product))
+            ->assertRedirect();
+        $this->assertTrue($product->fresh()->is_super_saving);
+
+        $home = $this->get('/')->assertOk();
+        $home->assertSeeInOrder([
+            'Popular Homeopathic Medicines',
+            'Deal Product',
+            'Super Saving Deals',
+            'Deal Product',
+        ], false);
     }
 }
