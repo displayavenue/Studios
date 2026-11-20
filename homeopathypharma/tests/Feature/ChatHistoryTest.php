@@ -22,7 +22,7 @@ class ChatHistoryTest extends TestCase
         $this->get('/chat')
             ->assertOk()
             ->assertSee('Homeopathy Pharma', false)
-            ->assertSee('Have a question? We are here to help.', false)
+            ->assertSee('Welcome to Homeopathy Pharma.', false)
             ->assertSee('Prefer WhatsApp?', false)
             ->assertSee('hp-prochat', false)
             ->assertDontSee('hp-wa__composer', false)
