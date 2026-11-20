@@ -2,12 +2,7 @@
     @foreach ($products as $product)
         @php
             $image = $product->primaryImage();
-            $hasSale = $product->sale_price_paise !== null
-                && $product->sale_price_paise < $product->price_paise
-                && $product->currentPricePaise() === (int) $product->sale_price_paise;
-            $discount = $hasSale
-                ? (int) round((1 - ($product->sale_price_paise / max(1, $product->price_paise))) * 100)
-                : 0;
+            $discount = $product->discountPercent();
         @endphp
         <article class="hp-prod-card">
             @if ($discount > 0)
@@ -30,8 +25,8 @@
                 @endif
                 <p class="hp-prod-card__price">
                     <span class="hp-prod-card__now">{{ $product->formattedPrice() }}</span>
-                    @if ($hasSale)
-                        <span class="hp-prod-card__was">₹{{ number_format($product->price_paise / 100, 2) }}</span>
+                    @if ($product->hasActiveSale())
+                        <span class="hp-prod-card__was">{{ $product->formattedMarketPrice() }}</span>
                     @endif
                 </p>
                 @if ($product->isPurchasable())

@@ -531,6 +531,7 @@ a:hover {
 }
 
 .hp-product-card {
+  position: relative;
   background: var(--hp-white);
   border: 1px solid var(--hp-border);
   border-radius: var(--hp-radius);
@@ -543,6 +544,19 @@ a:hover {
   text-decoration: none;
 }
 
+.hp-product-card__badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+  background: #c62828;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+}
+
 .hp-product-card img,
 .hp-product-card__placeholder {
   width: 100%;
@@ -551,6 +565,15 @@ a:hover {
   border-radius: 0.5rem;
   background: var(--hp-mint);
   margin-bottom: 0.65rem;
+}
+
+.hp-product-card__brand {
+  margin: 0 0 0.2rem;
+  color: var(--hp-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
 }
 
 .hp-product-card h3 {
@@ -563,6 +586,17 @@ a:hover {
   margin: 0;
   font-weight: 700;
   color: var(--hp-primary);
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+
+.hp-product-card__now { color: #c62828; font-weight: 800; }
+.hp-product-card__was {
+  color: var(--hp-muted);
+  text-decoration: line-through;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .hp-product-card__meta,

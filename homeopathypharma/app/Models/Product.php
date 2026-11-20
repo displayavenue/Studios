@@ -87,6 +87,27 @@ class Product extends Model
         return '₹'.number_format($this->currentPricePaise() / 100, 2);
     }
 
+    public function formattedMarketPrice(): string
+    {
+        return '₹'.number_format(((int) $this->price_paise) / 100, 2);
+    }
+
+    public function hasActiveSale(): bool
+    {
+        return $this->sale_price_paise !== null
+            && $this->sale_price_paise < $this->price_paise
+            && $this->currentPricePaise() === (int) $this->sale_price_paise;
+    }
+
+    public function discountPercent(): int
+    {
+        if (! $this->hasActiveSale() || (int) $this->price_paise <= 0) {
+            return 0;
+        }
+
+        return (int) round((1 - ((int) $this->sale_price_paise / (int) $this->price_paise)) * 100);
+    }
+
     public function isPurchasable(): bool
     {
         return $this->status === 'published'

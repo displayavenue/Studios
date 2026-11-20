@@ -51,11 +51,16 @@
                         </div>
                     </div>
                     <div class="hp-prev hp-prev--product" data-preview-panel="product" hidden>
-                        <div class="hp-prev__media hp-prev__media--square" data-hp-imgadj-preview-media></div>
-                        <div class="hp-prev__body">
-                            <strong>Product name</strong>
-                            <small>Brand</small>
-                        </div>
+                        <article class="hp-prod-card hp-prod-card--preview">
+                            <div class="hp-prod-card__media" data-hp-imgadj-preview-media>
+                                <img data-hp-imgadj-preview-img alt="">
+                            </div>
+                            <div class="hp-prod-card__body">
+                                <p class="hp-prod-card__brand" data-hp-imgadj-preview-subtitle>Brand</p>
+                                <h3 data-hp-imgadj-preview-title>Product name</h3>
+                                <p class="hp-prod-card__price"><span class="hp-prod-card__now">₹0.00</span></p>
+                            </div>
+                        </article>
                     </div>
                     <div class="hp-prev hp-prev--hero" data-preview-panel="hero" hidden>
                         <div class="hp-prev__media hp-prev__media--hero" data-hp-imgadj-preview-media></div>
