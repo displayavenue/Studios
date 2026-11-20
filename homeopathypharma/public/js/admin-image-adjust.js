@@ -684,12 +684,180 @@
     });
   }
 
+  function formatInr(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) {
+      return '₹0.00';
+    }
+    return `₹${n.toFixed(2)}`;
+  }
+
+  function syncProductPricingPreview(form) {
+    if (!form) {
+      return;
+    }
+    const mrp = Number(form.querySelector('[data-hp-product-mrp]')?.value || 0);
+    const saleRaw = form.querySelector('[data-hp-product-sale]')?.value;
+    const sale = saleRaw === '' || saleRaw == null ? null : Number(saleRaw);
+    const discountEl = form.querySelector('[data-hp-product-discount-value]');
+    const badge = form.querySelector('[data-hp-product-preview-badge]');
+    const nowEl = form.querySelector('[data-hp-product-preview-now]');
+    const wasEl = form.querySelector('[data-hp-product-preview-was]');
+    const hasSale = sale != null && Number.isFinite(sale) && sale > 0 && sale < mrp;
+    const discount = hasSale && mrp > 0 ? Math.round((1 - sale / mrp) * 100) : 0;
+
+    if (discountEl) {
+      discountEl.textContent = hasSale ? `${discount}% OFF` : '—';
+    }
+    if (nowEl) {
+      nowEl.textContent = formatInr(hasSale ? sale : mrp);
+    }
+    if (wasEl) {
+      if (hasSale) {
+        wasEl.hidden = false;
+        wasEl.textContent = formatInr(mrp);
+      } else {
+        wasEl.hidden = true;
+        wasEl.textContent = '';
+      }
+    }
+    if (badge) {
+      if (hasSale && discount > 0) {
+        badge.hidden = false;
+        badge.textContent = `${discount}% OFF`;
+      } else {
+        badge.hidden = true;
+      }
+    }
+  }
+
+  function syncProductCopyPreview(form) {
+    if (!form) {
+      return;
+    }
+    const name = form.querySelector('[data-hp-product-name]')?.value?.trim() || 'Product name';
+    const brandSelect = form.querySelector('[data-hp-product-brand]');
+    const brand = brandSelect?.selectedOptions?.[0]?.textContent?.trim() || 'Brand';
+    const pack = form.querySelector('[data-hp-product-package]')?.value?.trim() || '';
+    const title = form.querySelector('[data-hp-product-preview-title]');
+    const brandEl = form.querySelector('[data-hp-product-preview-brand]');
+    const packEl = form.querySelector('[data-hp-product-preview-package]');
+    if (title) title.textContent = name;
+    if (brandEl) brandEl.textContent = brand || 'Brand';
+    if (packEl) packEl.textContent = pack;
+  }
+
+  function primaryProductMediaId(form) {
+    const checked = form.querySelector('input[type="checkbox"][name="media_ids[]"]:checked');
+    return checked ? checked.value : '';
+  }
+
+  function updateProductSiteCardImage(form, url) {
+    const img = form.querySelector('[data-hp-product-preview-img]');
+    if (!img) {
+      return;
+    }
+    img.src = url
+      ? bust(url)
+      : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+  }
+
+  function openProductAdjust(mediaId, form, cardImg) {
+    if (!mediaId) {
+      alert('Select or attach a product image first.');
+      return;
+    }
+    fetchMedia(mediaId).then((media) => {
+      open({
+        imageUrl: media.url,
+        mediaId: media.id,
+        mime: media.mime_type || 'image/jpeg',
+        filename: media.original_name || `media-${media.id}.jpg`,
+        preview: 'product',
+        aspect: 1,
+        title: form?.querySelector('[data-hp-product-name]')?.value || 'Product name',
+        subtitle: form?.querySelector('[data-hp-product-brand]')?.selectedOptions?.[0]?.textContent || 'Brand',
+        onApplied: (updated) => {
+          if (cardImg) {
+            cardImg.src = updated.url;
+          }
+          document.querySelectorAll(`[data-hp-product-image-adjust][data-media-id="${media.id}"]`).forEach((btn) => {
+            const img = btn.closest('label')?.querySelector('img');
+            if (img) {
+              img.src = updated.url;
+            }
+          });
+          if (form && String(primaryProductMediaId(form)) === String(media.id)) {
+            updateProductSiteCardImage(form, updated.url);
+          }
+        },
+      });
+    }).catch(() => alert('Could not open image adjuster.'));
+  }
+
+  function enhanceProductForm() {
+    const form = document.querySelector('[data-hp-product-form]');
+    if (!form || form.dataset.hpImgEnhanced === '1') {
+      return;
+    }
+    form.dataset.hpImgEnhanced = '1';
+
+    const refresh = () => {
+      syncProductCopyPreview(form);
+      syncProductPricingPreview(form);
+    };
+
+    ['input', 'change'].forEach((evt) => {
+      form.querySelector('[data-hp-product-name]')?.addEventListener(evt, refresh);
+      form.querySelector('[data-hp-product-brand]')?.addEventListener(evt, refresh);
+      form.querySelector('[data-hp-product-package]')?.addEventListener(evt, refresh);
+      form.querySelector('[data-hp-product-mrp]')?.addEventListener(evt, refresh);
+      form.querySelector('[data-hp-product-sale]')?.addEventListener(evt, refresh);
+    });
+
+    form.querySelectorAll('input[type="checkbox"][name="media_ids[]"]').forEach((input) => {
+      input.addEventListener('change', async () => {
+        const id = primaryProductMediaId(form);
+        if (!id) {
+          updateProductSiteCardImage(form, '');
+          return;
+        }
+        try {
+          const media = await fetchMedia(id);
+          updateProductSiteCardImage(form, media.url);
+        } catch (e) {
+          updateProductSiteCardImage(form, '');
+        }
+      });
+    });
+
+    form.querySelectorAll('[data-hp-product-image-adjust]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = btn.getAttribute('data-media-id');
+        const img = btn.closest('label')?.querySelector('img');
+        openProductAdjust(id, form, img);
+      });
+    });
+
+    form.querySelector('[data-hp-product-preview-adjust]')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      openProductAdjust(primaryProductMediaId(form), form, form.querySelector('[data-hp-product-preview-img]'));
+    });
+
+    refresh();
+  }
+
   function enhanceProductChecks() {
     document.querySelectorAll('input[type="checkbox"][name="media_ids[]"]').forEach((input) => {
       if (input.dataset.hpImgEnhanced === '1') {
         return;
       }
       input.dataset.hpImgEnhanced = '1';
+      if (input.closest('[data-hp-product-form]')) {
+        return;
+      }
       const label = input.closest('label');
       if (!label) {
         return;
@@ -746,6 +914,7 @@
 
   document.querySelectorAll('input[type="file"][accept*="image"]').forEach(enhanceFileInput);
   enhanceMediaCards();
+  enhanceProductForm();
   enhanceProductChecks();
   enhanceSiteCards();
 })();

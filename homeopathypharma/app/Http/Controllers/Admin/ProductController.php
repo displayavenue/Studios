@@ -20,19 +20,30 @@ class ProductController extends Controller
     {
         $q = trim((string) $request->query('q', ''));
         $status = (string) $request->query('status', '');
+        $brandSlug = (string) $request->query('brand', '');
 
         $products = Product::query()
-            ->with('brand')
+            ->with(['brand', 'images.media'])
             ->when($q !== '', fn ($query) => $query->where(function ($inner) use ($q) {
                 $inner->where('name', 'like', "%{$q}%")
                     ->orWhere('sku', 'like', "%{$q}%");
             }))
             ->when($status !== '', fn ($query) => $query->where('status', $status))
+            ->when($brandSlug !== '', fn ($query) => $query->whereHas(
+                'brand',
+                fn ($brand) => $brand->where('slug', $brandSlug)
+            ))
             ->latest()
-            ->paginate(20)
+            ->paginate(24)
             ->withQueryString();
 
-        return view('admin.products.index', compact('products', 'q', 'status'));
+        return view('admin.products.index', [
+            'products' => $products,
+            'q' => $q,
+            'status' => $status,
+            'brandSlug' => $brandSlug,
+            'brands' => Brand::query()->orderBy('name')->get(),
+        ]);
     }
 
     public function create(): View
@@ -50,18 +61,27 @@ class ProductController extends Controller
         $data = $this->validated($request);
         $categoryIds = $data['category_ids'] ?? [];
         $mediaIds = $data['media_ids'] ?? [];
-        unset($data['category_ids'], $data['media_ids'], $data['price_inr'], $data['sale_price_inr']);
+        unset(
+            $data['category_ids'],
+            $data['media_ids'],
+            $data['price_inr'],
+            $data['sale_price_inr'],
+            $data['sale_starts_at_input'],
+            $data['sale_ends_at_input'],
+        );
 
         $product = Product::query()->create($data);
         $product->categories()->sync($categoryIds);
         $this->syncImages($product, $mediaIds);
 
-        return redirect()->route('admin.products.index')->with('status', 'Product created.');
+        return redirect()
+            ->route('admin.products.edit', $product)
+            ->with('status', 'Product created. Adjust the image and pricing below, then save again if needed.');
     }
 
     public function edit(Product $product): View
     {
-        $product->load(['categories', 'images']);
+        $product->load(['categories', 'images.media', 'brand']);
 
         return view('admin.products.form', $this->formData($product));
     }
@@ -71,13 +91,22 @@ class ProductController extends Controller
         $data = $this->validated($request, $product);
         $categoryIds = $data['category_ids'] ?? [];
         $mediaIds = $data['media_ids'] ?? [];
-        unset($data['category_ids'], $data['media_ids'], $data['price_inr'], $data['sale_price_inr']);
+        unset(
+            $data['category_ids'],
+            $data['media_ids'],
+            $data['price_inr'],
+            $data['sale_price_inr'],
+            $data['sale_starts_at_input'],
+            $data['sale_ends_at_input'],
+        );
 
         $product->update($data);
         $product->categories()->sync($categoryIds);
         $this->syncImages($product, $mediaIds);
 
-        return redirect()->route('admin.products.index')->with('status', 'Product updated.');
+        return redirect()
+            ->route('admin.products.edit', $product)
+            ->with('status', 'Product updated. Frontend preview uses the saved image crop and prices.');
     }
 
     public function destroy(Product $product): RedirectResponse
@@ -89,11 +118,24 @@ class ProductController extends Controller
 
     private function formData(Product $product): array
     {
+        $attachedIds = $product->images->pluck('media_asset_id')->filter()->all();
+
+        $attachedMedia = $attachedIds === []
+            ? collect()
+            : MediaAsset::query()->whereIn('id', $attachedIds)->get()->keyBy('id');
+
+        $library = MediaAsset::query()
+            ->when($attachedIds !== [], fn ($q) => $q->whereNotIn('id', $attachedIds))
+            ->latest()
+            ->limit(120)
+            ->get();
+
         return [
             'product' => $product,
             'brands' => Brand::query()->orderBy('name')->get(),
             'categories' => Category::query()->orderBy('name')->get(),
-            'media' => MediaAsset::query()->latest()->limit(80)->get(),
+            'attachedMedia' => $attachedMedia,
+            'libraryMedia' => $library,
         ];
     }
 
@@ -108,6 +150,8 @@ class ProductController extends Controller
             'description' => ['nullable', 'string'],
             'price_inr' => ['required', 'numeric', 'min:0'],
             'sale_price_inr' => ['nullable', 'numeric', 'min:0'],
+            'sale_starts_at_input' => ['nullable', 'date'],
+            'sale_ends_at_input' => ['nullable', 'date', 'after_or_equal:sale_starts_at_input'],
             'stock_qty' => ['required', 'integer', 'min:0'],
             'stock_status' => ['required', 'in:in_stock,out_of_stock,backorder'],
             'package_size' => ['nullable', 'string', 'max:100'],
@@ -128,14 +172,26 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($data['slug'] ?: $data['name']);
         $data['is_featured'] = $request->boolean('is_featured');
         $data['price_paise'] = (int) round(((float) $data['price_inr']) * 100);
-        $data['sale_price_paise'] = $data['sale_price_inr'] !== null && $data['sale_price_inr'] !== ''
+        $data['sale_price_paise'] = isset($data['sale_price_inr']) && $data['sale_price_inr'] !== null && $data['sale_price_inr'] !== ''
             ? (int) round(((float) $data['sale_price_inr']) * 100)
             : null;
 
         if ($data['sale_price_paise'] !== null && $data['sale_price_paise'] >= $data['price_paise']) {
             throw \Illuminate\Validation\ValidationException::withMessages([
-                'sale_price_inr' => 'Sale price must be lower than the regular price.',
+                'sale_price_inr' => 'Sale price must be lower than the market / MRP price.',
             ]);
+        }
+
+        $data['sale_starts_at'] = ! empty($data['sale_starts_at_input'])
+            ? $data['sale_starts_at_input']
+            : null;
+        $data['sale_ends_at'] = ! empty($data['sale_ends_at_input'])
+            ? $data['sale_ends_at_input']
+            : null;
+
+        if ($data['sale_price_paise'] === null) {
+            $data['sale_starts_at'] = null;
+            $data['sale_ends_at'] = null;
         }
 
         if ($data['status'] === 'published' && empty($product?->published_at)) {
