@@ -54,7 +54,7 @@
     var sendTpl = root.getAttribute('data-send-url-template');
     var pollTpl = root.getAttribute('data-poll-url-template');
     var csrf = (document.querySelector('meta[name="csrf-token"]') || {}).content || '';
-    var storageKey = 'hp_chat_uuid_v1';
+    var storageKey = 'hp_chat_uuid_v2';
     var uuid = localStorage.getItem(storageKey) || '';
     var lastId = 0;
     var busy = false;

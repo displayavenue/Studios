@@ -29,6 +29,32 @@ class ChatHistoryTest extends TestCase
             ->assertDontSee('online', false);
     }
 
+    public function test_resuming_chat_refreshes_outdated_welcome_message(): void
+    {
+        $this->seed(SiteSettingsSeeder::class);
+
+        $conversation = ChatConversation::query()->create([
+            'uuid' => (string) \Illuminate\Support\Str::uuid(),
+            'status' => 'open',
+            'last_message_at' => now(),
+        ]);
+        ChatMessage::query()->create([
+            'chat_conversation_id' => $conversation->id,
+            'sender' => 'system',
+            'body' => 'Have a question? We are here to help.',
+        ]);
+        ChatMessage::query()->create([
+            'chat_conversation_id' => $conversation->id,
+            'sender' => 'system',
+            'body' => 'Please share your name so we can assist you.',
+        ]);
+
+        $this->postJson('/chat/api/start', ['uuid' => $conversation->uuid])
+            ->assertOk()
+            ->assertJsonPath('messages.0.body', 'Feel free to share your questions and concerns to us. We are here to help.')
+            ->assertJsonPath('messages.1.body', 'Please share your name so we can assist you.');
+    }
+
     public function test_conversation_history_is_recorded_for_each_message(): void
     {
         Mail::fake();
@@ -38,6 +64,10 @@ class ChatHistoryTest extends TestCase
         $uuid = $start->json('conversation.uuid');
         $this->assertNotEmpty($uuid);
         $this->assertGreaterThanOrEqual(2, count($start->json('messages')));
+        $this->assertSame(
+            'Feel free to share your questions and concerns to us. We are here to help.',
+            $start->json('messages.0.body')
+        );
 
         $this->postJson('/chat/api/'.$uuid.'/messages', ['body' => 'Neha Kapoor'])
             ->assertOk()
