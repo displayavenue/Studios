@@ -85,6 +85,8 @@
     <div class="hp-nav-bar">
         <div class="hp-container hp-nav-bar__row">
             <nav id="site-nav" class="hp-primary-nav" data-nav aria-label="Primary">
+                <a class="hp-nav-link" href="{{ route('home') }}">Home</a>
+
                 <div class="hp-nav-item hp-nav-item--has-menu">
                     <a class="hp-nav-link" href="{{ route('shop.index') }}">
                         Shop by Category
