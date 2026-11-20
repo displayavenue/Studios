@@ -17,7 +17,8 @@ class ImportBrandCatalogCommand extends Command
     protected $signature = 'catalogue:import-brands
         {--brand= : Only import one brand slug (sbl, dr-reckeweg, schwabe)}
         {--limit=0 : Limit products per brand (0 = all)}
-        {--skip-images : Create products without downloading images}';
+        {--skip-images : Create products without downloading images}
+        {--path= : Catalogue directory (defaults to storage/app/imports)}';
 
     protected $description = 'Import SBL, Dr. Reckeweg, and Schwabe product catalogues with images';
 
@@ -29,12 +30,16 @@ class ImportBrandCatalogCommand extends Command
         $only = (string) $this->option('brand');
         $limit = (int) $this->option('limit');
         $skipImages = (bool) $this->option('skip-images');
+        $catalogDir = (string) $this->option('path');
+        if ($catalogDir === '') {
+            $catalogDir = storage_path('app/imports');
+        }
 
         $catalogs = [
             'sbl' => [
                 'name' => 'SBL',
                 'description' => 'Trusted Indian homeopathic brand for everyday remedies.',
-                'file' => 'imports/sbl-catalog.json',
+                'file' => 'sbl-catalog.json',
                 'sort' => 1,
                 'price_paise' => 14900,
                 'manufacturer' => 'SBL Pvt. Ltd.',
@@ -42,7 +47,7 @@ class ImportBrandCatalogCommand extends Command
             'dr-reckeweg' => [
                 'name' => 'Dr. Reckeweg',
                 'description' => 'German quality. Global trust.',
-                'file' => 'imports/reckeweg-catalog.json',
+                'file' => 'reckeweg-catalog.json',
                 'sort' => 2,
                 'price_paise' => 29900,
                 'manufacturer' => 'Dr. Reckeweg & Co. GmbH',
@@ -50,7 +55,7 @@ class ImportBrandCatalogCommand extends Command
             'schwabe' => [
                 'name' => 'Schwabe',
                 'description' => 'Classic homeopathic formulations for family care.',
-                'file' => 'imports/schwabe-catalog.json',
+                'file' => 'schwabe-catalog.json',
                 'sort' => 3,
                 'price_paise' => 19900,
                 'manufacturer' => 'Schwabe India',
@@ -67,7 +72,7 @@ class ImportBrandCatalogCommand extends Command
         }
 
         foreach ($catalogs as $brandSlug => $meta) {
-            $path = storage_path('app/'.$meta['file']);
+            $path = rtrim($catalogDir, '/').'/'.$meta['file'];
             if (! is_file($path)) {
                 $this->error("Missing catalogue file: {$path}");
 

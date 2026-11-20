@@ -16,7 +16,7 @@ class BrandCatalogImportTest extends TestCase
     {
         Storage::fake('public');
 
-        $dir = storage_path('app/imports');
+        $dir = storage_path('framework/testing/brand-catalog-fixtures');
         if (! is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
@@ -34,6 +34,7 @@ class BrandCatalogImportTest extends TestCase
         $this->artisan('catalogue:import-brands', [
             '--brand' => 'sbl',
             '--skip-images' => true,
+            '--path' => $dir,
         ])->assertSuccessful();
 
         $this->assertDatabaseHas('brands', [
