@@ -279,56 +279,51 @@ body {
 
 .hp-nav-bar__row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  /* Equal free space between every section, including the pills */
+  justify-content: space-between;
+  column-gap: clamp(1.1rem, 1.35vw, 1.75rem);
+  row-gap: 0.65rem;
   min-height: 3.1rem;
 }
 
 .hp-nav-bar__right {
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
-  gap: 0.65rem;
-  flex-wrap: nowrap;
-  margin-left: 0.5rem;
+  /* Participate in the parent row’s equal spacing */
+  display: contents;
 }
 
 .hp-nav-link {
   text-decoration: none;
   color: var(--hp-text);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: 0.65rem 0.2rem;
+  padding: 0.65rem 0;
+  flex: 0 0 auto;
 }
 
 .hp-nav-link:hover { color: var(--hp-primary); }
 
 .hp-primary-nav {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0;
-  flex-wrap: nowrap;
-  min-width: 0;
+  /* Flatten into the row so Home…Contact Us and the pills share one spacing rhythm */
+  display: contents;
 }
 
 .hp-nav-item {
   position: relative;
-  flex: 1 1 0;
+  flex: 0 0 auto;
   display: flex;
   justify-content: center;
   min-width: 0;
 }
 
 .hp-primary-nav > .hp-nav-link {
-  flex: 1 1 0;
+  flex: 0 0 auto;
   min-width: 0;
 }
 
@@ -336,7 +331,7 @@ body {
   background: var(--hp-deep);
   color: #fff !important;
   border-radius: 0.4rem;
-  padding: 0.55rem 0.95rem;
+  padding: 0.55rem 1.05rem;
   font-weight: 700;
   font-size: 0.88rem;
   text-decoration: none;
