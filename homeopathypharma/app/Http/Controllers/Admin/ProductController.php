@@ -136,6 +136,25 @@ class ProductController extends Controller
         return back()->with('status', $product->name.' '.$label.'.');
     }
 
+    public function destroyImage(Product $product, ProductImage $productImage): RedirectResponse
+    {
+        if ((int) $productImage->product_id !== (int) $product->id) {
+            abort(404);
+        }
+
+        $productImage->delete();
+
+        $remaining = $product->images()->orderBy('sort_order')->get();
+        foreach ($remaining as $index => $image) {
+            $image->forceFill([
+                'sort_order' => $index,
+                'is_primary' => $index === 0,
+            ])->save();
+        }
+
+        return back()->with('status', 'Image removed. Remaining gallery images stay on the product.');
+    }
+
     private function formData(Product $product): array
     {
         $attachedIds = $product->images->pluck('media_asset_id')->filter()->all();

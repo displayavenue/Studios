@@ -120,42 +120,64 @@ class ImportBrandCatalogCommand extends Command
                 $productSlug = $this->uniqueProductSlug($brandSlug, $sourceSlug);
                 $sku = strtoupper($brandSlug).'-'.Str::upper(Str::limit($sourceSlug, 40, ''));
 
-                $product = Product::query()->updateOrCreate(
-                    ['slug' => $productSlug],
-                    [
-                        'name' => $name,
-                        'sku' => $sku,
-                        'brand_id' => $brand->id,
-                        'short_description' => $meta['name'].' — '.$name,
-                        'description' => $meta['name'].' product: '.$name.'.',
-                        'price_paise' => $meta['price_paise'],
-                        'sale_price_paise' => null,
-                        'stock_qty' => 50,
-                        'stock_status' => 'in_stock',
-                        'manufacturer' => $meta['manufacturer'],
-                        'status' => 'published',
-                        'is_featured' => false,
-                        'is_super_saving' => false,
-                        'seo_title' => $name.' | '.$meta['name'].' | HOMEOPATHY PHARMA',
-                        'seo_description' => 'Buy '.$name.' from '.$meta['name'].' at HOMEOPATHY PHARMA.',
-                        'published_at' => now(),
-                    ]
-                );
+                $product = Product::query()->firstOrNew(['slug' => $productSlug]);
+                $isNew = ! $product->exists;
+                $product->fill([
+                    'name' => $name,
+                    'sku' => $sku,
+                    'brand_id' => $brand->id,
+                    'short_description' => $meta['name'].' — '.$name,
+                    'description' => $meta['name'].' product: '.$name.'.',
+                    'price_paise' => $product->price_paise ?: $meta['price_paise'],
+                    'stock_qty' => $product->stock_qty ?: 50,
+                    'stock_status' => 'in_stock',
+                    'manufacturer' => $meta['manufacturer'],
+                    'status' => 'published',
+                    'seo_title' => $name.' | '.$meta['name'].' | HOMEOPATHY PHARMA',
+                    'seo_description' => 'Buy '.$name.' from '.$meta['name'].' at HOMEOPATHY PHARMA.',
+                    'published_at' => $product->published_at ?: now(),
+                ]);
+                if ($isNew) {
+                    $product->is_featured = false;
+                    $product->is_super_saving = false;
+                    $product->sale_price_paise = null;
+                }
+                $product->save();
 
-                $product->wasRecentlyCreated ? $created++ : $updated++;
+                $isNew ? $created++ : $updated++;
 
-                $imageUrl = trim((string) ($row['image'] ?? ''));
-                if (! $skipImages && $imageUrl !== '' && Str::startsWith($imageUrl, ['http://', 'https://'])) {
-                    $media = $this->mediaFromUrl($imageUrl, $name, $uploader);
-                    if ($media) {
+                if (! $skipImages) {
+                    $imageUrls = [];
+                    $primary = trim((string) ($row['image'] ?? ''));
+                    if ($primary !== '') {
+                        $imageUrls[] = $primary;
+                    }
+                    if (! empty($row['images']) && is_array($row['images'])) {
+                        foreach ($row['images'] as $extra) {
+                            $extra = trim((string) $extra);
+                            if ($extra !== '') {
+                                $imageUrls[] = $extra;
+                            }
+                        }
+                    }
+                    $imageUrls = array_values(array_unique($imageUrls));
+
+                    foreach ($imageUrls as $index => $imageUrl) {
+                        if (! Str::startsWith($imageUrl, ['http://', 'https://'])) {
+                            continue;
+                        }
+                        $media = $this->mediaFromUrl($imageUrl, $name, $uploader);
+                        if (! $media) {
+                            continue;
+                        }
                         ProductImage::query()->updateOrCreate(
                             [
                                 'product_id' => $product->id,
                                 'media_asset_id' => $media->id,
                             ],
                             [
-                                'sort_order' => 0,
-                                'is_primary' => true,
+                                'sort_order' => $index,
+                                'is_primary' => $index === 0,
                             ]
                         );
                         $images++;

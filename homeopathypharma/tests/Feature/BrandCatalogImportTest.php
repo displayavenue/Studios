@@ -26,6 +26,7 @@ class BrandCatalogImportTest extends TestCase
                 'name' => 'Test Arnica 30C',
                 'source_slug' => 'test-arnica-30c',
                 'image' => null,
+                'images' => [],
             ],
         ]));
         file_put_contents($dir.'/reckeweg-catalog.json', json_encode([]));

@@ -170,18 +170,27 @@
                 <p class="admin-muted">Upload new files in the <a href="{{ route('admin.media.index') }}">Media Library</a>, then attach them here.</p>
 
                 <div class="admin-product-images" data-hp-product-images>
-                    @forelse ($selectedIds as $index => $mediaId)
-                        @php($item = $attachedMedia->get($mediaId) ?: $libraryMedia->firstWhere('id', $mediaId))
+                    @forelse ($product->images as $index => $productImage)
+                        @php($item = $productImage->media)
                         @if ($item)
-                            <label class="admin-product-image-card" data-hp-product-image-card>
+                            <div class="admin-product-image-card" data-hp-product-image-card>
                                 <input type="checkbox" name="media_ids[]" value="{{ $item->id }}" checked>
                                 <img src="{{ $item->publicUrl() }}" alt="">
                                 <span class="admin-product-image-card__meta">
-                                    <strong>{{ $index === 0 ? 'Primary' : 'Gallery' }}</strong>
+                                    <strong>{{ $productImage->is_primary || $index === 0 ? 'Primary' : 'Gallery' }}</strong>
                                     <small>#{{ $item->id }}</small>
                                 </span>
-                                <button type="button" class="btn btn-secondary" data-hp-product-image-adjust data-media-id="{{ $item->id }}">Adjust</button>
-                            </label>
+                                <div class="admin-product-image-card__actions">
+                                    <button type="button" class="btn btn-secondary" data-hp-product-image-adjust data-media-id="{{ $item->id }}">Adjust</button>
+                                    @if ($product->exists)
+                                        <form method="post" action="{{ route('admin.products.images.destroy', [$product, $productImage]) }}" onsubmit="return confirm('Remove this image from the product? Other images stay.');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </div>
                         @endif
                     @empty
                         <p class="admin-muted" data-hp-product-images-empty>No images attached yet. Pick from the library below.</p>

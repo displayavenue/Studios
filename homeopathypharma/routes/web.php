@@ -183,6 +183,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('products.toggle-popular');
         Route::post('products/{product}/toggle-super-saving', [AdminProductController::class, 'toggleSuperSaving'])
             ->name('products.toggle-super-saving');
+        Route::delete('products/{product}/images/{productImage}', [AdminProductController::class, 'destroyImage'])
+            ->name('products.images.destroy');
         Route::resource('categories', AdminCategoryController::class)->except(['show']);
         Route::resource('brands', AdminBrandController::class)->except(['show']);
         Route::resource('media', AdminMediaController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
