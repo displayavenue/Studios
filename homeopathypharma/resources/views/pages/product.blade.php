@@ -4,6 +4,10 @@
 @section('meta_description', $product->seo_description ?: $product->short_description)
 
 @section('content')
+@php
+    $gallery = $product->images->filter(fn ($row) => $row->media)->values();
+    $primary = $product->primaryImage();
+@endphp
 <section class="hp-page">
     <div class="hp-container">
         <nav class="hp-breadcrumb" aria-label="Breadcrumb">
@@ -13,10 +17,38 @@
         </nav>
 
         <div class="hp-product-detail">
-            <div>
-                @php($image = $product->primaryImage())
-                @if ($image)
-                    <img class="hp-product-detail__image" src="{{ $image->publicUrl() }}" alt="{{ $image->alt_text ?: $product->name }}">
+            <div class="hp-product-gallery" data-hp-product-gallery>
+                @if ($primary)
+                    <div class="hp-product-gallery__stage" data-hp-zoom-stage>
+                        <img
+                            class="hp-product-detail__image"
+                            data-hp-zoom-main
+                            data-full="{{ $primary->publicUrl() }}"
+                            src="{{ $primary->publicUrl() }}"
+                            alt="{{ $primary->alt_text ?: $product->name }}"
+                            draggable="false"
+                        >
+                    </div>
+                    @if ($gallery->count() > 1)
+                        <div class="hp-product-gallery__thumbs" role="list">
+                            @foreach ($gallery as $row)
+                                @php
+                                    $media = $row->media;
+                                @endphp
+                                <button
+                                    type="button"
+                                    class="hp-product-gallery__thumb {{ $loop->first ? 'is-active' : '' }}"
+                                    data-hp-zoom-thumb
+                                    data-full="{{ $media->publicUrl() }}"
+                                    aria-pressed="{{ $loop->first ? 'true' : 'false' }}"
+                                    aria-label="Show image {{ $loop->iteration }}"
+                                >
+                                    <img src="{{ $media->publicUrl() }}" alt="{{ $media->alt_text ?: $product->name }}">
+                                </button>
+                            @endforeach
+                        </div>
+                    @endif
+                    <p class="hp-muted hp-product-gallery__hint">On desktop, move your cursor over the image to zoom that spot. Move away to reset.</p>
                 @else
                     <div class="hp-product-card__placeholder" style="min-height:16rem;border-radius:0.75rem;"></div>
                 @endif
@@ -73,3 +105,11 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+@php
+    $hpZoomJs = public_path('js/product-image-zoom.js');
+    $hpZoomV = is_file($hpZoomJs) ? filemtime($hpZoomJs) : time();
+@endphp
+<script src="{{ asset('js/product-image-zoom.js') }}?v={{ $hpZoomV }}" defer></script>
+@endpush

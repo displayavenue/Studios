@@ -631,7 +631,71 @@ a:hover {
   width: 100%;
   border-radius: var(--hp-radius);
   border: 1px solid var(--hp-border);
-  background: var(--hp-mint);
+  display: block;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #f4f7f5;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: center center;
+  transition: transform 80ms linear;
+  will-change: transform;
+}
+
+.hp-product-gallery {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hp-product-gallery__stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--hp-radius);
+  background: #f4f7f5;
+  touch-action: none;
+  /* + magnifier cursor over the product image on desktop */
+  cursor: zoom-in;
+}
+
+.hp-product-gallery__stage.is-zooming .hp-product-detail__image {
+  transition: none;
+}
+
+.hp-product-gallery__thumbs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 4.25rem;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.15rem;
+}
+
+.hp-product-gallery__thumb {
+  border: 1px solid var(--hp-border);
+  border-radius: 0.55rem;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1;
+}
+
+.hp-product-gallery__thumb.is-active {
+  border-color: var(--hp-deep);
+  box-shadow: 0 0 0 2px rgb(11 61 58 / 18%);
+}
+
+.hp-product-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #f4f7f5;
+}
+
+.hp-product-gallery__hint {
+  margin: 0;
+  font-size: 0.85rem;
 }
 
 @media (max-width: 760px) {
