@@ -79,6 +79,7 @@ class BrandCatalogImportTest extends TestCase
         $this->assertDatabaseHas('products', [
             'slug' => 'sbl-globules-no-40-1776',
             'name' => 'SBL Globules No - 40',
+            'sku' => 'SBL-GLOBULES-NO-40-1776',
         ]);
         $this->assertDatabaseMissing('products', [
             'slug' => 'sbl-sbl-globules-no-40-1776',

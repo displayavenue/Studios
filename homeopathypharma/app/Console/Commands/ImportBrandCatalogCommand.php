@@ -117,8 +117,9 @@ class ImportBrandCatalogCommand extends Command
                     continue;
                 }
 
+                $normalizedSource = $this->normalizedSourceSlug($brandSlug, $sourceSlug);
                 $productSlug = $this->uniqueProductSlug($brandSlug, $sourceSlug);
-                $sku = strtoupper($brandSlug).'-'.Str::upper(Str::limit($sourceSlug, 40, ''));
+                $sku = strtoupper($brandSlug).'-'.Str::upper(Str::limit($normalizedSource !== '' ? $normalizedSource : $sourceSlug, 40, ''));
 
                 $product = Product::query()->firstOrNew(['slug' => $productSlug]);
                 $isNew = ! $product->exists;
@@ -197,7 +198,7 @@ class ImportBrandCatalogCommand extends Command
         return self::SUCCESS;
     }
 
-    private function uniqueProductSlug(string $brandSlug, string $sourceSlug): string
+    private function normalizedSourceSlug(string $brandSlug, string $sourceSlug): string
     {
         $normalized = Str::slug($sourceSlug);
         $prefix = Str::slug($brandSlug).'-';
@@ -205,6 +206,12 @@ class ImportBrandCatalogCommand extends Command
             $normalized = substr($normalized, strlen($prefix));
         }
 
+        return $normalized;
+    }
+
+    private function uniqueProductSlug(string $brandSlug, string $sourceSlug): string
+    {
+        $normalized = $this->normalizedSourceSlug($brandSlug, $sourceSlug);
         $base = Str::slug($brandSlug.($normalized !== '' ? '-'.$normalized : ''));
         if ($base === '') {
             $base = $brandSlug.'-'.Str::random(8);
