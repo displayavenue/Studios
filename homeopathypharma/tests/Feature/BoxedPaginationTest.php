@@ -40,6 +40,7 @@ class BoxedPaginationTest extends TestCase
         $response->assertSee('hp-pagination__box--current', false);
         $response->assertSee('>1<', false);
         $response->assertSee('page=2', false);
+        $response->assertSee('Showing 1 to 30 products from 35', false);
         // Old previous/next page chevrons removed
         $response->assertDontSee('&laquo;', false);
         $response->assertDontSee('&raquo;', false);
