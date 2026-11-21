@@ -197,7 +197,7 @@ def scrape_reckeweg(row: dict) -> dict | None:
     }
 
 
-def parse_offer_package(label: str) -> str:
+def parse_offer_package(label: str, *, prefer_combo_pair: bool = False) -> str:
     text = clean_text(label)
     if not text:
         return ""
@@ -209,6 +209,9 @@ def parse_offer_package(label: str) -> str:
     if pack:
         n = pack.group(1) or pack.group(2)
         bits.append(f"Pack of {n}")
+    elif prefer_combo_pair and re.search(r"(?i)\bcombo\s*pack\b", text):
+        # Default Schwabe "Combo Pack" (no count) is the 2-item set.
+        bits.append("Pack of 2")
     bogo = re.search(
         r"(?i)\b(?:buy\s*1\s*get\s*1|bogo|b1g1|buy\s*one\s*get\s*one(?:\s*free)?)\b",
         text,
@@ -262,15 +265,25 @@ def parse_schwabe_json_ld(html: str) -> dict:
             if value and any(k in name for k in ["ingredient", "active substance", "composition", "contains"]):
                 prop_ingredient = value
                 break
+        # Use the primary/first offer for pack count so a secondary
+        # "Combo Pack of 4" variant does not override the default 2-item combo.
         package_bits: list[str] = []
-        for offer in (data.get("offers") or []) + (data.get("hasVariant") or []):
-            if not isinstance(offer, dict):
-                continue
-            parsed = parse_offer_package(str(offer.get("name") or ""))
+        offers = [o for o in (data.get("offers") or []) if isinstance(o, dict)]
+        variants = [v for v in (data.get("hasVariant") or []) if isinstance(v, dict)]
+        primary = offers[0] if offers else (variants[0] if variants else None)
+        if primary:
+            parsed = parse_offer_package(str(primary.get("name") or ""), prefer_combo_pair=True)
             if parsed:
-                for part in parsed.split(" · "):
-                    if part and part not in package_bits:
-                        package_bits.append(part)
+                package_bits.extend(part for part in parsed.split(" · ") if part)
+        # Still collect extra bottle sizes from other offers, but ignore other pack counts.
+        for offer in offers[1:] + variants[1:]:
+            parsed = parse_offer_package(str(offer.get("name") or ""))
+            for part in parsed.split(" · "):
+                if not part or part in package_bits:
+                    continue
+                if re.match(r"(?i)^pack of \d+$", part):
+                    continue
+                package_bits.append(part)
         out["description"] = description
         # Benefits must come from real benefits/FAQ copy, never mirrored description.
         out["benefits"] = ""

@@ -169,4 +169,36 @@ class ProductDetailsSectionsTest extends TestCase
             ->assertSee('22ml', false)
             ->assertSee('Pack of 1', false);
     }
+
+    public function test_combo_products_prefer_pack_of_two_over_secondary_variant(): void
+    {
+        $brand = Brand::query()->create([
+            'name' => 'Schwabe',
+            'slug' => 'schwabe',
+            'status' => 'published',
+            'sort_order' => 3,
+        ]);
+
+        $product = Product::query()->create([
+            'name' => 'Shampoo Oil Combo',
+            'slug' => 'schwabe-shampoo-oil-combo-test',
+            'brand_id' => $brand->id,
+            // Stale scraped secondary variant should not win.
+            'package_size' => 'Pack of 4',
+            'description' => 'Shampoo Oil Combo is a powerful combination of two homoeopathic products: B&T Arnica Shampoo and B&T Hair Growth Oil.',
+            'price_paise' => 27000,
+            'stock_qty' => 5,
+            'stock_status' => 'in_stock',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+
+        $this->assertSame(2, $product->resolvePackCount());
+        $this->assertSame('Pack of 2', $product->packagingLabel());
+
+        $this->get('/product/'.$product->slug)
+            ->assertOk()
+            ->assertSee('Pack of 2', false)
+            ->assertDontSee('Pack of 4', false);
+    }
 }

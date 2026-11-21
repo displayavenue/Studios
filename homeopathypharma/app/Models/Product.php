@@ -134,7 +134,8 @@ class Product extends Model
     {
         $bits = [];
         $package = trim((string) $this->package_size);
-        $haystack = trim($this->name.' '.$package);
+        $name = trim((string) $this->name);
+        $haystack = trim($name.' '.$package);
 
         if ($package !== '') {
             // Keep size/offer fragments, but strip any embedded "Pack of N"
@@ -148,13 +149,7 @@ class Product extends Model
             }
         }
 
-        $packCount = 1;
-        if (preg_match('/\bpack\s*of\s*(\d+)\b/i', $haystack, $m)
-            || preg_match('/\bcombo\s*of\s*(\d+)\b/i', $haystack, $m)
-            || preg_match('/\b(\d+)\s*(?:pcs|pieces|nos|bottles)\b/i', $haystack, $m)) {
-            $packCount = max(1, (int) $m[1]);
-        }
-        $bits[] = 'Pack of '.$packCount;
+        $bits[] = 'Pack of '.$this->resolvePackCount();
 
         if (preg_match('/\b(?:buy\s*1\s*get\s*1|bogo|b1g1|buy\s*one\s*get\s*one(?:\s*free)?)\b/i', $haystack)) {
             $bits[] = 'Buy 1 Get 1';
@@ -179,5 +174,44 @@ class Product extends Model
         }
 
         return implode(' · ', $unique);
+    }
+
+    /**
+     * Prefer pack count from the product name / combo meaning.
+     * Avoid inheriting a larger secondary variant (e.g. "Combo Pack of 4")
+     * when the default listing is a 2-item combo.
+     */
+    public function resolvePackCount(): int
+    {
+        $name = trim((string) $this->name);
+        $package = trim((string) $this->package_size);
+        $description = trim((string) $this->description);
+
+        if (preg_match('/\bpack\s*of\s*(\d+)\b/i', $name, $m)
+            || preg_match('/\bcombo\s*of\s*(\d+)\b/i', $name, $m)
+            || preg_match('/\b(\d+)\s*(?:pcs|pieces|nos|bottles)\b/i', $name, $m)) {
+            return max(1, (int) $m[1]);
+        }
+
+        $isCombo = (bool) preg_match('/\bcombo\b/i', $name);
+        $mentionsTwo = (bool) preg_match('/\b(?:combination of two|two (?:products?|items?|bottles?)|2 (?:products?|items?|bottles?))\b/i', $description)
+            || (bool) preg_match('/\bshampoo\b.*\b(?:oil|conditioner)\b|\b(?:oil|conditioner)\b.*\bshampoo\b/i', $name.' '.$description);
+
+        if ($isCombo && $mentionsTwo) {
+            return 2;
+        }
+
+        // Bare "Combo Pack" style titles are usually 2-item sets.
+        if ($isCombo && ! preg_match('/\bpack\s*of\s*\d+\b/i', $name)) {
+            return 2;
+        }
+
+        if (preg_match('/\bpack\s*of\s*(\d+)\b/i', $package, $m)
+            || preg_match('/\bcombo\s*of\s*(\d+)\b/i', $package, $m)
+            || preg_match('/\b(\d+)\s*(?:pcs|pieces|nos|bottles)\b/i', $package, $m)) {
+            return max(1, (int) $m[1]);
+        }
+
+        return 1;
     }
 }
