@@ -19,12 +19,16 @@ class SyncProductGalleryCommand extends Command
         {--skip-scrape : Only use catalogue JSON images; do not scrape product pages}
         {--missing-only : Only attach images to products that currently have none}
         {--homepage-only : Only backfill Popular / Super Saving products that are missing images}
+        {--backfill-all-missing : After sync, attach overrides/donors for any published product still missing images}
         {--path= : Catalogue directory (defaults to storage/app/imports)}';
 
     protected $description = 'Attach catalogue/source gallery images to products and backfill Popular/Super Saving images';
 
     /** @var array<string, int> */
     private array $mediaByHash = [];
+
+    /** @var array<string, list<string>>|null */
+    private ?array $imageOverrides = null;
 
     public function handle(MediaUploader $uploader): int
     {
@@ -37,11 +41,18 @@ class SyncProductGalleryCommand extends Command
             return $this->backfillHomepageImages($uploader, $catalogDir);
         }
 
+        if ($this->option('backfill-all-missing') && ! $this->option('brand') && ! $this->option('missing-only')) {
+            // Allow running overrides/donor pass alone.
+            $this->applyImageOverrides($uploader, $catalogDir);
+            $this->backfillMissingImages($uploader, $catalogDir, homepageOnly: false);
+
+            return self::SUCCESS;
+        }
+
         $only = (string) $this->option('brand');
         $limit = (int) $this->option('limit');
         $skipScrape = (bool) $this->option('skip-scrape');
         $missingOnly = (bool) $this->option('missing-only');
-
         $files = [
             'sbl' => 'sbl-catalog.json',
             'dr-reckeweg' => 'reckeweg-catalog.json',
@@ -145,27 +156,53 @@ class SyncProductGalleryCommand extends Command
         }
 
         $this->line("attached_new_links={$attached} multi_image_products={$multi}");
+        $this->applyImageOverrides($uploader, $catalogDir);
         $this->backfillHomepageImages($uploader, $catalogDir);
+
+        if ($this->option('backfill-all-missing') || $missingOnly) {
+            $this->backfillMissingImages($uploader, $catalogDir, homepageOnly: false);
+        }
 
         return self::SUCCESS;
     }
 
     private function backfillHomepageImages(MediaUploader $uploader, string $catalogDir): int
     {
-        $targets = Product::query()
+        return $this->backfillMissingImages($uploader, $catalogDir, homepageOnly: true);
+    }
+
+    private function backfillMissingImages(MediaUploader $uploader, string $catalogDir, bool $homepageOnly): int
+    {
+        $query = Product::query()
             ->published()
-            ->where(function ($q) {
+            ->with(['images', 'brand']);
+
+        if ($homepageOnly) {
+            $query->where(function ($q) {
                 $q->where('is_featured', true)->orWhere('is_super_saving', true);
-            })
-            ->with(['images', 'brand'])
-            ->get()
+            });
+        }
+
+        $targets = $query->get()
             ->filter(fn (Product $p) => $p->images->isEmpty())
             ->values();
 
-        $this->info('Backfilling homepage products missing images: '.$targets->count());
+        $label = $homepageOnly ? 'homepage' : 'all';
+        $this->info("Backfilling {$label} products missing images: ".$targets->count());
 
         $matched = 0;
         foreach ($targets as $product) {
+            $overrideUrls = $this->overrideUrlsForSlug($product->slug, $catalogDir);
+            if ($overrideUrls !== []) {
+                $added = $this->attachUrls($product, $overrideUrls, $uploader, keepExisting: true);
+                if ($added > 0 || $product->images()->exists()) {
+                    $matched++;
+                    $this->line('  override '.$product->slug.' (+'.$added.')');
+
+                    continue;
+                }
+            }
+
             // Prefer attaching directly from this product's catalogue row.
             $directUrls = $this->urlsForProductSlug($product->slug, $catalogDir);
             if ($directUrls !== []) {
@@ -216,11 +253,87 @@ class SyncProductGalleryCommand extends Command
             }
         }
 
-        $this->info("homepage_image_matches={$matched}");
+        $this->info("{$label}_image_matches={$matched}");
 
         return self::SUCCESS;
     }
 
+    private function applyImageOverrides(MediaUploader $uploader, string $catalogDir): void
+    {
+        $overrides = $this->loadImageOverrides($catalogDir);
+        if ($overrides === []) {
+            return;
+        }
+
+        $this->info('Applying image overrides: '.count($overrides));
+        foreach ($overrides as $slug => $urls) {
+            $product = Product::query()->where('slug', $slug)->first();
+            if (! $product) {
+                continue;
+            }
+            if ($product->images()->exists()) {
+                continue;
+            }
+            $added = $this->attachUrls($product, $urls, $uploader, keepExisting: true);
+            if ($added > 0) {
+                $this->line("  override {$slug} (+{$added})");
+            }
+        }
+    }
+
+    /**
+     * @return array<string, list<string>>
+     */
+    private function loadImageOverrides(string $catalogDir): array
+    {
+        if ($this->imageOverrides !== null) {
+            return $this->imageOverrides;
+        }
+
+        $path = rtrim($catalogDir, '/').'/image-overrides.json';
+        if (! is_file($path)) {
+            $this->imageOverrides = [];
+
+            return $this->imageOverrides;
+        }
+
+        $rows = json_decode((string) file_get_contents($path), true);
+        if (! is_array($rows)) {
+            $this->imageOverrides = [];
+
+            return $this->imageOverrides;
+        }
+
+        $map = [];
+        foreach ($rows as $slug => $urls) {
+            $slug = trim((string) $slug);
+            if ($slug === '') {
+                continue;
+            }
+            $list = [];
+            foreach ((array) $urls as $url) {
+                $url = trim((string) $url);
+                if (Str::startsWith($url, ['http://', 'https://'])) {
+                    $list[] = $url;
+                }
+            }
+            if ($list !== []) {
+                $map[$slug] = array_values(array_unique($list));
+            }
+        }
+
+        $this->imageOverrides = $map;
+
+        return $this->imageOverrides;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function overrideUrlsForSlug(string $productSlug, string $catalogDir): array
+    {
+        return $this->loadImageOverrides($catalogDir)[$productSlug] ?? [];
+    }
     private function findCatalogDonor(Product $product): ?Product
     {
         $brandId = $product->brand_id;
@@ -250,7 +363,8 @@ class SyncProductGalleryCommand extends Command
     private function normalizeName(string $name): string
     {
         $name = Str::lower($name);
-        $name = preg_replace('/\b(dr\.?\s*)?(reckeweg|sbl|schwabe)\b/u', '', $name) ?? $name;
+        $name = preg_replace('/\b(dr\.?\s*)?(reckeweg|sbl|schwabe|bakson|bjain|wheezal|test)\b/u', '', $name) ?? $name;
+        $name = preg_replace('/\b(\d+\s?[xXcC]|cm|lm|ch|mt|q|mother\s*tincture)\b/u', '', $name) ?? $name;
         $name = preg_replace('/[^a-z0-9]+/u', ' ', $name) ?? $name;
 
         return trim(preg_replace('/\s+/', ' ', $name) ?? $name);
@@ -272,6 +386,12 @@ class SyncProductGalleryCommand extends Command
         $overlap = count(array_intersect($tokensA, $tokensB));
         $score += min(20, $overlap * 5);
 
+        $baseA = $this->slugBaseName($slugA);
+        $baseB = $this->slugBaseName($slugB);
+        if ($baseA !== '' && $baseA === $baseB) {
+            $score += 25;
+        }
+
         $tail = Str::after($slugA, '-');
         if ($tail !== '' && Str::contains($slugB, $tail)) {
             $score += 10;
@@ -280,6 +400,42 @@ class SyncProductGalleryCommand extends Command
         return min(100, $score);
     }
 
+    private function slugBaseName(string $slug): string
+    {
+        $slug = Str::lower($slug);
+        $slug = preg_replace('/^(sbl|dr-reckeweg|schwabe|bakson|bjain|wheezal)-/', '', $slug) ?? $slug;
+        $slug = preg_replace('/-(?:\d+x|\d+c|cm|lm|ch|mt|q|\d+m|\d+)$/', '', $slug) ?? $slug;
+
+        return trim($slug, '-');
+    }
+
+    private function bmpToJpeg(string $bytes): ?string
+    {
+        if (! function_exists('imagecreatefromstring') || ! function_exists('imagejpeg')) {
+            return null;
+        }
+
+        $image = @imagecreatefromstring($bytes);
+        if ($image === false && function_exists('imagecreatefrombmp')) {
+            $tmp = tempnam(sys_get_temp_dir(), 'hpbmp');
+            if ($tmp === false) {
+                return null;
+            }
+            file_put_contents($tmp, $bytes);
+            $image = @imagecreatefrombmp($tmp);
+            @unlink($tmp);
+        }
+        if ($image === false) {
+            return null;
+        }
+
+        ob_start();
+        $ok = imagejpeg($image, null, 90);
+        imagedestroy($image);
+        $jpeg = ob_get_clean();
+
+        return ($ok && is_string($jpeg) && $jpeg !== '') ? $jpeg : null;
+    }
     /**
      * @param  array<string, mixed>  $row
      * @return list<string>
@@ -516,12 +672,13 @@ class SyncProductGalleryCommand extends Command
             'image/png' => 'png',
             'image/webp' => 'webp',
             'image/gif' => 'gif',
+            'image/bmp', 'image/x-ms-bmp', 'image/x-bmp' => 'bmp',
             default => null,
         };
 
         if ($ext === null) {
             $pathExt = strtolower(pathinfo(parse_url($url, PHP_URL_PATH) ?: '', PATHINFO_EXTENSION));
-            $ext = in_array($pathExt, ['jpg', 'jpeg', 'png', 'webp', 'gif'], true)
+            $ext = in_array($pathExt, ['jpg', 'jpeg', 'png', 'webp', 'gif', 'bmp'], true)
                 ? ($pathExt === 'jpeg' ? 'jpg' : $pathExt)
                 : null;
             $mime = match ($ext) {
@@ -529,6 +686,7 @@ class SyncProductGalleryCommand extends Command
                 'png' => 'image/png',
                 'webp' => 'image/webp',
                 'gif' => 'image/gif',
+                'bmp' => 'image/bmp',
                 default => null,
             };
         }
@@ -537,6 +695,16 @@ class SyncProductGalleryCommand extends Command
             return null;
         }
 
+        // Store BMP sources as JPEG so the storefront can display them everywhere.
+        if ($ext === 'bmp') {
+            $converted = $this->bmpToJpeg($bytes);
+            if ($converted === null) {
+                return null;
+            }
+            $bytes = $converted;
+            $ext = 'jpg';
+            $mime = 'image/jpeg';
+        }
         $filename = $hash.'.'.$ext;
         $path = 'media/imports/'.substr($hash, 0, 2).'/'.$filename;
         Storage::disk('public')->put($path, $bytes);
