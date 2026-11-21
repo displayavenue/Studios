@@ -23,15 +23,13 @@
             @foreach ($faqs as $index => $faq)
                 @php $n = $index + 1; @endphp
                 <li class="hp-uh-item">
-                    <details class="hp-uh-card" @if ($n === 1) open @endif>
-                        <summary class="hp-uh-card__summary">
-                            <span class="hp-uh-card__num" aria-hidden="true">{{ str_pad((string) $n, 2, '0', STR_PAD_LEFT) }}</span>
+                    <article class="hp-uh-card">
+                        <h2 class="hp-uh-card__heading">
+                            <span class="hp-uh-card__num">{{ str_pad((string) $n, 2, '0', STR_PAD_LEFT) }}</span>
                             <span class="hp-uh-card__q">{{ $faq['question'] }}</span>
-                        </summary>
-                        <div class="hp-uh-card__body">
-                            <p>{{ $faq['answer'] }}</p>
-                        </div>
-                    </details>
+                        </h2>
+                        <p class="hp-uh-card__a">{{ $faq['answer'] }}</p>
+                    </article>
                 </li>
             @endforeach
         </ol>

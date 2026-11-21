@@ -1376,7 +1376,7 @@ a:hover {
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
 .hp-uh-card {
@@ -1384,47 +1384,40 @@ a:hover {
   border-radius: var(--hp-radius);
   background: var(--hp-white);
   box-shadow: var(--hp-shadow);
-  overflow: hidden;
+  padding: 1.25rem 1.35rem 1.35rem;
 }
 
-.hp-uh-card__summary {
+.hp-uh-card__heading {
   display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding: 1rem 1.1rem;
-  cursor: pointer;
-  list-style: none;
-}
-
-.hp-uh-card__summary::-webkit-details-marker {
-  display: none;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 0.85rem;
 }
 
 .hp-uh-card__num {
   flex: 0 0 auto;
-  min-width: 2rem;
-  color: var(--hp-primary);
-  font-weight: 800;
+  color: var(--hp-deep);
+  font-family: var(--hp-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
+  line-height: 1.35;
 }
 
 .hp-uh-card__q {
   flex: 1;
   color: var(--hp-deep);
   font-family: var(--hp-serif);
-  font-size: 1.12rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
   line-height: 1.35;
 }
 
-.hp-uh-card__body {
-  padding: 0 1.1rem 1.15rem 3.95rem;
-  color: var(--hp-text);
-  line-height: 1.65;
-}
-
-.hp-uh-card__body p {
+.hp-uh-card__a {
   margin: 0;
+  color: var(--hp-text);
+  font-size: 0.98rem;
+  line-height: 1.65;
 }
 
 .hp-uh__disclaimer {
@@ -1432,8 +1425,16 @@ a:hover {
 }
 
 @media (max-width: 640px) {
-  .hp-uh-card__body {
-    padding-left: 1.1rem;
+  .hp-uh-card {
+    padding: 1.05rem 1.05rem 1.15rem;
+  }
+
+  .hp-uh-card__heading {
+    gap: 0.55rem;
+  }
+
+  .hp-uh-card__q {
+    font-size: 1.08rem;
   }
 }
 

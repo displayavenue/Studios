@@ -25,6 +25,11 @@ class UnderstandingHomeopathyPageTest extends TestCase
         $response->assertSee('law of similars', false);
         $response->assertSee('CCRH', false);
         $response->assertSee('Educational information only', false);
+        // All answers stay visible (no accordion collapse)
+        $response->assertDontSee('<details', false);
+        $response->assertSee('hp-uh-card__a', false);
+        $response->assertSee('Potentization', false);
+        $response->assertSee('similimum', false);
     }
 
     public function test_knowledge_centre_nav_links_to_understanding_homeopathy(): void
