@@ -22,6 +22,12 @@ class ShopController extends Controller
         }
         $sort = (string) $request->query('sort', 'newest');
 
+        // For Popular / Super Saving "View all", default to brand-mixed order
+        // so one large catalogue cannot fill the first page alone.
+        if ($collection !== '' && ! $request->has('sort')) {
+            $sort = 'brand_mixed';
+        }
+
         $products = Product::query()
             ->published()
             ->with(['brand', 'images.media'])
@@ -41,6 +47,13 @@ class ShopController extends Controller
             ->when($sort === 'price_desc', fn ($query) => $query->orderByDesc('price_paise'))
             ->when($sort === 'name', fn ($query) => $query->orderBy('name'))
             ->when($sort === 'newest', fn ($query) => $query->latest('published_at'))
+            ->when($sort === 'brand_mixed', function ($query) {
+                $query->leftJoin('brands', 'brands.id', '=', 'products.brand_id')
+                    ->orderByRaw('COALESCE(brands.sort_order, 9999)')
+                    ->orderBy('brands.name')
+                    ->orderByDesc('products.published_at')
+                    ->select('products.*');
+            })
             ->paginate(24)
             ->withQueryString();
 

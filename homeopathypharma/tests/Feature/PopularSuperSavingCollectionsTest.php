@@ -35,6 +35,8 @@ class PopularSuperSavingCollectionsTest extends TestCase
         $popular->assertSee('SBL Popular', false);
         $popular->assertDontSee('SBL Regular', false);
         $popular->assertSee('3 product(s)', false);
+        // Default collection sort mixes brands (Bakson before Bjain before SBL by sort_order).
+        $popular->assertSeeInOrder(['Bakson Popular', 'Bjain Popular', 'SBL Popular'], false);
 
         $deals = $this->get('/shop?collection=super-saving')->assertOk();
         $deals->assertSee('Super Saving Deals', false);

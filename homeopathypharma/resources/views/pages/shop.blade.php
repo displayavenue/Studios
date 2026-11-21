@@ -28,6 +28,9 @@
                 @endforeach
             </select>
             <select class="hp-input" name="sort">
+                @if (($collection ?? '') !== '')
+                    <option value="brand_mixed" @selected($sort === 'brand_mixed')>Mixed by brand</option>
+                @endif
                 <option value="newest" @selected($sort === 'newest')>Newest</option>
                 <option value="name" @selected($sort === 'name')>Name</option>
                 <option value="price_asc" @selected($sort === 'price_asc')>Price: low to high</option>

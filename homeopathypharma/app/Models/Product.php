@@ -66,7 +66,7 @@ class Product extends Model
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->where('status', 'published');
+        return $query->where($query->getModel()->getTable().'.status', 'published');
     }
 
     public function currentPricePaise(): int
