@@ -101,4 +101,50 @@ class BrandCatalogImportTest extends TestCase
             ->assertSee('All Brands', false)
             ->assertSee('SBL', false);
     }
+
+    public function test_import_avoids_sku_collisions_for_long_similar_slugs(): void
+    {
+        Storage::fake('public');
+
+        $dir = storage_path('framework/testing/brand-catalog-sku-collision');
+        if (! is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        $longA = str_repeat('mercurius-corrosivus-corrosive-sublimatus-', 2).'10m-aaa';
+        $longB = str_repeat('mercurius-corrosivus-corrosive-sublimatus-', 2).'10m-bbb';
+
+        file_put_contents($dir.'/bakson-catalog.json', json_encode([
+            [
+                'name' => 'Mercurius A',
+                'source_slug' => $longA,
+                'source_id' => 111,
+                'package_size' => '10 ML',
+                'image' => null,
+                'images' => [],
+            ],
+            [
+                'name' => 'Mercurius B',
+                'source_slug' => $longB,
+                'source_id' => 222,
+                'package_size' => '10 ML',
+                'image' => null,
+                'images' => [],
+            ],
+        ]));
+
+        $this->artisan('catalogue:import-brands', [
+            '--brand' => 'bakson',
+            '--skip-images' => true,
+            '--path' => $dir,
+        ])->assertSuccessful();
+
+        $skus = Product::query()
+            ->where('brand_id', Brand::query()->where('slug', 'bakson')->value('id'))
+            ->pluck('sku')
+            ->all();
+
+        $this->assertCount(2, $skus);
+        $this->assertCount(2, array_unique($skus));
+    }
 }

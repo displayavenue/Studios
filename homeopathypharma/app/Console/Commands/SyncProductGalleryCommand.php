@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 class SyncProductGalleryCommand extends Command
 {
     protected $signature = 'catalogue:sync-product-galleries
-        {--brand= : Limit to one brand slug (sbl, dr-reckeweg, schwabe)}
+        {--brand= : Limit to one brand slug (sbl, dr-reckeweg, schwabe, bakson, bjain, wheezal)}
         {--limit=0 : Limit products processed (0 = all)}
         {--skip-scrape : Only use catalogue JSON images; do not scrape product pages}
         {--homepage-only : Only backfill Popular / Super Saving products that are missing images}
@@ -44,6 +44,9 @@ class SyncProductGalleryCommand extends Command
             'sbl' => 'sbl-catalog.json',
             'dr-reckeweg' => 'reckeweg-catalog.json',
             'schwabe' => 'schwabe-catalog.json',
+            'bakson' => 'bakson-catalog.json',
+            'bjain' => 'bjain-catalog.json',
+            'wheezal' => 'wheezal-catalog.json',
         ];
 
         if ($only !== '') {
@@ -155,6 +158,18 @@ class SyncProductGalleryCommand extends Command
 
         $matched = 0;
         foreach ($targets as $product) {
+            // Prefer attaching directly from this product's catalogue row.
+            $directUrls = $this->urlsForProductSlug($product->slug, $catalogDir);
+            if ($directUrls !== []) {
+                $added = $this->attachUrls($product, $directUrls, $uploader, keepExisting: true);
+                if ($added > 0 || $product->images()->exists()) {
+                    $matched++;
+                    $this->line('  catalog '.$product->slug.' (+'.$added.')');
+
+                    continue;
+                }
+            }
+
             $donor = $this->findCatalogDonor($product);
             if (! $donor) {
                 $this->line('  no match for '.$product->slug);
@@ -422,7 +437,14 @@ class SyncProductGalleryCommand extends Command
     /** @return list<string> */
     private function urlsForProductSlug(string $productSlug, string $catalogDir): array
     {
-        foreach (['sbl' => 'sbl-catalog.json', 'dr-reckeweg' => 'reckeweg-catalog.json', 'schwabe' => 'schwabe-catalog.json'] as $brandSlug => $file) {
+        foreach ([
+            'sbl' => 'sbl-catalog.json',
+            'dr-reckeweg' => 'reckeweg-catalog.json',
+            'schwabe' => 'schwabe-catalog.json',
+            'bakson' => 'bakson-catalog.json',
+            'bjain' => 'bjain-catalog.json',
+            'wheezal' => 'wheezal-catalog.json',
+        ] as $brandSlug => $file) {
             $path = rtrim($catalogDir, '/').'/'.$file;
             if (! is_file($path)) {
                 continue;

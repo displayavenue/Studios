@@ -15,15 +15,18 @@ use Illuminate\Support\Str;
 class ImportBrandCatalogCommand extends Command
 {
     protected $signature = 'catalogue:import-brands
-        {--brand= : Only import one brand slug (sbl, dr-reckeweg, schwabe)}
+        {--brand= : Only import one brand slug (sbl, dr-reckeweg, schwabe, bakson, bjain, wheezal)}
         {--limit=0 : Limit products per brand (0 = all)}
         {--skip-images : Create products without downloading images}
         {--path= : Catalogue directory (defaults to storage/app/imports)}';
 
-    protected $description = 'Import SBL, Dr. Reckeweg, and Schwabe product catalogues with images';
+    protected $description = 'Import SBL, Reckeweg, Schwabe, Bakson, Bjain, and Wheezal product catalogues with images';
 
     /** @var array<string, int> */
     private array $mediaByHash = [];
+
+    /** @var array<string, true> */
+    private array $usedSkus = [];
 
     public function handle(MediaUploader $uploader): int
     {
@@ -60,11 +63,35 @@ class ImportBrandCatalogCommand extends Command
                 'price_paise' => 19900,
                 'manufacturer' => 'Schwabe India',
             ],
+            'bakson' => [
+                'name' => 'Bakson',
+                'description' => 'Bakson’s homeopathic specialities, dilutions, and personal care.',
+                'file' => 'bakson-catalog.json',
+                'sort' => 4,
+                'price_paise' => 17900,
+                'manufacturer' => 'Bakson Drugs & Pharmaceuticals Pvt. Ltd.',
+            ],
+            'bjain' => [
+                'name' => 'Bjain',
+                'description' => 'Bjain Pharma dilutions, tonics, and classical remedies.',
+                'file' => 'bjain-catalog.json',
+                'sort' => 5,
+                'price_paise' => 15900,
+                'manufacturer' => 'B. Jain Pharmaceuticals Pvt. Ltd.',
+            ],
+            'wheezal' => [
+                'name' => 'Wheezal',
+                'description' => 'Wheezal specialities, dilutions, and wellness formulations.',
+                'file' => 'wheezal-catalog.json',
+                'sort' => 6,
+                'price_paise' => 16900,
+                'manufacturer' => 'Wheezal Labs',
+            ],
         ];
 
         if ($only !== '') {
             if (! isset($catalogs[$only])) {
-                $this->error("Unknown brand slug [{$only}]. Use sbl, dr-reckeweg, or schwabe.");
+                $this->error('Unknown brand slug ['.$only.']. Use sbl, dr-reckeweg, schwabe, bakson, bjain, or wheezal.');
 
                 return self::FAILURE;
             }
@@ -119,18 +146,36 @@ class ImportBrandCatalogCommand extends Command
 
                 $normalizedSource = $this->normalizedSourceSlug($brandSlug, $sourceSlug);
                 $productSlug = $this->uniqueProductSlug($brandSlug, $sourceSlug);
-                $sku = strtoupper($brandSlug).'-'.Str::upper(Str::limit($normalizedSource !== '' ? $normalizedSource : $sourceSlug, 40, ''));
-
                 $product = Product::query()->firstOrNew(['slug' => $productSlug]);
                 $isNew = ! $product->exists;
+                $sku = $this->uniqueSku(
+                    $brandSlug,
+                    $normalizedSource !== '' ? $normalizedSource : $sourceSlug,
+                    $row['source_id'] ?? null,
+                    $product->exists ? (string) $product->sku : null,
+                    $productSlug
+                );
+
+                $catalogPrice = $this->positiveInt($row['price_paise'] ?? null) ?? $this->positiveInt($row['mrp_paise'] ?? null);
+                $catalogSale = $this->positiveInt($row['sale_price_paise'] ?? null);
+                if ($catalogSale !== null && $catalogPrice !== null && $catalogSale >= $catalogPrice) {
+                    $catalogSale = null;
+                }
+                $packageSize = trim((string) ($row['package_size'] ?? ''));
+                $description = trim((string) ($row['description'] ?? ''));
+                $shortDescription = trim((string) ($row['short_description'] ?? ''));
+
                 $product->fill([
                     'name' => $name,
                     'sku' => $sku,
                     'brand_id' => $brand->id,
-                    'short_description' => $product->short_description ?: ($meta['name'].' — '.$name),
-                    'description' => $product->description ?: ($meta['name'].' product: '.$name.'.'),
+                    'short_description' => $product->short_description
+                        ?: ($shortDescription !== '' ? Str::limit($shortDescription, 220, '…') : ($meta['name'].' — '.$name)),
+                    'description' => $product->description
+                        ?: ($description !== '' ? $description : ($meta['name'].' product: '.$name.'.')),
                     'directions' => $product->directions ?: 'As prescribed by the doctor.',
-                    'price_paise' => $product->price_paise ?: $meta['price_paise'],
+                    'package_size' => $packageSize !== '' ? $packageSize : $product->package_size,
+                    'price_paise' => $product->price_paise ?: ($catalogPrice ?: $meta['price_paise']),
                     'stock_qty' => $product->stock_qty ?: 50,
                     'stock_status' => 'in_stock',
                     'manufacturer' => $meta['manufacturer'],
@@ -142,7 +187,12 @@ class ImportBrandCatalogCommand extends Command
                 if ($isNew) {
                     $product->is_featured = false;
                     $product->is_super_saving = false;
-                    $product->sale_price_paise = null;
+                    $product->sale_price_paise = $catalogSale;
+                } elseif ($product->sale_price_paise === null && $catalogSale !== null) {
+                    $product->sale_price_paise = $catalogSale;
+                }
+                if ($packageSize !== '' && blank($product->package_size)) {
+                    $product->package_size = $packageSize;
                 }
                 $product->save();
 
@@ -219,6 +269,73 @@ class ImportBrandCatalogCommand extends Command
         }
 
         return Str::limit($base, 180, '');
+    }
+
+    private function uniqueSku(
+        string $brandSlug,
+        string $sourceSlug,
+        mixed $sourceId = null,
+        ?string $existingSku = null,
+        ?string $productSlug = null
+    ): string {
+        $prefix = Str::upper($brandSlug);
+        $body = Str::upper(Str::slug($sourceSlug, '-'));
+        if ($body === '') {
+            $body = 'ITEM';
+        }
+
+        $candidate = $prefix.'-'.Str::limit($body, 40, '');
+        if ($existingSku && $existingSku === $candidate) {
+            $this->usedSkus[$candidate] = true;
+
+            return $candidate;
+        }
+
+        if (! $this->skuTaken($candidate, $productSlug)) {
+            $this->usedSkus[$candidate] = true;
+
+            return $candidate;
+        }
+
+        $suffix = ($sourceId !== null && $sourceId !== '')
+            ? preg_replace('/[^A-Za-z0-9]/', '', (string) $sourceId)
+            : Str::upper(substr(sha1($brandSlug.'|'.$sourceSlug), 0, 8));
+        $candidate = $prefix.'-'.Str::limit($body, 28, '').'-'.$suffix;
+        $n = 1;
+        while ($this->skuTaken($candidate, $productSlug)) {
+            $candidate = $prefix.'-'.Str::limit($body, 24, '').'-'.$suffix.'-'.$n;
+            $n++;
+        }
+        $this->usedSkus[$candidate] = true;
+
+        return $candidate;
+    }
+
+    private function skuTaken(string $sku, ?string $productSlug = null): bool
+    {
+        if (isset($this->usedSkus[$sku])) {
+            return true;
+        }
+
+        $query = Product::query()->where('sku', $sku);
+        if ($productSlug) {
+            $query->where('slug', '!=', $productSlug);
+        }
+
+        return $query->exists();
+    }
+
+    private function positiveInt(mixed $value): ?int
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+        if (! is_numeric($value)) {
+            return null;
+        }
+        $int = (int) round((float) $value);
+
+        return $int > 0 ? $int : null;
     }
 
     private function mediaFromUrl(string $url, string $altText, MediaUploader $uploader): ?MediaAsset

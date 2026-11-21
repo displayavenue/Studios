@@ -114,10 +114,14 @@ echo "==> Remote backup of public_html"
 echo "==> Ensure remote laravel directory"
 "${SSH[@]}" "mkdir -p ~/$REMOTE_BASE/laravel"
 
-echo "==> Upload application (rsync)"
+echo "==> Upload application (rsync; preserve remote SQLite catalogue DB)"
 rsync -az --delete \
   -e "$RSYNC_RSH" \
   --exclude='.git' \
+  --exclude='database/database.sqlite' \
+  --exclude='database/database.sqlite-journal' \
+  --exclude='database/database.sqlite-wal' \
+  --exclude='database/database.sqlite-shm' \
   "$LOCAL_BUNDLE/" "$HOST:~/$REMOTE_BASE/laravel/"
 
 echo "==> Remote install, migrate, wire document root"
@@ -127,9 +131,11 @@ APP="$HOME/$REMOTE_BASE/laravel"
 PUB="$HOME/$REMOTE_BASE/public_html"
 cd "$APP"
 
-# Absolute sqlite path in .env
+# Absolute sqlite path in .env — create only if missing so catalogue data survives deploys
 DB_FILE="$APP/database/database.sqlite"
-touch "$DB_FILE"
+if [ ! -f "$DB_FILE" ]; then
+  touch "$DB_FILE"
+fi
 # Rewrite DB path line
 if grep -q '^DB_DATABASE=' .env; then
   sed -i "s|^DB_DATABASE=.*|DB_DATABASE=$DB_FILE|" .env

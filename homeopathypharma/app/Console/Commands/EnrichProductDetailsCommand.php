@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class EnrichProductDetailsCommand extends Command
 {
     protected $signature = 'catalogue:enrich-product-details
-        {--brand= : Only enrich one brand slug (sbl, dr-reckeweg, schwabe)}
+        {--brand= : Only enrich one brand slug (sbl, dr-reckeweg, schwabe, bakson, bjain, wheezal)}
         {--path= : Enrichment JSON path (defaults to storage/app/imports/product-details.json)}
         {--limit=0 : Limit products updated (0 = all)}
         {--dry-run : Show counts without writing}';
@@ -131,7 +131,7 @@ class EnrichProductDetailsCommand extends Command
         if (! $dryRun) {
             $brandIds = Brand::query()
                 ->when($only !== '', fn ($q) => $q->where('slug', $only))
-                ->whereIn('slug', ['sbl', 'dr-reckeweg', 'schwabe'])
+                ->whereIn('slug', ['sbl', 'dr-reckeweg', 'schwabe', 'bakson', 'bjain', 'wheezal'])
                 ->pluck('id');
 
             Product::query()
