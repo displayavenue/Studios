@@ -199,7 +199,13 @@ class ImportBrandCatalogCommand extends Command
 
     private function uniqueProductSlug(string $brandSlug, string $sourceSlug): string
     {
-        $base = Str::slug($brandSlug.'-'.$sourceSlug);
+        $normalized = Str::slug($sourceSlug);
+        $prefix = Str::slug($brandSlug).'-';
+        if ($normalized !== '' && str_starts_with($normalized, $prefix)) {
+            $normalized = substr($normalized, strlen($prefix));
+        }
+
+        $base = Str::slug($brandSlug.($normalized !== '' ? '-'.$normalized : ''));
         if ($base === '') {
             $base = $brandSlug.'-'.Str::random(8);
         }
