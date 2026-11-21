@@ -199,7 +199,7 @@
                     <h2>{{ $featured->title ?? 'Popular Homeopathic Medicines' }}</h2>
                     <p>{{ $featured->subtitle ?? 'Everyday essentials from trusted brands.' }}</p>
                 </div>
-                <a class="hp-text-link" href="{{ $featuredData['view_all_href'] ?? route('shop.index') }}">{{ $featuredData['view_all_label'] ?? 'View all' }}</a>
+                <a class="hp-text-link" href="{{ route('shop.index', ['collection' => 'popular']) }}">{{ $featuredData['view_all_label'] ?? 'View all' }}</a>
             </div>
             @if ($featuredProducts->isEmpty())
                 <div class="hp-empty">Mark products as Popular in admin to show them here.</div>
@@ -218,7 +218,7 @@
                     <h2>{{ $deals->title ?? 'Super Saving Deals' }}</h2>
                     <p>{{ $deals->subtitle ?? 'Limited-time savings on selected medicines.' }}</p>
                 </div>
-                <a class="hp-text-link" href="{{ $dealsData['view_all_href'] ?? route('shop.index', ['sort' => 'price_asc']) }}">{{ $dealsData['view_all_label'] ?? 'See deals' }}</a>
+                <a class="hp-text-link" href="{{ route('shop.index', ['collection' => 'super-saving']) }}">{{ $dealsData['view_all_label'] ?? 'See deals' }}</a>
             </div>
             @if ($dealProducts->isEmpty())
                 <div class="hp-empty">Mark products as Super Saving in admin to show them here.</div>
