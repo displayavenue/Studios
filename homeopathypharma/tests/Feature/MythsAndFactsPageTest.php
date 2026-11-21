@@ -22,14 +22,15 @@ class MythsAndFactsPageTest extends TestCase
 
         $response->assertOk()
             ->assertSee('Myths vs Facts', false)
-            ->assertSee('A to Z Diseases', false)
-            ->assertSee('Area of Consultation', false)
+            ->assertDontSee('Health education', false)
+            ->assertDontSee('hp-breadcrumb', false)
+            ->assertDontSee('hp-mvf__actions', false)
+            ->assertDontSee('hp-mvf__tag', false)
             ->assertSee('Myth 01', false)
             ->assertSee('Show fact', false)
             ->assertSee('hp-mvf__timeline', false)
             ->assertSee('hp-mvf-card', false)
-            ->assertSee('hp-mvf-fact', false)
-            ->assertDontSee('min(72vh', false);
+            ->assertSee('hp-mvf-fact', false);
 
         preg_match_all('/data-mvf-card/', $response->getContent(), $matches);
         $this->assertGreaterThanOrEqual(20, count($matches[0]));

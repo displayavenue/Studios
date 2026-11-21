@@ -1111,17 +1111,13 @@ a:hover {
   margin: 0 0 1.35rem;
 }
 
-.hp-mvf__crumb {
-  margin-bottom: 0.85rem;
-}
-
 .hp-mvf__header h1 {
   margin: 0 0 0.35rem;
   font-family: var(--hp-font);
   font-size: clamp(1.85rem, 4.5vw, 2.6rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #1f2421;
+  color: var(--hp-deep);
   line-height: 1.12;
 }
 
@@ -1134,24 +1130,11 @@ a:hover {
 .hp-mvf__meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1rem;
   padding-bottom: 0.85rem;
   border-bottom: 1px solid #ddd8cf;
   margin-bottom: 0.9rem;
-}
-
-.hp-mvf__tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  background: #e8e4db;
-  color: #3d4540;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .hp-mvf__count {
@@ -1159,10 +1142,6 @@ a:hover {
   font-size: 0.9rem;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
-}
-
-.hp-mvf__actions {
-  margin-top: 0.15rem;
 }
 
 .hp-mvf__timeline {

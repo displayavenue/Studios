@@ -11,22 +11,12 @@
 <section class="hp-mvf" aria-labelledby="hp-mvf-title">
     <div class="hp-mvf__frame">
         <header class="hp-mvf__header">
-            <nav class="hp-breadcrumb hp-mvf__crumb" aria-label="Breadcrumb">
-                <a href="{{ route('home') }}">Home</a> /
-                <a href="{{ route('conditions.index') }}">Conditions</a> /
-                <span>Myths vs Facts</span>
-            </nav>
             <h1 id="hp-mvf-title">Myths vs Facts</h1>
             <p class="hp-mvf__lead">Let’s separate common beliefs about homeopathy from clearer facts.</p>
             <div class="hp-mvf__meta">
-                <span class="hp-mvf__tag">Health education</span>
                 <span class="hp-mvf__count" data-mvf-count>
                     01 — {{ str_pad((string) max($total, 1), 2, '0', STR_PAD_LEFT) }}
                 </span>
-            </div>
-            <div class="hp-btn-row hp-mvf__actions">
-                <a class="hp-btn hp-btn--secondary" href="{{ route('conditions.index') }}">A to Z Diseases</a>
-                <a class="hp-btn hp-btn--primary" href="{{ route('area-of-consultation') }}">Area of Consultation</a>
             </div>
         </header>
 
