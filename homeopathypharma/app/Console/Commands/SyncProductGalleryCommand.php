@@ -17,6 +17,7 @@ class SyncProductGalleryCommand extends Command
         {--brand= : Limit to one brand slug (sbl, dr-reckeweg, schwabe, bakson, bjain, wheezal)}
         {--limit=0 : Limit products processed (0 = all)}
         {--skip-scrape : Only use catalogue JSON images; do not scrape product pages}
+        {--missing-only : Only attach images to products that currently have none}
         {--homepage-only : Only backfill Popular / Super Saving products that are missing images}
         {--path= : Catalogue directory (defaults to storage/app/imports)}';
 
@@ -39,6 +40,7 @@ class SyncProductGalleryCommand extends Command
         $only = (string) $this->option('brand');
         $limit = (int) $this->option('limit');
         $skipScrape = (bool) $this->option('skip-scrape');
+        $missingOnly = (bool) $this->option('missing-only');
 
         $files = [
             'sbl' => 'sbl-catalog.json',
@@ -100,9 +102,15 @@ class SyncProductGalleryCommand extends Command
                     continue;
                 }
 
-                $productSlug = Str::limit(Str::slug($brandSlug.'-'.$sourceSlug), 180, '');
+                $productSlug = $this->productSlugForCatalog($brandSlug, $sourceSlug);
                 $product = Product::query()->where('slug', $productSlug)->first();
                 if (! $product) {
+                    $bar->advance();
+
+                    continue;
+                }
+
+                if ($missingOnly && $product->images()->exists()) {
                     $bar->advance();
 
                     continue;
@@ -458,7 +466,7 @@ class SyncProductGalleryCommand extends Command
                     continue;
                 }
                 $sourceSlug = (string) ($row['source_slug'] ?? '');
-                $slug = Str::limit(Str::slug($brandSlug.'-'.$sourceSlug), 180, '');
+                $slug = $this->productSlugForCatalog($brandSlug, $sourceSlug);
                 if ($slug === $productSlug) {
                     return $this->collectImageUrls($row, null, $brandSlug);
                 }
@@ -559,5 +567,25 @@ class SyncProductGalleryCommand extends Command
         $this->mediaByHash[$hash] = $asset->id;
 
         return $asset;
+    }
+
+    /**
+     * Match ImportBrandCatalogCommand slug rules so catalogue rows resolve
+     * even when the source handle already includes the brand prefix.
+     */
+    private function productSlugForCatalog(string $brandSlug, string $sourceSlug): string
+    {
+        $normalized = Str::slug($sourceSlug);
+        $prefix = Str::slug($brandSlug).'-';
+        if ($normalized !== '' && str_starts_with($normalized, $prefix)) {
+            $normalized = substr($normalized, strlen($prefix));
+        }
+
+        $base = Str::slug($brandSlug.($normalized !== '' ? '-'.$normalized : ''));
+        if ($base === '') {
+            $base = $brandSlug.'-item';
+        }
+
+        return Str::limit($base, 180, '');
     }
 }
