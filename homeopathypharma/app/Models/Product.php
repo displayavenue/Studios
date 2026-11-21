@@ -128,42 +128,56 @@ class Product extends Model
 
     /**
      * Bottle/pack/offer line shown under the product title.
+     * Always includes Pack of N (defaults to Pack of 1).
      */
-    public function packagingLabel(): ?string
+    public function packagingLabel(): string
     {
         $bits = [];
         $package = trim((string) $this->package_size);
         $haystack = trim($this->name.' '.$package);
 
         if ($package !== '') {
-            $bits[] = $package;
+            // Keep size/offer fragments, but strip any embedded "Pack of N"
+            // so we can append a single canonical pack label.
+            foreach (preg_split('/\s*·\s*/', $package) ?: [] as $part) {
+                $part = trim((string) $part);
+                if ($part === '' || preg_match('/^pack\s*of\s*\d+$/i', $part)) {
+                    continue;
+                }
+                $bits[] = $part;
+            }
         }
 
+        $packCount = 1;
         if (preg_match('/\bpack\s*of\s*(\d+)\b/i', $haystack, $m)
             || preg_match('/\bcombo\s*of\s*(\d+)\b/i', $haystack, $m)
             || preg_match('/\b(\d+)\s*(?:pcs|pieces|nos|bottles)\b/i', $haystack, $m)) {
-            $label = 'Pack of '.$m[1];
-            if (! collect($bits)->contains(fn ($bit) => str_contains(Str::lower($bit), Str::lower($label)))) {
-                $bits[] = $label;
-            }
+            $packCount = max(1, (int) $m[1]);
         }
+        $bits[] = 'Pack of '.$packCount;
 
         if (preg_match('/\b(?:buy\s*1\s*get\s*1|bogo|b1g1|buy\s*one\s*get\s*one(?:\s*free)?)\b/i', $haystack)) {
-            if (! collect($bits)->contains(fn ($bit) => str_contains(Str::lower($bit), 'buy 1 get 1'))) {
-                $bits[] = 'Buy 1 Get 1';
-            }
+            $bits[] = 'Buy 1 Get 1';
         }
 
-        // Deduplicate overlapping fragments while preserving order.
         $unique = [];
         foreach ($bits as $bit) {
             $normalized = Str::lower(trim($bit));
-            if ($normalized === '' || in_array($normalized, array_map(Str::lower(...), $unique), true)) {
+            if ($normalized === '') {
                 continue;
             }
-            $unique[] = trim($bit);
+            $exists = false;
+            foreach ($unique as $existing) {
+                if (Str::lower($existing) === $normalized) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (! $exists) {
+                $unique[] = trim($bit);
+            }
         }
 
-        return $unique === [] ? null : implode(' · ', $unique);
+        return implode(' · ', $unique);
     }
 }

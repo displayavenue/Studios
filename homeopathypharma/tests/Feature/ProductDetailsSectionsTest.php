@@ -108,7 +108,8 @@ class ProductDetailsSectionsTest extends TestCase
             ->assertOk()
             ->assertSee('Description', false)
             ->assertDontSee('<h2>Benefits</h2>', false)
-            ->assertSee('30 ml', false);
+            ->assertSee('30 ml', false)
+            ->assertSee('Pack of 1', false);
     }
 
     public function test_product_page_shows_pack_and_offer_under_name(): void
@@ -137,5 +138,35 @@ class ProductDetailsSectionsTest extends TestCase
             ->assertOk()
             ->assertSee('25 g', false)
             ->assertSee('Pack of 3', false);
+    }
+
+    public function test_product_page_defaults_to_pack_of_one(): void
+    {
+        $brand = Brand::query()->create([
+            'name' => 'Dr. Reckeweg',
+            'slug' => 'dr-reckeweg',
+            'status' => 'published',
+            'sort_order' => 2,
+        ]);
+
+        $product = Product::query()->create([
+            'name' => 'R1 Inflammation Drops',
+            'slug' => 'dr-reckeweg-r1-pack-one',
+            'brand_id' => $brand->id,
+            'package_size' => '22ml',
+            'description' => 'Inflammation drops.',
+            'price_paise' => 14900,
+            'stock_qty' => 5,
+            'stock_status' => 'in_stock',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+
+        $this->assertSame('22ml · Pack of 1', $product->packagingLabel());
+
+        $this->get('/product/'.$product->slug)
+            ->assertOk()
+            ->assertSee('22ml', false)
+            ->assertSee('Pack of 1', false);
     }
 }

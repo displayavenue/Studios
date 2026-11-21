@@ -55,9 +55,7 @@
             </div>
             <div>
                 <h1>{{ $product->name }}</h1>
-                @if ($product->packagingLabel())
-                    <p class="hp-product-packaging">{{ $product->packagingLabel() }}</p>
-                @endif
+                <p class="hp-product-packaging">{{ $product->packagingLabel() }}</p>
                 @if ($product->brand)
                     <p class="hp-muted">Brand: {{ $product->brand->name }}</p>
                 @endif
