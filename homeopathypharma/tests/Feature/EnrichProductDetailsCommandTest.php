@@ -44,6 +44,7 @@ class EnrichProductDetailsCommandTest extends TestCase
                 'product_slug' => 'schwabe-abelmoschus',
                 'description' => 'Fresh description from brand site.',
                 'benefits' => 'Useful for nervous debility.',
+                'ingredients' => 'Abelmoschus (Source: Musk Mallow)',
                 'dosage' => 'As prescribed by the doctor.',
                 'safety' => 'Keep out of reach of children.',
             ],
@@ -57,6 +58,7 @@ class EnrichProductDetailsCommandTest extends TestCase
         $product->refresh();
         $this->assertSame('Fresh description from brand site.', $product->description);
         $this->assertSame('Useful for nervous debility.', $product->benefits);
+        $this->assertSame('Abelmoschus (Source: Musk Mallow)', $product->ingredients);
         $this->assertSame('As prescribed by the doctor.', $product->directions);
         $this->assertSame('Keep out of reach of children.', $product->warnings);
     }

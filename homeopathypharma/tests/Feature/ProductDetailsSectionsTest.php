@@ -29,6 +29,7 @@ class ProductDetailsSectionsTest extends TestCase
             'short_description' => 'Short copy',
             'description' => 'Full product description from brand site.',
             'benefits' => 'Helps with bruises and soft-tissue injury.',
+            'ingredients' => 'Arnica montana.',
             'directions' => 'As prescribed by the doctor.',
             'warnings' => 'Keep out of reach of children.',
             'price_paise' => 14900,
@@ -47,7 +48,9 @@ class ProductDetailsSectionsTest extends TestCase
             ->assertSee('Dosage', false)
             ->assertSee('As prescribed by the doctor.', false)
             ->assertSee('Safety information', false)
-            ->assertSee('Keep out of reach of children.', false);
+            ->assertSee('Keep out of reach of children.', false)
+            ->assertSee('Ingredients', false)
+            ->assertSee('Arnica montana.', false);
     }
 
     public function test_product_page_always_shows_dosage_fallback(): void

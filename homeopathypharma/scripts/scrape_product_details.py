@@ -51,6 +51,22 @@ def strip_trailing_q(text: str) -> str:
     return text.strip()
 
 
+def extract_section(text: str, labels: list[str]) -> str:
+    if not text:
+        return ""
+    pattern = (
+        r"(?is)\b(?:"
+        + "|".join(re.escape(label) for label in labels)
+        + r")\b\s*:?\s*(.*?)(?=(?:\n\s*)?\b(?:INDICATIONS?|DOSAGE|DOSE|MODE OF ACTION|REMARKS?|"
+        r"PRESENTATION|PACKAGE|SIZE|WARNING|PRECAUTION|SIDE EFFECTS?|BENEFITS?|USES?|"
+        r"COMPOSITION|INGREDIENTS?|CONTENTS?)\b|$)"
+    )
+    match = re.search(pattern, text)
+    if not match:
+        return ""
+    return clean_text(match.group(1))
+
+
 def load_catalog(name: str) -> list[dict]:
     path = IMPORTS / f"{name}-catalog.json"
     return json.loads(path.read_text())
@@ -144,19 +160,31 @@ def scrape_reckeweg(row: dict) -> dict | None:
                 benefits = a
                 break
 
+    raw_desc = product.get("products_description") or product.get("brief_description") or ""
+    ingredients = extract_section(
+        raw_desc if isinstance(raw_desc, str) else "",
+        ["INGREDIENTS", "INGREDIENT", "COMPOSITION", "CONTENTS", "FORMULA"],
+    )
+    if not ingredients:
+        ingredients = extract_section(
+            description,
+            ["INGREDIENTS", "INGREDIENT", "COMPOSITION", "CONTENTS", "FORMULA"],
+        )
+
     return {
         "brand": "dr-reckeweg",
         "source_slug": row["source_slug"],
         "url": url,
         "description": description,
         "benefits": benefits,
+        "ingredients": ingredients,
         "dosage": DOSAGE,
         "safety": "\n\n".join(p for p in safety_parts if p),
     }
 
 
 def parse_schwabe_json_ld(html: str) -> dict:
-    out = {"description": "", "benefits": "", "safety": ""}
+    out = {"description": "", "benefits": "", "safety": "", "ingredients": ""}
     for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', html, re.S | re.I):
         try:
             data = json.loads(m.group(1))
@@ -172,16 +200,28 @@ def parse_schwabe_json_ld(html: str) -> dict:
         warning = clean_text(data.get("warning") or "")
         dose = data.get("doseSchedule") if isinstance(data.get("doseSchedule"), dict) else {}
         dose_note = clean_text(dose.get("frequency") or "")
+        active = clean_text(data.get("activeIngredient") or "")
+        nonprop = clean_text(data.get("nonProprietaryName") or "")
+        prop_ingredient = ""
+        for prop in data.get("additionalProperty") or []:
+            if not isinstance(prop, dict):
+                continue
+            name = clean_text(prop.get("name") or "").lower()
+            value = clean_text(prop.get("value") or "")
+            if value and any(k in name for k in ["ingredient", "active substance", "composition", "contains"]):
+                prop_ingredient = value
+                break
         out["description"] = description
         # Schema description usually encodes uses/benefits copy.
         out["benefits"] = description
+        out["ingredients"] = active or prop_ingredient or nonprop
         safety_bits = []
         if warning:
             safety_bits.append(warning)
         if dose_note and "medical supervision" in dose_note.lower():
             safety_bits.append(dose_note)
         out["safety"] = "\n".join(safety_bits)
-        if out["description"] or out["safety"]:
+        if out["description"] or out["safety"] or out["ingredients"]:
             return out
     return out
 
@@ -227,6 +267,7 @@ def scrape_schwabe(row: dict) -> dict | None:
     precaution = find_answer("precautions")
     children = next((a for q, a in qa.items() if "children" in q.lower()), "")
     pregnancy = next((a for q, a in qa.items() if "pregnancy" in q.lower()), "")
+    ingredients = ""
 
     safety_bits = []
     if side:
@@ -238,13 +279,22 @@ def scrape_schwabe(row: dict) -> dict | None:
     if pregnancy:
         safety_bits.append(f"Pregnancy: {pregnancy}")
 
+    ld = parse_schwabe_json_ld(html)
     if not any([description, benefits, safety_bits]):
-        ld = parse_schwabe_json_ld(html)
         description = ld["description"]
         benefits = ld["benefits"]
         safety_bits = [ld["safety"]] if ld["safety"] else []
+    ingredients = ld.get("ingredients") or ""
+    if not ingredients and description:
+        # e.g. "prepared from the herb Wolf's Bane"
+        made = re.search(
+            r"(?i)(?:prepared from|made from|source[:\s]+)\s*([^.;]+)",
+            description,
+        )
+        if made:
+            ingredients = clean_text(made.group(0))
 
-    if not any([description, benefits, safety_bits]):
+    if not any([description, benefits, safety_bits, ingredients]):
         return None
 
     return {
@@ -253,6 +303,7 @@ def scrape_schwabe(row: dict) -> dict | None:
         "url": url,
         "description": description,
         "benefits": benefits,
+        "ingredients": ingredients,
         "dosage": DOSAGE,
         "safety": "\n".join(b for b in safety_bits if b),
     }
@@ -269,6 +320,7 @@ def scrape_sbl(row: dict, sort_map: dict[str, str]) -> dict:
         "url": row.get("url") or f"https://sblglobal.com/product/{slug}",
         "description": description,
         "benefits": "",
+        "ingredients": "",
         "dosage": DOSAGE,
         "safety": "",
     }

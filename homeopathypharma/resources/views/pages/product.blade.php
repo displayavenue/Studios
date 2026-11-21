@@ -106,7 +106,7 @@
             @endif
             @if ($product->ingredients)
                 <section class="hp-product-info__block">
-                    <h2>Composition</h2>
+                    <h2>Ingredients</h2>
                     <div class="hp-product-info__body">{!! nl2br(e($product->ingredients)) !!}</div>
                 </section>
             @endif

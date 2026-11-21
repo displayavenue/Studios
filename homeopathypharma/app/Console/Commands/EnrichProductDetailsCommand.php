@@ -90,6 +90,7 @@ class EnrichProductDetailsCommand extends Command
 
             $description = $this->cleanText($row['description'] ?? null);
             $benefits = $this->cleanText($row['benefits'] ?? null);
+            $ingredients = $this->cleanText($row['ingredients'] ?? $row['composition'] ?? null);
             $safety = $this->cleanText($row['safety'] ?? $row['warnings'] ?? null);
             $dosage = $this->cleanText($row['dosage'] ?? null) ?: self::DOSAGE;
 
@@ -102,6 +103,7 @@ class EnrichProductDetailsCommand extends Command
             $product->fill([
                 'description' => $description ?: $product->description,
                 'benefits' => $benefits ?: $product->benefits,
+                'ingredients' => $ingredients ?: $product->ingredients,
                 'directions' => $dosage,
                 'warnings' => $safety ?: $product->warnings,
             ]);
