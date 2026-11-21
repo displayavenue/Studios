@@ -33,21 +33,24 @@
         @if ($items->isEmpty())
             <div class="hp-empty">Myth vs Fact entries will appear here after they are published in Admin.</div>
         @else
-            <div class="hp-mvf__list" data-mvf-list>
+            <ol class="hp-mvf__timeline" data-mvf-list>
                 @foreach ($items as $index => $item)
                     @php
                         $n = $index + 1;
                         $pad = str_pad((string) $n, 2, '0', STR_PAD_LEFT);
-                        $open = $index === 0;
+                        $open = false;
                     @endphp
-                    <article
-                        class="hp-mvf-card{{ $open ? ' is-open' : '' }}"
+                    <li
+                        class="hp-mvf-item{{ $open ? ' is-open' : '' }}"
                         data-mvf-card
                         data-mvf-index="{{ $n }}"
                         id="myth-{{ $n }}"
                     >
-                        <div class="hp-mvf-card__index" aria-hidden="true">{{ $n }}</div>
-                        <div class="hp-mvf-card__body">
+                        <div class="hp-mvf-item__rail" aria-hidden="true">
+                            <span class="hp-mvf-item__num">{{ $n }}</span>
+                            <span class="hp-mvf-item__line"></span>
+                        </div>
+                        <article class="hp-mvf-card">
                             <p class="hp-mvf-card__myth-label">Myth {{ $pad }}</p>
                             <h2 class="hp-mvf-card__myth">{{ $item->myth_title }}</h2>
                             <button
@@ -64,16 +67,16 @@
                                 class="hp-mvf-fact"
                                 id="mvf-fact-{{ $n }}"
                                 data-mvf-fact
-                                @unless($open) hidden @endunless
+                                hidden
                             >
                                 <p class="hp-mvf-fact__label">Fact</p>
                                 <p class="hp-mvf-fact__title">{{ $item->fact_title }}</p>
                                 <p class="hp-mvf-fact__body">{{ $item->fact_body }}</p>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </li>
                 @endforeach
-            </div>
+            </ol>
         @endif
 
         <p class="hp-disclaimer hp-mvf__disclaimer">Educational information only — not a diagnosis or treatment plan. For personal care, use Area of Consultation or WhatsApp {{ $settings->phoneDisplay() }}.</p>
@@ -88,12 +91,12 @@
   const countEl = document.querySelector('[data-mvf-count]');
   const pad = (n) => String(n).padStart(2, '0');
 
-  const setOpen = (card, open) => {
-    const btn = card.querySelector('[data-mvf-toggle]');
-    const fact = card.querySelector('[data-mvf-fact]');
-    const label = card.querySelector('[data-mvf-toggle-label]');
+  const setOpen = (item, open) => {
+    const btn = item.querySelector('[data-mvf-toggle]');
+    const fact = item.querySelector('[data-mvf-fact]');
+    const label = item.querySelector('[data-mvf-toggle-label]');
     if (!btn || !fact || !label) return;
-    card.classList.toggle('is-open', open);
+    item.classList.toggle('is-open', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     label.textContent = open ? 'Hide fact' : 'Show fact';
     if (open) fact.removeAttribute('hidden');
@@ -102,9 +105,9 @@
 
   document.querySelectorAll('[data-mvf-toggle]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const card = btn.closest('[data-mvf-card]');
-      if (!card) return;
-      setOpen(card, !card.classList.contains('is-open'));
+      const item = btn.closest('[data-mvf-card]');
+      if (!item) return;
+      setOpen(item, !item.classList.contains('is-open'));
     });
   });
 
@@ -117,7 +120,7 @@
     if (!visible) return;
     const idx = Number(visible.target.getAttribute('data-mvf-index') || 1);
     countEl.textContent = `${pad(idx)} — ${pad(Math.max(total, 1))}`;
-  }, { root: null, threshold: [0.45, 0.65, 0.85] });
+  }, { root: null, threshold: [0.35, 0.55, 0.75] });
   cards.forEach((card) => observer.observe(card));
 })();
 </script>
