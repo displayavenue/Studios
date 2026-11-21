@@ -138,6 +138,7 @@
                     <div class="hp-nav-panel" role="menu">
                         <a href="{{ route('understanding-homeopathy') }}">Understanding Homeopathy</a>
                         <a href="{{ route('myths-vs-fact') }}">Myths vs Facts</a>
+                        <a href="{{ route('faqs') }}">FAQ's</a>
                     </div>
                 </div>
 

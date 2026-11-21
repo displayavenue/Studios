@@ -45,7 +45,7 @@ class UnderstandingHomeopathyPageTest extends TestCase
         $html = $this->get(route('home'))->assertOk()->getContent();
 
         $this->assertMatchesRegularExpression(
-            '/Knowledge Centre[\s\S]*?Understanding Homeopathy[\s\S]*?Myths vs Facts/i',
+            '/Knowledge Centre[\s\S]*?Understanding Homeopathy[\s\S]*?Myths vs Facts[\s\S]*?FAQ\'s/i',
             $html
         );
         $this->assertStringContainsString(route('understanding-homeopathy'), $html);
