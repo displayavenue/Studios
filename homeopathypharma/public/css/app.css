@@ -627,6 +627,25 @@ a:hover {
   margin-bottom: 2rem;
 }
 
+.hp-product-info {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.hp-product-info__block h2 {
+  font-family: var(--hp-serif);
+  color: var(--hp-deep);
+  font-size: 1.25rem;
+  margin: 0 0 0.45rem;
+}
+
+.hp-product-info__body {
+  color: var(--hp-ink, #1d2a24);
+  line-height: 1.6;
+  max-width: 52rem;
+}
+
 .hp-product-detail__image {
   width: 100%;
   border-radius: var(--hp-radius);

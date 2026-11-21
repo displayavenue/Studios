@@ -187,6 +187,7 @@ class ProductController extends Controller
             'brand_id' => ['nullable', 'exists:brands,id'],
             'short_description' => ['nullable', 'string', 'max:500'],
             'description' => ['nullable', 'string'],
+            'benefits' => ['nullable', 'string'],
             'price_inr' => ['required', 'numeric', 'min:0'],
             'sale_price_inr' => ['nullable', 'numeric', 'min:0'],
             'sale_starts_at_input' => ['nullable', 'date'],

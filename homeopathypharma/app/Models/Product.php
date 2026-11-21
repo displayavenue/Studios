@@ -17,6 +17,7 @@ class Product extends Model
         'brand_id',
         'short_description',
         'description',
+        'benefits',
         'price_paise',
         'sale_price_paise',
         'sale_starts_at',
