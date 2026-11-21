@@ -169,10 +169,18 @@ if [ -d "$PUB" ]; then
   mv "$PUB" "$KEEP_BACKUP"
 fi
 mkdir -p "$PUB"
-# Copy public assets
-cp -a "$APP/public/." "$PUB/"
+# Copy public assets (rsync tolerates existing dirs better than cp -a on Hostinger)
+rsync -a --delete \
+  --exclude='uploads/media/imports' \
+  --exclude='storage' \
+  "$APP/public/" "$PUB/" || true
+# Keep imported media available under the web root when present in laravel/public
+if [ -d "$APP/public/uploads/media/imports" ]; then
+  mkdir -p "$PUB/uploads/media"
+  rsync -a "$APP/public/uploads/media/imports/" "$PUB/uploads/media/imports/" || true
+fi
 
-# Point index.php at sibling laravel app
+# Point index.php at sibling laravel app (must run after asset sync)
 cat > "$PUB/index.php" <<'PHP'
 <?php
 
@@ -192,6 +200,9 @@ $app = require_once __DIR__.'/../laravel/bootstrap/app.php';
 
 $app->handleRequest(Request::capture());
 PHP
+# Ensure public storage symlink survives publish
+rm -f "$PUB/storage"
+ln -s "$APP/storage/app/public" "$PUB/storage" || true
 
 # Harden permissions
 chmod -R u+rwX,go-rwx "$APP/storage" "$APP/bootstrap/cache" "$APP/database" || true
