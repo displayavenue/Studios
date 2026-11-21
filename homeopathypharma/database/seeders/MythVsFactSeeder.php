@@ -11,138 +11,138 @@ class MythVsFactSeeder extends Seeder
     {
         $items = [
             [
-                'myth_title' => 'Rain or AC instantly “gives you a cold.”',
-                'fact_title' => 'Viruses cause colds.',
-                'fact_body' => 'Cool weather and crowded indoor spaces help those viruses spread more easily—chilly air itself is not the infection.',
-            ],
-            [
-                'myth_title' => 'A migraine is just a very bad headache.',
-                'fact_title' => 'Migraine is neurological.',
-                'fact_body' => 'Nausea, light or sound sensitivity, aura, or fatigue can appear—not only head pain.',
-            ],
-            [
-                'myth_title' => 'Fever must be forced down immediately.',
-                'fact_title' => 'Mild fever can be protective.',
-                'fact_body' => 'Comfort, fluids, and clinical judgment matter more than chasing a perfect number on the thermometer.',
-            ],
-            [
-                'myth_title' => 'Cracking knuckles causes arthritis.',
-                'fact_title' => 'The pop is usually gas.',
-                'fact_body' => 'It does not wear cartilage the way genuine inflammatory arthritis does.',
-            ],
-            [
-                'myth_title' => 'Sugar makes every child hyperactive.',
-                'fact_title' => 'Evidence does not show a reliable “sugar rush.”',
-                'fact_body' => 'Sleep, excitement, and screen time often explain restless behaviour better than sugar alone.',
-            ],
-            [
-                'myth_title' => 'You lose most body heat through your head.',
-                'fact_title' => 'Any uncovered skin loses heat.',
-                'fact_body' => 'Your head matters mainly when it is the one area left bare in cold weather.',
-            ],
-            [
-                'myth_title' => 'Spicy food creates stomach ulcers.',
-                'fact_title' => 'Most ulcers have other drivers.',
-                'fact_body' => 'H. pylori infection or certain painkillers are usual culprits; spice may irritate symptoms without creating the ulcer.',
-            ],
-            [
-                'myth_title' => 'Green mucus always needs antibiotics.',
-                'fact_title' => 'Colour often reflects immune cells.',
-                'fact_body' => 'Many sinus and chest infections are viral and settle without antibacterial drugs.',
-            ],
-            [
-                'myth_title' => 'Acne means you are not washing enough.',
-                'fact_title' => 'Acne is more than cleanliness.',
-                'fact_body' => 'Oil glands, hormones, bacteria, and inflammation drive it; over-scrubbing can worsen redness.',
-            ],
-            [
-                'myth_title' => 'Asthma is only a childhood problem.',
-                'fact_title' => 'Asthma can start or continue later.',
-                'fact_body' => 'Triggers and severity change over a lifetime, so ongoing review still matters for adults too.',
-            ],
-            [
-                'myth_title' => 'Joint pain is just ageing.',
-                'fact_title' => 'Age is only one factor.',
-                'fact_body' => 'Weight, movement, injury history, and inflammation also shape joints—and many of those are modifiable.',
-            ],
-            [
-                'myth_title' => 'Detox juices flush toxins better than your organs.',
-                'fact_title' => 'Your liver and kidneys already clear waste.',
-                'fact_body' => 'Extreme cleanses can dehydrate you or disrupt electrolytes without proven detox magic.',
-            ],
-            [
-                'myth_title' => 'Reading in dim light ruins eyesight forever.',
-                'fact_title' => 'It can strain, not rewrite your prescription.',
-                'fact_body' => 'Regular breaks and good lighting keep reading comfortable without permanently changing vision.',
-            ],
-            [
-                'myth_title' => 'Everyone needs exactly eight glasses of water.',
-                'fact_title' => 'Fluid needs vary.',
-                'fact_body' => 'Climate, activity, thirst, urine colour, and medical advice are better guides than a fixed glass count.',
-            ],
-            [
-                'myth_title' => 'Stress alone digs a stomach ulcer.',
-                'fact_title' => 'Stress can intensify symptoms.',
-                'fact_body' => 'The usual ulcer culprits remain infection and medicines—not worry by itself.',
-            ],
-            [
-                'myth_title' => '“Natural” means automatically safe.',
-                'fact_title' => 'Not necessarily.',
-                'fact_body' => 'Remedies can still interact with medicines, allergies, pregnancy, or chronic illness—individual assessment matters.',
-            ],
-            [
-                'myth_title' => 'You can catch eczema from someone else’s rash.',
-                'fact_title' => 'Eczema is not contagious.',
-                'fact_body' => 'It is an inflammatory skin pattern shaped by barrier function, genetics, and triggers.',
-            ],
-            [
-                'myth_title' => 'Skipping breakfast wrecks metabolism forever.',
-                'fact_title' => 'Preferences differ.',
-                'fact_body' => 'Overall diet quality, protein, fibre, and energy balance matter more than a rigid breakfast rule.',
-            ],
-            [
-                'myth_title' => 'Back pain always means a slipped disc needing a scan.',
-                'fact_title' => 'Most acute back pain settles with guidance.',
-                'fact_body' => 'Scans are for red-flag symptoms or when results will change care.',
-            ],
-            [
-                'myth_title' => 'Multivitamins prevent nearly every disease.',
-                'fact_title' => 'Supplements help proven deficiencies.',
-                'fact_body' => 'For most people, food patterns, sleep, and movement outweigh a catch-all vitamin.',
-            ],
-            [
-                'myth_title' => 'Thyroid problems only hit middle-aged women.',
-                'fact_title' => 'Anyone can be affected.',
-                'fact_body' => 'Men, teens, and older adults can have thyroid disorders; symptoms deserve proper checks.',
-            ],
-            [
                 'myth_title' => 'Homeopathy is just another name for herbal medicine.',
-                'fact_title' => 'Homeopathy and herbal medicine are different systems.',
-                'fact_body' => 'Homeopathic preparations follow specific dilution and shaking processes, whereas herbal medicines use plant-based ingredients.',
+                'fact_title' => 'They are different systems.',
+                'fact_body' => 'Herbal medicine uses plant extracts in material doses. Homeopathy prepares remedies through dilution and succussion, guided by symptom similarity—not plant chemistry alone.',
             ],
             [
-                'myth_title' => 'Feeling better means you can stop long-term medicines alone.',
-                'fact_title' => 'Feeling better can mean treatment is working.',
-                'fact_body' => 'Dose changes belong in a clinician’s plan to avoid rebound or relapse.',
+                'myth_title' => 'Homeopathic remedies are only sugar pills with nothing in them.',
+                'fact_title' => 'Preparation and potency matter.',
+                'fact_body' => 'Remedies are made through a defined dilution and shaking process. Higher potencies are more diluted, but classical practice still treats potency choice as clinically meaningful.',
             ],
             [
-                'myth_title' => 'Allergy and intolerance are the same thing.',
-                'fact_title' => 'They follow different pathways.',
-                'fact_body' => 'True allergy involves the immune system; intolerance is usually digestive or dose-related discomfort.',
+                'myth_title' => 'One homeopathic remedy fits every person with the same disease name.',
+                'fact_title' => 'The whole person guides the choice.',
+                'fact_body' => 'Two people labelled with the same condition may receive different remedies based on modalities, mental state, food desires, sleep, and other individualising symptoms.',
+            ],
+            [
+                'myth_title' => 'Higher potency always means a stronger, riskier medicine.',
+                'fact_title' => 'Potency is not the same as pharmaceutical strength.',
+                'fact_body' => 'In homeopathy, potency describes the dilution–succussion stage. Suitability depends on the case, not on treating “higher” as automatically harsher like a high drug dose.',
+            ],
+            [
+                'myth_title' => 'You can safely self-prescribe long courses for any chronic disease.',
+                'fact_title' => 'Chronic cases need professional review.',
+                'fact_body' => 'Acute self-care may be simple, but long-standing complaints benefit from a full case history so remedy, potency, and follow-up are matched to the person.',
+            ],
+            [
+                'myth_title' => 'Homeopathy never interacts with other treatments.',
+                'fact_title' => 'Tell your practitioner everything you take.',
+                'fact_body' => 'While many remedies are highly diluted, your overall care plan still needs to account for conventional medicines, allergies, pregnancy, and other therapies you are using.',
+            ],
+            [
+                'myth_title' => 'If a product is labelled “natural,” it is automatically harmless.',
+                'fact_title' => 'Natural does not mean risk-free.',
+                'fact_body' => 'Mother tinctures, combinations, and topical products can still irritate skin, upset digestion, or be unsuitable in pregnancy—read labels and ask a qualified practitioner.',
+            ],
+            [
+                'myth_title' => 'Homeopathy works only through placebo.',
+                'fact_title' => 'Patients and practitioners report individual responses.',
+                'fact_body' => 'Debate continues in research communities, yet clinical homeopathy is practised case-by-case. Outcomes are assessed on symptom change, not on a single disease lab marker alone.',
+            ],
+            [
+                'myth_title' => 'Taking more pellets makes the remedy work faster.',
+                'fact_title' => 'Dose frequency matters more than stuffing the mouth.',
+                'fact_body' => 'Repeating a remedy too often can confuse the response. Follow the prescribed interval rather than increasing pellet count hoping for a quicker effect.',
+            ],
+            [
+                'myth_title' => 'You must stop all other medicines before starting homeopathy.',
+                'fact_title' => 'Do not stop prescribed drugs on your own.',
+                'fact_body' => 'Homeopathic care can often run alongside conventional treatment. Any change to ongoing medicines should be decided with the prescribing clinician.',
+            ],
+            [
+                'myth_title' => 'All homeopathic brands and potencies are interchangeable.',
+                'fact_title' => 'Source, form, and potency can differ.',
+                'fact_body' => 'Mother tinctures, biochemics, dilutions, and combination packs are not the same product. Match the exact form and potency advised for your case.',
+            ],
+            [
+                'myth_title' => 'Children cannot take homeopathic medicines.',
+                'fact_title' => 'Paediatric dosing is common—with guidance.',
+                'fact_body' => 'Many remedies are used in children, but age, weight, remedy form, and the complaint still need careful selection by someone trained in homeopathic prescribing.',
+            ],
+            [
+                'myth_title' => 'Homeopathy is only useful for coughs and colds.',
+                'fact_title' => 'It is used across acute and chronic presentations.',
+                'fact_body' => 'Practitioners also manage skin, digestion, women’s health, allergies, and long-term complaints—always within scope and with referral when red-flag signs appear.',
+            ],
+            [
+                'myth_title' => 'Coffee, mint, or camphor always “antidote” every remedy.',
+                'fact_title' => 'Sensitivity varies by person and remedy.',
+                'fact_body' => 'Some patients are asked to limit strong aromatic substances during treatment, but blanket rules are not universal. Follow the advice given for your specific prescription.',
+            ],
+            [
+                'myth_title' => 'A homeopathic “aggravation” means the medicine failed.',
+                'fact_title' => 'A short intensification can be part of response.',
+                'fact_body' => 'Mild temporary worsening of existing symptoms is sometimes described after a well-matched dose. Persistent or severe new symptoms need prompt clinical review.',
+            ],
+            [
+                'myth_title' => 'LM, CH, and X potencies are just different packaging.',
+                'fact_title' => 'Scale and method differ.',
+                'fact_body' => 'Decimal (X/D), centesimal (CH), and fifty-millesimal (LM) scales follow different dilution ratios and repetition patterns—so they are not casual swaps.',
+            ],
+            [
+                'myth_title' => 'Combination remedies replace the need for individualisation.',
+                'fact_title' => 'Combinations are convenient, not always complete.',
+                'fact_body' => 'OTC combinations may help common acute pictures, but classical chronic prescribing still relies on matching the totality of symptoms to a single leading remedy.',
+            ],
+            [
+                'myth_title' => 'Homeopathy can replace emergency care.',
+                'fact_title' => 'Emergencies need urgent medical help first.',
+                'fact_body' => 'Chest pain, breathlessness, uncontrolled bleeding, seizures, and similar crises are not home-remedy situations. Seek emergency services, then discuss supportive care later.',
+            ],
+            [
+                'myth_title' => 'You should keep changing remedies every day until something works.',
+                'fact_title' => 'Frequent switching muddies the picture.',
+                'fact_body' => 'A clear follow-up needs time to observe. Rapid remedy hopping makes it harder to know what helped—or what to adjust next.',
+            ],
+            [
+                'myth_title' => 'Biochemic tissue salts are the same as classical homeopathy.',
+                'fact_title' => 'Related history, different framework.',
+                'fact_body' => 'Schuessler tissue salts focus on mineral cell-salt imbalances. Classical homeopathy centres on the law of similars and individualised remedy selection.',
+            ],
+            [
+                'myth_title' => 'Expired homeopathic pellets are always dangerous to take.',
+                'fact_title' => 'Follow labelled shelf life and storage.',
+                'fact_body' => 'Quality can fall if bottles are heat-damaged, moist, or long past expiry. Prefer in-date stock stored cool, dry, and tightly closed.',
+            ],
+            [
+                'myth_title' => 'Online symptom checkers can replace a homeopathic consultation.',
+                'fact_title' => 'Case-taking is more than a keyword match.',
+                'fact_body' => 'A proper consult explores timeline, modalities, emotions, and generals. Apps can educate, but they do not replace trained case analysis.',
+            ],
+            [
+                'myth_title' => 'Homeopathy is anti-science and rejects all modern medicine.',
+                'fact_title' => 'Responsible practice works with—not against—medical care.',
+                'fact_body' => 'Many clinics integrate history-taking, referral, and conventional investigations when needed, while using homeopathy as a complementary therapeutic approach.',
+            ],
+            [
+                'myth_title' => 'Once you feel better, you can stop long-term protocols without advice.',
+                'fact_title' => 'Improvement is a checkpoint, not always a stop signal.',
+                'fact_body' => 'Your practitioner may taper, wait, or change potency based on how symptoms evolved. Self-stopping mid-plan can invite relapse or confusion.',
             ],
         ];
 
+        MythVsFact::query()->delete();
+
         foreach ($items as $index => $item) {
-            MythVsFact::query()->updateOrCreate(
-                ['myth_title' => $item['myth_title']],
-                [
-                    'fact_title' => $item['fact_title'],
-                    'fact_body' => $item['fact_body'],
-                    'sort_order' => $index + 1,
-                    'status' => 'published',
-                    'published_at' => now(),
-                ]
-            );
+            MythVsFact::query()->create([
+                'myth_title' => $item['myth_title'],
+                'fact_title' => $item['fact_title'],
+                'fact_body' => $item['fact_body'],
+                'sort_order' => $index + 1,
+                'status' => 'published',
+                'published_at' => now(),
+            ]);
         }
     }
 }

@@ -17,7 +17,7 @@
                 <span>Myths vs Facts</span>
             </nav>
             <h1 id="hp-mvf-title">Myths vs Facts</h1>
-            <p class="hp-mvf__lead">Let’s separate common beliefs from medical facts.</p>
+            <p class="hp-mvf__lead">Let’s separate common beliefs about homeopathy from clearer facts.</p>
             <div class="hp-mvf__meta">
                 <span class="hp-mvf__tag">Health education</span>
                 <span class="hp-mvf__count" data-mvf-count>
