@@ -55,6 +55,9 @@
             </div>
             <div>
                 <h1>{{ $product->name }}</h1>
+                @if ($product->packagingLabel())
+                    <p class="hp-product-packaging">{{ $product->packagingLabel() }}</p>
+                @endif
                 @if ($product->brand)
                     <p class="hp-muted">Brand: {{ $product->brand->name }}</p>
                 @endif
@@ -88,7 +91,7 @@
                     <div class="hp-product-info__body">{!! nl2br(e($product->description)) !!}</div>
                 </section>
             @endif
-            @if ($product->benefits)
+            @if ($product->benefits && trim($product->benefits) !== trim((string) $product->description))
                 <section class="hp-product-info__block">
                     <h2>Benefits</h2>
                     <div class="hp-product-info__body">{!! nl2br(e($product->benefits)) !!}</div>

@@ -171,6 +171,19 @@ def scrape_reckeweg(row: dict) -> dict | None:
             ["INGREDIENTS", "INGREDIENT", "COMPOSITION", "CONTENTS", "FORMULA"],
         )
 
+    package_size = clean_text(str(product.get("products_size") or ""))
+    if not package_size:
+        package_size = parse_offer_package(
+            " ".join(
+                str(product.get(k) or "")
+                for k in ["products_name", "products_size", "potency_name"]
+            )
+        )
+
+    # Only keep distinct benefits copy.
+    if benefits and description and benefits.strip().lower() == description.strip().lower():
+        benefits = ""
+
     return {
         "brand": "dr-reckeweg",
         "source_slug": row["source_slug"],
@@ -178,13 +191,48 @@ def scrape_reckeweg(row: dict) -> dict | None:
         "description": description,
         "benefits": benefits,
         "ingredients": ingredients,
+        "package_size": package_size,
         "dosage": DOSAGE,
         "safety": "\n\n".join(p for p in safety_parts if p),
     }
 
 
+def parse_offer_package(label: str) -> str:
+    text = clean_text(label)
+    if not text:
+        return ""
+    bits: list[str] = []
+    pack = re.search(
+        r"(?i)\b(?:pack\s*of\s*|combo\s*of\s*|set\s*of\s*)(\d+)\b|\b(\d+)\s*(?:pcs|pieces|nos|bottles|units)\b",
+        text,
+    )
+    if pack:
+        n = pack.group(1) or pack.group(2)
+        bits.append(f"Pack of {n}")
+    bogo = re.search(
+        r"(?i)\b(?:buy\s*1\s*get\s*1|bogo|b1g1|buy\s*one\s*get\s*one(?:\s*free)?)\b",
+        text,
+    )
+    if bogo:
+        bits.append("Buy 1 Get 1")
+    size = re.search(
+        r"(?i)\b(\d+(?:\.\d+)?\s*(?:ml|mL|ML|g|gm|grams?|kg|l|ltr|litre|liter|oz))\b",
+        text,
+    )
+    if size:
+        bits.append(size.group(1).replace("  ", " "))
+    # Keep order: size, pack, offer
+    ordered: list[str] = []
+    for item in bits:
+        if item not in ordered:
+            ordered.append(item)
+    # Prefer size first
+    ordered.sort(key=lambda v: 0 if re.search(r"(?i)ml|g\b|kg|l\b|oz", v) and not v.lower().startswith("pack") and not v.lower().startswith("buy") else 1)
+    return " · ".join(ordered)
+
+
 def parse_schwabe_json_ld(html: str) -> dict:
-    out = {"description": "", "benefits": "", "safety": "", "ingredients": ""}
+    out = {"description": "", "benefits": "", "safety": "", "ingredients": "", "package_size": ""}
     for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', html, re.S | re.I):
         try:
             data = json.loads(m.group(1))
@@ -197,6 +245,9 @@ def parse_schwabe_json_ld(html: str) -> dict:
         if not any(t in {"Product", "Drug"} for t in type_list if isinstance(t, str)):
             continue
         description = clean_text(data.get("description") or "")
+        # Marketing blurbs are not product descriptions.
+        if re.search(r"(?i)^buy genuine\b", description):
+            description = ""
         warning = clean_text(data.get("warning") or "")
         dose = data.get("doseSchedule") if isinstance(data.get("doseSchedule"), dict) else {}
         dose_note = clean_text(dose.get("frequency") or "")
@@ -211,17 +262,27 @@ def parse_schwabe_json_ld(html: str) -> dict:
             if value and any(k in name for k in ["ingredient", "active substance", "composition", "contains"]):
                 prop_ingredient = value
                 break
+        package_bits: list[str] = []
+        for offer in (data.get("offers") or []) + (data.get("hasVariant") or []):
+            if not isinstance(offer, dict):
+                continue
+            parsed = parse_offer_package(str(offer.get("name") or ""))
+            if parsed:
+                for part in parsed.split(" · "):
+                    if part and part not in package_bits:
+                        package_bits.append(part)
         out["description"] = description
-        # Schema description usually encodes uses/benefits copy.
-        out["benefits"] = description
+        # Benefits must come from real benefits/FAQ copy, never mirrored description.
+        out["benefits"] = ""
         out["ingredients"] = active or prop_ingredient or nonprop
+        out["package_size"] = " · ".join(package_bits[:4])
         safety_bits = []
         if warning:
             safety_bits.append(warning)
         if dose_note and "medical supervision" in dose_note.lower():
             safety_bits.append(dose_note)
         out["safety"] = "\n".join(safety_bits)
-        if out["description"] or out["safety"] or out["ingredients"]:
+        if out["description"] or out["safety"] or out["ingredients"] or out["package_size"]:
             return out
     return out
 
@@ -280,11 +341,17 @@ def scrape_schwabe(row: dict) -> dict | None:
         safety_bits.append(f"Pregnancy: {pregnancy}")
 
     ld = parse_schwabe_json_ld(html)
-    if not any([description, benefits, safety_bits]):
-        description = ld["description"]
-        benefits = ld["benefits"]
-        safety_bits = [ld["safety"]] if ld["safety"] else []
+    if not description:
+        description = ld.get("description") or ""
+    # Never invent benefits from description / marketing JSON-LD.
+    if not benefits:
+        benefits = ""
+    if not safety_bits and ld.get("safety"):
+        safety_bits = [ld["safety"]]
     ingredients = ld.get("ingredients") or ""
+    package_size = ld.get("package_size") or ""
+    if not package_size:
+        package_size = parse_offer_package(row.get("name") or "")
     if not ingredients and description:
         # e.g. "prepared from the herb Wolf's Bane"
         made = re.search(
@@ -294,7 +361,10 @@ def scrape_schwabe(row: dict) -> dict | None:
         if made:
             ingredients = clean_text(made.group(0))
 
-    if not any([description, benefits, safety_bits, ingredients]):
+    if benefits and description and benefits.strip().lower() == description.strip().lower():
+        benefits = ""
+
+    if not any([description, benefits, safety_bits, ingredients, package_size]):
         return None
 
     return {
@@ -304,6 +374,7 @@ def scrape_schwabe(row: dict) -> dict | None:
         "description": description,
         "benefits": benefits,
         "ingredients": ingredients,
+        "package_size": package_size,
         "dosage": DOSAGE,
         "safety": "\n".join(b for b in safety_bits if b),
     }
@@ -314,6 +385,7 @@ def scrape_sbl(row: dict, sort_map: dict[str, str]) -> dict:
     sort_desc = sort_map.get(slug, "")
     # SBL public product pages are SPA shells; usable copy comes from their products API.
     description = sort_desc or ""
+    package_size = parse_offer_package(row.get("name") or "")
     return {
         "brand": "sbl",
         "source_slug": row["source_slug"],
@@ -321,6 +393,7 @@ def scrape_sbl(row: dict, sort_map: dict[str, str]) -> dict:
         "description": description,
         "benefits": "",
         "ingredients": "",
+        "package_size": package_size,
         "dosage": DOSAGE,
         "safety": "",
     }

@@ -91,8 +91,17 @@ class EnrichProductDetailsCommand extends Command
             $description = $this->cleanText($row['description'] ?? null);
             $benefits = $this->cleanText($row['benefits'] ?? null);
             $ingredients = $this->cleanText($row['ingredients'] ?? $row['composition'] ?? null);
+            $packageSize = $this->cleanText($row['package_size'] ?? $row['pack_size'] ?? null);
             $safety = $this->cleanText($row['safety'] ?? $row['warnings'] ?? null);
             $dosage = $this->cleanText($row['dosage'] ?? null) ?: self::DOSAGE;
+
+            // Never keep benefits that merely repeat the description.
+            if ($benefits && $description && Str::lower($benefits) === Str::lower($description)) {
+                $benefits = null;
+            }
+            if ($benefits && $description && Str::startsWith(Str::lower($benefits), Str::lower(Str::limit($description, 80, '')))) {
+                $benefits = null;
+            }
 
             if ($dryRun) {
                 $updated++;
@@ -102,8 +111,9 @@ class EnrichProductDetailsCommand extends Command
 
             $product->fill([
                 'description' => $description ?: $product->description,
-                'benefits' => $benefits ?: $product->benefits,
+                'benefits' => $benefits, // null clears mirrored/missing benefits
                 'ingredients' => $ingredients ?: $product->ingredients,
+                'package_size' => $packageSize ?: $product->package_size,
                 'directions' => $dosage,
                 'warnings' => $safety ?: $product->warnings,
             ]);
@@ -116,7 +126,8 @@ class EnrichProductDetailsCommand extends Command
             $updated++;
         }
 
-        // Ensure every published catalogue product at least has dosage text.
+        // Ensure every published catalogue product at least has dosage text,
+        // and strip any remaining mirrored benefits.
         if (! $dryRun) {
             $brandIds = Brand::query()
                 ->when($only !== '', fn ($q) => $q->where('slug', $only))
@@ -129,6 +140,13 @@ class EnrichProductDetailsCommand extends Command
                     $q->whereNull('directions')->orWhere('directions', '');
                 })
                 ->update(['directions' => self::DOSAGE]);
+
+            Product::query()
+                ->whereIn('brand_id', $brandIds)
+                ->whereNotNull('benefits')
+                ->where('benefits', '!=', '')
+                ->whereColumn('benefits', 'description')
+                ->update(['benefits' => null]);
         }
 
         $this->info(($dryRun ? 'Dry-run ' : '')."seen={$seen} updated={$updated} missing={$missing}");

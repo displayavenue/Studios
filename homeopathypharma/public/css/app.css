@@ -627,6 +627,13 @@ a:hover {
   margin-bottom: 2rem;
 }
 
+.hp-product-packaging {
+  margin: 0.35rem 0 0.75rem;
+  color: var(--hp-deep, #1b3a2f);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
 .hp-product-info {
   display: grid;
   gap: 1.25rem;

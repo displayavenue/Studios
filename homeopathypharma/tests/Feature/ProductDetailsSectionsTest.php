@@ -80,4 +80,62 @@ class ProductDetailsSectionsTest extends TestCase
             ->assertSee('Dosage', false)
             ->assertSee('As prescribed by the doctor.', false);
     }
+
+    public function test_product_page_hides_benefits_when_same_as_description(): void
+    {
+        $brand = Brand::query()->create([
+            'name' => 'Schwabe',
+            'slug' => 'schwabe',
+            'status' => 'published',
+            'sort_order' => 3,
+        ]);
+
+        $product = Product::query()->create([
+            'name' => 'Abelmoschus MT',
+            'slug' => 'schwabe-abelmoschus-mt-dup',
+            'brand_id' => $brand->id,
+            'description' => 'Same copy for both.',
+            'benefits' => 'Same copy for both.',
+            'package_size' => '30 ml',
+            'price_paise' => 12000,
+            'stock_qty' => 5,
+            'stock_status' => 'in_stock',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+
+        $this->get('/product/'.$product->slug)
+            ->assertOk()
+            ->assertSee('Description', false)
+            ->assertDontSee('<h2>Benefits</h2>', false)
+            ->assertSee('30 ml', false);
+    }
+
+    public function test_product_page_shows_pack_and_offer_under_name(): void
+    {
+        $brand = Brand::query()->create([
+            'name' => 'SBL',
+            'slug' => 'sbl',
+            'status' => 'published',
+            'sort_order' => 1,
+        ]);
+
+        $product = Product::query()->create([
+            'name' => 'Bio-Combination 21 (Pack of 3 Combo)',
+            'slug' => 'sbl-bio-combination-21-pack',
+            'brand_id' => $brand->id,
+            'package_size' => '25 g',
+            'description' => 'Combo pack.',
+            'price_paise' => 29900,
+            'stock_qty' => 5,
+            'stock_status' => 'in_stock',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+
+        $this->get('/product/'.$product->slug)
+            ->assertOk()
+            ->assertSee('25 g', false)
+            ->assertSee('Pack of 3', false);
+    }
 }

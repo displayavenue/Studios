@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -123,5 +124,46 @@ class Product extends Model
         $primary = $this->images->firstWhere('is_primary', true) ?? $this->images->first();
 
         return $primary?->media;
+    }
+
+    /**
+     * Bottle/pack/offer line shown under the product title.
+     */
+    public function packagingLabel(): ?string
+    {
+        $bits = [];
+        $package = trim((string) $this->package_size);
+        $haystack = trim($this->name.' '.$package);
+
+        if ($package !== '') {
+            $bits[] = $package;
+        }
+
+        if (preg_match('/\bpack\s*of\s*(\d+)\b/i', $haystack, $m)
+            || preg_match('/\bcombo\s*of\s*(\d+)\b/i', $haystack, $m)
+            || preg_match('/\b(\d+)\s*(?:pcs|pieces|nos|bottles)\b/i', $haystack, $m)) {
+            $label = 'Pack of '.$m[1];
+            if (! collect($bits)->contains(fn ($bit) => str_contains(Str::lower($bit), Str::lower($label)))) {
+                $bits[] = $label;
+            }
+        }
+
+        if (preg_match('/\b(?:buy\s*1\s*get\s*1|bogo|b1g1|buy\s*one\s*get\s*one(?:\s*free)?)\b/i', $haystack)) {
+            if (! collect($bits)->contains(fn ($bit) => str_contains(Str::lower($bit), 'buy 1 get 1'))) {
+                $bits[] = 'Buy 1 Get 1';
+            }
+        }
+
+        // Deduplicate overlapping fragments while preserving order.
+        $unique = [];
+        foreach ($bits as $bit) {
+            $normalized = Str::lower(trim($bit));
+            if ($normalized === '' || in_array($normalized, array_map(Str::lower(...), $unique), true)) {
+                continue;
+            }
+            $unique[] = trim($bit);
+        }
+
+        return $unique === [] ? null : implode(' · ', $unique);
     }
 }
