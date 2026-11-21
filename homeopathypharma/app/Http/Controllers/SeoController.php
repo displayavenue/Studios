@@ -60,6 +60,7 @@ class SeoController extends Controller
             ['loc' => route('health-library.index'), 'changefreq' => 'weekly', 'priority' => '0.7'],
             ['loc' => route('blog.index'), 'changefreq' => 'weekly', 'priority' => '0.7'],
             ['loc' => route('conditions.index'), 'changefreq' => 'weekly', 'priority' => '0.9'],
+            ['loc' => route('understanding-homeopathy'), 'changefreq' => 'monthly', 'priority' => '0.7'],
             ['loc' => route('myths-vs-fact'), 'changefreq' => 'monthly', 'priority' => '0.7'],
             ['loc' => route('area-of-consultation'), 'changefreq' => 'weekly', 'priority' => '0.8'],
             ['loc' => route('gallery'), 'changefreq' => 'daily', 'priority' => '0.5'],

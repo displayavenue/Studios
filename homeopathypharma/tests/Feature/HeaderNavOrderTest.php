@@ -30,7 +30,7 @@ class HeaderNavOrderTest extends TestCase
             $nav
         );
         $this->assertMatchesRegularExpression(
-            '/Knowledge Centre[\s\S]*?Myths vs Facts/i',
+            '/Knowledge Centre[\s\S]*?Understanding Homeopathy[\s\S]*?Myths vs Facts/i',
             $nav
         );
         $this->assertMatchesRegularExpression(
