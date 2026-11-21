@@ -20,6 +20,7 @@ class SyncProductGalleryCommand extends Command
         {--missing-only : Only attach images to products that currently have none}
         {--homepage-only : Only backfill Popular / Super Saving products that are missing images}
         {--backfill-all-missing : After sync, attach overrides/donors for any published product still missing images}
+        {--repair-broken-files : Re-download catalogue images when media rows exist but files are missing on disk}
         {--path= : Catalogue directory (defaults to storage/app/imports)}';
 
     protected $description = 'Attach catalogue/source gallery images to products and backfill Popular/Super Saving images';
@@ -41,7 +42,7 @@ class SyncProductGalleryCommand extends Command
             return $this->backfillHomepageImages($uploader, $catalogDir);
         }
 
-        if ($this->option('backfill-all-missing') && ! $this->option('brand') && ! $this->option('missing-only')) {
+        if ($this->option('backfill-all-missing') && ! $this->option('brand') && ! $this->option('missing-only') && ! $this->option('repair-broken-files')) {
             // Allow running overrides/donor pass alone.
             $this->applyImageOverrides($uploader, $catalogDir);
             $this->backfillMissingImages($uploader, $catalogDir, homepageOnly: false);
@@ -53,6 +54,7 @@ class SyncProductGalleryCommand extends Command
         $limit = (int) $this->option('limit');
         $skipScrape = (bool) $this->option('skip-scrape');
         $missingOnly = (bool) $this->option('missing-only');
+        $repairBroken = (bool) $this->option('repair-broken-files');
         $files = [
             'sbl' => 'sbl-catalog.json',
             'dr-reckeweg' => 'reckeweg-catalog.json',
@@ -121,14 +123,29 @@ class SyncProductGalleryCommand extends Command
                     continue;
                 }
 
-                if ($missingOnly && $product->images()->exists()) {
+                if ($missingOnly && $product->images()->exists() && ! $repairBroken) {
                     $bar->advance();
 
                     continue;
                 }
 
+                if ($repairBroken && $product->images()->exists() && $this->productHasUsableImage($product)) {
+                    $bar->advance();
+
+                    continue;
+                }
+
+                if ($repairBroken && $product->images()->exists() && ! $this->productHasUsableImage($product)) {
+                    // Drop broken links so attachUrls can recreate them against restored files.
+                    $product->images()->delete();
+                }
+
                 $pageUrl = $skipScrape ? null : (string) ($row['url'] ?? '');
                 $urls = $this->collectImageUrls($row, $pageUrl !== '' ? $pageUrl : null, $brandSlug);
+                $overrideUrls = $this->overrideUrlsForSlug($product->slug, $catalogDir);
+                if ($overrideUrls !== []) {
+                    $urls = array_values(array_unique([...$overrideUrls, ...$urls]));
+                }
                 if ($urls === []) {
                     $bar->advance();
 
@@ -159,7 +176,7 @@ class SyncProductGalleryCommand extends Command
         $this->applyImageOverrides($uploader, $catalogDir);
         $this->backfillHomepageImages($uploader, $catalogDir);
 
-        if ($this->option('backfill-all-missing') || $missingOnly) {
+        if ($this->option('backfill-all-missing') || $missingOnly || $repairBroken) {
             $this->backfillMissingImages($uploader, $catalogDir, homepageOnly: false);
         }
 
@@ -184,7 +201,7 @@ class SyncProductGalleryCommand extends Command
         }
 
         $targets = $query->get()
-            ->filter(fn (Product $p) => $p->images->isEmpty())
+            ->filter(fn (Product $p) => ! $this->productHasUsableImage($p))
             ->values();
 
         $label = $homepageOnly ? 'homepage' : 'all';
@@ -223,7 +240,7 @@ class SyncProductGalleryCommand extends Command
             }
 
             $donor->loadMissing('images.media');
-            if ($donor->images->isEmpty()) {
+            if (! $this->productHasUsableImage($donor)) {
                 $urls = $this->urlsForProductSlug($donor->slug, $catalogDir);
                 if ($urls !== []) {
                     $this->attachUrls($donor, $urls, $uploader, keepExisting: true);
@@ -231,23 +248,31 @@ class SyncProductGalleryCommand extends Command
                 }
             }
 
-            foreach ($donor->images as $index => $image) {
-                if (! $image->media_asset_id) {
-                    continue;
-                }
-                ProductImage::query()->updateOrCreate(
-                    [
-                        'product_id' => $product->id,
-                        'media_asset_id' => $image->media_asset_id,
-                    ],
-                    [
-                        'sort_order' => $index,
-                        'is_primary' => $index === 0,
-                    ]
-                );
+            if (! $this->productHasUsableImage($donor)) {
+                $this->line('  no usable donor for '.$product->slug);
+
+                continue;
             }
 
-            if ($product->images()->exists()) {
+            $product->images()->delete();
+            $sort = 0;
+            foreach ($donor->images as $image) {
+                if (! $image->media_asset_id || ! $image->media) {
+                    continue;
+                }
+                if (! $this->mediaFileIsUsable((string) $image->media->path)) {
+                    continue;
+                }
+                ProductImage::query()->create([
+                    'product_id' => $product->id,
+                    'media_asset_id' => $image->media_asset_id,
+                    'sort_order' => $sort,
+                    'is_primary' => $sort === 0,
+                ]);
+                $sort++;
+            }
+
+            if ($this->productHasUsableImage($product->fresh(['images.media']))) {
                 $matched++;
                 $this->line('  linked '.$product->slug.' ← '.$donor->slug);
             }
@@ -271,8 +296,11 @@ class SyncProductGalleryCommand extends Command
             if (! $product) {
                 continue;
             }
-            if ($product->images()->exists()) {
+            if ($this->productHasUsableImage($product)) {
                 continue;
+            }
+            if ($product->images()->exists()) {
+                $product->images()->delete();
             }
             $added = $this->attachUrls($product, $urls, $uploader, keepExisting: true);
             if ($added > 0) {
@@ -344,8 +372,9 @@ class SyncProductGalleryCommand extends Command
             ->where('id', '!=', $product->id)
             ->when($brandId, fn ($q) => $q->where('brand_id', $brandId))
             ->whereHas('images')
-            ->with('images')
-            ->get();
+            ->with('images.media')
+            ->get()
+            ->filter(fn (Product $candidate) => $this->productHasUsableImage($candidate));
 
         $best = null;
         $bestScore = 0;
@@ -642,7 +671,7 @@ class SyncProductGalleryCommand extends Command
         $existing = MediaAsset::query()
             ->where('original_name', 'import:'.$hash)
             ->first();
-        if ($existing) {
+        if ($existing && $this->mediaFileIsUsable($existing->path)) {
             $this->mediaByHash[$hash] = $existing->id;
 
             return $existing;
@@ -653,16 +682,16 @@ class SyncProductGalleryCommand extends Command
                 ->withHeaders(['User-Agent' => 'HomeopathyPharmaCatalog/1.0'])
                 ->get($url);
         } catch (\Throwable) {
-            return null;
+            return $existing;
         }
 
         if (! $response->successful()) {
-            return null;
+            return $existing;
         }
 
         $bytes = $response->body();
         if ($bytes === '' || strlen($bytes) > 5_242_880) {
-            return null;
+            return $existing;
         }
 
         $mime = (string) ($response->header('Content-Type') ?: '');
@@ -720,6 +749,22 @@ class SyncProductGalleryCommand extends Command
 
         $uploader->publishToWebRoots($path);
 
+        if ($existing) {
+            $existing->forceFill([
+                'disk' => 'public',
+                'path' => $path,
+                'filename' => $filename,
+                'mime_type' => $mime,
+                'size_bytes' => strlen($bytes),
+                'width' => $width,
+                'height' => $height,
+                'alt_text' => $altText !== '' ? $altText : $existing->alt_text,
+            ])->save();
+            $this->mediaByHash[$hash] = $existing->id;
+
+            return $existing;
+        }
+
         $asset = MediaAsset::query()->create([
             'disk' => 'public',
             'path' => $path,
@@ -737,6 +782,31 @@ class SyncProductGalleryCommand extends Command
         return $asset;
     }
 
+    private function productHasUsableImage(Product $product): bool
+    {
+        $product->loadMissing('images.media');
+        foreach ($product->images as $image) {
+            $path = $image->media?->path;
+            if (is_string($path) && $path !== '' && $this->mediaFileIsUsable($path)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function mediaFileIsUsable(string $path): bool
+    {
+        if ($path === '' || ! Storage::disk('public')->exists($path)) {
+            return false;
+        }
+
+        try {
+            return (int) Storage::disk('public')->size($path) > 50;
+        } catch (\Throwable) {
+            return false;
+        }
+    }
     /**
      * Match ImportBrandCatalogCommand slug rules so catalogue rows resolve
      * even when the source handle already includes the brand prefix.
