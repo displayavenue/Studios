@@ -62,21 +62,20 @@ class MythsAndFactsPageTest extends TestCase
             ->assertDontSee('Hidden draft myth should not appear', false);
     }
 
-    public function test_conditions_nav_orders_myths_before_area_of_consultation(): void
+    public function test_myths_live_under_knowledge_centre_not_conditions(): void
     {
         $this->seed(SiteSettingsSeeder::class);
 
         $html = $this->get(route('home'))->assertOk()->getContent();
 
-        $mythsPos = strpos($html, 'Myths vs Facts');
-        $areaPos = strpos($html, 'Area of Consultation');
-        $azPos = strpos($html, 'A to Z Diseases');
-
-        $this->assertNotFalse($azPos);
-        $this->assertNotFalse($mythsPos);
-        $this->assertNotFalse($areaPos);
-        $this->assertLessThan($mythsPos, $azPos);
-        $this->assertLessThan($areaPos, $mythsPos);
+        $this->assertMatchesRegularExpression(
+            '/Conditions[\s\S]*?A to Z Diseases[\s\S]*?Area of Consultation[\s\S]*?Knowledge Centre[\s\S]*?Myths vs Facts/i',
+            $html
+        );
+        $this->assertDoesNotMatchRegularExpression(
+            '/Conditions[\s\S]*?Myths vs Facts[\s\S]*?Area of Consultation/i',
+            $html
+        );
     }
 
     public function test_sitemap_includes_myths_vs_fact(): void
