@@ -35,7 +35,18 @@ class SyncHomepageSections extends Command
             if ($isNew || $this->option('force-payload')) {
                 $section->payload = $definition['payload'];
             } else {
-                $section->payload = array_merge($definition['payload'], $section->payload ?? []);
+                $merged = array_merge($definition['payload'], $section->payload ?? []);
+                // Keep Popular / Super Saving "view all" links pointed at collection filters
+                // even when older section payloads still use /shop or /shop?sort=price_asc.
+                if (in_array($key, ['featured_products', 'deals'], true)) {
+                    if (isset($definition['payload']['view_all_href'])) {
+                        $merged['view_all_href'] = $definition['payload']['view_all_href'];
+                    }
+                    if (isset($definition['payload']['view_all_label'])) {
+                        $merged['view_all_label'] = $definition['payload']['view_all_label'];
+                    }
+                }
+                $section->payload = $merged;
             }
 
             $section->save();

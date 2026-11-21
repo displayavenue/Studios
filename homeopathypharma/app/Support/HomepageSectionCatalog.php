@@ -118,7 +118,7 @@ class HomepageSectionCatalog
                 'sort_order' => 40,
                 'payload' => [
                     'view_all_label' => 'View all',
-                    'view_all_href' => '/shop',
+                    'view_all_href' => '/shop?collection=popular',
                 ],
                 'fields' => [
                     'view_all_label' => ['label' => 'View-all link label', 'type' => 'text'],
@@ -192,7 +192,7 @@ class HomepageSectionCatalog
                 'sort_order' => 41,
                 'payload' => [
                     'view_all_label' => 'See deals',
-                    'view_all_href' => '/shop?sort=price_asc',
+                    'view_all_href' => '/shop?collection=super-saving',
                 ],
                 'fields' => [
                     'view_all_label' => ['label' => 'View-all link label', 'type' => 'text'],

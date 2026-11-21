@@ -1,15 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Shop — '.$settings->brandName())
+@section('title', ($heading ?? 'Shop').' — '.$settings->brandName())
 
 @section('content')
 <section class="hp-page">
     <div class="hp-container">
-        <h1>Shop</h1>
-        <p class="hp-section__lead">Published products from the catalogue.</p>
+        <h1>{{ $heading ?? 'Shop' }}</h1>
+        <p class="hp-section__lead">{{ $lead ?? 'Published products from the catalogue.' }}</p>
 
         <form method="get" class="hp-filters" action="{{ route('shop.index') }}">
             <input class="hp-input" type="search" name="q" value="{{ $q }}" placeholder="Search name or SKU">
+            <select class="hp-input" name="collection">
+                <option value="" @selected(($collection ?? '') === '')>All products</option>
+                <option value="popular" @selected(($collection ?? '') === 'popular')>Popular</option>
+                <option value="super-saving" @selected(($collection ?? '') === 'super-saving')>Super Saving</option>
+            </select>
             <select class="hp-input" name="category">
                 <option value="">All categories</option>
                 @foreach ($categories as $category)

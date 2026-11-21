@@ -11,14 +11,11 @@ class MarkBrandHighlightsCommand extends Command
 {
     protected $signature = 'catalogue:mark-brand-highlights
         {--brand= : Limit to one brand slug}
-        {--popular=12 : Popular products per brand}
-        {--deals=12 : Super Saving products per brand}
+        {--popular=12 : Popular products per brand (default; larger brands get more)}
+        {--deals=12 : Super Saving products per brand (default; larger brands get more)}
         {--dry-run : Report selections without writing}';
 
-    protected $description = 'Mark Popular and Super Saving picks for Bakson, Bjain, and Wheezal (admin can override)';
-
-    /** @var list<string> */
-    private array $targetBrands = ['bakson', 'bjain', 'wheezal'];
+    protected $description = 'Mark Popular and Super Saving picks for every published brand (admin can override)';
 
     public function handle(): int
     {
@@ -27,24 +24,19 @@ class MarkBrandHighlightsCommand extends Command
         $dealLimit = max(0, (int) $this->option('deals'));
         $dryRun = (bool) $this->option('dry-run');
 
-        $brands = $this->targetBrands;
+        $brandsQuery = Brand::query()->published()->orderBy('sort_order')->orderBy('name');
         if ($only !== '') {
-            if (! in_array($only, $brands, true)) {
-                $this->error("Brand [{$only}] is not a highlight target. Use bakson, bjain, or wheezal.");
-
-                return self::FAILURE;
-            }
-            $brands = [$only];
+            $brandsQuery->where('slug', $only);
         }
 
-        foreach ($brands as $slug) {
-            $brand = Brand::query()->where('slug', $slug)->first();
-            if (! $brand) {
-                $this->warn("Brand [{$slug}] not found — skip.");
+        $brands = $brandsQuery->get();
+        if ($brands->isEmpty()) {
+            $this->error($only !== '' ? "Brand [{$only}] not found." : 'No published brands found.');
 
-                continue;
-            }
+            return self::FAILURE;
+        }
 
+        foreach ($brands as $brand) {
             $products = Product::query()
                 ->where('brand_id', $brand->id)
                 ->where('status', 'published')
@@ -59,8 +51,11 @@ class MarkBrandHighlightsCommand extends Command
                 continue;
             }
 
-            $popular = $this->pickPopular($products, $popularLimit);
-            $deals = $this->pickDeals($products, $dealLimit, $popular->pluck('id')->all());
+            $brandPopular = $this->limitForBrand($popularLimit, $products->count());
+            $brandDeals = $this->limitForBrand($dealLimit, $products->count());
+
+            $popular = $this->pickPopular($products, $brandPopular);
+            $deals = $this->pickDeals($products, $brandDeals, $popular->pluck('id')->all());
 
             $this->info(sprintf(
                 '%s: popular=%d deals=%d (of %d products)',
@@ -81,7 +76,6 @@ class MarkBrandHighlightsCommand extends Command
                 continue;
             }
 
-            // Clear previous auto-highlights for this brand, then apply new set.
             Product::query()
                 ->where('brand_id', $brand->id)
                 ->update([
@@ -107,6 +101,28 @@ class MarkBrandHighlightsCommand extends Command
         $this->info('Done. Admin Popular / Super Saving toggles remain available to override.');
 
         return self::SUCCESS;
+    }
+
+    /**
+     * Scale picks with catalogue size so large brands contribute more to "View all".
+     */
+    private function limitForBrand(int $base, int $productCount): int
+    {
+        if ($base <= 0 || $productCount <= 0) {
+            return 0;
+        }
+
+        if ($productCount >= 4000) {
+            return min($productCount, max($base, 48));
+        }
+        if ($productCount >= 1000) {
+            return min($productCount, max($base, 24));
+        }
+        if ($productCount >= 500) {
+            return min($productCount, max($base, 18));
+        }
+
+        return min($productCount, $base);
     }
 
     /**

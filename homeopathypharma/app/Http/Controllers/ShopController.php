@@ -16,11 +16,17 @@ class ShopController extends Controller
         $q = trim((string) $request->query('q', ''));
         $categorySlug = (string) $request->query('category', '');
         $brandSlug = (string) $request->query('brand', '');
+        $collection = strtolower(trim((string) $request->query('collection', '')));
+        if (! in_array($collection, ['popular', 'super-saving'], true)) {
+            $collection = '';
+        }
         $sort = (string) $request->query('sort', 'newest');
 
         $products = Product::query()
             ->published()
             ->with(['brand', 'images.media'])
+            ->when($collection === 'popular', fn ($query) => $query->where('is_featured', true))
+            ->when($collection === 'super-saving', fn ($query) => $query->where('is_super_saving', true))
             ->when($q !== '', fn ($query) => $query->where(function ($inner) use ($q) {
                 $inner->where('name', 'like', "%{$q}%")
                     ->orWhere('sku', 'like', "%{$q}%");
@@ -38,6 +44,17 @@ class ShopController extends Controller
             ->paginate(24)
             ->withQueryString();
 
+        $heading = match ($collection) {
+            'popular' => 'Popular Homeopathic Medicines',
+            'super-saving' => 'Super Saving Deals',
+            default => 'Shop',
+        };
+        $lead = match ($collection) {
+            'popular' => 'All Popular products from every brand.',
+            'super-saving' => 'All Super Saving deals from every brand.',
+            default => 'Published products from the catalogue.',
+        };
+
         return view('pages.shop', [
             'settings' => $settings,
             'products' => $products,
@@ -46,7 +63,10 @@ class ShopController extends Controller
             'q' => $q,
             'categorySlug' => $categorySlug,
             'brandSlug' => $brandSlug,
+            'collection' => $collection,
             'sort' => $sort,
+            'heading' => $heading,
+            'lead' => $lead,
         ]);
     }
 
