@@ -62,7 +62,7 @@ class BrandCatalogImportTest extends TestCase
 
         $this->get('/brands')
             ->assertOk()
-            ->assertSee('Our Brands', false)
+            ->assertSee('All Brands', false)
             ->assertSee('SBL', false);
     }
 }
