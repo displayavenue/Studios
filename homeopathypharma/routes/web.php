@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\HealthExplorerController as AdminHealthExplorerCo
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\LeadController as AdminLeadController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
+use App\Http\Controllers\Admin\MythVsFactController as AdminMythVsFactController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\PolicyPageController as AdminPolicyPageController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
@@ -48,6 +49,7 @@ use App\Http\Controllers\HealthConditionController;
 use App\Http\Controllers\HealthExplorerController;
 use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MythsAndFactsController;
 use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
@@ -64,6 +66,8 @@ Route::get('/llms.txt', [HealthConditionController::class, 'llms'])->name('seo.l
 
 Route::get('/conditions', [HealthConditionController::class, 'index'])->name('conditions.index');
 Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
+Route::get('/myths-vs-fact', MythsAndFactsController::class)->name('myths-vs-fact');
+Route::redirect('/myths-and-facts', '/myths-vs-fact', 301);
 Route::get('/area-of-consultation', AreaOfConsultationController::class)->name('area-of-consultation');
 
 Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');
@@ -223,6 +227,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('pages/{page}/edit', [AdminContentPageController::class, 'edit'])->name('pages.edit');
         Route::put('pages/{page}', [AdminContentPageController::class, 'update'])->name('pages.update');
         Route::resource('conditions', AdminHealthConditionController::class)->except(['show']);
+        Route::resource('myth-vs-facts', AdminMythVsFactController::class)->except(['show']);
         Route::get('audit-logs', AdminAuditLogController::class)->name('audit-logs.index');
         Route::get('reports', AdminReportController::class)->name('reports.index');
 

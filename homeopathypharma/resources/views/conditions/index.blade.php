@@ -18,6 +18,7 @@
             <h1>A to Z Diseases</h1>
             <p class="hp-section__lead">{{ $total }} educational guides. Content is editable in Admin → A–Z Diseases. Not personal medical advice.</p>
             <div class="hp-btn-row">
+                <a class="hp-btn hp-btn--secondary" href="{{ route('myths-vs-fact') }}">Myths vs Facts</a>
                 <a class="hp-btn hp-btn--primary" href="{{ route('area-of-consultation') }}">Area of Consultation</a>
                 <a class="hp-btn hp-btn--secondary" href="{{ route('doctors.index') }}">Consult a Doctor</a>
             </div>

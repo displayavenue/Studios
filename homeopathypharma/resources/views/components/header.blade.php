@@ -129,15 +129,30 @@
 
                 <a class="hp-nav-link" href="{{ route('health-explorer') }}">Health Explorer</a>
                 <a class="hp-nav-link" href="{{ route('doctors.index') }}">Consult a Doctor</a>
-                <a class="hp-nav-link" href="{{ route('health-library.index') }}">Health Library</a>
-                <a class="hp-nav-link" href="{{ route('about') }}">About Us</a>
-                <a class="hp-nav-link" href="{{ route('contact.show') }}">Contact Us</a>
-            </nav>
 
-            <div class="hp-nav-bar__right">
-                <a class="hp-nav-link--pill" href="{{ route('account.dashboard') }}">Track Order</a>
-                <a class="hp-nav-link--pill" href="{{ route('contact.show') }}">Need Help?</a>
-            </div>
+                <div class="hp-nav-item hp-nav-item--has-menu">
+                    <a class="hp-nav-link" href="{{ route('myths-vs-fact') }}">
+                        Knowledge Centre
+                        <span class="hp-nav-chevron" aria-hidden="true"></span>
+                    </a>
+                    <div class="hp-nav-panel" role="menu">
+                        <a href="{{ route('myths-vs-fact') }}">Myths vs Facts</a>
+                    </div>
+                </div>
+
+                <div class="hp-nav-item hp-nav-item--has-menu">
+                    <a class="hp-nav-link" href="{{ route('about') }}">
+                        More
+                        <span class="hp-nav-chevron" aria-hidden="true"></span>
+                    </a>
+                    <div class="hp-nav-panel" role="menu">
+                        <a href="{{ route('about') }}">About Us</a>
+                        <a href="{{ route('contact.show') }}">Contact Us</a>
+                        <a href="{{ route('account.dashboard') }}">Track Order</a>
+                        <a href="{{ route('contact.show') }}">Need Help?</a>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </header>

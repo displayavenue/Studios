@@ -30,6 +30,10 @@ class HealthConditionPagesTest extends TestCase
             ->assertSee('A to Z Diseases', false)
             ->assertSee('Migraine', false);
 
+        $this->get(route('myths-vs-fact'))
+            ->assertOk()
+            ->assertSee('Myths vs Facts', false);
+
         $this->get(route('area-of-consultation'))
             ->assertOk()
             ->assertSee('Area of Consultation', false);

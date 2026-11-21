@@ -1091,3 +1091,252 @@ a:hover {
   margin-bottom: 1.5rem;
   max-width: 40rem;
 }
+
+/* Myths vs Facts — compact timeline */
+.hp-mvf {
+  width: 100%;
+  background: #f3f1ea;
+  padding: 0;
+}
+
+.hp-mvf__frame {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(1.1rem, 3vw, 2.25rem) clamp(0.75rem, 1.6vw, 1.25rem) 2.5rem;
+  box-sizing: border-box;
+}
+
+.hp-mvf__header {
+  margin: 0 0 1.35rem;
+}
+
+.hp-mvf__header h1 {
+  margin: 0 0 0.35rem;
+  font-family: var(--hp-font);
+  font-size: clamp(1.85rem, 4.5vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--hp-deep);
+  line-height: 1.12;
+}
+
+.hp-mvf__lead {
+  margin: 0 0 0.9rem;
+  color: #6d746e;
+  font-size: 1rem;
+}
+
+.hp-mvf__meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #ddd8cf;
+  margin-bottom: 0.9rem;
+}
+
+.hp-mvf__count {
+  color: #8a918a;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.hp-mvf__timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+.hp-mvf-item {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: stretch;
+  width: 100%;
+}
+
+.hp-mvf-item__rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.05rem;
+}
+
+.hp-mvf-item__num {
+  position: relative;
+  z-index: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #5f6761;
+  line-height: 1;
+  background: #f3f1ea;
+  padding: 0 0 0.35rem;
+}
+
+.hp-mvf-item__line {
+  flex: 1 1 auto;
+  width: 1px;
+  min-height: 1.5rem;
+  background: #d4d0c7;
+}
+
+.hp-mvf-item:last-child .hp-mvf-item__line {
+  display: none;
+}
+
+.hp-mvf-card {
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  margin: 0;
+  padding: 1rem 1.15rem 1.05rem;
+  background: #fff;
+  border: 1px solid #e4dfd5;
+  border-radius: 0.95rem;
+  box-sizing: border-box;
+}
+
+.hp-mvf-card__myth-label {
+  margin: 0 0 0.45rem;
+  color: #9a5a4a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hp-mvf-card__myth {
+  margin: 0 0 0.85rem;
+  font-family: var(--hp-font);
+  font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1f2421;
+  letter-spacing: -0.01em;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.hp-mvf-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.62rem 1rem;
+  border: 1px solid #d7d2c8;
+  border-radius: 999px;
+  background: #fff;
+  color: #3d4540;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hp-mvf-toggle:hover {
+  border-color: var(--hp-primary);
+  color: var(--hp-deep);
+}
+
+.hp-mvf-toggle__chevron {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-top: -0.15rem;
+}
+
+.hp-mvf-item.is-open .hp-mvf-toggle__chevron {
+  transform: rotate(-135deg);
+  margin-top: 0.15rem;
+}
+
+.hp-mvf-fact {
+  margin-top: 0.85rem;
+  padding: 0.95rem 1rem;
+  background: #e8eee8;
+  border-radius: 0.8rem;
+  animation: hp-mvf-fact-in 0.22s ease;
+}
+
+.hp-mvf-fact[hidden] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+.hp-mvf-fact__label {
+  margin: 0 0 0.4rem;
+  color: #3f6b4f;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hp-mvf-fact__title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1f2421;
+  line-height: 1.35;
+}
+
+.hp-mvf-fact__body {
+  margin: 0;
+  color: #3d4540;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.hp-mvf__disclaimer {
+  margin-top: 1.75rem;
+}
+
+@keyframes hp-mvf-fact-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-mvf-fact,
+  .hp-mvf-toggle__chevron {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hp-mvf-item {
+    grid-template-columns: 1.35rem 1fr;
+    gap: 0.65rem;
+  }
+
+  .hp-mvf-card {
+    padding: 0.9rem 0.95rem 0.95rem;
+  }
+
+  .hp-mvf__meta {
+    flex-wrap: wrap;
+  }
+}

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             HomepageContentSeeder::class,
             HomepageCatalogueSeeder::class,
             HealthConditionSeeder::class,
+            MythVsFactSeeder::class,
         ]);
     }
 }
