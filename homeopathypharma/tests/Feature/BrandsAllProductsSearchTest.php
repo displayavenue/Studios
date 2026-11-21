@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Database\Seeders\SiteSettingsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,7 +13,7 @@ class BrandsAllProductsSearchTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_all_brands_page_lists_products_from_every_brand_and_supports_search(): void
+    public function test_all_brands_page_lists_products_and_filters_by_search_and_category(): void
     {
         $this->seed(SiteSettingsSeeder::class);
 
@@ -29,18 +30,33 @@ class BrandsAllProductsSearchTest extends TestCase
             'sort_order' => 2,
         ]);
 
-        Product::query()->create([
+        $headHair = Category::query()->create([
+            'name' => 'Head & Hair',
+            'slug' => 'head-hair',
+            'status' => 'published',
+            'sort_order' => 1,
+        ]);
+        $digestive = Category::query()->create([
+            'name' => 'Digestive Health',
+            'slug' => 'digestive-health',
+            'status' => 'published',
+            'sort_order' => 2,
+        ]);
+
+        $arnicaHair = Product::query()->create([
             'brand_id' => $sbl->id,
-            'name' => 'SBL Arnica Montana',
-            'slug' => 'sbl-arnica-montana',
-            'sku' => 'SBL-ARN-30',
+            'name' => 'SBL Arnica Hair Oil',
+            'slug' => 'sbl-arnica-hair-oil',
+            'sku' => 'SBL-HAIR-1',
             'price_paise' => 12000,
             'stock_qty' => 10,
             'stock_status' => 'in_stock',
             'status' => 'published',
             'published_at' => now(),
         ]);
-        Product::query()->create([
+        $arnicaHair->categories()->sync([$headHair->id]);
+
+        $r1 = Product::query()->create([
             'brand_id' => $reckeweg->id,
             'name' => 'Dr. Reckeweg R1',
             'slug' => 'dr-reckeweg-r1',
@@ -51,25 +67,27 @@ class BrandsAllProductsSearchTest extends TestCase
             'status' => 'published',
             'published_at' => now(),
         ]);
+        $r1->categories()->sync([$digestive->id]);
 
         $this->get('/brands')
             ->assertOk()
             ->assertSee('All Brands', false)
-            ->assertSee('Search any product', false)
             ->assertSee('brands-product-search', false)
-            ->assertSee('SBL Arnica Montana', false)
-            ->assertSee('Dr. Reckeweg R1', false)
-            ->assertSee('2 products', false);
+            ->assertSee('brands-category-filter', false)
+            ->assertSee('All categories', false)
+            ->assertSee('head-hair', false)
+            ->assertSee('SBL Arnica Hair Oil', false)
+            ->assertSee('Dr. Reckeweg R1', false);
 
         $this->get('/brands?q=Arnica')
             ->assertOk()
-            ->assertSee('SBL Arnica Montana', false)
-            ->assertDontSee('Dr. Reckeweg R1', false)
-            ->assertSee('1 product', false);
+            ->assertSee('SBL Arnica Hair Oil', false)
+            ->assertDontSee('Dr. Reckeweg R1', false);
 
-        $this->get('/brands?brand=dr-reckeweg')
+        $this->get('/brands?category=head-hair')
             ->assertOk()
-            ->assertSee('Dr. Reckeweg R1', false)
-            ->assertDontSee('SBL Arnica Montana', false);
+            ->assertSee('SBL Arnica Hair Oil', false)
+            ->assertDontSee('Dr. Reckeweg R1', false)
+            ->assertSee('in Head', false);
     }
 }

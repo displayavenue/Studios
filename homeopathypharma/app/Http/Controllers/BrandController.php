@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use App\Services\SiteSettings;
 use Illuminate\Http\Request;
@@ -14,10 +15,17 @@ class BrandController extends Controller
     {
         $q = trim((string) $request->query('q', ''));
         $brandSlug = (string) $request->query('brand', '');
+        $categorySlug = (string) $request->query('category', '');
 
         $brands = Brand::query()
             ->published()
             ->withCount(['products' => fn ($query) => $query->published()])
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+
+        $categories = Category::query()
+            ->published()
             ->orderBy('sort_order')
             ->orderBy('name')
             ->get();
@@ -33,6 +41,9 @@ class BrandController extends Controller
             ->when($brandSlug !== '', function ($query) use ($brandSlug) {
                 $query->whereHas('brand', fn ($brand) => $brand->where('slug', $brandSlug)->published());
             })
+            ->when($categorySlug !== '', function ($query) use ($categorySlug) {
+                $query->whereHas('categories', fn ($category) => $category->where('slug', $categorySlug)->published());
+            })
             ->latest('published_at')
             ->paginate(24)
             ->withQueryString();
@@ -40,9 +51,11 @@ class BrandController extends Controller
         return view('pages.brands', [
             'settings' => $settings,
             'brands' => $brands,
+            'categories' => $categories,
             'products' => $products,
             'q' => $q,
             'brandSlug' => $brandSlug,
+            'categorySlug' => $categorySlug,
         ]);
     }
 }
