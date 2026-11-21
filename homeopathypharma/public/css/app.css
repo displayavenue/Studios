@@ -1101,9 +1101,9 @@ a:hover {
 
 .hp-mvf__frame {
   width: 100%;
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: clamp(1.1rem, 3vw, 2.25rem) clamp(1rem, 3.5vw, 2rem) 2.5rem;
+  max-width: none;
+  margin: 0;
+  padding: clamp(1.1rem, 3vw, 2.25rem) clamp(1rem, 3.2vw, 2.75rem) 2.5rem;
   box-sizing: border-box;
 }
 
