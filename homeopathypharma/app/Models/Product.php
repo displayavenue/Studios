@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -17,6 +18,7 @@ class Product extends Model
         'brand_id',
         'short_description',
         'description',
+        'benefits',
         'price_paise',
         'sale_price_paise',
         'sale_starts_at',
@@ -122,5 +124,94 @@ class Product extends Model
         $primary = $this->images->firstWhere('is_primary', true) ?? $this->images->first();
 
         return $primary?->media;
+    }
+
+    /**
+     * Bottle/pack/offer line shown under the product title.
+     * Always includes Pack of N (defaults to Pack of 1).
+     */
+    public function packagingLabel(): string
+    {
+        $bits = [];
+        $package = trim((string) $this->package_size);
+        $name = trim((string) $this->name);
+        $haystack = trim($name.' '.$package);
+
+        if ($package !== '') {
+            // Keep size/offer fragments, but strip any embedded "Pack of N"
+            // so we can append a single canonical pack label.
+            foreach (preg_split('/\s*·\s*/', $package) ?: [] as $part) {
+                $part = trim((string) $part);
+                if ($part === '' || preg_match('/^pack\s*of\s*\d+$/i', $part)) {
+                    continue;
+                }
+                $bits[] = $part;
+            }
+        }
+
+        $bits[] = 'Pack of '.$this->resolvePackCount();
+
+        if (preg_match('/\b(?:buy\s*1\s*get\s*1|bogo|b1g1|buy\s*one\s*get\s*one(?:\s*free)?)\b/i', $haystack)) {
+            $bits[] = 'Buy 1 Get 1';
+        }
+
+        $unique = [];
+        foreach ($bits as $bit) {
+            $normalized = Str::lower(trim($bit));
+            if ($normalized === '') {
+                continue;
+            }
+            $exists = false;
+            foreach ($unique as $existing) {
+                if (Str::lower($existing) === $normalized) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (! $exists) {
+                $unique[] = trim($bit);
+            }
+        }
+
+        return implode(' · ', $unique);
+    }
+
+    /**
+     * Prefer pack count from the product name / combo meaning.
+     * Avoid inheriting a larger secondary variant (e.g. "Combo Pack of 4")
+     * when the default listing is a 2-item combo.
+     */
+    public function resolvePackCount(): int
+    {
+        $name = trim((string) $this->name);
+        $package = trim((string) $this->package_size);
+        $description = trim((string) $this->description);
+
+        if (preg_match('/\bpack\s*of\s*(\d+)\b/i', $name, $m)
+            || preg_match('/\bcombo\s*of\s*(\d+)\b/i', $name, $m)
+            || preg_match('/\b(\d+)\s*(?:pcs|pieces|nos|bottles)\b/i', $name, $m)) {
+            return max(1, (int) $m[1]);
+        }
+
+        $isCombo = (bool) preg_match('/\bcombo\b/i', $name);
+        $mentionsTwo = (bool) preg_match('/\b(?:combination of two|two (?:products?|items?|bottles?)|2 (?:products?|items?|bottles?))\b/i', $description)
+            || (bool) preg_match('/\bshampoo\b.*\b(?:oil|conditioner)\b|\b(?:oil|conditioner)\b.*\bshampoo\b/i', $name.' '.$description);
+
+        if ($isCombo && $mentionsTwo) {
+            return 2;
+        }
+
+        // Bare "Combo Pack" style titles are usually 2-item sets.
+        if ($isCombo && ! preg_match('/\bpack\s*of\s*\d+\b/i', $name)) {
+            return 2;
+        }
+
+        if (preg_match('/\bpack\s*of\s*(\d+)\b/i', $package, $m)
+            || preg_match('/\bcombo\s*of\s*(\d+)\b/i', $package, $m)
+            || preg_match('/\b(\d+)\s*(?:pcs|pieces|nos|bottles)\b/i', $package, $m)) {
+            return max(1, (int) $m[1]);
+        }
+
+        return 1;
     }
 }

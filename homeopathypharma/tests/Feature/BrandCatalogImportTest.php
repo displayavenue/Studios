@@ -50,6 +50,42 @@ class BrandCatalogImportTest extends TestCase
         $this->assertSame(1, Product::query()->where('brand_id', Brand::query()->where('slug', 'sbl')->value('id'))->count());
     }
 
+    public function test_import_command_does_not_double_prefix_brand_slug(): void
+    {
+        Storage::fake('public');
+
+        $dir = storage_path('framework/testing/brand-catalog-fixtures-prefix');
+        if (! is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        file_put_contents($dir.'/sbl-catalog.json', json_encode([
+            [
+                'name' => 'SBL Globules No - 40',
+                'source_slug' => 'sbl-globules-no-40-1776',
+                'image' => null,
+                'images' => [],
+            ],
+        ]));
+        file_put_contents($dir.'/reckeweg-catalog.json', json_encode([]));
+        file_put_contents($dir.'/schwabe-catalog.json', json_encode([]));
+
+        $this->artisan('catalogue:import-brands', [
+            '--brand' => 'sbl',
+            '--skip-images' => true,
+            '--path' => $dir,
+        ])->assertSuccessful();
+
+        $this->assertDatabaseHas('products', [
+            'slug' => 'sbl-globules-no-40-1776',
+            'name' => 'SBL Globules No - 40',
+            'sku' => 'SBL-GLOBULES-NO-40-1776',
+        ]);
+        $this->assertDatabaseMissing('products', [
+            'slug' => 'sbl-sbl-globules-no-40-1776',
+        ]);
+    }
+
     public function test_brands_index_lists_published_brands(): void
     {
         Brand::query()->create([
@@ -62,7 +98,7 @@ class BrandCatalogImportTest extends TestCase
 
         $this->get('/brands')
             ->assertOk()
-            ->assertSee('Our Brands', false)
+            ->assertSee('All Brands', false)
             ->assertSee('SBL', false);
     }
 }

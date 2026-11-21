@@ -47,6 +47,7 @@
                 </label>
                 <label>Short description <input name="short_description" value="{{ old('short_description', $product->short_description) }}"></label>
                 <label>Description <textarea name="description" rows="4">{{ old('description', $product->description) }}</textarea></label>
+                <label>Benefits <textarea name="benefits" rows="3">{{ old('benefits', $product->benefits) }}</textarea></label>
                 <label>Package size <input name="package_size" value="{{ old('package_size', $product->package_size) }}" data-hp-product-package placeholder="e.g. 30 ml"></label>
                 <label>Manufacturer <input name="manufacturer" value="{{ old('manufacturer', $product->manufacturer) }}"></label>
             </section>
@@ -116,9 +117,9 @@
 
             <section class="admin-card admin-product-section">
                 <h3>Details</h3>
-                <label>Ingredients <textarea name="ingredients" rows="3">{{ old('ingredients', $product->ingredients) }}</textarea></label>
-                <label>Directions <textarea name="directions" rows="3">{{ old('directions', $product->directions) }}</textarea></label>
-                <label>Warnings <textarea name="warnings" rows="2">{{ old('warnings', $product->warnings) }}</textarea></label>
+                <label>Composition / Ingredients <textarea name="ingredients" rows="3">{{ old('ingredients', $product->ingredients) }}</textarea></label>
+                <label>Dosage <textarea name="directions" rows="2" placeholder="As prescribed by the doctor.">{{ old('directions', $product->directions) }}</textarea></label>
+                <label>Safety information <textarea name="warnings" rows="3">{{ old('warnings', $product->warnings) }}</textarea></label>
                 <fieldset>
                     <legend>Categories</legend>
                     <div class="admin-product-check-grid">

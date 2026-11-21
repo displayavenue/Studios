@@ -55,6 +55,7 @@
             </div>
             <div>
                 <h1>{{ $product->name }}</h1>
+                <p class="hp-product-packaging">{{ $product->packagingLabel() }}</p>
                 @if ($product->brand)
                     <p class="hp-muted">Brand: {{ $product->brand->name }}</p>
                 @endif
@@ -81,22 +82,36 @@
             </div>
         </div>
 
-        @if ($product->description)
-            <h2>Description</h2>
-            <div>{!! nl2br(e($product->description)) !!}</div>
-        @endif
-        @if ($product->ingredients)
-            <h2>Composition</h2>
-            <div>{!! nl2br(e($product->ingredients)) !!}</div>
-        @endif
-        @if ($product->directions)
-            <h2>Directions</h2>
-            <div>{!! nl2br(e($product->directions)) !!}</div>
-        @endif
-        @if ($product->warnings)
-            <h2>Warnings</h2>
-            <div>{!! nl2br(e($product->warnings)) !!}</div>
-        @endif
+        <div class="hp-product-info">
+            @if ($product->description)
+                <section class="hp-product-info__block">
+                    <h2>Description</h2>
+                    <div class="hp-product-info__body">{!! nl2br(e($product->description)) !!}</div>
+                </section>
+            @endif
+            @if ($product->benefits && trim($product->benefits) !== trim((string) $product->description))
+                <section class="hp-product-info__block">
+                    <h2>Benefits</h2>
+                    <div class="hp-product-info__body">{!! nl2br(e($product->benefits)) !!}</div>
+                </section>
+            @endif
+            <section class="hp-product-info__block">
+                <h2>Dosage</h2>
+                <div class="hp-product-info__body">{{ $product->directions ?: 'As prescribed by the doctor.' }}</div>
+            </section>
+            @if ($product->warnings)
+                <section class="hp-product-info__block">
+                    <h2>Safety information</h2>
+                    <div class="hp-product-info__body">{!! nl2br(e($product->warnings)) !!}</div>
+                </section>
+            @endif
+            @if ($product->ingredients)
+                <section class="hp-product-info__block">
+                    <h2>Ingredients</h2>
+                    <div class="hp-product-info__body">{!! nl2br(e($product->ingredients)) !!}</div>
+                </section>
+            @endif
+        </div>
 
         @if ($related->isNotEmpty())
             <h2 style="margin-top:2rem;">Related products</h2>
