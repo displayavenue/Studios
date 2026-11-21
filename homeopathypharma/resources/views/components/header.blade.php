@@ -123,6 +123,7 @@
                     </a>
                     <div class="hp-nav-panel" role="menu">
                         <a href="{{ route('conditions.index') }}">A to Z Diseases</a>
+                        <a href="{{ route('myths-and-facts') }}">Myths and Facts</a>
                         <a href="{{ route('area-of-consultation') }}">Area of Consultation</a>
                     </div>
                 </div>

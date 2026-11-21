@@ -48,6 +48,7 @@ use App\Http\Controllers\HealthConditionController;
 use App\Http\Controllers\HealthExplorerController;
 use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MythsAndFactsController;
 use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
@@ -64,6 +65,7 @@ Route::get('/llms.txt', [HealthConditionController::class, 'llms'])->name('seo.l
 
 Route::get('/conditions', [HealthConditionController::class, 'index'])->name('conditions.index');
 Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
+Route::get('/myths-and-facts', MythsAndFactsController::class)->name('myths-and-facts');
 Route::get('/area-of-consultation', AreaOfConsultationController::class)->name('area-of-consultation');
 
 Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');
