@@ -65,7 +65,8 @@ Route::get('/llms.txt', [HealthConditionController::class, 'llms'])->name('seo.l
 
 Route::get('/conditions', [HealthConditionController::class, 'index'])->name('conditions.index');
 Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
-Route::get('/myths-and-facts', MythsAndFactsController::class)->name('myths-and-facts');
+Route::get('/myths-vs-fact', MythsAndFactsController::class)->name('myths-vs-fact');
+Route::redirect('/myths-and-facts', '/myths-vs-fact', 301);
 Route::get('/area-of-consultation', AreaOfConsultationController::class)->name('area-of-consultation');
 
 Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');

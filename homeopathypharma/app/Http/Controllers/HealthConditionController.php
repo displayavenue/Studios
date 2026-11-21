@@ -65,7 +65,7 @@ class HealthConditionController extends Controller
             '## Primary',
             '- [Home]('.url('/').'): Brand homepage',
             '- [Conditions index]('.url('/conditions').'): A–Z health problem guides',
-            '- [Myths and Facts]('.url('/myths-and-facts').'): Common health myths with clear facts',
+            '- [Myths vs Fact]('.url('/myths-vs-fact').'): Side-by-side health myths with clear facts',
             '- [Area of Consultation]('.url('/area-of-consultation').'): Browse doctors by consultation area',
             '- [Doctors]('.url('/doctors').'): Book ₹999 Google Meet consults',
             '- [Health Library]('.url('/health-library').'): Articles and case studies',

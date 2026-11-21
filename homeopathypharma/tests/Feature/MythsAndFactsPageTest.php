@@ -10,25 +10,29 @@ class MythsAndFactsPageTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_myths_and_facts_page_lists_at_least_twenty_unique_entries(): void
+    public function test_myths_vs_fact_page_lists_at_least_twenty_unique_pairs(): void
     {
         $this->seed(SiteSettingsSeeder::class);
 
-        $response = $this->get(route('myths-and-facts'));
+        $response = $this->get(route('myths-vs-fact'));
 
         $response->assertOk()
-            ->assertSee('Myths and Facts', false)
+            ->assertSee('Myths vs Fact', false)
             ->assertSee('A to Z Diseases', false)
-            ->assertSee('Area of Consultation', false);
+            ->assertSee('Area of Consultation', false)
+            ->assertSee('01 / The Myth', false)
+            ->assertSee('01 / The Fact', false)
+            ->assertSee('hp-myths-panel--myth', false)
+            ->assertSee('hp-myths-panel--fact', false);
 
-        preg_match_all('/class="hp-myths-item"/', $response->getContent(), $matches);
+        preg_match_all('/class="hp-myths-pair"/', $response->getContent(), $matches);
         $this->assertGreaterThanOrEqual(20, count($matches[0]));
 
-        preg_match_all('/class="hp-myths-item__myth"[^>]*>.*?<span class="hp-myths-item__text">(.*?)<\/span>/s', $response->getContent(), $myths);
+        preg_match_all('/hp-myths-panel--myth[\s\S]*?hp-myths-panel__title">(.*?)<\/h2>/', $response->getContent(), $myths);
         $mythTexts = array_map(static fn (string $text): string => trim(html_entity_decode(strip_tags($text))), $myths[1] ?? []);
         $this->assertSame(count($mythTexts), count(array_unique($mythTexts)));
 
-        preg_match_all('/class="hp-myths-item__fact"[^>]*>.*?<span class="hp-myths-item__text">(.*?)<\/span>/s', $response->getContent(), $facts);
+        preg_match_all('/hp-myths-panel--fact[\s\S]*?hp-myths-panel__title">(.*?)<\/h2>/', $response->getContent(), $facts);
         $factTexts = array_map(static fn (string $text): string => trim(html_entity_decode(strip_tags($text))), $facts[1] ?? []);
         $this->assertSame(count($factTexts), count(array_unique($factTexts)));
     }
@@ -39,7 +43,7 @@ class MythsAndFactsPageTest extends TestCase
 
         $html = $this->get(route('home'))->assertOk()->getContent();
 
-        $mythsPos = strpos($html, 'Myths and Facts');
+        $mythsPos = strpos($html, 'Myths vs Fact');
         $areaPos = strpos($html, 'Area of Consultation');
         $azPos = strpos($html, 'A to Z Diseases');
 
@@ -50,12 +54,20 @@ class MythsAndFactsPageTest extends TestCase
         $this->assertLessThan($areaPos, $mythsPos);
     }
 
-    public function test_sitemap_includes_myths_and_facts(): void
+    public function test_sitemap_includes_myths_vs_fact(): void
     {
         $this->seed(SiteSettingsSeeder::class);
 
         $this->get('/sitemap.xml')
             ->assertOk()
-            ->assertSee(route('myths-and-facts'), false);
+            ->assertSee(route('myths-vs-fact'), false);
+    }
+
+    public function test_old_myths_and_facts_url_redirects(): void
+    {
+        $this->seed(SiteSettingsSeeder::class);
+
+        $this->get('/myths-and-facts')
+            ->assertRedirect('/myths-vs-fact');
     }
 }
