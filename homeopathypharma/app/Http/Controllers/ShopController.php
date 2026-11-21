@@ -50,14 +50,14 @@ class ShopController extends Controller
             $mixed = $this->roundRobinByBrand(
                 $query->latest('published_at')->get()
             );
-            $products = $this->paginateCollection($mixed, 24, $request);
+            $products = $this->paginateCollection($mixed, 30, $request);
         } else {
             $products = $query
                 ->when($sort === 'price_asc', fn ($builder) => $builder->orderBy('price_paise'))
                 ->when($sort === 'price_desc', fn ($builder) => $builder->orderByDesc('price_paise'))
                 ->when($sort === 'name', fn ($builder) => $builder->orderBy('name'))
                 ->when($sort === 'newest', fn ($builder) => $builder->latest('published_at'))
-                ->paginate(24)
+                ->paginate(30)
                 ->withQueryString();
         }
 

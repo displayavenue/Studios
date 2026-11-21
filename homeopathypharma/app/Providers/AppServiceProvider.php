@@ -16,6 +16,7 @@ use App\Models\Category;
 use App\Models\HealthCondition;
 use App\Services\CartService;
 use App\Services\SiteSettings;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -35,6 +36,8 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }
+
+        Paginator::defaultView('vendor.pagination.hp-boxed');
 
         Route::bind('medium', fn (string $value) => MediaAsset::query()->findOrFail($value));
         Route::bind('team', fn (string $value) => TeamMember::query()->findOrFail($value));
