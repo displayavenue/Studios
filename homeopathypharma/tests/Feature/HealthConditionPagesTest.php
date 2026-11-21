@@ -32,7 +32,7 @@ class HealthConditionPagesTest extends TestCase
 
         $this->get(route('myths-vs-fact'))
             ->assertOk()
-            ->assertSee('Myths vs Fact', false);
+            ->assertSee('Myths vs Facts', false);
 
         $this->get(route('area-of-consultation'))
             ->assertOk()

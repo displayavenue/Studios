@@ -1092,113 +1092,214 @@ a:hover {
   max-width: 40rem;
 }
 
-/* Myths vs Fact */
-.hp-myths-page {
-  background:
-    radial-gradient(ellipse 70% 45% at 8% 0%, rgba(246, 232, 228, 0.85), transparent 55%),
-    radial-gradient(ellipse 55% 40% at 100% 8%, rgba(221, 235, 221, 0.75), transparent 50%),
-    linear-gradient(180deg, #f7f4ef 0%, var(--hp-ivory) 32%, var(--hp-ivory) 100%);
-}
-
-.hp-myths-shell {
-  max-width: 52rem;
-  margin: 0 auto 2rem;
-  padding: clamp(1.35rem, 3vw, 2.25rem);
-  background: #f3efe8;
-  border-radius: 1.35rem;
-}
-
-.hp-myths-shell__header {
-  margin-bottom: 1.75rem;
-  max-width: 36rem;
-}
-
-.hp-myths-shell__eyebrow {
-  margin: 0 0 0.55rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #6b736e;
-}
-
-.hp-myths-shell h1 {
-  margin: 0 0 0.45rem;
-  font-family: var(--hp-serif);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  line-height: 1.1;
-  color: #2a322e;
-}
-
-.hp-myths-shell__lead {
-  margin: 0 0 1.1rem;
-  color: #6b736e;
-  font-size: 1.05rem;
-}
-
-.hp-myths-list {
-  list-style: none;
-  margin: 0;
+/* Myths vs Facts — full-bleed reveal */
+.hp-mvf {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #f3f1ea;
   padding: 0;
-  display: grid;
-  gap: 1rem;
 }
 
-.hp-myths-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  overflow: hidden;
-  border-radius: 0.85rem;
-  opacity: 0;
-  transform: translateY(0.55rem);
-  animation: hp-myth-in 0.5s ease forwards;
-  animation-delay: calc(0.035s * var(--hp-myth-i, 0));
-}
-
-.hp-myths-panel {
+.hp-mvf__frame {
+  width: 100%;
+  max-width: none;
   margin: 0;
-  padding: clamp(1.1rem, 2.4vw, 1.55rem);
-  min-height: 100%;
+  padding: clamp(1.25rem, 3.5vw, 2.75rem) clamp(1rem, 4vw, 3.5rem) clamp(2rem, 5vw, 3.5rem);
+  box-sizing: border-box;
 }
 
-.hp-myths-panel--myth {
-  background: #f6e8e4;
-  color: #7a4036;
+.hp-mvf__header {
+  max-width: 48rem;
+  margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
 }
 
-.hp-myths-panel--fact {
-  background: #e6efe6;
-  color: #3d5a45;
+.hp-mvf__crumb {
+  margin-bottom: 1rem;
 }
 
-.hp-myths-panel__label {
-  margin: 0 0 0.85rem;
-  font-size: 0.72rem;
+.hp-mvf__header h1 {
+  margin: 0 0 0.45rem;
+  font-family: var(--hp-font);
+  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1f2421;
+  line-height: 1.08;
+}
+
+.hp-mvf__lead {
+  margin: 0 0 1.1rem;
+  color: #6d746e;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+}
+
+.hp-mvf__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd8cf;
+  margin-bottom: 1.1rem;
+}
+
+.hp-mvf__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #e8e4db;
+  color: #3d4540;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hp-mvf__count {
+  color: #8a918a;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.hp-mvf__actions {
+  margin-top: 0.25rem;
+}
+
+.hp-mvf__list {
+  display: grid;
+  gap: clamp(1.1rem, 2.5vw, 1.6rem);
+  width: 100%;
+}
+
+.hp-mvf-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(0.85rem, 2.5vw, 1.5rem);
+  width: 100%;
+  min-height: min(72vh, 34rem);
+  padding: clamp(1.25rem, 3vw, 2.1rem);
+  background: #fff;
+  border: 1px solid #e4dfd5;
+  border-radius: 1.15rem;
+  box-sizing: border-box;
+}
+
+.hp-mvf-card__index {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 500;
+  color: #9aa19a;
+  line-height: 1;
+  padding-top: 0.15rem;
+}
+
+.hp-mvf-card__body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.hp-mvf-card__myth-label {
+  margin: 0 0 0.75rem;
+  color: #9a5a4a;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.hp-myths-panel__title {
-  margin: 0 0 0.65rem;
-  font-family: var(--hp-serif);
-  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
-  line-height: 1.25;
+.hp-mvf-card__myth {
+  margin: 0 0 1.35rem;
+  font-family: var(--hp-font);
+  font-size: clamp(1.35rem, 3.4vw, 2.15rem);
   font-weight: 700;
-  color: inherit;
+  line-height: 1.25;
+  color: #1f2421;
+  letter-spacing: -0.015em;
+  max-width: 28ch;
 }
 
-.hp-myths-panel__note {
+.hp-mvf-toggle {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 1.15rem;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid #d7d2c8;
+  border-radius: 999px;
+  background: #fff;
+  color: #3d4540;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hp-mvf-toggle:hover {
+  border-color: var(--hp-primary);
+  color: var(--hp-deep);
+}
+
+.hp-mvf-toggle__chevron {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-top: -0.15rem;
+}
+
+.hp-mvf-card.is-open .hp-mvf-toggle__chevron {
+  transform: rotate(-135deg);
+  margin-top: 0.2rem;
+}
+
+.hp-mvf-fact {
+  margin-top: 0.15rem;
+  padding: clamp(1rem, 2.4vw, 1.35rem);
+  background: #e8eee8;
+  border-radius: 0.9rem;
+  animation: hp-mvf-fact-in 0.28s ease;
+}
+
+.hp-mvf-fact__label {
+  margin: 0 0 0.55rem;
+  color: #3f6b4f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hp-mvf-fact__title {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 700;
+  color: #1f2421;
+  line-height: 1.35;
+}
+
+.hp-mvf-fact__body {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.45;
-  opacity: 0.92;
+  color: #3d4540;
+  line-height: 1.55;
+  max-width: 48rem;
 }
 
-@keyframes hp-myth-in {
+.hp-mvf__disclaimer {
+  margin-top: 2rem;
+  max-width: 48rem;
+}
+
+@keyframes hp-mvf-fact-in {
   from {
     opacity: 0;
-    transform: translateY(0.55rem);
+    transform: translateY(0.4rem);
   }
   to {
     opacity: 1;
@@ -1207,15 +1308,25 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hp-myths-pair {
-    opacity: 1;
-    transform: none;
+  .hp-mvf-fact,
+  .hp-mvf-toggle__chevron {
     animation: none;
+    transition: none;
   }
 }
 
-@media (max-width: 720px) {
-  .hp-myths-pair {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .hp-mvf-card {
+    grid-template-columns: 1.4rem 1fr;
+    min-height: min(78vh, 32rem);
+    padding: 1.15rem 1rem 1.25rem;
+  }
+
+  .hp-mvf-card__myth {
+    max-width: none;
+  }
+
+  .hp-mvf__meta {
+    flex-wrap: wrap;
   }
 }
