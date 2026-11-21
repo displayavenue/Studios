@@ -1399,12 +1399,10 @@ a.hp-pagination__box:hover {
   cursor: not-allowed;
 }
 
-.hp-pagination__box--ellipsis {
-  border-color: transparent;
-  background: transparent;
-  color: var(--hp-muted);
-  min-width: 1.75rem;
-  cursor: default;
+.hp-pagination__box--set {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--hp-deep);
 }
 
 @media (max-width: 640px) {
@@ -1412,5 +1410,9 @@ a.hp-pagination__box:hover {
     min-width: 2.1rem;
     height: 2.1rem;
     font-size: 0.85rem;
+  }
+
+  .hp-pagination__box--set {
+    font-size: 1.05rem;
   }
 }

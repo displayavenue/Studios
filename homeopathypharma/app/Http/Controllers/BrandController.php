@@ -45,7 +45,7 @@ class BrandController extends Controller
                 $query->whereHas('categories', fn ($category) => $category->where('slug', $categorySlug)->published());
             })
             ->latest('published_at')
-            ->paginate(24)
+            ->paginate(30)
             ->withQueryString();
 
         return view('pages.brands', [

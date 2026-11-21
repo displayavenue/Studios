@@ -1,52 +1,51 @@
 @if ($paginator->hasPages())
+    @php
+        $windowSize = 10;
+        $current = $paginator->currentPage();
+        $last = $paginator->lastPage();
+        $windowStart = (int) (floor(($current - 1) / $windowSize) * $windowSize) + 1;
+        $windowEnd = min($last, $windowStart + $windowSize - 1);
+        $prevWindowPage = $windowStart > 1 ? max(1, $windowStart - $windowSize) : null;
+        $nextWindowPage = $windowEnd < $last ? $windowStart + $windowSize : null;
+    @endphp
     <nav class="hp-pagination" role="navigation" aria-label="Pagination Navigation">
         <ul class="hp-pagination__list">
-            {{-- Previous --}}
-            <li class="hp-pagination__item">
-                @if ($paginator->onFirstPage())
-                    <span class="hp-pagination__box hp-pagination__box--disabled" aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
-                        <span aria-hidden="true">&laquo;</span>
-                    </span>
-                @else
-                    <a class="hp-pagination__box" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="{{ __('pagination.previous') }}">
-                        <span aria-hidden="true">&laquo;</span>
+            {{-- Previous set of page numbers (1-10 ← 11-20) --}}
+            @if ($prevWindowPage !== null)
+                <li class="hp-pagination__item">
+                    <a
+                        class="hp-pagination__box hp-pagination__box--set"
+                        href="{{ $paginator->url($prevWindowPage) }}"
+                        aria-label="Previous page numbers"
+                    >
+                        <span aria-hidden="true">‹</span>
                     </a>
-                @endif
-            </li>
+                </li>
+            @endif
 
-            {{-- Page numbers --}}
-            @foreach ($elements as $element)
-                @if (is_string($element))
-                    <li class="hp-pagination__item">
-                        <span class="hp-pagination__box hp-pagination__box--ellipsis" aria-hidden="true">{{ $element }}</span>
-                    </li>
-                @endif
+            {{-- Current window of page numbers --}}
+            @for ($page = $windowStart; $page <= $windowEnd; $page++)
+                <li class="hp-pagination__item">
+                    @if ($page === $current)
+                        <span class="hp-pagination__box hp-pagination__box--current" aria-current="page">{{ $page }}</span>
+                    @else
+                        <a class="hp-pagination__box" href="{{ $paginator->url($page) }}">{{ $page }}</a>
+                    @endif
+                </li>
+            @endfor
 
-                @if (is_array($element))
-                    @foreach ($element as $page => $url)
-                        <li class="hp-pagination__item">
-                            @if ($page == $paginator->currentPage())
-                                <span class="hp-pagination__box hp-pagination__box--current" aria-current="page">{{ $page }}</span>
-                            @else
-                                <a class="hp-pagination__box" href="{{ $url }}">{{ $page }}</a>
-                            @endif
-                        </li>
-                    @endforeach
-                @endif
-            @endforeach
-
-            {{-- Next --}}
-            <li class="hp-pagination__item">
-                @if ($paginator->hasMorePages())
-                    <a class="hp-pagination__box" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="{{ __('pagination.next') }}">
-                        <span aria-hidden="true">&raquo;</span>
+            {{-- Next set of page numbers (1-10 → 11-20) --}}
+            @if ($nextWindowPage !== null)
+                <li class="hp-pagination__item">
+                    <a
+                        class="hp-pagination__box hp-pagination__box--set"
+                        href="{{ $paginator->url($nextWindowPage) }}"
+                        aria-label="Next page numbers"
+                    >
+                        <span aria-hidden="true">›</span>
                     </a>
-                @else
-                    <span class="hp-pagination__box hp-pagination__box--disabled" aria-disabled="true" aria-label="{{ __('pagination.next') }}">
-                        <span aria-hidden="true">&raquo;</span>
-                    </span>
-                @endif
-            </li>
+                </li>
+            @endif
         </ul>
     </nav>
 @endif
