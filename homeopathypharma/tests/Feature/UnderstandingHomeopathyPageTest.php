@@ -10,7 +10,7 @@ class UnderstandingHomeopathyPageTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_understanding_homeopathy_page_lists_five_faqs(): void
+    public function test_understanding_homeopathy_page_lists_ten_faqs(): void
     {
         $this->seed(SiteSettingsSeeder::class);
 
@@ -22,6 +22,11 @@ class UnderstandingHomeopathyPageTest extends TestCase
         $response->assertSee('Are homeopathic medicines safe, and do they have side effects?', false);
         $response->assertSee('Can homeopathy be used alongside conventional medical treatments?', false);
         $response->assertSee('When should you consult a homeopathic doctor, and what happens during a consultation?', false);
+        $response->assertSee('What is the difference between homeopathy and Ayurveda?', false);
+        $response->assertSee('How long does homeopathic treatment usually take to show results?', false);
+        $response->assertSee('Can homeopathic medicines be taken by children and elderly people?', false);
+        $response->assertSee('How should homeopathic medicines be stored, and do they expire?', false);
+        $response->assertSee('Can homeopathic medicines be taken during pregnancy and breastfeeding?', false);
         $response->assertSee('law of similars', false);
         $response->assertSee('CCRH', false);
         $response->assertSee('Educational information only', false);
@@ -30,6 +35,7 @@ class UnderstandingHomeopathyPageTest extends TestCase
         $response->assertSee('hp-uh-card__a', false);
         $response->assertSee('Potentization', false);
         $response->assertSee('similimum', false);
+        $response->assertSee('>10</span>', false);
     }
 
     public function test_knowledge_centre_nav_links_to_understanding_homeopathy(): void

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Understanding Homeopathy — '.$settings->brandName())
-@section('meta_description', 'Understanding Homeopathy: clear answers on what homeopathy is, how medicines are prepared, safety, use with conventional care, and what happens in a consultation. Based on CCRH / AYUSH educational material.')
+@section('meta_description', 'Understanding Homeopathy: clear answers on what homeopathy is, how it differs from Ayurveda, how long treatment takes, safety for children, elderly, pregnancy and breastfeeding, storage and expiry, and consultations. Based on CCRH / AYUSH educational material.')
 
 @push('head')
     <link rel="canonical" href="{{ route('understanding-homeopathy') }}">
