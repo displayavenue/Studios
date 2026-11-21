@@ -24,6 +24,7 @@
                     <li><a href="{{ route('doctors.index') }}">Consult a Doctor</a></li>
                     <li><a href="{{ route('conditions.index') }}">Conditions</a></li>
                     <li><a href="{{ route('health-library.index') }}">Health Library</a></li>
+                    <li><a href="{{ route('understanding-homeopathy') }}">Understanding Homeopathy</a></li>
                     <li><a href="{{ route('about') }}">About Us</a></li>
                     <li><a href="{{ route('about.founders') }}">Founders</a></li>
                 </ul>

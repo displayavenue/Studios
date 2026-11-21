@@ -131,11 +131,12 @@
                 <a class="hp-nav-link" href="{{ route('doctors.index') }}">Consult a Doctor</a>
 
                 <div class="hp-nav-item hp-nav-item--has-menu">
-                    <a class="hp-nav-link" href="{{ route('myths-vs-fact') }}">
+                    <a class="hp-nav-link" href="{{ route('understanding-homeopathy') }}">
                         Knowledge Centre
                         <span class="hp-nav-chevron" aria-hidden="true"></span>
                     </a>
                     <div class="hp-nav-panel" role="menu">
+                        <a href="{{ route('understanding-homeopathy') }}">Understanding Homeopathy</a>
                         <a href="{{ route('myths-vs-fact') }}">Myths vs Facts</a>
                     </div>
                 </div>

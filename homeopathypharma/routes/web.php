@@ -50,6 +50,7 @@ use App\Http\Controllers\HealthExplorerController;
 use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MythsAndFactsController;
+use App\Http\Controllers\UnderstandingHomeopathyController;
 use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
@@ -68,6 +69,7 @@ Route::get('/conditions', [HealthConditionController::class, 'index'])->name('co
 Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->name('conditions.show');
 Route::get('/myths-vs-fact', MythsAndFactsController::class)->name('myths-vs-fact');
 Route::redirect('/myths-and-facts', '/myths-vs-fact', 301);
+Route::get('/understanding-homeopathy', UnderstandingHomeopathyController::class)->name('understanding-homeopathy');
 Route::get('/area-of-consultation', AreaOfConsultationController::class)->name('area-of-consultation');
 
 Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');
