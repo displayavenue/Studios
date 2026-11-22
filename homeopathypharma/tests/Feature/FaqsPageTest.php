@@ -83,7 +83,8 @@ class FaqsPageTest extends TestCase
         $this->actingAs($admin)
             ->get(route('admin.faqs.index'))
             ->assertOk()
-            ->assertSee("FAQ's", false);
+            ->assertSee("FAQ's", false)
+            ->assertSee('Save all changes', false);
 
         $this->actingAs($admin)
             ->post(route('admin.faqs.store'), [
@@ -93,7 +94,8 @@ class FaqsPageTest extends TestCase
                 'sort_order' => 99,
                 'status' => 'published',
             ])
-            ->assertRedirect(route('admin.faqs.index'));
+            ->assertRedirect(route('admin.faqs.index'))
+            ->assertSessionHas('saved_blink', true);
 
         $entry = Faq::query()->firstOrFail();
         $this->assertSame('published', $entry->status);
@@ -111,7 +113,8 @@ class FaqsPageTest extends TestCase
                 'sort_order' => 100,
                 'status' => 'published',
             ])
-            ->assertRedirect(route('admin.faqs.index'));
+            ->assertRedirect(route('admin.faqs.edit', $entry))
+            ->assertSessionHas('saved_blink', true);
 
         $entry->refresh();
         $this->assertNull($entry->answer);
@@ -125,5 +128,53 @@ class FaqsPageTest extends TestCase
             ->assertRedirect(route('admin.faqs.index'));
 
         $this->assertDatabaseCount('faqs', 0);
+    }
+
+    public function test_admin_can_save_all_faq_changes_in_bulk(): void
+    {
+        $this->seed(SiteSettingsSeeder::class);
+        $this->seed(FaqSeeder::class);
+        $admin = User::factory()->create(['is_admin' => true]);
+
+        $first = Faq::query()->ordered()->firstOrFail();
+        $second = Faq::query()->ordered()->skip(1)->firstOrFail();
+
+        $payload = [
+            'faqs' => [
+                [
+                    'id' => $first->id,
+                    'category' => $first->category,
+                    'question' => 'Bulk updated first FAQ question',
+                    'answer' => "Guide: Bulk save test.\n\n1. First step\nDetail for first step.\n\n2. Second step\nDetail for second step.",
+                    'sort_order' => $first->sort_order,
+                    'status' => 'published',
+                ],
+                [
+                    'id' => $second->id,
+                    'category' => $second->category,
+                    'question' => $second->question,
+                    'answer' => $second->answer,
+                    'sort_order' => $second->sort_order,
+                    'status' => $second->status,
+                ],
+            ],
+        ];
+
+        // Include remaining FAQs unchanged so validation requires all? Actually min:1 is enough - we only send 2
+        $this->actingAs($admin)
+            ->put(route('admin.faqs.bulk'), $payload)
+            ->assertRedirect(route('admin.faqs.index'))
+            ->assertSessionHas('saved_blink', true)
+            ->assertSessionHas('status');
+
+        $first->refresh();
+        $this->assertSame('Bulk updated first FAQ question', $first->question);
+        $this->assertStringContainsString('Bulk save test', (string) $first->answer);
+
+        $this->actingAs($admin)
+            ->get(route('admin.faqs.index'))
+            ->assertOk()
+            ->assertSee('Bulk updated first FAQ question', false)
+            ->assertSee('shouldBlink = true', false);
     }
 }

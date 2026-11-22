@@ -233,6 +233,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('pages/{page}', [AdminContentPageController::class, 'update'])->name('pages.update');
         Route::resource('conditions', AdminHealthConditionController::class)->except(['show']);
         Route::resource('myth-vs-facts', AdminMythVsFactController::class)->except(['show']);
+        Route::put('faqs/bulk', [AdminFaqController::class, 'bulkUpdate'])->name('faqs.bulk');
         Route::resource('faqs', AdminFaqController::class)->except(['show']);
         Route::get('audit-logs', AdminAuditLogController::class)->name('audit-logs.index');
         Route::get('reports', AdminReportController::class)->name('reports.index');

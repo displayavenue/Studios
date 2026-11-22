@@ -33,8 +33,8 @@
         </select>
     </label>
     <div class="admin-actions">
-        <button class="btn btn-primary" type="submit">Save</button>
-        <a class="btn btn-secondary" href="{{ route('admin.faqs.index') }}">Cancel</a>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+        <a class="btn btn-secondary" href="{{ route('admin.faqs.index') }}">Back to all FAQ's</a>
     </div>
 </form>
 @if ($entry->exists)
@@ -45,3 +45,41 @@
     </form>
 @endif
 @endsection
+
+@push('styles')
+<style>
+.admin-save-flash {
+  position:fixed; left:0; top:0; right:0; bottom:0;
+  width:100vw; height:100vh;
+  z-index:2147483646; pointer-events:none;
+  background:#0d6b5c;
+  opacity:0;
+}
+</style>
+@endpush
+
+@push('scripts')
+<script>
+(() => {
+  const shouldBlink = @json((bool) session('saved_blink'));
+  if (!shouldBlink) return;
+  let flash = document.getElementById('admin-save-flash');
+  if (!flash) {
+    flash = document.createElement('div');
+    flash.id = 'admin-save-flash';
+    flash.className = 'admin-save-flash';
+    flash.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(flash);
+  }
+  flash.style.transition = 'none';
+  flash.style.opacity = '0';
+  void flash.offsetWidth;
+  flash.style.transition = 'opacity 120ms ease-out';
+  flash.style.opacity = '0.5';
+  window.setTimeout(() => {
+    flash.style.transition = 'opacity 320ms ease-out';
+    flash.style.opacity = '0';
+  }, 260);
+})();
+</script>
+@endpush
