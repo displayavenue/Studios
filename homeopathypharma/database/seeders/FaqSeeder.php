@@ -17,7 +17,27 @@ class FaqSeeder extends Seeder
             [
                 'category' => 'Orders & Shopping',
                 'question' => 'How can I place an order on Homeopathy Pharma?',
-                'answer' => "1. Go to Shop or Brands and open the product you want.\n2. Click Add to Cart (add more products if you like).\n3. Open Cart from the header and review your items.\n4. Click Proceed to checkout and enter your name, phone, email, and shipping address.\n5. Complete payment to place your order.\n6. Track it anytime under Account / Track Order.",
+                'answer' => <<<'TXT'
+Guide: A simple guide to shopping with Homeopathy Pharma.
+
+1. Explore Products
+Browse Shop by Category or Brands from the top menu, or use Search to find a medicine by name or concern. Open the product that matches what you need.
+
+2. View Product Details
+On the product page, check the brand, pack size, price, and description so you know exactly what you are ordering before you continue.
+
+3. Add to Cart
+Select the quantity you need, then click Add to Cart. You can keep shopping and add more products to the same cart in one purchase.
+
+4. Review Your Cart
+Open Cart from the header. Verify each item, quantity, and the order total. Update or remove anything that looks wrong before checkout.
+
+5. Enter Delivery Details
+Click Proceed to checkout. Enter your full name, phone number, email (optional), and complete shipping address — address lines, city, state, and postal code. Add order notes if you have special delivery instructions.
+
+6. Complete Payment
+Submit the checkout form and pay using the available online payment methods. After a successful payment, open Account / Track Order anytime to follow your order status.
+TXT,
                 'sort_order' => 1,
             ],
             [

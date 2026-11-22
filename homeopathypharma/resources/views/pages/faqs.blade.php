@@ -29,7 +29,26 @@
                                 </summary>
                                 @if ($faq->hasAnswer())
                                     <div class="hp-faq__a">
-                                        @if ($faq->steps())
+                                        @if ($guide = $faq->guide())
+                                            @if ($guide['title'])
+                                                <p class="hp-faq__guide-title">{{ $guide['title'] }}</p>
+                                            @endif
+                                            <ol class="hp-faq__guide">
+                                                @foreach ($guide['steps'] as $step)
+                                                    <li class="hp-faq__guide-step">
+                                                        <div class="hp-faq__guide-marker" aria-hidden="true">
+                                                            <span class="hp-faq__guide-num"></span>
+                                                        </div>
+                                                        <div class="hp-faq__guide-copy">
+                                                            <p class="hp-faq__guide-step-title">{{ $step['title'] }}</p>
+                                                            @if ($step['body'] !== '')
+                                                                <p class="hp-faq__guide-step-body">{{ $step['body'] }}</p>
+                                                            @endif
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ol>
+                                        @elseif ($faq->steps())
                                             <ol class="hp-faq__steps">
                                                 @foreach ($faq->steps() as $step)
                                                     <li>{{ $step }}</li>
