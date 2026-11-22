@@ -29,7 +29,15 @@
                                 </summary>
                                 @if ($faq->hasAnswer())
                                     <div class="hp-faq__a">
-                                        <p>{{ $faq->answer }}</p>
+                                        @if ($faq->steps())
+                                            <ol class="hp-faq__steps">
+                                                @foreach ($faq->steps() as $step)
+                                                    <li>{{ $step }}</li>
+                                                @endforeach
+                                            </ol>
+                                        @else
+                                            <p>{{ $faq->answer }}</p>
+                                        @endif
                                     </div>
                                 @endif
                             </details>

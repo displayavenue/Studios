@@ -1670,6 +1670,23 @@ a.hp-pagination__box:hover {
   line-height: 1.6;
 }
 
+.hp-faq__steps {
+  margin: 0;
+  padding: 0 0 0 1.2rem;
+  color: var(--faq-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.hp-faq__steps li + li {
+  margin-top: 0.45rem;
+}
+
+.hp-faq__steps li::marker {
+  color: var(--faq-heading);
+  font-weight: 700;
+}
+
 .hp-faq__empty {
   margin: 0;
   color: var(--faq-muted);

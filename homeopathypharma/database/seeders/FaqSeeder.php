@@ -17,7 +17,7 @@ class FaqSeeder extends Seeder
             [
                 'category' => 'Orders & Shopping',
                 'question' => 'How can I place an order on Homeopathy Pharma?',
-                'answer' => 'Browse Shop or Brands, open a product, add it to your cart, then go to Cart and continue to Checkout. Enter your shipping details and complete payment to place the order.',
+                'answer' => "1. Go to Shop or Brands and open the product you want.\n2. Click Add to Cart (add more products if you like).\n3. Open Cart from the header and review your items.\n4. Click Proceed to checkout and enter your name, phone, email, and shipping address.\n5. Complete payment to place your order.\n6. Track it anytime under Account / Track Order.",
                 'sort_order' => 1,
             ],
             [

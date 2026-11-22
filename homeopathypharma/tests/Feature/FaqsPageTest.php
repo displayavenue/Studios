@@ -27,7 +27,9 @@ class FaqsPageTest extends TestCase
         $response->assertSee('Consultation');
         $response->assertSee('Returns & Customer Support');
         $response->assertSee('How can I place an order on Homeopathy Pharma?');
-        $response->assertSee('Browse Shop or Brands');
+        $response->assertSee('Go to Shop or Brands and open the product you want.');
+        $response->assertSee('Click Proceed to checkout');
+        $response->assertSee('<ol class="hp-faq__steps">', false);
         $response->assertSee('Is Cash on Delivery available?');
         $response->assertDontSee('Cash on Delivery is not available');
         $response->assertSee('<details class="hp-faq__item">', false);

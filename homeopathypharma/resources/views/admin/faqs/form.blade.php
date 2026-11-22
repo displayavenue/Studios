@@ -19,8 +19,8 @@
     <label>Question
         <input name="question" value="{{ old('question', $entry->question) }}" required maxlength="255">
     </label>
-    <label>Answer <span class="admin-muted">(leave blank to show the question without an answer)</span>
-        <textarea name="answer" rows="6" maxlength="5000">{{ old('answer', $entry->answer) }}</textarea>
+    <label>Answer <span class="admin-muted">(leave blank to show the question without an answer; for steps use lines like “1. …” “2. …”)</span>
+        <textarea name="answer" rows="8" maxlength="5000">{{ old('answer', $entry->answer) }}</textarea>
     </label>
     <label>Sort order
         <input type="number" min="0" name="sort_order" value="{{ old('sort_order', $entry->sort_order ?? 0) }}">
