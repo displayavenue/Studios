@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', "FAQ's — ".$settings->brandName())
-@section('meta_description', "FAQ's for Homeopathy Pharma: orders, payments, delivery, medicines, consultations, returns, and customer support.")
+@section('meta_description', "FAQ's for Homeopathy Pharma: orders, pricing, payments, product selection, account, delivery, medicines, consultations, and customer support.")
 
 @push('head')
     <link rel="canonical" href="{{ route('faqs') }}">

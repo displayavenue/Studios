@@ -13,6 +13,10 @@ class Faq extends Model
         'Medicines & Products',
         'Consultation',
         'Returns & Customer Support',
+        'Pricing & Payments',
+        'Product Selection & Availability',
+        'Orders & Account',
+        'Delivery & Convenience',
     ];
 
     protected $fillable = [

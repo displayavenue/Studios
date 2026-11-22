@@ -26,6 +26,10 @@ class FaqsPageTest extends TestCase
         $response->assertSee('Medicines & Products');
         $response->assertSee('Consultation');
         $response->assertSee('Returns & Customer Support');
+        $response->assertSee('Pricing & Payments');
+        $response->assertSee('Product Selection & Availability');
+        $response->assertSee('Orders & Account');
+        $response->assertSee('Delivery & Convenience');
         $response->assertSee('How can I place an order on Homeopathy Pharma?');
         $response->assertSee('A simple guide to shopping with Homeopathy Pharma.');
         $response->assertSee('Explore Products');
@@ -35,6 +39,11 @@ class FaqsPageTest extends TestCase
         $response->assertSee('Enter Delivery Details');
         $response->assertSee('Complete Payment');
         $response->assertSee('Proceed to checkout');
+        $response->assertSee('What should I do if my payment is deducted but my order is not confirmed?');
+        $response->assertSee('Can I view my previous order history?');
+        $response->assertSee('Can I place an order as a guest without registering?');
+        $response->assertSee('Can I request a delivery to a different person as a gift?');
+        $response->assertSee('Will I receive a GST invoice with my order?');
         $response->assertSee('<ol class="hp-faq__guide">', false);
         $response->assertSee('Is Cash on Delivery available?');
         $response->assertDontSee('Cash on Delivery is not available');
