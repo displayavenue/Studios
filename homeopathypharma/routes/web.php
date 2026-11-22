@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\HealthExplorerController as AdminHealthExplorerCo
 use App\Http\Controllers\Admin\HomepageSectionController as AdminHomepageSectionController;
 use App\Http\Controllers\Admin\LeadController as AdminLeadController;
 use App\Http\Controllers\Admin\MediaController as AdminMediaController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\MythVsFactController as AdminMythVsFactController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\PolicyPageController as AdminPolicyPageController;
@@ -50,6 +51,7 @@ use App\Http\Controllers\HealthExplorerController;
 use App\Http\Controllers\HealthLibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MythsAndFactsController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UnderstandingHomeopathyController;
 use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\PolicyController;
@@ -70,6 +72,7 @@ Route::get('/conditions/{slug}', [HealthConditionController::class, 'show'])->na
 Route::get('/myths-vs-fact', MythsAndFactsController::class)->name('myths-vs-fact');
 Route::redirect('/myths-and-facts', '/myths-vs-fact', 301);
 Route::get('/understanding-homeopathy', UnderstandingHomeopathyController::class)->name('understanding-homeopathy');
+Route::get('/faqs', FaqController::class)->name('faqs');
 Route::get('/area-of-consultation', AreaOfConsultationController::class)->name('area-of-consultation');
 
 Route::get('/health-explorer', [HealthExplorerController::class, 'show'])->name('health-explorer');
@@ -230,6 +233,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('pages/{page}', [AdminContentPageController::class, 'update'])->name('pages.update');
         Route::resource('conditions', AdminHealthConditionController::class)->except(['show']);
         Route::resource('myth-vs-facts', AdminMythVsFactController::class)->except(['show']);
+        Route::put('faqs/bulk', [AdminFaqController::class, 'bulkUpdate'])->name('faqs.bulk');
+        Route::resource('faqs', AdminFaqController::class)->except(['show']);
         Route::get('audit-logs', AdminAuditLogController::class)->name('audit-logs.index');
         Route::get('reports', AdminReportController::class)->name('reports.index');
 
