@@ -181,11 +181,12 @@ class ConsultationRequestController extends Controller
         $consultation->load('payment');
         abort_unless($consultation->payment?->provider === 'test', 403);
 
-        $paymentService->markPaid($consultation, $consultation->payment, 'test_paid');
+        $providerPaymentId = 'test_paid_cr_'.$consultation->id;
+        $paymentService->markPaid($consultation, $consultation->payment, $providerPaymentId);
 
         return redirect()->route('consultations.success', [
             'consultation' => $consultation,
-            'provider_payment_id' => 'test_paid',
+            'provider_payment_id' => $providerPaymentId,
         ]);
     }
 
