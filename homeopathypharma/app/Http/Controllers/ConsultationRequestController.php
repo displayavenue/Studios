@@ -9,9 +9,11 @@ use App\Services\Notifications\NotificationService;
 use App\Services\Payments\PaymentGatewayManager;
 use App\Services\Payments\RazorpayGateway;
 use App\Services\SiteSettings;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use RuntimeException;
 
@@ -37,7 +39,6 @@ class ConsultationRequestController extends Controller
             'patient_phone' => ['required', 'string', 'max:30'],
             'patient_email' => ['nullable', 'email', 'max:190'],
             'concern' => ['nullable', 'string', 'max:2000'],
-            'preferred_window' => ['nullable', 'string', 'max:190'],
             'terms' => ['accepted'],
         ]);
 
@@ -51,10 +52,11 @@ class ConsultationRequestController extends Controller
             'patient_phone' => $data['patient_phone'],
             'patient_email' => $data['patient_email'] ?? null,
             'concern' => $data['concern'] ?? null,
-            'preferred_window' => $data['preferred_window'] ?? null,
+            'preferred_window' => null,
             'fee_paise' => $fee,
             'payment_status' => 'unpaid',
             'status' => 'pending',
+            'source' => 'doctor_page',
         ]);
 
         $notifications->notify(
@@ -65,8 +67,77 @@ class ConsultationRequestController extends Controller
         );
 
         return redirect()
-            ->route('consultations.pay', $record)
-            ->with('status', 'Request received. Pay the consultation fee to confirm your booking.');
+            ->route('consultations.schedule', $record)
+            ->with('status', 'Choose your preferred day and time, then pay the consultation fee.');
+    }
+
+    public function schedule(ConsultationRequest $consultation, SiteSettings $settings): View|RedirectResponse
+    {
+        $consultation->load('doctor');
+
+        if ($consultation->isPaid()) {
+            return redirect()->route('consultations.confirmation', $consultation);
+        }
+
+        return view('pages.consultation-schedule', [
+            'settings' => $settings,
+            'consultation' => $consultation,
+            'days' => $this->bookingDays(),
+            'timeSlots' => ConsultationRequest::bookingTimeSlots(),
+            'feeDisplay' => $consultation->formattedFee(),
+        ]);
+    }
+
+    public function saveSchedule(Request $request, ConsultationRequest $consultation): RedirectResponse
+    {
+        if ($consultation->isPaid()) {
+            return redirect()->route('consultations.confirmation', $consultation);
+        }
+
+        $days = $this->bookingDays();
+        $allowedDates = collect($days)->pluck('value')->all();
+
+        $data = $request->validate([
+            'preferred_date' => ['required', 'date_format:Y-m-d', Rule::in($allowedDates)],
+            'preferred_time' => ['required', 'string', Rule::in(ConsultationRequest::bookingTimeSlots())],
+        ]);
+
+        $tz = 'Asia/Kolkata';
+        $slot = Carbon::createFromFormat('Y-m-d H:i', $data['preferred_date'].' '.$data['preferred_time'], $tz);
+        $label = $slot->format('D, j M Y').' · '.$slot->format('g:i A').' IST';
+
+        $consultation->update([
+            'preferred_window' => $label,
+        ]);
+
+        return redirect()
+            ->route('consultations.pay', $consultation)
+            ->with('status', 'Slot saved: '.$label.'. Complete payment to confirm your booking.');
+    }
+
+    /**
+     * Today through 7 days later (Asia/Kolkata), inclusive.
+     *
+     * @return list<array{value: string, label: string, weekday: string, day: string, month: string}>
+     */
+    private function bookingDays(): array
+    {
+        $tz = 'Asia/Kolkata';
+        $start = Carbon::now($tz)->startOfDay();
+        $days = [];
+
+        for ($i = 0; $i <= 7; $i++) {
+            $day = $start->copy()->addDays($i);
+            $days[] = [
+                'value' => $day->toDateString(),
+                'label' => $day->format('D, j M'),
+                'weekday' => $day->format('D'),
+                'day' => $day->format('j'),
+                'month' => $day->format('M'),
+            ];
+        }
+
+        return $days;
     }
 
     public function pay(
@@ -79,6 +150,10 @@ class ConsultationRequestController extends Controller
 
         if ($consultation->isPaid()) {
             return redirect()->route('consultations.confirmation', $consultation);
+        }
+
+        if (! filled($consultation->preferred_window)) {
+            return redirect()->route('consultations.schedule', $consultation);
         }
 
         $gateway = $payments->gatewayOrNull();

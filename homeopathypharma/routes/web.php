@@ -76,6 +76,11 @@ Route::get('/doctors/{slug}/request', [ConsultationRequestController::class, 'cr
 Route::post('/doctors/{slug}/request', [ConsultationRequestController::class, 'store'])
     ->middleware('throttle:20,1')
     ->name('consultations.store');
+Route::get('/consultations/{consultation}/schedule', [ConsultationRequestController::class, 'schedule'])
+    ->name('consultations.schedule');
+Route::post('/consultations/{consultation}/schedule', [ConsultationRequestController::class, 'saveSchedule'])
+    ->middleware('throttle:30,1')
+    ->name('consultations.schedule.save');
 Route::get('/consultations/{consultation}/pay', [ConsultationRequestController::class, 'pay'])
     ->name('consultations.pay');
 Route::get('/consultations/{consultation}/pay/success', [ConsultationRequestController::class, 'success'])

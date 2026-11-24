@@ -6,11 +6,18 @@
 <h1>{{ $consultation->isPaid() ? 'Booking confirmed' : 'Request received' }}</h1>
 @if(session('status'))<div class="hp-status">{{ session('status') }}</div>@endif
 <p>Reference <strong>{{ $consultation->number }}</strong> for <strong>{{ $consultation->doctor->full_name }}</strong>.</p>
+@if($consultation->preferred_window)
+<p>Preferred slot: <strong>{{ $consultation->preferred_window }}</strong></p>
+@endif
 <p>Fee: {{ $consultation->formattedFee() }}
 @if($consultation->isPaid())
  — <strong>paid</strong>{{ $consultation->paid_at ? ' on '.$consultation->paid_at->timezone('Asia/Kolkata')->format('d M Y, g:i A') : '' }}.
 @else
- — <strong>unpaid</strong>. <a href="{{ route('consultations.pay', $consultation) }}">Pay consultation fee</a>
+ — <strong>unpaid</strong>.
+ @if(! $consultation->preferred_window)
+ <a href="{{ route('consultations.schedule', $consultation) }}">Choose slot</a> ·
+ @endif
+ <a href="{{ route('consultations.pay', $consultation) }}">Pay consultation fee</a>
 @endif
 </p>
 <p>Our team will contact you on <strong>{{ $consultation->patient_phone }}</strong> to schedule the Google Meet consultation.</p>

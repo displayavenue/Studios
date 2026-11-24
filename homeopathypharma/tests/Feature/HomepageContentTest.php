@@ -38,12 +38,11 @@ class HomepageContentTest extends TestCase
         $response = $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
             'patient_name' => 'Test Patient',
             'patient_phone' => '9999999999',
-            'preferred_window' => 'Weekend morning',
             'terms' => '1',
         ]);
 
         $consultation = \App\Models\ConsultationRequest::query()->where('patient_name', 'Test Patient')->firstOrFail();
-        $response->assertRedirect(route('consultations.pay', $consultation));
+        $response->assertRedirect(route('consultations.schedule', $consultation));
 
         $this->assertDatabaseHas('consultation_requests', [
             'patient_name' => 'Test Patient',

@@ -12,6 +12,9 @@
 <p><strong>Reference</strong> {{ $consultation->number }}</p>
 <p><strong>Doctor</strong> {{ $consultation->doctor?->full_name ?: '—' }}</p>
 <p><strong>Patient</strong> {{ $consultation->patient_name }} · {{ $consultation->patient_phone }}</p>
+@if($consultation->preferred_window)
+<p><strong>Preferred slot</strong> {{ $consultation->preferred_window }}</p>
+@endif
 <p><strong>Fee due</strong> <span style="font-size:1.35rem;font-weight:700;">{{ $consultation->formattedFee() }}</span></p>
 </div>
 

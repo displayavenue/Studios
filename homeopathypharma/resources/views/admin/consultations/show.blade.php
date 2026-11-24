@@ -5,7 +5,8 @@
 <div class="admin-card" style="margin-bottom:1rem;">
 <p><strong>Doctor:</strong> {{ $consultation->doctor?->full_name }}</p>
 <p><strong>Patient:</strong> {{ $consultation->patient_name }} · {{ $consultation->patient_phone }} · {{ $consultation->patient_email }}</p>
-<p><strong>Preferred window:</strong> {{ $consultation->preferred_window ?: '—' }}</p>
+<p><strong>Preferred slot:</strong> {{ $consultation->preferred_window ?: '—' }}</p>
+<p><strong>Source:</strong> {{ $consultation->source ?: '—' }}</p>
 <p><strong>Concern:</strong> {{ $consultation->concern ?: '—' }}</p>
 <p><strong>Fee:</strong> {{ $consultation->formattedFee() }}</p>
 <p><strong>Payment:</strong> {{ $consultation->payment_status }}{{ $consultation->paid_at ? ' · '.$consultation->paid_at->timezone('Asia/Kolkata')->format('d M Y, g:i A').' IST' : '' }}</p>

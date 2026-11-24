@@ -11,8 +11,14 @@ class ConsultationRequest extends Model
     protected $fillable = [
         'number', 'doctor_profile_id', 'user_id', 'patient_name', 'patient_phone',
         'patient_email', 'concern', 'preferred_window', 'fee_paise', 'payment_status',
-        'paid_at', 'status', 'meeting_url', 'scheduled_at', 'admin_notes',
+        'paid_at', 'status', 'source', 'meeting_url', 'scheduled_at', 'admin_notes',
     ];
+
+    /** @return list<string> */
+    public static function bookingTimeSlots(): array
+    {
+        return ['10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+    }
 
     protected function casts(): array
     {
