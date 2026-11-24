@@ -92,8 +92,9 @@
 .hp-clock__hand{position:absolute;left:50%;top:50%;width:2.5px;height:32%;margin-top:-32%;transform-origin:50% 100%;background:var(--hp-forest,#1a3a2a);border-radius:2px;opacity:0;transition:transform .2s ease,opacity .15s ease;z-index:2;}
 .hp-clock__hand.is-on{opacity:1;}
 .hp-clock__hour{position:absolute;left:var(--left);top:var(--top);width:2.55rem;height:2.55rem;margin:-1.275rem 0 0 -1.275rem;border-radius:50%;border:0;background:#fff;color:var(--hp-forest,#1a3a2a);font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:0 2px 8px rgba(26,58,42,.12);z-index:4;}
-.hp-clock__hour:hover,.hp-clock__hour:focus-visible{outline:2px solid var(--hp-forest,#1a3a2a);outline-offset:2px;}
+.hp-clock__hour:hover:not(:disabled),.hp-clock__hour:focus-visible:not(:disabled){outline:2px solid var(--hp-forest,#1a3a2a);outline-offset:2px;}
 .hp-clock__hour.is-selected{background:var(--hp-forest,#1a3a2a);color:#fff;}
+.hp-clock__hour:disabled,.hp-clock__hour.is-unavailable{background:#eef1ee;color:#9aa59a;box-shadow:none;cursor:default;font-weight:600;}
 .hp-clock__picked{margin:.85rem 0 .55rem;text-align:center;font-weight:600;color:var(--hp-forest,#1a3a2a);}
 .hp-clock__list{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;}
 .hp-clock__chip{appearance:none;border:1.5px solid rgba(26,58,42,.16);background:#fff;color:var(--hp-forest,#1a3a2a);border-radius:999px;padding:.35rem .7rem;font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;}
@@ -190,22 +191,38 @@
 
   function placeHours() {
     face.querySelectorAll('.hp-clock__hour').forEach(function (n) { n.remove(); });
-      var radius = 38; // percent of face
+    var radius = 38; // percent of face
+    var byHour = {};
     slots.forEach(function (slot) {
-      var angle = (slot.hour12 % 12) / 12 * Math.PI * 2 - Math.PI / 2;
+      byHour[slot.hour12] = slot;
+    });
+
+    // Always draw a full 1–12 clock face so no hour markers are missing.
+    for (var h = 1; h <= 12; h++) {
+      var angle = (h % 12) / 12 * Math.PI * 2 - Math.PI / 2;
       var left = 50 + Math.cos(angle) * radius;
       var top = 50 + Math.sin(angle) * radius;
+      var slot = byHour[h];
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'hp-clock__hour';
-      btn.textContent = String(slot.hour12);
-      btn.setAttribute('aria-label', slot.label);
+      btn.textContent = String(h);
       btn.style.setProperty('--left', left + '%');
       btn.style.setProperty('--top', top + '%');
-      if (timeInput.value === slot.value) btn.classList.add('is-selected');
-      btn.addEventListener('click', function () { selectTime(slot.value); });
+      if (slot) {
+        btn.setAttribute('aria-label', slot.label);
+        if (timeInput.value === slot.value) btn.classList.add('is-selected');
+        btn.addEventListener('click', function (value) {
+          return function () { selectTime(value); };
+        }(slot.value));
+      } else {
+        btn.disabled = true;
+        btn.classList.add('is-unavailable');
+        btn.setAttribute('aria-label', h + ' o\'clock unavailable');
+        btn.title = 'Not available for booking';
+      }
       face.appendChild(btn);
-    });
+    }
 
     clockList.innerHTML = '';
     slots.forEach(function (slot) {
