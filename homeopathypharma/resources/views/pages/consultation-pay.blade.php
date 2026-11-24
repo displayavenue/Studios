@@ -10,7 +10,7 @@
 
 <div class="hp-form" style="margin:1.25rem 0;">
 <p><strong>Reference</strong> {{ $consultation->number }}</p>
-<p><strong>Doctor</strong> {{ $consultation->doctor->full_name }}</p>
+<p><strong>Doctor</strong> {{ $consultation->doctor?->full_name ?: '—' }}</p>
 <p><strong>Patient</strong> {{ $consultation->patient_name }} · {{ $consultation->patient_phone }}</p>
 <p><strong>Fee due</strong> <span style="font-size:1.35rem;font-weight:700;">{{ $consultation->formattedFee() }}</span></p>
 </div>
