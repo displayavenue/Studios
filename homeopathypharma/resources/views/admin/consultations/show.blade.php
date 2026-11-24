@@ -8,6 +8,7 @@
 <p><strong>Preferred window:</strong> {{ $consultation->preferred_window ?: '—' }}</p>
 <p><strong>Concern:</strong> {{ $consultation->concern ?: '—' }}</p>
 <p><strong>Fee:</strong> {{ $consultation->formattedFee() }}</p>
+<p><strong>Payment:</strong> {{ $consultation->payment_status }}{{ $consultation->paid_at ? ' · '.$consultation->paid_at->timezone('Asia/Kolkata')->format('d M Y, g:i A').' IST' : '' }}</p>
 </div>
 <form method="post" action="{{ route('admin.consultations.update', $consultation) }}" class="admin-form admin-card">
 @csrf @method('PUT')

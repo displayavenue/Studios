@@ -2,7 +2,6 @@
 
 namespace App\Services\Payments;
 
-use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Support\Str;
 
@@ -22,13 +21,17 @@ class TestPaymentGateway implements PaymentGateway
         return true;
     }
 
-    public function createPaymentSession(Order $order, Payment $payment): array
+    public function createPaymentSession(Payment $payment, array $context = []): array
     {
         return [
             'provider_order_id' => 'test_order_'.Str::lower(Str::random(12)),
             'meta' => [
                 'mode' => 'test',
                 'notice' => 'Test payment mode — no real charge.',
+                'amount' => $payment->amount_paise,
+                'currency' => $payment->currency,
+                'receipt' => $context['receipt'] ?? null,
+                'description' => $context['description'] ?? null,
             ],
         ];
     }

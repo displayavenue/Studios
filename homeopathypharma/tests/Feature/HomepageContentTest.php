@@ -35,16 +35,20 @@ class HomepageContentTest extends TestCase
         $this->seed(SiteSettingsSeeder::class);
         $this->seed(HomepageContentSeeder::class);
 
-        $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
+        $response = $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
             'patient_name' => 'Test Patient',
             'patient_phone' => '9999999999',
             'preferred_window' => 'Weekend morning',
             'terms' => '1',
-        ])->assertRedirect();
+        ]);
+
+        $consultation = \App\Models\ConsultationRequest::query()->where('patient_name', 'Test Patient')->firstOrFail();
+        $response->assertRedirect(route('consultations.pay', $consultation));
 
         $this->assertDatabaseHas('consultation_requests', [
             'patient_name' => 'Test Patient',
             'status' => 'pending',
+            'payment_status' => 'unpaid',
             'fee_paise' => 99900,
         ]);
     }

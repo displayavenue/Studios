@@ -2,7 +2,6 @@
 
 namespace App\Services\Payments;
 
-use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
@@ -20,23 +19,24 @@ class RazorpayGateway implements PaymentGateway
             && filled(config('services.razorpay.secret'));
     }
 
-    public function createPaymentSession(Order $order, Payment $payment): array
+    public function createPaymentSession(Payment $payment, array $context = []): array
     {
         if (! $this->isConfigured()) {
             throw new RuntimeException('Razorpay is not configured.');
         }
 
+        $receipt = (string) ($context['receipt'] ?? ('pay-'.$payment->id));
+        $description = (string) ($context['description'] ?? ('Payment #'.$payment->id));
+        $notes = is_array($context['notes'] ?? null) ? $context['notes'] : [];
+
         $response = Http::withBasicAuth(
             (string) config('services.razorpay.key'),
             (string) config('services.razorpay.secret')
         )->post('https://api.razorpay.com/v1/orders', [
-            'amount' => $order->total_paise,
-            'currency' => $order->currency,
-            'receipt' => $order->number,
-            'notes' => [
-                'order_id' => $order->id,
-                'order_number' => $order->number,
-            ],
+            'amount' => $payment->amount_paise,
+            'currency' => $payment->currency,
+            'receipt' => $receipt,
+            'notes' => $notes,
         ]);
 
         if (! $response->successful()) {
@@ -49,10 +49,12 @@ class RazorpayGateway implements PaymentGateway
             'provider_order_id' => (string) ($data['id'] ?? ''),
             'meta' => [
                 'key' => config('services.razorpay.key'),
-                'amount' => $order->total_paise,
-                'currency' => $order->currency,
+                'amount' => $payment->amount_paise,
+                'currency' => $payment->currency,
                 'name' => config('app.name'),
-                'description' => 'Order '.$order->number,
+                'description' => $description,
+                'receipt' => $receipt,
+                'notes' => $notes,
             ],
         ];
     }

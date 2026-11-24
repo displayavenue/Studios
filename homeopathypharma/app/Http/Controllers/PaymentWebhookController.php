@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Models\PaymentEvent;
 use App\Services\CheckoutService;
+use App\Services\ConsultationPaymentService;
 use App\Services\Payments\PaymentGatewayManager;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class PaymentWebhookController extends Controller
 {
-    public function __invoke(Request $request, PaymentGatewayManager $payments, CheckoutService $checkout): Response
-    {
+    public function __invoke(
+        Request $request,
+        PaymentGatewayManager $payments,
+        CheckoutService $checkout,
+        ConsultationPaymentService $consultationPayments,
+    ): Response {
+
         $raw = $request->getContent();
         $signature = $request->header('X-Razorpay-Signature') ?? $request->header('X-Payment-Signature');
         $gateway = $payments->gateway();
@@ -50,7 +56,14 @@ class PaymentWebhookController extends Controller
         }
 
         if ($payment && $providerPaymentId && in_array($eventType, ['payment.captured', 'payment.authorized', 'test.paid'], true)) {
-            $checkout->markPaid($payment->order, $payment, (string) $providerPaymentId);
+            if ($payment->consultation_request_id) {
+                $consultation = $payment->consultationRequest;
+                if ($consultation) {
+                    $consultationPayments->markPaid($consultation, $payment, (string) $providerPaymentId);
+                }
+            } elseif ($payment->order) {
+                $checkout->markPaid($payment->order, $payment, (string) $providerPaymentId);
+            }
         }
 
         return response('ok', 200);
