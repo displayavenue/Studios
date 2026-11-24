@@ -5,7 +5,6 @@
 <div class="hp-container" style="max-width:36rem;">
 <p class="hp-breadcrumb"><a href="{{ route('home') }}">Home</a> · <a href="{{ route('doctors.show', $doctor->slug) }}">{{ $doctor->full_name }}</a></p>
 <h1>Book a session</h1>
-<p class="hp-section__lead">{{ $feeDisplay }} · Google Meet. Submit your details, choose a slot within the next 7 days, then pay online.</p>
 <ul class="hp-doctor-meta" style="margin-bottom:1.25rem;">
 <li><strong>Doctor</strong> {{ $doctor->full_name }} ({{ $doctor->designation ?: 'BHMS' }})</li>
 @if($doctor->registration_number)<li><strong>Reg. no.</strong> {{ $doctor->registration_number }}</li>@endif
