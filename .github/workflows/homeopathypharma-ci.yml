@@ -29,34 +29,44 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          version: 9.15.4
+          php-version: "8.3"
+          extensions: mbstring, xml, curl, sqlite, zip, pdo_sqlite
+          coverage: none
+          tools: composer:v2
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: homeopathypharma/vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('homeopathypharma/composer.lock') }}
+          restore-keys: |
+            composer-${{ runner.os }}-
+
+      - name: Install PHP dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: pnpm
-          cache-dependency-path: homeopathypharma/pnpm-lock.yaml
+          cache: npm
+          cache-dependency-path: homeopathypharma/package-lock.json
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install JS dependencies
+        run: npm ci
 
-      - name: Generate Prisma client
-        run: pnpm db:generate
-        env:
-          DATABASE_URL: postgresql://hp:hp_dev_password@localhost:5432/homeopathypharma?schema=public
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Typecheck
-        run: pnpm typecheck
+      - name: Prepare app
+        run: |
+          cp .env.example .env
+          php artisan key:generate --force
+          mkdir -p database
+          touch database/database.sqlite
 
       - name: Test
-        run: pnpm test
+        run: php artisan test
 
-      - name: Build
-        run: pnpm build
+      - name: Build assets
+        run: npm run build
