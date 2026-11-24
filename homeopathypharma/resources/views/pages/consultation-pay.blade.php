@@ -10,7 +10,9 @@
 
 <div class="hp-form" style="margin:1.25rem 0;">
 <p><strong>Reference</strong> {{ $consultation->number }}</p>
-<p><strong>Doctor</strong> {{ $consultation->doctor?->full_name ?: '—' }}</p>
+@if($consultation->doctor)
+<p><strong>Doctor</strong> {{ $consultation->doctor->full_name }}</p>
+@endif
 <p><strong>Patient</strong> {{ $consultation->patient_name }} · {{ $consultation->patient_phone }}</p>
 @if($consultation->preferred_window)
 <p><strong>Preferred slot</strong> {{ $consultation->preferred_window }}</p>

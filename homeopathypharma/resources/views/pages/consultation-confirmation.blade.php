@@ -5,7 +5,7 @@
 <div class="hp-container" style="max-width:36rem;">
 <h1>{{ $consultation->isPaid() ? 'Booking confirmed' : 'Request received' }}</h1>
 @if(session('status'))<div class="hp-status">{{ session('status') }}</div>@endif
-<p>Reference <strong>{{ $consultation->number }}</strong> for <strong>{{ $consultation->doctor->full_name }}</strong>.</p>
+<p>Reference <strong>{{ $consultation->number }}</strong>@if($consultation->doctor) for <strong>{{ $consultation->doctor->full_name }}</strong>@endif.</p>
 @if($consultation->preferred_window)
 <p>Preferred slot: <strong>{{ $consultation->preferred_window }}</strong></p>
 @endif
