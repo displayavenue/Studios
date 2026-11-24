@@ -38,7 +38,7 @@ class ConsultationRequestController extends Controller
             'patient_name' => ['required', 'string', 'max:120'],
             'patient_phone' => ['required', 'string', 'max:30'],
             'patient_email' => ['nullable', 'email', 'max:190'],
-            'concern' => ['nullable', 'string', 'max:2000'],
+            'concern' => ['required', 'string', 'max:2000'],
             'terms' => ['accepted'],
         ]);
 
@@ -51,7 +51,7 @@ class ConsultationRequestController extends Controller
             'patient_name' => $data['patient_name'],
             'patient_phone' => $data['patient_phone'],
             'patient_email' => $data['patient_email'] ?? null,
-            'concern' => $data['concern'] ?? null,
+            'concern' => $data['concern'],
             'preferred_window' => null,
             'fee_paise' => $fee,
             'payment_status' => 'unpaid',

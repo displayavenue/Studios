@@ -38,6 +38,7 @@ class HomepageContentTest extends TestCase
         $response = $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
             'patient_name' => 'Test Patient',
             'patient_phone' => '9999999999',
+            'concern' => 'Seasonal allergy',
             'terms' => '1',
         ]);
 

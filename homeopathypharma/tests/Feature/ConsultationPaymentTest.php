@@ -23,6 +23,7 @@ class ConsultationPaymentTest extends TestCase
         $response = $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
             'patient_name' => 'Pay Patient',
             'patient_phone' => '9888888888',
+            'concern' => 'Ongoing cough',
             'terms' => '1',
         ]);
 
@@ -92,6 +93,7 @@ class ConsultationPaymentTest extends TestCase
         $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
             'patient_name' => 'Paid Patient',
             'patient_phone' => '9777777777',
+            'concern' => 'Skin rash',
             'terms' => '1',
         ]);
 
