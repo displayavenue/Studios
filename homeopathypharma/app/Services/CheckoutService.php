@@ -139,7 +139,14 @@ class CheckoutService
                 'status' => 'created',
             ]);
 
-            $session = $gateway->createPaymentSession($order, $payment);
+            $session = $gateway->createPaymentSession($payment, [
+                'receipt' => $order->number,
+                'description' => 'Order '.$order->number,
+                'notes' => [
+                    'order_id' => $order->id,
+                    'order_number' => $order->number,
+                ],
+            ]);
             $payment->update([
                 'provider_order_id' => $session['provider_order_id'],
                 'status' => 'pending',

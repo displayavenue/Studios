@@ -23,11 +23,11 @@ class HomepageContentTest extends TestCase
         $response->assertSee('Dr. Kavita Deshmukh', false);
         $response->assertSee('₹999', false);
         $response->assertSee('Google Meet', false);
-        $response->assertSee('Founder', false);
-        $response->assertSee('Case studies', false);
-        $response->assertSee('Allergic rhinitis', false);
-        $response->assertSee('Blog', false);
-        $response->assertSee('Testimonials', false);
+        $response->assertSee('Our Founder', false);
+        $response->assertSee('Ananya S.', false);
+        $response->assertSee('Health Library', false);
+        $response->assertSee('When to seek urgent medical care', false);
+        $response->assertSee('What Our Customers Say', false);
     }
 
     public function test_consultation_request_creates_pending_meet_booking(): void
@@ -35,16 +35,20 @@ class HomepageContentTest extends TestCase
         $this->seed(SiteSettingsSeeder::class);
         $this->seed(HomepageContentSeeder::class);
 
-        $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
+        $response = $this->post(route('consultations.store', 'dr-kavita-deshmukh'), [
             'patient_name' => 'Test Patient',
             'patient_phone' => '9999999999',
-            'preferred_window' => 'Weekend morning',
+            'concern' => 'Seasonal allergy',
             'terms' => '1',
-        ])->assertRedirect();
+        ]);
+
+        $consultation = \App\Models\ConsultationRequest::query()->where('patient_name', 'Test Patient')->firstOrFail();
+        $response->assertRedirect(route('consultations.schedule', $consultation));
 
         $this->assertDatabaseHas('consultation_requests', [
             'patient_name' => 'Test Patient',
             'status' => 'pending',
+            'payment_status' => 'unpaid',
             'fee_paise' => 99900,
         ]);
     }

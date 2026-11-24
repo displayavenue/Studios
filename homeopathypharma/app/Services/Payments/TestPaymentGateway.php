@@ -2,7 +2,6 @@
 
 namespace App\Services\Payments;
 
-use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Support\Str;
 
@@ -22,21 +21,29 @@ class TestPaymentGateway implements PaymentGateway
         return true;
     }
 
-    public function createPaymentSession(Order $order, Payment $payment): array
+    public function createPaymentSession(Payment $payment, array $context = []): array
     {
         return [
             'provider_order_id' => 'test_order_'.Str::lower(Str::random(12)),
             'meta' => [
                 'mode' => 'test',
                 'notice' => 'Test payment mode — no real charge.',
+                'amount' => $payment->amount_paise,
+                'currency' => $payment->currency,
+                'receipt' => $context['receipt'] ?? null,
+                'description' => $context['description'] ?? null,
             ],
         ];
     }
 
     public function verifyCheckoutSignature(array $payload): bool
     {
-        return ($payload['razorpay_payment_id'] ?? null) === 'test_paid'
-            || ($payload['provider_payment_id'] ?? null) === 'test_paid';
+        $razorpayPaymentId = (string) ($payload['razorpay_payment_id'] ?? '');
+        $providerPaymentId = (string) ($payload['provider_payment_id'] ?? '');
+
+        return $razorpayPaymentId === 'test_paid'
+            || $providerPaymentId === 'test_paid'
+            || str_starts_with($providerPaymentId, 'test_paid_');
     }
 
     public function verifyWebhookSignature(string $payload, ?string $signature): bool

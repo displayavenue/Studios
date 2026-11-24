@@ -10,6 +10,7 @@ class Payment extends Model
 {
     protected $fillable = [
         'order_id',
+        'consultation_request_id',
         'provider',
         'provider_order_id',
         'provider_payment_id',
@@ -29,8 +30,18 @@ class Payment extends Model
         return $this->belongsTo(Order::class);
     }
 
+    public function consultationRequest(): BelongsTo
+    {
+        return $this->belongsTo(ConsultationRequest::class);
+    }
+
     public function events(): HasMany
     {
         return $this->hasMany(PaymentEvent::class);
+    }
+
+    public function formattedAmount(): string
+    {
+        return '₹'.number_format($this->amount_paise / 100, 0);
     }
 }
