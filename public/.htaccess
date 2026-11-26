@@ -5,6 +5,11 @@ DirectoryIndex index.html index.php
   RewriteEngine On
   RewriteBase /
 
+  # Retired /hire pages (thin near-duplicates) → closest real page, 301
+  RewriteRule ^hire/mumbai/([^/]+)/?$ /services/$1 [R=301,L]
+  RewriteRule ^hire/(delhi|goa|udaipur|jaipur|bangalore|pune)(/.*)?$ /locations/wedding-photographer-$1 [R=301,L]
+  RewriteRule ^hire(/.*)?$ /locations [R=301,L]
+
   # Prefer React homepage over WordPress index.php when both exist
   RewriteRule ^$ index.html [L]
 

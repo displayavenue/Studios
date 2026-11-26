@@ -42,7 +42,6 @@
 - Portfolio: https://displayavenuestudios.com/portfolio
 - Locations: https://displayavenuestudios.com/locations
 - Wedding styles: https://displayavenuestudios.com/industries
-- Hire by city: https://displayavenuestudios.com/hire
 - Availability: https://displayavenuestudios.com/availability
 - Case studies: https://displayavenuestudios.com/case-studies
 - Blog: https://displayavenuestudios.com/blog
