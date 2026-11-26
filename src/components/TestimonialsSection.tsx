@@ -10,6 +10,15 @@ type Props = {
   className?: string;
 };
 
+function initials(name: string) {
+  return name
+    .split(/[\s&]+/)
+    .filter(Boolean)
+    .map((w) => w[0]!.toUpperCase())
+    .slice(0, 2)
+    .join("");
+}
+
 export function TestimonialsSection({
   eyebrow,
   title,
@@ -39,9 +48,6 @@ export function TestimonialsSection({
           <p className="eyebrow">{resolvedEyebrow}</p>
           <h2>{resolvedTitle}</h2>
           {resolvedText ? <p>{resolvedText}</p> : null}
-          <p className="testimonials-section__score" aria-label="Average rating 4.9 out of 5">
-            <span>★★★★★</span> 4.9/5 average · Pan-India clients
-          </p>
         </div>
         <div className={`testimonials-grid ${compact ? "testimonials-grid--compact" : ""}`}>
           {items.map((t) => (
@@ -51,7 +57,13 @@ export function TestimonialsSection({
               </div>
               <p className="testimonial-card__quote">“{t.quote}”</p>
               <div className="testimonial-card__person">
-                <img src={t.image} alt="" loading="lazy" width={56} height={56} />
+                {t.image ? (
+                  <img src={t.image} alt="" loading="lazy" width={56} height={56} />
+                ) : (
+                  <span className="testimonial-card__initials" aria-hidden>
+                    {initials(t.name)}
+                  </span>
+                )}
                 <div>
                   <strong>{t.name}</strong>
                   <span>{t.role}</span>

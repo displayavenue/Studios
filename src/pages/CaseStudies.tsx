@@ -14,7 +14,7 @@ export function CaseStudies() {
   return (
     <div ref={ref}>
       <SEO
-        title="Wedding Case Studies | Real Couples & Outcomes | DisplayAvenue"
+        title="Wedding Case Studies | Real Couples & Outcomes | DisplayAvenue Studios"
         description="Real DisplayAvenue wedding case studies — destination weddings, candid Mumbai celebrations, pre-wedding films and maternity sessions across India."
         path="/case-studies"
       />

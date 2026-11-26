@@ -613,3 +613,49 @@
     grid-column: 1 / -1;
   }
 }
+
+/* Homepage: transparent header with light text over the full-bleed hero */
+.site-header.is-over-hero {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.site-header.is-over-hero .logo__text,
+.site-header.is-over-hero .logo__text small,
+.site-header.is-over-hero .nav-link,
+.site-header.is-over-hero .nav-caret,
+.site-header.is-over-hero .header-phone,
+.site-header.is-over-hero .header-wa {
+  color: var(--white);
+}
+
+.site-header.is-over-hero .logo__mark {
+  border: 1px solid rgba(201, 162, 39, 0.6);
+}
+
+.site-header.is-over-hero .header-phone:hover,
+.site-header.is-over-hero .header-wa:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.site-header.is-over-hero .header-cta {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.site-header.is-over-hero .header-cta:hover {
+  background: var(--white);
+  color: var(--black);
+  box-shadow: none;
+}
+
+.site-header.is-over-hero .menu-toggle {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.site-header.is-over-hero .menu-toggle span {
+  background: var(--white);
+}

@@ -49,14 +49,14 @@ export type HomeContent = {
 
 export const homeContent: HomeContent = {
   "seo": {
-    "title": "Wedding Photographer in Mumbai | Candid Photography & Films | DisplayAvenue",
+    "title": "Wedding Photographer in Mumbai | Candid Photography & Films | DisplayAvenue Studios",
     "description": "Premium wedding photographer & videographer in Mumbai for Indian weddings — candid photography, cinematic films, pre-wedding, engagement, maternity, birthday and event coverage across India."
   },
   "hero": {
     "brand": "DisplayAvenue Studios",
-    "eyebrow": "Luxury Wedding Photography & Films · Mumbai",
-    "headline": "The wedding photographer couples shortlist for forever",
-    "description": "Candid photography. Cinematic videography. Traditional heirlooms. Pre-wedding, engagement, maternity, birthday and all event photo + film — crafted in Mumbai for Indian celebrations.",
+    "eyebrow": "Wedding photographer in Mumbai · Photography & films",
+    "headline": "Weddings, told like cinema.",
+    "description": "Candid photography and cinematic films for Indian weddings and life’s celebrations — in Mumbai and across India.",
     "primaryCtaLabel": "Check Availability",
     "primaryCtaPath": "/availability",
     "secondaryCtaLabel": "View Wedding Portfolio",
@@ -68,24 +68,24 @@ export const homeContent: HomeContent = {
     "label": "Trusted by Couples Across India"
   },
   "services": {
-    "eyebrow": "Signature Services",
-    "title": "Weddings & life’s celebrations — only what matters",
+    "eyebrow": "What we shoot",
+    "title": "Weddings & life’s celebrations",
     "text": "Wedding photography & videography, pre-wedding films, engagement, maternity, birthday and complete event coverage — photo and film for every celebration.",
-    "ctaLabel": "Explore Services",
+    "ctaLabel": "All services",
     "ctaPath": "/services"
   },
   "portfolio": {
-    "eyebrow": "Featured Stories",
-    "title": "Weddings that feel like cinema",
+    "eyebrow": "Selected work",
+    "title": "Moments, not poses",
     "text": "Destination palaces, Mumbai banquets, pre-wedding chemistry and milestone celebrations — a portfolio built for couples.",
-    "ctaLabel": "Explore Portfolio",
+    "ctaLabel": "View full portfolio",
     "ctaPath": "/portfolio"
   },
   "packages": {
     "eyebrow": "Wedding Packages",
     "title": "Essential · Signature · Luxury",
     "text": "Transparent photography and film packages for intimate ceremonies and destination celebrations — compare and customise.",
-    "featuredBadge": "Most Booked",
+    "featuredBadge": "Most booked",
     "ctaLabel": "Wedding Packages",
     "ctaPath": "/packages/wedding",
     "secondaryCtaLabel": "All Packages",
@@ -102,9 +102,9 @@ export const homeContent: HomeContent = {
     "text": ""
   },
   "testimonials": {
-    "eyebrow": "Love Notes",
-    "title": "Loved by couples across India",
-    "text": "Real words from weddings, pre-weddings, maternity and milestone celebrations."
+    "eyebrow": "Kind words",
+    "title": "From our couples",
+    "text": ""
   },
   "faqs": {
     "eyebrow": "FAQs",

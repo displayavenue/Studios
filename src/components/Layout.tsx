@@ -21,7 +21,7 @@ export function Layout() {
       <main id="main-content">
         <Outlet />
       </main>
-      <SiteConversion />
+      {pathname !== "/" && <SiteConversion />}
       <Footer />
       <WhatsAppFloat />
     </>

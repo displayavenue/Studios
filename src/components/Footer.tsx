@@ -142,9 +142,6 @@ export function Footer() {
             <li>
               <Link to="/book-now">Book Now</Link>
             </li>
-            <li>
-              <Link to="/pages">All Pages</Link>
-            </li>
           </ul>
         </div>
 
@@ -166,7 +163,10 @@ export function Footer() {
         <div>
           <h4>Locations</h4>
           <ul>
-            {locations.slice(0, 6).map((loc) => (
+            {locations
+              .filter((loc, i, all) => all.findIndex((l) => l.city === loc.city) === i)
+              .slice(0, 6)
+              .map((loc) => (
               <li key={loc.slug}>
                 <Link to={`/locations/${loc.slug}`}>{loc.city}</Link>
               </li>
@@ -181,6 +181,18 @@ export function Footer() {
               <span key={line}>{line}</span>
             ))}
           </address>
+          <p>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+                [company.name, company.address.streetAddress, company.address.addressLocality, company.address.postalCode].join(", "),
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+              className="site-footer__directions"
+            >
+              Get directions →
+            </a>
+          </p>
           <p>
             <a href={company.phoneHref}>{company.phone}</a>
           </p>
@@ -198,7 +210,7 @@ export function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit" className="btn btn--gold">
+              <button type="submit" className="btn btn--outline-light">
                 Join
               </button>
             </div>
@@ -211,15 +223,6 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container site-footer__map">
-        <iframe
-          title="DisplayAvenue Studios location map"
-          src={company.address.mapEmbed}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
-      </div>
 
       <div className="container site-footer__bottom">
         <p>

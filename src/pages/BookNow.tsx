@@ -202,7 +202,6 @@ export function BookNow() {
             </div>
             <div className="info-panel card book-aside__reviews">
               <p className="eyebrow">Client reviews</p>
-              <p className="book-aside__score">★★★★★ 4.9/5</p>
               {testimonials.slice(0, 2).map((t) => (
                 <blockquote key={t.name} className="book-aside__quote">
                   <p>“{t.quote}”</p>

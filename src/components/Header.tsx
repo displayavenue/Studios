@@ -161,7 +161,7 @@ export function Header() {
         )}
       <header
         ref={headerRef}
-        className={`site-header ${scrolled || open || activeMega ? "is-solid" : "is-transparent"} ${open ? "is-menu-open" : ""} ${activeMega ? "has-menu" : ""}`}
+        className={`site-header ${scrolled || open || activeMega ? "is-solid" : "is-transparent"} ${pathname === "/" && !scrolled && !open && !activeMega ? "is-over-hero" : ""} ${open ? "is-menu-open" : ""} ${activeMega ? "has-menu" : ""}`}
         onMouseLeave={scheduleClose}
         onMouseEnter={clearCloseTimer}
       >
