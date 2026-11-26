@@ -248,10 +248,10 @@ const defaultLinks = [
 
 const seoPages = {};
 addPage(seoPages, "/", {
-  title: `${name} | Get more customers online`,
+  title: `${name} | Digital Marketing Agency in Mumbai`,
   description:
-    "Mumbai digital marketing agency for Google, Instagram, websites and lead generation. Clear plans in plain English.",
-  h1: name,
+    "DisplayAvenue is a Mumbai digital marketing agency (Mira Road East) for Google Ads, SEO, Meta & Instagram ads, social media and websites that bring real enquiries.",
+  h1: "Get more customers from Google, Instagram & your website",
   summary:
     company.tagline ||
     "DisplayAvenue helps business owners get found online and turn interest into real enquiries.",

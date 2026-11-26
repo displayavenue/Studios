@@ -44,6 +44,14 @@ export default function App() {
   const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
   return (
     <BrowserRouter basename={basename === "/" ? undefined : basename}>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}
+
+/** Route table, shared by the browser app and the build-time prerenderer. */
+export function AppRoutes() {
+  return (
       <Routes>
         <Route element={<GrowthLayout />}>
           <Route path="growth" element={<Growth />} />
@@ -90,6 +98,5 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </BrowserRouter>
   );
 }

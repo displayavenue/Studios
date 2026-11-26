@@ -149,140 +149,165 @@ function itemsOf(data: { items?: DetailPageContent[] } | null, fallback: DetailP
   return data?.items?.length ? data.items : fallback;
 }
 
-export function CmsProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<AgencyCms>(defaults);
+export type RawCms = Partial<{
+  company: Partial<CompanyCms>;
+  home: Partial<HomeCms>;
+  services: { items: DetailPageContent[] };
+  industries: { items: DetailPageContent[] };
+  packages: { items: DetailPageContent[] };
+  solutions: { items: DetailPageContent[] };
+  ai: { items: DetailPageContent[] };
+  tools: { items: DetailPageContent[] };
+  cases: { items: DetailPageContent[] };
+  projects: { items: DetailPageContent[] };
+  resources: { items: DetailPageContent[] };
+  content: Partial<ContentCms>;
+  tracking: TrackingSettings;
+  "google-reviews": GoogleReviewsCms;
+  awards: AwardsCms;
+  certifications: CertificationsCms;
+  contact: ContactCms;
+  combos: { items: DetailPageContent[] };
+}>;
+
+export const CMS_FILES = [
+  "company",
+  "home",
+  "services",
+  "industries",
+  "packages",
+  "solutions",
+  "ai",
+  "tools",
+  "cases",
+  "projects",
+  "resources",
+  "content",
+  "tracking",
+  "google-reviews",
+  "awards",
+  "certifications",
+  "contact",
+  "combos",
+] as const;
+
+/** Merge raw CMS JSON (any file may be missing) over the built-in fallbacks. */
+export function buildCms(raw: RawCms): AgencyCms {
+  const company = raw.company ?? null;
+  const home = raw.home ?? null;
+  const content = raw.content ?? null;
+  const googleReviews = raw["google-reviews"] ?? null;
+  const awardsJson = raw.awards ?? null;
+  const certificationsJson = raw.certifications ?? null;
+  const contactJson = raw.contact ?? null;
+
+  const navItems = (company?.navItems || fallbackNav).map((n) => {
+    const mega = (n as { mega?: unknown }).mega;
+    return {
+      ...n,
+      mega: mega === false || mega === "false" ? false : (mega as typeof n.mega),
+    };
+  });
+
+  return {
+    company: {
+      ...fallbackCompany,
+      ...(company || {}),
+      address: { ...fallbackCompany.address, ...(company?.address || {}) },
+      socials: { ...fallbackCompany.socials, ...(company?.socials || {}) },
+      stats: { ...fallbackCompany.stats, ...(company?.stats || {}) },
+      googleMaps: {
+        ...fallbackCompany.googleMaps,
+        ...(company?.googleMaps || {}),
+      },
+      announcement:
+        company?.announcement ||
+        "New! AI-Powered Marketing Solutions are now available.",
+      navItems: navItems as typeof fallbackNav,
+    },
+    home: {
+      ...fallbackHome,
+      ...(home || {}),
+      hero: { ...fallbackHome.hero, ...(home?.hero || {}) },
+    },
+    services: itemsOf(raw.services ?? null, fallbackServices),
+    industries: itemsOf(raw.industries ?? null, fallbackIndustries),
+    packages: itemsOf(raw.packages ?? null, fallbackPackages),
+    solutions: itemsOf(raw.solutions ?? null, fallbackSolutions),
+    ai: itemsOf(raw.ai ?? null, fallbackAi),
+    tools: itemsOf(raw.tools ?? null, fallbackTools),
+    cases: itemsOf(raw.cases ?? null, fallbackCases),
+    projects: itemsOf(raw.projects ?? null, fallbackProjects),
+    resources: itemsOf(raw.resources ?? null, fallbackResources),
+    content: {
+      testimonials: content?.testimonials?.length
+        ? content.testimonials
+        : fallbackTestimonials,
+      clientLogos: content?.clientLogos?.length
+        ? content.clientLogos
+        : fallbackLogos,
+      footerCta: {
+        ...defaults.content.footerCta,
+        ...(content?.footerCta || {}),
+      },
+    },
+    googleReviews: {
+      ...fallbackGoogleReviews,
+      ...(googleReviews || {}),
+      reviews: googleReviews?.reviews?.length
+        ? googleReviews.reviews
+        : fallbackGoogleReviews.reviews,
+    },
+    awards: {
+      ...fallbackAwards,
+      ...(awardsJson || {}),
+      items: awardsJson?.items?.length ? awardsJson.items : fallbackAwards.items,
+    },
+    certifications: {
+      ...fallbackCertifications,
+      ...(certificationsJson || {}),
+      items: certificationsJson?.items?.length
+        ? certificationsJson.items
+        : fallbackCertifications.items,
+    },
+    contact: {
+      ...fallbackContact,
+      ...(contactJson || {}),
+      fields: {
+        ...fallbackContact.fields,
+        ...(contactJson?.fields || {}),
+      },
+      seo: {
+        ...fallbackContact.seo,
+        ...(contactJson?.seo || {}),
+      },
+    },
+    combos: itemsOf(raw.combos ?? null, []),
+    tracking: mergeTracking(raw.tracking ?? null),
+    ready: true,
+  };
+}
+
+export function CmsProvider({
+  children,
+  initial,
+}: {
+  children: ReactNode;
+  /** Pre-built state (used by the build-time prerenderer). */
+  initial?: AgencyCms;
+}) {
+  const [state, setState] = useState<AgencyCms>(initial ?? defaults);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [
-        company,
-        home,
-        services,
-        industries,
-        packages,
-        solutions,
-        ai,
-        tools,
-        cases,
-        projects,
-        resources,
-        content,
-        trackingJson,
-        googleReviews,
-        awardsJson,
-        certificationsJson,
-        contactJson,
-        combosJson,
-      ] = await Promise.all([
-        fetchJson<Partial<CompanyCms>>("company"),
-        fetchJson<Partial<HomeCms>>("home"),
-        fetchJson<{ items: DetailPageContent[] }>("services"),
-        fetchJson<{ items: DetailPageContent[] }>("industries"),
-        fetchJson<{ items: DetailPageContent[] }>("packages"),
-        fetchJson<{ items: DetailPageContent[] }>("solutions"),
-        fetchJson<{ items: DetailPageContent[] }>("ai"),
-        fetchJson<{ items: DetailPageContent[] }>("tools"),
-        fetchJson<{ items: DetailPageContent[] }>("cases"),
-        fetchJson<{ items: DetailPageContent[] }>("projects"),
-        fetchJson<{ items: DetailPageContent[] }>("resources"),
-        fetchJson<Partial<ContentCms>>("content"),
-        fetchJson<TrackingSettings>("tracking"),
-        fetchJson<GoogleReviewsCms>("google-reviews"),
-        fetchJson<AwardsCms>("awards"),
-        fetchJson<CertificationsCms>("certifications"),
-        fetchJson<ContactCms>("contact"),
-        fetchJson<{ items: DetailPageContent[] }>("combos"),
-      ]);
-
+      const results = await Promise.all(CMS_FILES.map((name) => fetchJson<unknown>(name)));
       if (cancelled) return;
-
-      const navItems = (company?.navItems || fallbackNav).map((n) => {
-        const mega = (n as { mega?: unknown }).mega;
-        return {
-          ...n,
-          mega: mega === false || mega === "false" ? false : (mega as typeof n.mega),
-        };
+      const raw: Record<string, unknown> = {};
+      CMS_FILES.forEach((name, i) => {
+        if (results[i] != null) raw[name] = results[i];
       });
-
-      setState({
-        company: {
-          ...fallbackCompany,
-          ...(company || {}),
-          address: { ...fallbackCompany.address, ...(company?.address || {}) },
-          socials: { ...fallbackCompany.socials, ...(company?.socials || {}) },
-          stats: { ...fallbackCompany.stats, ...(company?.stats || {}) },
-          googleMaps: {
-            ...fallbackCompany.googleMaps,
-            ...(company?.googleMaps || {}),
-          },
-          announcement:
-            company?.announcement ||
-            "New! AI-Powered Marketing Solutions are now available.",
-          navItems: navItems as typeof fallbackNav,
-        },
-        home: {
-          ...fallbackHome,
-          ...(home || {}),
-          hero: { ...fallbackHome.hero, ...(home?.hero || {}) },
-        },
-        services: itemsOf(services, fallbackServices),
-        industries: itemsOf(industries, fallbackIndustries),
-        packages: itemsOf(packages, fallbackPackages),
-        solutions: itemsOf(solutions, fallbackSolutions),
-        ai: itemsOf(ai, fallbackAi),
-        tools: itemsOf(tools, fallbackTools),
-        cases: itemsOf(cases, fallbackCases),
-        projects: itemsOf(projects, fallbackProjects),
-        resources: itemsOf(resources, fallbackResources),
-        content: {
-          testimonials: content?.testimonials?.length
-            ? content.testimonials
-            : fallbackTestimonials,
-          clientLogos: content?.clientLogos?.length
-            ? content.clientLogos
-            : fallbackLogos,
-          footerCta: {
-            ...defaults.content.footerCta,
-            ...(content?.footerCta || {}),
-          },
-        },
-        googleReviews: {
-          ...fallbackGoogleReviews,
-          ...(googleReviews || {}),
-          reviews:
-            googleReviews?.reviews?.length
-              ? googleReviews.reviews
-              : fallbackGoogleReviews.reviews,
-        },
-        awards: {
-          ...fallbackAwards,
-          ...(awardsJson || {}),
-          items: awardsJson?.items?.length ? awardsJson.items : fallbackAwards.items,
-        },
-        certifications: {
-          ...fallbackCertifications,
-          ...(certificationsJson || {}),
-          items: certificationsJson?.items?.length
-            ? certificationsJson.items
-            : fallbackCertifications.items,
-        },
-        contact: {
-          ...fallbackContact,
-          ...(contactJson || {}),
-          fields: {
-            ...fallbackContact.fields,
-            ...(contactJson?.fields || {}),
-          },
-          seo: {
-            ...fallbackContact.seo,
-            ...(contactJson?.seo || {}),
-          },
-        },
-        combos: itemsOf(combosJson, []),
-        tracking: mergeTracking(trackingJson),
-        ready: true,
-      });
+      setState(buildCms(raw as RawCms));
     })();
     return () => {
       cancelled = true;

@@ -10,8 +10,14 @@
   # Dynamic sitemap
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
+  # Homepage goes through the SEO router too (full prerendered HTML for crawlers)
+  RewriteRule ^$ seo-router.php [L,QSA]
+  RewriteRule ^index\.html$ seo-router.php [L,QSA]
+
+  # Prerender data is internal (read by seo-router.php only)
+  RewriteRule ^prerender/ - [F,L]
+
   # Existing files/directories are served as-is
-  RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]

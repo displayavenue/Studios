@@ -136,16 +136,23 @@ export function Header() {
                 className="mobile-cta"
                 style={{ "--nav-i": navItems.length } as CSSProperties}
               >
-                <a
+                <Link
                   className="btn btn-primary btn-shimmer"
+                  to="/contact"
+                  onClick={() => setOpen(false)}
+                >
+                  Book a free call
+                  <span className="btn-arrow" aria-hidden>
+                    →
+                  </span>
+                </Link>
+                <a
+                  className="btn btn-outline"
                   href={catalogueUrl}
                   download={catalogueFileName}
                   onClick={() => setOpen(false)}
                 >
                   Download Catalogue
-                  <span className="btn-arrow" aria-hidden>
-                    →
-                  </span>
                 </a>
                 <a className="btn btn-outline" href={company.clientLogin}>
                   Client Login
@@ -167,7 +174,7 @@ export function Header() {
               "Free growth call for business owners - book in 2 minutes."}
           </span>
           <div className="announcement-actions">
-            <Link to="/contact">Book Free Audit</Link>
+            <Link to="/contact">Book a free call</Link>
             <a href={company.phoneHref}>{company.phone}</a>
           </div>
         </div>
@@ -193,7 +200,7 @@ export function Header() {
               Client Login
             </a>
             <Link to="/contact" className="btn btn-primary btn-sm proposal-btn">
-              Get Free Proposal
+              Book a free call
               <Icon name="arrow" size={14} color="#fff" />
             </Link>
             <button

@@ -105,7 +105,7 @@ export function PlaceholderPage({
       </p>
       <div className="placeholder-actions">
         <Link to="/contact" className="btn btn-primary">
-          Get Free Proposal <Icon name="arrow" size={16} color="#fff" />
+          Book a free call <Icon name="arrow" size={16} color="#fff" />
         </Link>
         <Link to="/" className="btn btn-outline">
           Back to Home

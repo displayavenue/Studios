@@ -25,6 +25,10 @@ if ($path !== '/') {
   $path = rtrim($path, '/') ?: '/';
 }
 
+if ($path === '/index.html') {
+  $path = '/';
+}
+
 // Never handle real files (assets, admin, content, etc.)
 $asFile = $dir . $path;
 if ($path !== '/' && is_file($asFile)) {
@@ -141,18 +145,51 @@ if ($linkHtml === '') {
   $linkHtml = '<li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li>';
 }
 
-$static = '<main id="seo-static" data-seo-path="' . $esc($path) . '">'
-  . '<h1>' . $esc($h1) . '</h1>'
-  . '<p>' . $esc($summary) . '</p>'
-  . '<nav aria-label="Popular pages"><ul>' . $linkHtml . '</ul></nav>'
-  . '</main>';
+// Full prerendered page (built by scripts/prerender.mjs) — preferred over the thin shell.
+$prerender = null;
+if ($isKnown) {
+  $file = $dir . '/prerender/' . ($path === '/' ? 'index' : ltrim($path, '/')) . '.json';
+  $real = is_file($file) ? realpath($file) : false;
+  $base = realpath($dir . '/prerender');
+  if ($real && $base && strpos($real, $base . DIRECTORY_SEPARATOR) === 0) {
+    $decoded = json_decode((string)file_get_contents($real), true);
+    if (is_array($decoded) && !empty($decoded['html'])) $prerender = $decoded;
+  }
+}
 
-$html = preg_replace(
-  '/<div id="root"><\/div>/',
-  $static . "\n    <div id=\"root\"></div>",
-  $html,
-  1
-) ?? $html;
+if ($prerender !== null) {
+  $ld = '';
+  foreach (($prerender['jsonLd'] ?? []) as $block) {
+    if (!is_array($block) || !is_array($block['data'] ?? null)) continue;
+    $id = preg_replace('/[^a-z0-9-]/i', '', (string)($block['id'] ?? ''));
+    $json = json_encode($block['data'], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG);
+    // Same id as the React app uses, so it updates these instead of adding duplicates.
+    if ($json) $ld .= '<script type="application/ld+json" id="' . $id . '">' . $json . "</script>\n";
+  }
+  if ($ld !== '') {
+    $html = preg_replace('/<\/head>/i', $ld . '</head>', $html, 1) ?? $html;
+  }
+  $rootHtml = (string)$prerender['html'];
+  $html = preg_replace_callback(
+    '/<div id="root"><\/div>/',
+    static fn() => '<div id="root">' . $rootHtml . '</div>',
+    $html,
+    1
+  ) ?? $html;
+} else {
+  $static = '<main id="seo-static" data-seo-path="' . $esc($path) . '">'
+    . '<h1>' . $esc($h1) . '</h1>'
+    . '<p>' . $esc($summary) . '</p>'
+    . '<nav aria-label="Popular pages"><ul>' . $linkHtml . '</ul></nav>'
+    . '</main>';
+
+  $html = preg_replace(
+    '/<div id="root"><\/div>/',
+    $static . "\n    <div id=\"root\"></div>",
+    $html,
+    1
+  ) ?? $html;
+}
 
 header('Content-Type: text/html; charset=utf-8');
 header('X-DA-SEO-Router: 1');

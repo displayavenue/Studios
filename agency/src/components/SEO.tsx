@@ -18,7 +18,33 @@ export function absoluteUrl(website: string, path = "/"): string {
   return `${origin}${mount}${cleanPath || "/"}`.replace(/([^:]\/)\/+/g, "$1");
 }
 
+/** Build-time prerender: JSON-LD is collected here instead of touching the DOM. */
+export type JsonLdSink = Map<string, Record<string, unknown>>;
+let ssrSink: JsonLdSink | null = null;
+
+export function collectJsonLd<T>(sink: JsonLdSink, fn: () => T): T {
+  ssrSink = sink;
+  try {
+    return fn();
+  } finally {
+    ssrSink = null;
+  }
+}
+
+/** useEffect in the browser; runs synchronously during build-time prerender. */
+function useSchemaEffect(fn: () => void | (() => void), deps: unknown[]) {
+  // Effects never run during renderToString, so collect synchronously there.
+  if (ssrSink) fn();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(fn, deps);
+}
+
 function upsertJsonLd(id: string, data: Record<string, unknown> | null) {
+  if (ssrSink) {
+    if (data) ssrSink.set(id, data);
+    else ssrSink.delete(id);
+    return;
+  }
   let script = document.getElementById(id) as HTMLScriptElement | null;
   if (!data) {
     script?.remove();
@@ -47,8 +73,7 @@ function setMeta(selector: string, attr: string, value: string) {
   el.setAttribute(attr, value);
 }
 
-const DEFAULT_OG =
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80";
+const DEFAULT_OG = "https://displayavenue.com/images/og-displayavenue.jpg";
 
 export function SEO({
   title,
@@ -123,7 +148,7 @@ export function SEO({
 export function LocalBusinessSchema() {
   const { company, content, services, googleReviews } = useCms();
 
-  useEffect(() => {
+  useSchemaEffect(() => {
     const socials = Object.values(company.socials || {}).filter((u) =>
       /^https?:\/\//i.test(u),
     );
@@ -157,14 +182,23 @@ export function LocalBusinessSchema() {
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "ProfessionalService", "Organization"],
       "@id": `${site}/#business`,
-      name: maps?.name || company.name,
-      alternateName: "DisplayAvenue",
-      description: company.tagline,
+      name: company.name,
+      alternateName: maps?.name && maps.name !== company.name ? maps.name : "Display Avenue",
+      description:
+        "DisplayAvenue is a digital marketing agency in Mira Road East, Mumbai, helping Indian businesses get more customers through Google Ads, SEO, Meta and Instagram ads, social media management and conversion-focused websites.",
+      slogan: "Ideas. Innovation. Impact.",
+      foundingDate: "2018",
+      numberOfEmployees: { "@type": "QuantitativeValue", minValue: 10, maxValue: 49 },
       url: site,
       telephone: company.phone,
       email: company.email,
-      image: [DEFAULT_OG],
-      logo: absoluteUrl(company.website, "/favicon.svg"),
+      image: [DEFAULT_OG, absoluteUrl(company.website, "/images/hero-agency-india.jpg")],
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(company.website, "/icon-192.png"),
+        width: 192,
+        height: 192,
+      },
       priceRange: "₹₹₹",
       currenciesAccepted: "INR",
       address: {
@@ -233,7 +267,7 @@ export function LocalBusinessSchema() {
 export function WebSiteSchema() {
   const { company } = useCms();
 
-  useEffect(() => {
+  useSchemaEffect(() => {
     const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
     upsertJsonLd("schema-website", {
       "@context": "https://schema.org",
@@ -241,7 +275,7 @@ export function WebSiteSchema() {
       "@id": `${site}/#website`,
       name: company.name,
       url: site,
-      description: company.tagline,
+      description: "Digital marketing agency in Mumbai: Google Ads, SEO, Meta ads, social media and websites.",
       publisher: { "@id": `${site}/#business` },
       inLanguage: "en-IN",
       potentialAction: {
@@ -260,7 +294,7 @@ export function FAQPageSchema({
 }: {
   faqs: { question: string; answer: string }[];
 }) {
-  useEffect(() => {
+  useSchemaEffect(() => {
     if (!faqs.length) {
       upsertJsonLd("schema-faq", null);
       return;
@@ -296,7 +330,7 @@ export function ServiceSchema({
 }) {
   const { company } = useCms();
 
-  useEffect(() => {
+  useSchemaEffect(() => {
     const site = absoluteUrl(company.website, "/").replace(/\/$/, "") || company.website;
     upsertJsonLd("schema-service", {
       "@context": "https://schema.org",
@@ -322,7 +356,7 @@ export function BreadcrumbSchema({
 }) {
   const { company } = useCms();
 
-  useEffect(() => {
+  useSchemaEffect(() => {
     upsertJsonLd("schema-breadcrumb", {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -352,7 +386,7 @@ export function ArticleSchema({
 }) {
   const { company } = useCms();
 
-  useEffect(() => {
+  useSchemaEffect(() => {
     upsertJsonLd("schema-article", {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -389,7 +423,7 @@ export function SoftwareApplicationSchema({
 }) {
   const { company } = useCms();
 
-  useEffect(() => {
+  useSchemaEffect(() => {
     const url = absoluteUrl(company.website, path);
     upsertJsonLd("schema-software-app", {
       "@context": "https://schema.org",
