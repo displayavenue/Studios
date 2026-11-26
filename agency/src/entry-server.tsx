@@ -8,6 +8,7 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import "./styles/tokens.css";
 import "./styles/motion.css";
+import "./styles/theme-glow.css";
 import { CmsProvider, buildCms, type RawCms } from "./cms/CmsProvider";
 import { AppRoutes } from "./App";
 import { collectJsonLd, type JsonLdSink } from "./components/SEO";

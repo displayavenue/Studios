@@ -5,7 +5,7 @@
 .detail-hero {
   background:
     radial-gradient(ellipse 70% 60% at 100% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent),
-    linear-gradient(180deg, #fff, var(--bg-soft));
+    linear-gradient(180deg, var(--surface-soft), var(--bg-soft));
   padding: 2.75rem 0 2.25rem;
   border-bottom: 1px solid var(--border-soft);
 }
@@ -22,7 +22,7 @@
   font-size: clamp(1.75rem, 3.4vw, 2.6rem);
   line-height: 1.15;
   letter-spacing: -0.03em;
-  color: var(--navy);
+  color: var(--ink);
   font-weight: 800;
 }
 
@@ -56,13 +56,13 @@
   margin-top: 1.5rem;
   padding: 1rem 1.1rem;
   border-radius: 12px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
 }
 
 .detail-extra h3 {
   font-size: 0.98rem;
-  color: var(--navy);
+  color: var(--ink);
   margin: 0.85rem 0 0.4rem;
 }
 
@@ -94,7 +94,7 @@
 
 .detail-siblings h3 {
   font-size: 0.95rem;
-  color: var(--navy);
+  color: var(--ink);
   margin: 0 0 0.65rem;
 }
 
@@ -132,7 +132,7 @@
 .detail-metrics strong {
   display: block;
   font-size: 1.2rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .detail-metrics span {
@@ -141,7 +141,7 @@
 }
 
 .detail-hero-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -151,7 +151,7 @@
 .detail-hero-card h2 {
   margin-top: 0.85rem;
   font-size: 1.2rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .detail-hero-card > p {
@@ -186,7 +186,7 @@
 
 .detail-benefit h3 {
   font-size: 0.98rem;
-  color: var(--navy);
+  color: var(--ink);
   margin-bottom: 0.4rem;
 }
 
@@ -196,7 +196,7 @@
 }
 
 .detail-alt {
-  background: #fff;
+  background: var(--surface);
 }
 
 .detail-two {
@@ -253,7 +253,7 @@
 
 .detail-process strong {
   display: block;
-  color: var(--navy);
+  color: var(--ink);
   margin-bottom: 0.2rem;
 }
 
@@ -275,7 +275,7 @@
 
 .detail-faqs summary {
   font-weight: 700;
-  color: var(--navy);
+  color: var(--ink);
   cursor: pointer;
 }
 
@@ -372,7 +372,7 @@
 .detail-compare__col {
   padding: 1.1rem 1.2rem;
   border-radius: 14px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
 }
 

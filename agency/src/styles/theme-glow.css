@@ -1,0 +1,425 @@
+/*
+ * DisplayAvenue "dark & glowing" creative layer.
+ * Pure presentation: no content, headings or links are added or hidden here,
+ * so SEO/AEO signals stay exactly as rendered.
+ */
+
+/* ---------- Ambient lighting ---------- */
+.app-shell {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60rem 40rem at 85% -5%, rgba(47, 107, 255, 0.16), transparent 60%),
+    radial-gradient(50rem 35rem at -10% 35%, rgba(124, 92, 255, 0.1), transparent 60%),
+    var(--bg-soft);
+}
+
+.app-shell::before {
+  /* faint blueprint grid */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(140, 170, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 170, 255, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 85%);
+}
+
+.app-shell::after {
+  /* slow drifting aurora */
+  content: "";
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  width: 70vmax;
+  height: 70vmax;
+  left: 50%;
+  top: 40%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(47, 107, 255, 0.1),
+    rgba(124, 92, 255, 0.08),
+    rgba(34, 184, 216, 0.06),
+    rgba(47, 107, 255, 0.1)
+  );
+  filter: blur(90px);
+  transform: translate(-50%, -50%);
+  animation: glowDrift 28s linear infinite;
+}
+
+@keyframes glowDrift {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-45%, -55%) rotate(180deg) scale(1.1);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1);
+  }
+}
+
+/* Sections sit on the ambient light instead of flat blocks */
+.home-block,
+.home-block--soft,
+.home-block--navy,
+.section,
+.section-soft {
+  background: transparent;
+}
+
+.home-block + .home-block,
+.home-faq {
+  position: relative;
+}
+
+.home-block + .home-block::before {
+  /* glowing hairline between sections */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(72rem, 90%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(108, 155, 255, 0.45), transparent);
+}
+
+/* ---------- Headings & kickers ---------- */
+::selection {
+  background: rgba(47, 107, 255, 0.5);
+  color: #fff;
+}
+
+.home-kicker,
+.section-kicker,
+.eyebrow,
+.achome__eyebrow,
+.grev__eyebrow {
+  color: var(--blue-bright) !important;
+  text-shadow: 0 0 18px rgba(108, 155, 255, 0.55);
+}
+
+.home-title,
+.section-title,
+.achome__head h2,
+.grev__title {
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Glass cards with cursor spotlight ---------- */
+.home-stat,
+.home-service,
+.home-service--card,
+.home-process__item,
+.home-quote--card,
+.home-faq__item,
+.grev__card,
+.explore-tile,
+.category-card,
+.featured-card,
+.price-card,
+.testimonial-card,
+.tool-card,
+.dash-card,
+.side-stat-card,
+.blog-card,
+.acred__card,
+.detail-hero-card,
+.cta-box {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  background:
+    radial-gradient(22rem circle at var(--mx) var(--my), rgba(108, 155, 255, 0.1), transparent 45%),
+    linear-gradient(180deg, rgba(23, 36, 84, 0.72), rgba(10, 18, 48, 0.72)) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.35s,
+    box-shadow 0.35s;
+}
+
+.home-stat:hover,
+.home-service--card:hover,
+.home-process__item:hover,
+.grev__card:hover,
+.explore-tile:hover,
+.category-card:hover,
+.featured-card:hover,
+.price-card:hover,
+.testimonial-card:hover,
+.tool-card:hover,
+.blog-card:hover,
+.acred__card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(108, 155, 255, 0.45) !important;
+  box-shadow:
+    0 24px 60px -24px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(108, 155, 255, 0.15),
+    0 0 40px -10px var(--glow);
+}
+
+/* Service list rows (desktop) read as one glass panel */
+.home-services--desktop .home-service {
+  background: transparent !important;
+  border-width: 0 0 1px !important;
+  border-radius: 0;
+  backdrop-filter: none;
+}
+
+.home-services--desktop .home-service:hover {
+  background: radial-gradient(30rem circle at var(--mx) var(--my), rgba(108, 155, 255, 0.12), transparent 50%) !important;
+}
+
+/* ---------- Stats: big glowing numbers ---------- */
+.home-stat {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.home-stat strong,
+.home-stat .count-stat__value,
+.count-stat__value {
+  background: linear-gradient(135deg, #ffffff 20%, #8fb3ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(47, 107, 255, 0.45));
+}
+
+.home-stat::after {
+  content: "";
+  position: absolute;
+  inset: auto 1.25rem 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue), #8b5cf6, transparent);
+  opacity: 0.8;
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background: linear-gradient(135deg, #2f6bff 0%, #5b4dff 100%) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow:
+    0 10px 30px -10px rgba(47, 107, 255, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-primary:hover {
+  box-shadow:
+    0 14px 40px -8px rgba(47, 107, 255, 0.95),
+    0 0 0 4px rgba(47, 107, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline,
+.btn-outline-light,
+.btn-ghost {
+  color: var(--ink) !important;
+  border-color: rgba(160, 185, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.btn-outline:hover,
+.btn-outline-light:hover,
+.btn-ghost:hover {
+  border-color: rgba(108, 155, 255, 0.7) !important;
+  background: rgba(47, 107, 255, 0.12) !important;
+}
+
+/* ---------- Header: frosted glass ---------- */
+.site-header,
+.header-nav {
+  background: rgba(5, 10, 31, 0.72) !important;
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-color: var(--border) !important;
+}
+
+.desktop-nav a,
+.desktop-nav button {
+  color: var(--text) !important;
+}
+
+.desktop-nav a:hover,
+.desktop-nav button:hover {
+  color: #fff !important;
+  text-shadow: 0 0 14px rgba(108, 155, 255, 0.7);
+}
+
+/* Mega menus / dropdowns / search need opaque panels */
+.mega-menu,
+.mega-panel,
+.site-search__panel,
+.mobile-drawer {
+  background: var(--surface-solid) !important;
+  border-color: var(--border) !important;
+}
+
+/* ---------- Forms ---------- */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--ink) !important;
+  border-color: rgba(160, 185, 255, 0.22) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-light) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.22) !important;
+}
+
+select option {
+  background: var(--surface-solid);
+  color: var(--ink);
+}
+
+/* ---------- Hero extras ---------- */
+.home-hero__media {
+  box-shadow:
+    0 40px 90px -30px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(160, 185, 255, 0.16),
+    0 0 80px -20px var(--glow) !important;
+}
+
+@media (min-width: 980px) {
+  .home-hero__visual::before {
+    /* orbit ring behind the photo card */
+    content: "";
+    position: absolute;
+    inset: -2.5rem -1.5rem -2.5rem 3rem;
+    border-radius: 50%;
+    border: 1px dashed rgba(108, 155, 255, 0.25);
+    animation: glowSpin 60s linear infinite;
+  }
+}
+
+@keyframes glowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.home-hero h1 .word-reveal__word:nth-child(n + 3) {
+  text-shadow: 0 0 40px rgba(108, 155, 255, 0.35);
+}
+
+/* ---------- Footer CTA band ---------- */
+.footer-cta,
+.site-footer__cta {
+  background:
+    radial-gradient(40rem 20rem at 80% 0%, rgba(139, 92, 246, 0.45), transparent 60%),
+    linear-gradient(120deg, #1d4ed8 0%, #2f6bff 45%, #5b4dff 100%) !important;
+}
+
+/* ---------- Images on dark ---------- */
+.achome__media img,
+.acred__card img {
+  border-radius: 12px;
+}
+
+/* ---------- Motion safety ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .app-shell::after,
+  .home-hero__visual::before {
+    animation: none;
+  }
+}
+
+/* Low-power devices: drop the heaviest effects */
+.da-low-power .app-shell::after {
+  display: none;
+}
+
+.da-low-power .home-stat,
+.da-low-power .grev__card,
+.da-low-power .explore-tile,
+.da-low-power .home-faq__item {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+@media (min-width: 980px) {
+  .home-hero__chip {
+    color: var(--ink) !important;
+    background: rgba(13, 22, 51, 0.82) !important;
+    border: 1px solid rgba(160, 185, 255, 0.22);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+      0 18px 40px -18px rgba(0, 0, 0, 0.8),
+      0 0 30px -12px var(--glow) !important;
+  }
+
+  .home-hero__chip strong {
+    color: var(--blue-bright) !important;
+  }
+}
+
+/* ---------- Chips & badges on dark ---------- */
+.acred__chip {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(160, 185, 255, 0.22) !important;
+  color: var(--text) !important;
+}
+
+.acred__chip:hover,
+.acred__chip.is-active {
+  background: linear-gradient(135deg, #2f6bff, #5b4dff) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px -8px rgba(47, 107, 255, 0.8);
+}
+
+.featured-tag {
+  color: #0a1435 !important;
+}
+
+/* ---------- Phones: keep scrolling smooth (Core Web Vitals) ---------- */
+@media (max-width: 767px) {
+  .app-shell::after {
+    display: none;
+  }
+
+  .home-stat,
+  .home-service,
+  .home-service--card,
+  .home-process__item,
+  .home-quote--card,
+  .home-faq__item,
+  .grev__card,
+  .explore-tile,
+  .category-card,
+  .featured-card,
+  .price-card,
+  .testimonial-card,
+  .tool-card,
+  .dash-card,
+  .side-stat-card,
+  .blog-card,
+  .acred__card,
+  .detail-hero-card,
+  .cta-box {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

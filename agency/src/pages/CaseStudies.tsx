@@ -24,7 +24,7 @@ export function CaseStudies() {
                 Data-driven strategies that turn campaigns into measurable
                 business growth.
               </p>
-              <h3 style={{ marginTop: "1.25rem", fontSize: "0.9rem", color: "var(--navy)" }}>
+              <h3 style={{ marginTop: "1.25rem", fontSize: "0.9rem", color: "var(--ink)" }}>
                 Browse Case Studies by Industry
               </h3>
               <ul className="mega-links" style={{ marginTop: "0.55rem" }}>
@@ -50,7 +50,7 @@ export function CaseStudies() {
             </aside>
 
             <div>
-              <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+              <h2 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                 Explore Case Studies by Service
               </h2>
               <div className="category-grid" style={{ gridTemplateColumns: "repeat(5, 1fr)" }}>
@@ -73,7 +73,7 @@ export function CaseStudies() {
                 View All Services Case Studies →
               </Link>
 
-              <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", margin: "1.5rem 0 0.75rem" }}>
+              <h2 style={{ fontSize: "0.95rem", color: "var(--ink)", margin: "1.5rem 0 0.75rem" }}>
                 Featured Case Studies
               </h2>
               <div className="mini-grid-4" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
@@ -123,7 +123,7 @@ export function CaseStudies() {
                 </Link>
               </div>
               <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.85rem" }}>
+                <p style={{ fontWeight: 700, color: "var(--ink)", fontSize: "0.85rem" }}>
                   Trusted by 500+ Brands
                 </p>
                 <div className="logo-strip" style={{ justifyContent: "flex-start", marginTop: "0.55rem" }}>

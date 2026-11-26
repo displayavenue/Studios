@@ -25,7 +25,7 @@ export function SolutionsMenu({ compact = false }: { compact?: boolean }) {
           <ul className="value-list">
             {solutionValues.map((item) => (
               <li key={item.title}>
-                <span className="icon-box" style={{ background: "#e8f0ff" }}>
+                <span className="icon-box" style={{ background: "rgba(47, 107, 255, 0.18)" }}>
                   <Icon name={item.icon} color="#0056ff" size={16} />
                 </span>
                 <div>

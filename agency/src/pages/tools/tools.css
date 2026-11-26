@@ -3,7 +3,7 @@
 }
 
 .tool-app {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
@@ -13,7 +13,7 @@
 .tool-app__head h1 {
   margin: 0.75rem 0 0.5rem;
   font-size: clamp(1.55rem, 2.5vw, 2.1rem);
-  color: var(--navy);
+  color: var(--ink);
   letter-spacing: -0.02em;
   line-height: 1.15;
 }
@@ -55,14 +55,14 @@
   border: 1px solid var(--border-soft);
   border-radius: 16px;
   padding: 1.15rem 1.2rem;
-  background: linear-gradient(180deg, #f8fbff 0%, #fff 50%);
+  background: linear-gradient(180deg, var(--surface-soft) 0%, var(--surface-soft) 50%);
 }
 
 .tool-form h2,
 .tool-result h2 {
   margin: 0 0 0.85rem;
   font-size: 1.05rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .tool-fields {
@@ -75,7 +75,7 @@
   gap: 0.35rem;
   font-size: 0.8rem;
   font-weight: 650;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .tool-fields input,
@@ -88,7 +88,7 @@
   border: 1px solid var(--border);
   font: inherit;
   font-size: 0.92rem;
-  background: #fff;
+  background: var(--surface);
 }
 
 .tool-fields input:focus,
@@ -108,14 +108,14 @@
 .tool-metric {
   padding: 0.85rem 0.9rem;
   border-radius: 12px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
 }
 
 .tool-metric strong {
   display: block;
   font-size: 1.35rem;
-  color: var(--navy);
+  color: var(--ink);
   letter-spacing: -0.02em;
 }
 
@@ -152,7 +152,7 @@
   padding: 0.7rem 0.8rem;
   border-radius: 12px;
   border: 1px solid var(--border-soft);
-  background: #fff;
+  background: var(--surface);
   cursor: pointer;
 }
 
@@ -163,7 +163,7 @@
 .tool-check strong {
   display: block;
   font-size: 0.88rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .tool-check span {
@@ -182,12 +182,12 @@
   margin: 0 auto 1rem;
   border-radius: 50%;
   border: 8px solid var(--blue-soft);
-  background: #fff;
+  background: var(--surface);
 }
 
 .tool-score-ring strong {
   font-size: 2.4rem;
-  color: var(--navy);
+  color: var(--ink);
   line-height: 1;
 }
 
@@ -205,7 +205,7 @@
 .tool-app__related h2 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .tool-app__related-grid {
@@ -233,13 +233,13 @@
 
 .tool-app__related-card strong {
   font-size: 0.88rem;
-  color: var(--navy);
+  color: var(--ink);
   line-height: 1.35;
 }
 
 .tool-app__related-card:hover {
   border-color: color-mix(in srgb, var(--blue) 35%, var(--border-soft));
-  background: #fff;
+  background: var(--surface);
 }
 
 .cite-table-wrap {
@@ -264,7 +264,7 @@
 
 .cite-table th {
   background: var(--bg-soft);
-  color: var(--navy);
+  color: var(--ink);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -285,12 +285,12 @@
 }
 
 .cite-priority--High {
-  background: #dcfce7;
+  background: var(--surface-soft);
   color: #166534;
 }
 
 .cite-priority--Medium {
-  background: #ffedd5;
+  background: var(--surface-soft);
   color: #9a3412;
 }
 
@@ -309,13 +309,13 @@
   border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 1rem 1.1rem;
-  background: #fff;
+  background: var(--surface);
 }
 
 .cite-template h3 {
   margin: 0 0 0.35rem;
   font-size: 0.95rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .cite-template p {
@@ -332,7 +332,7 @@
   white-space: pre-wrap;
   font-size: 0.78rem;
   line-height: 1.5;
-  color: var(--navy);
+  color: var(--ink);
   overflow-x: auto;
 }
 
@@ -353,7 +353,7 @@
 .report-stat strong {
   display: block;
   font-size: 1.5rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .report-stat span {
@@ -371,7 +371,7 @@
 .report-section h2 {
   margin: 0 0 0.5rem;
   font-size: 1.15rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .report-section p,
@@ -395,14 +395,14 @@
   margin-bottom: 1.25rem;
   padding: 1.15rem 1.25rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, #eff6ff, #f8fafc);
+  background: linear-gradient(135deg, var(--surface-soft), var(--surface-soft));
   border: 1px solid color-mix(in srgb, var(--blue) 20%, var(--border-soft));
 }
 
 .live-tools-banner h2 {
   margin: 0 0 0.35rem;
   font-size: 1.15rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .live-tools-banner p {
@@ -423,11 +423,11 @@
   gap: 0.5rem;
   padding: 0.55rem 0.7rem;
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   font-size: 0.84rem;
   font-weight: 650;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .live-tools-list a:hover {

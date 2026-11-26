@@ -3,7 +3,7 @@
   background:
     radial-gradient(ellipse 80% 50% at 10% 0%, rgba(184, 140, 48, 0.08), transparent 55%),
     radial-gradient(ellipse 70% 45% at 90% 20%, rgba(30, 64, 120, 0.07), transparent 50%),
-    linear-gradient(180deg, #f7f5f0 0%, #eef2f7 100%);
+    linear-gradient(180deg, var(--surface-soft) 0%, var(--surface-soft) 100%);
 }
 
 .achome__head {
@@ -15,7 +15,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #8a7040;
+  color: var(--text-muted);
   margin: 0 0 0.5rem;
   font-weight: 700;
 }
@@ -23,7 +23,7 @@
 .achome__head h2 {
   font-family: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: clamp(1.75rem, 3vw, 2.35rem);
-  color: #142033;
+  color: var(--ink);
   margin: 0 0 0.65rem;
   line-height: 1.2;
   font-weight: 650;
@@ -31,7 +31,7 @@
 
 .achome__sub {
   margin: 0 0 1.1rem;
-  color: #4a5568;
+  color: var(--text-muted);
   line-height: 1.55;
   font-size: 1.02rem;
 }
@@ -57,7 +57,7 @@
 .achome__block-head h3 {
   margin: 0;
   font-size: 1.05rem;
-  color: #142033;
+  color: var(--ink);
   font-weight: 700;
 }
 
@@ -101,7 +101,7 @@
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #8a7040;
+  color: var(--text-muted);
   text-transform: uppercase;
 }
 
@@ -109,13 +109,13 @@
   margin: 0.25rem 0 0.2rem;
   font-size: 0.95rem;
   line-height: 1.35;
-  color: #142033;
+  color: var(--ink);
 }
 
 .achome__award-body p {
   margin: 0;
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .achome__certs {
@@ -129,7 +129,7 @@
   overflow: hidden;
   border-radius: 3px;
   box-shadow: 0 8px 22px rgba(20, 32, 51, 0.1);
-  background: #fff;
+  background: var(--surface);
   border: 1px solid rgba(20, 32, 51, 0.06);
 }
 
@@ -163,13 +163,13 @@
   margin: 0 0 0.15rem;
   font-size: 0.82rem;
   line-height: 1.35;
-  color: #142033;
+  color: var(--ink);
 }
 
 .achome__cert-body p {
   margin: 0;
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 @media (max-width: 960px) {

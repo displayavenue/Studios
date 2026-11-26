@@ -119,7 +119,7 @@ export function FreeTools() {
                 <h4>All Tools. 100% Free.</h4>
                 <p>No credit card. No account. Instant results.</p>
               </div>
-              <h3 style={{ fontSize: "0.9rem", color: "var(--navy)", margin: "1rem 0 0.55rem" }}>
+              <h3 style={{ fontSize: "0.9rem", color: "var(--ink)", margin: "1rem 0 0.55rem" }}>
                 Popular Tools
               </h3>
               <ul className="mega-links">
@@ -140,7 +140,7 @@ export function FreeTools() {
                   </li>
                 ))}
               </ul>
-              <h3 style={{ fontSize: "0.9rem", color: "var(--navy)", margin: "1rem 0 0.55rem" }}>
+              <h3 style={{ fontSize: "0.9rem", color: "var(--ink)", margin: "1rem 0 0.55rem" }}>
                 By The Numbers
               </h3>
               <ul className="mega-stat-list">
@@ -155,7 +155,7 @@ export function FreeTools() {
                 ))}
               </ul>
               <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontWeight: 700, fontSize: "0.85rem", color: "var(--navy)" }}>
+                <p style={{ fontWeight: 700, fontSize: "0.85rem", color: "var(--ink)" }}>
                   Loved by Marketers Worldwide
                 </p>
                 <p style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>

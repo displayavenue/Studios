@@ -77,7 +77,7 @@
   border-radius: 12px;
   background: var(--blue-tint);
   border: 1px solid var(--border-soft);
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .preferred-sources--home {

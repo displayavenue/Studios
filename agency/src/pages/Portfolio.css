@@ -21,7 +21,7 @@
 .portfolio-page .logo-marquee__item {
   background: var(--bg-soft);
   border-color: var(--border-soft);
-  color: var(--navy);
+  color: var(--ink);
 }
 
 @media (min-width: 768px) {
