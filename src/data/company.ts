@@ -11,21 +11,23 @@ export const company = {
   coverage: "Pan India",
   primaryFocus: "Mumbai Weddings · Pan India Destinations",
   socials: [
-    "https://www.instagram.com/displayavenuestudios/",
+    "https://www.instagram.com/displayavenue_studios/",
     "https://www.youtube.com/@displayavenuestudios",
-    "https://www.linkedin.com/company/displayavenue-studios",
   ],
+  /** Google Business Profile (share link), its Knowledge Graph URL and the review link */
+  googleBusinessUrl: "https://share.google/lfqtgTexQDQQ6PytN",
+  googleBusinessKgUrl: "https://www.google.com/search?kgmid=/g/11zddqdrkz",
+  googleReviewUrl: "https://g.page/r/CeIlch039zMuEBE/review",
   address: {
     lines: [
-      "Office No. 44, D Wing,",
-      "Shree Sharanam CHS,",
-      "Unique Garden, Kanakia,",
-      "Mira Road East, Mumbai,",
-      "Maharashtra 401107, India",
+      "D Wing, Shree Sharanam Building,",
+      "No. 44/A, Kanakia Road, Unique Gardens,",
+      "Gaurav City, Mira Road East,",
+      "Mira Bhayandar, Maharashtra 401107, India",
     ],
     streetAddress:
-      "Office No. 44, D Wing, Shree Sharanam CHS, Unique Garden, Kanakia",
-    addressLocality: "Mumbai",
+      "D Wing, Shree Sharanam Building, No. 44/A, Kanakia Road, Unique Gardens, Gaurav City, Mira Road East",
+    addressLocality: "Mira Bhayandar",
     addressRegion: "Maharashtra",
     postalCode: "401107",
     addressCountry: "IN",

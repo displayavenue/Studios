@@ -64,6 +64,7 @@ export type ExtrasContent = {
     count: number;
     label: string;
     profileUrl: string;
+    reviewUrl?: string;
     reviews: GoogleReview[];
   };
   instagram: {
@@ -99,15 +100,16 @@ export type ExtrasContent = {
 
 export const extrasFallback: ExtrasContent = {
   googleReviews: {
-    rating: 4.9,
-    count: 186,
+    rating: 5.0,
+    count: 11,
     label: "Google reviews",
-    profileUrl: "https://www.google.com/maps",
+    profileUrl: "https://share.google/lfqtgTexQDQQ6PytN",
+    reviewUrl: "https://g.page/r/CeIlch039zMuEBE/review",
     reviews: [],
   },
   instagram: {
-    handle: "@displayavenuestudios",
-    url: "https://www.instagram.com/displayavenuestudios/",
+    handle: "@displayavenue_studios",
+    url: "https://www.instagram.com/displayavenue_studios/",
     posts: [],
   },
   awards: [],

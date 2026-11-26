@@ -98,9 +98,11 @@ export function LocalBusinessSchema() {
 
   useEffect(() => {
     const addr = company.address;
-    const socials = (company.socials || []).filter((u) =>
-      /^https?:\/\//i.test(u),
-    );
+    const socials = [
+      ...(company.socials || []),
+      company.googleBusinessKgUrl,
+      company.googleBusinessUrl,
+    ].filter((u): u is string => typeof u === "string" && /^https?:\/\//i.test(u));
 
     upsertJsonLd("schema-local-business", {
       "@context": "https://schema.org",
@@ -137,11 +139,21 @@ export function LocalBusinessSchema() {
         latitude: addr.geo?.latitude ?? 19.2952,
         longitude: addr.geo?.longitude ?? 72.8679,
       },
-      hasMap: addr.mapEmbed,
+      hasMap: company.googleBusinessUrl || addr.mapEmbed,
       areaServed: [
-        { "@type": "Country", name: "India" },
-        { "@type": "City", name: company.primaryFocus || "Mumbai" },
-      ],
+        "Mira Road",
+        "Bhayandar",
+        "Mira Bhayandar",
+        "Vasai",
+        "Virar",
+        "Nalasopara",
+        "Thane",
+        "Borivali",
+        "Dahisar",
+        "Mumbai",
+      ]
+        .map((name) => ({ "@type": "City", name }))
+        .concat([{ "@type": "Country", name: "India" }] as never[]),
       knowsAbout: [
         "Wedding photographer in Mumbai",
         "Candid wedding photography",

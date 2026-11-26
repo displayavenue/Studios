@@ -97,9 +97,9 @@ export function Footer() {
             </span>
           </Link>
           <p>
-            India&apos;s Premium Wedding Photographer · Mumbai — luxury wedding
-            photography, cinematic films, commercial productions and visual
-            storytelling across India.
+            Wedding photographers and filmmakers in Mira Road, Mumbai — weddings
+            of every faith across Mira Road, Vasai, Virar, Thane, Mumbai and
+            India.
           </p>
           <div className="footer-social">
             {(company.socials || []).map((url) => {
@@ -193,6 +193,21 @@ export function Footer() {
               Get directions →
             </a>
           </p>
+          {company.googleBusinessUrl && (
+            <p>
+              <a href={company.googleBusinessUrl} target="_blank" rel="noreferrer" className="site-footer__directions">
+                Find us on Google
+              </a>
+              {company.googleReviewUrl && (
+                <>
+                  {" · "}
+                  <a href={company.googleReviewUrl} target="_blank" rel="noreferrer" className="site-footer__directions">
+                    Review us
+                  </a>
+                </>
+              )}
+            </p>
+          )}
           <p>
             <a href={company.phoneHref}>{company.phone}</a>
           </p>

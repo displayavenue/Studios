@@ -27,7 +27,8 @@ export function TestimonialsSection({
   compact = false,
   className = "",
 }: Props) {
-  const { testimonials, home } = useCms();
+  const { testimonials, home, extras, company } = useCms();
+  const g = extras.googleReviews;
   const items = testimonials.slice(0, limit);
   if (!items.length) return null;
 
@@ -37,7 +38,7 @@ export function TestimonialsSection({
   const resolvedText =
     text ??
     home.testimonials.text ??
-    "Real feedback from weddings, brands and hospitality teams across India.";
+    "Real feedback from weddings and family celebrations.";
 
   return (
     <section
@@ -48,6 +49,22 @@ export function TestimonialsSection({
           {resolvedEyebrow ? <p className="eyebrow">{resolvedEyebrow}</p> : null}
           <h2>{resolvedTitle}</h2>
           {resolvedText ? <p>{resolvedText}</p> : null}
+          {g?.count ? (
+            <p className="testimonials-section__google">
+              <a href={g.profileUrl} target="_blank" rel="noreferrer">
+                <span aria-hidden>★</span> {g.rating.toFixed(1)} on Google from {g.count}{" "}
+                {g.count === 1 ? "review" : "reviews"}
+              </a>
+              {(g.reviewUrl || company.googleReviewUrl) && (
+                <>
+                  {" · "}
+                  <a href={g.reviewUrl || company.googleReviewUrl} target="_blank" rel="noreferrer">
+                    Write a review
+                  </a>
+                </>
+              )}
+            </p>
+          ) : null}
         </div>
         <div className={`testimonials-grid ${compact ? "testimonials-grid--compact" : ""}`}>
           {items.map((t) => (
