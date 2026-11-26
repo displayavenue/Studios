@@ -54,7 +54,7 @@ export function Services() {
             const items = services.filter((p) => p.category === category);
             return (
               <section key={category} style={{ marginTop: "2rem" }}>
-                <h2 style={{ fontSize: "1.05rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+                <h2 style={{ fontSize: "1.05rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                   {category}
                 </h2>
                 <div className="category-grid">

@@ -1,33 +1,43 @@
 :root {
+  color-scheme: dark;
+  /* Brand */
   --navy: #000b33;
   --navy-deep: #050a1f;
   --navy-mid: #0a1435;
-  --blue: #0056ff;
-  --blue-dark: #0044cc;
-  --blue-soft: #e8f0ff;
-  --blue-tint: #f5f8ff;
-  --text: #1a1f36;
-  --text-muted: #5a6278;
-  --text-light: #8a92a6;
-  --border: #e4e8f0;
-  --border-soft: #eef1f7;
-  --bg: #ffffff;
-  --bg-soft: #f7f9fc;
-  --bg-gray: #f0f3f8;
+  --blue: #2f6bff;
+  --blue-dark: #0056ff;
+  --blue-bright: #6c9bff;
+  --glow: rgba(47, 107, 255, 0.45);
+  --glow-violet: rgba(124, 92, 255, 0.35);
+  /* Dark & glowing theme surfaces */
+  --ink: #f4f7ff;
+  --surface: rgba(17, 27, 64, 0.72);
+  --surface-solid: #0d1633;
+  --surface-soft: #081030;
+  --blue-soft: rgba(47, 107, 255, 0.16);
+  --blue-tint: rgba(47, 107, 255, 0.08);
+  --text: #d5ddf0;
+  --text-muted: #9aa7c7;
+  --text-light: #7887ab;
+  --border: rgba(160, 185, 255, 0.14);
+  --border-soft: rgba(160, 185, 255, 0.08);
+  --bg: #060c26;
+  --bg-soft: #050a1f;
+  --bg-gray: #0a1232;
   --success: #12b76a;
-  --purple: #7c3aed;
-  --pink: #e11d8c;
-  --orange: #f97316;
-  --teal: #0d9488;
-  --green: #16a34a;
-  --cyan: #0891b2;
+  --purple: #8b5cf6;
+  --pink: #f0479b;
+  --orange: #fb8c3a;
+  --teal: #14b8a6;
+  --green: #22c55e;
+  --cyan: #22b8d8;
   --red: #ef4444;
-  --indigo: #4f46e5;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-lg: 16px;
-  --shadow: 0 4px 24px rgba(0, 11, 51, 0.06);
-  --shadow-md: 0 8px 32px rgba(0, 11, 51, 0.1);
+  --indigo: #6366f1;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 20px;
+  --shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.55);
+  --shadow-md: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
   --font: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-display: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
   --header-h: 72px;
@@ -160,8 +170,8 @@ p {
 }
 
 .btn-outline {
-  background: #fff;
-  color: var(--navy);
+  background: var(--surface);
+  color: var(--ink);
   border: 1.5px solid var(--border);
 }
 
@@ -178,7 +188,7 @@ p {
 
 .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: #fff;
+  border-color: var(--border);
 }
 
 .btn-sm {
@@ -220,7 +230,7 @@ p {
 .section-title {
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 800;
-  color: var(--navy);
+  color: var(--ink);
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
@@ -233,7 +243,7 @@ p {
 }
 
 .card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
   box-shadow: var(--shadow);

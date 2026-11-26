@@ -29,7 +29,7 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   font-weight: 800;
-  color: var(--navy);
+  color: var(--ink);
   margin-bottom: 0.65rem;
 }
 
@@ -59,7 +59,7 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--navy);
+  color: var(--ink);
   margin: 0.55rem 0 0.25rem;
 }
 
@@ -96,7 +96,7 @@
 
 .mega-side-card h4 {
   font-size: 0.95rem;
-  color: var(--navy);
+  color: var(--ink);
   margin-bottom: 0.4rem;
 }
 
@@ -240,8 +240,8 @@
   border-radius: var(--radius-sm);
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--navy);
-  background: #fff;
+  color: var(--ink);
+  background: var(--surface);
   min-height: 2.6rem;
 }
 
@@ -288,7 +288,7 @@
   border-radius: 8px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--ink);
   background: transparent;
   border: 0;
 }
@@ -340,7 +340,7 @@
 
 .value-list strong {
   display: block;
-  color: var(--navy);
+  color: var(--ink);
   font-size: 0.85rem;
 }
 

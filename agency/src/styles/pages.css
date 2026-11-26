@@ -34,7 +34,7 @@
 .mega-stat-list strong {
   display: block;
   font-size: 0.95rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .mega-stat-list span {
@@ -49,7 +49,7 @@
 }
 
 .page-frame {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
@@ -89,7 +89,7 @@
 .feature-list strong {
   display: block;
   font-size: 0.88rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .feature-list span {
@@ -196,7 +196,7 @@
 .category-block__head h2 {
   margin: 0.25rem 0 0.2rem;
   font-size: 1.15rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .category-block__head p {
@@ -218,7 +218,7 @@
   padding: 0.9rem;
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
-  background: #fff;
+  background: var(--surface);
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
   position: relative;
 }
@@ -231,7 +231,7 @@
 
 .category-card h3 {
   font-size: 0.92rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .category-card p,
@@ -292,7 +292,7 @@
   padding: 0.45rem 0.8rem;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--surface);
   font-size: 0.8rem;
   font-weight: 650;
   color: var(--blue);
@@ -318,7 +318,7 @@
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
   overflow: hidden;
-  background: #fff;
+  background: var(--surface);
   display: flex;
   flex-direction: column;
 }
@@ -338,7 +338,7 @@
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.95);
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .featured-body {
@@ -350,7 +350,7 @@
 
 .featured-body h3 {
   font-size: 0.9rem;
-  color: var(--navy);
+  color: var(--ink);
   line-height: 1.35;
 }
 
@@ -385,7 +385,7 @@
 
 .package-col h3 {
   font-size: 0.92rem;
-  color: var(--navy);
+  color: var(--ink);
   margin: 0.35rem 0;
 }
 
@@ -410,14 +410,14 @@
 }
 
 .plan-list strong {
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .tool-card {
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
   padding: 0.85rem;
-  background: #fff;
+  background: var(--surface);
 }
 
 .tool-card h3 {
@@ -425,7 +425,7 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.9rem;
-  color: var(--navy);
+  color: var(--ink);
   margin-bottom: 0.55rem;
 }
 
@@ -434,7 +434,7 @@
 }
 
 .home-section.alt {
-  background: #fff;
+  background: var(--surface);
 }
 
 .home-section.navy {
@@ -489,7 +489,7 @@
   background:
     radial-gradient(ellipse 80% 60% at 90% 10%, rgba(0, 86, 255, 0.12), transparent),
     radial-gradient(ellipse 50% 40% at 10% 80%, rgba(124, 58, 237, 0.08), transparent),
-    linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+    linear-gradient(180deg, var(--surface-soft) 0%, var(--bg-soft) 100%);
 }
 
 .hero-grid {
@@ -511,7 +511,7 @@
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: var(--navy);
+  color: var(--ink);
   font-weight: 800;
 }
 
@@ -546,7 +546,7 @@
   gap: 0.35rem;
   font-weight: 650;
   font-size: 0.88rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .hero-stats {
@@ -561,7 +561,7 @@
 .hero-stats strong {
   display: block;
   font-size: 1.05rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .hero-stats span {
@@ -575,7 +575,7 @@
 }
 
 .dash-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -587,7 +587,7 @@
 
 .dash-card h3 {
   font-size: 0.95rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .dash-meta {
@@ -641,7 +641,7 @@
 .dash-metrics strong {
   display: block;
   font-size: 0.95rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .dash-metrics span {
@@ -654,7 +654,7 @@
   right: -0.5rem;
   bottom: -0.5rem;
   width: min(260px, 80%);
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
@@ -665,7 +665,7 @@
 
 .ai-assist h4 {
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--ink);
   margin-bottom: 0.45rem;
 }
 
@@ -710,7 +710,7 @@
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
   padding: 1.15rem;
-  background: #fff;
+  background: var(--surface);
   position: relative;
 }
 
@@ -727,13 +727,13 @@
 
 .price-card h3 {
   font-size: 1rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .price-card .price {
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--navy);
+  color: var(--ink);
   margin: 0.45rem 0;
 }
 
@@ -764,7 +764,7 @@
 }
 
 .testimonial-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius);
   padding: 1rem;
@@ -785,7 +785,7 @@
 .testimonial-card strong {
   display: block;
   font-size: 0.85rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .testimonial-card span {
@@ -875,12 +875,12 @@
 }
 
 .start-point:hover {
-  background: #fff;
+  background: var(--surface);
   border-color: color-mix(in srgb, var(--blue) 35%, var(--border-soft));
 }
 
 .start-point strong {
-  color: var(--navy);
+  color: var(--ink);
   font-size: 0.9rem;
 }
 

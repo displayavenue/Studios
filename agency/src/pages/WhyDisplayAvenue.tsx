@@ -42,14 +42,14 @@ export function WhyDisplayAvenue() {
               </ul>
               <div className="cta-box dark">
                 <h4>Let’s Build Your Success Story</h4>
-                <Link to="/contact" className="btn btn-outline btn-sm" style={{ background: "#fff" }}>
+                <Link to="/contact" className="btn btn-outline btn-sm">
                   Book Free Consultation →
                 </Link>
               </div>
             </aside>
 
             <div>
-              <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+              <h2 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                 Why Businesses Trust Us
               </h2>
               <div className="category-grid" style={{ gridTemplateColumns: "repeat(5, 1fr)" }}>
@@ -64,7 +64,7 @@ export function WhyDisplayAvenue() {
                 ))}
               </div>
 
-              <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", margin: "1.5rem 0 0.75rem" }}>
+              <h2 style={{ fontSize: "0.95rem", color: "var(--ink)", margin: "1.5rem 0 0.75rem" }}>
                 Our Core Strengths
               </h2>
               <div className="category-grid">
@@ -79,7 +79,7 @@ export function WhyDisplayAvenue() {
                 ))}
               </div>
 
-              <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", margin: "1.5rem 0 0.75rem" }}>
+              <h2 style={{ fontSize: "0.95rem", color: "var(--ink)", margin: "1.5rem 0 0.75rem" }}>
                 What Makes Us Different
               </h2>
               <div className="category-grid" style={{ gridTemplateColumns: "repeat(5, 1fr)" }}>
@@ -97,7 +97,7 @@ export function WhyDisplayAvenue() {
             </div>
 
             <aside>
-              <h3 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+              <h3 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                 Our Impact So Far
               </h3>
               <ul className="mega-stat-list">
@@ -112,7 +112,7 @@ export function WhyDisplayAvenue() {
                 ))}
               </ul>
               <div style={{ marginTop: "1.25rem" }}>
-                <h4 style={{ fontSize: "0.9rem", color: "var(--navy)" }}>Loved by Our Clients</h4>
+                <h4 style={{ fontSize: "0.9rem", color: "var(--ink)" }}>Loved by Our Clients</h4>
                 <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", margin: "0.35rem 0" }}>
                   ★★★★★ 170+ Reviews on Google
                 </p>
@@ -126,14 +126,14 @@ export function WhyDisplayAvenue() {
               <div className="cta-box" style={{ marginTop: "1rem" }}>
                 <h4>Ready to Grow Your Business?</h4>
                 <Link to="/contact" className="btn btn-primary btn-sm">
-                  Get Free Proposal →
+                  Book a free call →
                 </Link>
               </div>
             </aside>
           </div>
 
           <div style={{ padding: "1.25rem 1.5rem", borderTop: "1px solid var(--border-soft)" }}>
-            <h3 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+            <h3 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
               Trusted by 500+ Brands
             </h3>
             <div className="logo-strip" style={{ justifyContent: "flex-start" }}>

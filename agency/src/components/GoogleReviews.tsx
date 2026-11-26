@@ -81,7 +81,7 @@ export function GoogleReviews() {
               <article key={`${review.author}-${review.relativeTime}-${review.text.slice(0, 24)}`} className="grev__card">
                 <div className="grev__author">
                   {review.profilePhotoUrl ? (
-                    <img src={review.profilePhotoUrl} alt="" width={40} height={40} loading="lazy" />
+                    <img src={review.profilePhotoUrl} alt={`${review.author} – Google reviewer`} width={40} height={40} loading="lazy" decoding="async" />
                   ) : (
                     <span className="grev__avatar" aria-hidden>
                       {initials(review.author)}

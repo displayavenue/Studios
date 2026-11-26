@@ -26,7 +26,7 @@ export function AiPlatformMenu({ compact = false }: { compact?: boolean }) {
           <ul className="value-list">
             {aiValues.map((item) => (
               <li key={item.title}>
-                <span className="icon-box" style={{ background: "#efe7ff" }}>
+                <span className="icon-box" style={{ background: "rgba(139, 92, 246, 0.2)" }}>
                   <Icon name={item.icon} color="#7c3aed" size={16} />
                 </span>
                 <div>
@@ -78,7 +78,7 @@ export function AiPlatformMenu({ compact = false }: { compact?: boolean }) {
         </div>
 
         <aside>
-          <div className="mega-side-card" style={{ background: "#f3e8ff" }}>
+          <div className="mega-side-card" style={{ background: "rgba(139, 92, 246, 0.14)" }}>
             <h4>One AI Platform. Endless Possibilities.</h4>
             <p>Explore 100+ tools built for real business workflows.</p>
             <Link

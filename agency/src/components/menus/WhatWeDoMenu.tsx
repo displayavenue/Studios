@@ -17,7 +17,7 @@ export function WhatWeDoMenu({ compact = false }: { compact?: boolean }) {
       <div className="what-we-do-grid">
         <div className="mega-col">
           <div className="mega-col-title">
-            <span className="icon-box" style={{ background: "#e8f0ff" }}>
+            <span className="icon-box" style={{ background: "rgba(47, 107, 255, 0.18)" }}>
               <Icon name="megaphone" color="#0056ff" size={18} />
             </span>
             Digital Marketing
@@ -39,7 +39,7 @@ export function WhatWeDoMenu({ compact = false }: { compact?: boolean }) {
 
         <div className="mega-col">
           <div className="mega-col-title">
-            <span className="icon-box" style={{ background: "#e6fbf5" }}>
+            <span className="icon-box" style={{ background: "rgba(20, 184, 166, 0.18)" }}>
               <Icon name="code" color="#0d9488" size={18} />
             </span>
             Web Development
@@ -132,7 +132,7 @@ export function WhatWeDoMenu({ compact = false }: { compact?: boolean }) {
 
         <div className="mega-col">
           <div className="mega-col-title">
-            <span className="icon-box" style={{ background: "#fce7f3" }}>
+            <span className="icon-box" style={{ background: "rgba(240, 71, 155, 0.18)" }}>
               <Icon name="camera" color="#e11d8c" size={18} />
             </span>
             Creative Studio

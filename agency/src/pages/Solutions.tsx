@@ -33,7 +33,7 @@ export function Solutions() {
                 to={`/solutions/${item.slug}`}
                 className="category-card"
               >
-                <span className="icon-box" style={{ background: "#e8f0ff" }}>
+                <span className="icon-box" style={{ background: "rgba(47, 107, 255, 0.18)" }}>
                   <Icon name={item.icon} color="#0056ff" />
                 </span>
                 <h3>{item.title}</h3>

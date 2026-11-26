@@ -3,7 +3,7 @@
   border-top: 1px solid var(--border-soft);
   background:
     radial-gradient(ellipse 80% 50% at 0% 0%, rgba(0, 86, 255, 0.06), transparent 55%),
-    linear-gradient(180deg, #f4f7fb 0%, #ffffff 55%);
+    linear-gradient(180deg, var(--surface-soft) 0%, var(--surface-soft) 55%);
 }
 
 .explore-dir__header {
@@ -25,7 +25,7 @@
   font-size: clamp(1.45rem, 2.6vw, 1.9rem);
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: var(--navy);
+  color: var(--ink);
   font-weight: 800;
 }
 
@@ -44,7 +44,7 @@
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   background: rgba(0, 86, 255, 0.08);
-  color: var(--navy);
+  color: var(--ink);
   font-size: 0.78rem;
   font-weight: 700;
 }
@@ -75,7 +75,7 @@
   align-items: center;
   padding: 0.95rem 1rem;
   border-radius: 14px;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
@@ -93,7 +93,7 @@
   border-radius: 11px;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--accent) 14%, #fff);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface-soft));
 }
 
 .explore-start__body {
@@ -103,7 +103,7 @@
 }
 
 .explore-start__body strong {
-  color: var(--navy);
+  color: var(--ink);
   font-size: 0.98rem;
 }
 
@@ -124,7 +124,7 @@
 }
 
 .explore-group {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: 18px;
   padding: 1.15rem 1.2rem 1.25rem;
@@ -147,13 +147,13 @@
   border-radius: 12px;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--accent) 12%, #fff);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface-soft));
   border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 .explore-group__head h3 {
   margin: 0;
-  color: var(--navy);
+  color: var(--ink);
   font-size: 1.05rem;
   font-weight: 800;
 }
@@ -192,12 +192,12 @@
 }
 
 .explore-tile:hover {
-  background: #fff;
+  background: var(--surface);
   border-color: color-mix(in srgb, var(--accent, var(--blue)) 35%, var(--border-soft));
 }
 
 .explore-tile strong {
-  color: var(--navy);
+  color: var(--ink);
   font-size: 0.9rem;
   line-height: 1.3;
 }

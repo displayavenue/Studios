@@ -109,7 +109,7 @@ export function CitationDirectory() {
       </div>
 
       <div className="cite-templates">
-        <h2 style={{ margin: "1.5rem 0 0", fontSize: "1.1rem", color: "var(--navy)" }}>
+        <h2 style={{ margin: "1.5rem 0 0", fontSize: "1.1rem", color: "var(--ink)" }}>
           Outreach templates
         </h2>
         <p className="tool-note" style={{ marginTop: "0.35rem" }}>

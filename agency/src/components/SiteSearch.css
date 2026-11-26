@@ -20,7 +20,7 @@
   width: min(100%, 640px);
   max-height: min(70vh, 560px);
   overflow: auto;
-  background: #fff;
+  background: var(--surface);
   border-radius: 16px;
   box-shadow: 0 24px 80px rgba(5, 10, 31, 0.28);
   padding: 0.85rem;
@@ -42,7 +42,7 @@
   background: transparent;
   outline: none;
   font-size: 1rem;
-  color: var(--navy);
+  color: var(--ink);
 }
 
 .site-search__close {
@@ -92,7 +92,7 @@
 }
 
 .site-search__list strong {
-  color: var(--navy);
+  color: var(--ink);
   font-size: 0.98rem;
 }
 

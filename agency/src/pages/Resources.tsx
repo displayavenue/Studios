@@ -117,7 +117,7 @@ export function Resources() {
             </div>
 
             <aside>
-              <h3 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+              <h3 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                 Popular This Week
               </h3>
               <ul style={{ display: "grid", gap: "0.75rem" }}>
@@ -133,7 +133,7 @@ export function Resources() {
                       }}
                     />
                     <div>
-                      <strong style={{ display: "block", fontSize: "0.82rem", color: "var(--navy)" }}>
+                      <strong style={{ display: "block", fontSize: "0.82rem", color: "var(--ink)" }}>
                         {item.title}
                       </strong>
                       <span style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>

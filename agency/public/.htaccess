@@ -3,11 +3,25 @@
   RewriteEngine On
   RewriteBase /
 
+  # Force apex domain (www → non-www)
+  RewriteCond %{HTTP_HOST} ^www\.displayavenue\.com$ [NC]
+  RewriteRule ^(.*)$ https://displayavenue.com/$1 [R=301,L]
+
   # Dynamic sitemap
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+  # Homepage goes through the SEO router too (full prerendered HTML for crawlers)
+  RewriteRule ^$ seo-router.php [L,QSA]
+  RewriteRule ^index\.html$ seo-router.php [L,QSA]
+
+  # Prerender data is internal (read by seo-router.php only)
+  RewriteRule ^prerender/ - [F,L]
+
+  # Existing files/directories are served as-is
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # All other routes go through the SEO router (unique meta + real 404s)
+  RewriteRule ^ seo-router.php [L,QSA]
 </IfModule>

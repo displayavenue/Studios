@@ -275,3 +275,17 @@ html.da-low-power .wa-float--pulse {
     animation: none !important;
   }
 }
+
+/* Prerender hand-off: the entrance already played on the server-rendered HTML. */
+.da-handoff .brand-type__ch,
+.da-handoff .word-reveal__word,
+.da-handoff .home-hero__brand,
+.da-handoff .home-hero__lead,
+.da-handoff .home-hero__actions,
+.da-handoff .home-hero__trust,
+.da-handoff .home-hero__sources,
+.da-handoff .home-hero__media img {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
