@@ -1,94 +1,25 @@
-/* ---------- Full-bleed hero: visible instantly, no entrance delay ---------- */
-.home-hero {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: flex-end;
-  padding: calc(var(--header-h) + 3rem) 0 clamp(4rem, 10vh, 7rem);
-  color: var(--white);
-  overflow: hidden;
-  background: var(--black);
+/* =========================================================
+   Homepage — mandap theme
+   One motif (the pointed arch) carries the personality.
+   ========================================================= */
+
+.home h2 {
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
 }
 
-.home-hero__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 65% 25%;
-  animation: hero-settle 2.4s var(--ease) both;
-}
-
-.home-hero__shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(11, 11, 11, 0.55) 0%, rgba(11, 11, 11, 0) 22%),
-    linear-gradient(90deg, rgba(11, 11, 11, 0.78) 0%, rgba(11, 11, 11, 0.45) 38%, rgba(11, 11, 11, 0) 70%),
-    linear-gradient(0deg, rgba(11, 11, 11, 0.6) 0%, rgba(11, 11, 11, 0) 45%);
-}
-
-.home-hero__copy {
-  position: relative;
-  z-index: 1;
-}
-
-.home-hero__label {
-  font-size: 0.74rem;
+.quiet-link {
+  font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.25rem;
+  color: var(--sindoor);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  white-space: nowrap;
 }
 
-.home-hero h1 {
-  color: var(--white);
-  font-weight: 500;
-  font-size: clamp(2.9rem, 6.5vw, 5.75rem);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-  max-width: 11ch;
+.quiet-link:hover {
+  color: var(--gold-hover);
 }
 
-.home-hero__desc {
-  margin-top: 1.5rem;
-  max-width: 40ch;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.82) !important;
-}
-
-.home-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 2.25rem;
-}
-
-.home-hero__scroll {
-  position: absolute;
-  left: 50%;
-  bottom: 1.75rem;
-  transform: translateX(-50%);
-  z-index: 1;
-  font-size: 0.68rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-@keyframes hero-settle {
-  from {
-    transform: scale(1.06);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-/* ---------- Section heading row (title left, quiet link right) ---------- */
 .home-head {
   display: flex;
   align-items: flex-end;
@@ -98,58 +29,262 @@
 }
 
 .home-head h2 {
-  max-width: 18ch;
+  max-width: 16ch;
 }
 
-.home-head .text-link {
-  white-space: nowrap;
+/* ---------- Arch outline (shared) ---------- */
+.arch-outline {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
 }
 
-/* ---------- Selected work: edge-to-edge editorial grid ---------- */
-.home-work {
-  padding-bottom: 0;
+.arch-outline path {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1px;
 }
 
-.home-work__grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: clamp(180px, 22vw, 340px);
-  gap: 6px;
-}
-
-.home-work__item {
+/* ---------- Hero ---------- */
+.mandap-hero {
   position: relative;
+  background:
+    radial-gradient(120% 80% at 75% 20%, #5e1626 0%, var(--sindoor) 45%, var(--sindoor-deep) 100%);
+  color: var(--jasmine);
+  padding: calc(var(--header-h) + clamp(2rem, 5vw, 4rem)) 0 0;
   overflow: hidden;
-  display: block;
-  background: #111;
 }
 
-.home-work__item--1 { grid-column: span 7; grid-row: span 2; }
-.home-work__item--2 { grid-column: span 5; grid-row: span 1; }
-.home-work__item--3 { grid-column: span 5; grid-row: span 1; }
-.home-work__item--4 { grid-column: span 4; grid-row: span 2; }
-.home-work__item--5 { grid-column: span 4; grid-row: span 2; }
-.home-work__item--6 { grid-column: span 4; grid-row: span 2; }
+.mandap-hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+}
 
-.home-work__item img {
+.mandap-hero__copy {
+  padding-bottom: clamp(4rem, 9vw, 7.5rem);
+}
+
+.mandap-hero__kicker {
+  font-size: 1rem;
+  color: var(--gold) !important;
+  margin-bottom: 1.25rem;
+}
+
+.mandap-hero h1 {
+  color: var(--jasmine);
+  font-size: clamp(2.8rem, 5.6vw, 5rem);
+  line-height: 1.04;
+  max-width: 13ch;
+}
+
+.mandap-hero__desc {
+  margin-top: 1.5rem;
+  max-width: 44ch;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255, 251, 246, 0.8) !important;
+}
+
+.mandap-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+}
+
+.mandap-hero__arch {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 470px);
+  aspect-ratio: 3 / 4.15;
+  margin-bottom: 26px;
+}
+
+.mandap-hero__photo {
+  position: absolute;
+  inset: 0;
+  clip-path: url(#arch-clip);
+  background: var(--sindoor-deep);
+  animation: arch-open 1.4s var(--ease) 0.1s both;
+}
+
+.mandap-hero__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1.2s var(--ease), opacity 0.6s var(--ease);
+  object-position: center 20%;
 }
 
-.home-work__item:hover img {
+.mandap-hero__outline {
+  inset: -18px -18px 0 -18px;
+  width: calc(100% + 36px);
+  height: calc(100% + 18px);
+}
+
+.mandap-hero__outline path {
+  stroke: var(--gold-soft);
+}
+
+/* the mandap platform the arch stands on */
+.mandap-hero__step {
+  position: absolute;
+  left: -40px;
+  right: -40px;
+  bottom: -26px;
+  height: 26px;
+  border-top: 1px solid var(--gold);
+  background: linear-gradient(180deg, rgba(201, 154, 46, 0.18), transparent);
+}
+
+@keyframes arch-open {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* marigold toran strung along the bottom of the hero */
+.toran {
+  height: 30px;
+  background-color: var(--jasmine);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='30' viewBox='0 0 44 30'%3E%3Cpath d='M0 1 Q22 16 44 1' fill='none' stroke='%23c99a2e' stroke-width='1'/%3E%3Ccircle cx='22' cy='12' r='3.2' fill='%23d9a032'/%3E%3Cpath d='M22 15.5 C19.5 19 19.5 22 22 25 C24.5 22 24.5 19 22 15.5Z' fill='%234a0f1c' opacity='.85'/%3E%3C/svg%3E"),
+    linear-gradient(var(--sindoor-deep), var(--sindoor-deep));
+  background-repeat: repeat-x, no-repeat;
+  background-size: 44px 30px, 100% 1px;
+  background-position: center top, top;
+}
+
+/* ---------- Every faith ---------- */
+.faiths {
+  background: var(--jasmine);
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(1rem, 3vw, 2rem);
+}
+
+.faiths__head {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+}
+
+.faiths__head p {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+}
+
+.faiths__row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.1rem;
+}
+
+.faith {
+  position: relative;
+  aspect-ratio: 3 / 4.2;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.faith::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  clip-path: url(#arch-clip);
+  background: var(--bg-light);
+  transition: background 0.4s var(--ease);
+}
+
+.faith:hover::before {
+  background: #f2e0d8;
+}
+
+.faith__outline {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.faith__body {
+  position: relative;
+  padding: 22% 1.1rem 0;
+  width: 100%;
+}
+
+/* small gold diya-flame mark, like the finial of a mandap */
+.faith__mark {
+  display: block;
+  width: 10px;
+  height: 16px;
+  margin: 0 auto 1rem;
+  background: var(--gold);
+  clip-path: path("M5 0 C8 5 10 8 10 11 A5 5 0 0 1 0 11 C0 8 2 5 5 0Z");
+}
+
+.faith h3 {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: var(--sindoor);
+}
+
+.faith p {
+  margin-top: 0.6rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+/* ---------- Selected work ---------- */
+.work {
+  background: var(--jasmine);
+  padding-bottom: 0;
+}
+
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: clamp(180px, 22vw, 330px);
+  gap: 6px;
+}
+
+.work__item {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background: var(--sindoor-deep);
+}
+
+.work__item--1 { grid-column: span 7; grid-row: span 2; }
+.work__item--2 { grid-column: span 5; }
+.work__item--3 { grid-column: span 5; }
+.work__item--4 { grid-column: span 4; grid-row: span 2; }
+.work__item--5 { grid-column: span 4; grid-row: span 2; }
+.work__item--6 { grid-column: span 4; grid-row: span 2; }
+
+.work__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+.work__item:hover img,
+.work__item:focus-visible img {
   transform: scale(1.04);
 }
 
-.home-work__caption {
+.work__caption {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 2.5rem 1.5rem 1.25rem;
-  background: linear-gradient(0deg, rgba(11, 11, 11, 0.7), transparent);
-  color: var(--white);
+  inset: auto 0 0 0;
+  padding: 3rem 1.5rem 1.25rem;
+  background: linear-gradient(0deg, rgba(42, 15, 22, 0.8), transparent);
+  color: var(--jasmine);
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -158,144 +293,298 @@
   transition: opacity 0.4s var(--ease);
 }
 
-.home-work__item:hover .home-work__caption,
-.home-work__item:focus-visible .home-work__caption {
+.work__item:hover .work__caption,
+.work__item:focus-visible .work__caption {
   opacity: 1;
 }
 
-.home-work__caption strong {
+.work__caption strong {
   font-family: var(--font-display);
+  font-weight: 400;
   font-size: 1.35rem;
-  font-weight: 500;
 }
 
-.home-work__caption em {
+.work__caption em {
   font-style: normal;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.8;
+  font-size: 0.85rem;
+  color: var(--gold);
 }
 
-/* ---------- Services: four tall image tiles ---------- */
-.home-services {
+/* ---------- Services as haveli windows ---------- */
+.windows {
+  background: var(--bg-light);
+}
+
+.windows__row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: clamp(1rem, 2.5vw, 2rem);
 }
 
-.home-service {
+.window {
   position: relative;
   display: block;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  border-radius: 4px;
-  background: #111;
+  text-align: center;
 }
 
-.home-service img {
+.window__frame {
+  display: block;
+  aspect-ratio: 3 / 4.2;
+  clip-path: url(#arch-clip);
+  background: var(--sindoor-deep);
+  overflow: hidden;
+}
+
+.window__frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 1.2s var(--ease);
 }
 
-.home-service:hover img {
+.window:hover .window__frame img,
+.window:focus-visible .window__frame img {
   transform: scale(1.05);
 }
 
-.home-service__label {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 3rem 1.25rem 1.25rem;
-  background: linear-gradient(0deg, rgba(11, 11, 11, 0.75), transparent);
-  color: var(--white);
-  display: grid;
-  gap: 0.35rem;
+.window__outline {
+  inset: -9px -9px auto -9px;
+  width: calc(100% + 18px);
+  aspect-ratio: 3 / 4.2;
+  height: auto;
 }
 
-.home-service__label strong {
+.window__label {
+  display: block;
+  margin-top: 1.4rem;
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--black);
+}
+
+/* ---------- Packages as invitation cards ---------- */
+.invites {
+  background: var(--jasmine);
+}
+
+.invites__head {
+  text-align: center;
+  max-width: 38rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.invites__head p {
+  margin-top: 1rem;
+}
+
+.invites__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  align-items: stretch;
+}
+
+.invite {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 2.75rem 2rem 2.25rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  outline: 1px solid var(--gold-soft);
+  outline-offset: -10px;
+}
+
+.invite h3 {
+  font-size: 1.6rem;
+  color: var(--sindoor);
+}
+
+.invite__price {
+  margin-top: 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.2vw, 2.8rem);
+  line-height: 1;
+  color: var(--black) !important;
+}
+
+.invite__note {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.invite__rule {
+  display: block;
+  width: 56px;
+  height: 1px;
+  margin: 1.5rem auto;
+  background: var(--gold);
+}
+
+.invite ul {
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+
+.invite li {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.invite .btn {
+  align-self: center;
+}
+
+.invite--featured {
+  background: var(--sindoor);
+  border-color: var(--sindoor);
+  outline-color: var(--gold);
+}
+
+.invite--featured h3,
+.invite--featured .invite__price {
+  color: var(--jasmine) !important;
+}
+
+.invite--featured .invite__note,
+.invite--featured li {
+  color: rgba(255, 251, 246, 0.78) !important;
+}
+
+.invite__flag {
+  position: absolute;
+  top: -0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 1rem;
+  background: var(--gold);
+  color: var(--sindoor-deep) !important;
+  font-size: 0.82rem;
   font-weight: 500;
-  line-height: 1.1;
+  white-space: nowrap;
 }
 
-.home-service__label em {
-  font-style: normal;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.section-cta--center {
-  justify-content: center;
+.invites__more {
+  margin-top: 2.5rem;
   text-align: center;
 }
 
+/* ---------- Testimonials on the homepage ---------- */
+.home-words {
+  background: var(--bg-light);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .faiths__row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 960px) {
-  .home-services {
-    grid-template-columns: repeat(2, 1fr);
+  .mandap-hero__grid {
+    grid-template-columns: 1fr;
   }
 
-  .home-work__grid {
+  .mandap-hero__copy {
+    padding-bottom: 0;
+  }
+
+  .mandap-hero__arch {
+    width: min(82%, 400px);
+    margin-top: 1rem;
+  }
+
+  .windows__row {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2.5rem;
+  }
+
+  .invites__row {
+    grid-template-columns: 1fr;
+    max-width: 30rem;
+    margin-inline: auto;
+    row-gap: 2.25rem;
+  }
+
+  .work__grid {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 46vw;
   }
 
-  .home-work__item--1 { grid-column: span 2; grid-row: span 1; }
-  .home-work__item--2,
-  .home-work__item--3,
-  .home-work__item--4,
-  .home-work__item--5 { grid-column: span 1; grid-row: span 1; }
-  .home-work__item--6 { grid-column: span 2; grid-row: span 1; }
+  .work__item--1,
+  .work__item--6 { grid-column: span 2; grid-row: span 1; }
+  .work__item--2,
+  .work__item--3,
+  .work__item--4,
+  .work__item--5 { grid-column: span 1; grid-row: span 1; }
 }
 
 @media (max-width: 640px) {
-  .home-hero {
-    min-height: 88svh;
-  }
-
-  .home-hero__shade {
-    background:
-      linear-gradient(180deg, rgba(11, 11, 11, 0.55) 0%, rgba(11, 11, 11, 0) 25%),
-      linear-gradient(0deg, rgba(11, 11, 11, 0.88) 0%, rgba(11, 11, 11, 0.35) 55%, rgba(11, 11, 11, 0.05) 100%);
-  }
-
-  .home-hero__scroll {
-    display: none;
-  }
-
   .home-head {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .home-work__caption {
-    opacity: 1;
-    padding: 2rem 1rem 0.9rem;
+  .mandap-hero h1 {
+    font-size: clamp(2.4rem, 11vw, 3.2rem);
   }
 
-  .home-work__caption strong {
-    font-size: 1rem;
-    line-height: 1.2;
-  }
-
-  .home-work__caption em {
-    display: none;
-  }
-
-  .home-services {
+  .faiths__row {
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.6rem;
   }
 
-  .home-service__label {
-    padding: 2rem 0.9rem 0.9rem;
+  .faith {
+    aspect-ratio: 3 / 3.9;
   }
 
-  .home-service__label strong {
-    font-size: 1.15rem;
+  .faith h3 {
+    font-size: 1.08rem;
+  }
+
+  .faith p {
+    font-size: 0.8rem;
+  }
+
+  .faith__body {
+    padding: 26% 0.7rem 0;
+  }
+
+  .faith__mark {
+    margin-bottom: 0.6rem;
+  }
+
+  .work__caption {
+    opacity: 1;
+    padding: 2rem 1rem 0.85rem;
+  }
+
+  .work__caption strong {
+    font-size: 1rem;
+  }
+
+  .work__caption em {
+    display: none;
+  }
+
+  .window__label {
+    font-size: 1.05rem;
+    margin-top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mandap-hero__photo {
+    animation: none;
+  }
+
+  .work__item img,
+  .window__frame img {
+    transition: none;
   }
 }
 

@@ -2,7 +2,7 @@
   background:
     radial-gradient(circle at 20% 20%, rgba(201, 162, 39, 0.18), transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(201, 162, 39, 0.1), transparent 35%),
-    var(--black);
+    var(--sindoor);
 }
 
 .cta-banner__inner {

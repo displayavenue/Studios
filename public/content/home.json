@@ -1,16 +1,16 @@
 {
   "seo": {
     "title": "Wedding Photographer in Mumbai | Candid Photography & Films | DisplayAvenue Studios",
-    "description": "Premium wedding photographer & videographer in Mumbai for Indian weddings — candid photography, cinematic films, pre-wedding, engagement, maternity, birthday and event coverage across India."
+    "description": "Wedding photographer in Mumbai for Hindu, Muslim, Christian, Sikh, Parsi and interfaith weddings — candid photography, cinematic films, pre-wedding, maternity and events across India."
   },
   "hero": {
     "brand": "DisplayAvenue Studios",
-    "eyebrow": "Wedding photographer in Mumbai · Photography & films",
-    "headline": "Weddings, told like cinema.",
-    "description": "Candid photography and cinematic films for Indian weddings and life’s celebrations — in Mumbai and across India.",
-    "primaryCtaLabel": "Check Availability",
+    "eyebrow": "Wedding photographers & filmmakers in Mumbai",
+    "headline": "Weddings of every faith, told like cinema.",
+    "description": "Pheras, nikah, church vows, Anand Karaj and everything in between — photographed and filmed by one Mumbai studio, anywhere in India.",
+    "primaryCtaLabel": "Check your date",
     "primaryCtaPath": "/availability",
-    "secondaryCtaLabel": "View Wedding Portfolio",
+    "secondaryCtaLabel": "See our weddings",
     "secondaryCtaPath": "/portfolio",
     "image": "/images/indian/wedding-01.jpg",
     "imageAlt": "Luxury Indian wedding couple in designer lehenga and sherwani — DisplayAvenue Studios Mumbai"
@@ -20,7 +20,7 @@
   },
   "services": {
     "eyebrow": "What we shoot",
-    "title": "Weddings & life’s celebrations",
+    "title": "What we capture",
     "text": "Wedding photography & videography, pre-wedding films, engagement, maternity, birthday and complete event coverage — photo and film for every celebration.",
     "ctaLabel": "All services",
     "ctaPath": "/services"
@@ -34,8 +34,8 @@
   },
   "packages": {
     "eyebrow": "Wedding Packages",
-    "title": "Essential · Signature · Luxury",
-    "text": "Transparent photography and film packages for intimate ceremonies and destination celebrations — compare and customise.",
+    "title": "Essential, Signature, Luxury",
+    "text": "Starting prices for photography and film. Every package can be shaped around your ceremonies, days and city.",
     "featuredBadge": "Most booked",
     "ctaLabel": "Wedding Packages",
     "ctaPath": "/packages/wedding",
@@ -53,7 +53,7 @@
     "text": ""
   },
   "testimonials": {
-    "eyebrow": "Kind words",
+    "eyebrow": "",
     "title": "From our couples",
     "text": ""
   },

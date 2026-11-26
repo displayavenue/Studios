@@ -45,7 +45,7 @@ export function TestimonialsSection({
     >
       <div className="container">
         <div className="section-head section-head--center reveal">
-          <p className="eyebrow">{resolvedEyebrow}</p>
+          {resolvedEyebrow ? <p className="eyebrow">{resolvedEyebrow}</p> : null}
           <h2>{resolvedTitle}</h2>
           {resolvedText ? <p>{resolvedText}</p> : null}
         </div>
