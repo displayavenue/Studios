@@ -36,3 +36,10 @@ DirectoryIndex index.html index.php
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
+
+# Always check for a fresh homepage and CMS content (hashed JS/CSS stay cached for a year)
+<IfModule mod_headers.c>
+<FilesMatch "\.(html|json)$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
