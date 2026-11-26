@@ -49,15 +49,10 @@
     "experts": "50+",
     "avgRoi": "320%"
   },
-  "announcement": "Free growth call for business owners  -  book in 2 minutes.",
+  "announcement": "Free 30-minute growth call for business owners. Book in 2 minutes.",
   "navItems": [
     {
-      "label": "Home",
-      "href": "/",
-      "mega": false
-    },
-    {
-      "label": "What We Do",
+      "label": "Services",
       "href": "/services",
       "mega": "whatWeDo"
     },
@@ -65,11 +60,6 @@
       "label": "Industries",
       "href": "/industries",
       "mega": "industries"
-    },
-    {
-      "label": "Industry Solutions",
-      "href": "/industry-solutions",
-      "mega": false
     },
     {
       "label": "Solutions",
@@ -87,8 +77,8 @@
       "mega": false
     },
     {
-      "label": "Free Tools",
-      "href": "/free-tools",
+      "label": "Case Studies",
+      "href": "/case-studies",
       "mega": false
     },
     {
@@ -97,22 +87,7 @@
       "mega": false
     },
     {
-      "label": "Case Studies",
-      "href": "/case-studies",
-      "mega": false
-    },
-    {
-      "label": "Portfolio",
-      "href": "/portfolio",
-      "mega": false
-    },
-    {
-      "label": "Resources",
-      "href": "/resources",
-      "mega": false
-    },
-    {
-      "label": "Why DisplayAvenue",
+      "label": "About",
       "href": "/why-displayavenue",
       "mega": false
     }

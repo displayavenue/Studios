@@ -169,7 +169,7 @@ export function buildDetailPage(
       { value: "98%", label: "Satisfaction" },
       { value: "320%", label: "Avg ROI lift" },
     ],
-    ctaLabel: "Get Free Proposal",
+    ctaLabel: "Book a free call",
     architecture: "default",
     indexable: true,
     ...partial,

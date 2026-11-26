@@ -126,7 +126,7 @@ export function WhyDisplayAvenue() {
               <div className="cta-box" style={{ marginTop: "1rem" }}>
                 <h4>Ready to Grow Your Business?</h4>
                 <Link to="/contact" className="btn btn-primary btn-sm">
-                  Get Free Proposal →
+                  Book a free call →
                 </Link>
               </div>
             </aside>

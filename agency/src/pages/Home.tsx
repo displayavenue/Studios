@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import type { RefObject } from "react";
 import { Icon } from "../components/Icon";
 import { useCms } from "../cms/CmsProvider";
-import { SEO } from "../components/SEO";
+import { SEO, FAQPageSchema } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
 import { GoogleReviews } from "../components/GoogleReviews";
 import { AwardsCertsHome } from "../components/AwardsCertsHome";
@@ -11,7 +11,6 @@ import {
   CountStat,
   LogoMarquee,
   MobileSwipeRail,
-  RotatingKeywords,
   WordReveal,
 } from "../components/motion/MotionBits";
 import { PreferredSources } from "../components/PreferredSources";
@@ -80,16 +79,74 @@ const processSteps = [
   { n: "06", title: "Grow", text: "Expand channels once the engine is predictable." },
 ];
 
+/** Where leads come from — each links to the service that captures them. */
+const leadSources = [
+  { label: "Google Search", href: "/services/google-ads" },
+  { label: "Google Maps", href: "/services/local-seo" },
+  { label: "Facebook & Instagram", href: "/services/meta-ads" },
+  { label: "ChatGPT & AI search", href: "/services/ai-seo" },
+  { label: "LinkedIn", href: "/services/linkedin-ads" },
+  { label: "YouTube", href: "/services/performance-marketing" },
+  { label: "Your website", href: "/services/landing-pages" },
+];
+
 const HERO_IMAGE_FALLBACK = "/images/hero-agency-india.jpg";
 
+/** Visible FAQ + FAQPage schema: the format AI answer engines quote most. */
+const homeFaqs = [
+  {
+    question: "What does DisplayAvenue do?",
+    answer:
+      "DisplayAvenue is a digital marketing agency that helps businesses get more customers online. We run Google Ads and Meta (Facebook & Instagram) ads, do SEO and Google Business Profile optimisation, manage social media, and build websites and landing pages that turn visitors into enquiries.",
+  },
+  {
+    question: "Where can DisplayAvenue generate leads for my business?",
+    answer:
+      "Wherever your customers search: Google Search and Google Maps, Facebook and Instagram (Meta ads), AI assistants such as ChatGPT, Gemini and Perplexity (through AI search optimisation), LinkedIn for B2B, YouTube, and your own website and landing pages. We pick the two or three channels that will bring you the most enquiries for your budget.",
+  },
+  {
+    question: "Where is DisplayAvenue located?",
+    answer:
+      "Our office is at Office No. 44, D Wing, Shree Sharanam CHS, Unique Garden, Kanakia, Mira Road East, Mumbai 401107. We work with clients across Mumbai, Thane, the rest of India and abroad, in person or online.",
+  },
+  {
+    question: "Is DisplayAvenue a certified Google and Meta partner?",
+    answer:
+      "Yes. DisplayAvenue is a Google Partner with Google Ads certifications and a Meta Business Partner. We have been running campaigns for Indian businesses since 2018.",
+  },
+  {
+    question: "How much does digital marketing cost with DisplayAvenue?",
+    answer:
+      "We offer clear monthly plans for SEO, Google Ads, social media and lead generation, plus one-time website projects. Your ad budget is paid directly to Google or Meta and is separate from our management fee. Book a free call and we will recommend a plan that fits your goals and budget.",
+  },
+  {
+    question: "How soon will I see results?",
+    answer:
+      "Google and Meta ads can start bringing enquiries within the first one to two weeks after launch. SEO and Google Business Profile growth usually take three to six months to build steady, free traffic. We share simple monthly reports so you can see what is working.",
+  },
+  {
+    question: "Which businesses do you work with?",
+    answer:
+      "We work with small and growing businesses in India, including real estate, healthcare and clinics, education, travel, retail and e-commerce, B2B manufacturers and exporters, and local service businesses.",
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "Book a free call or WhatsApp us on +91 9222 122333. We will review your current marketing, show you what to fix first, and share a clear plan in plain English, with no obligation.",
+  },
+];
+
 export function Home() {
-  const { company, home, content } = useCms();
+  const { company, home, content, googleReviews } = useCms();
+  const rating = Number(googleReviews?.rating || 0);
+  const reviewCount = Number(googleReviews?.reviewCount || 0);
   const revealRef = useReveal();
   const hero = home.hero as typeof home.hero & { image?: string; imageAlt?: string };
-  const seoTitle = home.seo?.title || `${company.name} | Get more customers online`;
+  const seoTitle = home.seo?.title || `${company.name} | Digital Marketing Agency in Mumbai`;
   const seoDesc = home.seo?.description || home.hero.lead;
   const quotes = content.testimonials.slice(0, 5);
   const logos = content.clientLogos.slice(0, 10);
+  const heroSrc = hero.image || HERO_IMAGE_FALLBACK;
   const headline = `${home.hero.titleBefore} ${home.hero.titleAccent}`.trim();
 
   return (
@@ -98,25 +155,45 @@ export function Home() {
 
       <section className="home-hero" aria-label="Introduction">
         <div className="home-hero__media" aria-hidden>
-          <img
-            src={hero.image || HERO_IMAGE_FALLBACK}
-            alt=""
-            width={2000}
-            height={1333}
-            fetchPriority="high"
-          />
+          <picture>
+            {heroSrc === HERO_IMAGE_FALLBACK && (
+              <source
+                type="image/webp"
+                srcSet="/images/hero-agency-india-768.webp 768w, /images/hero-agency-india-1200.webp 1200w, /images/hero-agency-india-1536.webp 1536w"
+                sizes="(min-width: 980px) 44vw, 100vw"
+              />
+            )}
+            <img
+              src={heroSrc}
+              alt={hero.imageAlt || "DisplayAvenue digital marketing team at work in Mumbai"}
+              width={1536}
+              height={1024}
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div className="home-hero__shade" aria-hidden />
         <div className="home-hero__glow" aria-hidden />
         <div className="home-hero__inner">
+          <div className="home-hero__copy">
           <p className="home-hero__brand">
             <BrandTypeOn text={home.hero.eyebrow || company.name} />
           </p>
           <h1>
             <WordReveal text={headline} />
           </h1>
-          <RotatingKeywords />
           <p className="home-hero__lead">{home.hero.lead}</p>
+          <nav className="home-hero__sources" aria-label="Where we generate leads">
+            <span className="home-hero__sources-label">Leads from</span>
+            <ul>
+              {leadSources.map((s) => (
+                <li key={s.href}>
+                  <Link to={s.href}>{s.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <div className="home-hero__actions">
             <Link to="/contact" className="btn btn-primary btn-shimmer">
               {home.hero.primaryCta}
@@ -127,6 +204,33 @@ export function Home() {
             <Link to="/portfolio" className="btn btn-outline-light">
               {home.hero.secondaryCta}
             </Link>
+          </div>
+          <ul className="home-hero__trust" aria-label="Why businesses trust DisplayAvenue">
+            {rating > 0 && (
+              <li>
+                <span className="home-hero__stars" aria-hidden>
+                  ★★★★★
+                </span>
+                <strong>{rating.toFixed(1)}</strong> on Google
+                {reviewCount > 0 && <span> · {reviewCount} reviews</span>}
+              </li>
+            )}
+            <li>Google Partner</li>
+            <li>Meta Business Partner</li>
+            <li>Since 2018</li>
+          </ul>
+          </div>
+          <div className="home-hero__visual" aria-hidden>
+            <div className="home-hero__chip home-hero__chip--a">
+              <span className="home-hero__chip-dot" />
+              New enquiry · Google Ads
+            </div>
+            <div className="home-hero__chip home-hero__chip--b">
+              <strong>{company.stats.clients}</strong> businesses served
+            </div>
+            <div className="home-hero__chip home-hero__chip--c">
+              <strong>Mira Road, Mumbai</strong> · Pan-India
+            </div>
           </div>
         </div>
       </section>
@@ -310,6 +414,27 @@ export function Home() {
 
       <GoogleReviews />
       <AwardsCertsHome />
+
+      <section className="home-block home-block--soft home-faq" aria-labelledby="home-faq-title">
+        <FAQPageSchema faqs={homeFaqs} />
+        <div className="container">
+          <p className="home-kicker reveal">Questions, answered</p>
+          <h2 id="home-faq-title" className="home-title reveal reveal-delay-1">
+            Frequently asked questions
+          </h2>
+          <div className="home-faq__list">
+            {homeFaqs.map((f, i) => (
+              <details key={f.question} className="home-faq__item" open={i === 0}>
+                <summary>
+                  <h3>{f.question}</h3>
+                  <span className="home-faq__icon" aria-hidden />
+                </summary>
+                <p>{f.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -87,8 +87,8 @@
   display: none;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
-  gap: 0;
+  justify-content: center;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
   flex-wrap: nowrap;
 }
 

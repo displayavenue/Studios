@@ -52,7 +52,7 @@ export function AwardsCertsHome() {
                   className={`achome__award reveal reveal-delay-${(i % 3) + 1}`}
                 >
                   <div className="achome__award-media">
-                    <img src={item.image} alt="" width={1000} height={700} loading="lazy" />
+                    <img src={item.image} alt={`${item.title} – ${item.issuer} ${item.year} award to DisplayAvenue`} width={1000} height={700} loading="lazy" decoding="async" />
                   </div>
                   <div className="achome__award-body">
                     <span>{item.year}</span>
@@ -80,7 +80,7 @@ export function AwardsCertsHome() {
                   className={`achome__cert reveal reveal-delay-${(i % 4) + 1}`}
                 >
                   <div className="achome__cert-media">
-                    <img src={item.image} alt="" width={1200} height={850} loading="lazy" />
+                    <img src={item.image} alt={`${item.title} certificate (${item.issuer}) – DisplayAvenue`} width={1200} height={850} loading="lazy" decoding="async" />
                   </div>
                   <div className="achome__cert-body">
                     <span className="achome__brand">{item.brand}</span>

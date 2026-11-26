@@ -67,7 +67,7 @@ function injectGoogleAnalytics(markerId: string, measurementId: string, adsId?: 
   const config = document.createElement("script");
   config.setAttribute("data-cms-tracking", markerId);
   const adsLine = adsId ? `gtag('config', '${adsId}');` : "";
-  config.textContent = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${measurementId}',{send_page_view:true});${adsLine}`;
+  config.textContent = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${measurementId}',{send_page_view:false});${adsLine}`;
   document.head.appendChild(config);
 }
 
@@ -83,7 +83,7 @@ function injectMetaPixel(markerId: string, pixelIds: string[]) {
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');`;
+'https://connect.facebook.net/en_US/fbevents.js');${inits}`;
   document.head.appendChild(script);
 
   ids.forEach((id, index) => {
@@ -120,6 +120,7 @@ function ensureSiteVerification(content: string) {
   meta.setAttribute("content", value);
 }
 
+/** Sends exactly one page view per route (including the first load) to GA4 and Meta. */
 function trackSpaPageView(path: string) {
   const pagePath = path || "/";
   const pageLocation = window.location.href;

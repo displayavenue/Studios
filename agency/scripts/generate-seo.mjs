@@ -248,10 +248,10 @@ const defaultLinks = [
 
 const seoPages = {};
 addPage(seoPages, "/", {
-  title: `${name} | Get more customers online`,
+  title: `${name} | Digital Marketing Agency in Mumbai`,
   description:
-    "Mumbai digital marketing agency for Google, Instagram, websites and lead generation. Clear plans in plain English.",
-  h1: name,
+    "Mumbai digital marketing agency that gets you leads from Google Search & Maps, Meta (Facebook & Instagram), ChatGPT & AI search, LinkedIn and your website.",
+  h1: "Get more customers from Google, Meta & AI platforms",
   summary:
     company.tagline ||
     "DisplayAvenue helps business owners get found online and turn interest into real enquiries.",
