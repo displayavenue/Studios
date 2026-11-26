@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy:hostinger": "bash scripts/deploy-hostinger.sh"
+    "deploy:hostinger": "bash scripts/deploy-hostinger.sh",
+    "prerender": "node scripts/prerender.mjs",
+    "build:seo": "npm run build && node scripts/prerender.mjs"
   },
   "dependencies": {
     "@fontsource/jost": "^5.3.0",
@@ -23,6 +25,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "oxlint": "^1.75.0",
+    "puppeteer-core": "^25.19.0",
     "typescript": "~6.0.2",
     "vite": "^8.2.0"
   }

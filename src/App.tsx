@@ -22,6 +22,7 @@ import { Careers } from "./pages/Careers";
 import { ClientGallery } from "./pages/ClientGallery";
 import { Availability } from "./pages/Availability";
 import { HireIndex, HireCityService } from "./pages/Hire";
+import { NotFound } from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -54,6 +55,7 @@ export default function App() {
           <Route path="book-now" element={<BookNow />} />
           <Route path="contact" element={<Contact />} />
           <Route path="pages" element={<AllPages />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -6,6 +6,7 @@ import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 function locationFaqs(city: string, service: string) {
   return [
@@ -93,18 +94,7 @@ export function LocationDetail() {
   const loc = locations.find((l) => l.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 
-  if (!loc) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Location page not found</h1>
-          <Link to="/locations" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            All Locations
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!loc) return <NotFound />;
 
   const faqs = locationFaqs(loc.city, loc.service);
   const relatedServices = services

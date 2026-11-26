@@ -5,6 +5,7 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 export function PortfolioDetail() {
   const { slug } = useParams();
@@ -12,18 +13,7 @@ export function PortfolioDetail() {
   const item = portfolio.find((p) => p.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 
-  if (!item) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Project not found</h1>
-          <Link to="/portfolio" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            Back to Portfolio
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!item) return <NotFound />;
 
   const related = portfolio.filter((p) => p.slug !== item.slug && p.category === item.category).slice(0, 3);
 

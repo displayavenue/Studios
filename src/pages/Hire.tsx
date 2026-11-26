@@ -5,6 +5,7 @@ import { GoogleReviewsBlock } from "../components/GrowthWidgets";
 import { useCms } from "../cms/CmsProvider";
 import { serviceWhatsAppMessage, whatsappPrefill } from "../utils/whatsapp";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 /** SEO landing pages: /hire/:city/:serviceSlug */
 export function HireCityService() {
@@ -19,18 +20,7 @@ export function HireCityService() {
     (l) => l.city.toLowerCase() === cityName.toLowerCase(),
   );
 
-  if (!service) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Service not found</h1>
-          <Link to="/services" className="btn btn--gold">
-            Browse services
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!service) return <NotFound />;
 
   const title = `${service.title} in ${cityName}`;
   const wa = whatsappPrefill(

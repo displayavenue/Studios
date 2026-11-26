@@ -16,7 +16,13 @@ DirectoryIndex index.html index.php
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Everything else → index.html (React Router)
+  # Prerendered page for this URL (full HTML for Google + AI crawlers)
+  RewriteCond %{DOCUMENT_ROOT}/_pre/$1.html -f
+  RewriteRule ^(.+?)/?$ _pre/$1.html [L]
+
+  # Everything else → empty app shell (React Router handles it)
+  RewriteCond %{DOCUMENT_ROOT}/_shell.html -f
+  RewriteRule ^ _shell.html [L]
   RewriteRule ^ index.html [L]
 </IfModule>
 

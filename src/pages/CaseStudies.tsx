@@ -5,6 +5,7 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 export function CaseStudies() {
   const ref = useReveal<HTMLDivElement>();
@@ -63,18 +64,7 @@ export function CaseStudyDetail() {
   const { extras, company } = useCms();
   const study = extras.caseStudies.find((c) => c.slug === slug);
 
-  if (!study) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Case study not found</h1>
-          <Link to="/case-studies" className="btn btn--gold" style={{ marginTop: "1rem" }}>
-            All case studies
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!study) return <NotFound />;
 
   return (
     <div ref={ref}>

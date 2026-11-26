@@ -37,3 +37,12 @@ Ensure the `content/` folder is writable (chmod 755/775).
 Home, About, Services (+ detail), Packages, Pricing, Portfolio (+ detail), Industries, Locations (+ detail), Blog, FAQs, Book Now, Contact.
 
 Company: [displayavenuestudios.com](https://displayavenuestudios.com) · Mumbai · Pan India
+
+## SEO build (prerendering)
+
+`npm run build:seo` = `vite build` + `scripts/prerender.mjs`. The prerender step opens every
+URL in `sitemap.xml` in headless Chrome/Edge (set `CHROME_PATH` if it isn't found) and writes
+full HTML to `dist/index.html` and `dist/_pre/<route>.html`. `.htaccess` serves those files, so
+Google, Bing and AI crawlers (ChatGPT, Claude, Perplexity — which don't run JavaScript) see the
+real text, titles and schema. Re-run it after changing content in `/admin` so the static copy
+matches. Always deploy the output of `build:seo`, not plain `build`.

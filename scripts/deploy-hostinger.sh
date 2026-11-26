@@ -14,7 +14,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 echo "Building production bundle..."
-npm run build
+npm run build:seo
 
 if ! command -v lftp >/dev/null 2>&1; then
   echo "Installing lftp..."

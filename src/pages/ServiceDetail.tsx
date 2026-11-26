@@ -9,6 +9,7 @@ import { useCms, useService } from "../cms/CmsProvider";
 import { getYoutubeEmbedUrl } from "../utils/youtube";
 import { serviceWhatsAppMessage, whatsappPrefill } from "../utils/whatsapp";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 export function ServiceDetail() {
   const { slug } = useParams();
@@ -16,18 +17,7 @@ export function ServiceDetail() {
   const { company, services, faqs, packageGroups, portfolio } = useCms();
   const ref = useReveal<HTMLDivElement>();
 
-  if (!service) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Service not found</h1>
-          <Link to="/services" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            Browse Services
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!service) return <NotFound />;
 
   const related = service.related
     .map((s) => services.find((svc) => svc.slug === s))
