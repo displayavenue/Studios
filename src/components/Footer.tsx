@@ -3,6 +3,7 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import "./Footer.css";
+import { sendEnquiry } from "../utils/enquiry";
 
 function socialMeta(url: string) {
   const u = url.toLowerCase();
@@ -78,11 +79,14 @@ export function Footer() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email.trim()) return;
-    setDone(true);
-    setEmail("");
+    const res = await sendEnquiry(e.currentTarget, "newsletter");
+    if (res.ok) {
+      setDone(true);
+      setEmail("");
+    }
   };
 
   return (
@@ -219,6 +223,7 @@ export function Footer() {
             <div className="newsletter__row">
               <input
                 id="newsletter-email"
+                name="email"
                 type="email"
                 placeholder="Your email"
                 value={email}

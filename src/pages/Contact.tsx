@@ -6,16 +6,28 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { CTABanner } from "../components/CTABanner";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
+import { sendEnquiry, whatsappEnquiryLink } from "../utils/enquiry";
 import "./Page.css";
 
 export function Contact() {
   const ref = useReveal<HTMLDivElement>();
   const { company } = useCms();
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [waLink, setWaLink] = useState("");
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    setSending(true);
+    setError("");
+    const link = whatsappEnquiryLink(company.whatsappHref, form, "Hi DisplayAvenue Studios,");
+    const res = await sendEnquiry(form, "contact");
+    setSending(false);
+    setWaLink(link);
+    if (res.ok) setSubmitted(true);
+    else setError("We couldn't send your message. Please send it on WhatsApp instead — it's filled in for you.");
   };
 
   return (
@@ -105,31 +117,40 @@ export function Contact() {
                   Thank you for contacting DisplayAvenue Studios. We&apos;ll get
                   back to you soon.
                 </p>
+                <a href={waLink || company.whatsappHref} className="btn btn--outline" target="_blank" rel="noreferrer">
+                  Send this on WhatsApp too
+                </a>
               </div>
             ) : (
               <>
                 <h2>Send a message</h2>
+                <input type="text" name="company_website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp-field" />
                 <div className="form-grid">
                   <div className="form-field">
                     <label htmlFor="cname">Name</label>
-                    <input id="cname" required />
+                    <input id="cname" name="name" required />
                   </div>
                   <div className="form-field">
                     <label htmlFor="cphone">Phone</label>
-                    <input id="cphone" required />
+                    <input id="cphone" name="phone" type="tel" required />
                   </div>
                   <div className="form-field form-field--full">
                     <label htmlFor="cemail">Email</label>
-                    <input id="cemail" type="email" required />
+                    <input id="cemail" name="email" type="email" required />
                   </div>
                   <div className="form-field form-field--full">
                     <label htmlFor="cmsg">Message</label>
-                    <textarea id="cmsg" required placeholder="How can we help?" />
+                    <textarea id="cmsg" name="message" required placeholder="How can we help?" />
                   </div>
                 </div>
-                <button type="submit" className="btn btn--gold">
-                  Send Message
+                <button type="submit" className="btn btn--gold" disabled={sending}>
+                  {sending ? "Sending…" : "Send Message"}
                 </button>
+                {error && (
+                  <p className="form-error">
+                    {error} <a href={waLink} target="_blank" rel="noreferrer">Open WhatsApp</a>
+                  </p>
+                )}
               </>
             )}
           </form>

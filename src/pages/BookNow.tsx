@@ -4,16 +4,28 @@ import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
+import { sendEnquiry, whatsappEnquiryLink } from "../utils/enquiry";
 import "./Page.css";
 
 export function BookNow() {
   const ref = useReveal<HTMLDivElement>();
   const { company, packageGroups, testimonials } = useCms();
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [waLink, setWaLink] = useState("");
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    setSending(true);
+    setError("");
+    const link = whatsappEnquiryLink(company.whatsappHref, form, "Hi DisplayAvenue Studios, I'd like to check availability:");
+    const res = await sendEnquiry(form, "booking");
+    setSending(false);
+    setWaLink(link);
+    if (res.ok) setSubmitted(true);
+    else setError("We couldn't send your enquiry. Please send it on WhatsApp instead — your details are filled in.");
   };
 
   return (
@@ -47,40 +59,11 @@ export function BookNow() {
               <div className="form-success">
                 <h2>Request received</h2>
                 <p>
-                  Thank you. A DisplayAvenue producer will contact you shortly
-                  via phone or WhatsApp to confirm next steps.
+                  Thank you — we&apos;ve received your details and will call or
+                  WhatsApp you to confirm availability, usually the same day.
                 </p>
-                <div className="pay-token card">
-                  <p className="eyebrow">Secure your date</p>
-                  <h3>Pay booking token</h3>
-                  <p>
-                    After we confirm availability, reserve your crew with a
-                    refundable-against-invoice token. Demo checkout below
-                    (UPI / card).
-                  </p>
-                  <div className="pay-token__row">
-                    <div>
-                      <strong>₹15,000</strong>
-                      <span>Booking token</span>
-                    </div>
-                    <button
-                      type="button"
-                      className="btn btn--gold"
-                      onClick={() =>
-                        alert(
-                          "Demo payment — connect Razorpay/UPI keys in production to collect real tokens.",
-                        )
-                      }
-                    >
-                      Pay with UPI / Card
-                    </button>
-                  </div>
-                  <p className="form-note">
-                    Or pay later on WhatsApp after we share the payment link.
-                  </p>
-                </div>
-                <a href={company.whatsappHref} className="btn btn--outline" target="_blank" rel="noreferrer">
-                  Continue on WhatsApp
+                <a href={waLink || company.whatsappHref} className="btn btn--gold" target="_blank" rel="noreferrer">
+                  Send these details on WhatsApp too
                 </a>
                 <Link to="/availability" className="btn btn--ghost">
                   View calendar
@@ -92,6 +75,7 @@ export function BookNow() {
             ) : (
               <>
                 <h2>Booking enquiry</h2>
+                <input type="text" name="company_website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp-field" />
                 <div className="form-grid">
                   <div className="form-field">
                     <label htmlFor="name">Full name</label>
@@ -155,9 +139,14 @@ export function BookNow() {
                     />
                   </div>
                 </div>
-                <button type="submit" className="btn btn--gold">
-                  Submit Booking Request
+                <button type="submit" className="btn btn--gold" disabled={sending}>
+                  {sending ? "Sending…" : "Submit Booking Request"}
                 </button>
+                {error && (
+                  <p className="form-error">
+                    {error} <a href={waLink} target="_blank" rel="noreferrer">Open WhatsApp</a>
+                  </p>
+                )}
                 <p className="form-note">
                   Prefer chatting?{" "}
                   <a href={company.whatsappHref} target="_blank" rel="noreferrer">
