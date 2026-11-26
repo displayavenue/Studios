@@ -24,7 +24,7 @@ export function Packages() {
                 Transparent pricing and scalable packages designed for startups,
                 SMBs, and enterprises.
               </p>
-              <h3 style={{ marginTop: "1.25rem", fontSize: "0.95rem", color: "var(--navy)" }}>
+              <h3 style={{ marginTop: "1.25rem", fontSize: "0.95rem", color: "var(--ink)" }}>
                 Why Choose Our Packages?
               </h3>
               <ul className="feature-list">
@@ -42,7 +42,7 @@ export function Packages() {
               <div className="cta-box dark">
                 <h4>Not sure which package is right for you?</h4>
                 <p>We’ll recommend the best plan for your goals and budget.</p>
-                <Link to="/contact" className="btn btn-outline btn-sm" style={{ background: "#fff" }}>
+                <Link to="/contact" className="btn btn-outline btn-sm">
                   Book Free Consultation
                 </Link>
               </div>
@@ -72,7 +72,7 @@ export function Packages() {
             </div>
 
             <aside>
-              <h3 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+              <h3 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                 All Packages Include
               </h3>
               <ul className="feature-list">
@@ -90,7 +90,7 @@ export function Packages() {
                 </Link>
               </div>
               <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.85rem" }}>
+                <p style={{ fontWeight: 700, color: "var(--ink)", fontSize: "0.85rem" }}>
                   Trusted by 1200+ Businesses
                 </p>
                 <div className="logo-strip" style={{ justifyContent: "flex-start", marginTop: "0.55rem" }}>
@@ -110,7 +110,7 @@ export function Packages() {
           <div className="bottom-bar">
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <Icon name="tag" color="#0056ff" />
-              <strong style={{ color: "var(--navy)" }}>Save More with Annual Plans!</strong>
+              <strong style={{ color: "var(--ink)" }}>Save More with Annual Plans!</strong>
             </div>
             <div className="bottom-bar-items">
               <span>20% OFF</span>

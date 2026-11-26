@@ -59,7 +59,7 @@ export function Portfolio() {
             </aside>
 
             <div>
-              <h2 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+              <h2 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                 Explore Our Work by Category
               </h2>
               <div className="category-grid portfolio-cats-desktop" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
@@ -88,7 +88,7 @@ export function Portfolio() {
               </div>
 
               <div style={{ display: "flex", justifyContent: "space-between", margin: "1.5rem 0 0.75rem" }}>
-                <h2 style={{ fontSize: "0.95rem", color: "var(--navy)" }}>Featured Projects</h2>
+                <h2 style={{ fontSize: "0.95rem", color: "var(--ink)" }}>Featured Projects</h2>
                 <Link to="/portfolio" className="link-arrow portfolio-view-all-desktop">
                   View All Projects →
                 </Link>
@@ -140,7 +140,7 @@ export function Portfolio() {
             </div>
 
             <aside>
-              <h3 style={{ fontSize: "0.95rem", color: "var(--navy)", marginBottom: "0.75rem" }}>
+              <h3 style={{ fontSize: "0.95rem", color: "var(--ink)", marginBottom: "0.75rem" }}>
                 Our Work Speaks for Itself
               </h3>
               <ul className="mega-stat-list">
@@ -163,12 +163,12 @@ export function Portfolio() {
               >
                 <h4>Want similar results?</h4>
                 <p>Let's discuss how we can help your business grow.</p>
-                <Link to="/contact" className="btn btn-outline btn-sm" style={{ background: "#fff" }}>
+                <Link to="/contact" className="btn btn-outline btn-sm">
                   Book Free Consultation →
                 </Link>
               </div>
               <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontWeight: 700, color: "var(--navy)", fontSize: "0.85rem" }}>
+                <p style={{ fontWeight: 700, color: "var(--ink)", fontSize: "0.85rem" }}>
                   Trusted by 500+ Brands
                 </p>
                 <div style={{ marginTop: "0.55rem" }}>

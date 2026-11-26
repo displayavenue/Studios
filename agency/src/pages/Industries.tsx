@@ -33,7 +33,7 @@ export function Industries() {
               <div className="cta-box">
                 <span
                   className="icon-box"
-                  style={{ background: "#e8f0ff", marginBottom: "0.5rem" }}
+                  style={{ background: "rgba(47, 107, 255, 0.18)", marginBottom: "0.5rem" }}
                 >
                   <Icon name="target" color="#0056ff" />
                 </span>
@@ -66,7 +66,7 @@ export function Industries() {
                 </li>
               </ul>
               <div className="start-points" style={{ marginTop: "1.25rem" }}>
-                <h4 style={{ color: "var(--navy)", marginBottom: "0.35rem" }}>
+                <h4 style={{ color: "var(--ink)", marginBottom: "0.35rem" }}>
                   Popular services
                 </h4>
                 <p
@@ -191,7 +191,7 @@ export function Industries() {
 
           <div className="bottom-bar">
             <div>
-              <strong style={{ color: "var(--navy)" }}>Popular industry solutions</strong>
+              <strong style={{ color: "var(--ink)" }}>Popular industry solutions</strong>
               <div className="pill-row" style={{ marginTop: "0.65rem" }}>
                 {featuredCombos.slice(0, 8).map((item) => (
                   <Link

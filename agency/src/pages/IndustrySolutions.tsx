@@ -74,7 +74,7 @@ export function IndustrySolutions() {
                           style={{
                             margin: 0,
                             fontSize: "1.15rem",
-                            color: "var(--navy)",
+                            color: "var(--ink)",
                           }}
                         >
                           {industry.title}

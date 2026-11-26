@@ -1,6 +1,26 @@
 /* DisplayAvenue /growth — premium agency visual system */
 
 .growth-shell {
+  /* Ad landing page keeps its own light palette */
+  color-scheme: light;
+  --ink: #000b33;
+  --surface: #ffffff;
+  --surface-solid: #ffffff;
+  --surface-soft: #f7f9fc;
+  --blue: #0056ff;
+  --blue-dark: #0044cc;
+  --blue-soft: #e8f0ff;
+  --blue-tint: #f5f8ff;
+  --text: #1a1f36;
+  --text-muted: #5a6278;
+  --text-light: #8a92a6;
+  --border: #e4e8f0;
+  --border-soft: #eef1f7;
+  --bg: #ffffff;
+  --bg-soft: #f7f9fc;
+  --bg-gray: #f0f3f8;
+  --shadow: 0 4px 24px rgba(0, 11, 51, 0.06);
+  --shadow-md: 0 8px 32px rgba(0, 11, 51, 0.1);
   --g-ink: #050b1f;
   --g-navy: #000b33;
   --g-blue: #0056ff;
