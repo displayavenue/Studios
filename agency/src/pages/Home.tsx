@@ -11,7 +11,6 @@ import {
   CountStat,
   LogoMarquee,
   MobileSwipeRail,
-  RotatingKeywords,
   WordReveal,
 } from "../components/motion/MotionBits";
 import { PreferredSources } from "../components/PreferredSources";
@@ -80,6 +79,17 @@ const processSteps = [
   { n: "06", title: "Grow", text: "Expand channels once the engine is predictable." },
 ];
 
+/** Where leads come from — each links to the service that captures them. */
+const leadSources = [
+  { label: "Google Search", href: "/services/google-ads" },
+  { label: "Google Maps", href: "/services/local-seo" },
+  { label: "Facebook & Instagram", href: "/services/meta-ads" },
+  { label: "ChatGPT & AI search", href: "/services/ai-seo" },
+  { label: "LinkedIn", href: "/services/linkedin-ads" },
+  { label: "YouTube", href: "/services/performance-marketing" },
+  { label: "Your website", href: "/services/landing-pages" },
+];
+
 const HERO_IMAGE_FALLBACK = "/images/hero-agency-india.jpg";
 
 /** Visible FAQ + FAQPage schema: the format AI answer engines quote most. */
@@ -88,6 +98,11 @@ const homeFaqs = [
     question: "What does DisplayAvenue do?",
     answer:
       "DisplayAvenue is a digital marketing agency that helps businesses get more customers online. We run Google Ads and Meta (Facebook & Instagram) ads, do SEO and Google Business Profile optimisation, manage social media, and build websites and landing pages that turn visitors into enquiries.",
+  },
+  {
+    question: "Where can DisplayAvenue generate leads for my business?",
+    answer:
+      "Wherever your customers search: Google Search and Google Maps, Facebook and Instagram (Meta ads), AI assistants such as ChatGPT, Gemini and Perplexity (through AI search optimisation), LinkedIn for B2B, YouTube, and your own website and landing pages. We pick the two or three channels that will bring you the most enquiries for your budget.",
   },
   {
     question: "Where is DisplayAvenue located?",
@@ -168,8 +183,17 @@ export function Home() {
           <h1>
             <WordReveal text={headline} />
           </h1>
-          <RotatingKeywords />
           <p className="home-hero__lead">{home.hero.lead}</p>
+          <nav className="home-hero__sources" aria-label="Where we generate leads">
+            <span className="home-hero__sources-label">Leads from</span>
+            <ul>
+              {leadSources.map((s) => (
+                <li key={s.href}>
+                  <Link to={s.href}>{s.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <div className="home-hero__actions">
             <Link to="/contact" className="btn btn-primary btn-shimmer">
               {home.hero.primaryCta}

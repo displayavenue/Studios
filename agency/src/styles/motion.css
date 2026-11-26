@@ -283,6 +283,7 @@ html.da-low-power .wa-float--pulse {
 .da-handoff .home-hero__lead,
 .da-handoff .home-hero__actions,
 .da-handoff .home-hero__trust,
+.da-handoff .home-hero__sources,
 .da-handoff .home-hero__media img {
   animation: none !important;
   opacity: 1 !important;

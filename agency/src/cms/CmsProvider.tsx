@@ -90,8 +90,8 @@ const fallbackHome: HomeCms = {
   hero: {
     eyebrow: "DisplayAvenue",
     titleBefore: "Get more customers from",
-    titleAccent: "Google, Instagram & your website",
-    lead: "We help business owners get found online and turn interest into real enquiries. Clear plans. Plain English. No jargon.",
+    titleAccent: "Google, Meta & AI platforms",
+    lead: "We bring you real enquiries from everywhere your customers look: Google Search and Maps, Facebook and Instagram, ChatGPT and other AI assistants, LinkedIn, YouTube and your own website.",
     primaryCta: "Book a free call",
     secondaryCta: "See our work",
     image: "/images/hero-agency-india.jpg",
