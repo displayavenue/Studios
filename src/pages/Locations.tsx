@@ -36,6 +36,8 @@ const REGION_ORDER = [
   "South & Central Mumbai",
   "Central Mumbai",
   "Thane & Navi Mumbai",
+  "Weekend destinations near Mumbai",
+  "Destination weddings in India",
 ];
 
 function firstSentence(text: string) {
@@ -56,7 +58,7 @@ export function Locations() {
   return (
     <div ref={ref}>
       <SEO
-        title="Wedding Photographer Across Mumbai, Mira Road, Thane & Vasai-Virar | DisplayAvenue Studios"
+        title="Wedding Photographer Across Mumbai & Destination Weddings in India | DisplayAvenue Studios"
         description="Wedding photographers and filmmakers for every part of Mumbai — Mira Road, Bhayandar, Vasai, Virar, Borivali, Kandivali, Malad, Andheri, Bandra, South Mumbai, Thane and Navi Mumbai — plus destination weddings."
         path="/locations"
       />
@@ -78,7 +80,8 @@ export function Locations() {
           <h1>Wedding photography across Mumbai, from our Mira Road studio</h1>
           <p>
             Pick your area to see local pre-wedding spots, the kinds of venues we
-            shoot there and answers to common booking questions.
+            shoot there and answers to common booking questions. Getting married
+            further away? Our team also travels for destination weddings.
           </p>
         </div>
       </section>
@@ -106,7 +109,7 @@ export function Locations() {
         <section className="section">
           <div className="container">
             <div className="section-head reveal">
-              <h2>Mumbai services and destination weddings</h2>
+              <h2>Mumbai wedding and family photography</h2>
             </div>
             <div className="locations-grid">
               {other.map((loc) => (
@@ -137,6 +140,7 @@ export function LocationDetail() {
   if (!loc) return <NotFound />;
 
   const isLocal = Boolean(loc.region);
+  const isDestination = Boolean(loc.region && /destination/i.test(loc.region));
   const generic = locationFaqs(loc.city, loc.service);
   const faqs = isLocal
     ? [...(loc.faqs || []), generic[0], generic[3]]
@@ -212,7 +216,7 @@ export function LocationDetail() {
           <article className="info-panel card reveal">
             <h2>Why clients in {loc.city} choose DisplayAvenue</h2>
             <ul className="check-list">
-              <li>Studio in Mira Road East — {isLocal ? `${loc.city} is part of our regular coverage area` : `travel-ready crews for ${loc.city}`}</li>
+              <li>Studio in Mira Road East — {isLocal && !isDestination ? `${loc.city} is part of our regular coverage area` : `our team travels to ${loc.city} with travel and stay listed upfront in your quote`}</li>
               <li>Weddings of every faith — Hindu, Muslim, Christian, Sikh, Jain, Parsi and interfaith</li>
               <li>Transparent packages and written proposals before booking</li>
               <li>Fast social selects and structured gallery / film delivery</li>
@@ -259,7 +263,7 @@ export function LocationDetail() {
             )}
             {loc.venues && loc.venues.length > 0 && (
               <article className="info-panel card reveal">
-                <h2>Wedding venues we cover in {loc.city}</h2>
+                <h2>{isDestination ? `Wedding venues in ${loc.city}` : `Wedding venues we cover in ${loc.city}`}</h2>
                 <ul className="check-list">
                   {loc.venues.map((v) => (
                     <li key={v}>{v}</li>
@@ -373,12 +377,12 @@ export function LocationDetail() {
         <section className="section">
           <div className="container">
             <div className="section-head reveal">
-              <h2>Nearby areas we cover</h2>
+              <h2>{isDestination ? "More destinations we cover" : "Nearby areas we cover"}</h2>
             </div>
             <ul className="nearby-links">
               {nearby.map((n) => (
                 <li key={n.slug}>
-                  <Link to={`/locations/${n.slug}`}>Wedding photographer in {n.city}</Link>
+                  <Link to={`/locations/${n.slug}`}>{isDestination ? n.title : `Wedding photographer in ${n.city}`}</Link>
                 </li>
               ))}
               <li>
