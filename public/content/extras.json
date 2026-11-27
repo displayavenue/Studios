@@ -1,123 +1,60 @@
 {
   "googleReviews": {
-    "rating": 4.9,
-    "count": 186,
+    "rating": 5.0,
+    "count": 11,
     "label": "Google reviews",
-    "profileUrl": "https://www.google.com/maps/search/?api=1&query=DisplayAvenue+Studios+Mira+Road+Wedding+Photographer",
-    "reviews": [
-      {
-        "name": "Riya Malhotra",
-        "initials": "RM",
-        "rating": 5,
-        "time": "2 weeks ago",
-        "text": "Best wedding photographer in Mumbai for candid work — calm crew, stunning pheras light, film still gives us chills."
-      },
-      {
-        "name": "Kabir Banerjee",
-        "initials": "KB",
-        "rating": 5,
-        "time": "1 month ago",
-        "text": "Destination Udaipur coverage felt like a luxury film unit. Relatives still ask for their contact."
-      },
-      {
-        "name": "Ananya Reddy",
-        "initials": "AR",
-        "rating": 5,
-        "time": "3 weeks ago",
-        "text": "Maternity session was elegant and comfortable. Exactly the premium feel we wanted."
-      },
-      {
-        "name": "Vikram Joshi",
-        "initials": "VJ",
-        "rating": 5,
-        "time": "2 months ago",
-        "text": "Pre-wedding in Lonavala looked cinematic. Used every frame on our invites."
-      },
-      {
-        "name": "Sneha Iyer",
-        "initials": "SI",
-        "rating": 5,
-        "time": "5 days ago",
-        "text": "Engagement + wedding week — consistent colour, fast Instagram selects, zero stress."
-      },
-      {
-        "name": "Arjun Desai",
-        "initials": "AD",
-        "rating": 5,
-        "time": "1 month ago",
-        "text": "Daughter’s first birthday looked as polished as our wedding gallery. Highly recommend."
-      }
-    ]
+    "profileUrl": "https://share.google/lfqtgTexQDQQ6PytN",
+    "reviews": [],
+    "reviewUrl": "https://g.page/r/CeIlch039zMuEBE/review"
   },
   "instagram": {
-    "handle": "@displayavenuestudios",
-    "url": "https://www.instagram.com/displayavenuestudios/",
+    "handle": "@displayavenue_studios",
+    "url": "https://www.instagram.com/displayavenue_studios/",
     "posts": [
       {
         "id": "1",
         "image": "/images/indian/wedding-01.jpg",
-        "likes": "4,218",
+        "likes": "",
         "caption": "Palace pheras · luxury week"
       },
       {
         "id": "2",
         "image": "/images/indian/wedding-08.jpg",
-        "likes": "3,902",
+        "likes": "",
         "caption": "Polki & velvet details"
       },
       {
         "id": "3",
         "image": "/images/indian/wedding-06.jpg",
-        "likes": "2,487",
+        "likes": "",
         "caption": "Sangeet night glow"
       },
       {
         "id": "4",
         "image": "/images/indian/engage-01.jpg",
-        "likes": "5,104",
+        "likes": "",
         "caption": "Ring ceremony petals"
       },
       {
         "id": "5",
         "image": "/images/indian/maternity-01.jpg",
-        "likes": "1,840",
+        "likes": "",
         "caption": "Heirloom maternity"
       },
       {
         "id": "6",
         "image": "/images/indian/film-01.jpg",
-        "likes": "3,610",
+        "likes": "",
         "caption": "Reception cinema still"
       }
     ]
   },
-  "awards": [
-    {
-      "title": "Favourite Wedding Photographer Style",
-      "org": "Couples Choice · Mumbai",
-      "year": "2025"
-    },
-    {
-      "title": "Cinematic Wedding Film Excellence",
-      "org": "India Wedding Media",
-      "year": "2024"
-    },
-    {
-      "title": "Destination Wedding Storytelling",
-      "org": "Venue Partners Guild",
-      "year": "2024"
-    },
-    {
-      "title": "Pre-Wedding Chemistry Award",
-      "org": "Visual Romance Index",
-      "year": "2023"
-    }
-  ],
+  "awards": [],
   "showreel": {
     "eyebrow": "Wedding showreel",
     "title": "Weddings, vows & forever — in one film",
-    "text": "A look at how DisplayAvenue captures candid emotion, ritual beauty and cinematic love stories across India.",
-    "youtubeUrl": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    "text": "A look at how DisplayAvenue Studios captures candid emotion, ritual beauty and cinematic love stories across India.",
+    "youtubeUrl": "",
     "poster": "/images/indian/film-01.jpg"
   },
   "caseStudies": [

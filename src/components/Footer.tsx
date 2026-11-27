@@ -3,6 +3,7 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useCms } from "../cms/CmsProvider";
 import "./Footer.css";
+import { sendEnquiry } from "../utils/enquiry";
 
 function socialMeta(url: string) {
   const u = url.toLowerCase();
@@ -78,11 +79,14 @@ export function Footer() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email.trim()) return;
-    setDone(true);
-    setEmail("");
+    const res = await sendEnquiry(e.currentTarget, "newsletter");
+    if (res.ok) {
+      setDone(true);
+      setEmail("");
+    }
   };
 
   return (
@@ -90,16 +94,21 @@ export function Footer() {
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
           <Link to="/" className="logo">
-            <span className="logo__mark">DA</span>
+            <svg className="logo__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+              <rect width="64" height="64" rx="14" fill="#4A0F1C" />
+              <path d="M17 52V30a15 15 0 0 1 30 0v22" fill="none" stroke="#C99A2E" strokeWidth="4.5" strokeLinecap="round" />
+              <path d="M32 24c-3.6 4.2-5 7.4-5 10a5 5 0 0 0 10 0c0-2.6-1.4-5.8-5-10z" fill="#E8C77A" />
+              <path d="M12 52h40" stroke="#C99A2E" strokeWidth="4" strokeLinecap="round" />
+            </svg>
             <span className="logo__text">
               DisplayAvenue
               <small>Studios</small>
             </span>
           </Link>
           <p>
-            India&apos;s Premium Wedding Photographer · Mumbai — luxury wedding
-            photography, cinematic films, commercial productions and visual
-            storytelling across India.
+            Wedding photographers and filmmakers in Mira Road, Mumbai — weddings
+            of every faith across Mira Road, Vasai, Virar, Thane, Mumbai and
+            India.
           </p>
           <div className="footer-social">
             {(company.socials || []).map((url) => {
@@ -142,9 +151,6 @@ export function Footer() {
             <li>
               <Link to="/book-now">Book Now</Link>
             </li>
-            <li>
-              <Link to="/pages">All Pages</Link>
-            </li>
           </ul>
         </div>
 
@@ -166,7 +172,10 @@ export function Footer() {
         <div>
           <h4>Locations</h4>
           <ul>
-            {locations.slice(0, 6).map((loc) => (
+            {locations
+              .filter((loc, i, all) => all.findIndex((l) => l.city === loc.city) === i)
+              .slice(0, 6)
+              .map((loc) => (
               <li key={loc.slug}>
                 <Link to={`/locations/${loc.slug}`}>{loc.city}</Link>
               </li>
@@ -182,6 +191,33 @@ export function Footer() {
             ))}
           </address>
           <p>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+                [company.name, company.address.streetAddress, company.address.addressLocality, company.address.postalCode].join(", "),
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+              className="site-footer__directions"
+            >
+              Get directions →
+            </a>
+          </p>
+          {company.googleBusinessUrl && (
+            <p>
+              <a href={company.googleBusinessUrl} target="_blank" rel="noreferrer" className="site-footer__directions">
+                Find us on Google
+              </a>
+              {company.googleReviewUrl && (
+                <>
+                  {" · "}
+                  <a href={company.googleReviewUrl} target="_blank" rel="noreferrer" className="site-footer__directions">
+                    Review us
+                  </a>
+                </>
+              )}
+            </p>
+          )}
+          <p>
             <a href={company.phoneHref}>{company.phone}</a>
           </p>
           <p>
@@ -192,13 +228,14 @@ export function Footer() {
             <div className="newsletter__row">
               <input
                 id="newsletter-email"
+                name="email"
                 type="email"
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit" className="btn btn--gold">
+              <button type="submit" className="btn btn--outline-light">
                 Join
               </button>
             </div>
@@ -211,15 +248,6 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container site-footer__map">
-        <iframe
-          title="DisplayAvenue Studios location map"
-          src={company.address.mapEmbed}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
-      </div>
 
       <div className="container site-footer__bottom">
         <p>

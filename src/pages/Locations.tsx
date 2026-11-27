@@ -6,6 +6,7 @@ import { FAQAccordion } from "../components/FAQAccordion";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 function locationFaqs(city: string, service: string) {
   return [
@@ -28,15 +29,37 @@ function locationFaqs(city: string, service: string) {
   ];
 }
 
+const REGION_ORDER = [
+  "Mira-Bhayandar",
+  "Vasai-Virar",
+  "Western suburbs",
+  "South & Central Mumbai",
+  "Central Mumbai",
+  "Thane & Navi Mumbai",
+  "Weekend destinations near Mumbai",
+  "Destination weddings in India",
+];
+
+function firstSentence(text: string) {
+  const m = text.match(/^.*?[.!?](\s|$)/);
+  return (m ? m[0] : text).trim();
+}
+
 export function Locations() {
   const ref = useReveal<HTMLDivElement>();
   const { locations } = useCms();
 
+  const groups = REGION_ORDER.map((region) => ({
+    region,
+    items: locations.filter((l) => l.region === region),
+  })).filter((g) => g.items.length > 0);
+  const other = locations.filter((l) => !l.region || !REGION_ORDER.includes(l.region));
+
   return (
     <div ref={ref}>
       <SEO
-        title="Wedding Photographer Near Me | Mumbai, Delhi, Goa, Udaipur & India"
-        description="Find a premium wedding photographer near you — Mumbai, Delhi, Bangalore, Pune, Goa, Udaipur, Jaipur and pan-India destination coverage by DisplayAvenue Studios."
+        title="Wedding Photographer Across Mumbai & Destination Weddings in India | DisplayAvenue Studios"
+        description="Wedding photographers and filmmakers for every part of Mumbai — Mira Road, Bhayandar, Vasai, Virar, Borivali, Kandivali, Malad, Andheri, Bandra, South Mumbai, Thane and Navi Mumbai — plus destination weddings."
         path="/locations"
       />
       <BreadcrumbSchema
@@ -53,32 +76,53 @@ export function Locations() {
             <span>/</span>
             <span>Locations</span>
           </nav>
-          <p className="eyebrow">Locations</p>
-          <h1>Pan India coverage with Mumbai as home base</h1>
+          <p className="eyebrow">Areas we cover</p>
+          <h1>Wedding photography across Mumbai, from our Mira Road studio</h1>
           <p>
-            Local SEO pages for cities we shoot often — each built to help you
-            find the right crew, package and booking path for your celebration
-            with candid photography and cinematic films.
+            Pick your area to see local pre-wedding spots, the kinds of venues we
+            shoot there and answers to common booking questions. Getting married
+            further away? Our team also travels for destination weddings.
           </p>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container locations-grid">
-          {locations.map((loc) => (
-            <Link
-              key={loc.slug}
-              to={`/locations/${loc.slug}`}
-              className="location-card card reveal"
-            >
-              <span className="eyebrow">{loc.city}</span>
-              <h2>{loc.title}</h2>
-              <p>{loc.intro}</p>
-              <span className="text-link">Open location page →</span>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {groups.map((g, i) => (
+        <section key={g.region} className={`section${i % 2 ? " section--light" : ""}`}>
+          <div className="container">
+            <div className="section-head reveal">
+              <h2>{g.region}</h2>
+            </div>
+            <div className="locations-grid">
+              {g.items.map((loc) => (
+                <Link key={loc.slug} to={`/locations/${loc.slug}`} className="location-card card reveal">
+                  <h3>{loc.city}</h3>
+                  <p>{firstSentence(loc.intro)}</p>
+                  <span className="text-link">Weddings in {loc.city}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {other.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="section-head reveal">
+              <h2>Mumbai wedding and family photography</h2>
+            </div>
+            <div className="locations-grid">
+              {other.map((loc) => (
+                <Link key={loc.slug} to={`/locations/${loc.slug}`} className="location-card card reveal">
+                  <h3>{loc.title}</h3>
+                  <p>{firstSentence(loc.intro)}</p>
+                  <span className="text-link">Open page</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <TestimonialsSection compact limit={3} />
 
@@ -89,24 +133,21 @@ export function Locations() {
 
 export function LocationDetail() {
   const { slug } = useParams();
-  const { locations, services, portfolio } = useCms();
+  const { locations, services, portfolio, company } = useCms();
   const loc = locations.find((l) => l.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 
-  if (!loc) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Location page not found</h1>
-          <Link to="/locations" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            All Locations
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!loc) return <NotFound />;
 
-  const faqs = locationFaqs(loc.city, loc.service);
+  const isLocal = Boolean(loc.region);
+  const isDestination = Boolean(loc.region && /destination/i.test(loc.region));
+  const generic = locationFaqs(loc.city, loc.service);
+  const faqs = isLocal
+    ? [...(loc.faqs || []), generic[0], generic[3]]
+    : generic;
+  const nearby = (loc.nearby || [])
+    .map((s) => locations.find((l) => l.slug === s))
+    .filter((l): l is (typeof locations)[number] => Boolean(l));
   const relatedServices = services
     .filter((s) => {
       const svc = loc.service.toLowerCase();
@@ -122,11 +163,14 @@ export function LocationDetail() {
     })
     .slice(0, 6);
 
-  const relatedWork = portfolio
-    .filter((p) => p.location?.toLowerCase().includes(loc.city.toLowerCase()) || true)
-    .slice(0, 3);
+  const localWork = portfolio.filter((p) =>
+    p.location?.toLowerCase().includes(loc.city.toLowerCase()),
+  );
+  const relatedWork = (localWork.length ? localWork : portfolio).slice(0, 3);
 
-  const metaDescription = `${loc.intro} Book ${loc.service.toLowerCase()} in ${loc.city} with DisplayAvenue Studios. Transparent packages, pan-India crews. Call +91 7400303493.`;
+  const metaDescription = isLocal
+    ? `Wedding photographer & videographer in ${loc.city} — candid photos and cinematic films for weddings of every faith, from DisplayAvenue Studios, Mira Road. Call ${company.phone}.`
+    : `${firstSentence(loc.intro)} Book ${loc.service.toLowerCase()} in ${loc.city} with DisplayAvenue Studios. Call ${company.phone}.`;
 
   return (
     <div ref={ref}>
@@ -153,7 +197,7 @@ export function LocationDetail() {
             <span>/</span>
             <span>{loc.city}</span>
           </nav>
-          <p className="eyebrow">{loc.service} · {loc.city}</p>
+          <p className="eyebrow">{isLocal ? `${loc.region}` : loc.city}</p>
           <h1>{loc.title}</h1>
           <p>{loc.intro}</p>
           <div className="home-hero__actions" style={{ marginTop: "1.75rem" }}>
@@ -172,9 +216,9 @@ export function LocationDetail() {
           <article className="info-panel card reveal">
             <h2>Why clients in {loc.city} choose DisplayAvenue</h2>
             <ul className="check-list">
-              <li>Luxury visual standard with local coordination in {loc.city}</li>
+              <li>Studio in Mira Road East — {isLocal && !isDestination ? `${loc.city} is part of our regular coverage area` : `our team travels to ${loc.city} with travel and stay listed upfront in your quote`}</li>
+              <li>Weddings of every faith — Hindu, Muslim, Christian, Sikh, Jain, Parsi and interfaith</li>
               <li>Transparent packages and written proposals before booking</li>
-              <li>Travel-ready crews from our Mumbai headquarters</li>
               <li>Fast social selects and structured gallery / film delivery</li>
               <li>Experience across weddings, pre-weddings and family celebrations</li>
             </ul>
@@ -183,10 +227,10 @@ export function LocationDetail() {
             <h2>Popular services in {loc.city}</h2>
             <ul className="check-list">
               <li>{loc.service}</li>
-              <li>Wedding Videography</li>
-              <li>Pre Wedding Shoot</li>
-              <li> Photography</li>
-              <li>Drone Photography & Videography</li>
+              <li>Wedding films and videography</li>
+              <li>Pre-wedding shoots</li>
+              <li>Engagement, haldi and mehendi coverage</li>
+              <li>Drone photography and video (where permitted)</li>
             </ul>
             <div style={{ marginTop: "1.25rem" }}>
               <Link to="/services" className="text-link">
@@ -196,6 +240,73 @@ export function LocationDetail() {
           </article>
         </div>
       </section>
+
+      {isLocal && (loc.spots?.length || loc.venues?.length) ? (
+        <section className="section section--light">
+          <div className="container grid-2">
+            {loc.spots && loc.spots.length > 0 && (
+              <article className="info-panel card reveal">
+                <h2>Pre-wedding shoot spots near {loc.city}</h2>
+                <ul className="spot-list">
+                  {loc.spots.map((s) => (
+                    <li key={s.name}>
+                      <strong>{s.name}</strong>
+                      <span>{s.note}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="fine-print">
+                  Some heritage sites, parks and private places need permission or
+                  have rules on tripods and drones — we check this with you while planning.
+                </p>
+              </article>
+            )}
+            {loc.venues && loc.venues.length > 0 && (
+              <article className="info-panel card reveal">
+                <h2>{isDestination ? `Wedding venues in ${loc.city}` : `Wedding venues we cover in ${loc.city}`}</h2>
+                <ul className="check-list">
+                  {loc.venues.map((v) => (
+                    <li key={v}>{v}</li>
+                  ))}
+                </ul>
+              </article>
+            )}
+          </div>
+        </section>
+      ) : null}
+
+      {loc.shoots && loc.shoots.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="section-head reveal">
+              <h2>Weddings we've shot in {loc.city}</h2>
+            </div>
+            <div className="blog-grid">
+              {loc.shoots.map((s) => {
+                const inner = (
+                  <>
+                    {s.image && (
+                      <div className="blog-card__img">
+                        <img src={s.image} alt={`${s.title}, ${loc.city}`} loading="lazy" />
+                      </div>
+                    )}
+                    <div className="blog-card__body">
+                      {s.month && <span>{s.month}</span>}
+                      <h3>{s.title}</h3>
+                      {s.venue && <p>{s.venue}</p>}
+                    </div>
+                  </>
+                );
+                return s.slug ? (
+                  <Link key={s.title} to={`/portfolio/${s.slug}`} className="blog-card card reveal">{inner}</Link>
+                ) : (
+                  <div key={s.title} className="blog-card card reveal">{inner}</div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {relatedServices.length > 0 && (
         <section className="section section--light">
@@ -231,8 +342,7 @@ export function LocationDetail() {
       <section className="section">
         <div className="container">
           <div className="section-head reveal">
-            <p className="eyebrow">Selected Work</p>
-            <h2>Portfolio inspiration for {loc.city}</h2>
+            <h2>{localWork.length ? `Our work in ${loc.city}` : "Selected work"}</h2>
           </div>
           <div className="blog-grid">
             {relatedWork.map((item) => (
@@ -262,6 +372,26 @@ export function LocationDetail() {
           </div>
         </div>
       </section>
+
+      {nearby.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="section-head reveal">
+              <h2>{isDestination ? "More destinations we cover" : "Nearby areas we cover"}</h2>
+            </div>
+            <ul className="nearby-links">
+              {nearby.map((n) => (
+                <li key={n.slug}>
+                  <Link to={`/locations/${n.slug}`}>{isDestination ? n.title : `Wedding photographer in ${n.city}`}</Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/locations">All areas</Link>
+              </li>
+            </ul>
+          </div>
+        </section>
+      )}
 
       <TestimonialsSection compact limit={3} />
 

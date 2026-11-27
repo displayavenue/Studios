@@ -20,15 +20,11 @@ export function SiteConversion() {
           <p className="eyebrow">Client love</p>
           <h2>Ready when you are — call, WhatsApp or book</h2>
           <p>
-            Couples and families across India trust DisplayAvenue for weddings,
-            campaigns and hospitality visuals. Tell us your date and city —
+            Couples and families across India trust DisplayAvenue Studios for
+            weddings and life’s celebrations. Tell us your date and city —
             we’ll reply fast with a clear plan.
           </p>
 
-          <div className="site-conversion__rating" aria-label="4.9 out of 5 stars">
-            <strong>★★★★★ 4.9/5</strong>
-            <span>Based on recent client reviews</span>
-          </div>
 
           {reviews.length > 0 && (
             <div className="site-conversion__quotes">
@@ -36,7 +32,9 @@ export function SiteConversion() {
                 <blockquote key={`${t.name}-${t.role}`}>
                   <p>“{t.quote}”</p>
                   <footer>
-                    <img src={t.image} alt="" loading="lazy" width={40} height={40} />
+                    {t.image ? (
+                      <img src={t.image} alt="" loading="lazy" width={40} height={40} />
+                    ) : null}
                     <span>
                       <strong>{t.name}</strong>
                       {t.role}

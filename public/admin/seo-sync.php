@@ -39,7 +39,6 @@ function da_collect_urls(string $contentDir): array {
     '/careers',
     '/client-gallery',
     '/availability',
-    '/hire',
     '/book-now',
     '/contact',
     '/pages',
@@ -88,21 +87,6 @@ function da_collect_urls(string $contentDir): array {
       $urls[] = ['path' => '/case-studies/' . $cs['slug'], 'priority' => '0.65', 'changefreq' => 'monthly'];
     }
   }
-  $cities = [];
-  foreach (($content['locations'] ?? []) as $l) {
-    $city = trim((string)($l['city'] ?? ''));
-    if ($city !== '') $cities[$city] = true;
-  }
-  $cities = array_slice(array_keys($cities), 0, 8);
-  $topServices = array_slice($services['services'] ?? [], 0, 12);
-  foreach ($cities as $city) {
-    $citySlug = strtolower(preg_replace('/\s+/', '-', $city));
-    foreach ($topServices as $svc) {
-      if (empty($svc['slug'])) continue;
-      $urls[] = ['path' => '/hire/' . $citySlug . '/' . $svc['slug'], 'priority' => '0.55', 'changefreq' => 'monthly'];
-    }
-  }
-
   // de-dupe by path
   $seen = [];
   $unique = [];
@@ -181,7 +165,6 @@ function da_build_llms_txt(array $bundle): string {
   $lines[] = '- Portfolio: ' . $base . '/portfolio';
   $lines[] = '- Locations: ' . $base . '/locations';
   $lines[] = '- Wedding styles: ' . $base . '/industries';
-  $lines[] = '- Hire by city: ' . $base . '/hire';
   $lines[] = '- Availability: ' . $base . '/availability';
   $lines[] = '- Case studies: ' . $base . '/case-studies';
   $lines[] = '- Blog: ' . $base . '/blog';

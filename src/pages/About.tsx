@@ -13,8 +13,8 @@ export function About() {
   return (
     <div ref={ref}>
       <SEO
-        title="About DisplayAvenue Studios | Premium Wedding Photographer & Filmmaker · Mumbai"
-        description="Meet DisplayAvenue Studios — a Mumbai-based luxury visual production company delivering photography, videography and post production across India."
+        title="About DisplayAvenue Studios | Wedding Photographer in Mira Road, Mumbai"
+        description="Meet DisplayAvenue Studios — wedding photographers and filmmakers based in Mira Road East, Mumbai, covering weddings of every faith across Mira Road, Vasai, Virar, Thane, Mumbai and India."
         path="/about"
       />
 
@@ -26,11 +26,12 @@ export function About() {
             <span>About</span>
           </nav>
           <p className="eyebrow">About Us</p>
-          <h1>A luxury visual studio built for India&apos;s most important moments</h1>
+          <h1>Wedding photographers and filmmakers from Mira Road, Mumbai</h1>
           <p>
-            DisplayAvenue Studios is a premium photography, videography and film
-            production company headquartered in Mira Road East, Mumbai — serving
-            couples, brands and institutions across India.
+            DisplayAvenue Studios photographs and films weddings and family
+            celebrations from our studio in Mira Road East — for couples in Mira
+            Road, Bhayandar, Vasai, Virar, Thane, across Mumbai and at destination
+            weddings in India.
           </p>
         </div>
       </section>
@@ -41,17 +42,15 @@ export function About() {
             <p className="eyebrow">Company Story</p>
             <h2>Crafted in Mumbai. Trusted pan India.</h2>
             <p>
-              DisplayAvenue Studios began with a simple belief: visual production
-              in India deserves the same care as the world&apos;s best creative
-              houses. We combine cinematic technique, cultural fluency and
-              commercial discipline to create work that feels luxurious, honest
-              and conversion-ready.
+              DisplayAvenue Studios began with a simple belief: every family
+              deserves wedding photos and films made with real care. We combine
+              cinematic technique with a deep respect for ritual, so the moments
+              your families value most are never missed.
             </p>
             <p>
-              Today, our teams photograph weddings in Udaipur, film factories in
-              Pune, stage product campaigns in Mumbai and deliver hospitality
-              imagery for resorts across the coastline — all under one studio
-              standard.
+              We cover Hindu, Muslim, Christian, Sikh, Parsi, Jain and interfaith
+              weddings — plus pre-wedding shoots, engagements, maternity sessions
+              and birthdays — with the same crew and the same standard.
             </p>
           </div>
           <div className="about-story__media reveal">

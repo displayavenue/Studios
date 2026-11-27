@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /studio/
+Disallow: /admin/
 
 # AI / assistant crawlers
 User-agent: GPTBot

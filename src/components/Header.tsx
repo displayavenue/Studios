@@ -161,13 +161,18 @@ export function Header() {
         )}
       <header
         ref={headerRef}
-        className={`site-header ${scrolled || open || activeMega ? "is-solid" : "is-transparent"} ${open ? "is-menu-open" : ""} ${activeMega ? "has-menu" : ""}`}
+        className={`site-header ${scrolled || open || activeMega ? "is-solid" : "is-transparent"} ${pathname === "/" && !scrolled && !open && !activeMega ? "is-over-hero" : ""} ${open ? "is-menu-open" : ""} ${activeMega ? "has-menu" : ""}`}
         onMouseLeave={scheduleClose}
         onMouseEnter={clearCloseTimer}
       >
         <div className="container site-header__inner">
           <Link to="/" className="logo" onClick={closeAll} aria-label="DisplayAvenue Studios home">
-            <span className="logo__mark">DA</span>
+            <svg className="logo__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+              <rect width="64" height="64" rx="14" fill="#4A0F1C" />
+              <path d="M17 52V30a15 15 0 0 1 30 0v22" fill="none" stroke="#C99A2E" strokeWidth="4.5" strokeLinecap="round" />
+              <path d="M32 24c-3.6 4.2-5 7.4-5 10a5 5 0 0 0 10 0c0-2.6-1.4-5.8-5-10z" fill="#E8C77A" />
+              <path d="M12 52h40" stroke="#C99A2E" strokeWidth="4" strokeLinecap="round" />
+            </svg>
             <span className="logo__text">
               DisplayAvenue
               <small>Studios</small>

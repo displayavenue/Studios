@@ -10,6 +10,15 @@ type Props = {
   className?: string;
 };
 
+function initials(name: string) {
+  return name
+    .split(/[\s&]+/)
+    .filter(Boolean)
+    .map((w) => w[0]!.toUpperCase())
+    .slice(0, 2)
+    .join("");
+}
+
 export function TestimonialsSection({
   eyebrow,
   title,
@@ -18,7 +27,8 @@ export function TestimonialsSection({
   compact = false,
   className = "",
 }: Props) {
-  const { testimonials, home } = useCms();
+  const { testimonials, home, extras, company } = useCms();
+  const g = extras.googleReviews;
   const items = testimonials.slice(0, limit);
   if (!items.length) return null;
 
@@ -28,7 +38,7 @@ export function TestimonialsSection({
   const resolvedText =
     text ??
     home.testimonials.text ??
-    "Real feedback from weddings, brands and hospitality teams across India.";
+    "Real feedback from weddings and family celebrations.";
 
   return (
     <section
@@ -36,12 +46,25 @@ export function TestimonialsSection({
     >
       <div className="container">
         <div className="section-head section-head--center reveal">
-          <p className="eyebrow">{resolvedEyebrow}</p>
+          {resolvedEyebrow ? <p className="eyebrow">{resolvedEyebrow}</p> : null}
           <h2>{resolvedTitle}</h2>
           {resolvedText ? <p>{resolvedText}</p> : null}
-          <p className="testimonials-section__score" aria-label="Average rating 4.9 out of 5">
-            <span>★★★★★</span> 4.9/5 average · Pan-India clients
-          </p>
+          {g?.count ? (
+            <p className="testimonials-section__google">
+              <a href={g.profileUrl} target="_blank" rel="noreferrer">
+                <span aria-hidden>★</span> {g.rating.toFixed(1)} on Google from {g.count}{" "}
+                {g.count === 1 ? "review" : "reviews"}
+              </a>
+              {(g.reviewUrl || company.googleReviewUrl) && (
+                <>
+                  {" · "}
+                  <a href={g.reviewUrl || company.googleReviewUrl} target="_blank" rel="noreferrer">
+                    Write a review
+                  </a>
+                </>
+              )}
+            </p>
+          ) : null}
         </div>
         <div className={`testimonials-grid ${compact ? "testimonials-grid--compact" : ""}`}>
           {items.map((t) => (
@@ -51,7 +74,13 @@ export function TestimonialsSection({
               </div>
               <p className="testimonial-card__quote">“{t.quote}”</p>
               <div className="testimonial-card__person">
-                <img src={t.image} alt="" loading="lazy" width={56} height={56} />
+                {t.image ? (
+                  <img src={t.image} alt="" loading="lazy" width={56} height={56} />
+                ) : (
+                  <span className="testimonial-card__initials" aria-hidden>
+                    {initials(t.name)}
+                  </span>
+                )}
                 <div>
                   <strong>{t.name}</strong>
                   <span>{t.role}</span>

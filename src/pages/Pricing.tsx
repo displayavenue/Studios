@@ -41,7 +41,7 @@ export function Pricing() {
   return (
     <div ref={ref}>
       <SEO
-        title="Wedding Photography Packages & Pricing Mumbai | DisplayAvenue"
+        title="Wedding Photography Packages & Pricing Mumbai | DisplayAvenue Studios"
         description="Wedding photography packages in Mumbai from ₹75,000. Compare Essential, Signature & Luxury photo-film packages for weddings, pre-wedding, maternity and events."
         path="/pricing"
       />

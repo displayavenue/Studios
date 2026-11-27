@@ -12,7 +12,7 @@ DOC="${SSH_DOC:-domains/displayavenuestudios.com/public_html}"
 SSH_OPTS=(-o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no)
 
 echo "Building…"
-npm run build
+npm run build:seo
 
 echo "Preparing deploy folder…"
 rm -rf /tmp/da-deploy

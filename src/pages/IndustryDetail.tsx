@@ -5,6 +5,7 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 export function IndustryDetail() {
   const { slug } = useParams();
@@ -12,18 +13,7 @@ export function IndustryDetail() {
   const industry = industries.find((i) => i.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 
-  if (!industry) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Wedding style not found</h1>
-          <Link to="/industries" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            All wedding styles
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!industry) return <NotFound />;
 
   const relatedServices = services
     .filter((s) => {

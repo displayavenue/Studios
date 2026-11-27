@@ -1,19 +1,24 @@
 :root {
-  --black: #0b0b0b;
-  --gold: #c9a227;
-  --gold-hover: #b8911f;
+  /* Wedding palette: sindoor, marigold gold, jasmine, rose-blush */
+  --black: #2a0f16; /* deep ink-maroon, used for text + dark surfaces */
+  --sindoor: #4a0f1c;
+  --sindoor-deep: #340a14;
+  --gold: #c99a2e;
+  --gold-hover: #b5871f;
+  --gold-soft: rgba(201, 154, 46, 0.45);
   --white: #ffffff;
-  --text: #222222;
-  --text-muted: #666666;
-  --bg-light: #f8f8f8;
-  --border: #e5e5e5;
-  --shadow: 0 8px 30px rgba(11, 11, 11, 0.06);
-  --shadow-hover: 0 16px 40px rgba(11, 11, 11, 0.1);
-  --radius: 16px;
-  --radius-sm: 10px;
+  --jasmine: #fffbf6;
+  --text: #3a2228;
+  --text-muted: #7a6266;
+  --bg-light: #f7ede8;
+  --border: #ead9d1;
+  --shadow: 0 8px 30px rgba(42, 15, 22, 0.06);
+  --shadow-hover: 0 16px 40px rgba(42, 15, 22, 0.1);
+  --radius: 6px;
+  --radius-sm: 4px;
   --header-h: 80px;
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Poppins", system-ui, sans-serif;
+  --font-display: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --font-body: "Jost", system-ui, sans-serif;
   --max: 1200px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -36,7 +41,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: var(--text);
-  background: var(--white);
+  background: var(--jasmine);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
@@ -80,8 +85,9 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.15;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.005em;
   color: var(--black);
 }
 
@@ -159,13 +165,14 @@ p {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 52px;
-  padding: 0.85rem 1.75rem;
-  border-radius: 999px;
-  border: 1.5px solid transparent;
+  min-height: 50px;
+  padding: 0.85rem 1.9rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
   font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
   cursor: pointer;
   transition: background 0.25s var(--ease), color 0.25s var(--ease),
     border-color 0.25s var(--ease), transform 0.25s var(--ease),
@@ -188,7 +195,7 @@ p {
 }
 
 .btn--dark {
-  background: var(--black);
+  background: var(--sindoor);
   color: var(--white);
 }
 
@@ -290,10 +297,8 @@ p {
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-  /* Avoid transform extending document height past the footer on mobile */
-  content-visibility: auto;
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
 
 .reveal.is-visible {
@@ -301,10 +306,12 @@ p {
   transform: none;
 }
 
+/* Phones: no scroll-reveal — content must never leave blank gaps */
 @media (max-width: 720px) {
   .reveal {
-    /* Opacity-only on small screens — translateY was leaving white space below the footer */
+    opacity: 1;
     transform: none;
+    transition: none;
   }
 }
 

@@ -1,4 +1,5 @@
 import { useCms } from "../cms/CmsProvider";
+import { getYoutubeEmbedUrl } from "../utils/youtube";
 import "./GrowthWidgets.css";
 
 export function GoogleReviewsBlock({ compact = false }: { compact?: boolean }) {
@@ -72,7 +73,6 @@ export function InstagramGrid() {
             >
               <img src={p.image} alt={p.caption} loading="lazy" />
               <span>
-                ♥ {p.likes}
                 <small>{p.caption}</small>
               </span>
             </a>
@@ -110,14 +110,10 @@ export function AwardsStrip() {
 export function ShowreelBlock() {
   const { extras } = useCms();
   const s = extras.showreel;
-  if (!s.youtubeUrl && !s.poster) return null;
-
-  const embed = s.youtubeUrl
-    ? s.youtubeUrl
-        .replace("watch?v=", "embed/")
-        .replace("youtu.be/", "www.youtube.com/embed/")
-        .split("&")[0]
-    : "";
+  // Only show the section when a real showreel film is set in the CMS.
+  // "aqz-KE-bpKQ" is Big Buck Bunny, a stock test video — never show it.
+  const embed = getYoutubeEmbedUrl(s.youtubeUrl);
+  if (!embed) return null;
 
   return (
     <section className="section section--dark showreel">
@@ -128,7 +124,7 @@ export function ShowreelBlock() {
           {s.text ? <p>{s.text}</p> : null}
         </div>
         <div className="showreel__media">
-          {embed ? (
+          {(
             <iframe
               title="DisplayAvenue Studios showreel"
               src={embed}
@@ -136,8 +132,6 @@ export function ShowreelBlock() {
               allowFullScreen
               loading="lazy"
             />
-          ) : (
-            <img src={s.poster} alt="" />
           )}
         </div>
       </div>

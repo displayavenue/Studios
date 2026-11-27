@@ -95,3 +95,35 @@
     height: 44px;
   }
 }
+
+.testimonial-card__initials {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+.testimonials-section__google {
+  margin-top: 1rem !important;
+  font-size: 0.95rem;
+}
+
+.testimonials-section__google a {
+  color: var(--sindoor);
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.testimonials-section__google a:hover {
+  border-bottom-color: var(--gold);
+}
+
+.testimonials-section__google span {
+  color: var(--gold);
+}

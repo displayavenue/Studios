@@ -14,7 +14,19 @@ export type BlogPost = {
   seoDescription?: string;
 };
 export type Industry = { slug: string; title: string; text: string; image: string };
-export type LocationPage = { slug: string; title: string; city: string; service: string; intro: string };
+export type LocationPage = {
+  slug: string;
+  title: string;
+  city: string;
+  service: string;
+  intro: string;
+  region?: string;
+  spots?: { name: string; note: string }[];
+  venues?: string[];
+  nearby?: string[];
+  faqs?: { question: string; answer: string }[];
+  shoots?: { title: string; venue?: string; month?: string; image?: string; slug?: string }[];
+};
 export type Testimonial = { name: string; role: string; quote: string; image: string };
 export type TeamMember = { name: string; role: string; image: string };
 export type WhyChoose = { title: string; text: string };
@@ -252,13 +264,1598 @@ export const industries = [
   }
 ];
 
-export const locations = [
+export const locations: LocationPage[] = [
   {
     "slug": "wedding-photographer-mumbai",
     "title": "Wedding Photographer in Mumbai",
     "city": "Mumbai",
     "service": "Wedding Photography",
     "intro": "Looking for a wedding photographer in Mumbai? DisplayAvenue Studios in Mira Road East delivers candid + traditional coverage and cinematic films for banquets, hotels and destination send-offs across the city."
+  },
+  {
+    "slug": "wedding-photographer-mira-road",
+    "title": "Wedding Photographer in Mira Road",
+    "city": "Mira Road",
+    "service": "Wedding Photography",
+    "region": "Mira-Bhayandar",
+    "intro": "DisplayAvenue Studios is based in Mira Road East, so weddings here are on our doorstep — no long travel, easy recce visits to your venue and a crew that knows the local banquet halls, lawns and community halls well.",
+    "spots": [
+      {
+        "name": "Ghodbunder Fort",
+        "note": "Old stone walls and creek views for a heritage-style pre-wedding look."
+      },
+      {
+        "name": "Uttan & Gorai coastline",
+        "note": "Quiet beaches and fishing-village lanes about a short drive from Mira Road."
+      },
+      {
+        "name": "Your own neighbourhood",
+        "note": "Many couples choose a café, their society garden or the lanes they grew up in — personal places make the best frames."
+      }
+    ],
+    "venues": [
+      "Banquet halls along Mira Road and Kashimira",
+      "Lawns and resorts near the Western Express Highway",
+      "Community and society halls",
+      "Temples, churches and mosques in Mira-Bhayandar"
+    ],
+    "nearby": [
+      "wedding-photographer-bhayandar",
+      "wedding-photographer-dahisar",
+      "wedding-photographer-borivali",
+      "wedding-photographer-vasai"
+    ],
+    "faqs": [
+      {
+        "question": "Can we visit your studio in Mira Road before booking?",
+        "answer": "Yes. Our office is in Shree Sharanam Building, Kanakia Road, Mira Road East. Message us on WhatsApp to fix a time to see albums and films in person."
+      },
+      {
+        "question": "Do you do a venue recce for weddings in Mira Road?",
+        "answer": "For venues in Mira-Bhayandar we can usually visit beforehand to plan light, angles and timings for the main rituals — just ask when you book."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-bhayandar",
+    "title": "Wedding Photographer in Bhayandar",
+    "city": "Bhayandar",
+    "service": "Wedding Photography",
+    "region": "Mira-Bhayandar",
+    "intro": "Bhayandar is right next to our Mira Road studio. We cover weddings, engagements and family functions across Bhayandar East and West — from banquet halls to seaside churches and community halls.",
+    "spots": [
+      {
+        "name": "Uttan beach",
+        "note": "Open shoreline and sunsets on the Bhayandar West coast."
+      },
+      {
+        "name": "Our Lady of Velankanni Shrine, Uttan",
+        "note": "A landmark for Catholic couples in the area (photography as per church rules)."
+      },
+      {
+        "name": "Gorai village lanes",
+        "note": "Colourful houses and greenery for candid couple portraits."
+      }
+    ],
+    "venues": [
+      "Banquet halls in Bhayandar East and West",
+      "Churches around Uttan and Bhayandar West",
+      "Society and community halls",
+      "Lawns and resorts towards Uttan"
+    ],
+    "nearby": [
+      "wedding-photographer-mira-road",
+      "wedding-photographer-dahisar",
+      "wedding-photographer-borivali",
+      "wedding-photographer-vasai"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover church weddings in Bhayandar and Uttan?",
+        "answer": "Yes. We follow each church's photography guidelines during the ceremony and plan family portraits and couple shots around them."
+      },
+      {
+        "question": "Is there a travel charge for Bhayandar?",
+        "answer": "Bhayandar is next to our Mira Road studio, so travel is minimal. Your quote will spell out any travel cost before you book."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-vasai",
+    "title": "Wedding Photographer in Vasai",
+    "city": "Vasai",
+    "service": "Wedding Photography",
+    "region": "Vasai-Virar",
+    "intro": "From church weddings in Vasai's old parishes to wadi and farmhouse celebrations, Vasai has some of the most photogenic weddings near Mumbai. We cover Hindu, East Indian Catholic, Muslim and interfaith weddings across Vasai.",
+    "spots": [
+      {
+        "name": "Vasai Fort (Bassein Fort)",
+        "note": "Portuguese-era ruins, arches and old church walls — one of the best pre-wedding backdrops near Mumbai. Heritage-site rules apply."
+      },
+      {
+        "name": "Suruchi, Rangaon and Bhuigaon beaches",
+        "note": "Quieter beaches for golden-hour couple shoots."
+      },
+      {
+        "name": "Wadis and village lanes",
+        "note": "Green coconut groves and traditional homes for a rustic, candid look."
+      }
+    ],
+    "venues": [
+      "Parish churches and church halls",
+      "Wadis, farmhouses and open lawns",
+      "Banquet halls in Vasai East and West",
+      "Temples and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-nalasopara",
+      "wedding-photographer-virar",
+      "wedding-photographer-mira-road",
+      "wedding-photographer-bhayandar"
+    ],
+    "faqs": [
+      {
+        "question": "Do you photograph East Indian Catholic weddings in Vasai?",
+        "answer": "Yes — from the church nuptial mass to the reception and family traditions. Tell us your parish and plans and we'll schedule coverage around each part of the day."
+      },
+      {
+        "question": "Can we do our pre-wedding shoot at Vasai Fort?",
+        "answer": "Vasai Fort is a protected heritage site, so rules on tripods, drones and professional shoots can apply. We'll check the current rules with you while planning the shoot."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-nalasopara",
+    "title": "Wedding Photographer in Nalasopara",
+    "city": "Nalasopara",
+    "service": "Wedding Photography",
+    "region": "Vasai-Virar",
+    "intro": "We cover weddings, engagements and family functions across Nalasopara East and West — banquet halls, lawns and home ceremonies — with candid photography and cinematic films.",
+    "spots": [
+      {
+        "name": "Sopara Stupa",
+        "note": "An ancient Buddhist stupa site — calm, open grounds for simple portraits (site rules apply)."
+      },
+      {
+        "name": "Kalamb and Rajodi beaches",
+        "note": "Sandy beaches between Nalasopara and Virar for sunset shoots."
+      },
+      {
+        "name": "Vasai Fort",
+        "note": "A short drive away for heritage-style frames."
+      }
+    ],
+    "venues": [
+      "Banquet halls in Nalasopara East and West",
+      "Lawns and resorts towards the coast",
+      "Community halls and home ceremonies",
+      "Temples, churches and mosques"
+    ],
+    "nearby": [
+      "wedding-photographer-vasai",
+      "wedding-photographer-virar",
+      "wedding-photographer-mira-road"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover small home ceremonies in Nalasopara?",
+        "answer": "Yes. Haldi, mehendi, engagement and puja coverage at home can be booked with a single photographer or a small photo + video team."
+      },
+      {
+        "question": "How early should we book for a Nalasopara wedding?",
+        "answer": "For peak muhurat dates, 3–6 months ahead is safest. For weekday or off-season dates, a few weeks can be enough — WhatsApp us to check."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-virar",
+    "title": "Wedding Photographer in Virar",
+    "city": "Virar",
+    "service": "Wedding Photography",
+    "region": "Vasai-Virar",
+    "intro": "Weddings in Virar often mix banquet functions with resort and farmhouse celebrations. We cover Virar East and West with a calm crew that plans around family rituals and long wedding days.",
+    "spots": [
+      {
+        "name": "Arnala beach and Arnala sea fort",
+        "note": "Wide beach and a sea fort on the horizon — great for sunset couple shoots."
+      },
+      {
+        "name": "Jivdani hill",
+        "note": "Hilltop views over Virar (respect temple rules and timings)."
+      },
+      {
+        "name": "Resorts and farmhouses",
+        "note": "Pools, lawns and greenery for relaxed pre-wedding sessions."
+      }
+    ],
+    "venues": [
+      "Resorts and farmhouses around Virar",
+      "Banquet halls in Virar East and West",
+      "Open lawns",
+      "Temples and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-nalasopara",
+      "wedding-photographer-vasai",
+      "wedding-photographer-mira-road"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover resort weddings in Virar?",
+        "answer": "Yes — including multi-function days at resorts and farmhouses. We plan the schedule with you so haldi, pheras and reception all get proper coverage."
+      },
+      {
+        "question": "Can you cover both a Virar wedding and a Mumbai reception?",
+        "answer": "Yes. Many families have functions in two places; we'll schedule the crew and travel for both in one package."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-dahisar",
+    "title": "Wedding Photographer in Dahisar",
+    "city": "Dahisar",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "Dahisar is minutes from our Mira Road studio. We photograph weddings, engagements and family celebrations across Dahisar East and West, from banquet halls to society functions.",
+    "spots": [
+      {
+        "name": "Gorai and Manori",
+        "note": "Beaches and village lanes a short drive away."
+      },
+      {
+        "name": "Sanjay Gandhi National Park",
+        "note": "Forest greenery near Borivali (park permissions apply for professional shoots)."
+      },
+      {
+        "name": "Ghodbunder Fort",
+        "note": "Heritage walls and creek views just past Dahisar check naka."
+      }
+    ],
+    "venues": [
+      "Banquet halls in Dahisar East and West",
+      "Society and community halls",
+      "Lawns along the highway",
+      "Temples and gurudwaras"
+    ],
+    "nearby": [
+      "wedding-photographer-borivali",
+      "wedding-photographer-mira-road",
+      "wedding-photographer-bhayandar",
+      "wedding-photographer-kandivali"
+    ],
+    "faqs": [
+      {
+        "question": "Can you cover a same-day engagement and reception in Dahisar?",
+        "answer": "Yes. Being close to Dahisar, we can cover morning and evening functions on the same day without long travel gaps."
+      },
+      {
+        "question": "Do you shoot society and home functions?",
+        "answer": "Yes — haldi, mehendi, pujas and engagements at home or in your society hall."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-borivali",
+    "title": "Wedding Photographer in Borivali",
+    "city": "Borivali",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "We cover weddings, receptions and pre-wedding shoots across Borivali East and West — from banquet halls and gymkhanas to beach and forest locations close by.",
+    "spots": [
+      {
+        "name": "Sanjay Gandhi National Park",
+        "note": "Forest trails and greenery (park permissions apply for professional shoots)."
+      },
+      {
+        "name": "Gorai beach and Manori",
+        "note": "Reached by road or ferry — beaches, village lanes and sunsets."
+      },
+      {
+        "name": "Global Vipassana Pagoda, Gorai",
+        "note": "A striking golden landmark nearby (follow the site's photography rules)."
+      }
+    ],
+    "venues": [
+      "Banquet halls on SV Road and Link Road",
+      "Gymkhanas and clubs",
+      "Hotels in Borivali East",
+      "Community halls, temples and churches"
+    ],
+    "nearby": [
+      "wedding-photographer-dahisar",
+      "wedding-photographer-kandivali",
+      "wedding-photographer-mira-road",
+      "wedding-photographer-malad"
+    ],
+    "faqs": [
+      {
+        "question": "Can we do a pre-wedding shoot at Sanjay Gandhi National Park?",
+        "answer": "Professional shoots inside the park can need permission and have timing rules. We'll guide you on the current process and suggest backup spots nearby."
+      },
+      {
+        "question": "Do you cover Gujarati and Marathi weddings in Borivali?",
+        "answer": "Yes — along with Hindu, Jain, Christian, Muslim and Sikh weddings. Tell us your rituals and we'll plan coverage for each one."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-kandivali",
+    "title": "Wedding Photographer in Kandivali",
+    "city": "Kandivali",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "Kandivali has some of the busiest banquet halls in the western suburbs. We cover weddings, sangeets and receptions across Kandivali East and West with candid photography and cinematic films.",
+    "spots": [
+      {
+        "name": "Madh Island and Aksa",
+        "note": "Beaches and bungalows a short drive west."
+      },
+      {
+        "name": "Sanjay Gandhi National Park edge",
+        "note": "Green, leafy roads near Kandivali East."
+      },
+      {
+        "name": "Gorai and Manori",
+        "note": "Beach and village textures for relaxed couple shoots."
+      }
+    ],
+    "venues": [
+      "Banquet halls in Thakur Village and Mahavir Nagar",
+      "Gymkhanas and clubs",
+      "Hotels and rooftop venues",
+      "Community halls and temples"
+    ],
+    "nearby": [
+      "wedding-photographer-borivali",
+      "wedding-photographer-malad",
+      "wedding-photographer-dahisar",
+      "wedding-photographer-goregaon"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover sangeet nights in Kandivali?",
+        "answer": "Yes — stage performances, family dances and candid moments, with low-light capable cameras and a separate videographer if you want a full film."
+      },
+      {
+        "question": "How many photographers do we need for a Kandivali banquet wedding?",
+        "answer": "For most banquet weddings, one candid and one traditional photographer plus a videographer covers both families well. We'll suggest the right team size for your guest count."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-malad",
+    "title": "Wedding Photographer in Malad",
+    "city": "Malad",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "From Madh Island villa weddings to banquet receptions on Link Road, Malad offers a wide range of wedding settings. We cover Malad East and West, including Madh, Marve and Aksa.",
+    "spots": [
+      {
+        "name": "Madh Island",
+        "note": "Beach bungalows and villas — popular for pre-wedding shoots and intimate weddings."
+      },
+      {
+        "name": "Aksa and Marve beaches",
+        "note": "Open beaches for golden-hour couple portraits."
+      },
+      {
+        "name": "Madh Fort and Erangal",
+        "note": "Coastal views and quiet village roads."
+      }
+    ],
+    "venues": [
+      "Villas and bungalows on Madh Island",
+      "Banquet halls on Link Road",
+      "Hotels and rooftop venues",
+      "Churches and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-kandivali",
+      "wedding-photographer-goregaon",
+      "wedding-photographer-borivali",
+      "wedding-photographer-andheri"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover intimate villa weddings on Madh Island?",
+        "answer": "Yes. Smaller villa weddings suit a lean crew — one or two photographers and a videographer — so the day stays relaxed."
+      },
+      {
+        "question": "Can we shoot our pre-wedding at a Madh Island bungalow?",
+        "answer": "Yes. Many bungalows rent out for shoots by the hour or day; we can suggest the look and timing that works best."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-goregaon",
+    "title": "Wedding Photographer in Goregaon",
+    "city": "Goregaon",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "Goregaon hosts everything from large exhibition-centre weddings to banquet and hotel functions. We cover Goregaon East and West, plus Jogeshwari, with photo and film teams sized to your guest count.",
+    "spots": [
+      {
+        "name": "Aarey Colony",
+        "note": "Tree-lined roads and greenery for natural-light portraits."
+      },
+      {
+        "name": "Film City area",
+        "note": "Iconic film backdrops (shooting inside needs prior permission)."
+      },
+      {
+        "name": "Madh Island",
+        "note": "Beaches and bungalows a short drive away."
+      }
+    ],
+    "venues": [
+      "Large exhibition and convention venues",
+      "Hotels in Goregaon East",
+      "Banquet halls on Link Road and SV Road",
+      "Gymkhanas and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-malad",
+      "wedding-photographer-andheri",
+      "wedding-photographer-kandivali"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover large weddings with 1,000+ guests in Goregaon?",
+        "answer": "Yes. For big venues we add photographers and videographers so both families, the stage and candid moments are all covered — your quote will list the full team."
+      },
+      {
+        "question": "Can you shoot in Film City?",
+        "answer": "Shoots inside Film City need prior permission and fees. If you want that look, we'll plan it with you; otherwise Aarey and Madh are easier nearby options."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-andheri",
+    "title": "Wedding Photographer in Andheri",
+    "city": "Andheri",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "Andheri has Mumbai's busiest mix of airport hotels, banquet halls and boutique venues. We cover weddings and receptions across Andheri East and West, Lokhandwala, Versova and the airport hotel belt.",
+    "spots": [
+      {
+        "name": "Versova beach and Koliwada",
+        "note": "Fishing-village colours and sea views at sunset."
+      },
+      {
+        "name": "Lokhandwala and Seven Bungalows",
+        "note": "Cafés and leafy lanes for an urban, candid pre-wedding."
+      },
+      {
+        "name": "Juhu beach",
+        "note": "Classic Mumbai beach frames just south of Andheri."
+      }
+    ],
+    "venues": [
+      "Five-star hotels near the airport",
+      "Banquet halls in Andheri West and Lokhandwala",
+      "Rooftop and boutique venues",
+      "Gymkhanas, churches and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-juhu-vile-parle",
+      "wedding-photographer-goregaon",
+      "wedding-photographer-bandra",
+      "wedding-photographer-powai"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover hotel weddings near Mumbai airport?",
+        "answer": "Yes. Hotel ballrooms have controlled light and tight schedules — we plan the timeline with your planner so entries, rituals and portraits all fit."
+      },
+      {
+        "question": "Is Andheri within your regular coverage area?",
+        "answer": "Yes. Andheri is a regular area for us from our Mira Road studio; any travel cost is listed in your quote before booking."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-juhu-vile-parle",
+    "title": "Wedding Photographer in Juhu & Vile Parle",
+    "city": "Juhu & Vile Parle",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "Sea-facing hotels in Juhu and traditional wedding halls in Vile Parle make this area a favourite for both grand and family-style weddings. We cover Juhu, Vile Parle East and West, and Santacruz.",
+    "spots": [
+      {
+        "name": "Juhu beach",
+        "note": "Early-morning or sunset shoots on one of Mumbai's best-known beaches."
+      },
+      {
+        "name": "Juhu Tara Road",
+        "note": "Sea-facing promenades and hotel frontages."
+      },
+      {
+        "name": "Old Vile Parle lanes",
+        "note": "Bungalows and quiet streets for a nostalgic, candid feel."
+      }
+    ],
+    "venues": [
+      "Sea-facing hotels in Juhu",
+      "Wedding halls in Vile Parle",
+      "Gymkhanas and clubs",
+      "Temples, churches and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-andheri",
+      "wedding-photographer-bandra",
+      "wedding-photographer-goregaon"
+    ],
+    "faqs": [
+      {
+        "question": "Can we do a Juhu beach pre-wedding without crowds?",
+        "answer": "Early mornings on weekdays are the quietest. We'll suggest the best time for the light and crowd levels on your date."
+      },
+      {
+        "question": "Do you cover traditional Maharashtrian and Gujarati weddings in Vile Parle?",
+        "answer": "Yes — we plan coverage around your rituals and the hall's schedule, with traditional and candid photographers working together."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-bandra",
+    "title": "Wedding Photographer in Bandra",
+    "city": "Bandra",
+    "service": "Wedding Photography",
+    "region": "Western suburbs",
+    "intro": "Bandra blends church weddings, luxury hotels at BKC and sea-facing promenades. We cover Bandra, Khar and Santacruz — from nuptial masses to grand receptions and city-style pre-wedding shoots.",
+    "spots": [
+      {
+        "name": "Bandstand and Bandra Fort",
+        "note": "Sea views, old stone walls and the Sea Link in the background."
+      },
+      {
+        "name": "Carter Road promenade",
+        "note": "Sunset walks and candid couple frames by the sea."
+      },
+      {
+        "name": "Ranwar and Chapel Road lanes",
+        "note": "Old cottages and colourful street art for a characterful look."
+      }
+    ],
+    "venues": [
+      "Luxury hotels in Bandra and BKC",
+      "Churches including the Mount Mary area",
+      "Gymkhanas and clubs",
+      "Banquet halls and rooftop venues"
+    ],
+    "nearby": [
+      "wedding-photographer-juhu-vile-parle",
+      "wedding-photographer-worli-lower-parel",
+      "wedding-photographer-andheri",
+      "wedding-photographer-dadar"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover Catholic church weddings in Bandra?",
+        "answer": "Yes. We follow each church's rules for the ceremony and plan the couple and family portraits around the mass and reception."
+      },
+      {
+        "question": "Can we shoot at Bandstand and Carter Road?",
+        "answer": "Yes, these are popular public spots. Weekday mornings are quieter; we'll plan the route so you get sea, fort and street frames in one session."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-worli-lower-parel",
+    "title": "Wedding Photographer in Worli & Lower Parel",
+    "city": "Worli & Lower Parel",
+    "service": "Wedding Photography",
+    "region": "South & Central Mumbai",
+    "intro": "Worli and Lower Parel are home to some of Mumbai's most luxurious hotel ballrooms and rooftop venues. We cover grand weddings, receptions and cocktail nights here with polished photo and film teams.",
+    "spots": [
+      {
+        "name": "Worli Sea Face",
+        "note": "Long sea-facing promenade with Sea Link views."
+      },
+      {
+        "name": "Old mill compounds",
+        "note": "Brick, steel and warm lights for an urban-chic look."
+      },
+      {
+        "name": "Rooftops and hotel suites",
+        "note": "Skyline views for getting-ready and couple portraits."
+      }
+    ],
+    "venues": [
+      "Luxury hotel ballrooms",
+      "Rooftop and lounge venues",
+      "Clubs and gymkhanas",
+      "Banquet halls"
+    ],
+    "nearby": [
+      "wedding-photographer-bandra",
+      "wedding-photographer-dadar",
+      "wedding-photographer-south-mumbai"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover cocktail and reception nights at Worli hotels?",
+        "answer": "Yes — including low-light party coverage, stage entries and same-week social media selects."
+      },
+      {
+        "question": "Can you film getting-ready shots in the hotel suite?",
+        "answer": "Yes. Suite shots with skyline views are a highlight; we'll schedule them before the first function."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-south-mumbai",
+    "title": "Wedding Photographer in South Mumbai",
+    "city": "South Mumbai",
+    "service": "Wedding Photography",
+    "region": "South & Central Mumbai",
+    "intro": "Colaba, Churchgate, Marine Drive and the Fort area give South Mumbai weddings a classic heritage feel. We cover heritage hotels, gymkhanas and sea-facing venues, plus pre-wedding shoots among the city's landmarks.",
+    "spots": [
+      {
+        "name": "Marine Drive",
+        "note": "The Queen's Necklace — sunsets and night lights along the bay."
+      },
+      {
+        "name": "Gateway of India area",
+        "note": "Iconic Mumbai frames early in the morning before crowds."
+      },
+      {
+        "name": "Kala Ghoda and Fort lanes",
+        "note": "Victorian and Art Deco buildings for an elegant, timeless look."
+      }
+    ],
+    "venues": [
+      "Heritage and luxury hotels",
+      "Gymkhanas and clubs",
+      "Sea-facing banquet venues",
+      "Churches, agiaries and temples"
+    ],
+    "nearby": [
+      "wedding-photographer-worli-lower-parel",
+      "wedding-photographer-dadar",
+      "wedding-photographer-bandra"
+    ],
+    "faqs": [
+      {
+        "question": "When is the best time for a South Mumbai pre-wedding shoot?",
+        "answer": "Sunrise is best for the Gateway and Fort lanes; sunset and blue hour for Marine Drive. We'll plan a route that covers both if you like."
+      },
+      {
+        "question": "Do you photograph Parsi weddings in South Mumbai?",
+        "answer": "Yes. We respect agiary rules and plan coverage around the lagan ceremony and the reception."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-dadar",
+    "title": "Wedding Photographer in Dadar & Matunga",
+    "city": "Dadar & Matunga",
+    "service": "Wedding Photography",
+    "region": "South & Central Mumbai",
+    "intro": "Dadar and Matunga are known for traditional wedding halls and close-knit family celebrations. We cover Marathi, Gujarati, South Indian, Parsi and other weddings across Dadar, Matunga and Prabhadevi.",
+    "spots": [
+      {
+        "name": "Shivaji Park",
+        "note": "Open grounds and old Mumbai character for early-morning shoots."
+      },
+      {
+        "name": "Dadar Chowpatty",
+        "note": "A beach with views towards the Sea Link."
+      },
+      {
+        "name": "Dadar Parsi Colony and Matunga lanes",
+        "note": "Heritage bungalows and leafy streets."
+      }
+    ],
+    "venues": [
+      "Traditional wedding halls",
+      "Gymkhanas and clubs",
+      "Community halls",
+      "Temples and agiaries"
+    ],
+    "nearby": [
+      "wedding-photographer-worli-lower-parel",
+      "wedding-photographer-bandra",
+      "wedding-photographer-chembur",
+      "wedding-photographer-south-mumbai"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover short morning muhurat weddings in Dadar halls?",
+        "answer": "Yes. Halls often have tight time slots; we arrive early, plan the key rituals with the family and keep portraits quick."
+      },
+      {
+        "question": "Do you cover South Indian weddings in Matunga?",
+        "answer": "Yes — we plan coverage around the specific rituals of Tamil, Kannada, Telugu or Malayali weddings with the family beforehand."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-chembur",
+    "title": "Wedding Photographer in Chembur",
+    "city": "Chembur",
+    "service": "Wedding Photography",
+    "region": "Central Mumbai",
+    "intro": "Chembur has a strong mix of banquet halls, gymkhanas and community weddings. We cover weddings, engagements and receptions across Chembur, Ghatkopar and the eastern suburbs.",
+    "spots": [
+      {
+        "name": "Diamond Garden",
+        "note": "A green park in central Chembur for quick portraits."
+      },
+      {
+        "name": "Powai Lake",
+        "note": "Lakeside light a short drive north."
+      },
+      {
+        "name": "Your venue's rooftop or lawn",
+        "note": "Often the best and easiest spot on a busy wedding day."
+      }
+    ],
+    "venues": [
+      "Banquet halls in Chembur and Ghatkopar",
+      "Gymkhanas and clubs",
+      "Gurudwaras, temples and community halls",
+      "Hotels on the Eastern Express Highway"
+    ],
+    "nearby": [
+      "wedding-photographer-powai",
+      "wedding-photographer-dadar",
+      "wedding-photographer-mulund",
+      "wedding-photographer-navi-mumbai"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover Sindhi and Punjabi weddings in Chembur?",
+        "answer": "Yes — along with every other community. Share your function list and we'll plan the crew for each event."
+      },
+      {
+        "question": "Do you cover Ghatkopar as well?",
+        "answer": "Yes. We cover Chembur, Ghatkopar, Vikhroli and nearby eastern suburbs."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-powai",
+    "title": "Wedding Photographer in Powai",
+    "city": "Powai",
+    "service": "Wedding Photography",
+    "region": "Central Mumbai",
+    "intro": "Powai's lakeside hotels and planned neighbourhoods make for elegant weddings and receptions. We cover weddings, engagements and pre-wedding shoots across Powai, Vikhroli and Kanjurmarg.",
+    "spots": [
+      {
+        "name": "Powai Lake",
+        "note": "Calm water and greenery for sunrise or sunset portraits."
+      },
+      {
+        "name": "Hiranandani Gardens",
+        "note": "Neo-classical buildings and domes for a European-style look."
+      },
+      {
+        "name": "Hotel lawns by the lake",
+        "note": "Easy, private spots on the wedding day itself."
+      }
+    ],
+    "venues": [
+      "Lakeside hotels",
+      "Banquet halls in Powai and Vikhroli",
+      "Clubhouses and rooftop venues",
+      "Community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-chembur",
+      "wedding-photographer-andheri",
+      "wedding-photographer-mulund",
+      "wedding-photographer-thane"
+    ],
+    "faqs": [
+      {
+        "question": "Is Hiranandani Gardens good for a pre-wedding shoot?",
+        "answer": "Yes — the architecture gives a European feel without travel. Early mornings on weekends are quietest; private areas may need permission."
+      },
+      {
+        "question": "Do you cover lakeside hotel weddings in Powai?",
+        "answer": "Yes. We plan portraits by the lake during the best light and coordinate the timeline with the hotel."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-mulund",
+    "title": "Wedding Photographer in Mulund",
+    "city": "Mulund",
+    "service": "Wedding Photography",
+    "region": "Central Mumbai",
+    "intro": "Mulund weddings range from banquet halls to gymkhanas and family functions at home. We cover Mulund East and West, Bhandup and Nahur with candid and traditional coverage.",
+    "spots": [
+      {
+        "name": "Yeoor hills",
+        "note": "Green hills and forest roads just across into Thane."
+      },
+      {
+        "name": "Upvan Lake, Thane",
+        "note": "Lakeside steps and trees a short drive away."
+      },
+      {
+        "name": "Powai Lake",
+        "note": "Another nearby lakeside option."
+      }
+    ],
+    "venues": [
+      "Banquet halls in Mulund East and West",
+      "Gymkhanas and clubs",
+      "Community halls and temples",
+      "Lawns along LBS Marg"
+    ],
+    "nearby": [
+      "wedding-photographer-thane",
+      "wedding-photographer-powai",
+      "wedding-photographer-chembur"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover Gujarati and Jain weddings in Mulund?",
+        "answer": "Yes. We plan coverage around each ritual and respect any timing or photography customs your family follows."
+      },
+      {
+        "question": "Can you cover a Mulund wedding and a Thane reception?",
+        "answer": "Yes — they're close, so one crew can cover both with a short travel gap."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-thane",
+    "title": "Wedding Photographer in Thane",
+    "city": "Thane",
+    "service": "Wedding Photography",
+    "region": "Thane & Navi Mumbai",
+    "intro": "Thane's lakes, hills and lawns along Ghodbunder Road make it one of the most popular wedding areas near Mumbai. We cover Thane West and East, Ghodbunder Road and Majiwada — and it's on our side of the city via Ghodbunder Road.",
+    "spots": [
+      {
+        "name": "Upvan Lake",
+        "note": "Lakeside steps and greenery for calm couple portraits."
+      },
+      {
+        "name": "Masunda (Talao Pali) Lake",
+        "note": "City-centre lake with evening lights."
+      },
+      {
+        "name": "Yeoor hills",
+        "note": "Forest roads and hill views for a nature-style pre-wedding."
+      }
+    ],
+    "venues": [
+      "Lawns and banquet halls on Ghodbunder Road",
+      "Hotels and resorts in Thane West",
+      "Gymkhanas and clubs",
+      "Temples and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-mulund",
+      "wedding-photographer-kalyan-dombivli",
+      "wedding-photographer-navi-mumbai",
+      "wedding-photographer-mira-road"
+    ],
+    "faqs": [
+      {
+        "question": "How far is Thane from your studio?",
+        "answer": "Our Mira Road studio connects to Thane directly via Ghodbunder Road, so Thane weddings are regular for us."
+      },
+      {
+        "question": "Do you cover lawn weddings on Ghodbunder Road?",
+        "answer": "Yes. Open-air lawns need planning for light and weather — we'll suggest timings for portraits and add lighting for evening functions."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-navi-mumbai",
+    "title": "Wedding Photographer in Navi Mumbai",
+    "city": "Navi Mumbai",
+    "service": "Wedding Photography",
+    "region": "Thane & Navi Mumbai",
+    "intro": "Navi Mumbai has large banquet and convention venues and plenty of open spaces. We cover weddings in Vashi, Nerul, Belapur, Kharghar and Panvel with photo and film teams sized to your celebration.",
+    "spots": [
+      {
+        "name": "Kharghar hills and Central Park",
+        "note": "Green hills and landscaped gardens; monsoon waterfalls nearby."
+      },
+      {
+        "name": "Palm Beach Road",
+        "note": "Wide roads, palms and sunsets for stylish city frames."
+      },
+      {
+        "name": "Nerul's parks and lakes",
+        "note": "Open, clean spaces for relaxed portraits."
+      }
+    ],
+    "venues": [
+      "Convention centres and large banquets in Vashi",
+      "Hotels in Vashi, Nerul and Belapur",
+      "Lawns and resorts towards Panvel",
+      "Temples, churches and community halls"
+    ],
+    "nearby": [
+      "wedding-photographer-thane",
+      "wedding-photographer-chembur",
+      "wedding-photographer-kalyan-dombivli"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover Kharghar and Panvel?",
+        "answer": "Yes — along with Vashi, Nerul and Belapur. Your quote will list any travel cost up front."
+      },
+      {
+        "question": "Can we do a monsoon pre-wedding near Kharghar?",
+        "answer": "Yes, the hills turn green in the monsoon. Some waterfall areas close for safety in heavy rain, so we'll pick safe spots and keep a backup date."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-kalyan-dombivli",
+    "title": "Wedding Photographer in Kalyan & Dombivli",
+    "city": "Kalyan & Dombivli",
+    "service": "Wedding Photography",
+    "region": "Thane & Navi Mumbai",
+    "intro": "We cover weddings, engagements and family functions across Kalyan and Dombivli — banquet halls, lawns and home ceremonies — with candid photos and cinematic films.",
+    "spots": [
+      {
+        "name": "Kala Talao, Kalyan",
+        "note": "A large lake with an evening promenade."
+      },
+      {
+        "name": "Durgadi Fort, Kalyan",
+        "note": "Old fort walls overlooking the creek."
+      },
+      {
+        "name": "Lawns and resorts",
+        "note": "Green, private spaces for relaxed pre-wedding shoots."
+      }
+    ],
+    "venues": [
+      "Banquet halls in Kalyan and Dombivli",
+      "Lawns and open grounds",
+      "Community halls and temples",
+      "Home ceremonies"
+    ],
+    "nearby": [
+      "wedding-photographer-thane",
+      "wedding-photographer-navi-mumbai",
+      "wedding-photographer-mulund"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover Kalyan and Dombivli regularly?",
+        "answer": "Yes. Travel is planned into your quote, and for multi-day weddings we schedule the crew so every function is covered."
+      },
+      {
+        "question": "Do you cover Marathi weddings with early muhurat?",
+        "answer": "Yes. For early muhurats we arrive in time for the getting-ready and haldi moments before the main ceremony."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-lonavala",
+    "title": "Destination Wedding Photographer in Lonavala & Khandala",
+    "city": "Lonavala & Khandala",
+    "service": "Wedding Photography",
+    "region": "Weekend destinations near Mumbai",
+    "intro": "Lonavala and Khandala are the easiest hill-station weddings for Mumbai and Pune families — resorts, villas and valley views a short drive away. We cover two- and three-day resort weddings here with photo and film teams that travel from Mumbai.",
+    "spots": [
+      {
+        "name": "Tiger's Point and Lion's Point",
+        "note": "Valley edges and clouds — best at sunrise, especially after the monsoon."
+      },
+      {
+        "name": "Bhushi and Pawna lake areas",
+        "note": "Water and hills for a softer, natural pre-wedding look."
+      },
+      {
+        "name": "Your resort or villa grounds",
+        "note": "Lawns, pools and valley-facing decks are often the best and most private frames."
+      }
+    ],
+    "venues": [
+      "Hill resorts with lawns and banquet halls",
+      "Private villas for intimate weddings",
+      "Valley-view properties around Khandala",
+      "Lakeside properties near Pawna"
+    ],
+    "nearby": [
+      "wedding-photographer-karjat",
+      "wedding-photographer-pune",
+      "wedding-photographer-mahabaleshwar"
+    ],
+    "faqs": [
+      {
+        "question": "When is the best season for a Lonavala wedding?",
+        "answer": "October to February brings clear skies and pleasant weather. Monsoon weddings look stunningly green but need covered backups for rituals and portraits — we plan for both."
+      },
+      {
+        "question": "Do you charge extra to travel to Lonavala?",
+        "answer": "Lonavala is a short drive from Mumbai. Travel and any overnight stay for the crew are listed clearly in your quote before you book."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-karjat",
+    "title": "Destination Wedding Photographer in Karjat",
+    "city": "Karjat",
+    "service": "Wedding Photography",
+    "region": "Weekend destinations near Mumbai",
+    "intro": "Karjat's farmhouses and resorts give Mumbai families a countryside wedding without a long journey. We cover haldi-to-reception weekends at Karjat properties with candid photography and cinematic films.",
+    "spots": [
+      {
+        "name": "Farm lanes and paddy fields",
+        "note": "Green fields in and after the monsoon, golden ones in winter."
+      },
+      {
+        "name": "Ulhas river and nearby streams",
+        "note": "Riverside frames for a relaxed, natural pre-wedding."
+      },
+      {
+        "name": "Hills around Karjat",
+        "note": "Sahyadri ridgelines as a backdrop for sunset portraits."
+      }
+    ],
+    "venues": [
+      "Farmhouses with open lawns",
+      "Resorts with banquet and poolside spaces",
+      "Private estates for intimate weddings"
+    ],
+    "nearby": [
+      "wedding-photographer-lonavala",
+      "wedding-photographer-alibaug",
+      "wedding-photographer-pune"
+    ],
+    "faqs": [
+      {
+        "question": "Are Karjat farmhouse weddings hard to light at night?",
+        "answer": "Open farmhouses can be dark after sunset. We bring our own lighting for sangeet and reception coverage and coordinate with your decorator on stage lighting."
+      },
+      {
+        "question": "Can the crew stay over for a two-day Karjat wedding?",
+        "answer": "Yes. For multi-day weddings the crew stays nearby so early haldi and late reception coverage both work. Stay costs are listed in your quote."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-alibaug",
+    "title": "Destination Wedding Photographer in Alibaug",
+    "city": "Alibaug",
+    "service": "Wedding Photography",
+    "region": "Weekend destinations near Mumbai",
+    "intro": "Beach villas, coconut groves and sea forts make Alibaug a favourite for intimate destination weddings close to Mumbai. We cover villa and resort weddings across Alibaug, Kihim, Nagaon and Mandwa.",
+    "spots": [
+      {
+        "name": "Kihim, Nagaon and Varsoli beaches",
+        "note": "Quiet beaches for golden-hour couple portraits."
+      },
+      {
+        "name": "Kolaba Fort views",
+        "note": "A sea fort reachable on foot at low tide — check tide timings before planning."
+      },
+      {
+        "name": "Coconut and betel-nut groves",
+        "note": "Shaded, green settings for candid frames at your villa."
+      }
+    ],
+    "venues": [
+      "Beach and garden villas",
+      "Boutique resorts",
+      "Private estates around Mandwa and Kihim"
+    ],
+    "nearby": [
+      "wedding-photographer-karjat",
+      "wedding-photographer-lonavala",
+      "wedding-photographer-goa"
+    ],
+    "faqs": [
+      {
+        "question": "How does your crew travel to Alibaug?",
+        "answer": "By road or ferry from Mumbai, depending on the season and the venue. We plan arrival well before the first function so nothing is missed."
+      },
+      {
+        "question": "Is Alibaug good for a small wedding?",
+        "answer": "Yes — villa weddings with 50–150 guests are common there. A lean team of one or two photographers and a videographer usually suits them best."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-mahabaleshwar",
+    "title": "Destination Wedding Photographer in Mahabaleshwar & Panchgani",
+    "city": "Mahabaleshwar & Panchgani",
+    "service": "Wedding Photography",
+    "region": "Weekend destinations near Mumbai",
+    "intro": "Cool weather, strawberry farms and Sahyadri viewpoints make Mahabaleshwar and Panchgani a classic hill-station wedding choice. We cover resort and heritage-property weddings here, travelling from Mumbai with our full team.",
+    "spots": [
+      {
+        "name": "Table Land, Panchgani",
+        "note": "A wide plateau with open skies — best early morning."
+      },
+      {
+        "name": "Venna Lake",
+        "note": "Lakeside frames and boat rides for a playful pre-wedding."
+      },
+      {
+        "name": "Arthur's Seat and valley points",
+        "note": "Dramatic valley views (follow site timings and safety rules)."
+      }
+    ],
+    "venues": [
+      "Hill resorts with lawns",
+      "Heritage and colonial-style properties",
+      "Boutique hotels and villas"
+    ],
+    "nearby": [
+      "wedding-photographer-lonavala",
+      "wedding-photographer-pune"
+    ],
+    "faqs": [
+      {
+        "question": "Can we have a monsoon wedding in Mahabaleshwar?",
+        "answer": "Mahabaleshwar gets very heavy rain from June to September and many points close. Most couples choose October to May; we'll help you plan around the weather either way."
+      },
+      {
+        "question": "How long should the crew be booked for a hill-station wedding?",
+        "answer": "For a two-day wedding, most couples book the crew from the first function to the reception, with travel the day before. Your quote will set this out clearly."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-nashik",
+    "title": "Destination Wedding Photographer in Nashik",
+    "city": "Nashik",
+    "service": "Wedding Photography",
+    "region": "Weekend destinations near Mumbai",
+    "intro": "Vineyards, ghats and temple towns give Nashik weddings a mix of the modern and the traditional. We cover vineyard-resort weddings and family ceremonies in Nashik with teams travelling from Mumbai.",
+    "spots": [
+      {
+        "name": "Vineyard rows",
+        "note": "Neat vine lines and sunsets — best from winter into early spring."
+      },
+      {
+        "name": "Godavari ghats (Ramkund area)",
+        "note": "Traditional ghats for a cultural pre-wedding look; respect religious spaces and crowds."
+      },
+      {
+        "name": "Gangapur dam backwaters",
+        "note": "Open water and wide skies for relaxed portraits."
+      }
+    ],
+    "venues": [
+      "Vineyard resorts",
+      "Banquet halls and lawns in Nashik city",
+      "Resorts on the Gangapur road side"
+    ],
+    "nearby": [
+      "wedding-photographer-pune",
+      "wedding-photographer-lonavala"
+    ],
+    "faqs": [
+      {
+        "question": "Can we shoot inside a vineyard?",
+        "answer": "Many vineyard resorts allow shoots for guests or with permission. We'll confirm rules with your venue and pick the best light for the rows."
+      },
+      {
+        "question": "Do you cover traditional family ceremonies in Nashik too?",
+        "answer": "Yes — puja, haldi and other rituals at home or temple venues, alongside resort functions."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-pune",
+    "title": "Wedding Photographer in Pune",
+    "city": "Pune",
+    "service": "Wedding Photography",
+    "region": "Weekend destinations near Mumbai",
+    "intro": "Many Mumbai families have weddings or receptions in Pune, and many Pune couples want a Mumbai team's style. We cover lawn, hotel and heritage weddings across Pune with crews that drive in from Mumbai.",
+    "spots": [
+      {
+        "name": "Shaniwar Wada and old Pune lanes",
+        "note": "Peshwa-era walls and wadas for a heritage look (follow site rules)."
+      },
+      {
+        "name": "Pashan and Khadakwasla lakes",
+        "note": "Waterside sunsets close to the city."
+      },
+      {
+        "name": "Sinhagad and Sahyadri foothills",
+        "note": "Hill views for an outdoor pre-wedding."
+      }
+    ],
+    "venues": [
+      "Large wedding lawns",
+      "Hotels and convention venues",
+      "Heritage wadas and clubs",
+      "Resorts on the city's edges"
+    ],
+    "nearby": [
+      "wedding-photographer-lonavala",
+      "wedding-photographer-nashik",
+      "wedding-photographer-mahabaleshwar"
+    ],
+    "faqs": [
+      {
+        "question": "Can you cover a Mumbai wedding and a Pune reception?",
+        "answer": "Yes. Many families split functions between the two cities; we schedule the same crew for both so the photos and film feel consistent."
+      },
+      {
+        "question": "Do you cover Maharashtrian weddings in Pune?",
+        "answer": "Yes — from seemant pujan to saptapadi and the reception. We plan coverage around your rituals and muhurat."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-goa",
+    "title": "Destination Wedding Photographer in Goa",
+    "city": "Goa",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "Beach mandaps, Portuguese-era churches and sunset receptions make Goa India's favourite beach wedding destination. We travel from Mumbai to cover Hindu, Christian and interfaith weddings across North and South Goa.",
+    "spots": [
+      {
+        "name": "Fontainhas, Panjim",
+        "note": "Colourful Latin Quarter houses — go early to avoid crowds."
+      },
+      {
+        "name": "Quiet South Goa beaches",
+        "note": "Wide, calmer beaches for sunset couple portraits."
+      },
+      {
+        "name": "Old Goa churches",
+        "note": "Baroque church exteriors for a classic look (photography rules vary by church)."
+      }
+    ],
+    "venues": [
+      "Beach resorts with sea-facing lawns",
+      "Boutique hotels and heritage villas",
+      "Churches for Catholic weddings",
+      "Private villas in North Goa"
+    ],
+    "nearby": [
+      "wedding-photographer-alibaug",
+      "wedding-photographer-kerala"
+    ],
+    "faqs": [
+      {
+        "question": "When is the best time for a Goa beach wedding?",
+        "answer": "November to February has the most reliable weather. Many beach venues limit outdoor events during the monsoon, roughly June to September."
+      },
+      {
+        "question": "Do beach venues in Goa have time limits for music or events?",
+        "answer": "Many do, and rules vary by venue. Ask your planner early — we'll build the shoot timeline around those limits so sunset portraits and the pheras or vows aren't rushed."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-udaipur",
+    "title": "Destination Wedding Photographer in Udaipur",
+    "city": "Udaipur",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "Lake palaces, havelis and Aravalli hills make Udaipur India's best-known royal wedding destination. We travel from Mumbai with a full photo and film team to cover multi-day Udaipur weddings.",
+    "spots": [
+      {
+        "name": "Lake Pichola ghats",
+        "note": "Golden light on palaces across the water — sunrise and sunset are best."
+      },
+      {
+        "name": "Old city lanes and havelis",
+        "note": "Painted doors and arches for a regal, candid look."
+      },
+      {
+        "name": "Fateh Sagar and Aravalli viewpoints",
+        "note": "Open lake and hill views for relaxed portraits."
+      }
+    ],
+    "venues": [
+      "Palace and heritage hotels",
+      "Lake-facing resorts",
+      "Haveli properties in the old city",
+      "Resorts in the Aravalli hills"
+    ],
+    "nearby": [
+      "wedding-photographer-jaipur",
+      "wedding-photographer-jodhpur"
+    ],
+    "faqs": [
+      {
+        "question": "How big a team do we need for an Udaipur wedding?",
+        "answer": "Multi-day palace weddings usually need two to three photographers and two videographers so both families, décor and candid moments are covered. We'll suggest a team for your guest count and functions."
+      },
+      {
+        "question": "Do palace venues allow drones?",
+        "answer": "Drone use depends on the venue and local rules. We check permissions with your planner before including drone coverage."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-jaipur",
+    "title": "Destination Wedding Photographer in Jaipur",
+    "city": "Jaipur",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "Pink-city palaces, forts and heritage hotels make Jaipur a grand setting for royal-style weddings. We travel from Mumbai to cover multi-day Jaipur weddings with candid photography and cinematic films.",
+    "spots": [
+      {
+        "name": "Old city around Hawa Mahal",
+        "note": "Pink sandstone streets — go early morning before traffic."
+      },
+      {
+        "name": "Amer and Nahargarh forts",
+        "note": "Fort walls and city views (monument rules and fees apply for professional shoots)."
+      },
+      {
+        "name": "Jal Mahal promenade",
+        "note": "A palace on the lake at sunset."
+      }
+    ],
+    "venues": [
+      "Palace and heritage hotels",
+      "Fort properties",
+      "Luxury resorts on the city's outskirts",
+      "Large lawns for big weddings"
+    ],
+    "nearby": [
+      "wedding-photographer-udaipur",
+      "wedding-photographer-jodhpur",
+      "wedding-photographer-delhi"
+    ],
+    "faqs": [
+      {
+        "question": "Can we do a pre-wedding shoot at Amer Fort?",
+        "answer": "Monuments usually need prior permission and fees for professional shoots, and timings can be limited. We'll guide you on the current process or suggest heritage hotels with similar architecture."
+      },
+      {
+        "question": "When is wedding season in Jaipur?",
+        "answer": "October to March is the most popular period. Summer is very hot, so outdoor functions are best planned for evenings."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-jodhpur",
+    "title": "Destination Wedding Photographer in Jodhpur",
+    "city": "Jodhpur",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "The blue city, Mehrangarh's ramparts and desert-edge palaces give Jodhpur weddings a dramatic, royal feel. We travel from Mumbai to cover heritage and palace weddings across Jodhpur.",
+    "spots": [
+      {
+        "name": "Blue city lanes below Mehrangarh",
+        "note": "Blue-washed houses for bold, colourful portraits."
+      },
+      {
+        "name": "Mehrangarh Fort surroundings",
+        "note": "Massive fort walls (fort rules and fees apply for professional shoots)."
+      },
+      {
+        "name": "Desert-edge landscapes",
+        "note": "Open sand and dunes outside the city at golden hour."
+      }
+    ],
+    "venues": [
+      "Palace and heritage hotels",
+      "Fort and haveli properties",
+      "Desert camps and resorts"
+    ],
+    "nearby": [
+      "wedding-photographer-udaipur",
+      "wedding-photographer-jaipur"
+    ],
+    "faqs": [
+      {
+        "question": "Is Jodhpur too hot for a wedding?",
+        "answer": "November to February is comfortable. In warmer months, plan outdoor functions for evenings and keep portraits to early morning or sunset."
+      },
+      {
+        "question": "Do you cover desert-camp sangeets?",
+        "answer": "Yes. Night events in the desert need extra lighting, which we bring and plan with your decorator."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-kerala",
+    "title": "Destination Wedding Photographer in Kerala",
+    "city": "Kerala",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "Backwaters, beaches and temple traditions make Kerala a calm, green destination for weddings. We travel from Mumbai to cover resort, backwater and traditional weddings in Kochi, Kumarakom, Alleppey and Kovalam.",
+    "spots": [
+      {
+        "name": "Backwaters of Kumarakom and Alleppey",
+        "note": "Houseboats, palms and still water at sunrise."
+      },
+      {
+        "name": "Fort Kochi",
+        "note": "Chinese fishing nets, old churches and colonial streets."
+      },
+      {
+        "name": "Kovalam and Varkala cliffs",
+        "note": "Beach and cliff views for sunset portraits."
+      }
+    ],
+    "venues": [
+      "Backwater resorts",
+      "Beach resorts",
+      "Heritage properties in Fort Kochi",
+      "Temple and church ceremonies with resort receptions"
+    ],
+    "nearby": [
+      "wedding-photographer-goa",
+      "wedding-photographer-bangalore"
+    ],
+    "faqs": [
+      {
+        "question": "Do you photograph traditional Kerala Hindu and Christian weddings?",
+        "answer": "Yes. Temple weddings are short and often have strict photography rules; we coordinate with the family and temple beforehand and plan portraits around the ceremony."
+      },
+      {
+        "question": "What about the monsoon in Kerala?",
+        "answer": "Kerala's monsoon is heavy, roughly June to September. Most destination weddings happen between October and March; we plan covered backups either way."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-rishikesh",
+    "title": "Destination Wedding Photographer in Rishikesh",
+    "city": "Rishikesh",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "The Ganga, Himalayan foothills and evening aarti make Rishikesh a spiritual, scenic choice for intimate destination weddings. We travel from Mumbai to cover riverside resort weddings in and around Rishikesh.",
+    "spots": [
+      {
+        "name": "Ganga riverbanks and beaches",
+        "note": "White sand and clear water for calm couple portraits."
+      },
+      {
+        "name": "Ram Jhula and Laxman Jhula areas",
+        "note": "Iconic bridges and temples — busy, so go early."
+      },
+      {
+        "name": "Forest roads towards the hills",
+        "note": "Green, quiet stretches for a nature-style pre-wedding."
+      }
+    ],
+    "venues": [
+      "Riverside resorts",
+      "Hillside retreats",
+      "Boutique properties for small weddings"
+    ],
+    "nearby": [
+      "wedding-photographer-jim-corbett",
+      "wedding-photographer-delhi"
+    ],
+    "faqs": [
+      {
+        "question": "Can you photograph the Ganga aarti as part of our wedding?",
+        "answer": "We can capture it respectfully as part of your story; the aarti is a public religious ceremony, so we follow organisers' guidance and avoid disturbing worshippers."
+      },
+      {
+        "question": "Is Rishikesh good for a small wedding?",
+        "answer": "Yes — riverside resorts suit intimate weddings, and a lean team keeps the day relaxed."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-jim-corbett",
+    "title": "Destination Wedding Photographer in Jim Corbett",
+    "city": "Jim Corbett",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "Jungle resorts along the Kosi river make Jim Corbett a popular forest-side wedding destination, especially for Delhi and north-India families. We travel from Mumbai to cover resort weddings here.",
+    "spots": [
+      {
+        "name": "Kosi riverbanks",
+        "note": "Rocky river edges and forest backdrops near the resorts."
+      },
+      {
+        "name": "Resort jungle trails",
+        "note": "Shaded, green paths on the property itself."
+      },
+      {
+        "name": "Open fields at golden hour",
+        "note": "Soft evening light with the hills behind."
+      }
+    ],
+    "venues": [
+      "Jungle and riverside resorts",
+      "Large resort lawns for sangeet and reception"
+    ],
+    "nearby": [
+      "wedding-photographer-rishikesh",
+      "wedding-photographer-delhi"
+    ],
+    "faqs": [
+      {
+        "question": "Can we shoot inside the national park?",
+        "answer": "Inside the tiger reserve, photography and access follow forest department rules and safari permits; professional shoots are restricted. Most couples shoot at the resort and riverside instead."
+      },
+      {
+        "question": "How do you plan travel for a Corbett wedding?",
+        "answer": "The crew usually travels a day early. Travel and stay are listed clearly in your quote before booking."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-delhi",
+    "title": "Wedding Photographer for Delhi NCR Weddings",
+    "city": "Delhi NCR",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "Farmhouse weddings, five-star ballrooms and big baraats define Delhi NCR celebrations. We travel from Mumbai for families who want our team's style at their Delhi, Gurugram or Noida wedding.",
+    "spots": [
+      {
+        "name": "Lodhi Garden",
+        "note": "Tombs and trees for an elegant, heritage-style pre-wedding."
+      },
+      {
+        "name": "Humayun's Tomb and Qutub area",
+        "note": "Monument rules and fees apply for professional shoots."
+      },
+      {
+        "name": "Your farmhouse venue",
+        "note": "Lawns and décor at the venue often give the best wedding-day portraits."
+      }
+    ],
+    "venues": [
+      "Farmhouses in Chhattarpur and nearby areas",
+      "Five-star hotel ballrooms",
+      "Banquet and convention venues in Gurugram and Noida"
+    ],
+    "nearby": [
+      "wedding-photographer-jaipur",
+      "wedding-photographer-rishikesh",
+      "wedding-photographer-jim-corbett"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover big Punjabi weddings with large baraats?",
+        "answer": "Yes. Large weddings need more photographers and videographers so the baraat, both families and the stage are all covered; we'll size the team to your guest count."
+      },
+      {
+        "question": "Why book a Mumbai team for a Delhi wedding?",
+        "answer": "Families often book us when one side is from Mumbai, or because they like our style. Travel and stay are included transparently in the quote."
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photographer-bangalore",
+    "title": "Wedding Photographer for Bangalore Weddings",
+    "city": "Bangalore",
+    "service": "Wedding Photography",
+    "region": "Destination weddings in India",
+    "intro": "Garden venues, palace grounds and resorts on the city's edges make Bangalore weddings green and relaxed. We travel from Mumbai for couples who want our team at their Bangalore wedding or reception.",
+    "spots": [
+      {
+        "name": "Cubbon Park and Lalbagh",
+        "note": "Old trees and gardens (park rules apply for professional shoots)."
+      },
+      {
+        "name": "Bangalore Palace surroundings",
+        "note": "Tudor-style palace architecture; access depends on events and permissions."
+      },
+      {
+        "name": "Nandi Hills",
+        "note": "Sunrise above the clouds, a drive from the city."
+      }
+    ],
+    "venues": [
+      "Palace grounds and large lawns",
+      "Hotels and convention centres",
+      "Resorts on the outskirts"
+    ],
+    "nearby": [
+      "wedding-photographer-kerala",
+      "wedding-photographer-goa"
+    ],
+    "faqs": [
+      {
+        "question": "Do you cover South Indian wedding rituals?",
+        "answer": "Yes — Kannada, Tamil, Telugu and other traditions. We talk through each ritual with the family so key moments aren't missed."
+      },
+      {
+        "question": "Can you cover both a Bangalore wedding and a Mumbai reception?",
+        "answer": "Yes. Keeping one team for both events makes the photos and film consistent."
+      }
+    ]
   },
   {
     "slug": "candid-wedding-photographer-mumbai",
@@ -273,48 +1870,6 @@ export const locations = [
     "city": "Mumbai",
     "service": "Pre Wedding Shoot",
     "intro": "Book a cinematic pre-wedding shoot in Mumbai — Marine Drive, Bandra, studio and Lonavala day trips with guided candid chemistry."
-  },
-  {
-    "slug": "wedding-photographer-delhi",
-    "title": "Wedding Photographer in Delhi NCR",
-    "city": "Delhi",
-    "service": "Wedding Photography",
-    "intro": "DisplayAvenue travels to Delhi NCR for luxury weddings — farmhouses, hotels and destination-ready crews with Mumbai cinema standards."
-  },
-  {
-    "slug": "wedding-photographer-goa",
-    "title": "Wedding Photographer in Goa",
-    "city": "Goa",
-    "service": "Destination Wedding Photography",
-    "intro": "Beach and resort wedding photography in Goa with drone-ready cinematic films and golden-hour couple portraits."
-  },
-  {
-    "slug": "wedding-photographer-udaipur",
-    "title": "Wedding Photographer in Udaipur",
-    "city": "Udaipur",
-    "service": "Destination Wedding Photography",
-    "intro": "Palace and lakeside wedding photography in Udaipur — multi-day destination productions with aerial establishes."
-  },
-  {
-    "slug": "wedding-photographer-jaipur",
-    "title": "Wedding Photographer in Jaipur",
-    "city": "Jaipur",
-    "service": "Wedding Photography",
-    "intro": "Fort, palace and heritage wedding coverage in Jaipur with candid storytelling and traditional family portraits."
-  },
-  {
-    "slug": "wedding-photographer-bangalore",
-    "title": "Wedding Photographer in Bangalore",
-    "city": "Bangalore",
-    "service": "Wedding Photography",
-    "intro": "Premium wedding photography and films for Bangalore celebrations — gardens, banquet halls and destination extensions."
-  },
-  {
-    "slug": "wedding-photographer-pune",
-    "title": "Wedding Photographer in Pune",
-    "city": "Pune",
-    "service": "Wedding Photography",
-    "intro": "Wedding photographer for Pune and Lonavala celebrations with Mumbai-based luxury craft."
   },
   {
     "slug": "maternity-photographer-mumbai",

@@ -44,7 +44,7 @@ export function SEO({
   description,
   path = "/",
   type = "website",
-  image = "https://displayavenuestudios.com/images/indian/wedding-01.jpg",
+  image = "https://displayavenuestudios.com/og-image.jpg",
   noindex = false,
 }: SEOProps) {
   const { company } = useCms();
@@ -94,32 +94,22 @@ export function SEO({
 }
 
 export function LocalBusinessSchema() {
-  const { company, testimonials, services } = useCms();
+  const { company, services } = useCms();
 
   useEffect(() => {
     const addr = company.address;
-    const socials = (company.socials || []).filter((u) =>
-      /^https?:\/\//i.test(u),
-    );
-
-    const reviews = testimonials.slice(0, 5).map((t) => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: t.name },
-      reviewBody: t.quote,
-      name: t.role,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: "5",
-        bestRating: "5",
-      },
-    }));
+    const socials = [
+      ...(company.socials || []),
+      company.googleBusinessKgUrl,
+      company.googleBusinessUrl,
+    ].filter((u): u is string => typeof u === "string" && /^https?:\/\//i.test(u));
 
     upsertJsonLd("schema-local-business", {
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "ProfessionalService", "Photographers"],
       "@id": `${company.website}/#business`,
       name: company.name,
-      alternateName: ["DisplayAvenue", "DisplayAvenue Wedding Photographers"],
+      alternateName: ["DisplayAvenue Studios Mira Road", "DisplayAvenue Wedding Photographers"],
       description:
         company.tagline ||
         "Premium wedding photographer in Mumbai for candid & traditional photography, cinematic wedding films, pre-wedding, engagement, maternity, birthday and event coverage across India.",
@@ -127,9 +117,10 @@ export function LocalBusinessSchema() {
       telephone: company.phone,
       email: company.email,
       image: [
+        "https://displayavenuestudios.com/og-image.jpg",
         "https://displayavenuestudios.com/images/indian/wedding-01.jpg",
       ],
-      logo: `${company.website}/favicon.svg`,
+      logo: `${company.website}/icon-512.png`,
       priceRange: "₹₹₹",
       currenciesAccepted: "INR",
       paymentAccepted: "Cash, UPI, Bank Transfer, Card",
@@ -149,11 +140,21 @@ export function LocalBusinessSchema() {
         latitude: addr.geo?.latitude ?? 19.2952,
         longitude: addr.geo?.longitude ?? 72.8679,
       },
-      hasMap: addr.mapEmbed,
+      hasMap: company.googleBusinessUrl || addr.mapEmbed,
       areaServed: [
-        { "@type": "Country", name: "India" },
-        { "@type": "City", name: company.primaryFocus || "Mumbai" },
-      ],
+        "Mira Road",
+        "Bhayandar",
+        "Mira Bhayandar",
+        "Vasai",
+        "Virar",
+        "Nalasopara",
+        "Thane",
+        "Borivali",
+        "Dahisar",
+        "Mumbai",
+      ]
+        .map((name) => ({ "@type": "City", name }))
+        .concat([{ "@type": "Country", name: "India" }] as never[]),
       knowsAbout: [
         "Wedding photographer in Mumbai",
         "Candid wedding photography",
@@ -165,7 +166,7 @@ export function LocalBusinessSchema() {
         "Birthday photography",
         ...services.slice(0, 8).map((s) => s.title),
       ],
-      slogan: "The wedding photographer couples shortlist for forever",
+      slogan: "Weddings, told like cinema.",
       keywords:
         "wedding photographer Mumbai, candid wedding photographer, wedding photography packages, pre wedding shoot Mumbai, cinematic wedding films",
       openingHoursSpecification: [
@@ -195,16 +196,8 @@ export function LocalBusinessSchema() {
       sameAs: socials.length
         ? socials
         : [company.whatsappHref].filter(Boolean),
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: String(Math.max(testimonials.length, 6)),
-        bestRating: "5",
-        worstRating: "1",
-      },
-      review: reviews,
     });
-  }, [company, testimonials, services]);
+  }, [company, services]);
 
   return null;
 }
@@ -357,7 +350,7 @@ export function ArticleSchema({
         name: company.name,
         logo: {
           "@type": "ImageObject",
-          url: `${company.website}/favicon.svg`,
+          url: `${company.website}/icon-512.png`,
         },
       },
       articleSection: category,

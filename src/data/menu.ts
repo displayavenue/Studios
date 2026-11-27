@@ -139,10 +139,6 @@ export const menuConfig: MenuConfig = {
         "path": "/locations/pre-wedding-shoot-mumbai"
       },
       {
-        "label": "Hire by city",
-        "path": "/hire"
-      },
-      {
         "label": "Case studies",
         "path": "/case-studies"
       },

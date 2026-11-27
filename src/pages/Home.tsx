@@ -1,388 +1,278 @@
 import { Link } from "react-router-dom";
 import { SEO, FAQPageSchema } from "../components/SEO";
 import { CTABanner } from "../components/CTABanner";
-import { FAQAccordion } from "../components/FAQAccordion";
 import { TestimonialsSection } from "../components/TestimonialsSection";
-import {
-  AwardsStrip,
-  GoogleReviewsBlock,
-  InstagramGrid,
-  ShowreelBlock,
-} from "../components/GrowthWidgets";
+import { ShowreelBlock } from "../components/GrowthWidgets";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Home.css";
 
+/** Ceremonies we cover — one arch per tradition. */
+const faiths = [
+  {
+    name: "Hindu weddings",
+    rituals: "Haldi, mehendi, sangeet, pheras and vidaai",
+  },
+  {
+    name: "Muslim weddings",
+    rituals: "Manjha, mehendi, nikah, rukhsati and walima",
+  },
+  {
+    name: "Christian weddings",
+    rituals: "Roce, church vows, first dance and reception",
+  },
+  {
+    name: "Sikh weddings",
+    rituals: "Kurmai, chooda, Anand Karaj, laavan and doli",
+  },
+  {
+    name: "Parsi weddings",
+    rituals: "Madhavsaro, adarni, lagan and the reception feast",
+  },
+  {
+    name: "Jain, Buddhist & interfaith",
+    rituals: "Court marriages, intimate ceremonies and two traditions in one day",
+  },
+];
+
+/** Pointed mandap / mehrab arch, in 0–1 units so it scales to any box. */
+const ARCH_PATH =
+  "M0,1 V0.36 C0,0.17 0.2,0.07 0.44,0.04 Q0.5,0.02 0.5,0 Q0.5,0.02 0.56,0.04 C0.8,0.07 1,0.17 1,0.36 V1 Z";
+
+function ArchDefs() {
+  return (
+    <svg width="0" height="0" aria-hidden focusable="false" style={{ position: "absolute" }}>
+      <defs>
+        <clipPath id="arch-clip" clipPathUnits="objectBoundingBox">
+          <path d={ARCH_PATH} />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+/** Thin gold arch outline drawn around an arch-shaped photo. */
+function ArchOutline({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={`arch-outline ${className}`}
+      viewBox="0 0 1 1"
+      preserveAspectRatio="none"
+      aria-hidden
+      focusable="false"
+    >
+      <path d={ARCH_PATH} vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+
 export function Home() {
   const ref = useReveal<HTMLDivElement>();
-  const {
-    company: { trustBadges, brandLogos },
-    company,
-    home,
-    homeServices,
-    services,
-    packageGroups,
-    portfolio,
-    blogs,
-    faqs,
-    processSteps,
-    whyChoose,
-    extras,
-  } = useCms();
+  const { home, homeServices, services, packageGroups, portfolio, faqs } =
+    useCms();
   const weddingPackages = packageGroups[0];
   const { hero } = home;
+  const featuredServices = homeServices
+    .map((slug) => services.find((s) => s.slug === slug))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s))
+    .slice(0, 4);
+  const work = portfolio.slice(0, 6);
+  // Never show the same photo twice in the service windows
+  const spare = portfolio
+    .slice(6)
+    .filter((p) => /wedding|sangeet|reception/i.test(`${p.category} ${p.title}`))
+    .map((p) => p.image);
+  const usedImages = new Set<string>();
+  const serviceImage = (img: string) => {
+    let chosen = img;
+    if (usedImages.has(chosen)) chosen = spare.shift() || img;
+    usedImages.add(chosen);
+    return chosen;
+  };
 
   return (
-    <div ref={ref}>
-      <SEO
-        title={home.seo.title}
-        description={home.seo.description}
-        path="/"
-      />
+    <div ref={ref} className="home">
+      <SEO title={home.seo.title} description={home.seo.description} path="/" />
       <FAQPageSchema
         faqs={faqs.slice(0, 5).map((f) => ({
           question: f.question,
           answer: f.answer,
         }))}
       />
+      <ArchDefs />
 
-      <section className="home-hero">
-        <div className="container home-hero__grid">
-          <div className="home-hero__copy">
-            <p className="home-hero__brand">{hero.brand}</p>
-            <p className="eyebrow home-hero__label">{hero.eyebrow}</p>
+      {/* Hero: the couple framed inside a mandap arch */}
+      <section className="mandap-hero">
+        <div className="container mandap-hero__grid">
+          <div className="mandap-hero__copy">
+            <p className="mandap-hero__kicker">{hero.eyebrow}</p>
             <h1>{hero.headline}</h1>
-            <p className="home-hero__desc">{hero.description}</p>
-            <div className="home-hero__actions">
+            <p className="mandap-hero__desc">{hero.description}</p>
+            <div className="mandap-hero__actions">
               <Link to={hero.primaryCtaPath} className="btn btn--gold">
                 {hero.primaryCtaLabel}
               </Link>
-              <Link to={hero.secondaryCtaPath} className="btn btn--outline">
+              <Link to={hero.secondaryCtaPath} className="btn btn--outline-light">
                 {hero.secondaryCtaLabel}
               </Link>
             </div>
-            <ul className="trust-badges">
-              {trustBadges.map((badge) => (
-                <li key={badge}>{badge}</li>
-              ))}
-            </ul>
           </div>
-          <div className="home-hero__media">
-            <img
-              src={hero.image}
-              alt={hero.imageAlt}
-              width={800}
-              height={1000}
-              fetchPriority="high"
-            />
+
+          <div className="mandap-hero__arch">
+            <ArchOutline className="mandap-hero__outline" />
+            <div className="mandap-hero__photo">
+              <img
+                src={hero.image}
+                alt={hero.imageAlt}
+                width={900}
+                height={1200}
+                fetchPriority="high"
+              />
+            </div>
+            <span className="mandap-hero__step" aria-hidden />
           </div>
         </div>
+        <div className="toran" aria-hidden />
       </section>
 
-      <section className="brands-strip section">
+      {/* Every faith */}
+      <section className="section faiths">
         <div className="container">
-          <p className="brands-strip__label reveal">{home.brands.label}</p>
-          <div className="brands-strip__row reveal">
-            {brandLogos.map((brand) => (
-              <span key={brand}>{brand}</span>
+          <div className="faiths__head reveal">
+            <h2>One studio for every ceremony</h2>
+            <p>
+              Tell us your traditions and we plan coverage around each ritual —
+              so the moments that matter most to your families are never missed.
+            </p>
+          </div>
+          <ul className="faiths__row">
+            {faiths.map((f) => (
+              <li key={f.name} className="faith reveal">
+                <ArchOutline className="faith__outline" />
+                <div className="faith__body">
+                  <span className="faith__mark" aria-hidden />
+                  <h3>{f.name}</h3>
+                  <p>{f.rituals}</p>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      <AwardsStrip />
-      <ShowreelBlock />
-
-      <section className="section section--light">
+      {/* Selected work */}
+      <section className="section work">
         <div className="container">
-          <div className="section-head section-head--center reveal">
-            <p className="eyebrow">{home.services.eyebrow}</p>
-            <h2>{home.services.title}</h2>
-            <p>{home.services.text}</p>
-          </div>
-          <div className="services-grid">
-            {homeServices.map((slug, i) => {
-              const service = services.find((s) => s.slug === slug);
-              if (!service) return null;
-              return (
-                <Link
-                  key={slug}
-                  to={`/services/${slug}`}
-                  className="service-card card reveal"
-                  style={{ transitionDelay: `${i * 40}ms` }}
-                >
-                  <div className="service-card__img">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      loading="lazy"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                  <div className="service-card__body">
-                    <h3>{service.title}</h3>
-                    <p>{service.short}</p>
-                    <span className="text-link">Explore service →</span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <div className="section-cta reveal">
-            <Link to={home.services.ctaPath || "/services"} className="btn btn--dark">
-              {home.services.ctaLabel || "View All Services"}
+          <div className="home-head reveal">
+            <h2>{home.portfolio.title}</h2>
+            <Link to={home.portfolio.ctaPath || "/portfolio"} className="quiet-link">
+              {home.portfolio.ctaLabel || "View full portfolio"}
             </Link>
           </div>
         </div>
+        <div className="work__grid">
+          {work.map((item, i) => (
+            <Link
+              key={item.slug}
+              to={`/portfolio/${item.slug}`}
+              className={`work__item work__item--${i + 1}`}
+            >
+              <img
+                src={item.image}
+                alt={`${item.title} — ${item.category} photography in ${item.location} by DisplayAvenue Studios`}
+                loading="lazy"
+                width={900}
+                height={1100}
+              />
+              <span className="work__caption">
+                <strong>{item.title}</strong>
+                <em>{item.location}</em>
+              </span>
+            </Link>
+          ))}
+        </div>
       </section>
 
-      <section className="section">
+      <ShowreelBlock />
+
+      {/* Services as haveli windows */}
+      <section className="section windows">
         <div className="container">
-          <div className="section-head reveal">
-            <p className="eyebrow">{home.portfolio.eyebrow}</p>
-            <h2>{home.portfolio.title}</h2>
-            <p>{home.portfolio.text}</p>
+          <div className="home-head reveal">
+            <h2>{home.services.title}</h2>
+            <Link to={home.services.ctaPath || "/services"} className="quiet-link">
+              {home.services.ctaLabel || "All services"}
+            </Link>
           </div>
-          <div className="masonry">
-            {portfolio.slice(0, 8).map((item, i) => (
+          <div className="windows__row">
+            {featuredServices.map((service) => (
               <Link
-                key={item.slug}
-                to={`/portfolio/${item.slug}`}
-                className={`masonry__item reveal ${i % 5 === 0 ? "is-tall" : ""}`}
+                key={service.slug}
+                to={`/services/${service.slug}`}
+                className="window reveal"
               >
-                <img
-                  src={item.image}
-                  alt={`${item.title} — ${item.category} project in ${item.location}`}
-                  loading="lazy"
-                  width={800}
-                  height={1000}
-                />
-                <div className="masonry__overlay">
-                  <span>{item.category}</span>
-                  <strong>{item.title}</strong>
-                  <em>{item.location}</em>
-                </div>
+                <span className="window__frame">
+                  <img
+                    src={serviceImage(service.image)}
+                    alt={`${service.title} in Mumbai by DisplayAvenue Studios`}
+                    loading="lazy"
+                    width={700}
+                    height={900}
+                  />
+                </span>
+                <ArchOutline className="window__outline" />
+                <span className="window__label">{service.title}</span>
               </Link>
             ))}
           </div>
-          <div className="section-cta reveal">
-            <Link to={home.portfolio.ctaPath || "/portfolio"} className="btn btn--gold">
-              {home.portfolio.ctaLabel || "Explore Portfolio"}
-            </Link>
-          </div>
         </div>
       </section>
 
-      <section className="section section--light">
+      {/* Packages as invitation cards */}
+      <section className="section invites">
         <div className="container">
-          <div className="section-head section-head--center reveal">
-            <p className="eyebrow">{home.packages.eyebrow}</p>
+          <div className="invites__head reveal">
             <h2>{home.packages.title}</h2>
             <p>{home.packages.text}</p>
           </div>
-          <div className="packages-grid">
+          <div className="invites__row">
             {weddingPackages.tiers.map((tier) => (
               <article
                 key={tier.id}
-                className={`package-card card reveal ${tier.highlighted ? "is-featured" : ""}`}
+                className={`invite reveal ${tier.highlighted ? "invite--featured" : ""}`}
               >
                 {tier.highlighted && (
-                  <span className="package-card__badge">
-                    {home.packages.featuredBadge || "Most Popular"}
-                  </span>
+                  <p className="invite__flag">
+                    {home.packages.featuredBadge || "Most booked"}
+                  </p>
                 )}
                 <h3>{tier.name}</h3>
-                <p className="package-card__price">{tier.priceLabel}</p>
-                <p className="package-card__note">{tier.priceNote}</p>
-                <p>{tier.description}</p>
+                <p className="invite__price">{tier.priceLabel}</p>
+                <p className="invite__note">{tier.priceNote}</p>
+                <span className="invite__rule" aria-hidden />
                 <ul>
                   {tier.features.map((f) => (
                     <li key={f}>{f}</li>
                   ))}
                 </ul>
-                <Link to="/book-now" className="btn btn--gold">
-                  Book Now
+                <Link
+                  to={`/packages/${weddingPackages.slug}`}
+                  className={`btn ${tier.highlighted ? "btn--gold" : "btn--ghost"}`}
+                >
+                  Enquire about {tier.name}
                 </Link>
               </article>
             ))}
           </div>
-          <div className="section-cta reveal">
-            <Link
-              to={home.packages.ctaPath || `/packages/${weddingPackages.slug}`}
-              className="btn btn--gold"
-            >
-              {home.packages.ctaLabel || "Wedding Package Page"}
+          <p className="invites__more reveal">
+            <Link to={home.packages.secondaryCtaPath || "/packages"} className="quiet-link">
+              Compare all packages and add-ons
             </Link>
-            <Link
-              to={home.packages.secondaryCtaPath || "/packages"}
-              className="btn btn--outline"
-            >
-              {home.packages.secondaryCtaLabel || "All Packages"}
-            </Link>
-          </div>
+          </p>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="section-head section-head--center reveal">
-            <p className="eyebrow">{home.whyChoose.eyebrow}</p>
-            <h2>{home.whyChoose.title}</h2>
-            <p>{home.whyChoose.text}</p>
-          </div>
-          <div className="why-grid">
-            {whyChoose.map((item) => (
-              <article key={item.title} className="why-card card reveal">
-                <div className="why-card__icon" aria-hidden>
-                  ◆
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--light">
-        <div className="container">
-          <div className="section-head section-head--center reveal">
-            <p className="eyebrow">{home.process.eyebrow}</p>
-            <h2>{home.process.title}</h2>
-            {home.process.text ? <p>{home.process.text}</p> : null}
-          </div>
-          <div className="process-grid">
-            {processSteps.map((step) => (
-              <article key={step.step} className="process-card reveal">
-                <span>{step.step}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <TestimonialsSection />
-
-      <GoogleReviewsBlock />
-
-      <section className="section">
-        <div className="container">
-          <div className="section-head reveal">
-            <p className="eyebrow">Case studies</p>
-            <h2>Real productions, real outcomes</h2>
-          </div>
-          <div className="card-grid-2">
-            {extras.caseStudies.slice(0, 2).map((c) => (
-              <Link key={c.slug} to={`/case-studies/${c.slug}`} className="case-card card reveal">
-                <div className="case-card__img">
-                  <img src={c.image} alt="" loading="lazy" />
-                </div>
-                <div className="case-card__body">
-                  <span className="pill">
-                    {c.category} · {c.city}
-                  </span>
-                  <h3>{c.title}</h3>
-                  <p>{c.result}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="section-cta reveal">
-            <Link to="/case-studies" className="btn btn--outline">
-              All case studies
-            </Link>
-            <Link to="/availability" className="btn btn--ghost">
-              Check availability
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--light">
-        <div className="container hindi-strip reveal">
-          <div>
-            <p className="eyebrow">हिंदी में बात करें</p>
-            <h2>आपकी शादी की डेट अभी फ्री है क्या?</h2>
-            <p>
-              मुंबई के प्रीमियम वेडिंग फोटोग्राफर — कैंडिड, ट्रेडिशनल और सिनेमैटिक फिल्म्स। व्हाट्सऐप पर तुरंत पूछें।
-            </p>
-          </div>
-          <div className="section-cta">
-            <a href={company.whatsappHref} className="btn btn--gold" target="_blank" rel="noreferrer">
-              WhatsApp करें
-            </a>
-            <Link to="/book-now" className="btn btn--outline">
-              बुकिंग शुरू करें
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--light">
-        <div className="container faq-home">
-          <div className="section-head reveal">
-            <p className="eyebrow">{home.faqs.eyebrow}</p>
-            <h2>{home.faqs.title}</h2>
-            <p>{home.faqs.text}</p>
-            <Link
-              to={home.faqs.ctaPath || "/faqs"}
-              className="btn btn--ghost"
-              style={{ marginTop: "1.25rem" }}
-            >
-              {home.faqs.ctaLabel || "View All FAQs"}
-            </Link>
-          </div>
-          <div className="reveal">
-            <FAQAccordion items={faqs.slice(0, 5)} />
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="section-head reveal">
-            <p className="eyebrow">{home.blogs.eyebrow}</p>
-            <h2>{home.blogs.title}</h2>
-            {home.blogs.text ? <p>{home.blogs.text}</p> : null}
-          </div>
-          <div className="blog-grid">
-            {blogs.slice(0, 3).map((post) => (
-              <Link
-                key={post.slug}
-                to={`/blog/${post.slug}`}
-                className="blog-card card reveal"
-              >
-                <div className="blog-card__img">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    loading="lazy"
-                    width={640}
-                    height={420}
-                  />
-                </div>
-                <div className="blog-card__body">
-                  <span>
-                    {post.category} · {post.readTime}
-                  </span>
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="section-cta reveal">
-            <Link to={home.blogs.ctaPath || "/blog"} className="btn btn--outline">
-              {home.blogs.ctaLabel || "Read the Blog"}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <InstagramGrid />
+      <TestimonialsSection limit={3} className="home-words" />
 
       <CTABanner />
     </div>

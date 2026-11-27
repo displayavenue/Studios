@@ -5,6 +5,7 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 function escapeText(text: string): string {
   return text
@@ -93,18 +94,7 @@ export function BlogPost() {
   const post = blogs.find((b) => b.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 
-  if (!post) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Article not found</h1>
-          <Link to="/blog" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            Back to Blog
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!post) return <NotFound />;
 
   const seoTitle = post.seoTitle || `${post.title} | ${company.name} Blog`;
   const seoDesc = post.seoDescription || post.excerpt;

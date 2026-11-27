@@ -5,6 +5,7 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { useReveal } from "../hooks/useReveal";
 import { useCms } from "../cms/CmsProvider";
 import "./Page.css";
+import { NotFound } from "./NotFound";
 
 export function PackageDetail() {
   const { slug } = useParams();
@@ -12,18 +13,7 @@ export function PackageDetail() {
   const group = packageGroups.find((g) => g.slug === slug);
   const ref = useReveal<HTMLDivElement>();
 
-  if (!group) {
-    return (
-      <section className="page-hero">
-        <div className="container">
-          <h1>Package page not found</h1>
-          <Link to="/packages" className="btn btn--gold" style={{ marginTop: "1.5rem" }}>
-            All Packages
-          </Link>
-        </div>
-      </section>
-    );
-  }
+  if (!group) return <NotFound />;
 
   return (
     <div ref={ref}>

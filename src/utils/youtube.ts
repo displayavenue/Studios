@@ -37,7 +37,13 @@ export function getYoutubeId(url?: string | null): string | null {
   return null;
 }
 
+/** Stock / placeholder videos that must never appear on the live site. */
+const PLACEHOLDER_IDS = new Set([
+  "aqz-KE-bpKQ", // Big Buck Bunny (Blender test film)
+]);
+
 export function getYoutubeEmbedUrl(url?: string | null): string | null {
   const id = getYoutubeId(url);
+  if (id && PLACEHOLDER_IDS.has(id)) return null;
   return id ? `https://www.youtube.com/embed/${id}?rel=0` : null;
 }
