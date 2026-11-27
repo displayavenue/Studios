@@ -44,7 +44,7 @@ export function SEO({
   description,
   path = "/",
   type = "website",
-  image = "https://displayavenuestudios.com/images/indian/wedding-01.jpg",
+  image = "https://displayavenuestudios.com/og-image.jpg",
   noindex = false,
 }: SEOProps) {
   const { company } = useCms();
@@ -109,7 +109,7 @@ export function LocalBusinessSchema() {
       "@type": ["LocalBusiness", "ProfessionalService", "Photographers"],
       "@id": `${company.website}/#business`,
       name: company.name,
-      alternateName: ["DisplayAvenue", "DisplayAvenue Wedding Photographers"],
+      alternateName: ["DisplayAvenue Studios Mira Road", "DisplayAvenue Wedding Photographers"],
       description:
         company.tagline ||
         "Premium wedding photographer in Mumbai for candid & traditional photography, cinematic wedding films, pre-wedding, engagement, maternity, birthday and event coverage across India.",
@@ -117,9 +117,10 @@ export function LocalBusinessSchema() {
       telephone: company.phone,
       email: company.email,
       image: [
+        "https://displayavenuestudios.com/og-image.jpg",
         "https://displayavenuestudios.com/images/indian/wedding-01.jpg",
       ],
-      logo: `${company.website}/favicon.svg`,
+      logo: `${company.website}/icon-512.png`,
       priceRange: "₹₹₹",
       currenciesAccepted: "INR",
       paymentAccepted: "Cash, UPI, Bank Transfer, Card",
@@ -349,7 +350,7 @@ export function ArticleSchema({
         name: company.name,
         logo: {
           "@type": "ImageObject",
-          url: `${company.website}/favicon.svg`,
+          url: `${company.website}/icon-512.png`,
         },
       },
       articleSection: category,
