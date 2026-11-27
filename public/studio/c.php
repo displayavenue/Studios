@@ -74,6 +74,7 @@ foreach ($myEvents as $e) {
   echo '<section class="card" id="e' . h($e['id']) . '"><h2>' . h($e['function'] ?: 'Event') . ' — ' . h(da_date($e['date'], 'D, j M Y')) . '</h2>';
   echo '<p>' . ($e['start'] ? '<b>Reach by ' . h($e['start']) . '</b>' . ($e['end'] ? ' · until ' . h($e['end']) : '') . '<br>' : '') . h($e['venue'] ?: 'Venue to be confirmed') . '</p>';
   echo '<p class="actions">' . ($maps ? '<a class="btn ghost small" target="_blank" rel="noopener" href="' . h($maps) . '">Open in Maps</a>' : '') . '<a class="btn ghost small" href="tel:' . h(preg_replace('/[^\d+]/', '', $b['client']['phone'])) . '">Call client</a><a class="btn ghost small" href="tel:' . h(preg_replace('/[^\d+]/', '', $S['studio_phone'])) . '">Call studio</a></p>';
+  if (!empty($e['notes'])) echo '<div class="notice warn"><b>Note from the studio:</b> ' . h($e['notes']) . '</div>';
   if ($team) echo '<p class="small">Also on this event: ' . h(implode('; ', $team)) . '</p>';
   if (!empty($b['notes'])) echo '<p class="small muted" style="white-space:pre-line">Client notes: ' . h($b['notes']) . '</p>';
   echo '<form method="post"><input type="hidden" name="event" value="' . h($e['id']) . '"><h3 style="margin-top:12px">Checklist</h3><ul class="checklist">';

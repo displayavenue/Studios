@@ -232,7 +232,8 @@ function da_next_id(array $bookings): string {
 
 function da_log(array &$b, string $msg): void {
   $b['log'] = $b['log'] ?? [];
-  $b['log'][] = ['at' => date('Y-m-d H:i'), 'msg' => $msg];
+  $who = $GLOBALS['DA_ACTOR'] ?? '';
+  $b['log'][] = ['at' => date('Y-m-d H:i'), 'msg' => $msg . ($who ? ' — ' . $who : '')];
 }
 
 function da_mail(string $to, string $subject, string $body): bool {
@@ -322,6 +323,7 @@ function da_parse_booking_post(array $P): array {
         'venue' => trim((string)($e['venue'] ?? '')),
         'start' => trim((string)($e['start'] ?? '')),
         'end' => trim((string)($e['end'] ?? '')),
+        'notes' => mb_substr(trim((string)($e['notes'] ?? '')), 0, 600),
       ];
     }
     usort($events, fn($a, $b) => strcmp($a['date'] . $a['start'], $b['date'] . $b['start']));
@@ -365,4 +367,31 @@ function da_price_list(array $S): array {
     $out[] = ['name' => $parts[0], 'rate' => isset($parts[1]) ? (int)preg_replace('/\D+/', '', $parts[1]) : 0];
   }
   return $out;
+}
+
+/* ---------- team logins ---------- */
+function da_users(): array { return da_load('users', []); }
+function da_templates(): array { return da_load('templates', []); }
+function da_find_user(string $id): ?array { foreach (da_users() as $u) if ($u['id'] === $id) return $u; return null; }
+function da_find_user_by_username(string $name): ?array {
+  $name = strtolower($name);
+  foreach (da_users() as $u) if (strtolower($u['username']) === $name) return $u;
+  return null;
+}
+function da_login_blocked(string $ip): bool {
+  $a = da_load('login_attempts', []);
+  $k = hash('sha256', $ip);
+  $recent = array_filter($a[$k] ?? [], fn($t) => $t > time() - 900);
+  return count($recent) >= 8;
+}
+function da_login_fail(string $ip): void {
+  $k = hash('sha256', $ip);
+  da_update('login_attempts', function (&$a) use ($k) {
+    foreach ($a as $kk => $list) { $a[$kk] = array_values(array_filter($list, fn($t) => $t > time() - 900)); if (!$a[$kk]) unset($a[$kk]); }
+    $a[$k][] = time();
+  });
+}
+function da_login_clear(string $ip): void {
+  $k = hash('sha256', $ip);
+  da_update('login_attempts', function (&$a) use ($k) { unset($a[$k]); });
 }
