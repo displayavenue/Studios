@@ -46,3 +46,11 @@ full HTML to `dist/index.html` and `dist/_pre/<route>.html`. `.htaccess` serves 
 Google, Bing and AI crawlers (ChatGPT, Claude, Perplexity — which don't run JavaScript) see the
 real text, titles and schema. Re-run it after changing content in `/admin` so the static copy
 matches. Always deploy the output of `build:seo`, not plain `build`.
+
+## Studio booking system (`/studio/`)
+
+Quotes, date availability, terms acceptance, UPI payments, crew assignment and crew checklists. Sign in at `/admin`, then open `/studio/`.
+
+- Data lives in `public_html/studio/data/*.json` on the server. **Never overwrite or delete these when deploying** — build zips with `-x "studio/data/*.json"` (and `-x "admin/config.php"`).
+- Client quote page: `/studio/q.php?t=<token>` · Crew page: `/studio/c.php?t=<token>`.
+- Daily digest cron: the URL with the key is shown at the bottom of Studio → Settings.
