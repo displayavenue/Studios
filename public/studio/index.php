@@ -46,33 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($action === 'save_booking') {
     $id = (string)post('id');
-    $events = [];
-    foreach ((array)post('events', []) as $e) {
-      $date = trim((string)($e['date'] ?? ''));
-      if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) continue;
-      $events[] = [
-        'id' => (string)($e['id'] ?? '') ?: substr(da_token(), 0, 8),
-        'date' => $date,
-        'function' => trim((string)($e['function'] ?? '')),
-        'venue' => trim((string)($e['venue'] ?? '')),
-        'start' => trim((string)($e['start'] ?? '')),
-        'end' => trim((string)($e['end'] ?? '')),
-      ];
-    }
-    usort($events, fn($a, $b) => strcmp($a['date'] . $a['start'], $b['date'] . $b['start']));
-    $items = [];
-    foreach ((array)post('items', []) as $it) {
-      $desc = trim((string)($it['desc'] ?? ''));
-      $amt = (float)preg_replace('/[^\d.]/', '', (string)($it['amount'] ?? ''));
-      if ($desc === '' && $amt == 0.0) continue;
-      $items[] = ['desc' => $desc, 'amount' => $amt];
-    }
-    $client = [
-      'name' => trim((string)post('client_name')),
-      'phone' => trim((string)post('client_phone')),
-      'email' => trim((string)post('client_email')),
-      'city' => trim((string)post('client_city')),
-    ];
+    ['events' => $events, 'items' => $items, 'client' => $client] = da_parse_booking_post($_POST);
     if ($client['name'] === '' || $client['phone'] === '') { flash('Client name and phone are required.', 'bad'); go($id ? 'v=edit&id=' . rawurlencode($id) : 'v=edit'); }
 
     $savedId = da_update('bookings', function (&$all) use ($id, $events, $items, $client, $S) {
@@ -496,6 +470,7 @@ if ($view === 'edit') {
   head($b['id'] ? 'Edit ' . $b['id'] : 'New quote', 'edit');
   $loadEx = da_date_load($bookings, $teams, $b['id'] ?: null);
   echo '<h1>' . ($b['id'] ? 'Edit quote ' . h($b['id']) : 'New quote') . '</h1>';
+  echo '<p class="small muted" style="margin-top:-6px">Fill in the quote. The preview shows exactly what your client will see, and updates as you type. <a href="#pvpane" class="pv-jump">Jump to preview</a></p><div class="editor"><div class="editor-form">';
   echo '<form method="post" class="stack" id="qform">' . csrf_field($CSRF) . '<input type="hidden" name="action" value="save_booking"><input type="hidden" name="id" value="' . h($b['id']) . '"><input type="hidden" name="source" value="' . h($b['source'] ?? '') . '">';
   echo '<section class="card"><h2>Client</h2><div class="fields">'
     . '<div><label for="cn">Name</label><input id="cn" name="client_name" value="' . h($b['client']['name']) . '" required></div>'
@@ -535,7 +510,8 @@ if ($view === 'edit') {
     . '<p class="small" id="calc" aria-live="polite"></p></section>';
 
   echo '<section class="card"><h2>Notes for the client</h2><label for="nt">Shown on the quote page</label><textarea id="nt" name="notes">' . h($b['notes']) . '</textarea></section>';
-  echo '<p class="actions"><button class="btn">Save quote</button>' . ($b['id'] ? '<a class="btn ghost" href="index.php?v=b&id=' . h(rawurlencode($b['id'])) . '">Cancel</a>' : '') . '</p></form>';
+  echo '<p class="actions"><button class="btn">Save quote</button>' . ($b['id'] ? '<a class="btn ghost" href="index.php?v=b&id=' . h(rawurlencode($b['id'])) . '">Cancel</a>' : '') . '</p></form>'
+  . '</div><aside class="editor-preview" id="pvpane" aria-label="Client preview"><div class="pv-bar"><b>Client preview</b><span class="pv-state small muted" aria-live="polite"></span><div class="pv-toggle" role="group" aria-label="Preview size"><button type="button" class="btn small" data-w="390" aria-pressed="true">Phone</button><button type="button" class="btn ghost small" data-w="100%" aria-pressed="false">Wide</button></div></div><div class="pv-frame"><iframe id="pv" title="Client quote preview"></iframe></div></aside></div>';
   echo '<script>window.DA_LOAD=' . json_encode($loadEx) . ';window.DA_TEAMS=' . $teams . ';</script>';
   ?>
 <script>
@@ -580,6 +556,26 @@ if ($view === 'edit') {
     document.getElementById('calc').textContent = 'Total ' + inr(tot) + ' · Advance ' + inr(adv) + ' · Balance ' + inr(tot - adv);
   }
   document.querySelectorAll('.amt, #ap').forEach(function(a){ a.addEventListener('input', calc); }); calc();
+  var form = document.getElementById('qform'), pv = document.getElementById('pv'), pvState = document.querySelector('.pv-state'), timer = null, seq = 0;
+  function refresh(){
+    var my = ++seq; pvState.textContent = 'Updating…';
+    fetch('preview.php', {method:'POST', body:new FormData(form), credentials:'same-origin'})
+      .then(function(r){ return r.text(); })
+      .then(function(html){ if(my !== seq) return; var y = pv.contentWindow ? pv.contentWindow.scrollY : 0; pv.srcdoc = html; pv.onload = function(){ try{ pv.contentWindow.scrollTo(0, y); }catch(e){} }; pvState.textContent = 'Up to date'; })
+      .catch(function(){ pvState.textContent = 'Preview offline — your quote is not affected'; });
+  }
+  function soon(){ clearTimeout(timer); timer = setTimeout(refresh, 450); }
+  form.addEventListener('input', soon); form.addEventListener('change', soon);
+  document.getElementById('addev').addEventListener('click', soon); document.getElementById('additem').addEventListener('click', soon);
+  if(pk) pk.addEventListener('change', soon);
+  document.querySelectorAll('.pv-toggle button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.pv-toggle button').forEach(function(o){ o.classList.add('ghost'); o.setAttribute('aria-pressed','false'); });
+      btn.classList.remove('ghost'); btn.setAttribute('aria-pressed','true');
+      pv.style.width = btn.getAttribute('data-w') === '100%' ? '100%' : btn.getAttribute('data-w') + 'px';
+    });
+  });
+  refresh();
   var pk = document.getElementById('pk');
   if(pk) pk.addEventListener('change', function(){
     if(!pk.value) return;
@@ -605,6 +601,28 @@ if ($view === 'b') {
   head($b['client']['name'], 'list');
   echo '<div class="row" style="align-items:center"><h1 style="margin:0;margin-right:auto">' . h($b['client']['name']) . ' <span class="muted small">' . h($b['id']) . '</span></h1>' . pill($b['status']) . '</div>';
   echo '<p class="muted">' . h($b['client']['phone']) . ($b['client']['email'] ? ' · ' . h($b['client']['email']) : '') . ($b['client']['city'] ? ' · ' . h($b['client']['city']) : '') . '</p>';
+
+  // progress tracker
+  $allCrew = $b['events'] && !array_filter($b['events'], fn($e) => empty($e['crew']));
+  $lastDate = $b['events'] ? max(array_column($b['events'], 'date')) : '';
+  $steps = [
+    ['Quote ready', true, 'Send the quote to the client on WhatsApp.'],
+    ['Sent to client', $b['status'] !== 'draft' || !empty($b['viewed_at']), 'Wait for the client to accept the terms. You can resend the quote if they have not opened it.'],
+    ['Terms accepted', !empty($b['accepted']) || in_array($b['status'], DA_CONFIRMED, true), 'Wait for the advance payment. Remind the client if needed.'],
+    ['Advance received', $t['paid'] > 0, 'Assign crew for every event below.'],
+    ['Crew assigned', $allCrew, 'Send each crew member their WhatsApp message, then reminders 7 days and 1 day before.'],
+    ['Event done', $b['status'] === 'completed' || ($lastDate && $lastDate < date('Y-m-d')), 'Collect the balance and deliver the photos and films.'],
+    ['Fully paid', $t['total'] > 0 && $t['balance'] <= 0, 'All done. Mark the booking as Completed.'],
+  ];
+  if ($b['status'] !== 'cancelled') {
+    $nowIdx = null;
+    foreach ($steps as $i => $st) if (!$st[1]) { $nowIdx = $i; break; }
+    echo '<ol class="steps" aria-label="Booking progress">';
+    foreach ($steps as $i => $st) echo '<li class="' . ($st[1] ? 'done' : ($i === $nowIdx ? 'now' : '')) . '"' . ($i === $nowIdx ? ' aria-current="step"' : '') . '>' . h($st[0]) . '</li>';
+    echo '</ol>';
+    $hint = $nowIdx === null ? 'All steps complete.' : $steps[max(0, $nowIdx - 1)][2];
+    if ($nowIdx !== null && $nowIdx > 0) echo '<p class="small" style="margin:4px 0 16px"><b>What to do now:</b> ' . h($hint) . '</p>';
+  }
 
   // next step box
   echo '<section class="card"><h2>Next step</h2><div class="actions">';

@@ -271,3 +271,71 @@ function da_packages(): array {
   }
   return $out;
 }
+
+/** Client-facing header + events + price. Shared by the client page and the admin live preview. */
+function da_quote_head(array $b, array $S, bool $confirmed): string {
+  ob_start();
+echo '<header class="public-head"><div class="brand">' . h($S['studio_name']) . '</div><h1>' . ($confirmed ? 'Your booking is confirmed' : 'Your wedding photography quote') . '</h1><p style="margin:0;color:#f3e3d3">For ' . h($b['client']['name']) . ' · ' . h($b['id']) . '</p></header>';
+  return (string)ob_get_clean();
+}
+
+function da_quote_sections(array $b, array $S, array $load, bool $confirmed): string {
+  $t = da_totals($b);
+  ob_start();
+  // events
+  echo '<section class="card"><h2>Your events</h2><div class="tablebox"><table><thead><tr><th>Date</th><th>Event</th><th>Venue</th>' . ($confirmed ? '' : '<th>Availability</th>') . '</tr></thead><tbody>';
+  foreach ($b['events'] as $e) {
+    $st = da_date_state($load, $e['date']);
+    echo '<tr><td>' . h(da_date($e['date'], 'D, j M Y')) . ($e['start'] ? '<br><span class="small muted">' . h($e['start']) . ($e['end'] ? '–' . h($e['end']) : '') . '</span>' : '') . '</td><td>' . h($e['function']) . '</td><td>' . h($e['venue']) . '</td>';
+    if (!$confirmed) echo '<td>' . ($st === 'full' ? '<span class="pill full">Fully booked</span>' : ($st === 'partial' ? '<span class="pill partial">Filling up</span>' : '<span class="pill free">Available</span>')) . '</td>';
+    echo '</tr>';
+  }
+  echo '</tbody></table></div>';
+  if (!$confirmed) echo '<p class="small muted" style="margin-top:10px">Dates are confirmed on a first-paid basis.</p>';
+  echo '</section>';
+  
+  // price
+  echo '<section class="card"><h2>Price</h2><table><tbody>';
+  foreach ($b['items'] as $it) echo '<tr><td>' . h($it['desc']) . '</td><td class="num">' . da_money($it['amount']) . '</td></tr>';
+  if ($t['discount']) echo '<tr><td>Discount</td><td class="num">-' . da_money($t['discount']) . '</td></tr>';
+  echo '<tr class="total-row"><td>Total</td><td class="num">' . da_money($t['total']) . '</td></tr>';
+  echo '<tr><td>Advance to confirm (' . h((string)$b['advance_percent']) . '%)</td><td class="num">' . da_money($t['advance']) . '</td></tr>';
+  if ($t['paid'] > 0) echo '<tr><td>Paid so far</td><td class="num">' . da_money($t['paid']) . '</td></tr><tr class="total-row"><td>Balance</td><td class="num">' . da_money($t['balance']) . '</td></tr>';
+  echo '</tbody></table>';
+  if (!empty($b['notes'])) echo '<p style="margin-top:14px;white-space:pre-line">' . h($b['notes']) . '</p>';
+  if (!$confirmed && !empty($b['valid_until'])) echo '<p class="small muted">Quote valid until ' . h(da_date($b['valid_until'], 'j M Y')) . '.</p>';
+  echo '</section>';
+  return (string)ob_get_clean();
+}
+
+/** Parse the quote form (shared by save and live preview). */
+function da_parse_booking_post(array $P): array {
+    $events = [];
+    foreach ((array)($P['events'] ?? []) as $e) {
+      $date = trim((string)($e['date'] ?? ''));
+      if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) continue;
+      $events[] = [
+        'id' => (string)($e['id'] ?? '') ?: substr(da_token(), 0, 8),
+        'date' => $date,
+        'function' => trim((string)($e['function'] ?? '')),
+        'venue' => trim((string)($e['venue'] ?? '')),
+        'start' => trim((string)($e['start'] ?? '')),
+        'end' => trim((string)($e['end'] ?? '')),
+      ];
+    }
+    usort($events, fn($a, $b) => strcmp($a['date'] . $a['start'], $b['date'] . $b['start']));
+    $items = [];
+    foreach ((array)($P['items'] ?? []) as $it) {
+      $desc = trim((string)($it['desc'] ?? ''));
+      $amt = (float)preg_replace('/[^\d.]/', '', (string)($it['amount'] ?? ''));
+      if ($desc === '' && $amt == 0.0) continue;
+      $items[] = ['desc' => $desc, 'amount' => $amt];
+    }
+    $client = [
+      'name' => trim((string)($P['client_name'] ?? '')),
+      'phone' => trim((string)($P['client_phone'] ?? '')),
+      'email' => trim((string)($P['client_email'] ?? '')),
+      'city' => trim((string)($P['client_city'] ?? '')),
+    ];
+    return ['events' => $events, 'items' => $items, 'client' => $client];
+}

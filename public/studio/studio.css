@@ -128,3 +128,28 @@ textarea { min-height: 110px; }
 .total-row td { font-weight: 500; font-size: 1.05rem; }
 .checklist li { list-style: none; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .checklist { padding: 0; margin: 0; }
+
+/* Quote editor + live client preview */
+.editor { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+.editor-preview { background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.pv-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.pv-bar b { font-weight: 500; }
+.pv-toggle { display: flex; gap: 6px; margin-left: auto; }
+.pv-frame { background: var(--blush); padding: 14px; display: flex; justify-content: center; }
+.pv-frame iframe { width: 390px; max-width: 100%; height: 760px; border: 1px solid var(--line); border-radius: 18px; background: var(--jasmine); }
+@media (min-width: 1100px) {
+  .wrap:has(.editor) { max-width: 1440px; }
+  .editor { grid-template-columns: minmax(0, 1fr) minmax(430px, 0.9fr); }
+  .editor-preview { position: sticky; top: 16px; }
+  .pv-frame iframe { height: calc(100vh - 120px); }
+  .pv-jump { display: none; }
+}
+
+/* Booking progress */
+.steps { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0 0 6px; }
+.steps li { flex: 1 1 110px; padding: 8px 10px; border-radius: var(--radius); background: var(--blush); color: var(--muted); font-size: 0.88rem; border: 1px solid transparent; }
+.steps li.done { background: var(--ok-bg); color: var(--ok); }
+.steps li.now { background: #fff; color: var(--sindoor); border-color: var(--gold); font-weight: 500; }
+.steps li::before { content: "○ "; }
+.steps li.done::before { content: "✓ "; }
+.steps li.now::before { content: "→ "; }

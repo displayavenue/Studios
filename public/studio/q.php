@@ -113,33 +113,11 @@ $openClaim = null;
 foreach ($b['claims'] ?? [] as $c) if (empty($c['resolved'])) $openClaim = $c;
 
 page_start(($confirmed ? 'Your booking' : 'Your quote') . ' — ' . $S['studio_name']);
-echo '<header class="public-head"><div class="brand">' . h($S['studio_name']) . '</div><h1>' . ($confirmed ? 'Your booking is confirmed' : 'Your wedding photography quote') . '</h1><p style="margin:0;color:#f3e3d3">For ' . h($b['client']['name']) . ' · ' . h($b['id']) . '</p></header><main class="public">';
+echo da_quote_head($b, $S, $confirmed) . '<main class="public">';
 if ($msg) echo '<div class="notice ' . h($msg[0]) . '" role="status" style="margin-top:18px">' . h($msg[1]) . '</div>';
 if ($status === 'cancelled') { echo '<div class="card"><p>This quote has been cancelled. Message us if you would like a new one.</p></div></main></body></html>'; exit; }
 
-// events
-echo '<section class="card"><h2>Your events</h2><div class="tablebox"><table><thead><tr><th>Date</th><th>Event</th><th>Venue</th>' . ($confirmed ? '' : '<th>Availability</th>') . '</tr></thead><tbody>';
-foreach ($b['events'] as $e) {
-  $st = da_date_state($load, $e['date']);
-  echo '<tr><td>' . h(da_date($e['date'], 'D, j M Y')) . ($e['start'] ? '<br><span class="small muted">' . h($e['start']) . ($e['end'] ? '–' . h($e['end']) : '') . '</span>' : '') . '</td><td>' . h($e['function']) . '</td><td>' . h($e['venue']) . '</td>';
-  if (!$confirmed) echo '<td>' . ($st === 'full' ? '<span class="pill full">Fully booked</span>' : ($st === 'partial' ? '<span class="pill partial">Filling up</span>' : '<span class="pill free">Available</span>')) . '</td>';
-  echo '</tr>';
-}
-echo '</tbody></table></div>';
-if (!$confirmed) echo '<p class="small muted" style="margin-top:10px">Dates are confirmed on a first-paid basis.</p>';
-echo '</section>';
-
-// price
-echo '<section class="card"><h2>Price</h2><table><tbody>';
-foreach ($b['items'] as $it) echo '<tr><td>' . h($it['desc']) . '</td><td class="num">' . da_money($it['amount']) . '</td></tr>';
-if ($t['discount']) echo '<tr><td>Discount</td><td class="num">-' . da_money($t['discount']) . '</td></tr>';
-echo '<tr class="total-row"><td>Total</td><td class="num">' . da_money($t['total']) . '</td></tr>';
-echo '<tr><td>Advance to confirm (' . h((string)$b['advance_percent']) . '%)</td><td class="num">' . da_money($t['advance']) . '</td></tr>';
-if ($t['paid'] > 0) echo '<tr><td>Paid so far</td><td class="num">' . da_money($t['paid']) . '</td></tr><tr class="total-row"><td>Balance</td><td class="num">' . da_money($t['balance']) . '</td></tr>';
-echo '</tbody></table>';
-if (!empty($b['notes'])) echo '<p style="margin-top:14px;white-space:pre-line">' . h($b['notes']) . '</p>';
-if (!$confirmed && !empty($b['valid_until'])) echo '<p class="small muted">Quote valid until ' . h(da_date($b['valid_until'], 'j M Y')) . '.</p>';
-echo '</section>';
+echo da_quote_sections($b, $S, $load, $confirmed);
 
 // terms / accept
 $terms = $b['terms_snapshot'] ?? $S['terms'];
