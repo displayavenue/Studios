@@ -200,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if ($action === 'save_settings') {
-    $keys = ['upi_id', 'payee_name', 'studio_phone', 'notify_email', 'teams_per_day', 'advance_percent', 'quote_valid_days', 'terms', 'checklist_photographer', 'checklist_videographer'];
+    $keys = ['price_list', 'upi_id', 'payee_name', 'studio_phone', 'notify_email', 'teams_per_day', 'advance_percent', 'quote_valid_days', 'terms', 'checklist_photographer', 'checklist_videographer'];
     da_update('settings', function (&$d) use ($keys, $S) {
       $d = array_merge($S, $d);
       foreach ($keys as $k) {
@@ -448,6 +448,7 @@ if ($view === 'settings') {
   echo '<h1>Settings</h1><form method="post" class="stack">' . csrf_field($CSRF) . '<input type="hidden" name="action" value="save_settings">';
   echo '<section class="card"><h2>Payments</h2><div class="fields">' . $f('upi_id', 'UPI ID (e.g. studio@okhdfcbank)', 'text', 'placeholder="yourname@bank"') . $f('payee_name', 'Name shown in UPI apps') . $f('advance_percent', 'Advance to confirm (%)', 'number', 'min="0" max="100"') . $f('quote_valid_days', 'Quote valid for (days)', 'number', 'min="1"') . '</div></section>';
   echo '<section class="card"><h2>Studio</h2><div class="fields">' . $f('teams_per_day', 'Teams available per day (slot full after this)', 'number', 'min="1"') . $f('studio_phone', 'Studio phone') . $f('notify_email', 'Email for payment alerts and daily digest', 'email') . '</div></section>';
+  echo '<section class="card" id="prices"><h2>Your services and rates</h2><p class="small muted">One service per line: <b>name | rate</b>. These appear in "Quick add" on every quote, and you can change the rate per client. Leave the rate empty if it changes every time.</p><label for="s_pl">Services</label><textarea id="s_pl" name="price_list" rows="12">' . h($S['price_list']) . '</textarea></section>';
   echo '<section class="card"><h2>Terms shown on every quote</h2><p class="small muted">Clients must accept these before paying. Fill in the [STUDIO TO FILL] parts and have your lawyer or CA check them.</p><label for="s_terms" class="sr">Terms</label><textarea id="s_terms" name="terms" rows="14">' . h($S['terms']) . '</textarea></section>';
   echo '<section class="card"><h2>Event-day checklists</h2><p class="small muted">One item per line. Crew see these on their event page.</p><div class="fields"><div><label for="s_cp">Photographer</label><textarea id="s_cp" name="checklist_photographer" rows="12">' . h($S['checklist_photographer']) . '</textarea></div><div><label for="s_cv">Videographer</label><textarea id="s_cv" name="checklist_videographer" rows="12">' . h($S['checklist_videographer']) . '</textarea></div></div></section>';
   echo '<p><button class="btn">Save settings</button></p></form>';
@@ -492,19 +493,29 @@ if ($view === 'edit') {
   echo '</div><datalist id="fnlist"><option value="Wedding"><option value="Reception"><option value="Haldi"><option value="Mehendi"><option value="Sangeet"><option value="Engagement"><option value="Pre-wedding shoot"><option value="Nikah"><option value="Walima"><option value="Church wedding"><option value="Anand Karaj"></datalist>'
     . '<p><button type="button" class="btn ghost small" id="addev">+ Add another event</button></p></section>';
 
-  echo '<section class="card"><h2>Price</h2>';
+  echo '<section class="card"><h2>Price</h2><p class="small muted">Build a custom price for this client: add each service with quantity and rate. Use the quick-add list to save typing — you can change any line afterwards.</p>';
+  $pl = da_price_list($S);
   $pk = da_packages();
-  if ($pk) {
-    echo '<div style="max-width:520px"><label for="pk">Add a package from your price list</label><select id="pk"><option value="">Choose a package…</option>';
-    foreach ($pk as $p) echo '<option value="' . h((string)$p['amount']) . '" data-desc="' . h($p['desc']) . '">' . h($p['label']) . ' (' . h(da_money($p['amount'])) . ')</option>';
-    echo '</select></div>';
-  }
-  echo '<div id="items" class="stack" style="margin-top:12px">';
+  echo '<div style="max-width:560px"><label for="pk">Quick add a service</label><select id="pk"><option value="">Choose a service or package…</option>';
+  if ($pl) { echo '<optgroup label="Your services">'; foreach ($pl as $p) echo '<option value="' . h((string)$p['rate']) . '" data-desc="' . h($p['name']) . '">' . h($p['name']) . ($p['rate'] ? ' (' . h(da_money($p['rate'])) . ')' : '') . '</option>'; echo '</optgroup>'; }
+  if ($pk) { echo '<optgroup label="Website packages">'; foreach ($pk as $p) echo '<option value="' . h((string)$p['amount']) . '" data-desc="' . h($p['desc']) . '">' . h($p['label']) . ' (' . h(da_money($p['amount'])) . ')</option>'; echo '</optgroup>'; }
+  echo '</select><p class="small muted" style="margin:4px 0 0">Edit this list in <a href="index.php?v=settings#prices">Settings → Your services and rates</a>.</p></div>';
+  echo '<div id="items" class="stack" style="margin-top:14px">';
   $its = $b['items'];
-  for ($k = 0; $k < 2; $k++) $its[] = ['desc' => '', 'amount' => ''];
-  foreach ($its as $i => $it) echo '<div class="fields it"><div style="grid-column:span 2"><label for="id' . $i . '">Item</label><input id="id' . $i . '" name="items[' . $i . '][desc]" value="' . h($it['desc']) . '"></div><div><label for="ia' . $i . '">Amount (₹)</label><input id="ia' . $i . '" name="items[' . $i . '][amount]" inputmode="numeric" value="' . h($it['amount'] === '' ? '' : (string)(int)$it['amount']) . '" class="amt"></div></div>';
-  echo '</div><p><button type="button" class="btn ghost small" id="additem">+ Add item</button></p><div class="fields">'
-    . '<div><label for="dc">Discount (₹)</label><input id="dc" name="discount" inputmode="numeric" value="' . h((string)(int)$b['discount']) . '" class="amt"></div>'
+  for ($k = 0; $k < 2; $k++) $its[] = ['desc' => '', 'qty' => '', 'rate' => '', 'amount' => ''];
+  foreach ($its as $i => $it) {
+    $qty = $it['qty'] ?? ($it['desc'] !== '' ? 1 : '');
+    $rate = $it['rate'] ?? ($it['amount'] === '' ? '' : $it['amount']);
+    $amt = $it['amount'] === '' ? '' : (string)(int)$it['amount'];
+    echo '<div class="items-row it">'
+      . '<div class="c-desc"><label for="id' . $i . '">Service / item</label><input id="id' . $i . '" name="items[' . $i . '][desc]" value="' . h($it['desc']) . '" placeholder="e.g. Candid photographer — wedding day"></div>'
+      . '<div><label for="iq' . $i . '">Qty</label><input id="iq' . $i . '" name="items[' . $i . '][qty]" inputmode="decimal" class="qty" value="' . h($qty === '' ? '' : (string)(0 + $qty)) . '"></div>'
+      . '<div><label for="ir' . $i . '">Rate (₹)</label><input id="ir' . $i . '" name="items[' . $i . '][rate]" inputmode="numeric" class="rate" value="' . h($rate === '' ? '' : (string)(int)$rate) . '"></div>'
+      . '<div><label for="ia' . $i . '">Amount (₹)</label><input id="ia' . $i . '" name="items[' . $i . '][amount]" inputmode="numeric" class="amt" value="' . h($amt) . '"></div>'
+      . '<div class="c-x"><button type="button" class="btn ghost small rm" aria-label="Remove this line">Remove</button></div></div>';
+  }
+  echo '</div><p><button type="button" class="btn ghost small" id="additem">+ Add line</button></p><div class="fields">'
+    . '<div><label for="dc">Discount (₹)</label><input id="dc" name="discount" inputmode="numeric" value="' . h((string)(int)$b['discount']) . '"></div>'
     . '<div><label for="ap">Advance to confirm (%)</label><input id="ap" name="advance_percent" type="number" min="0" max="100" value="' . h((string)$b['advance_percent']) . '"></div>'
     . '<div><label for="vu">Quote valid until</label><input id="vu" name="valid_until" type="date" value="' . h($b['valid_until']) . '"></div></div>'
     . '<p class="small" id="calc" aria-live="polite"></p></section>';
@@ -516,6 +527,7 @@ if ($view === 'edit') {
   ?>
 <script>
 (function(){
+  var form = document.getElementById('qform');
   function availText(d){
     if(!d) return '';
     var l = window.DA_LOAD[d];
@@ -542,21 +554,49 @@ if ($view === 'edit') {
     n.querySelectorAll('.avail').forEach(function(s){ s.textContent=''; });
     box.appendChild(n);
     var d = n.querySelector('.evdate'); if(d) d.addEventListener('change', function(){ paint(d); });
-    n.querySelectorAll('.amt').forEach(function(a){ a.addEventListener('input', calc); });
     return n;
   }
   document.getElementById('addev').addEventListener('click', function(){ cloneLast('events','ev').querySelector('input[type=date]').focus(); });
   document.getElementById('additem').addEventListener('click', function(){ cloneLast('items','it').querySelector('input').focus(); });
   function num(v){ return parseFloat(String(v).replace(/[^\d.]/g,'')) || 0; }
   function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+  function rowMath(row){
+    var q = row.querySelector('.qty'), r = row.querySelector('.rate'), a = row.querySelector('.amt');
+    if (r.value !== '') { if (q.value === '') q.value = 1; a.value = Math.round(num(q.value) * num(r.value)); }
+  }
   function calc(){
     var sub = 0; document.querySelectorAll('#items .amt').forEach(function(a){ sub += num(a.value); });
     var tot = Math.max(0, sub - num(document.getElementById('dc').value));
     var adv = Math.round(tot * num(document.getElementById('ap').value) / 100);
-    document.getElementById('calc').textContent = 'Total ' + inr(tot) + ' · Advance ' + inr(adv) + ' · Balance ' + inr(tot - adv);
+    document.getElementById('calc').innerHTML = '<b>Total ' + inr(tot) + '</b> · Advance ' + inr(adv) + ' · Balance ' + inr(tot - adv);
   }
-  document.querySelectorAll('.amt, #ap').forEach(function(a){ a.addEventListener('input', calc); }); calc();
-  var form = document.getElementById('qform'), pv = document.getElementById('pv'), pvState = document.querySelector('.pv-state'), timer = null, seq = 0;
+  document.getElementById('items').addEventListener('input', function(e){
+    var row = e.target.closest('.it'); if (!row) return;
+    if (e.target.classList.contains('qty') || e.target.classList.contains('rate')) rowMath(row);
+    if (e.target.classList.contains('amt')) { row.querySelector('.rate').value = ''; }
+    calc();
+  });
+  document.getElementById('items').addEventListener('click', function(e){
+    if (!e.target.classList.contains('rm')) return;
+    var row = e.target.closest('.it');
+    row.querySelectorAll('input').forEach(function(i){ i.value = ''; });
+    if (document.querySelectorAll('#items .it').length > 1) row.remove();
+    calc(); form.dispatchEvent(new Event('input'));
+  });
+  ['dc','ap'].forEach(function(id){ document.getElementById(id).addEventListener('input', calc); }); calc();
+  var pk = document.getElementById('pk');
+  if(pk) pk.addEventListener('change', function(){
+    if(pk.selectedIndex < 1) return;
+    var opt = pk.options[pk.selectedIndex], rows = document.querySelectorAll('#items .it'), target = null;
+    rows.forEach(function(r){ if(!target && !r.querySelector('input').value) target = r; });
+    if(!target) target = cloneLast('items','it');
+    target.querySelector('input').value = opt.getAttribute('data-desc');
+    target.querySelector('.qty').value = 1;
+    target.querySelector('.rate').value = pk.value && pk.value !== '0' ? pk.value : '';
+    if (target.querySelector('.rate').value) rowMath(target); else target.querySelector('.rate').focus();
+    pk.selectedIndex = 0; calc();
+  });
+  var pv = document.getElementById('pv'), pvState = document.querySelector('.pv-state'), timer = null, seq = 0;
   function refresh(){
     var my = ++seq; pvState.textContent = 'Updating…';
     fetch('preview.php', {method:'POST', body:new FormData(form), credentials:'same-origin'})
@@ -576,15 +616,6 @@ if ($view === 'edit') {
     });
   });
   refresh();
-  var pk = document.getElementById('pk');
-  if(pk) pk.addEventListener('change', function(){
-    if(!pk.value) return;
-    var opt = pk.options[pk.selectedIndex], rows = document.querySelectorAll('#items .it'), target = null;
-    rows.forEach(function(r){ if(!target && !r.querySelector('input').value) target = r; });
-    if(!target) target = cloneLast('items','it');
-    var ins = target.querySelectorAll('input'); ins[0].value = opt.getAttribute('data-desc'); ins[1].value = pk.value;
-    pk.value = ''; calc();
-  });
 })();
 </script>
 <?php
@@ -682,7 +713,7 @@ if ($view === 'b') {
 
   // money column
   echo '<div class="grow stack" style="flex-basis:300px"><section class="card"><h2>Money</h2><table><tbody>';
-  foreach ($b['items'] as $it) echo '<tr><td>' . h($it['desc']) . '</td><td class="num">' . da_money($it['amount']) . '</td></tr>';
+  foreach ($b['items'] as $it) echo '<tr><td>' . h($it['desc']) . da_item_detail($it) . '</td><td class="num">' . da_money($it['amount']) . '</td></tr>';
   if ($t['discount']) echo '<tr><td>Discount</td><td class="num">-' . da_money($t['discount']) . '</td></tr>';
   echo '<tr class="total-row"><td>Total</td><td class="num">' . da_money($t['total']) . '</td></tr><tr><td>Advance (' . h((string)$b['advance_percent']) . '%)</td><td class="num">' . da_money($t['advance']) . '</td></tr><tr><td>Received</td><td class="num">' . da_money($t['paid']) . '</td></tr><tr class="total-row"><td>Balance</td><td class="num">' . da_money($t['balance']) . '</td></tr></tbody></table>';
   if ($b['payments']) {

@@ -25,6 +25,7 @@ const DA_STATUSES = [
 function da_default_settings(): array {
   return [
     'studio_name' => 'DisplayAvenue Studios',
+    'price_list' => "Candid photographer (per day) |\nTraditional photographer (per day) |\nCinematographer (per day) |\nTraditional videographer (per day) |\nDrone coverage (per day) |\nCinematic highlight film |\nFull-length wedding film |\nPre-wedding shoot |\nPhoto album |\nSame-day edit reel |\nExtra hour of coverage |\nTravel and stay (outstation) |",
     'upi_id' => '',
     'payee_name' => 'DisplayAvenue Studios',
     'studio_phone' => '+91 7400303493',
@@ -296,7 +297,7 @@ function da_quote_sections(array $b, array $S, array $load, bool $confirmed): st
   
   // price
   echo '<section class="card"><h2>Price</h2><table><tbody>';
-  foreach ($b['items'] as $it) echo '<tr><td>' . h($it['desc']) . '</td><td class="num">' . da_money($it['amount']) . '</td></tr>';
+  foreach ($b['items'] as $it) echo '<tr><td>' . h($it['desc']) . da_item_detail($it) . '</td><td class="num">' . ((float)$it['amount'] > 0 ? da_money($it['amount']) : 'Included') . '</td></tr>';
   if ($t['discount']) echo '<tr><td>Discount</td><td class="num">-' . da_money($t['discount']) . '</td></tr>';
   echo '<tr class="total-row"><td>Total</td><td class="num">' . da_money($t['total']) . '</td></tr>';
   echo '<tr><td>Advance to confirm (' . h((string)$b['advance_percent']) . '%)</td><td class="num">' . da_money($t['advance']) . '</td></tr>';
@@ -327,9 +328,16 @@ function da_parse_booking_post(array $P): array {
     $items = [];
     foreach ((array)($P['items'] ?? []) as $it) {
       $desc = trim((string)($it['desc'] ?? ''));
-      $amt = (float)preg_replace('/[^\d.]/', '', (string)($it['amount'] ?? ''));
+      $num = fn($v) => (float)preg_replace('/[^\d.]/', '', (string)$v);
+      $qtyRaw = trim((string)($it['qty'] ?? ''));
+      $rateRaw = trim((string)($it['rate'] ?? ''));
+      $qty = $qtyRaw === '' ? 1.0 : max(0.0, $num($qtyRaw));
+      $rate = $rateRaw === '' ? null : $num($rateRaw);
+      $amt = $rate !== null ? round($qty * $rate) : $num($it['amount'] ?? '');
       if ($desc === '' && $amt == 0.0) continue;
-      $items[] = ['desc' => $desc, 'amount' => $amt];
+      $row = ['desc' => $desc, 'qty' => $qty, 'amount' => $amt];
+      if ($rate !== null) $row['rate'] = $rate;
+      $items[] = $row;
     }
     $client = [
       'name' => trim((string)($P['client_name'] ?? '')),
@@ -338,4 +346,23 @@ function da_parse_booking_post(array $P): array {
       'city' => trim((string)($P['client_city'] ?? '')),
     ];
     return ['events' => $events, 'items' => $items, 'client' => $client];
+}
+
+/** "2 × ₹25,000" under a line item when quantity or rate is meaningful. */
+function da_item_detail(array $it): string {
+  $qty = (float)($it['qty'] ?? 1);
+  if (!isset($it['rate']) || $qty == 1.0) return '';
+  $q = rtrim(rtrim(number_format($qty, 2, '.', ''), '0'), '.');
+  return '<br><span class="small muted">' . h($q) . ' × ' . da_money($it['rate']) . '</span>';
+}
+
+/** Services from Settings: one per line, "name | rate" (rate optional). */
+function da_price_list(array $S): array {
+  $out = [];
+  foreach (preg_split('/\R/', (string)($S['price_list'] ?? '')) as $line) {
+    $parts = array_map('trim', explode('|', $line, 2));
+    if ($parts[0] === '') continue;
+    $out[] = ['name' => $parts[0], 'rate' => isset($parts[1]) ? (int)preg_replace('/\D+/', '', $parts[1]) : 0];
+  }
+  return $out;
 }

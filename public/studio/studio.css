@@ -153,3 +153,12 @@ textarea { min-height: 110px; }
 .steps li::before { content: "○ "; }
 .steps li.done::before { content: "✓ "; }
 .steps li.now::before { content: "→ "; }
+
+/* Custom price lines */
+.items-row { display: grid; grid-template-columns: minmax(0, 3fr) minmax(64px, 0.6fr) minmax(90px, 1fr) minmax(100px, 1fr) auto; gap: 10px; align-items: end; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.items-row .c-x { padding-bottom: 4px; }
+@media (max-width: 700px) {
+  .items-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .items-row .c-desc { grid-column: 1 / -1; }
+  .items-row .c-x { grid-column: 1 / -1; }
+}
